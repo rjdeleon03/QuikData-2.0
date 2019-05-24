@@ -6,4 +6,9 @@
     <string name="settings_title">Settings</string>
     <string name="create_form_title_new">Create New Form</string>
     <string name="create_form_title_edit">Edit Form</string>
+    <string name="prefilled_organization">Organization</string>
+    <string name="prefilled_sitio">Sitio / Purok / Zone</string>
+    <string name="prefilled_barangay">Barangay</string>
+    <string name="prefilled_city">City / Municipality</string>
+    <string name="prefilled_province">Province</string>
 </resources>
