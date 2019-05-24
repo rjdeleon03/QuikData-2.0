@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.newforms.NewFormsFragment">
+    tools:context=".feature.main.newforms.NewFormsFragment">
 
     <TextView
         android:layout_width="match_parent"

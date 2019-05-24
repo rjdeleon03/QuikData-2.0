@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.newforms
+package com.cpu.quikdata.feature.main.newforms
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle

@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/newFormsFragment"
-        android:name="com.cpu.quikdata.feature.newforms.NewFormsFragment"
+        android:name="com.cpu.quikdata.feature.main.newforms.NewFormsFragment"
         android:label="fragment_new_forms"
         tools:layout="@layout/fragment_new_forms" />
     <fragment
         android:id="@+id/sentFormsFragment"
-        android:name="com.cpu.quikdata.feature.sentforms.SentFormsFragment"
+        android:name="com.cpu.quikdata.feature.main.sentforms.SentFormsFragment"
         android:label="fragment_sent_forms"
         tools:layout="@layout/fragment_sent_forms" />
     <fragment
         android:id="@+id/prefilledInfoFragment"
-        android:name="com.cpu.quikdata.feature.prefilledinfo.PrefilledInfoFragment"
+        android:name="com.cpu.quikdata.feature.main.prefilledinfo.PrefilledInfoFragment"
         android:label="fragment_prefilled_info"
         tools:layout="@layout/fragment_prefilled_info" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.cpu.quikdata.feature.settings.SettingsFragment"
+        android:name="com.cpu.quikdata.feature.main.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

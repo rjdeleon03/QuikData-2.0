@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.sentforms
+package com.cpu.quikdata.feature.main.sentforms
 
 import androidx.lifecycle.ViewModel
 
