@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">QuikData</string>
+    <string name="new_forms_title">New Forms</string>
+    <string name="sent_forms_title">Sent Forms</string>
+    <string name="prefilled_title">Pre-filled Data</string>
+    <string name="settings_title">Settings</string>
+    <string name="create_form_title_new">Create New Form</string>
+    <string name="create_form_title_edit">Edit Form</string>
 </resources>
