@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.feature.createform.CreateFormActivity
+import kotlinx.android.synthetic.main.fragment_new_forms.*
 
 class NewFormsFragment : Fragment() {
 
@@ -15,7 +18,7 @@ class NewFormsFragment : Fragment() {
         fun newInstance() = NewFormsFragment()
     }
 
-    private lateinit var viewModel: NewFormsViewModel
+    private lateinit var mViewModel: NewFormsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +27,19 @@ class NewFormsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_new_forms, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        newFormsAddButton.clickWithGuard {
+            CreateFormActivity.newInstance(context!!)
+        }
+
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(NewFormsViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this).get(NewFormsViewModel::class.java)
         // TODO: Use the ViewModel
     }
+
 
 }

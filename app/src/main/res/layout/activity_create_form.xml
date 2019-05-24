@@ -15,7 +15,8 @@
             android:id="@+id/createFormToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:contentInsetEnd="16dp">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            app:contentInsetEnd="@dimen/dimenSuperExtraLarge">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -30,7 +31,7 @@
                     android:layout_marginBottom="-8dp"
                     android:theme="@style/ToolbarTitleTheme"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
-                    android:text="@string/app_name"/>
+                    android:text="@string/create_form_title_new"/>
 
                 <TextView
                     android:id="@+id/toolbarSubtitle"
