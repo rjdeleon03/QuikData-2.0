@@ -9,4 +9,17 @@
         <item name="android:fontFamily">@font/biryani_regular</item>
     </style>
 
+    <style name="ToolbarTitleTheme" parent="AppTheme">
+        <item name="android:fontFamily">@font/biryani_bold</item>
+    </style>
+
+    <style name="ToolbarSubtitleTheme" parent="AppTheme">
+        <item name="android:fontFamily">@font/biryani_demibold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BottomNavTitleTextAppearance">
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>
