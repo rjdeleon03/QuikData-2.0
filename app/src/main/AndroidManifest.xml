@@ -3,6 +3,7 @@
     package="com.cpu.quikdata">
 
     <application
+        android:name=".feature.QuikDataApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
