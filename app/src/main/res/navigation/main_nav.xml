@@ -8,21 +8,21 @@
     <fragment
         android:id="@+id/newFormsFragment"
         android:name="com.cpu.quikdata.feature.main.newforms.NewFormsFragment"
-        android:label="fragment_new_forms"
+        android:label="@string/new_forms_title"
         tools:layout="@layout/fragment_new_forms" />
     <fragment
         android:id="@+id/sentFormsFragment"
         android:name="com.cpu.quikdata.feature.main.sentforms.SentFormsFragment"
-        android:label="fragment_sent_forms"
+        android:label="@string/sent_forms_title"
         tools:layout="@layout/fragment_sent_forms" />
     <fragment
         android:id="@+id/prefilledInfoFragment"
         android:name="com.cpu.quikdata.feature.main.prefilledinfo.PrefilledInfoFragment"
-        android:label="fragment_prefilled_info"
+        android:label="@string/prefilled_title"
         tools:layout="@layout/fragment_prefilled_info" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.cpu.quikdata.feature.main.settings.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="@string/settings_title"
         tools:layout="@layout/fragment_settings" />
 </navigation>

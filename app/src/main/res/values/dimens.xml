@@ -4,6 +4,7 @@
     <dimen name="dimenSmall">8dp</dimen>
     <dimen name="dimenMid">16dp</dimen>
     <dimen name="dimenLarge">32dp</dimen>
+    <dimen name="dimenMidLarge">48dp</dimen>
     <dimen name="dimenExtraLarge">64dp</dimen>
     <dimen name="dimenSuperExtraLarge">72dp</dimen>
 </resources>

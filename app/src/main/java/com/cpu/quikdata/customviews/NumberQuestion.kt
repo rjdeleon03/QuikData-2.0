@@ -7,10 +7,10 @@ import android.widget.LinearLayout
 import com.cpu.quikdata.R
 import kotlinx.android.synthetic.main.question_string.view.*
 
-class StringQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
+class NumberQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     init {
-        View.inflate(context, R.layout.question_string, this)
+        View.inflate(context, R.layout.question_number, this)
 
         /* Retrieve view attributes then apply */
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.StringQuestion)

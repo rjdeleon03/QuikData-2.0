@@ -6,9 +6,26 @@
     <string name="settings_title">Settings</string>
     <string name="create_form_title_new">Create New Form</string>
     <string name="create_form_title_edit">Edit Form</string>
-    <string name="prefilled_organization">Organization</string>
+    <string name="prefilled_organization">Organization Name</string>
     <string name="prefilled_sitio">Sitio / Purok / Zone</string>
     <string name="prefilled_barangay">Barangay</string>
     <string name="prefilled_city">City / Municipality</string>
     <string name="prefilled_province">Province</string>
+    <string name="prefilled_total_population">Total Population</string>
+    <string name="text_male">Male</string>
+    <string name="text_female">Female</string>
+    <string name="text_age_0to5">Ages 0 to 5</string>
+    <string name="text_age_6to9">Ages 6 to 9</string>
+    <string name="text_age_10to12">Ages 10 to 12</string>
+    <string name="text_age_13to17">Ages 13 to 17</string>
+    <string name="text_age_18to59">Ages 18 to 59</string>
+    <string name="text_age_60plus">Ages 60+</string>
+    <string name="prefilled_families_households">Total Families and Households</string>
+    <string name="prefilled_families">Families</string>
+    <string name="prefilled_households">Households</string>
+    <string name="prefilled_houses">Total Number of Houses</string>
+    <string name="prefilled_concrete">Concrete</string>
+    <string name="prefilled_semiconcrete">Semi-Concrete</string>
+    <string name="prefilled_light_materials">Light Materials</string>
+    <string name="prefilled_organization_location">Organization and Location</string>
 </resources>

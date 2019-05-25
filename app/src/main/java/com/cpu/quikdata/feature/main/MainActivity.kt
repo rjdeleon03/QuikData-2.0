@@ -18,5 +18,9 @@ class MainActivity : AppCompatActivity() {
 
         mNavController = findNavController(R.id.mainActivityFragment)
         mainActivityNavigationView.setupWithNavController(mNavController)
+
+        mNavController.addOnDestinationChangedListener { _, destination, _ ->
+            toolbarTitle.text = destination.label
+        }
     }
 }

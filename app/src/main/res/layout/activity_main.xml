@@ -70,9 +70,8 @@
             android:id="@+id/mainActivityNavigationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:itemTextAppearanceActive="@style/BottomNavTitleTextAppearance"
-            app:itemTextAppearanceInactive="@style/BottomNavTitleTextAppearance"
-            app:menu="@menu/main_navigation_menu" />
+            app:menu="@menu/main_navigation_menu"
+            app:labelVisibilityMode="unlabeled"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
