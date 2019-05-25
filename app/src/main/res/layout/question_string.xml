@@ -13,15 +13,13 @@
         android:layout_marginTop="@dimen/dimenExtraSmall"
         android:layout_marginStart="@dimen/dimenMid"
         android:layout_marginEnd="@dimen/dimenMid"
-        android:layout_marginBottom="-10dp"
-        android:hint="Some Hint">
+        android:layout_marginBottom="-10dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextTheme"
-            android:text="Hello"/>
+            style="@style/EditTextTheme"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

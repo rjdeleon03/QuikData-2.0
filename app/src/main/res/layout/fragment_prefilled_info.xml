@@ -108,17 +108,26 @@
                 android:layout_height="wrap_content"
                 app:dividerText="@string/prefilled_families_households"/>
 
-            <com.cpu.quikdata.customviews.NumberQuestion
-                android:id="@+id/familiesText"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/prefilled_families"/>
+                android:orientation="horizontal">
 
-            <com.cpu.quikdata.customviews.NumberQuestion
-                android:id="@+id/householdsText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:textHint="@string/prefilled_households"/>
+                <com.cpu.quikdata.customviews.NumberQuestion
+                    android:id="@+id/familiesText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:textHint="@string/prefilled_families"/>
+
+                <com.cpu.quikdata.customviews.NumberQuestion
+                    android:id="@+id/householdsText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:textHint="@string/prefilled_households"/>
+
+            </LinearLayout>
 
             <com.cpu.quikdata.customviews.DividerText
                 android:layout_width="match_parent"
