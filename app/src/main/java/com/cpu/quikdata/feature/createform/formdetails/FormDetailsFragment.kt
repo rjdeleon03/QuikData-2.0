@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.feature.createform.generalinfo.GeneralInfoFragment
+import kotlinx.android.synthetic.main.fragment_form_details.*
 
 class FormDetailsFragment : Fragment() {
 
@@ -15,7 +17,8 @@ class FormDetailsFragment : Fragment() {
         fun newInstance() = FormDetailsFragment()
     }
 
-    private lateinit var viewModel: FormDetailsViewModel
+    private lateinit var mViewModel: FormDetailsViewModel
+    private lateinit var mPagerAdapter: FormDetailsPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +27,18 @@ class FormDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_form_details, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mPagerAdapter = FormDetailsPagerAdapter(childFragmentManager)
+        mPagerAdapter.addFragment(GeneralInfoFragment.newInstance(), "Dingdong Dantes")
+        mPagerAdapter.addFragment(GeneralInfoFragment.newInstance(), "Alfred Vargas")
+        mPagerAdapter.addFragment(GeneralInfoFragment.newInstance(), "Richard Gutierrez")
+        formDetailsViewPager.adapter = mPagerAdapter
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FormDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+        mViewModel = ViewModelProviders.of(this).get(FormDetailsViewModel::class.java)
     }
 
 }
