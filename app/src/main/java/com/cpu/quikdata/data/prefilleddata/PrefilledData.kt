@@ -1,4 +1,4 @@
-package com.cpu.quikdata.data
+package com.cpu.quikdata.data.prefilleddata
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
