@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
@@ -19,6 +20,7 @@ class NewFormsFragment : Fragment() {
     }
 
     private lateinit var mViewModel: NewFormsViewModel
+    private lateinit var mAdapter: NewFormsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,17 +31,20 @@ class NewFormsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mAdapter = NewFormsAdapter(context!!)
+        newFormsRecyclerView.adapter = mAdapter
         newFormsAddButton.clickWithGuard {
+            mViewModel.createNewForm()
             CreateFormActivity.newInstance(context!!)
         }
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(this).get(NewFormsViewModel::class.java)
-        // TODO: Use the ViewModel
+        mViewModel.newForms.observe(viewLifecycleOwner, Observer { forms ->
+            mAdapter.setForms(forms)
+        })
     }
-
-
 }

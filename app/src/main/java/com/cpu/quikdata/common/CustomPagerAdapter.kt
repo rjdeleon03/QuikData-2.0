@@ -1,10 +1,10 @@
-package com.cpu.quikdata.feature.createform.formdetails
+package com.cpu.quikdata.common
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 
-class FormDetailsPagerAdapter(fragmentManager: FragmentManager) :
+class CustomPagerAdapter(fragmentManager: FragmentManager) :
     FragmentStatePagerAdapter(fragmentManager) {
 
     private val mTabs: ArrayList<Fragment> = ArrayList()

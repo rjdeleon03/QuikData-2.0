@@ -47,10 +47,6 @@ class CreateFormActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         if (fragment.childFragmentManager.backStackEntryCount > 0) {
             fragment.childFragmentManager.popBackStack()

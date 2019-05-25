@@ -34,9 +34,13 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="EditTextTheme.Number" parent="EditTextTheme">
-        <item name="android:inputType">number</item>
+    <style name="EditTextTheme.SingleLine" parent="EditTextTheme">
         <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="EditTextTheme.Number" parent="EditTextTheme.SingleLine">
+        <item name="android:inputType">number</item>
     </style>
 
     <style name="SelectableItemTheme">
