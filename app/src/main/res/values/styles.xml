@@ -6,16 +6,18 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/biryani_regular</item>
+        <item name="android:fontFamily">@font/nunitosans_semibold</item>
     </style>
 
     <style name="ToolbarTitleTheme" parent="AppTheme">
-        <item name="android:fontFamily">@font/biryani_bold</item>
+        <item name="android:fontFamily">@font/nunitosans_extrabold</item>
     </style>
 
     <style name="ToolbarSubtitleTheme" parent="AppTheme">
-        <item name="android:fontFamily">@font/biryani_demibold</item>
+        <item name="android:fontFamily">@font/nunitosans_bold</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="BottomNavTitleTextAppearance">

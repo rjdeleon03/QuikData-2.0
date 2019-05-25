@@ -7,48 +7,45 @@
     android:orientation="vertical"
     tools:context=".feature.createform.CreateFormActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/createFormToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:contentInsetEnd="56dp">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/createFormToolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            app:contentInsetStart="0dp"
-            app:contentInsetEnd="@dimen/dimenSuperExtraLarge">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/toolbarTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:theme="@style/ToolbarTitleTheme"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+                android:text="@string/create_form_title_new"/>
 
-                <TextView
-                    android:id="@+id/toolbarTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginBottom="-8dp"
-                    android:theme="@style/ToolbarTitleTheme"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
-                    android:text="@string/create_form_title_new"
-                    style="@style/TextViewTheme"/>
+            <TextView
+                android:id="@+id/toolbarSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:theme="@style/ToolbarSubtitleTheme"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+                android:visibility="gone"/>
 
-                <TextView
-                    android:id="@+id/toolbarSubtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:theme="@style/ToolbarSubtitleTheme"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
-                    android:text="gone"/>
+        </LinearLayout>
 
-            </LinearLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <fragment
         android:id="@+id/fragment"

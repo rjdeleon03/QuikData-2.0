@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context=".feature.createform.selection.SelectionFragment">
 
+    <include layout="@layout/view_appbarlayout"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/selectionSaveButton"
         android:layout_width="@dimen/dimenExtraLarge"
