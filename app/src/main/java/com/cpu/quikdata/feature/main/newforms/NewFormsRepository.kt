@@ -30,7 +30,7 @@ class NewFormsRepository(application: Application) {
             mDatabase.formDao().insert(form)
 
             val formDetails = FormDetails(id = generateId(),
-                assessmentDate = DateTime().millis,
+                assessmentDate = LocalDate.now().toDateTimeAtStartOfDay().millis,
                 formId = id)
             mDatabase.formDetailsDao().insert(formDetails)
         }

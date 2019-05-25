@@ -15,6 +15,6 @@ interface FormDetailsDao {
     @Delete
     fun delete(formDetails: FormDetails)
 
-    @Query("SELECT * FROM form_details WHERE id = :id")
-    fun getById(id: String): LiveData<List<FormDetails>>
+    @Query("SELECT * FROM form_details WHERE formId = :formId")
+    fun getByFormId(formId: String): LiveData<FormDetails>
 }

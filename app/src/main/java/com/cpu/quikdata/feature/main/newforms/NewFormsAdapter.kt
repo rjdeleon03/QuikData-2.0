@@ -28,10 +28,9 @@ class NewFormsAdapter(context: Context) : RecyclerView.Adapter<NewFormsAdapter.V
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val form = mForms?.get(position)
+        val form = mForms!![position]
         holder.setOnClickListener {
-            // TODO: Pass ID
-            CreateFormActivity.newInstance(mContext.get()!!, true)
+            CreateFormActivity.newInstance(mContext.get()!!, form.id)
         }
     }
 

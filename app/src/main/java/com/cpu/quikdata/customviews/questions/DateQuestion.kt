@@ -8,11 +8,13 @@ import android.view.View
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
 import kotlinx.android.synthetic.main.question_date.view.*
+import org.joda.time.LocalDate
 
 @SuppressLint("SetTextI18n")
 class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     private var mOnDateSetListener: ((Int, Int, Int) -> Unit)? = null
+    private var mDate: LocalDate = LocalDate.now()
 
     init {
         View.inflate(context, R.layout.question_date, this)
@@ -28,14 +30,26 @@ class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context
             val dialog = DatePickerDialog(context,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                     mOnDateSetListener?.invoke(year, month, dayOfMonth)
-                    textField.setText("$year/$month/$dayOfMonth")
+                    mDate = LocalDate(year, month, dayOfMonth)
+                    setDateOnText()
                 },
-                1970, 1, 1)
+                mDate.year, mDate.monthOfYear, mDate.dayOfMonth)
             dialog.show()
         }
     }
 
+    var date: Long
+        get() = mDate.toDateTimeAtStartOfDay().millis
+        set(value) {
+            mDate = LocalDate(value)
+            setDateOnText()
+        }
+
     fun setOnDateSetListener(listener: (Int, Int, Int) -> Unit) {
         mOnDateSetListener = listener
+    }
+
+    private fun setDateOnText() {
+        textField.setText("${mDate.year}/${mDate.monthOfYear}/${mDate.dayOfMonth}")
     }
 }
