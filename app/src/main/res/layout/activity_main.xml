@@ -25,19 +25,19 @@
 
                 <TextView
                     android:id="@+id/toolbarTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="-8dp"
+                    android:gravity="center"
                     android:theme="@style/ToolbarTitleTheme"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
-                    android:text="@string/app_name"/>
+                    android:text="@string/app_name"
+                    style="@style/TextViewTheme"/>
 
                 <TextView
                     android:id="@+id/toolbarSubtitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:theme="@style/ToolbarSubtitleTheme"
                     android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
                     android:visibility="gone"/>

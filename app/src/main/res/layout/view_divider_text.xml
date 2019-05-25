@@ -10,7 +10,7 @@
         android:layout_height="@dimen/dimenMidLarge"
         android:background="@color/lightGray"
         android:gravity="center"
-        android:fontFamily="@font/biryani_bold"
+        android:fontFamily="@font/nunitosans_bold"
         android:textAllCaps="true"/>
 
 </FrameLayout>
