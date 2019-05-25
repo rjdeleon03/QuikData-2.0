@@ -22,6 +22,16 @@
         <attr name="text" />
     </declare-styleable>
 
+    <declare-styleable name="MultilineStringQuestion" parent="StringQuestion">
+        <attr name="textHint" />
+        <attr name="text" />
+    </declare-styleable>
+
+    <declare-styleable name="DateQuestion" parent="Question">
+        <attr name="question" />
+        <attr name="text" />
+    </declare-styleable>
+
     <declare-styleable name="TwoNumbersQuestion" parent="Question">
         <attr name="question" />
         <attr name="textHint1" format="string" />

@@ -1,4 +1,4 @@
-package com.cpu.quikdata.customviews
+package com.cpu.quikdata.customviews.questions
 
 import android.content.Context
 import android.util.AttributeSet
