@@ -1,8 +1,6 @@
 package com.cpu.quikdata.customviews
 
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -27,4 +25,16 @@ class TwoNumbersQuestion(context: Context, attrs: AttributeSet) : LinearLayout(c
         textField1.setupNumberInputValidation()
         textField2.setupNumberInputValidation()
     }
+
+    var number1: Int
+        get() = textField1.text.toString().toInt()
+        set(value) {
+            textField1.setText(value.toString())
+        }
+
+    var number2: Int
+        get() = textField2.text.toString().toInt()
+        set(value) {
+            textField2.setText(value.toString())
+        }
 }

@@ -9,17 +9,19 @@
         android:id="@+id/textLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
+        android:minHeight="48dp"
         android:layout_marginTop="@dimen/dimenExtraSmall"
         android:layout_marginStart="@dimen/dimenMid"
         android:layout_marginEnd="@dimen/dimenMid"
-        android:layout_marginBottom="-10dp">
+        android:layout_marginBottom="-10dp"
+        android:hint="Some Hint">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextTheme"/>
+            style="@style/EditTextTheme"
+            android:text="Hello"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

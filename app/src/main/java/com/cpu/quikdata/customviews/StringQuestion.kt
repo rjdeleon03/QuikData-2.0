@@ -18,4 +18,10 @@ class StringQuestion(context: Context, attrs: AttributeSet) : LinearLayout(conte
         textField.setText(attributes.getString(R.styleable.StringQuestion_text))
         attributes.recycle()
     }
+
+    var text: String
+        get() = textField.text.toString()
+        set(value) {
+            textField.setText(value)
+        }
 }

@@ -21,4 +21,10 @@ class NumberQuestion(context: Context, attrs: AttributeSet) : LinearLayout(conte
 
         textField.setupNumberInputValidation()
     }
+
+    var number: Int
+        get() = textField.text.toString().toInt()
+        set(value) {
+            textField.setText(value.toString())
+        }
 }
