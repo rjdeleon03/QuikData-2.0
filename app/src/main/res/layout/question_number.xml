@@ -9,7 +9,7 @@
         android:id="@+id/textLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
+        android:minHeight="48dp"
         android:layout_marginTop="@dimen/dimenExtraSmall"
         android:layout_marginStart="@dimen/dimenMid"
         android:layout_marginEnd="@dimen/dimenMid"

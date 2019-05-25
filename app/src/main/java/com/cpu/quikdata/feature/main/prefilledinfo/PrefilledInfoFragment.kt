@@ -28,7 +28,7 @@ class PrefilledInfoFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        
+
         /* Save data to model */
         val prefilledData = PrefilledData(
             organization = organizationText.text,
@@ -62,6 +62,8 @@ class PrefilledInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(this).get(PrefilledInfoViewModel::class.java)
+
+        /* Retrieve prefilled data from viewModel */
         mViewModel.prefilledData.observe(viewLifecycleOwner, Observer {
             organizationText.text = it.organization
             sitioText.text = it.sitio
