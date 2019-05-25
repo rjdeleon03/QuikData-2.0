@@ -3,7 +3,7 @@ package com.cpu.quikdata.feature.main.prefilledinfo
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
-import com.cpu.quikdata.data.PrefilledData
+import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

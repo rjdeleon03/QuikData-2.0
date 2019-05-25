@@ -6,8 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.data.formdetails.FormDetails
+import com.cpu.quikdata.feature.createform.CreateFormViewModel
+import kotlinx.android.synthetic.main.fragment_form_details.*
 
 class FormDetailsFragment : Fragment() {
 
@@ -15,7 +20,8 @@ class FormDetailsFragment : Fragment() {
         fun newInstance() = FormDetailsFragment()
     }
 
-    private lateinit var viewModel: FormDetailsViewModel
+    private lateinit var mParentViewModel: CreateFormViewModel
+    private lateinit var mViewModel: FormDetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +30,33 @@ class FormDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_form_details, container, false)
     }
 
+    override fun onDestroyView() {
+        val formDetails = FormDetails(
+            assessmentDate = formDetailsAssessmentDateText.date,
+            interviewer = formDetailsInterviewerText.text,
+            interviewerContact = formDetailsInterviewerContactText.text,
+            interviewee = formDetailsIntervieweeText.text,
+            intervieweeContact = formDetailsIntervieweeContactText.text,
+            sourcesOfInformation = formDetailsSourcesText.text
+        )
+        mViewModel.updateFormDetails(formDetails)
+        super.onDestroyView()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FormDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+        mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
+
+        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
+        mViewModel = ViewModelProviders.of(this, factory).get(FormDetailsViewModel::class.java)
+        mViewModel.formDetails.observe(viewLifecycleOwner, Observer {
+            formDetailsAssessmentDateText.date = it.assessmentDate
+            formDetailsInterviewerText.text = it.interviewer
+            formDetailsInterviewerContactText.text = it.interviewerContact
+            formDetailsIntervieweeText.text = it.interviewee
+            formDetailsIntervieweeContactText.text = it.intervieweeContact
+            formDetailsSourcesText.text = it.sourcesOfInformation
+        })
     }
 
 }

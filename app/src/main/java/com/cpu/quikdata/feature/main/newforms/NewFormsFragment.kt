@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_new_forms.*
 
 class NewFormsFragment : Fragment() {
@@ -19,6 +21,7 @@ class NewFormsFragment : Fragment() {
     }
 
     private lateinit var mViewModel: NewFormsViewModel
+    private lateinit var mAdapter: NewFormsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,17 +32,21 @@ class NewFormsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        newFormsAddButton.clickWithGuard {
-            CreateFormActivity.newInstance(context!!)
-        }
 
+        mAdapter = NewFormsAdapter(context!!)
+        newFormsRecyclerView.adapter = mAdapter
+        newFormsAddButton.clickWithGuard {
+            val formId = generateId()
+            mViewModel.createNewForm(formId)
+            CreateFormActivity.newInstance(context!!, formId)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(this).get(NewFormsViewModel::class.java)
-        // TODO: Use the ViewModel
+        mViewModel.newForms.observe(viewLifecycleOwner, Observer { forms ->
+            mAdapter.setForms(forms)
+        })
     }
-
-
 }

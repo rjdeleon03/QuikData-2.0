@@ -38,4 +38,10 @@
     <string name="prefilled_semiconcrete">Semi-Concrete</string>
     <string name="prefilled_light_materials">Light Materials</string>
     <string name="prefilled_organization_location">Organization and Location</string>
+    <string name="form_details_assessment_date">Assessment Date</string>
+    <string name="form_details_interviewer_name">Interviewer\'s Name</string>
+    <string name="form_details_interviewer_contact">Interviewer\'s Contact Number</string>
+    <string name="form_details_interviewee_name">Interviewees\' Names</string>
+    <string name="form_details_interviewee_contact">Interviewee\'s Contact Numbers</string>
+    <string name="form_details_sources">Sources of Information</string>
 </resources>

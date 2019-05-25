@@ -15,7 +15,7 @@ class GeneralInfoFragment : Fragment() {
         fun newInstance() = GeneralInfoFragment()
     }
 
-    private lateinit var viewModel: GeneralInfoViewModel
+    private lateinit var mViewModel: GeneralInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +26,7 @@ class GeneralInfoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(GeneralInfoViewModel::class.java)
-        // TODO: Use the ViewModel
+        mViewModel = ViewModelProviders.of(this).get(GeneralInfoViewModel::class.java)
     }
 
 }

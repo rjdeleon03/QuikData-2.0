@@ -3,7 +3,7 @@ package com.cpu.quikdata.feature.main.prefilledinfo
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.data.PrefilledData
+import com.cpu.quikdata.data.prefilleddata.PrefilledData
 
 class PrefilledInfoViewModel(application: Application) : AndroidViewModel(application) {
 
