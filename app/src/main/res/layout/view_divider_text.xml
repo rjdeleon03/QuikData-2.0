@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/dividerTextField"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimenMidLarge"
+        android:background="@color/lightGray"
+        android:gravity="center"
+        android:fontFamily="@font/biryani_bold"
+        android:textAllCaps="true"/>
+
+</FrameLayout>

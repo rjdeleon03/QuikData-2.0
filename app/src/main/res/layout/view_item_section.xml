@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/dimenMid"
+        android:layout_marginEnd="@dimen/dimenMid"
+        android:textSize="16sp"
+        android:fontFamily="@font/biryani_demibold"/>
+
+    <include layout="@layout/view_divider"/>
+
+</LinearLayout>
