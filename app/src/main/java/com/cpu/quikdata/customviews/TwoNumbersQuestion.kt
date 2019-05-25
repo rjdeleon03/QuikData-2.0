@@ -1,10 +1,13 @@
 package com.cpu.quikdata.customviews
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.setupNumberInputValidation
 import kotlinx.android.synthetic.main.question_two_numbers.view.*
 
 class TwoNumbersQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
@@ -20,5 +23,8 @@ class TwoNumbersQuestion(context: Context, attrs: AttributeSet) : LinearLayout(c
         textField2.setText(attributes.getString(R.styleable.TwoNumbersQuestion_text2))
 
         attributes.recycle()
+
+        textField1.setupNumberInputValidation()
+        textField2.setupNumberInputValidation()
     }
 }

@@ -2,6 +2,8 @@ package com.cpu.quikdata.common
 
 import android.os.SystemClock
 import android.view.View
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.question_two_numbers.view.*
 
 fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {
 
@@ -15,4 +17,16 @@ fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {
             lastClickTime = SystemClock.elapsedRealtime()
         }
     })
+}
+
+fun TextInputEditText.setupNumberInputValidation() {
+
+    this.setOnFocusChangeListener { _, hasFocus ->
+        if (!hasFocus) {
+            val intValue = this.text.toString().toIntOrNull()
+            if (intValue == null) {
+                this.setText("0")
+            }
+        }
+    }
 }
