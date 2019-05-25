@@ -28,4 +28,14 @@
     <string name="prefilled_semiconcrete">Semi-Concrete</string>
     <string name="prefilled_light_materials">Light Materials</string>
     <string name="prefilled_organization_location">Organization and Location</string>
+    <string name="form_details_title">Form Details</string>
+    <string name="gen_info_title">General Information</string>
+    <string name="shelter_nonfood_title">Shelter and Non-Food Items</string>
+    <string name="food_security_title">Food Security</string>
+    <string name="livelihoods_title">Livelihoods</string>
+    <string name="health_title">Health</string>
+    <string name="water_sanitation_title">Water, Sanitation, and Hygiene</string>
+    <string name="evacuation_title">Evacuation Sites</string>
+    <string name="case_stories_title">Case Stories</string>
+    <string name="create_form_save">Finish Editing Form</string>
 </resources>
