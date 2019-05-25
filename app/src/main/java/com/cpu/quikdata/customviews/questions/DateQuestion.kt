@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.question_date.view.*
 import org.joda.time.LocalDate
 
@@ -24,17 +25,22 @@ class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context
         textField.setText(attributes.getString(R.styleable.DateQuestion_text))
         attributes.recycle()
 
-        textField.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) return@setOnFocusChangeListener
-
+        mainLayout.clickWithGuard {
             val dialog = DatePickerDialog(context,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                    mOnDateSetListener?.invoke(year, month, dayOfMonth)
-                    mDate = LocalDate(year, month, dayOfMonth)
+                    mOnDateSetListener?.invoke(year, month + 1, dayOfMonth)
+                    mDate = LocalDate(year, month + 1, dayOfMonth)
                     setDateOnText()
                 },
-                mDate.year, mDate.monthOfYear, mDate.dayOfMonth)
+                mDate.year, mDate.monthOfYear - 1, mDate.dayOfMonth)
             dialog.show()
+        }
+
+        // Ensure that all clicks in children trigger the parent's onClick listener
+        textLayout.clickWithGuard { mainLayout.performClick() }
+        textField.clickWithGuard { mainLayout.performClick() }
+        textField.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) mainLayout.performClick()
         }
     }
 
