@@ -4,21 +4,25 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormDao
+import com.cpu.quikdata.data.formdetails.FormDetails
+import com.cpu.quikdata.data.formdetails.FormDetailsDao
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
 
 @Database(entities = [
         PrefilledData::class,
-        FormDao::class
+        Form::class,
+        FormDetails::class
     ],
     exportSchema = false,
     version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun prefilledDataDao(): PrefilledDataDao
-
     abstract fun formDao(): FormDao
+    abstract fun formDetailsDao(): FormDetailsDao
 
     companion object {
 
