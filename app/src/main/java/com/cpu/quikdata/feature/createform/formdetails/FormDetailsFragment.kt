@@ -18,22 +18,12 @@ class FormDetailsFragment : Fragment() {
     }
 
     private lateinit var mViewModel: FormDetailsViewModel
-    private lateinit var mPagerAdapter: FormDetailsPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_form_details, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mPagerAdapter = FormDetailsPagerAdapter(childFragmentManager)
-        mPagerAdapter.addFragment(GeneralInfoFragment.newInstance(), "Dingdong Dantes")
-        mPagerAdapter.addFragment(GeneralInfoFragment.newInstance(), "Alfred Vargas")
-        mPagerAdapter.addFragment(GeneralInfoFragment.newInstance(), "Richard Gutierrez")
-        formDetailsViewPager.adapter = mPagerAdapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
