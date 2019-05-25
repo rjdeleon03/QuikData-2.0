@@ -6,7 +6,47 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/biryani_regular</item>
+        <item name="android:fontFamily">@font/nunitosans_semibold</item>
+    </style>
+
+    <style name="ToolbarTitleTheme" parent="AppTheme">
+        <item name="android:fontFamily">@font/nunitosans_extrabold</item>
+    </style>
+
+    <style name="ToolbarSubtitleTheme" parent="AppTheme">
+        <item name="android:fontFamily">@font/nunitosans_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="BottomNavTitleTextAppearance">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextViewTheme">
+        <item name="android:lineSpacingExtra">-16sp</item>
+    </style>
+
+    <style name="EditTextTheme">
+        <item name="android:paddingTop">@dimen/dimenExtraSmall</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="EditTextTheme.SingleLine" parent="EditTextTheme">
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="EditTextTheme.Number" parent="EditTextTheme.SingleLine">
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="SelectableItemTheme">
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
 </resources>

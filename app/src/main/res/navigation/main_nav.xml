@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/newFormsFragment">
+
+    <fragment
+        android:id="@+id/newFormsFragment"
+        android:name="com.cpu.quikdata.feature.main.newforms.NewFormsFragment"
+        android:label="@string/new_forms_title"
+        tools:layout="@layout/fragment_new_forms" />
+    <fragment
+        android:id="@+id/sentFormsFragment"
+        android:name="com.cpu.quikdata.feature.main.sentforms.SentFormsFragment"
+        android:label="@string/sent_forms_title"
+        tools:layout="@layout/fragment_sent_forms" />
+    <fragment
+        android:id="@+id/prefilledInfoFragment"
+        android:name="com.cpu.quikdata.feature.main.prefilledinfo.PrefilledInfoFragment"
+        android:label="@string/prefilled_title"
+        tools:layout="@layout/fragment_prefilled_info" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.cpu.quikdata.feature.main.settings.SettingsFragment"
+        android:label="@string/settings_title"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
