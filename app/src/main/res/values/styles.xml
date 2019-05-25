@@ -22,6 +22,10 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="TextViewTheme">
+        <item name="android:lineSpacingExtra">-16sp</item>
+    </style>
+
     <style name="EditTextTheme">
         <item name="android:paddingTop">@dimen/dimenExtraSmall</item>
         <item name="android:background">@null</item>
@@ -31,6 +35,12 @@
     <style name="EditTextTheme.Number" parent="EditTextTheme">
         <item name="android:inputType">number</item>
         <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="SelectableItemTheme">
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
 </resources>

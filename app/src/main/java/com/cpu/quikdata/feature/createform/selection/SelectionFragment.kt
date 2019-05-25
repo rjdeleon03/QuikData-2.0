@@ -13,10 +13,10 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.fragment_selection.*
 
-class Selection : Fragment() {
+class SelectionFragment : Fragment() {
 
     companion object {
-        fun newInstance() = Selection()
+        fun newInstance() = SelectionFragment()
     }
 
     private lateinit var mNavController: NavController
@@ -32,7 +32,17 @@ class Selection : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mNavController = findNavController()
+
         selectionSaveButton.clickWithGuard { activity!!.finish() }
+        selectionFormDetailsButton.clickWithGuard { mNavController.navigate(R.id.action_selection_to_formDetailsFragment) }
+        selectionGenInfoButton.clickWithGuard { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }
+        selectionShelterButton.clickWithGuard { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) }
+        selectionFoodButton.clickWithGuard { mNavController.navigate(R.id.action_selection_to_foodSecurityInfoFragment) }
+        selectionLivelihoodsButton.clickWithGuard { mNavController.navigate(R.id.action_selection_to_livelihoodsInfoFragment) }
+        selectionHealthButton.clickWithGuard { mNavController.navigate(R.id.action_selection_to_healthInfoFragment) }
+        selectionWaterButton.clickWithGuard { mNavController.navigate(R.id.action_selection_to_waterSanitationInfoFragment) }
+        selectionEvacuationButton.clickWithGuard { mNavController.navigate(R.id.action_selection_to_evacuationInfoFragment) }
+        selectionCaseStoriesButton.clickWithGuard { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

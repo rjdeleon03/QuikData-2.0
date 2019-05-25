@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.foodsecurityinfo
+package com.cpu.quikdata.feature.createform.evacuationinfo
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,24 +9,24 @@ import android.view.ViewGroup
 
 import com.cpu.quikdata.R
 
-class FoodSecurityInfo : Fragment() {
+class EvacuationInfoFragment : Fragment() {
 
     companion object {
-        fun newInstance() = FoodSecurityInfo()
+        fun newInstance() = EvacuationInfoFragment()
     }
 
-    private lateinit var viewModel: FoodSecurityInfoViewModel
+    private lateinit var viewModel: EvacuationInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_food_security_info, container, false)
+        return inflater.inflate(R.layout.fragment_evacuation_info, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FoodSecurityInfoViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(EvacuationInfoViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
