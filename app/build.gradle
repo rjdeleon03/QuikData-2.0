@@ -60,4 +60,7 @@ dependencies {
     // Page indicator
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
 
+    // Joda time
+    implementation 'net.danlew:android.joda:2.10.1.2'
+
 }
