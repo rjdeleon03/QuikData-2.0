@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_new_forms.*
 
 class NewFormsFragment : Fragment() {
@@ -35,8 +36,9 @@ class NewFormsFragment : Fragment() {
         mAdapter = NewFormsAdapter(context!!)
         newFormsRecyclerView.adapter = mAdapter
         newFormsAddButton.clickWithGuard {
-            mViewModel.createNewForm()
-            CreateFormActivity.newInstance(context!!)
+            val formId = generateId()
+            mViewModel.createNewForm(formId)
+            CreateFormActivity.newInstance(context!!, formId)
         }
     }
 

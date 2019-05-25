@@ -41,8 +41,8 @@ class CreateFormActivity : AppCompatActivity() {
             titleId = R.string.create_form_title_edit
 
             // Initialize viewModel
-            val factory = ViewModelFactory(application, formId)
-            mViewModel = ViewModelProviders.of(this, factory).get(CreateFormViewModel::class.java)
+            mViewModel = ViewModelProviders.of(this).get(CreateFormViewModel::class.java)
+            mViewModel.formId = formId
         }
 
         mNavController = findNavController(R.id.fragment)

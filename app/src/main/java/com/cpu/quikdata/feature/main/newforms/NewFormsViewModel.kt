@@ -12,6 +12,6 @@ class NewFormsViewModel(application: Application) : AndroidViewModel(application
     val newForms: LiveData<List<Form>>
         get() = mRepository.newForms
 
-    fun createNewForm() = mRepository.createNewForm()
+    fun createNewForm(formId: String) = mRepository.createNewForm(formId)
 
 }

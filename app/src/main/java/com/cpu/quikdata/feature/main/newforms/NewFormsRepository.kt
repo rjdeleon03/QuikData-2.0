@@ -23,15 +23,14 @@ class NewFormsRepository(application: Application) {
     val newForms: LiveData<List<Form>>
         get() = mNewForms
 
-    fun createNewForm() {
+    fun createNewForm(formId: String) {
         CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {
-            val id = generateId()
-            val form = Form(id)
+            val form = Form(formId)
             mDatabase.formDao().insert(form)
 
             val formDetails = FormDetails(id = generateId(),
                 assessmentDate = LocalDate.now().toDateTimeAtStartOfDay().millis,
-                formId = id)
+                formId = formId)
             mDatabase.formDetailsDao().insert(formDetails)
         }
     }

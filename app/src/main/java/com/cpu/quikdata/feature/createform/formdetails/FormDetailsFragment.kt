@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.GeneralInfoFragment
 import kotlinx.android.synthetic.main.fragment_form_details.*
@@ -32,9 +33,15 @@ class FormDetailsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
-        mViewModel = ViewModelProviders.of(this).get(FormDetailsViewModel::class.java)
+
+        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
+        mViewModel = ViewModelProviders.of(this, factory).get(FormDetailsViewModel::class.java)
         mViewModel.formDetails.observe(viewLifecycleOwner, Observer {
             formDetailsAssessmentDateText.date = it.assessmentDate
+            formDetailsInterviewerText.text = it.interviewer
+            formDetailsInterviewerContactText.text = it.interviewerContact
+            formDetailsIntervieweeText.text = it.interviewee
+            formDetailsIntervieweeContextText.text = it.intervieweeContact
         })
     }
 
