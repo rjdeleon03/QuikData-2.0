@@ -5,13 +5,21 @@
         <attr name="dividerText" format="string" />
     </declare-styleable>
 
-    <declare-styleable name="Question">
+    <declare-styleable name="TextItem">
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ItemSection" parent="TextItem">
+        <attr name="text" />
+    </declare-styleable>
+
+    <declare-styleable name="Question" parent="TextItem">
         <attr name="question" format="string" />
     </declare-styleable>
 
     <declare-styleable name="StringQuestion" parent="Question">
         <attr name="textHint" format="string" />
-        <attr name="text" format="string" />
+        <attr name="text" />
     </declare-styleable>
 
     <declare-styleable name="TwoNumbersQuestion" parent="Question">

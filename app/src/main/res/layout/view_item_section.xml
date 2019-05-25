@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="?attr/actionBarSize"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/dividerTextField"
+        android:id="@+id/text"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimenMidLarge"
-        android:background="@color/lightGray"
-        android:gravity="center"
-        android:fontFamily="@font/biryani_bold"
-        android:textAllCaps="true"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/dimenMid"
+        android:layout_marginEnd="@dimen/dimenMid"/>
 
-</FrameLayout>
+    <include layout="@layout/view_divider"/>
+
+</LinearLayout>
