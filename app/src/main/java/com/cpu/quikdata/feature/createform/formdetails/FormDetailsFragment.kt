@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
-import com.cpu.quikdata.feature.createform.generalinfo.GeneralInfoFragment
 import kotlinx.android.synthetic.main.fragment_form_details.*
 
 class FormDetailsFragment : Fragment() {
@@ -30,6 +30,19 @@ class FormDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_form_details, container, false)
     }
 
+    override fun onDestroyView() {
+        val formDetails = FormDetails(
+            assessmentDate = formDetailsAssessmentDateText.date,
+            interviewer = formDetailsInterviewerText.text,
+            interviewerContact = formDetailsInterviewerContactText.text,
+            interviewee = formDetailsIntervieweeText.text,
+            intervieweeContact = formDetailsIntervieweeContactText.text,
+            sourcesOfInformation = formDetailsSourcesText.text
+        )
+        mViewModel.updateFormDetails(formDetails)
+        super.onDestroyView()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
@@ -41,7 +54,8 @@ class FormDetailsFragment : Fragment() {
             formDetailsInterviewerText.text = it.interviewer
             formDetailsInterviewerContactText.text = it.interviewerContact
             formDetailsIntervieweeText.text = it.interviewee
-            formDetailsIntervieweeContextText.text = it.intervieweeContact
+            formDetailsIntervieweeContactText.text = it.intervieweeContact
+            formDetailsSourcesText.text = it.sourcesOfInformation
         })
     }
 

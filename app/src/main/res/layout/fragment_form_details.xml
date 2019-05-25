@@ -44,7 +44,7 @@
         app:textHint="@string/form_details_interviewee_name"/>
 
     <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
-        android:id="@+id/formDetailsIntervieweeContextText"
+        android:id="@+id/formDetailsIntervieweeContactText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:textHint="@string/form_details_interviewee_contact" />

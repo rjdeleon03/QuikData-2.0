@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.formdetails.FormDetails
+import com.cpu.quikdata.utils.runOnIoThread
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 
 class FormDetailsRepository(application: Application, formId: String) {
 
@@ -12,4 +15,12 @@ class FormDetailsRepository(application: Application, formId: String) {
 
     val formDetails : LiveData<FormDetails>
         get() = mFormDetails
+
+    fun updateFormDetails(formDetails: FormDetails) {
+        runOnIoThread {
+            val oldFormDetails = mFormDetails.value!!
+            oldFormDetails.copyFrom(formDetails)
+            mDatabase.formDetailsDao().update(oldFormDetails)
+        }
+    }
 }

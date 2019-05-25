@@ -11,6 +11,7 @@ import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.question_date.view.*
 import org.joda.time.LocalDate
 
+@Suppress("unused")
 @SuppressLint("SetTextI18n")
 class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 

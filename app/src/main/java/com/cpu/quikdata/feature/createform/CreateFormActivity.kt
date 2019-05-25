@@ -19,10 +19,12 @@ class CreateFormActivity : AppCompatActivity() {
 
     companion object {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
+        private const val EDIT_MODE_KEY = "EDIT_MODE_KEY"
 
-        fun newInstance(context: Context, formId: String = "") {
+        fun newInstance(context: Context, formId: String = "", editMode: Boolean = false) {
             val intent = Intent(context, CreateFormActivity::class.java)
             intent.putExtra(FORM_ID_KEY, formId)
+            intent.putExtra(EDIT_MODE_KEY, editMode)
             context.startActivity(intent)
         }
     }
@@ -35,16 +37,20 @@ class CreateFormActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Get edit mode flag and update toolbar title accordingly
-        val formId = intent.getStringExtra(FORM_ID_KEY)
+        val editMode = intent.getBooleanExtra(EDIT_MODE_KEY, false)
         var titleId = R.string.create_form_title_new
-        if (!formId.isNullOrEmpty()) {
+        if (editMode) {
             titleId = R.string.create_form_title_edit
+        }
 
-            // Initialize viewModel
+        // Initialize viewModel with form ID
+        val formId = intent.getStringExtra(FORM_ID_KEY)
+        if (!formId.isNullOrEmpty()) {
             mViewModel = ViewModelProviders.of(this).get(CreateFormViewModel::class.java)
             mViewModel.formId = formId
         }
 
+        // Setup navController
         mNavController = findNavController(R.id.fragment)
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
             toolbarTitle.text = destination.label

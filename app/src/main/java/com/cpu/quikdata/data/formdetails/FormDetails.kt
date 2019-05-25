@@ -14,11 +14,21 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class FormDetails(@PrimaryKey(autoGenerate = false)
-                       val id: String,
-                       val assessmentDate: Long = 0L,
-                       val interviewer: String = "",
-                       val interviewerContact: String = "",
-                       val interviewee: String = "",
-                       val intervieweeContact: String = "",
-                       val sourcesOfInformation: String = "",
-                       val formId: String)
+                       val id: String = "",
+                       var assessmentDate: Long = 0L,
+                       var interviewer: String = "",
+                       var interviewerContact: String = "",
+                       var interviewee: String = "",
+                       var intervieweeContact: String = "",
+                       var sourcesOfInformation: String = "",
+                       val formId: String = "") {
+
+    fun copyFrom(formDetails: FormDetails) {
+        assessmentDate = formDetails.assessmentDate
+        interviewer = formDetails.interviewer
+        interviewerContact = formDetails.interviewerContact
+        interviewee = formDetails.interviewee
+        intervieweeContact = formDetails.intervieweeContact
+        sourcesOfInformation = formDetails.sourcesOfInformation
+    }
+}
