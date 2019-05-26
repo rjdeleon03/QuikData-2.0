@@ -18,25 +18,37 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
     init {
         View.inflate(context, R.layout.view_collapsible_container, this)
-        orientation = LinearLayout.VERTICAL
 
+        // Set other layout properties
+        orientation = LinearLayout.VERTICAL
+        isFocusable = true
+        isClickable = true
+        isFocusableInTouchMode = true
+        background = context.getDrawable(android.R.color.white)
+
+        // Retrieve attributes then apply
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CollapsibleContainer)
-        headerTextField.text = attributes.getString(com.cpu.quikdata.R.styleable.CollapsibleContainer_headerText)
+        headerTextField.text = attributes.getString(R.styleable.CollapsibleContainer_headerText)
+        val collapsedFlag = attributes.getBoolean(R.styleable.CollapsibleContainer_collapsed, false)
         attributes.recycle()
 
+        // Collapse if collapsed flag is true
+        if (collapsedFlag) {
+            mIsCollapsed = true
+            contentLayout.visibility = View.GONE
+        }
+
+        // Focus on container whenever header is clicked
         headerTextField.clickWithGuard {
-            mIsCollapsed = if (contentLayout.visibility == View.GONE) {
-                expand()
-                false
-            } else {
-                collapse()
-                true
-            }
+            requestFocus()
+        }
+
+        // Expand container when it is focused on
+        setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) expand()
+            else collapse()
         }
     }
-
-    val isCollapsed: Boolean
-        get() = mIsCollapsed
 
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         if (contentLayout == null) {
@@ -48,7 +60,9 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
     // region Collapse/expand based on https://stackoverflow.com/questions/4946295/android-expand-collapse-animation
 
-    fun collapse() {
+    private fun collapse() {
+        if (mIsCollapsed) return
+        mIsCollapsed = true
 
         val initialHeight = contentLayout.measuredHeight
         val a = object : Animation() {
@@ -69,7 +83,10 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         contentLayout.startAnimation(a)
     }
 
-    fun expand() {
+    private fun expand() {
+        if (!mIsCollapsed) return
+        mIsCollapsed = false
+
         val matchParentMeasureSpec =
             View.MeasureSpec.makeMeasureSpec((contentLayout.parent as View).width, View.MeasureSpec.EXACTLY)
         val wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)

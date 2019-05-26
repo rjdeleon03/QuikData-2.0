@@ -8,10 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseFocusableFragment
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
 
-class CalamityInfoFragment : Fragment() {
+class CalamityInfoFragment : BaseFocusableFragment() {
 
     companion object {
         fun newInstance() = CalamityInfoFragment()
