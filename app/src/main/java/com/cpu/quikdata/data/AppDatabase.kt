@@ -8,8 +8,8 @@ import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormDao
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.formdetails.FormDetailsDao
-import com.cpu.quikdata.data.generalinfo.GeneralInfo
-import com.cpu.quikdata.data.generalinfo.GeneralInfoDao
+import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
+import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfoDao
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
 
@@ -17,7 +17,7 @@ import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
         PrefilledData::class,
         Form::class,
         FormDetails::class,
-        GeneralInfo::class
+        CalamityInfo::class
     ],
     exportSchema = false,
     version = 1)
@@ -26,7 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun prefilledDataDao(): PrefilledDataDao
     abstract fun formDao(): FormDao
     abstract fun formDetailsDao(): FormDetailsDao
-    abstract fun generalInfoDao(): GeneralInfoDao
+    abstract fun calamityInfoDao(): CalamityInfoDao
 
     companion object {
 

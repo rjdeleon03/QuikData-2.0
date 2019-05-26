@@ -1,64 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/lightGray"
     tools:context=".feature.createform.formdetails.FormDetailsFragment">
 
     <include layout="@layout/view_appbarlayout" />
 
-    <com.cpu.quikdata.customviews.questions.DateQuestion
-        android:id="@+id/formDetailsAssessmentDateText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:question="@string/form_details_assessment_date"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimenMid"
-        android:background="@color/lightGray" />
-
-    <com.cpu.quikdata.customviews.questions.StringQuestion
-        android:id="@+id/formDetailsInterviewerText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:textHint="@string/form_details_interviewer_name"/>
-
-    <com.cpu.quikdata.customviews.questions.StringQuestion
-        android:id="@+id/formDetailsInterviewerContactText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:textHint="@string/form_details_interviewer_contact"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimenMid"
-        android:background="@color/lightGray" />
-
-    <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
-        android:id="@+id/formDetailsIntervieweeText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:textHint="@string/form_details_interviewee_name"/>
-
-    <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
-        android:id="@+id/formDetailsIntervieweeContactText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:textHint="@string/form_details_interviewee_contact" />
-
-    <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
-        android:id="@+id/formDetailsSourcesText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:textHint="@string/form_details_sources" />
-
-    <View
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/lightGray" />
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <com.cpu.quikdata.customviews.questions.DateQuestion
+                android:id="@+id/formDetailsAssessmentDateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:question="@string/form_details_assessment_date"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimenMid"
+                android:background="@color/lightGray" />
+
+            <com.cpu.quikdata.customviews.questions.StringQuestion
+                android:id="@+id/formDetailsInterviewerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/form_details_interviewer_name"/>
+
+            <com.cpu.quikdata.customviews.questions.StringQuestion
+                android:id="@+id/formDetailsInterviewerContactText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/form_details_interviewer_contact"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimenMid"
+                android:background="@color/lightGray" />
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
+                android:id="@+id/formDetailsIntervieweeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/form_details_interviewee_name"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
+                android:id="@+id/formDetailsIntervieweeContactText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/form_details_interviewee_contact" />
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
+                android:id="@+id/formDetailsSourcesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/form_details_sources" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/lightGray" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

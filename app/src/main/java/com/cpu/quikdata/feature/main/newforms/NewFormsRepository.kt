@@ -5,15 +5,13 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.formdetails.FormDetails
+import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
 import com.cpu.quikdata.utils.generateId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.joda.time.DateTime
 import org.joda.time.LocalDate
-import org.joda.time.LocalDateTime
-import org.joda.time.LocalTime
 
 class NewFormsRepository(application: Application) {
 
@@ -28,10 +26,21 @@ class NewFormsRepository(application: Application) {
             val form = Form(formId)
             mDatabase.formDao().insert(form)
 
+            // region Form details
+
             val formDetails = FormDetails(id = generateId(),
                 assessmentDate = LocalDate.now().toDateTimeAtStartOfDay().millis,
                 formId = formId)
             mDatabase.formDetailsDao().insert(formDetails)
+
+            // endregion
+
+            // region General information
+
+            val calamityInfo = CalamityInfo(id = generateId(), formId = formId)
+            mDatabase.calamityInfoDao().insert(calamityInfo)
+
+            // endregion
         }
     }
 

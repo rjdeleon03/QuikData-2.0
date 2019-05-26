@@ -2,7 +2,7 @@
     <string name="app_name">QuikData</string>
     <string name="new_forms_title">New Forms</string>
     <string name="sent_forms_title">Sent Forms</string>
-    <string name="prefilled_title">Pre-filled Data</string>
+    <string name="prefilled_title">Baseline Data</string>
     <string name="settings_title">Settings</string>
     <string name="create_form_title_new">Create New Form</string>
     <string name="create_form_title_edit">Edit Form</string>
@@ -44,4 +44,11 @@
     <string name="form_details_interviewee_name">Interviewees\' Names</string>
     <string name="form_details_interviewee_contact">Interviewee\'s Contact Numbers</string>
     <string name="form_details_sources">Sources of Information</string>
+    <string name="calamity_info_title">Calamity Details</string>
+    <string name="calamity_info_type">Type of Calamity</string>
+    <string name="calamity_info_date">Date of Occurrence</string>
+    <string name="calamity_info_event_desc">Description of the Event</string>
+    <string name="calamity_info_area_desc">Brief Description of the Affected Area</string>
+    <string name="calamity_info_area_desc_details">Accessibility, Safety, Availability of Markets, etc.</string>
+    <string name="calamity_info_desc">Description of the Calamity</string>
 </resources>

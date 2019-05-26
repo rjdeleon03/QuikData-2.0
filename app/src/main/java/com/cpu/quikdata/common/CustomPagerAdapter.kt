@@ -18,6 +18,10 @@ class CustomPagerAdapter(fragmentManager: FragmentManager) :
         return mTabs.size
     }
 
+    override fun getPageTitle(position: Int): CharSequence? {
+        return mTitles[position]
+    }
+
     fun addFragment(fragment: Fragment, title: String) {
         mTabs.add(fragment)
         mTitles.add(title)

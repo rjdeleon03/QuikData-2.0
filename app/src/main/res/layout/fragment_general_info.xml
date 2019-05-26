@@ -10,7 +10,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimenLarge"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:elevation="@dimen/dimenExtraSmall">
 
         <com.rd.PageIndicatorView
             android:layout_width="wrap_content"
@@ -22,8 +23,6 @@
             android:elevation="0dp"/>
 
     </FrameLayout>
-
-    <include layout="@layout/view_appbarlayout" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/genInfoViewPager"
