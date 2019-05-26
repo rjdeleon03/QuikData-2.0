@@ -46,7 +46,7 @@ class NewFormsRepository(application: Application) {
             val populationId = generateId()
             val population = Population(id = populationId, formId = formId)
             mDatabase.populationDao().insert(population)
-            for (i in 0..AgeCategories.values().size) {
+            for (i in 0 until AgeCategories.values().size) {
                 val row = PopulationRow(id = generateId(),
                     type = i,
                     populationId = populationId)
