@@ -2,10 +2,13 @@ package com.cpu.quikdata.feature.main.newforms
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
+import com.cpu.quikdata.data.generalinfo.population.Population
+import com.cpu.quikdata.data.generalinfo.population.row.PopulationRow
 import com.cpu.quikdata.utils.generateId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -39,6 +42,16 @@ class NewFormsRepository(application: Application) {
 
             val calamityInfo = CalamityInfo(id = generateId(), formId = formId)
             mDatabase.calamityInfoDao().insert(calamityInfo)
+
+            val populationId = generateId()
+            val population = Population(id = populationId, formId = formId)
+            mDatabase.populationDao().insert(population)
+            for (i in 0..AgeCategories.values().size) {
+                val row = PopulationRow(id = generateId(),
+                    type = i,
+                    populationId = populationId)
+                mDatabase.populationRowDao().insert(row)
+            }
 
             // endregion
         }
