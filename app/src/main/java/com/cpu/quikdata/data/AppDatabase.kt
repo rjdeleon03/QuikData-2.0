@@ -8,13 +8,16 @@ import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormDao
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.formdetails.FormDetailsDao
+import com.cpu.quikdata.data.generalinfo.GeneralInfo
+import com.cpu.quikdata.data.generalinfo.GeneralInfoDao
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
 
 @Database(entities = [
         PrefilledData::class,
         Form::class,
-        FormDetails::class
+        FormDetails::class,
+        GeneralInfo::class
     ],
     exportSchema = false,
     version = 1)
@@ -23,6 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun prefilledDataDao(): PrefilledDataDao
     abstract fun formDao(): FormDao
     abstract fun formDetailsDao(): FormDetailsDao
+    abstract fun generalInfoDao(): GeneralInfoDao
 
     companion object {
 
