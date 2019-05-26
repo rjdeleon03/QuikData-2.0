@@ -12,6 +12,7 @@ class NumberQuestion(context: Context, attrs: AttributeSet) : LinearLayout(conte
 
     init {
         View.inflate(context, R.layout.question_number, this)
+        orientation = LinearLayout.VERTICAL
 
         /* Retrieve view attributes then apply */
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.StringQuestion)

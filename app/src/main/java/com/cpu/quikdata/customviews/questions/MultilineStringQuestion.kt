@@ -11,6 +11,7 @@ class MultilineStringQuestion(context: Context, attrs: AttributeSet) : LinearLay
 
     init {
         View.inflate(context, R.layout.question_multiline_string, this)
+        orientation = LinearLayout.VERTICAL
 
         /* Retrieve view attributes then apply */
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultilineStringQuestion)

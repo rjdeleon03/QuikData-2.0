@@ -12,6 +12,7 @@ class TwoNumbersQuestion(context: Context, attrs: AttributeSet) : LinearLayout(c
 
     init {
         View.inflate(context, R.layout.question_two_numbers, this)
+        orientation = LinearLayout.VERTICAL
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.TwoNumbersQuestion)
         questionText.text = attributes.getString(R.styleable.TwoNumbersQuestion_question)

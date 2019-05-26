@@ -51,4 +51,7 @@
     <string name="calamity_info_area_desc">Brief Description of the Affected Area</string>
     <string name="calamity_info_area_desc_details">Accessibility, Safety, Availability of Markets, etc.</string>
     <string name="calamity_info_desc">Description of the Calamity</string>
+    <string name="population_title">Population</string>
+    <string name="population_affected">Affected</string>
+    <string name="population_displaced">Displaced</string>
 </resources>

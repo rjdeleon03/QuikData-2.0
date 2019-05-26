@@ -20,13 +20,14 @@ class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context
 
     init {
         View.inflate(context, R.layout.question_date, this)
+        orientation = LinearLayout.VERTICAL
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.DateQuestion)
         textLayout.hint = attributes.getString(R.styleable.DateQuestion_question)
         textField.setText(attributes.getString(R.styleable.DateQuestion_text))
         attributes.recycle()
 
-        mainLayout.clickWithGuard {
+        clickWithGuard {
             val dialog = DatePickerDialog(context,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                     mOnDateSetListener?.invoke(year, month + 1, dayOfMonth)
@@ -38,10 +39,10 @@ class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context
         }
 
         // Ensure that all clicks in children trigger the parent's onClick listener
-        textLayout.clickWithGuard { mainLayout.performClick() }
-        textField.clickWithGuard { mainLayout.performClick() }
+        textLayout.clickWithGuard { performClick() }
+        textField.clickWithGuard { performClick() }
         textField.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) mainLayout.performClick()
+            if (hasFocus) performClick()
         }
     }
 
