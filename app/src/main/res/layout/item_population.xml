@@ -10,6 +10,7 @@
         android:id="@+id/populationAffectedText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:isReadOnly="true"
         app:question="@string/population_affected"
         app:textHint1="@string/text_male"
         app:textHint2="@string/text_female"/>
@@ -18,6 +19,7 @@
         android:id="@+id/populationDisplacedText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:isReadOnly="true"
         app:question="@string/population_displaced"
         app:textHint1="@string/text_male"
         app:textHint2="@string/text_female"/>

@@ -21,6 +21,10 @@ class TwoNumbersQuestion(context: Context, attrs: AttributeSet) : LinearLayout(c
         textLayout2.hint = attributes.getString(R.styleable.TwoNumbersQuestion_textHint2)
         textField2.setText(attributes.getString(R.styleable.TwoNumbersQuestion_text2))
 
+        val isReadOnly = attributes.getBoolean(R.styleable.TwoNumbersQuestion_isReadOnly, false)
+        textField1.isEnabled = !isReadOnly
+        textField2.isEnabled = !isReadOnly
+
         attributes.recycle()
 
         textField1.setupNumberInputValidation()

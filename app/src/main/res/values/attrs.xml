@@ -39,6 +39,7 @@
 
     <declare-styleable name="TwoNumbersQuestion" parent="Question">
         <attr name="question" />
+        <attr name="isReadOnly" format="boolean" />
         <attr name="textHint1" format="string" />
         <attr name="text1" format="string" />
         <attr name="textHint2" format="string" />
