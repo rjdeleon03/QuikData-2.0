@@ -16,6 +16,7 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
     LinearLayout(context, attrs) {
 
     private var mIsCollapsed = false
+    private var mOnDetachedListener: (() -> Unit)? = null
 
     init {
         View.inflate(context, R.layout.view_collapsible_container, this)
@@ -37,8 +38,19 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         }
     }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        mOnDetachedListener?.invoke()
+    }
+
     val isCollapsed: Boolean
         get() = mIsCollapsed
+
+    var onDetachedListener: (() -> Unit)? = null
+        set(value) {
+            field = value
+            mOnDetachedListener = field
+        }
 
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         if (contentLayout == null) {
