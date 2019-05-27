@@ -73,9 +73,14 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         contentLayout.startAnimation(a)
     }
 
-    fun expand() {
+    fun expand(isAnimated: Boolean = true) {
         if (!mIsCollapsed) return
         mIsCollapsed = false
+
+        if (!isAnimated) {
+            contentLayout.visibility = View.VISIBLE
+            return
+        }
 
         val matchParentMeasureSpec =
             View.MeasureSpec.makeMeasureSpec((contentLayout.parent as View).width, View.MeasureSpec.EXACTLY)

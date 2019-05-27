@@ -4,7 +4,6 @@ import android.graphics.Rect
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.core.view.children
 import androidx.lifecycle.Observer
 
@@ -15,6 +14,9 @@ import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import kotlinx.android.synthetic.main.fragment_population.*
 import kotlin.math.roundToInt
+import android.view.ViewTreeObserver
+import androidx.core.view.doOnNextLayout
+
 
 class PopulationFragment : BaseFocusableFragment() {
 
@@ -77,8 +79,15 @@ class PopulationFragment : BaseFocusableFragment() {
         mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
+        var isInit = true
         mViewModel = ViewModelProviders.of(this, factory).get(PopulationViewModel::class.java)
         mViewModel.population.observe(viewLifecycleOwner, Observer {
+            populationRecyclerView.doOnNextLayout {
+                if (isInit) {
+                    (populationRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
+                }
+                isInit = false
+            }
             if (it.populationRows != null) mAdapter.setRows(it.populationRows!!)
         })
     }
