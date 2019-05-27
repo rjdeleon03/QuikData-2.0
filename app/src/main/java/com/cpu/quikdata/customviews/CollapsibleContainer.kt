@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 import android.view.animation.Animation
 import android.view.animation.Transformation
 
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 class CollapsibleContainer(context: Context, attrs: AttributeSet) :
     LinearLayout(context, attrs) {
 
@@ -21,9 +22,6 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
         // Set other layout properties
         orientation = LinearLayout.VERTICAL
-        isFocusable = true
-        isClickable = true
-        isFocusableInTouchMode = true
         background = context.getDrawable(android.R.color.white)
 
         // Retrieve attributes then apply
@@ -37,18 +35,10 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
             mIsCollapsed = true
             contentLayout.visibility = View.GONE
         }
-
-        // Focus on container whenever header is clicked
-        headerTextField.clickWithGuard {
-            requestFocus()
-        }
-
-        // Expand container when it is focused on
-        setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) expand()
-            else collapse()
-        }
     }
+
+    val isCollapsed: Boolean
+        get() = mIsCollapsed
 
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         if (contentLayout == null) {
@@ -60,7 +50,7 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
     // region Collapse/expand based on https://stackoverflow.com/questions/4946295/android-expand-collapse-animation
 
-    private fun collapse() {
+    fun collapse() {
         if (mIsCollapsed) return
         mIsCollapsed = true
 
@@ -83,7 +73,7 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         contentLayout.startAnimation(a)
     }
 
-    private fun expand() {
+    fun expand() {
         if (!mIsCollapsed) return
         mIsCollapsed = false
 

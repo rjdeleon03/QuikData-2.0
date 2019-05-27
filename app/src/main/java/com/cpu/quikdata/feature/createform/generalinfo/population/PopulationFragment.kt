@@ -1,22 +1,25 @@
 package com.cpu.quikdata.feature.createform.generalinfo.population
 
+import android.graphics.Rect
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFocusableFragment
 import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import kotlinx.android.synthetic.main.fragment_population.*
+import kotlin.math.roundToInt
 
 class PopulationFragment : BaseFocusableFragment() {
 
     companion object {
+        private const val CLICK_ACTION_THRESHOLD = 200
         fun newInstance() = PopulationFragment()
     }
 
@@ -35,6 +38,38 @@ class PopulationFragment : BaseFocusableFragment() {
         super.onViewCreated(view, savedInstanceState)
         mAdapter = PopulationAdapter(context!!)
         populationRecyclerView.adapter = mAdapter
+
+        var startX = 0F
+        var startY = 0F
+        populationRecyclerView.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    startX = event.x
+                    startY = event.y
+                }
+                MotionEvent.ACTION_UP -> {
+                    if (isClickAction(startX, startY, event.x, event.y)) {
+                        populationRecyclerView.children.forEach {
+                            if (it is CollapsibleContainer) {
+                                val viewRect = Rect()
+                                it.getHitRect(viewRect)
+                                if (viewRect.contains(event.x.roundToInt(), event.y.roundToInt())) {
+                                    it.expand()
+                                } else {
+                                    it.collapse()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            false
+        }
+    }
+
+    private fun isClickAction(beforeX: Float, beforeY: Float, afterX: Float, afterY: Float): Boolean{
+        val tolerance = ViewConfiguration.get(context!!).scaledTouchSlop
+        return Math.abs(afterX - beforeX) <= tolerance && Math.abs(afterY - beforeY) <= tolerance
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

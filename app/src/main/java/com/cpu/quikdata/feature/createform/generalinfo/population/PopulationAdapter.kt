@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.generalinfo.population.row.PopulationRow
+import kotlinx.android.synthetic.main.item_population.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class PopulationAdapter(context: Context) : RecyclerView.Adapter<PopulationAdapter.ViewHolder>() {
@@ -26,8 +27,7 @@ class PopulationAdapter(context: Context) : RecyclerView.Adapter<PopulationAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val row = mRows?.get(position)
-        holder.view.tag = row!!.id
-        holder.view.headerTextField.setText(AgeCategories.getStringId(row.type))
+        holder.populateWithData(row!!)
     }
 
     fun setRows(rows: List<PopulationRow>) {
@@ -41,5 +41,22 @@ class PopulationAdapter(context: Context) : RecyclerView.Adapter<PopulationAdapt
 
         val view: View
             get() = mView
+
+        fun populateWithData(row: PopulationRow) {
+            mView.tag = row.id
+            mView.headerTextField.setText(AgeCategories.getStringId(row.type))
+            mView.populationAffectedText.number1 = row.affectedMale
+            mView.populationAffectedText.number2 = row.affectedFemale
+            mView.populationDisplacedText.number1 = row.displacedMale
+            mView.populationDisplacedText.number2 = row.displacedFemale
+        }
+
+        fun getData(): PopulationRow {
+            return PopulationRow(id = mView.tag.toString(),
+                affectedMale = mView.populationAffectedText.number1,
+                affectedFemale = mView.populationAffectedText.number2,
+                displacedMale = mView.populationDisplacedText.number1,
+                displacedFemale = mView.populationDisplacedText.number2)
+        }
     }
 }

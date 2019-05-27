@@ -8,6 +8,6 @@ abstract class BaseFocusableFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.requestFocus()
+//        view.requestFocus()
     }
 }
