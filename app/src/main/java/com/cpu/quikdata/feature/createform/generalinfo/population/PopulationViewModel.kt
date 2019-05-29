@@ -12,5 +12,5 @@ class PopulationViewModel(application: Application, formId: String) : AndroidVie
     val population: LiveData<List<PopulationRow>>
         get() = mRepository.population
 
-    fun updateRow(populationRow: PopulationRow) = mRepository.updateRow(populationRow)
+    fun updateRow(populationRow: PopulationRow) = mRepository.updateData(populationRow)
 }

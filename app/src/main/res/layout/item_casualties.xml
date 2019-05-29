@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cpu.quikdata.customviews.CollapsibleContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:collapsed="true">
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/casualtiesDeadText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/casualties_dead"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/casualtiesMissingText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/casualties_missing"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/casualtiesInjuredText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/casualties_injured"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+</com.cpu.quikdata.customviews.CollapsibleContainer>

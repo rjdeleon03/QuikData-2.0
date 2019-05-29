@@ -12,5 +12,5 @@ class FamiliesViewModel(application: Application, formId: String) : AndroidViewM
     val families: LiveData<Families>
         get() = mRepository.families
 
-    fun updateFamilies(families: Families) = mRepository.updateFamilies(families)
+    fun updateFamilies(families: Families) = mRepository.updateData(families)
 }

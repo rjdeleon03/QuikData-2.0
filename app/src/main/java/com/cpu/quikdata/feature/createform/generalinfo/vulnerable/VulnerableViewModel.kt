@@ -12,5 +12,5 @@ class VulnerableViewModel(application: Application, formId: String) : AndroidVie
     val vulnerable: LiveData<List<VulnerableRow>>
         get() = mRepository.vulnerable
 
-    fun updateRow(vulnerableRow: VulnerableRow) = mRepository.updateRow(vulnerableRow)
+    fun updateRow(vulnerableRow: VulnerableRow) = mRepository.updateData(vulnerableRow)
 }

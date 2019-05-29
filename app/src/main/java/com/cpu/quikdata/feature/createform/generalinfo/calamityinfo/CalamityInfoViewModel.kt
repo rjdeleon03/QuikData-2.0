@@ -12,6 +12,6 @@ class CalamityInfoViewModel(application: Application, formId: String) : AndroidV
     val calamityInfo: LiveData<CalamityInfo>
         get() = mRepository.calamityInfo
 
-    fun updateCalamityInfo(calamityInfo: CalamityInfo) = mRepository.updateCalamityInfo(calamityInfo)
+    fun updateCalamityInfo(calamityInfo: CalamityInfo) = mRepository.updateData(calamityInfo)
 
 }

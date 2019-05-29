@@ -68,4 +68,8 @@
     <string name="vulnerable_child_headed">Child-headed Households</string>
     <string name="vulnerable_indigenous">Indigenous People</string>
     <string name="vulnerable_disabled">People with Disabilities</string>
+    <string name="casualties_title">Casualties</string>
+    <string name="casualties_dead">Dead</string>
+    <string name="casualties_missing">Missing</string>
+    <string name="casualties_injured">Injured</string>
 </resources>
