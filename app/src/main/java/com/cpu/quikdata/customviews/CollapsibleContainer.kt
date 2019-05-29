@@ -15,6 +15,7 @@ import android.view.animation.Transformation
 class CollapsibleContainer(context: Context, attrs: AttributeSet) :
     LinearLayout(context, attrs) {
 
+    private var mIsUpdateFinished = false
     private var mIsCollapsed = false
     private var mOnDetachedListener: (() -> Unit)? = null
 
@@ -38,11 +39,6 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         }
     }
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        mOnDetachedListener?.invoke()
-    }
-
     val isCollapsed: Boolean
         get() = mIsCollapsed
 
@@ -51,6 +47,19 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
             field = value
             mOnDetachedListener = field
         }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        mIsUpdateFinished = false
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        if (!mIsUpdateFinished) {
+            mOnDetachedListener?.invoke()
+            mIsUpdateFinished = true
+        }
+    }
 
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         if (contentLayout == null) {

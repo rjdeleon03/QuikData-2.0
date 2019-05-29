@@ -28,6 +28,11 @@ class PopulationFragment : BaseFocusableFragment() {
     private lateinit var mViewModel: PopulationViewModel
     private lateinit var mAdapter: PopulationAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +43,7 @@ class PopulationFragment : BaseFocusableFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mAdapter = PopulationAdapter(context!!) {
-//            mViewModel.updateRow(it)
+            mViewModel.updateRow(it)
         }
         populationRecyclerView.adapter = mAdapter
 
@@ -78,11 +83,11 @@ class PopulationFragment : BaseFocusableFragment() {
         var isInit = true
         mViewModel = ViewModelProviders.of(this, factory).get(PopulationViewModel::class.java)
         mViewModel.population.observe(viewLifecycleOwner, Observer {
-            populationRecyclerView.doOnNextLayout {
-                if (isInit) {
+            if (isInit) {
+                populationRecyclerView.doOnNextLayout {
                     (populationRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
+                    isInit = false
                 }
-                isInit = false
             }
             mAdapter.setRows(it)
         })

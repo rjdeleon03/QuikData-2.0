@@ -55,8 +55,7 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
 
             // Setup listener for saving each population row
             (mView as CollapsibleContainer).onDetachedListener = {
-                rowSaveListener(
-                    PopulationRow(
+                var newRow = PopulationRow(
                         row.id,
                         row.type,
                         mView.populationAffectedText.number1,
@@ -65,7 +64,9 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
                         mView.populationDisplacedText.number2,
                         row.formId
                     )
-                )
+                if (row != newRow) {
+                    rowSaveListener(newRow)
+                }
             }
 
         }
