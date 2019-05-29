@@ -26,12 +26,12 @@ data class PopulationRow(@PrimaryKey(autoGenerate = false)
         if (other == null || other !is PopulationRow) return false
         if (this === other) return true
         if (id == other.id &&
-                type == other.type &&
-                affectedMale == other.affectedMale &&
-                affectedFemale == other.affectedFemale &&
-                displacedMale == other.displacedMale &&
-                displacedFemale == other.displacedFemale &&
-                formId == other.formId)
+            type == other.type &&
+            affectedMale == other.affectedMale &&
+            affectedFemale == other.affectedFemale &&
+            displacedMale == other.displacedMale &&
+            displacedFemale == other.displacedFemale &&
+            formId == other.formId)
             return true
         return false
     }
