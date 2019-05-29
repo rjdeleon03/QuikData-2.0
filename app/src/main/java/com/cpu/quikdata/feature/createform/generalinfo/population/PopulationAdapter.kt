@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.customviews.CollapsibleContainer
-import com.cpu.quikdata.data.generalinfo.population.row.PopulationRow
+import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import kotlinx.android.synthetic.main.item_population.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
@@ -55,14 +55,19 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
 
             // Setup listener for saving each population row
             (mView as CollapsibleContainer).onDetachedListener = {
-                rowSaveListener(PopulationRow(row.id,
-                    row.type,
-                    mView.populationAffectedText.number1,
-                    mView.populationAffectedText.number2,
-                    mView.populationDisplacedText.number1,
-                    mView.populationDisplacedText.number2,
-                    row.populationId))
+                rowSaveListener(
+                    PopulationRow(
+                        row.id,
+                        row.type,
+                        mView.populationAffectedText.number1,
+                        mView.populationAffectedText.number2,
+                        mView.populationDisplacedText.number1,
+                        mView.populationDisplacedText.number2,
+                        row.formId
+                    )
+                )
             }
+
         }
     }
 }

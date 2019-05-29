@@ -1,16 +1,16 @@
-package com.cpu.quikdata.data.generalinfo.population.row
+package com.cpu.quikdata.data.generalinfo.populationrow
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.data.generalinfo.population.Population
+import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "population_row",
-    indices = [Index("populationId")],
-    foreignKeys = [ForeignKey(entity = Population::class,
+    indices = [Index("formId")],
+    foreignKeys = [ForeignKey(entity = Form::class,
         parentColumns = ["id"],
-        childColumns = ["populationId"],
+        childColumns = ["formId"],
         onDelete = ForeignKey.CASCADE
     )])
 data class PopulationRow(@PrimaryKey(autoGenerate = false)
@@ -20,4 +20,4 @@ data class PopulationRow(@PrimaryKey(autoGenerate = false)
                          var affectedFemale: Int = 0,
                          var displacedMale: Int = 0,
                          var displacedFemale: Int = 0,
-                         val populationId: String = "")
+                         val formId: String = "")

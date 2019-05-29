@@ -21,7 +21,6 @@ import androidx.core.view.doOnNextLayout
 class PopulationFragment : BaseFocusableFragment() {
 
     companion object {
-        private const val CLICK_ACTION_THRESHOLD = 200
         fun newInstance() = PopulationFragment()
     }
 
@@ -39,7 +38,7 @@ class PopulationFragment : BaseFocusableFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mAdapter = PopulationAdapter(context!!) {
-            mViewModel.updateRow(it)
+//            mViewModel.updateRow(it)
         }
         populationRecyclerView.adapter = mAdapter
 
@@ -71,11 +70,6 @@ class PopulationFragment : BaseFocusableFragment() {
         }
     }
 
-    private fun isClickAction(beforeX: Float, beforeY: Float, afterX: Float, afterY: Float): Boolean{
-        val tolerance = ViewConfiguration.get(context!!).scaledTouchSlop
-        return Math.abs(afterX - beforeX) <= tolerance && Math.abs(afterY - beforeY) <= tolerance
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
@@ -90,8 +84,13 @@ class PopulationFragment : BaseFocusableFragment() {
                 }
                 isInit = false
             }
-            if (it.populationRows != null) mAdapter.setRows(it.populationRows!!)
+            mAdapter.setRows(it)
         })
+    }
+
+    private fun isClickAction(beforeX: Float, beforeY: Float, afterX: Float, afterY: Float): Boolean{
+        val tolerance = ViewConfiguration.get(context!!).scaledTouchSlop
+        return Math.abs(afterX - beforeX) <= tolerance && Math.abs(afterY - beforeY) <= tolerance
     }
 
 }

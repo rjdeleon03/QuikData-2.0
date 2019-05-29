@@ -1,4 +1,4 @@
-package com.cpu.quikdata.data.generalinfo.population.row
+package com.cpu.quikdata.data.generalinfo.populationrow
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -15,6 +15,6 @@ interface PopulationRowDao {
     @Delete
     fun delete(populationRow: PopulationRow)
 
-    @Query("SELECT * FROM population_row WHERE populationId = :formId")
-    fun getByPopulationId(formId: String): LiveData<PopulationRow>
+    @Query("SELECT * FROM population_row WHERE formId = :formId ORDER BY type")
+    fun getByFormId(formId: String): LiveData<List<PopulationRow>>
 }
