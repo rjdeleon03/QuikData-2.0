@@ -23,16 +23,19 @@
                 app:dividerText="@string/calamity_info_desc"/>
 
             <com.cpu.quikdata.customviews.questions.StringQuestion
+                android:id="@+id/calamityTypeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:textHint="@string/calamity_info_type"/>
 
             <com.cpu.quikdata.customviews.questions.DateQuestion
+                android:id="@+id/calamityDateText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:question="@string/calamity_info_date" />
 
             <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
+                android:id="@+id/calamityDescText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:textHint="@string/calamity_info_event_desc"/>
@@ -43,6 +46,7 @@
                 app:dividerText="@string/calamity_info_area_desc"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
+                android:id="@+id/calamityAreaText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:textHint="@string/calamity_info_area_desc_details"/>
