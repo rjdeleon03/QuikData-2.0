@@ -28,3 +28,50 @@ enum class AgeCategories {
         }
     }
 }
+
+enum class InfraCategories {
+    SCHOOL,
+    CHURCH,
+    COVERED_COURT,
+    BRGY_HALL,
+    BRGY_HEALTH_STATION,
+    EVACUATION_CENTER,
+    BRIDGES,
+    ROADS,
+    MARKET,
+    ELECTRICITY,
+    WATER,
+    HOSPITAL,
+    SEAPORT_AIRPORT,
+    COMMUNICATION_LINES,
+    LIVELIHOOD_FACILITIES,
+    OTHERS;
+
+    fun getStringId(): Int {
+        return when(this) {
+            SCHOOL -> R.string.text_school
+            CHURCH -> R.string.text_church
+            COVERED_COURT -> R.string.text_covered_court
+            BRGY_HALL -> R.string.text_brgy_hall
+            BRGY_HEALTH_STATION -> R.string.text_brgy_health_station
+            EVACUATION_CENTER -> R.string.text_evacuation_center
+            BRIDGES -> R.string.text_bridges
+            ROADS -> R.string.text_roads
+            MARKET -> R.string.text_market
+            ELECTRICITY -> R.string.text_electricity
+            WATER -> R.string.text_water
+            HOSPITAL -> R.string.text_hospital
+            SEAPORT_AIRPORT -> R.string.text_seaport_airport
+            COMMUNICATION_LINES -> R.string.text_communication_lines
+            LIVELIHOOD_FACILITIES -> R.string.text_livelihood_facilities
+            OTHERS -> R.string.text_others
+        }
+    }
+
+    companion object {
+
+        fun getStringId(idx: Int): Int {
+            return InfraCategories.values()[idx].getStringId()
+        }
+    }
+}

@@ -8,6 +8,7 @@ import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
 import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRow
+import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRow
 import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
@@ -28,13 +29,14 @@ class NewFormsRepository(application: Application) {
 
     fun createNewForm(formId: String) {
         CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {
+            val dateNowInLong = LocalDate.now().toDateTimeAtStartOfDay().millis
             val form = Form(formId)
             mDatabase.formDao().insert(form)
 
             // region Form details
 
             val formDetails = FormDetails(id = generateId(),
-                assessmentDate = LocalDate.now().toDateTimeAtStartOfDay().millis,
+                assessmentDate = dateNowInLong,
                 formId = formId)
             mDatabase.formDetailsDao().insert(formDetails)
 
@@ -42,7 +44,9 @@ class NewFormsRepository(application: Application) {
 
             // region General information
 
-            val calamityInfo = CalamityInfo(id = generateId(), formId = formId)
+            val calamityInfo = CalamityInfo(id = generateId(),
+                formId = formId,
+                occurrenceDate = dateNowInLong)
             mDatabase.calamityInfoDao().insert(calamityInfo)
 
             for (i in 0 until AgeCategories.values().size) {
@@ -73,6 +77,15 @@ class NewFormsRepository(application: Application) {
                     formId = formId
                 )
                 mDatabase.casualtiesRowDao().insert(row)
+            }
+
+            for (i in 0 until AgeCategories.values().size) {
+                val row = CauseOfDeathRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.causeOfDeathRowDao().insert(row)
             }
 
             // endregion

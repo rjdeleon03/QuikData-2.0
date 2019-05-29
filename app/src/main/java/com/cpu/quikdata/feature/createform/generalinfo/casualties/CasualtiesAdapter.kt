@@ -8,9 +8,7 @@ import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRow
-import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import kotlinx.android.synthetic.main.item_casualties.view.*
-import kotlinx.android.synthetic.main.item_vulnerable.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class CasualtiesAdapter(context: Context, rowSaveListener: (CasualtiesRow) -> Unit) :

@@ -11,6 +11,7 @@ import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.feature.createform.CreateFormBaseFragment
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoFragment
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesFragment
+import com.cpu.quikdata.feature.createform.generalinfo.causeofdeath.CauseOfDeathFragment
 import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesFragment
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationFragment
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableFragment
@@ -38,6 +39,7 @@ class GeneralInfoFragment : CreateFormBaseFragment() {
         pagerAdapter.addFragment(FamiliesFragment.newInstance(), getString(R.string.families_title))
         pagerAdapter.addFragment(VulnerableFragment.newInstance(), getString(R.string.vulnerable_title))
         pagerAdapter.addFragment(CasualtiesFragment.newInstance(), getString(R.string.casualties_title))
+        pagerAdapter.addFragment(CauseOfDeathFragment.newInstance(), getString(R.string.cause_of_death_title))
         genInfoViewPager.adapter = pagerAdapter
 
         genInfoViewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {

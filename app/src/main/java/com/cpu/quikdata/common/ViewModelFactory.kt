@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.feature.createform.formdetails.FormDetailsViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesViewModel
+import com.cpu.quikdata.feature.createform.generalinfo.causeofdeath.CauseOfDeathViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableViewModel
@@ -25,6 +26,7 @@ class ViewModelFactory(application: Application, formId: String) :
             FamiliesViewModel::class.java -> FamiliesViewModel(mApplication, mFormId) as T
             VulnerableViewModel::class.java -> VulnerableViewModel(mApplication, mFormId) as T
             CasualtiesViewModel::class.java -> CasualtiesViewModel(mApplication, mFormId) as T
+            CauseOfDeathViewModel::class.java -> CauseOfDeathViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }
     }
