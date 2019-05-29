@@ -7,6 +7,7 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
+import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.data.generalinfo.population.Population
 import com.cpu.quikdata.data.generalinfo.population.row.PopulationRow
 import com.cpu.quikdata.utils.generateId
@@ -52,6 +53,9 @@ class NewFormsRepository(application: Application) {
                     populationId = populationId)
                 mDatabase.populationRowDao().insert(row)
             }
+
+            val families = Families(id = generateId(), formId = formId)
+            mDatabase.familiesDao().insert(families)
 
             // endregion
         }

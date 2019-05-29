@@ -54,4 +54,9 @@
     <string name="population_title">Population</string>
     <string name="population_affected">Affected</string>
     <string name="population_displaced">Displaced</string>
+    <string name="families_title">Families and Households</string>
+    <string name="families_families">Families</string>
+    <string name="families_households">Households</string>
+    <string name="families_affected">Affected</string>
+    <string name="families_displaced">Displaced</string>
 </resources>

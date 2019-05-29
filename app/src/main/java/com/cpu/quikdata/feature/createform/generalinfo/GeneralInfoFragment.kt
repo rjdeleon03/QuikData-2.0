@@ -13,6 +13,7 @@ import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.createform.CreateFormBaseFragment
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoFragment
+import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesFragment
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationFragment
 import kotlinx.android.synthetic.main.fragment_general_info.*
 
@@ -35,6 +36,7 @@ class GeneralInfoFragment : CreateFormBaseFragment() {
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(CalamityInfoFragment.newInstance(), getString(R.string.calamity_info_title))
         pagerAdapter.addFragment(PopulationFragment.newInstance(), getString(R.string.population_title))
+        pagerAdapter.addFragment(FamiliesFragment.newInstance(), getString(R.string.families_title))
         genInfoViewPager.adapter = pagerAdapter
 
         genInfoViewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {

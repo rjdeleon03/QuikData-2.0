@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.population.PopulationComplete
 import com.cpu.quikdata.data.generalinfo.population.row.PopulationRow
+import com.cpu.quikdata.utils.runOnIoThread
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,7 +20,7 @@ class PopulationRepository(application: Application, formId: String) {
         get() = mPopulation
 
     fun updateRow(populationRow: PopulationRow) {
-        CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {
+        runOnIoThread {
             mDatabase.populationRowDao().insert(populationRow)
         }
     }
