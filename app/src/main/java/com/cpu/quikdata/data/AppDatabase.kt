@@ -14,6 +14,8 @@ import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.data.generalinfo.families.FamiliesDao
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRowDao
+import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
+import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRowDao
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
 
@@ -23,7 +25,8 @@ import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
         FormDetails::class,
         CalamityInfo::class,
         PopulationRow::class,
-        Families::class
+        Families::class,
+        VulnerableRow::class
     ],
     exportSchema = false,
     version = 1)
@@ -35,6 +38,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun calamityInfoDao(): CalamityInfoDao
     abstract fun populationRowDao(): PopulationRowDao
     abstract fun familiesDao(): FamiliesDao
+    abstract fun vulnerableRowDao(): VulnerableRowDao
 
     companion object {
 

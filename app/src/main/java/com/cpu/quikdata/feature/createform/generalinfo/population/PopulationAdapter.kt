@@ -1,11 +1,10 @@
 package com.cpu.quikdata.feature.createform.generalinfo.population
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
@@ -13,19 +12,13 @@ import kotlinx.android.synthetic.main.item_population.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Unit) :
-    RecyclerView.Adapter<PopulationAdapter.ViewHolder>() {
+    BaseAdapter<PopulationRow, PopulationAdapter.ViewHolder>(context, rowSaveListener) {
 
-    private val mInflater = LayoutInflater.from(context)
     private val mRowSaveListener = rowSaveListener
-    private var mRows: List<PopulationRow>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mInflater.inflate(R.layout.item_population, parent, false)
         return ViewHolder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return if (mRows != null) mRows!!.size else 0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -33,37 +26,27 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
         holder.populateWithData(row!!, mRowSaveListener)
     }
 
-    fun setRows(rows: List<PopulationRow>) {
-        mRows = rows
-        notifyDataSetChanged()
-    }
+    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<PopulationRow>(itemView) {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private var mView = itemView
-
-        val view: View
-            get() = mView
-
-        fun populateWithData(row: PopulationRow, rowSaveListener: (PopulationRow) -> Unit) {
-            mView.tag = row.id
-            mView.headerTextField.setText(AgeCategories.getStringId(row.type))
-            mView.populationAffectedText.number1 = row.affectedMale
-            mView.populationAffectedText.number2 = row.affectedFemale
-            mView.populationDisplacedText.number1 = row.displacedMale
-            mView.populationDisplacedText.number2 = row.displacedFemale
+        override fun populateWithData(row: PopulationRow, rowSaveListener: (PopulationRow) -> Unit) {
+            view.tag = row.id
+            view.headerTextField.setText(AgeCategories.getStringId(row.type))
+            view.populationAffectedText.number1 = row.affectedMale
+            view.populationAffectedText.number2 = row.affectedFemale
+            view.populationDisplacedText.number1 = row.displacedMale
+            view.populationDisplacedText.number2 = row.displacedFemale
 
             // Setup listener for saving each population row
-            (mView as CollapsibleContainer).onDetachedListener = {
-                var newRow = PopulationRow(
-                        row.id,
-                        row.type,
-                        mView.populationAffectedText.number1,
-                        mView.populationAffectedText.number2,
-                        mView.populationDisplacedText.number1,
-                        mView.populationDisplacedText.number2,
-                        row.formId
-                    )
+            (view as CollapsibleContainer).onDetachedListener = {
+                val newRow = PopulationRow(
+                    row.id,
+                    row.type,
+                    view.populationAffectedText.number1,
+                    view.populationAffectedText.number2,
+                    view.populationDisplacedText.number1,
+                    view.populationDisplacedText.number2,
+                    row.formId
+                )
                 if (row != newRow) {
                     rowSaveListener(newRow)
                 }

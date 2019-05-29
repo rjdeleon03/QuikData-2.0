@@ -9,6 +9,7 @@ import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
 import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
+import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.utils.generateId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -54,6 +55,15 @@ class NewFormsRepository(application: Application) {
 
             val families = Families(id = generateId(), formId = formId)
             mDatabase.familiesDao().insert(families)
+
+            for (i in 0 until AgeCategories.values().size) {
+                val row = VulnerableRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.vulnerableRowDao().insert(row)
+            }
 
             // endregion
         }

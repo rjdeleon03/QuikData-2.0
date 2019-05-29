@@ -1,65 +1,60 @@
-package com.cpu.quikdata.feature.createform.generalinfo.population
+package com.cpu.quikdata.feature.createform.generalinfo.vulnerable
 
-import android.content.Context
-import android.graphics.Rect
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.view.*
-import androidx.core.view.children
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.doOnNextLayout
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseFocusableFragment
 import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.common.setupTapToExpand
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
-import kotlinx.android.synthetic.main.fragment_population.*
-import kotlin.math.roundToInt
-import android.view.ViewTreeObserver
-import androidx.core.view.doOnNextLayout
-import com.cpu.quikdata.common.setupTapToExpand
 import kotlinx.android.synthetic.main.fragment_vulnerable.*
 
-
-class PopulationFragment : BaseFocusableFragment() {
+class VulnerableFragment : Fragment() {
 
     companion object {
-        fun newInstance() = PopulationFragment()
+        fun newInstance() = VulnerableFragment()
     }
 
     private lateinit var mParentViewModel: CreateFormViewModel
-    private lateinit var mViewModel: PopulationViewModel
-    private lateinit var mAdapter: PopulationAdapter
+    private lateinit var mViewModel: VulnerableViewModel
+    private lateinit var mAdapter: VulnerableAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_population, container, false)
+        return inflater.inflate(R.layout.fragment_vulnerable, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = PopulationAdapter(context!!) {
+        mAdapter = VulnerableAdapter(context!!) {
             mViewModel.updateRow(it)
         }
-        populationRecyclerView.adapter = mAdapter
-
-        populationRecyclerView.setupTapToExpand(context!!)
+        vulnerableRecyclerView.adapter = mAdapter
+        vulnerableRecyclerView.setupTapToExpand(context!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(PopulationViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, factory).get(VulnerableViewModel::class.java)
 
         var isInit = true
-        mViewModel.population.observe(viewLifecycleOwner, Observer {
+        mViewModel.vulnerable.observe(viewLifecycleOwner, Observer {
             if (isInit) {
-                populationRecyclerView.doOnNextLayout {
-                    (populationRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
+                vulnerableRecyclerView.doOnNextLayout {
+                    (vulnerableRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
                     isInit = false
                 }
             }

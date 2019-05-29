@@ -1,20 +1,18 @@
 package com.cpu.quikdata.feature.createform.generalinfo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.CustomPagerAdapter
-import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.createform.CreateFormBaseFragment
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoFragment
 import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesFragment
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationFragment
+import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableFragment
 import kotlinx.android.synthetic.main.fragment_general_info.*
 
 class GeneralInfoFragment : CreateFormBaseFragment() {
@@ -37,6 +35,7 @@ class GeneralInfoFragment : CreateFormBaseFragment() {
         pagerAdapter.addFragment(CalamityInfoFragment.newInstance(), getString(R.string.calamity_info_title))
         pagerAdapter.addFragment(PopulationFragment.newInstance(), getString(R.string.population_title))
         pagerAdapter.addFragment(FamiliesFragment.newInstance(), getString(R.string.families_title))
+        pagerAdapter.addFragment(VulnerableFragment.newInstance(), getString(R.string.vulnerable_title))
         genInfoViewPager.adapter = pagerAdapter
 
         genInfoViewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {

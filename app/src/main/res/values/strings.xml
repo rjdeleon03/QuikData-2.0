@@ -22,6 +22,7 @@
     <string name="prefilled_city">City / Municipality</string>
     <string name="prefilled_province">Province</string>
     <string name="prefilled_total_population">Total Population</string>
+    <string name="text_remarks">Remarks</string>
     <string name="text_male">Male</string>
     <string name="text_female">Female</string>
     <string name="text_age_0to5">Ages 0 to 5</string>
@@ -59,4 +60,12 @@
     <string name="families_households">Households</string>
     <string name="families_affected">Affected</string>
     <string name="families_displaced">Displaced</string>
+    <string name="vulnerable_title">Vulnerable Population</string>
+    <string name="vulnerable_pregnant">Pregnant</string>
+    <string name="vulnerable_lactating">Lactating Mothers</string>
+    <string name="vulnerable_lgbt">LGBT</string>
+    <string name="vulnerable_female_headed">Female-headed Households</string>
+    <string name="vulnerable_child_headed">Child-headed Households</string>
+    <string name="vulnerable_indigenous">Indigenous People</string>
+    <string name="vulnerable_disabled">People with Disabilities</string>
 </resources>

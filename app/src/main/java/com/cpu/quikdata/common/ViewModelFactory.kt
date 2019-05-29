@@ -7,6 +7,7 @@ import com.cpu.quikdata.feature.createform.formdetails.FormDetailsViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationViewModel
+import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(application: Application, formId: String) :
@@ -21,6 +22,7 @@ class ViewModelFactory(application: Application, formId: String) :
             CalamityInfoViewModel::class.java -> CalamityInfoViewModel(mApplication, mFormId) as T
             PopulationViewModel::class.java -> PopulationViewModel(mApplication, mFormId) as T
             FamiliesViewModel::class.java -> FamiliesViewModel(mApplication, mFormId) as T
+            VulnerableViewModel::class.java -> VulnerableViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }
     }
