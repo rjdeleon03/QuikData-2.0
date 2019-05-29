@@ -1,4 +1,4 @@
-package com.cpu.quikdata.data.generalinfo.casualtiesrow
+package com.cpu.quikdata.base
 
 import androidx.room.*
 
