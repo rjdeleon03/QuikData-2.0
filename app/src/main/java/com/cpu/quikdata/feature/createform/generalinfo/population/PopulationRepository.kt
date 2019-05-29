@@ -4,6 +4,11 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.population.PopulationComplete
+import com.cpu.quikdata.data.generalinfo.population.row.PopulationRow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class PopulationRepository(application: Application, formId: String) {
 
@@ -12,4 +17,10 @@ class PopulationRepository(application: Application, formId: String) {
 
     val population: LiveData<PopulationComplete>
         get() = mPopulation
+
+    fun updateRow(populationRow: PopulationRow) {
+        CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {
+            mDatabase.populationRowDao().insert(populationRow)
+        }
+    }
 }

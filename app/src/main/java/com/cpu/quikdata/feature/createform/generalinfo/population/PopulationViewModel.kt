@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.generalinfo.population.PopulationComplete
+import com.cpu.quikdata.data.generalinfo.population.row.PopulationRow
 
 class PopulationViewModel(application: Application, formId: String) : AndroidViewModel(application) {
 
@@ -11,4 +12,6 @@ class PopulationViewModel(application: Application, formId: String) : AndroidVie
 
     val population: LiveData<PopulationComplete>
         get() = mRepository.population
+
+    fun updateRow(populationRow: PopulationRow) = mRepository.updateRow(populationRow)
 }

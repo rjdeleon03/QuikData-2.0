@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.AgeCategories
+import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.data.generalinfo.population.row.PopulationRow
 import kotlinx.android.synthetic.main.item_population.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class PopulationAdapter(context: Context) : RecyclerView.Adapter<PopulationAdapter.ViewHolder>() {
+class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Unit) :
+    RecyclerView.Adapter<PopulationAdapter.ViewHolder>() {
 
-    private var mInflater = LayoutInflater.from(context)
+    private val mInflater = LayoutInflater.from(context)
+    private val mRowSaveListener = rowSaveListener
     private var mRows: List<PopulationRow>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,7 +30,7 @@ class PopulationAdapter(context: Context) : RecyclerView.Adapter<PopulationAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val row = mRows?.get(position)
-        holder.populateWithData(row!!)
+        holder.populateWithData(row!!, mRowSaveListener)
     }
 
     fun setRows(rows: List<PopulationRow>) {
@@ -42,21 +45,24 @@ class PopulationAdapter(context: Context) : RecyclerView.Adapter<PopulationAdapt
         val view: View
             get() = mView
 
-        fun populateWithData(row: PopulationRow) {
+        fun populateWithData(row: PopulationRow, rowSaveListener: (PopulationRow) -> Unit) {
             mView.tag = row.id
             mView.headerTextField.setText(AgeCategories.getStringId(row.type))
             mView.populationAffectedText.number1 = row.affectedMale
             mView.populationAffectedText.number2 = row.affectedFemale
             mView.populationDisplacedText.number1 = row.displacedMale
             mView.populationDisplacedText.number2 = row.displacedFemale
-        }
 
-        fun getData(): PopulationRow {
-            return PopulationRow(id = mView.tag.toString(),
-                affectedMale = mView.populationAffectedText.number1,
-                affectedFemale = mView.populationAffectedText.number2,
-                displacedMale = mView.populationDisplacedText.number1,
-                displacedFemale = mView.populationDisplacedText.number2)
+            // Setup listener for saving each population row
+            (mView as CollapsibleContainer).onDetachedListener = {
+                rowSaveListener(PopulationRow(row.id,
+                    row.type,
+                    mView.populationAffectedText.number1,
+                    mView.populationAffectedText.number2,
+                    mView.populationDisplacedText.number1,
+                    mView.populationDisplacedText.number2,
+                    row.populationId))
+            }
         }
     }
 }

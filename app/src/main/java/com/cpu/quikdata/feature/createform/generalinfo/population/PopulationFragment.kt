@@ -38,7 +38,9 @@ class PopulationFragment : BaseFocusableFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = PopulationAdapter(context!!)
+        mAdapter = PopulationAdapter(context!!) {
+            mViewModel.updateRow(it)
+        }
         populationRecyclerView.adapter = mAdapter
 
         var startX = 0F
