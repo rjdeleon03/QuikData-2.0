@@ -47,15 +47,7 @@ class CasualtiesFragment : BaseCreateFormFragment() {
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
         mViewModel = ViewModelProviders.of(this, factory).get(CasualtiesViewModel::class.java)
-
-        var isInit = true
         mViewModel.casualties.observe(viewLifecycleOwner, Observer {
-            if (isInit) {
-                casualtiesRecyclerView.doOnNextLayout {
-                    (casualtiesRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
-                    isInit = false
-                }
-            }
             mAdapter.setRows(it)
         })
     }

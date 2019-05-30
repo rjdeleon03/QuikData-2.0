@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -> Unit) :
     BaseAdapter<CauseOfDeathRow, CauseOfDeathAdapter.ViewHolder>(context, rowSaveListener) {
 
-    private val mRowSaveListener = rowSaveListener
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mInflater.inflate(R.layout.item_cause_of_death, parent, false)
         return ViewHolder(view)
@@ -23,12 +21,20 @@ class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val row = mRows?.get(position)
-        holder.populateWithData(row!!, mRowSaveListener)
+        holder.populateWithData(row!!, row.type,
+            mExpandedItem != row.type, mRowSaveListener,
+            { idx, isCollapsed ->
+                if (!isCollapsed) mExpandedItem = idx
+            })
     }
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<CauseOfDeathRow>(itemView) {
 
-        override fun populateWithData(row: CauseOfDeathRow, rowSaveListener: (CauseOfDeathRow) -> Unit) {
+        override fun populateWithData(row: CauseOfDeathRow,
+                                      isCollapsed: Boolean,
+                                      rowSaveListener: (CauseOfDeathRow) -> Unit,
+                                      rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
+
             view.tag = row.id
             view.headerTextField.setText(AgeCategories.getStringId(row.type))
             view.causeOfDeathMeaslesText.number1 = row.measlesMale
@@ -51,7 +57,7 @@ class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -
             view.causeOfDeathOthersText.number2 = row.othersFemale
 
             // Setup listener for saving each vulnerable population row
-            (view as CollapsibleContainer).onDetachedListener = {
+            collapsibleView?.onDetachedListener = {
                 val newRow = CauseOfDeathRow(
                     row.id,
                     row.type,
@@ -79,7 +85,6 @@ class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -
                     rowSaveListener(newRow)
                 }
             }
-
         }
     }
 }

@@ -44,15 +44,7 @@ class PopulationFragment : BaseCreateFormFragment() {
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
         mViewModel = ViewModelProviders.of(this, factory).get(PopulationViewModel::class.java)
-
-        var isInit = true
         mViewModel.population.observe(viewLifecycleOwner, Observer {
-            if (isInit) {
-                populationRecyclerView.doOnNextLayout {
-                    (populationRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
-                    isInit = false
-                }
-            }
             mAdapter.setRows(it)
         })
     }

@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Unit) :
     BaseAdapter<PopulationRow, PopulationAdapter.ViewHolder>(context, rowSaveListener) {
 
-    private val mRowSaveListener = rowSaveListener
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mInflater.inflate(R.layout.item_population, parent, false)
         return ViewHolder(view)
@@ -23,12 +21,20 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val row = mRows?.get(position)
-        holder.populateWithData(row!!, mRowSaveListener)
+        holder.populateWithData(row!!, row.type,
+            mExpandedItem != row.type, mRowSaveListener,
+            { idx, isCollapsed ->
+                if (!isCollapsed) mExpandedItem = idx
+            })
     }
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<PopulationRow>(itemView) {
 
-        override fun populateWithData(row: PopulationRow, rowSaveListener: (PopulationRow) -> Unit) {
+        override fun populateWithData(row: PopulationRow,
+                                      isCollapsed: Boolean,
+                                      rowSaveListener: (PopulationRow) -> Unit,
+                                      rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
+
             view.tag = row.id
             view.headerTextField.setText(AgeCategories.getStringId(row.type))
             view.populationAffectedText.number1 = row.affectedMale
@@ -37,7 +43,7 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
             view.populationDisplacedText.number2 = row.displacedFemale
 
             // Setup listener for saving each population row
-            (view as CollapsibleContainer).onDetachedListener = {
+            collapsibleView?.onDetachedListener = {
                 val newRow = PopulationRow(
                     row.id,
                     row.type,
@@ -51,7 +57,6 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
                     rowSaveListener(newRow)
                 }
             }
-
         }
     }
 }

@@ -47,15 +47,7 @@ class InfrastructureDamageFragment : BaseCreateFormFragment() {
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
         mViewModel = ViewModelProviders.of(this, factory).get(InfrastructureDamageViewModel::class.java)
-
-        var isInit = true
         mViewModel.infrastructureDamage.observe(viewLifecycleOwner, Observer {
-            if (isInit) {
-                infrastructureDamageRecyclerView.doOnNextLayout {
-                    (infrastructureDamageRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
-                    isInit = false
-                }
-            }
             mAdapter.setRows(it)
         })
     }

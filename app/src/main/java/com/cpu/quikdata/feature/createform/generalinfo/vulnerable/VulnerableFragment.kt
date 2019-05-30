@@ -47,15 +47,7 @@ class VulnerableFragment : BaseCreateFormFragment() {
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
         mViewModel = ViewModelProviders.of(this, factory).get(VulnerableViewModel::class.java)
-
-        var isInit = true
         mViewModel.vulnerable.observe(viewLifecycleOwner, Observer {
-            if (isInit) {
-                vulnerableRecyclerView.doOnNextLayout {
-                    (vulnerableRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
-                    isInit = false
-                }
-            }
             mAdapter.setRows(it)
         })
     }

@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Unit) :
     BaseAdapter<VulnerableRow, VulnerableAdapter.ViewHolder>(context, rowSaveListener) {
 
-    private val mRowSaveListener = rowSaveListener
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mInflater.inflate(R.layout.item_vulnerable, parent, false)
         return ViewHolder(view)
@@ -23,12 +21,20 @@ class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Un
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val row = mRows?.get(position)
-        holder.populateWithData(row!!, mRowSaveListener)
+        holder.populateWithData(row!!, row.type,
+            mExpandedItem != row.type, mRowSaveListener,
+            { idx, isCollapsed ->
+                if (!isCollapsed) mExpandedItem = idx
+            })
     }
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<VulnerableRow>(itemView) {
 
-        override fun populateWithData(row: VulnerableRow, rowSaveListener: (VulnerableRow) -> Unit) {
+        override fun populateWithData(row: VulnerableRow,
+                                      isCollapsed: Boolean,
+                                      rowSaveListener: (VulnerableRow) -> Unit,
+                                      rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
+
             view.tag = row.id
             view.headerTextField.setText(AgeCategories.getStringId(row.type))
             view.vulnerablePregnantText.number = row.pregnant
@@ -44,7 +50,7 @@ class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Un
             view.vulnerableRemarksText.text = row.remarks
 
             // Setup listener for saving each population row
-            (view as CollapsibleContainer).onDetachedListener = {
+            collapsibleView?.onDetachedListener = {
                 val newRow = VulnerableRow(
                     row.id,
                     row.type,
@@ -65,7 +71,6 @@ class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Un
                     rowSaveListener(newRow)
                 }
             }
-
         }
     }
 }

@@ -18,6 +18,26 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
     private var mIsUpdateFinished = false
     private var mIsCollapsed = false
     private var mOnDetachedListener: (() -> Unit)? = null
+    private var mOnCollapsedStateChangedListener: ((Boolean) -> Unit)? = null
+
+    var isCollapsed: Boolean
+        get() = mIsCollapsed
+        private set(value) {
+            mIsCollapsed = value
+            mOnCollapsedStateChangedListener?.invoke(mIsCollapsed)
+        }
+
+    var onDetachedListener: (() -> Unit)? = null
+        set(value) {
+            field = value
+            mOnDetachedListener = field
+        }
+
+    var onCollapsedStateChangedListener: ((Boolean) -> Unit)? = null
+        set(value) {
+            field = value
+            mOnCollapsedStateChangedListener = field
+        }
 
     init {
         View.inflate(context, R.layout.view_collapsible_container, this)
@@ -34,19 +54,10 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
         // Collapse if collapsed flag is true
         if (collapsedFlag) {
-            mIsCollapsed = true
+            isCollapsed = true
             contentLayout.visibility = View.GONE
         }
     }
-
-    val isCollapsed: Boolean
-        get() = mIsCollapsed
-
-    var onDetachedListener: (() -> Unit)? = null
-        set(value) {
-            field = value
-            mOnDetachedListener = field
-        }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -76,9 +87,14 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
     // region Collapse/expand based on https://stackoverflow.com/questions/4946295/android-expand-collapse-animation
 
-    fun collapse() {
+    fun collapse(isAnimated: Boolean = true) {
         if (mIsCollapsed) return
-        mIsCollapsed = true
+        isCollapsed = true
+
+        if (!isAnimated) {
+            contentLayout.visibility = View.GONE
+            return
+        }
 
         val initialHeight = contentLayout.measuredHeight
         val a = object : Animation() {
@@ -101,7 +117,7 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
     fun expand(isAnimated: Boolean = true) {
         if (!mIsCollapsed) return
-        mIsCollapsed = false
+        isCollapsed = false
 
         if (!isAnimated) {
             contentLayout.visibility = View.VISIBLE

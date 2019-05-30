@@ -6,15 +6,12 @@ import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.common.InfraCategories
-import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import kotlinx.android.synthetic.main.item_infrastructure_damage.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class InfrastructureDamageAdapter(context: Context, rowSaveListener: (InfrastructureDamageRow) -> Unit) :
     BaseAdapter<InfrastructureDamageRow, InfrastructureDamageAdapter.ViewHolder>(context, rowSaveListener) {
-
-    private val mRowSaveListener = rowSaveListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mInflater.inflate(R.layout.item_infrastructure_damage, parent, false)
@@ -23,12 +20,20 @@ class InfrastructureDamageAdapter(context: Context, rowSaveListener: (Infrastruc
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val row = mRows?.get(position)
-        holder.populateWithData(row!!, mRowSaveListener)
+        holder.populateWithData(row!!, row.type,
+            mExpandedItem != row.type, mRowSaveListener,
+            { idx, isCollapsed ->
+                if (!isCollapsed) mExpandedItem = idx
+            })
     }
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<InfrastructureDamageRow>(itemView) {
 
-        override fun populateWithData(row: InfrastructureDamageRow, rowSaveListener: (InfrastructureDamageRow) -> Unit) {
+        override fun populateWithData(row: InfrastructureDamageRow,
+                                      isCollapsed: Boolean,
+                                      rowSaveListener: (InfrastructureDamageRow) -> Unit,
+                                      rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
+
             view.tag = row.id
             view.headerTextField.setText(InfraCategories.getStringId(row.type))
             view.infrastructureDamageNumberText.number = row.numberOfInfrastructure
@@ -36,7 +41,7 @@ class InfrastructureDamageAdapter(context: Context, rowSaveListener: (Infrastruc
             view.infrastructureDamageRemarksText.text = row.remarks
 
             // Setup listener for saving each infrastructure damage row
-            (view as CollapsibleContainer).onDetachedListener = {
+            collapsibleView?.onDetachedListener = {
                 val newRow = InfrastructureDamageRow(
                     row.id,
                     row.type,
@@ -49,7 +54,6 @@ class InfrastructureDamageAdapter(context: Context, rowSaveListener: (Infrastruc
                     rowSaveListener(newRow)
                 }
             }
-
         }
     }
 }

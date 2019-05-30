@@ -47,15 +47,7 @@ class CauseOfDeathFragment : BaseCreateFormFragment() {
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
         mViewModel = ViewModelProviders.of(this, factory).get(CauseOfDeathViewModel::class.java)
-
-        var isInit = true
         mViewModel.casualties.observe(viewLifecycleOwner, Observer {
-            if (isInit) {
-                causeOfDeathRecyclerView.doOnNextLayout {
-                    (causeOfDeathRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
-                    isInit = false
-                }
-            }
             mAdapter.setRows(it)
         })
     }
