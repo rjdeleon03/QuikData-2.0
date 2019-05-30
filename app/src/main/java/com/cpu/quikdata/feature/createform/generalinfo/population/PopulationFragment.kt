@@ -40,8 +40,7 @@ class PopulationFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(PopulationViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, mFactory).get(PopulationViewModel::class.java)
         mViewModel.population.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

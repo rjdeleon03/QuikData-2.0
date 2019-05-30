@@ -40,8 +40,8 @@ class ShelterCopingFragment : BaseCreateFormFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(ShelterCopingViewModel::class.java)
+
+        mViewModel = ViewModelProviders.of(this, mFactory).get(ShelterCopingViewModel::class.java)
         mViewModel.shelterCoping.observe(viewLifecycleOwner, Observer {
             shelterCopingDisplacedFamiliesLocationText.text = it.displacedFamiliesLocation
             shelterCopingHowToGetHomesBackText.text = it.howToGetHomesBack

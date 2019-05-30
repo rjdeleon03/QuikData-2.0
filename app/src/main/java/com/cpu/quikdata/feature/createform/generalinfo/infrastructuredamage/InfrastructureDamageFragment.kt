@@ -45,8 +45,7 @@ class InfrastructureDamageFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(InfrastructureDamageViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, mFactory).get(InfrastructureDamageViewModel::class.java)
         mViewModel.infrastructureDamage.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

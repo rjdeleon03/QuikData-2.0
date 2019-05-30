@@ -47,8 +47,7 @@ class FormDetailsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(FormDetailsViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, mFactory).get(FormDetailsViewModel::class.java)
         mViewModel.formDetails.observe(viewLifecycleOwner, Observer {
             formDetailsAssessmentDateText.date = it.assessmentDate
             formDetailsInterviewerText.text = it.interviewer

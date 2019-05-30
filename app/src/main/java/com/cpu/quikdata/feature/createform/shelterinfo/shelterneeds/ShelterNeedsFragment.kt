@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.generalinfo.causeofdeath
+package com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -6,47 +6,44 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.doOnNextLayout
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.common.setupTapToExpand
-import com.cpu.quikdata.customviews.CollapsibleContainer
-import com.cpu.quikdata.feature.createform.CreateFormViewModel
-import kotlinx.android.synthetic.main.fragment_cause_of_death.*
+import kotlinx.android.synthetic.main.fragment_shelter_needs.*
 
-class CauseOfDeathFragment : BaseCreateFormFragment() {
+class ShelterNeedsFragment : BaseCreateFormFragment() {
 
     companion object {
-        fun newInstance() = CauseOfDeathFragment()
+        fun newInstance() = ShelterNeedsFragment()
     }
 
-    private lateinit var mViewModel: CauseOfDeathViewModel
-    private lateinit var mAdapter: CauseOfDeathAdapter
+    private lateinit var mViewModel: ShelterNeedsViewModel
+    private lateinit var mAdapter: ShelterNeedsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_cause_of_death, container, false)
+        return inflater.inflate(R.layout.fragment_shelter_needs, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = CauseOfDeathAdapter(context!!) {
+        mAdapter = ShelterNeedsAdapter(context!!) {
             mViewModel.updateRow(it)
         }
-        causeOfDeathRecyclerView.adapter = mAdapter
-        causeOfDeathRecyclerView.setupTapToExpand(context!!)
+        shelterNeedsRecyclerView.adapter = mAdapter
+        shelterNeedsRecyclerView.setupTapToExpand(context!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(CauseOfDeathViewModel::class.java)
-        mViewModel.casualties.observe(viewLifecycleOwner, Observer {
+        mViewModel = ViewModelProviders.of(this, mFactory).get(ShelterNeedsViewModel::class.java)
+        mViewModel.shelterNeeds.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })
     }

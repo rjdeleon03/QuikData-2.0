@@ -44,8 +44,7 @@ class CalamityInfoFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(CalamityInfoViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, mFactory).get(CalamityInfoViewModel::class.java)
         mViewModel.calamityInfo.observe(viewLifecycleOwner, Observer {
             calamityTypeText.text = it.calamityType
             calamityDateText.date = it.occurrenceDate

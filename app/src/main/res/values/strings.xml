@@ -126,4 +126,7 @@
     <string name="shelter_coping_how_to_get_homes_back">How will they get their homes back to reasonable standard of living?</string>
     <string name="shelter_coping_when_to_return_home">When can they return home?</string>
     <string name="shelter_coping_if_cannot_return_home">What will they do if they cannot return home?</string>
+    <string name="shelter_needs_title">Needs</string>
+    <string name="shelter_needs_families_in_need">Families in Need</string>
+    <string name="shelter_needs_specific_items">Specific Items Needed</string>
 </resources>

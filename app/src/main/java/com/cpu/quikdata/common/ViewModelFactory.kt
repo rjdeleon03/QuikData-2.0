@@ -13,6 +13,7 @@ import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationView
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingViewModel
+import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(application: Application, formId: String) :
@@ -33,6 +34,7 @@ class ViewModelFactory(application: Application, formId: String) :
             InfrastructureDamageViewModel::class.java -> InfrastructureDamageViewModel(mApplication, mFormId) as T
             HouseDamageViewModel::class.java -> HouseDamageViewModel(mApplication, mFormId) as T
             ShelterCopingViewModel::class.java -> ShelterCopingViewModel(mApplication, mFormId) as T
+            ShelterNeedsViewModel::class.java -> ShelterNeedsViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }
     }

@@ -45,8 +45,7 @@ class VulnerableFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(VulnerableViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, mFactory).get(VulnerableViewModel::class.java)
         mViewModel.vulnerable.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

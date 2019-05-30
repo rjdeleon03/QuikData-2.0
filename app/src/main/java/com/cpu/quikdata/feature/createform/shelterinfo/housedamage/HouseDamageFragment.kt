@@ -40,8 +40,8 @@ class HouseDamageFragment : BaseCreateFormFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(HouseDamageViewModel::class.java)
+
+        mViewModel = ViewModelProviders.of(this, mFactory).get(HouseDamageViewModel::class.java)
         mViewModel.houseDamage.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })
