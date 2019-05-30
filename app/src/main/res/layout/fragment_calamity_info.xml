@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context=".feature.createform.generalinfo.calamityinfo.CalamityInfoFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <com.cpu.quikdata.customviews.DividerText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerText="@string/calamity_info_desc"/>
+
+            <com.cpu.quikdata.customviews.questions.StringQuestion
+                android:id="@+id/calamityTypeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/calamity_info_type"/>
+
+            <com.cpu.quikdata.customviews.questions.DateQuestion
+                android:id="@+id/calamityDateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:question="@string/calamity_info_date" />
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
+                android:id="@+id/calamityDescText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/calamity_info_event_desc"/>
+
+            <com.cpu.quikdata.customviews.DividerText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerText="@string/calamity_info_area_desc"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
+                android:id="@+id/calamityAreaText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/calamity_info_area_desc_details"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

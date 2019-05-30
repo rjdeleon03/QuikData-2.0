@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -67,5 +68,14 @@ class CreateFormActivity : AppCompatActivity() {
             finish()
         }
         return true
+    }
+
+    fun setSubtitle(subtitle: CharSequence? = "") {
+        toolbarSubtitle.text = subtitle
+        if (!subtitle.isNullOrBlank()) {
+            toolbarSubtitle.visibility = View.VISIBLE
+        } else {
+            toolbarSubtitle.visibility = View.GONE
+        }
     }
 }

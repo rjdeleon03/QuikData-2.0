@@ -5,6 +5,11 @@
         <attr name="dividerText" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="CollapsibleContainer">
+        <attr name="headerText" format="string" />
+        <attr name="collapsed" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="TextItem">
         <attr name="text" format="string" />
     </declare-styleable>
@@ -22,7 +27,18 @@
         <attr name="text" />
     </declare-styleable>
 
+    <declare-styleable name="BooleanQuestion" parent="Question">
+        <attr name="question" />
+        <attr name="yesText" format="string" />
+        <attr name="noText" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="MultilineStringQuestion" parent="StringQuestion">
+        <attr name="textHint" />
+        <attr name="text" />
+    </declare-styleable>
+
+    <declare-styleable name="MultilineStringLongQuestion" parent="MultilineStringQuestion">
         <attr name="textHint" />
         <attr name="text" />
     </declare-styleable>

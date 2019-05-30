@@ -5,12 +5,13 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
-import kotlinx.android.synthetic.main.question_string.view.*
+import kotlinx.android.synthetic.main.question_multiline_string.view.*
 
 class MultilineStringQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     init {
         View.inflate(context, R.layout.question_multiline_string, this)
+        orientation = LinearLayout.VERTICAL
 
         /* Retrieve view attributes then apply */
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultilineStringQuestion)

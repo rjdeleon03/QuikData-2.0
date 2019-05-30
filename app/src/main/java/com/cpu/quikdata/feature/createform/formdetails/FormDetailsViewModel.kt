@@ -12,6 +12,6 @@ class FormDetailsViewModel(application: Application, formId: String) : AndroidVi
     val formDetails : LiveData<FormDetails>
         get() = mRepository.formDetails
 
-    fun updateFormDetails(formDetails: FormDetails) = mRepository.updateFormDetails(formDetails)
+    fun updateFormDetails(formDetails: FormDetails) = mRepository.updateData(formDetails)
 
 }

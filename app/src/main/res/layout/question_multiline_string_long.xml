@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dimenMid"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimenExtraSmall"
+        android:layout_marginStart="@dimen/dimenMid"
+        android:layout_marginEnd="@dimen/dimenMid"
+        android:paddingBottom="0dp"/>
+
+    <EditText
+        android:id="@+id/textField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dimenMid"
+        style="@style/EditTextTheme"
+        android:layout_marginBottom="@dimen/dimenSmall"
+        android:layout_marginStart="@dimen/dimenMid"
+        android:layout_marginEnd="@dimen/dimenMid"/>
+
+    <include layout="@layout/view_divider"/>
+
+</merge>
