@@ -48,6 +48,14 @@
         <attr name="text" />
     </declare-styleable>
 
+    <declare-styleable name="BooleanMultilineStringLongQuestion" parent="BooleanQuestion">
+        <attr name="questionBoolean" format="string" />
+        <attr name="questionString" format="string"/>
+        <attr name="textString" format="string" />
+        <attr name="yesText" />
+        <attr name="noText" />
+    </declare-styleable>
+
     <declare-styleable name="DateQuestion" parent="Question">
         <attr name="question" />
         <attr name="text" />

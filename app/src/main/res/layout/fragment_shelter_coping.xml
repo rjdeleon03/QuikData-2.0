@@ -49,6 +49,8 @@
                 android:layout_height="wrap_content"
                 app:textHint="@string/shelter_coping_if_cannot_return_home"/>
 
+            <include layout="@layout/view_divider_extra_large"/>
+
         </LinearLayout>
 
     </ScrollView>

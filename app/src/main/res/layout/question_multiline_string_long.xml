@@ -13,8 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimenExtraSmall"
         android:layout_marginStart="@dimen/dimenMid"
-        android:layout_marginEnd="@dimen/dimenMid"
-        android:textSize="12sp"/>
+        android:layout_marginEnd="@dimen/dimenMid"/>
 
     <EditText
         android:id="@+id/textField"

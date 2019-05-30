@@ -81,6 +81,8 @@
                 android:layout_height="wrap_content"
                 app:textHint="@string/shelter_gaps_gbv_protection_focal_point"/>
 
+            <include layout="@layout/view_divider_extra_large"/>
+
         </LinearLayout>
 
     </ScrollView>
