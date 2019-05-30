@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/dimenMid"
         style="@style/EditTextTheme"
-        android:layout_marginBottom="@dimen/dimenExtraSmall"
+        android:layout_marginBottom="@dimen/dimenSmall"
         android:layout_marginStart="@dimen/dimenMid"
         android:layout_marginEnd="@dimen/dimenMid"/>
 
