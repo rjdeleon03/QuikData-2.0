@@ -21,16 +21,15 @@
             android:orientation="vertical"
             android:background="@android:color/white">
 
+            <include layout="@layout/view_divider_extra_large"/>
+
             <com.cpu.quikdata.customviews.questions.DateQuestion
                 android:id="@+id/formDetailsAssessmentDateText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:question="@string/form_details_assessment_date"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimenMid"
-                android:background="@color/lightGray" />
+           <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.StringQuestion
                 android:id="@+id/formDetailsInterviewerText"
@@ -44,10 +43,7 @@
                 android:layout_height="wrap_content"
                 app:textHint="@string/form_details_interviewer_contact"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimenMid"
-                android:background="@color/lightGray" />
+            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
                 android:id="@+id/formDetailsIntervieweeText"
