@@ -35,9 +35,9 @@
     <string name="prefilled_families">Families</string>
     <string name="prefilled_households">Households</string>
     <string name="prefilled_houses">Total Number of Houses</string>
-    <string name="prefilled_concrete">Concrete</string>
-    <string name="prefilled_semiconcrete">Semi-Concrete</string>
-    <string name="prefilled_light_materials">Light Materials</string>
+    <string name="text_concrete">Concrete</string>
+    <string name="text_semiconcrete">Semi-Concrete</string>
+    <string name="text_light_materials">Light Materials</string>
     <string name="prefilled_organization_location">Organization and Location</string>
     <string name="form_details_assessment_date">Assessment Date</string>
     <string name="form_details_interviewer_name">Interviewer\'s Name</string>

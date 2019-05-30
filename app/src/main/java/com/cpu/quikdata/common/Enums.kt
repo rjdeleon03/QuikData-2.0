@@ -75,3 +75,24 @@ enum class InfraCategories {
         }
     }
 }
+
+enum class HouseCategories {
+    CONCRETE,
+    SEMI_CONCRETE,
+    LIGHT_MATERIALS;
+
+    fun getStringId(): Int {
+        return when(this) {
+            CONCRETE -> R.string.text_concrete
+            SEMI_CONCRETE -> R.string.text_semiconcrete
+            LIGHT_MATERIALS -> R.string.text_light_materials
+        }
+    }
+
+    companion object {
+
+        fun getStringId(idx: Int): Int {
+            return AgeCategories.values()[idx].getStringId()
+        }
+    }
+}

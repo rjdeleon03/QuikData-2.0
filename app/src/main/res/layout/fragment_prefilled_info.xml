@@ -138,19 +138,19 @@
                 android:id="@+id/concreteText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/prefilled_concrete"/>
+                app:textHint="@string/text_concrete"/>
 
             <com.cpu.quikdata.customviews.questions.NumberQuestion
                 android:id="@+id/semiConcreteText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/prefilled_semiconcrete"/>
+                app:textHint="@string/text_semiconcrete"/>
 
             <com.cpu.quikdata.customviews.questions.NumberQuestion
                 android:id="@+id/lightMaterialsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/prefilled_light_materials"/>
+                app:textHint="@string/text_light_materials"/>
 
         </LinearLayout>
 
