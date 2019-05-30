@@ -14,6 +14,6 @@ class ShelterCopingViewModel(application: Application, formId: String) :
     val shelterCoping: LiveData<ShelterCoping>
         get() = mRepository.shelterCoping
 
-    fun updateShelterCopingInfo(shelterCoping: ShelterCoping) =
+    fun updateShelterCoping(shelterCoping: ShelterCoping) =
         mRepository.updateData(shelterCoping)
 }

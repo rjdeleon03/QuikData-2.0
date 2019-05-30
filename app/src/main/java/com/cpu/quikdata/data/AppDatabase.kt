@@ -28,6 +28,8 @@ import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRowDao
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCopingDao
+import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
+import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGapsDao
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
 
@@ -44,7 +46,8 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
         InfrastructureDamageRow::class,
         HouseDamageRow::class,
         ShelterCoping::class,
-        ShelterNeedsRow::class
+        ShelterNeedsRow::class,
+        ShelterGaps::class
     ],
     exportSchema = false,
     version = 1)
@@ -63,6 +66,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun houseDamageRowDao(): HouseDamageRowDao
     abstract fun shelterCopingDao(): ShelterCopingDao
     abstract fun shelterNeedsRowDao(): ShelterNeedsRowDao
+    abstract fun shelterGapsDao(): ShelterGapsDao
 
     companion object {
 

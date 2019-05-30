@@ -6,7 +6,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.cpu.quikdata.data.form.Form
 
-@Entity(tableName = "shelter_coping_info",
+@Entity(tableName = "shelter_coping",
     indices = [Index("formId")],
     foreignKeys = [ForeignKey(entity = Form::class,
         parentColumns = ["id"],

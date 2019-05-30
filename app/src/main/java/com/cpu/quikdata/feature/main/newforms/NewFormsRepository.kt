@@ -18,6 +18,7 @@ import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
+import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import com.cpu.quikdata.utils.generateId
 import kotlinx.coroutines.CoroutineScope
@@ -128,6 +129,9 @@ class NewFormsRepository(application: Application) {
                 )
                 mDatabase.shelterNeedsRowDao().insert(row)
             }
+
+            val shelterGaps = ShelterGaps(id = generateId(), formId = formId)
+            mDatabase.shelterGapsDao().insert(shelterGaps)
 
             // endregion
         }

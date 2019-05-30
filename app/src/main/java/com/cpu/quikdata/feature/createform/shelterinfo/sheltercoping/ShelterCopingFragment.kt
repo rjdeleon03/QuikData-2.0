@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
 import kotlinx.android.synthetic.main.fragment_shelter_coping.*
 
@@ -29,7 +28,7 @@ class ShelterCopingFragment : BaseCreateFormFragment() {
     }
 
     override fun onDestroyView() {
-        mViewModel.updateShelterCopingInfo(ShelterCoping(
+        mViewModel.updateShelterCoping(ShelterCoping(
             displacedFamiliesLocation = shelterCopingDisplacedFamiliesLocationText.text,
             howToGetHomesBack = shelterCopingHowToGetHomesBackText.text,
             whenToReturnHome = shelterCopingWhenToReturnHomeText.text,

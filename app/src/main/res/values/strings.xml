@@ -129,4 +129,13 @@
     <string name="shelter_needs_title">Needs</string>
     <string name="shelter_needs_families_in_need">Families in Need</string>
     <string name="shelter_needs_specific_items">Specific Items Needed</string>
+    <string name="shelter_gaps_title">Gaps</string>
+    <string name="shelter_gaps_cubicles">Are there any separate cubicles and/or partitions for male and female with the assistance provided?</string>
+    <string name="shelter_gaps_cultural_practice_assistance">Is the given assistance appropriate to their cultural practices?</string>
+    <string name="shelter_gaps_shelter_appropriate">Is the construction of shelter appropriate for its location and size of the family as beneficiaries?</string>
+    <string name="shelter_gaps_services_access">Does it have access to basic services and economic activities?</string>
+    <string name="shelter_gaps_any_able_bodied">Are there any able-bodied in the family/community who can participate in resource mobilization, construction of the shelter?</string>
+    <string name="shelter_gaps_gbv_referral_pathway">Is there a referral pathway for incidents of Gender Based Violence (GBV)?</string>
+    <string name="shelter_gaps_gbv_protection_services">Are there GBV protection services available?</string>
+    <string name="shelter_gaps_gbv_protection_focal_point">Is there GBV protection focal point?</string>
 </resources>
