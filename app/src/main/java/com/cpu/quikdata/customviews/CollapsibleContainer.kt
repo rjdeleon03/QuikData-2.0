@@ -51,14 +51,19 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         mIsUpdateFinished = false
+        if (mIsCollapsed) {
+            contentLayout.visibility = View.GONE
+        } else {
+            contentLayout.visibility = View.VISIBLE
+        }
     }
 
     override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
         if (!mIsUpdateFinished) {
             mOnDetachedListener?.invoke()
             mIsUpdateFinished = true
         }
+        super.onDetachedFromWindow()
     }
 
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
