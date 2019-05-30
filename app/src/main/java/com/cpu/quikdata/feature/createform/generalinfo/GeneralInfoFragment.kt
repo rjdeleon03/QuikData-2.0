@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager.widget.ViewPager
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.CustomPagerAdapter
-import com.cpu.quikdata.feature.createform.CreateFormBaseFragment
+import com.cpu.quikdata.common.setupViewPager
+import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoFragment
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesFragment
 import com.cpu.quikdata.feature.createform.generalinfo.causeofdeath.CauseOfDeathFragment
@@ -18,7 +18,7 @@ import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationFrag
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableFragment
 import kotlinx.android.synthetic.main.fragment_general_info.*
 
-class GeneralInfoFragment : CreateFormBaseFragment() {
+class GeneralInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
         fun newInstance() = GeneralInfoFragment()
@@ -42,17 +42,7 @@ class GeneralInfoFragment : CreateFormBaseFragment() {
         pagerAdapter.addFragment(CasualtiesFragment.newInstance(), getString(R.string.casualties_title))
         pagerAdapter.addFragment(CauseOfDeathFragment.newInstance(), getString(R.string.cause_of_death_title))
         pagerAdapter.addFragment(InfrastructureDamageFragment.newInstance(), getString(R.string.infrastructure_damage_title))
-        genInfoViewPager.adapter = pagerAdapter
-
-        genInfoViewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {}
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                setSubtitle(pagerAdapter.getPageTitle(position).toString())
-            }
-
-            override fun onPageSelected(position: Int) {}
-        })
+        genInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 
 }

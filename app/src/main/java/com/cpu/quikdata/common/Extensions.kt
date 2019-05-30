@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_population.*
@@ -39,6 +41,21 @@ fun TextInputEditText.setupNumberInputValidation() {
             }
         }
     }
+}
+
+fun ViewPager.setupViewPager(pagerAdapter: PagerAdapter,
+                             titleChangedListener: (String) -> Unit) {
+
+    this.adapter = pagerAdapter
+    this.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+        override fun onPageScrollStateChanged(state: Int) {}
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            titleChangedListener.invoke(pagerAdapter.getPageTitle(position).toString())
+        }
+
+        override fun onPageSelected(position: Int) {}
+    })
 }
 
 fun RecyclerView.setupTapToExpand(context: Context) {
