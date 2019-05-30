@@ -3,6 +3,7 @@ package com.cpu.quikdata.feature.main.newforms
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.AgeCategories
+import com.cpu.quikdata.common.InfraCategories
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.formdetails.FormDetails
@@ -10,6 +11,7 @@ import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
 import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRow
 import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRow
 import com.cpu.quikdata.data.generalinfo.families.Families
+import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.utils.generateId
@@ -86,6 +88,15 @@ class NewFormsRepository(application: Application) {
                     formId = formId
                 )
                 mDatabase.causeOfDeathRowDao().insert(row)
+            }
+
+            for (i in 0 until InfraCategories.values().size) {
+                val row = InfrastructureDamageRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.infrastructureDamageRowDao().insert(row)
             }
 
             // endregion

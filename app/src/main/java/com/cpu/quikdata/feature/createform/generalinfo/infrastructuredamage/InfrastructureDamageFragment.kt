@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.generalinfo.casualties
+package com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -15,44 +15,44 @@ import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.common.setupTapToExpand
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
-import kotlinx.android.synthetic.main.fragment_casualties.*
+import kotlinx.android.synthetic.main.fragment_infrastructure_damage.*
 
-class CasualtiesFragment : BaseCreateFormFragment() {
+class InfrastructureDamageFragment : BaseCreateFormFragment() {
 
     companion object {
-        fun newInstance() = CasualtiesFragment()
+        fun newInstance() = InfrastructureDamageFragment()
     }
 
-    private lateinit var mViewModel: CasualtiesViewModel
-    private lateinit var mAdapter: CasualtiesAdapter
+    private lateinit var mViewModel: InfrastructureDamageViewModel
+    private lateinit var mAdapter: InfrastructureDamageAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_casualties, container, false)
+        return inflater.inflate(R.layout.fragment_infrastructure_damage, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = CasualtiesAdapter(context!!) {
+        mAdapter = InfrastructureDamageAdapter(context!!) {
             mViewModel.updateRow(it)
         }
-        casualtiesRecyclerView.adapter = mAdapter
-        casualtiesRecyclerView.setupTapToExpand(context!!)
+        infrastructureDamageRecyclerView.adapter = mAdapter
+        infrastructureDamageRecyclerView.setupTapToExpand(context!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(CasualtiesViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, factory).get(InfrastructureDamageViewModel::class.java)
 
         var isInit = true
-        mViewModel.casualties.observe(viewLifecycleOwner, Observer {
+        mViewModel.infrastructureDamage.observe(viewLifecycleOwner, Observer {
             if (isInit) {
-                casualtiesRecyclerView.doOnNextLayout {
-                    (casualtiesRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
+                infrastructureDamageRecyclerView.doOnNextLayout {
+                    (infrastructureDamageRecyclerView.getChildAt(0) as CollapsibleContainer).expand(false)
                     isInit = false
                 }
             }

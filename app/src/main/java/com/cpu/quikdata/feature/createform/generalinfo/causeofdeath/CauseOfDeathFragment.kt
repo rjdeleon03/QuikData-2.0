@@ -10,19 +10,19 @@ import androidx.core.view.doOnNextLayout
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.common.setupTapToExpand
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import kotlinx.android.synthetic.main.fragment_cause_of_death.*
 
-class CauseOfDeathFragment : Fragment() {
+class CauseOfDeathFragment : BaseCreateFormFragment() {
 
     companion object {
         fun newInstance() = CauseOfDeathFragment()
     }
 
-    private lateinit var mParentViewModel: CreateFormViewModel
     private lateinit var mViewModel: CauseOfDeathViewModel
     private lateinit var mAdapter: CauseOfDeathAdapter
 
@@ -44,8 +44,6 @@ class CauseOfDeathFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
         mViewModel = ViewModelProviders.of(this, factory).get(CauseOfDeathViewModel::class.java)

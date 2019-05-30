@@ -16,6 +16,8 @@ import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRow
 import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRowDao
 import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.data.generalinfo.families.FamiliesDao
+import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
+import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRowDao
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRowDao
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
@@ -32,7 +34,8 @@ import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
         Families::class,
         VulnerableRow::class,
         CasualtiesRow::class,
-        CauseOfDeathRow::class
+        CauseOfDeathRow::class,
+        InfrastructureDamageRow::class
     ],
     exportSchema = false,
     version = 1)
@@ -47,6 +50,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun vulnerableRowDao(): VulnerableRowDao
     abstract fun casualtiesRowDao(): CasualtiesRowDao
     abstract fun causeOfDeathRowDao(): CauseOfDeathRowDao
+    abstract fun infrastructureDamageRowDao(): InfrastructureDamageRowDao
 
     companion object {
 

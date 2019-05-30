@@ -32,6 +32,11 @@
         <attr name="text" />
     </declare-styleable>
 
+    <declare-styleable name="MultilineStringLongQuestion" parent="MultilineStringQuestion">
+        <attr name="textHint" />
+        <attr name="text" />
+    </declare-styleable>
+
     <declare-styleable name="DateQuestion" parent="Question">
         <attr name="question" />
         <attr name="text" />

@@ -9,18 +9,18 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import kotlinx.android.synthetic.main.fragment_families.*
 
-class FamiliesFragment : Fragment() {
+class FamiliesFragment : BaseCreateFormFragment() {
 
     companion object {
         fun newInstance() = FamiliesFragment()
     }
 
-    private lateinit var mParentViewModel: CreateFormViewModel
     private lateinit var mViewModel: FamiliesViewModel
 
     override fun onCreateView(
@@ -43,8 +43,6 @@ class FamiliesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
         mViewModel = ViewModelProviders.of(this, factory).get(FamiliesViewModel::class.java)

@@ -8,6 +8,7 @@ import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfo
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.causeofdeath.CauseOfDeathViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesViewModel
+import com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage.InfrastructureDamageViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableViewModel
 
@@ -27,6 +28,7 @@ class ViewModelFactory(application: Application, formId: String) :
             VulnerableViewModel::class.java -> VulnerableViewModel(mApplication, mFormId) as T
             CasualtiesViewModel::class.java -> CasualtiesViewModel(mApplication, mFormId) as T
             CauseOfDeathViewModel::class.java -> CauseOfDeathViewModel(mApplication, mFormId) as T
+            InfrastructureDamageViewModel::class.java -> InfrastructureDamageViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }
     }
