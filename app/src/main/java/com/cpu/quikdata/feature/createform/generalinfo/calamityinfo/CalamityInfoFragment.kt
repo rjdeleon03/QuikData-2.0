@@ -46,7 +46,6 @@ class CalamityInfoFragment : BaseCreateFormFragment() {
 
         val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
         mViewModel = ViewModelProviders.of(this, factory).get(CalamityInfoViewModel::class.java)
-
         mViewModel.calamityInfo.observe(viewLifecycleOwner, Observer {
             calamityTypeText.text = it.calamityType
             calamityDateText.date = it.occurrenceDate

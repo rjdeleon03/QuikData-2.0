@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.common.HouseCategories
 import com.cpu.quikdata.common.InfraCategories
+import com.cpu.quikdata.common.MaterialCategories
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.formdetails.FormDetails
@@ -16,6 +17,8 @@ import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDama
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
+import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
+import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import com.cpu.quikdata.utils.generateId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -112,6 +115,18 @@ class NewFormsRepository(application: Application) {
                     formId = formId
                 )
                 mDatabase.houseDamageRowDao().insert(row)
+            }
+
+            val shelterCoping = ShelterCoping(id = generateId(), formId = formId)
+            mDatabase.shelterCopingDao().insert(shelterCoping)
+
+            for (i in 0 until MaterialCategories.values().size) {
+                val row = ShelterNeedsRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.shelterNeedsRowDao().insert(row)
             }
 
             // endregion

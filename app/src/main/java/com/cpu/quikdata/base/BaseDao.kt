@@ -3,7 +3,7 @@ package com.cpu.quikdata.base
 import androidx.room.*
 
 @Dao
-interface BaseRowDao<R> {
+interface BaseDao<R> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(row: R)

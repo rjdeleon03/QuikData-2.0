@@ -98,6 +98,13 @@
     <string name="text_communication_lines">Communication Lines</string>
     <string name="text_livelihood_facilities">Livelihood Facilities</string>
     <string name="text_others">Others</string>
+    <string name="text_kitchen_materials">Kitchen Materials</string>
+    <string name="text_sleeping_kits">Sleeping Kits</string>
+    <string name="text_plastic_sheets">Plastic Sheets / Trapal</string>
+    <string name="text_hygiene_kits">Hygiene Kits</string>
+    <string name="text_house_repair_kits">House Repair Kits</string>
+    <string name="text_clothes">Clothes</string>
+    <string name="text_water_filter">Jerry Can / Water Filter</string>
     <string name="infrastructure_damage_title">Damage to Infrastructure</string>
     <string name="infrastructure_damage_number">Number of Infrastructure</string>
     <string name="infrastructure_damage_remarks">Remarks\n(Specify if intermittent electricity, communications, etc.)</string>
@@ -114,4 +121,9 @@
     <string name="house_damage_partially_damaged">Partially Damaged Houses</string>
     <string name="house_damage_totally_damaged">Totally Damaged Houses</string>
     <string name="house_damage_title">Damage to Houses</string>
+    <string name="shelter_coping_title">Coping</string>
+    <string name="shelter_coping_displaced_families_location">Where are the displaced families staying?</string>
+    <string name="shelter_coping_how_to_get_homes_back">How will they get their homes back to reasonable standard of living?</string>
+    <string name="shelter_coping_when_to_return_home">When can they return home?</string>
+    <string name="shelter_coping_if_cannot_return_home">What will they do if they cannot return home?</string>
 </resources>

@@ -96,3 +96,34 @@ enum class HouseCategories {
         }
     }
 }
+
+enum class MaterialCategories {
+    KITCHEN_MATERIALS,
+    SLEEPING_KITS,
+    PLASTIC_SHEETS,
+    HYGIENE_KITS,
+    HOUSE_REPAIR_KITS,
+    CLOTHES,
+    WATER_FILTER,
+    OTHERS;
+
+    fun getStringId(): Int {
+        return when(this) {
+            KITCHEN_MATERIALS -> R.string.text_kitchen_materials
+            SLEEPING_KITS -> R.string.text_sleeping_kits
+            PLASTIC_SHEETS -> R.string.text_plastic_sheets
+            HYGIENE_KITS -> R.string.text_hygiene_kits
+            HOUSE_REPAIR_KITS -> R.string.text_house_repair_kits
+            CLOTHES -> R.string.text_clothes
+            WATER_FILTER -> R.string.text_water_filter
+            OTHERS -> R.string.text_others
+        }
+    }
+
+    companion object {
+
+        fun getStringId(idx: Int): Int {
+            return MaterialCategories.values()[idx].getStringId()
+        }
+    }
+}

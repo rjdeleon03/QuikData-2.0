@@ -26,6 +26,10 @@ import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRowDao
+import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
+import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCopingDao
+import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
+import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
 
 @Database(entities = [
         PrefilledData::class,
@@ -38,7 +42,9 @@ import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRowDao
         CasualtiesRow::class,
         CauseOfDeathRow::class,
         InfrastructureDamageRow::class,
-        HouseDamageRow::class
+        HouseDamageRow::class,
+        ShelterCoping::class,
+        ShelterNeedsRow::class
     ],
     exportSchema = false,
     version = 1)
@@ -55,6 +61,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun causeOfDeathRowDao(): CauseOfDeathRowDao
     abstract fun infrastructureDamageRowDao(): InfrastructureDamageRowDao
     abstract fun houseDamageRowDao(): HouseDamageRowDao
+    abstract fun shelterCopingDao(): ShelterCopingDao
+    abstract fun shelterNeedsRowDao(): ShelterNeedsRowDao
 
     companion object {
 
