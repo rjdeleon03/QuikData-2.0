@@ -27,6 +27,11 @@
         <attr name="text" />
     </declare-styleable>
 
+    <declare-styleable name="NumberQuestion" parent="StringQuestion">
+        <attr name="textHint" />
+        <attr name="text" />
+    </declare-styleable>
+
     <declare-styleable name="BooleanQuestion" parent="Question">
         <attr name="question" />
         <attr name="yesText" format="string" />

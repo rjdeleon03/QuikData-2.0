@@ -7,9 +7,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
-import com.cpu.quikdata.customviews.CollapsibleContainer
 import kotlinx.android.synthetic.main.fragment_population.*
-import androidx.core.view.doOnNextLayout
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.setupTapToExpand
 

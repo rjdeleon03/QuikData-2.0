@@ -104,4 +104,14 @@
     <string name="text_yes">Yes</string>
     <string name="text_no">No</string>
     <string name="infrastructure_damage_functional">Is it functional?</string>
+    <string name="house_damage_owned_households">Households in Owned Property</string>
+    <string name="house_damage_rented_households">Households in Rented Property</string>
+    <string name="house_damage_shared_households">Households in Shared Property</string>
+    <string name="house_damage_owned_land">Owned Land</string>
+    <string name="house_damage_rented_land">Rented Land</string>
+    <string name="house_damage_tenanted_land">Tenanted Land</string>
+    <string name="house_damage_informal_settlers">Informal Settlers</string>
+    <string name="house_damage_partially_damaged">Partially Damaged Houses</string>
+    <string name="house_damage_totally_damaged">Totally Damaged Houses</string>
+    <string name="house_damage_title">Damage to Houses</string>
 </resources>

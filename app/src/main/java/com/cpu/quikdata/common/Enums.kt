@@ -92,7 +92,7 @@ enum class HouseCategories {
     companion object {
 
         fun getStringId(idx: Int): Int {
-            return AgeCategories.values()[idx].getStringId()
+            return HouseCategories.values()[idx].getStringId()
         }
     }
 }

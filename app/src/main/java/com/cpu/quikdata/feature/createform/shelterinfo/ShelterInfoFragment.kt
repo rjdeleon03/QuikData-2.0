@@ -9,6 +9,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageFragment
 import kotlinx.android.synthetic.main.fragment_shelter_info.*
 
 class ShelterInfoFragment : BaseCreateFormSectionFragment() {
@@ -28,6 +29,7 @@ class ShelterInfoFragment : BaseCreateFormSectionFragment() {
         super.onActivityCreated(savedInstanceState)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        pagerAdapter.addFragment(HouseDamageFragment.newInstance(), getString(R.string.house_damage_title))
         shelterInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

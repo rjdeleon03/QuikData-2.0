@@ -24,6 +24,8 @@ import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRowDao
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
+import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
+import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRowDao
 
 @Database(entities = [
         PrefilledData::class,
@@ -35,7 +37,8 @@ import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
         VulnerableRow::class,
         CasualtiesRow::class,
         CauseOfDeathRow::class,
-        InfrastructureDamageRow::class
+        InfrastructureDamageRow::class,
+        HouseDamageRow::class
     ],
     exportSchema = false,
     version = 1)
@@ -51,6 +54,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun casualtiesRowDao(): CasualtiesRowDao
     abstract fun causeOfDeathRowDao(): CauseOfDeathRowDao
     abstract fun infrastructureDamageRowDao(): InfrastructureDamageRowDao
+    abstract fun houseDamageRowDao(): HouseDamageRowDao
 
     companion object {
 
