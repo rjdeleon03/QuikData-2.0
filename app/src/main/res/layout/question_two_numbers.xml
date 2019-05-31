@@ -16,9 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:text="@string/text_age_0to5"
-            android:textColor="?android:attr/textColorHint"/>
+            android:layout_gravity="center"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textLayout1"

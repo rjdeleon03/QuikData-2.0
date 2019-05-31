@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.setupNumberInputValidation
-import kotlinx.android.synthetic.main.question_string.view.*
+import kotlinx.android.synthetic.main.question_number.view.*
 
 class NumberQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 

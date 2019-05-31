@@ -54,7 +54,7 @@
         app:textHint1="@string/text_male"
         app:textHint2="@string/text_female"/>
 
-    <com.cpu.quikdata.customviews.questions.StringQuestion
+    <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
         android:id="@+id/vulnerableRemarksText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
