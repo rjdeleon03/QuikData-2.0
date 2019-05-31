@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.setupOnFocusBehavior
 import kotlinx.android.synthetic.main.question_boolean_multiline_string_long.view.*
 
 class BooleanMultilineStringLongQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
@@ -19,9 +20,10 @@ class BooleanMultilineStringLongQuestion(context: Context, attrs: AttributeSet) 
         val noText = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_noText)
         if (yesText != null) radioYes.text = yesText
         if (noText != null) radioNo.text = noText
-        questionStringText.text = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_questionString)
-
+        questionStringText.hint = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_questionString)
         attributes.recycle()
+
+        setupOnFocusBehavior(questionStringText, textField)
     }
 
     var value: Boolean
@@ -29,5 +31,11 @@ class BooleanMultilineStringLongQuestion(context: Context, attrs: AttributeSet) 
         set(value) {
             radioYes.isChecked = value
             radioNo.isChecked = !value
+        }
+
+    var text: String
+        get() = textField.text.toString()
+        set(value) {
+            textField.setText(value)
         }
 }

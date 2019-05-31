@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactDao
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormDao
 import com.cpu.quikdata.data.formdetails.FormDetails
@@ -47,7 +49,8 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
         HouseDamageRow::class,
         ShelterCoping::class,
         ShelterNeedsRow::class,
-        ShelterGaps::class
+        ShelterGaps::class,
+        FoodSecurityImpact::class
     ],
     exportSchema = false,
     version = 1)
@@ -67,6 +70,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun shelterCopingDao(): ShelterCopingDao
     abstract fun shelterNeedsRowDao(): ShelterNeedsRowDao
     abstract fun shelterGapsDao(): ShelterGapsDao
+    abstract fun foodSecurityImpactDao(): FoodSecurityImpactDao
 
     companion object {
 

@@ -7,6 +7,7 @@ import com.cpu.quikdata.common.HouseCategories
 import com.cpu.quikdata.common.InfraCategories
 import com.cpu.quikdata.common.MaterialCategories
 import com.cpu.quikdata.data.AppDatabase
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
@@ -132,6 +133,9 @@ class NewFormsRepository(application: Application) {
 
             val shelterGaps = ShelterGaps(id = generateId(), formId = formId)
             mDatabase.shelterGapsDao().insert(shelterGaps)
+
+            val foodSecurityImpact = FoodSecurityImpact(id = generateId(), formId = formId)
+            mDatabase.foodSecurityImpactDao().insert(foodSecurityImpact)
 
             // endregion
         }

@@ -3,6 +3,7 @@ package com.cpu.quikdata.common
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactViewModel
 import com.cpu.quikdata.feature.createform.formdetails.FormDetailsViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesViewModel
@@ -37,6 +38,7 @@ class ViewModelFactory(application: Application, formId: String) :
             ShelterCopingViewModel::class.java -> ShelterCopingViewModel(mApplication, mFormId) as T
             ShelterNeedsViewModel::class.java -> ShelterNeedsViewModel(mApplication, mFormId) as T
             ShelterGapsViewModel::class.java -> ShelterGapsViewModel(mApplication, mFormId) as T
+            FoodSecurityImpactViewModel::class.java -> FoodSecurityImpactViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }
     }

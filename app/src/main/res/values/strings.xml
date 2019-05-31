@@ -138,4 +138,16 @@
     <string name="shelter_gaps_gbv_referral_pathway">Is there a referral pathway for incidents of Gender Based Violence (GBV)?</string>
     <string name="shelter_gaps_gbv_protection_services">Are there GBV protection services available?</string>
     <string name="shelter_gaps_gbv_protection_focal_point">Is there GBV protection focal point?</string>
+    <string name="food_security_impact_title">Impact on Food Security</string>
+    <string name="food_security_impact_effect">How is food security affected?</string>
+    <string name="food_security_impact_food_availability">Problem of availability of food?</string>
+    <string name="food_security_impact_food_access">Lack of access to food?\n(Cash Shortage)</string>
+    <string name="food_security_impact_food_constraints">Constraints in accessing food and markets?</string>
+    <string name="food_security_impact_food_sources">Are there other sources of food and how long will this last?</string>
+    <string name="text_before_emergency">Before the Emergency</string>
+    <string name="text_after_emergency">After the Emergency</string>
+    <string name="food_security_impact_eating_times">How many times a day were households eating?</string>
+    <string name="food_security_impact_food_needs">Are they able to meet their food needs?</string>
+    <string name="food_security_impact_food_production">How has food production changed? (Are they still able to fish or farm?)</string>
+    <string name="food_security_impact_food_ration">When is the next food ration needed and for how long?</string>
 </resources>
