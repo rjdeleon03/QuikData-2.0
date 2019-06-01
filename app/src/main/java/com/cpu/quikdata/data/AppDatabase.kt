@@ -30,6 +30,12 @@ import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRowDao
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRowDao
+import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
+import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingDao
+import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
+import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGapsDao
+import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeeds
+import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeedsDao
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
@@ -59,7 +65,10 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
         FoodSecurityImpact::class,
         FoodSecurityCoping::class,
         FoodSecurityNeeds::class,
-        FoodSecurityGaps::class
+        FoodSecurityGaps::class,
+        LivelihoodsCoping::class,
+        LivelihoodsNeeds::class,
+        LivelihoodsGaps::class
     ],
     exportSchema = false,
     version = 1)
@@ -83,6 +92,9 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun foodSecurityCopingDao(): FoodSecurityCopingDao
     abstract fun foodSecurityNeedsDao(): FoodSecurityNeedsDao
     abstract fun foodSecurityGapsDao(): FoodSecurityGapsDao
+    abstract fun livelihoodsCopingDao(): LivelihoodsCopingDao
+    abstract fun livelihoodsNeedsDao(): LivelihoodsNeedsDao
+    abstract fun livelihoodsGapsDao(): LivelihoodsGapsDao
 
     companion object {
 

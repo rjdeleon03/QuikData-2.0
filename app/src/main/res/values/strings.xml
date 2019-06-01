@@ -160,4 +160,19 @@
     <string name="food_security_gaps_assistance_enough">Is the assistance provided enough?</string>
     <string name="food_security_gaps_assistance_equal_access">Do women and men have equal access to the assistance?</string>
     <string name="food_security_gaps_specific_needs_met">Were the specific food needs of men, women, boys, girls, PWD, children, breastfeeding and lactating women considered in the assistance?</string>
+    <string name="livelihoods_coping_strategies">How are people responding to livelihoods problems? What coping strategies do they employ?</string>
+    <string name="livelihoods_coping_new_income">Are there new income opportunities?</string>
+    <string name="livelihoods_coping_livelihood_skills">Are there any livelihood skills available in the community? (Carpentry, masonry, etc.)</string>
+    <string name="livelihoods_coping_title">Coping</string>
+    <string name="livelihoods_needs_assistance_fill_gap">What assistance can be provided to fill the income gap?</string>
+    <string name="livelihoods_needs_resources_needed">What resources are needed to return to normal?</string>
+    <string name="livelihoods_needs_families_in_assistance">How many families are in need of livelihood assistance?</string>
+    <string name="livelihoods_needs_title">Needs</string>
+    <string name="livelihoods_gaps_local_market">Local market?</string>
+    <string name="text_details">Details</string>
+    <string name="livelihoods_gaps_question">Do women and men have equal access to:</string>
+    <string name="livelihoods_gaps_cash_opportunities">Cash and food-for-work opportunities?</string>
+    <string name="livelihoods_gaps_credit">Credit?</string>
+    <string name="livelihoods_gaps_materials">Livelihood materials and services?</string>
+    <string name="livelihoods_gaps_title">Gaps</string>
 </resources>
