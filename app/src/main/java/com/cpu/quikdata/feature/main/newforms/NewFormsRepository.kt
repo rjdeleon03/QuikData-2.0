@@ -29,6 +29,9 @@ import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
+import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
+import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
+import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
 import com.cpu.quikdata.utils.generateId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -208,6 +211,19 @@ class NewFormsRepository(application: Application) {
             val healthGaps = HealthGaps(id = generateId(), formId = formId)
             mDatabase.healthGapsDao().insert(healthGaps)
 
+            // endregion
+
+            // region Water, sanitation, and hygiene
+
+            val washConditions = WashConditions(id = generateId(), formId = formId)
+            mDatabase.washConditionsDao().insert(washConditions)
+
+            val washCoping = WashCoping(id = generateId(), formId = formId)
+            mDatabase.washCopingDao().insert(washCoping)
+
+            val washGaps = WashGaps(id = generateId(), formId = formId)
+            mDatabase.washGapsDao().insert(washGaps)
+            
             // endregion
         }
     }
