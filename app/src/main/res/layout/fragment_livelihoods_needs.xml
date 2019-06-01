@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context=".feature.createform.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeedsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/livelihoodsNeedsAssistanceFillGapText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/livelihoods_needs_assistance_fill_gap"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/livelihoodsResourcesNeededText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/livelihoods_needs_resources_needed"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/livelihoodsNeedsFamiliesInAssistanceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/livelihoods_needs_families_in_assistance"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

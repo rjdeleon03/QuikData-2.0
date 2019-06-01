@@ -11,6 +11,7 @@ import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingFragment
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeedsFragment
 import kotlinx.android.synthetic.main.fragment_livelihoods_info.*
 
 class LivelihoodsInfoFragment : BaseCreateFormSectionFragment() {
@@ -31,6 +32,7 @@ class LivelihoodsInfoFragment : BaseCreateFormSectionFragment() {
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(LivelihoodsCopingFragment.newInstance(), getString(R.string.livelihoods_coping_title))
+        pagerAdapter.addFragment(LivelihoodsNeedsFragment.newInstance(), getString(R.string.livelihoods_needs_title))
         livelihoodsInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

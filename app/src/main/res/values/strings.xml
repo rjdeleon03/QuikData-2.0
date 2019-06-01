@@ -164,4 +164,8 @@
     <string name="livelihoods_coping_new_income">Are there new income opportunities?</string>
     <string name="livelihoods_coping_livelihood_skills">Are there any livelihood skills available in the community? (Carpentry, masonry, etc.)</string>
     <string name="livelihoods_coping_title">Coping</string>
+    <string name="livelihoods_needs_assistance_fill_gap">What assistance can be provided to fill the income gap?</string>
+    <string name="livelihoods_needs_resources_needed">What resources are needed to return to normal?</string>
+    <string name="livelihoods_needs_families_in_assistance">How many families are in need of livelihood assistance?</string>
+    <string name="livelihoods_needs_title">Needs</string>
 </resources>
