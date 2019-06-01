@@ -10,7 +10,6 @@ class FoodSecurityCopingViewModel(application: Application, formId: String) :
 
     private val mRepository = FoodSecurityCopingRepository(application, formId)
 
-
     val foodSecurityCoping : LiveData<FoodSecurityCoping>
         get() = mRepository.foodSecurityCoping
 

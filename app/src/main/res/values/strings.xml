@@ -160,4 +160,8 @@
     <string name="food_security_gaps_assistance_enough">Is the assistance provided enough?</string>
     <string name="food_security_gaps_assistance_equal_access">Do women and men have equal access to the assistance?</string>
     <string name="food_security_gaps_specific_needs_met">Were the specific food needs of men, women, boys, girls, PWD, children, breastfeeding and lactating women considered in the assistance?</string>
+    <string name="livelihoods_coping_strategies">How are people responding to livelihoods problems? What coping strategies do they employ?</string>
+    <string name="livelihoods_coping_new_income">Are there new income opportunities?</string>
+    <string name="livelihoods_coping_livelihood_skills">Are there any livelihood skills available in the community? (Carpentry, masonry, etc.)</string>
+    <string name="livelihoods_coping_title">Coping</string>
 </resources>
