@@ -26,7 +26,7 @@ data class EstimatedDamageRow(@PrimaryKey(autoGenerate = false)
         if (id == other.id &&
             type == other.type &&
             damageCost == other.damageCost &&
-            formId == other.formId &&
+            remarks == other.remarks &&
             formId == other.formId)
             return true
         return false
