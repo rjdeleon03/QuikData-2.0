@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.common.LivelihoodCategories
+import com.cpu.quikdata.common.LivelihoodSubcategories
+import com.cpu.quikdata.customviews.questions.MultipleChoiceQuestion
 import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageComplete
 import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageRow
 import kotlinx.android.synthetic.main.item_estimated_damage.view.*
@@ -35,6 +37,11 @@ class EstimatedDamageAdapter(context: Context, rowSaveListener: (EstimatedDamage
                                       rowSaveListener: (EstimatedDamageComplete) -> Unit,
                                       rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
 
+            val multipleChoiceView = view.findViewById<MultipleChoiceQuestion>(R.id.estimatedDamageKindsText)
+            for (item in row.types!!) {
+                multipleChoiceView.addItem(LivelihoodSubcategories.getStringId(item.type), item.isSelected)
+            }
+
             view.tag = row.row!!.id
             view.headerTextField.setText(LivelihoodCategories.getStringId(row.row!!.type))
             view.estimatedDamageCostText.number = row.row!!.damageCost
@@ -49,7 +56,17 @@ class EstimatedDamageAdapter(context: Context, rowSaveListener: (EstimatedDamage
                     view.estimatedDamageRemarksText.text,
                     row.row!!.formId
                 )
-                if (row.row!! != newRow) {
+
+                val multipleChoiceItems = multipleChoiceView.getItems()
+                var didUpdateChoices = false
+                for(i in 0 until multipleChoiceItems.size) {
+                    if (row.types!![i].isSelected != multipleChoiceItems[i]) {
+                        didUpdateChoices = true
+                        row.types!![i].isSelected = multipleChoiceItems[i]
+                    }
+                }
+
+                if (row.row!! != newRow || didUpdateChoices) {
                     row.row = newRow
                     rowSaveListener(row)
                 }

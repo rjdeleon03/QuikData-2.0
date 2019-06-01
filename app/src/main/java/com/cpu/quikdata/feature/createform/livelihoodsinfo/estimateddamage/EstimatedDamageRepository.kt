@@ -17,6 +17,7 @@ class EstimatedDamageRepository(application: Application, formId: String) :
     override fun updateData(data: EstimatedDamageComplete) {
         runOnIoThread {
             mDatabase.estimatedDamageRowDao().update(data.row!!)
+            mDatabase.estimatedDamageTypeDao().update(data.types!!)
         }
     }
 }

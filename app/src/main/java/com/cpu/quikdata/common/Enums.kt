@@ -256,7 +256,7 @@ enum class LivelihoodSubcategories {
     companion object {
 
         fun getStringId(idx: Int): Int {
-            return LivelihoodCategories.values()[idx].getStringId()
+            return LivelihoodSubcategories.values()[idx].getStringId()
         }
     }
 }

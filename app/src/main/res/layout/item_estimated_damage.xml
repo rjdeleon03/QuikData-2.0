@@ -6,6 +6,12 @@
     android:layout_height="wrap_content"
     app:collapsed="true">
 
+    <com.cpu.quikdata.customviews.questions.MultipleChoiceQuestion
+        android:id="@+id/estimatedDamageKindsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:questionChoice="@string/estimated_damage_kinds"/>
+
     <com.cpu.quikdata.customviews.questions.NumberQuestion
         android:id="@+id/estimatedDamageCostText"
         android:layout_width="match_parent"
