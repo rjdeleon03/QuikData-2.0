@@ -251,4 +251,19 @@
     <string name="text_transportation">Transportation</string>
     <string name="text_entrepreneurship">Entrepreneurship</string>
     <string name="text_workers">Workers</string>
+    <string name="text_rice">Rice</string>
+    <string name="text_corn">Corn</string>
+    <string name="text_vegetables">Vegetables</string>
+    <string name="text_fruits">Fruits</string>
+    <string name="text_livestock">Livestock</string>
+    <string name="text_boat">Boat</string>
+    <string name="text_fishing_equipment">Fishing Equipment</string>
+    <string name="text_aquacultures">Aquacultures</string>
+    <string name="text_jeepney">Jeepney</string>
+    <string name="text_tricycle">Tricycle</string>
+    <string name="text_van">Van</string>
+    <string name="text_vendor">Vendor</string>
+    <string name="text_sari_sari_store">Sari-sari Store</string>
+    <string name="text_employees">Employees</string>
+    <string name="text_laborers">Laborers</string>
 </resources>

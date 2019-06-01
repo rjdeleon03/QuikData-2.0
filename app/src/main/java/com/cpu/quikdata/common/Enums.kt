@@ -183,3 +183,56 @@ enum class LivelihoodCategories {
         }
     }
 }
+
+enum class LivelihoodSubcategories {
+    RICE,
+    CORN,
+    VEGETABLES,
+    FRUITS,
+    LIVESTOCK,
+    FARMING_OTHERS,
+    BOAT,
+    FISHING_EQUIPMENT,
+    AQUACULTURES,
+    FISHING_OTHERS,
+    JEEPNEY,
+    TRICYCLE,
+    VAN,
+    TRANSPORTATION_OTHERS,
+    VENDOR,
+    SARI_SARI_STORE,
+    ENTREPRENEURSHIP_OTHERS,
+    EMPLOYEES,
+    LABBORERS;
+
+    fun getStringId(): Int {
+        return when(this) {
+            RICE -> R.string.text_rice
+            CORN -> R.string.text_corn
+            VEGETABLES -> R.string.text_vegetables
+            FRUITS -> R.string.text_fruits
+            LIVESTOCK -> R.string.text_livestock
+            FARMING_OTHERS -> R.string.text_others
+            BOAT -> R.string.text_boat
+            FISHING_EQUIPMENT -> R.string.text_fishing_equipment
+            AQUACULTURES -> R.string.text_aquacultures
+            FISHING_OTHERS -> R.string.text_others
+            JEEPNEY -> R.string.text_jeepney
+            TRICYCLE -> R.string.text_tricycle
+            VAN -> R.string.text_van
+            TRANSPORTATION_OTHERS -> R.string.text_others
+            VENDOR -> R.string.text_vendor
+            SARI_SARI_STORE -> R.string.text_sari_sari_store
+            ENTREPRENEURSHIP_OTHERS -> R.string.text_others
+            EMPLOYEES -> R.string.text_employees
+            LABBORERS -> R.string.text_laborers
+        }
+    }
+
+    companion object {
+
+        fun getStringId(idx: Int): Int {
+            return LivelihoodCategories.values()[idx].getStringId()
+        }
+    }
+}
