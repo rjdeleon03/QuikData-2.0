@@ -56,6 +56,12 @@ import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGapsDao
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
+import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
+import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditionsDao
+import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
+import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCopingDao
+import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
+import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
 
 @Database(entities = [
         PrefilledData::class,
@@ -83,7 +89,10 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
         SpecialNeedsRow::class,
         PsychosocialRow::class,
         HealthCoping::class,
-        HealthGaps::class
+        HealthGaps::class,
+        WashConditions::class,
+        WashCoping::class,
+        WashGaps::class
     ],
     exportSchema = false,
     version = 1)
@@ -115,6 +124,9 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun psychosocialRowDao(): PsychosocialRowDao
     abstract fun healthCopingDao(): HealthCopingDao
     abstract fun healthGapsDao(): HealthGapsDao
+    abstract fun washConditionsDao(): WashConditionsDao
+    abstract fun washCopingDao(): WashCopingDao
+    abstract fun washGapsDao(): WashGapsDao
 
     companion object {
 
