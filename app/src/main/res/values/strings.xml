@@ -151,4 +151,7 @@
     <string name="food_security_impact_food_production">How has food production changed? (Are they still able to fish or farm?)</string>
     <string name="food_security_impact_food_ration">When is the next food ration needed and for how long?</string>
     <string name="food_security_coping_title">Coping</string>
+    <string name="food_security_needs_food_gap">What assistance can be provided to fill the food gap?</string>
+    <string name="food_security_needs_families_in_need">How many families are in need of food supply or lack the capacity to buy or secure food for their own consumption?</string>
+    <string name="food_security_needs_title">Needs</string>
 </resources>

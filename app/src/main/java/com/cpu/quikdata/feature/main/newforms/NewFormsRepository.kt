@@ -9,6 +9,7 @@ import com.cpu.quikdata.common.MaterialCategories
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeeds
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
@@ -140,6 +141,9 @@ class NewFormsRepository(application: Application) {
 
             val foodSecurityCoping = FoodSecurityCoping(id = generateId(), formId = formId)
             mDatabase.foodSecurityCopingDao().insert(foodSecurityCoping)
+
+            val foodSecurityNeeds = FoodSecurityNeeds(id = generateId(), formId = formId)
+            mDatabase.foodSecurityNeedsDao().insert(foodSecurityNeeds)
 
             // endregion
         }

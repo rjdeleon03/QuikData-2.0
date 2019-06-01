@@ -8,6 +8,8 @@ import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCop
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactDao
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeeds
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeedsDao
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormDao
 import com.cpu.quikdata.data.formdetails.FormDetails
@@ -53,7 +55,8 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
         ShelterNeedsRow::class,
         ShelterGaps::class,
         FoodSecurityImpact::class,
-        FoodSecurityCoping::class
+        FoodSecurityCoping::class,
+        FoodSecurityNeeds::class
     ],
     exportSchema = false,
     version = 1)
@@ -75,6 +78,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun shelterGapsDao(): ShelterGapsDao
     abstract fun foodSecurityImpactDao(): FoodSecurityImpactDao
     abstract fun foodSecurityCopingDao(): FoodSecurityCopingDao
+    abstract fun foodSecurityNeedsDao(): FoodSecurityNeedsDao
 
     companion object {
 
