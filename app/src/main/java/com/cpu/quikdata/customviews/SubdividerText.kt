@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.view_divider_text.view.*
 class SubdividerText(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     init {
-        View.inflate(context, R.layout.view_divider_text, this)
+        orientation = LinearLayout.VERTICAL
+        View.inflate(context, R.layout.view_subdivider_text, this)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.SubdividerText)
         dividerTextField.text = attributes.getString(R.styleable.SubdividerText_dividerText)

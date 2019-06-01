@@ -185,4 +185,5 @@
     <string name="diseases_check_up">Check-up</string>
     <string name="diseases_hospitalization">Hospitalization</string>
     <string name="diseases_medicines">Medicines</string>
+    <string name="diseases_title">Diseases and Critical Injuries</string>
 </resources>

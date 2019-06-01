@@ -1,21 +1,22 @@
 package com.cpu.quikdata.feature.createform.healthinfo
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCreateFormSectionFragment
+import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.setupViewPager
+import com.cpu.quikdata.feature.createform.healthinfo.diseases.DiseasesFragment
+import kotlinx.android.synthetic.main.fragment_health_info.*
 
-class HealthInfoFragment : Fragment() {
+class HealthInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
         fun newInstance() = HealthInfoFragment()
     }
-
-    private lateinit var viewModel: HealthInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +27,10 @@ class HealthInfoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HealthInfoViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        pagerAdapter.addFragment(DiseasesFragment.newInstance(), getString(R.string.diseases_title))
+        healthInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 
 }

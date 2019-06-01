@@ -30,6 +30,8 @@ import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRowDao
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRowDao
+import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
+import com.cpu.quikdata.data.health.diseasesrow.DiseasesRowDao
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingDao
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
@@ -68,7 +70,8 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
         FoodSecurityGaps::class,
         LivelihoodsCoping::class,
         LivelihoodsNeeds::class,
-        LivelihoodsGaps::class
+        LivelihoodsGaps::class,
+        DiseasesRow::class
     ],
     exportSchema = false,
     version = 1)
@@ -95,6 +98,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun livelihoodsCopingDao(): LivelihoodsCopingDao
     abstract fun livelihoodsNeedsDao(): LivelihoodsNeedsDao
     abstract fun livelihoodsGapsDao(): LivelihoodsGapsDao
+    abstract fun diseasesRowDao(): DiseasesRowDao
 
     companion object {
 

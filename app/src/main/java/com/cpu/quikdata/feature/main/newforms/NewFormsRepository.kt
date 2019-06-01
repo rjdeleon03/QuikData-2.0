@@ -20,6 +20,7 @@ import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
+import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeeds
@@ -169,6 +170,19 @@ class NewFormsRepository(application: Application) {
             val livelihoodsGaps = LivelihoodsGaps(id = generateId(), formId = formId)
             mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)            
             
+            // endregion
+
+            // region Health information
+
+            for (i in 0 until AgeCategories.values().size) {
+                val row = DiseasesRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.diseasesRowDao().insert(row)
+            }
+
             // endregion
         }
     }
