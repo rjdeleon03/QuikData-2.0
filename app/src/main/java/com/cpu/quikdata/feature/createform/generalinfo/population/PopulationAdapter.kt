@@ -41,7 +41,7 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
             view.populationDisplacedText.number1 = row.displacedMale
             view.populationDisplacedText.number2 = row.displacedFemale
 
-            // Setup listener for saving each population row
+            // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
                 val newRow = PopulationRow(
                     row.id,

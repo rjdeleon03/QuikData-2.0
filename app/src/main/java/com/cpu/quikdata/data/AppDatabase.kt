@@ -30,6 +30,16 @@ import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRowDao
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRowDao
+import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
+import com.cpu.quikdata.data.health.diseasesrow.DiseasesRowDao
+import com.cpu.quikdata.data.health.healthcoping.HealthCoping
+import com.cpu.quikdata.data.health.healthcoping.HealthCopingDao
+import com.cpu.quikdata.data.health.healthgaps.HealthGaps
+import com.cpu.quikdata.data.health.healthgaps.HealthGapsDao
+import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
+import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRowDao
+import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
+import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRowDao
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingDao
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
@@ -46,6 +56,12 @@ import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGapsDao
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
+import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
+import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditionsDao
+import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
+import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCopingDao
+import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
+import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
 
 @Database(entities = [
         PrefilledData::class,
@@ -68,7 +84,15 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
         FoodSecurityGaps::class,
         LivelihoodsCoping::class,
         LivelihoodsNeeds::class,
-        LivelihoodsGaps::class
+        LivelihoodsGaps::class,
+        DiseasesRow::class,
+        SpecialNeedsRow::class,
+        PsychosocialRow::class,
+        HealthCoping::class,
+        HealthGaps::class,
+        WashConditions::class,
+        WashCoping::class,
+        WashGaps::class
     ],
     exportSchema = false,
     version = 1)
@@ -95,6 +119,14 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun livelihoodsCopingDao(): LivelihoodsCopingDao
     abstract fun livelihoodsNeedsDao(): LivelihoodsNeedsDao
     abstract fun livelihoodsGapsDao(): LivelihoodsGapsDao
+    abstract fun diseasesRowDao(): DiseasesRowDao
+    abstract fun specialNeedsRowDao(): SpecialNeedsRowDao
+    abstract fun psychosocialRowDao(): PsychosocialRowDao
+    abstract fun healthCopingDao(): HealthCopingDao
+    abstract fun healthGapsDao(): HealthGapsDao
+    abstract fun washConditionsDao(): WashConditionsDao
+    abstract fun washCopingDao(): WashCopingDao
+    abstract fun washGapsDao(): WashGapsDao
 
     companion object {
 

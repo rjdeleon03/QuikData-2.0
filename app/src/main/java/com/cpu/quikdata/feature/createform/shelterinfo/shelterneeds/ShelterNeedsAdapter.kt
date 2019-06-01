@@ -40,7 +40,7 @@ class ShelterNeedsAdapter(context: Context, rowSaveListener: (ShelterNeedsRow) -
             view.shelterNeedsSpecificItemsText.text = row.specificItems
             view.shelterNeedsFamiliesInNeedText.number = row.familiesInNeed
 
-            // Setup listener for saving each population row
+            // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
                 val newRow = ShelterNeedsRow(
                     row.id,

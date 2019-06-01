@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/lightGray"
+    tools:context=".feature.createform.watersanitationinfo.washgaps.WashGapsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/washGapsAssistanceEnoughText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/wash_gaps_assistance_enough"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/washGapsAssistanceRelevantText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/wash_gaps_assistance_relevant"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/washWaterSourceAccessibleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/wash_gaps_water_source_accessible"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/washGapsReliefConsultationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/wash_gaps_relief_consultation"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/washGapsWasteManagementText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/wash_gaps_waste_management"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/washGapsAttitudesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/wash_gaps_attitudes"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/washGapsSupportMechanisms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/wash_gaps_support_mechanisms"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/washGapsWomenParticipationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/wash_gaps_women_participation"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

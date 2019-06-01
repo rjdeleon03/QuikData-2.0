@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cpu.quikdata.customviews.CollapsibleContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:collapsed="true">
+
+    <com.cpu.quikdata.customviews.SubdividerText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerText="@string/diseases_number_of_cases"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/diseasesDiarrheaText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/diseases_diarrhea"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/diseasesPneumoniaText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/diseases_pneumonia"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/diseasesDengueText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/diseases_dengue"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/diseasesMeaslesText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/diseases_measles"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/diseasesOthersText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/diseases_others"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.SubdividerText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerText="@string/diseases_medical_needs"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/diseasesCheckUpText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/diseases_check_up"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/diseasesHospitalizationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/diseases_hospitalization"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/diseasesMedicinesText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/diseases_medicines"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+    <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+        android:id="@+id/diseasesMedicalOthersText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/diseases_others"
+        app:textHint1="@string/text_male"
+        app:textHint2="@string/text_female"/>
+
+</com.cpu.quikdata.customviews.CollapsibleContainer>
