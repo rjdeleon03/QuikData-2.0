@@ -60,6 +60,15 @@
         <attr name="noText" />
     </declare-styleable>
 
+    <declare-styleable name="ThreeChoiceMultilineStringLongQuestion" parent="Question">
+        <attr name="questionChoice" format="string" />
+        <attr name="questionString"/>
+        <attr name="textString" />
+        <attr name="option1Text" format="string" />
+        <attr name="option2Text" format="string" />
+        <attr name="option3Text" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="DateQuestion" parent="Question">
         <attr name="question" />
         <attr name="text" />
