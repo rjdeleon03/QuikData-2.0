@@ -23,7 +23,7 @@
                 android:id="@+id/foodSecurityCopingStrategiesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/food_security_impact_food_ration"/>
+                app:textHint="@string/food_security_coping_strategies"/>
 
             <include layout="@layout/view_divider_extra_large"/>
 

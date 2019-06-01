@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingDao
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeeds
@@ -56,7 +58,8 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
         ShelterGaps::class,
         FoodSecurityImpact::class,
         FoodSecurityCoping::class,
-        FoodSecurityNeeds::class
+        FoodSecurityNeeds::class,
+        FoodSecurityGaps::class
     ],
     exportSchema = false,
     version = 1)
@@ -79,6 +82,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun foodSecurityImpactDao(): FoodSecurityImpactDao
     abstract fun foodSecurityCopingDao(): FoodSecurityCopingDao
     abstract fun foodSecurityNeedsDao(): FoodSecurityNeedsDao
+    abstract fun foodSecurityGapsDao(): FoodSecurityGapsDao
 
     companion object {
 

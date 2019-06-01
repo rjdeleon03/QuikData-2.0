@@ -151,7 +151,13 @@
     <string name="food_security_impact_food_production">How has food production changed? (Are they still able to fish or farm?)</string>
     <string name="food_security_impact_food_ration">When is the next food ration needed and for how long?</string>
     <string name="food_security_coping_title">Coping</string>
+    <string name="food_security_coping_strategies">What are the coping strategies employed?</string>
+    <string name="food_security_needs_title">Needs</string>
     <string name="food_security_needs_food_gap">What assistance can be provided to fill the food gap?</string>
     <string name="food_security_needs_families_in_need">How many families are in need of food supply or lack the capacity to buy or secure food for their own consumption?</string>
-    <string name="food_security_needs_title">Needs</string>
+    <string name="food_security_gaps_title">Gaps</string>
+    <string name="food_security_gaps_assistance_appropriate">Is the assistance provided appropriate to the needs of the families?</string>
+    <string name="food_security_gaps_assistance_enough">Is the assistance provided enough?</string>
+    <string name="food_security_gaps_assistance_equal_access">Do women and men have equal access to the assistance?</string>
+    <string name="food_security_gaps_specific_needs_met">Were the specific food needs of men, women, boys, girls, PWD, children, breastfeeding and lactating women considered in the assistance?</string>
 </resources>
