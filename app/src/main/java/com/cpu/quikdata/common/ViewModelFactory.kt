@@ -17,6 +17,7 @@ import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationView
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableViewModel
 import com.cpu.quikdata.feature.createform.healthinfo.diseases.DiseasesViewModel
 import com.cpu.quikdata.feature.createform.healthinfo.healthcoping.HealthCopingViewModel
+import com.cpu.quikdata.feature.createform.healthinfo.healthgaps.HealthGapsViewModel
 import com.cpu.quikdata.feature.createform.healthinfo.psychosocial.PsychosocialViewModel
 import com.cpu.quikdata.feature.createform.healthinfo.specialneeds.SpecialNeedsViewModel
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingViewModel
@@ -59,6 +60,7 @@ class ViewModelFactory(application: Application, formId: String) :
             SpecialNeedsViewModel::class.java -> SpecialNeedsViewModel(mApplication, mFormId) as T
             PsychosocialViewModel::class.java -> PsychosocialViewModel(mApplication, mFormId) as T
             HealthCopingViewModel::class.java -> HealthCopingViewModel(mApplication, mFormId) as T
+            HealthGapsViewModel::class.java -> HealthGapsViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }
     }

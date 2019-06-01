@@ -34,6 +34,8 @@ import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
 import com.cpu.quikdata.data.health.diseasesrow.DiseasesRowDao
 import com.cpu.quikdata.data.health.healthcoping.HealthCoping
 import com.cpu.quikdata.data.health.healthcoping.HealthCopingDao
+import com.cpu.quikdata.data.health.healthgaps.HealthGaps
+import com.cpu.quikdata.data.health.healthgaps.HealthGapsDao
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRowDao
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
@@ -80,7 +82,8 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
         DiseasesRow::class,
         SpecialNeedsRow::class,
         PsychosocialRow::class,
-        HealthCoping::class
+        HealthCoping::class,
+        HealthGaps::class
     ],
     exportSchema = false,
     version = 1)
@@ -111,6 +114,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun specialNeedsRowDao(): SpecialNeedsRowDao
     abstract fun psychosocialRowDao(): PsychosocialRowDao
     abstract fun healthCopingDao(): HealthCopingDao
+    abstract fun healthGapsDao(): HealthGapsDao
 
     companion object {
 

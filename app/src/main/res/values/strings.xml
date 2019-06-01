@@ -202,4 +202,9 @@
     <string name="psychosocial_title">Psychosocial Conditions and Needs</string>
     <string name="health_coping_strategies">What are the coping strategies employed?</string>
     <string name="health_coping_title">Coping</string>
+    <string name="health_gaps_nearest_hospital">Where/what is the nearest hospital in the area (public/private)?</string>
+    <string name="health_gaps_services_available">What services are available within the community?</string>
+    <string name="health_gaps_services_accessible">Are these accessible to and sufficient for the target population?</string>
+    <string name="health_gaps_reproductive_health">Are there specific services for reproductive health?</string>
+    <string name="health_gaps_title">Gaps</string>
 </resources>
