@@ -11,6 +11,7 @@ import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping.WashCopingFragment
+import com.cpu.quikdata.feature.createform.watersanitationinfo.washgaps.WashGapsFragment
 import kotlinx.android.synthetic.main.fragment_water_sanitation_info.*
 
 class WaterSanitationInfoFragment : BaseCreateFormSectionFragment() {
@@ -31,6 +32,7 @@ class WaterSanitationInfoFragment : BaseCreateFormSectionFragment() {
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(WashCopingFragment.newInstance(), getString(R.string.wash_coping_title))
+        pagerAdapter.addFragment(WashGapsFragment.newInstance(), getString(R.string.wash_gaps_title))
         washViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

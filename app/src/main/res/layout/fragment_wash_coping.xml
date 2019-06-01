@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGray"
-    tools:context=".feature.createform.watersanitationinfo.washcoping.WashCopingFragment">
+    tools:context=".feature.createform.watersanitationinfo.washgaps.WashGapsFragment">
 
     <ScrollView
         android:layout_width="match_parent"
