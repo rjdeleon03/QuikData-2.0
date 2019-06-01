@@ -266,4 +266,7 @@
     <string name="text_sari_sari_store">Sari-sari Store</string>
     <string name="text_employees">Employees</string>
     <string name="text_laborers">Laborers</string>
+    <string name="estimated_damage_remarks">Remarks (Number of hectares damaged, lost assets, equipment, number of days not able to go back to work, etc.)</string>
+    <string name="estimated_damage_cost">Estimated Damage Cost (PHP)</string>
+    <string name="estimated_damage_title">Estimated Cost of Damage to Livelihoods</string>
 </resources>
