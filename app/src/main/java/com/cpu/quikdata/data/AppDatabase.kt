@@ -40,6 +40,8 @@ import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRowDao
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRowDao
+import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageRow
+import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageRowDao
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingDao
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
@@ -82,6 +84,7 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         FoodSecurityCoping::class,
         FoodSecurityNeeds::class,
         FoodSecurityGaps::class,
+        EstimatedDamageRow::class,
         LivelihoodsCoping::class,
         LivelihoodsNeeds::class,
         LivelihoodsGaps::class,
@@ -116,6 +119,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun foodSecurityCopingDao(): FoodSecurityCopingDao
     abstract fun foodSecurityNeedsDao(): FoodSecurityNeedsDao
     abstract fun foodSecurityGapsDao(): FoodSecurityGapsDao
+    abstract fun estimatedDamageRowDao(): EstimatedDamageRowDao
     abstract fun livelihoodsCopingDao(): LivelihoodsCopingDao
     abstract fun livelihoodsNeedsDao(): LivelihoodsNeedsDao
     abstract fun livelihoodsGapsDao(): LivelihoodsGapsDao

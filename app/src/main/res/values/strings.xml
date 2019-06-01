@@ -246,4 +246,9 @@
     <string name="wash_conditions_existing_facilities">Are the existing facilities properly maintained?</string>
     <string name="wash_conditions_toilet_segregation">Are the toilets segregated between male and female?</string>
     <string name="wash_conditions_toilet_accessibility">Are the toilets accessible for all (seniors, disabled, children, pregnant, etc.)?</string>
+    <string name="text_farming">Farming</string>
+    <string name="text_fishing">Fishing</string>
+    <string name="text_transportation">Transportation</string>
+    <string name="text_entrepreneurship">Entrepreneurship</string>
+    <string name="text_workers">Workers</string>
 </resources>

@@ -158,3 +158,28 @@ enum class SpecialNeedsCategories {
         }
     }
 }
+
+enum class LivelihoodCategories {
+    FARMING,
+    FISHING,
+    TRANSPORTATION,
+    ENTREPRENEURSHIP,
+    WORKERS;
+
+    fun getStringId(): Int {
+        return when(this) {
+            FARMING -> R.string.text_farming
+            FISHING -> R.string.text_fishing
+            TRANSPORTATION -> R.string.text_transportation
+            ENTREPRENEURSHIP -> R.string.text_entrepreneurship
+            WORKERS -> R.string.text_workers
+        }
+    }
+
+    companion object {
+
+        fun getStringId(idx: Int): Int {
+            return LivelihoodCategories.values()[idx].getStringId()
+        }
+    }
+}
