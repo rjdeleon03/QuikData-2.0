@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
     indices = [Index("estimatedDamageId")],
     foreignKeys = [ForeignKey(entity = EstimatedDamageRow::class,
         parentColumns = ["id"],
-        childColumns = ["formId"],
+        childColumns = ["estimatedDamageId"],
         onDelete = ForeignKey.CASCADE
     )])
 data class EstimatedDamageType(@PrimaryKey(autoGenerate = false)

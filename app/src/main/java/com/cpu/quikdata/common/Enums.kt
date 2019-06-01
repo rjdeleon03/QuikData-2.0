@@ -176,6 +176,30 @@ enum class LivelihoodCategories {
         }
     }
 
+    fun getSubcategories(): Array<LivelihoodSubcategories> {
+        return when(this) {
+            FARMING -> arrayOf(LivelihoodSubcategories.RICE,
+                LivelihoodSubcategories.CORN,
+                LivelihoodSubcategories.VEGETABLES,
+                LivelihoodSubcategories.FRUITS,
+                LivelihoodSubcategories.LIVESTOCK,
+                LivelihoodSubcategories.FARMING_OTHERS)
+            FISHING -> arrayOf(LivelihoodSubcategories.BOAT,
+                LivelihoodSubcategories.FISHING_EQUIPMENT,
+                LivelihoodSubcategories.AQUACULTURES,
+                LivelihoodSubcategories.FISHING_OTHERS)
+            TRANSPORTATION -> arrayOf(LivelihoodSubcategories.JEEPNEY,
+                LivelihoodSubcategories.TRICYCLE,
+                LivelihoodSubcategories.VAN,
+                LivelihoodSubcategories.TRANSPORTATION_OTHERS)
+            ENTREPRENEURSHIP -> arrayOf(LivelihoodSubcategories.VENDOR,
+                LivelihoodSubcategories.SARI_SARI_STORE,
+                LivelihoodSubcategories.ENTREPRENEURSHIP_OTHERS)
+            WORKERS -> arrayOf(LivelihoodSubcategories.EMPLOYEES,
+                LivelihoodSubcategories.LABORERS)
+        }
+    }
+
     companion object {
 
         fun getStringId(idx: Int): Int {
@@ -203,7 +227,7 @@ enum class LivelihoodSubcategories {
     SARI_SARI_STORE,
     ENTREPRENEURSHIP_OTHERS,
     EMPLOYEES,
-    LABBORERS;
+    LABORERS;
 
     fun getStringId(): Int {
         return when(this) {
@@ -225,7 +249,7 @@ enum class LivelihoodSubcategories {
             SARI_SARI_STORE -> R.string.text_sari_sari_store
             ENTREPRENEURSHIP_OTHERS -> R.string.text_others
             EMPLOYEES -> R.string.text_employees
-            LABBORERS -> R.string.text_laborers
+            LABORERS -> R.string.text_laborers
         }
     }
 
