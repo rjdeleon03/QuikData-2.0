@@ -127,3 +127,34 @@ enum class MaterialCategories {
         }
     }
 }
+
+enum class SpecialNeedsCategories {
+    PREGNANT,
+    LACTATING_WOMEN,
+    PHYSICALLY_CHALLENGED,
+    MENTALLY_CHALLENGED,
+    CHILDREN,
+    SENIOR_CITIZENS,
+    INFANTS,
+    OTHERS;
+
+    fun getStringId(): Int {
+        return when(this) {
+            PREGNANT -> R.string.text_pregnant
+            LACTATING_WOMEN -> R.string.text_lactating
+            PHYSICALLY_CHALLENGED -> R.string.text_physically_challenged
+            MENTALLY_CHALLENGED -> R.string.text_mentally_challenged
+            CHILDREN -> R.string.text_children
+            SENIOR_CITIZENS -> R.string.text_senior_citizens
+            INFANTS -> R.string.text_infants
+            OTHERS -> R.string.text_others
+        }
+    }
+
+    companion object {
+
+        fun getStringId(idx: Int): Int {
+            return SpecialNeedsCategories.values()[idx].getStringId()
+        }
+    }
+}

@@ -2,10 +2,7 @@ package com.cpu.quikdata.feature.main.newforms
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.common.AgeCategories
-import com.cpu.quikdata.common.HouseCategories
-import com.cpu.quikdata.common.InfraCategories
-import com.cpu.quikdata.common.MaterialCategories
+import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
@@ -20,6 +17,11 @@ import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
+import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
+import com.cpu.quikdata.data.health.healthcoping.HealthCoping
+import com.cpu.quikdata.data.health.healthgaps.HealthGaps
+import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
+import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeeds
@@ -169,6 +171,43 @@ class NewFormsRepository(application: Application) {
             val livelihoodsGaps = LivelihoodsGaps(id = generateId(), formId = formId)
             mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)            
             
+            // endregion
+
+            // region Health information
+
+            for (i in 0 until AgeCategories.values().size) {
+                val row = DiseasesRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.diseasesRowDao().insert(row)
+            }
+
+            for (i in 0 until SpecialNeedsCategories.values().size) {
+                val row = SpecialNeedsRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.specialNeedsRowDao().insert(row)
+            }
+
+            for (i in 0 until AgeCategories.values().size) {
+                val row = PsychosocialRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.psychosocialRowDao().insert(row)
+            }
+
+            val healthCoping = HealthCoping(id = generateId(), formId = formId)
+            mDatabase.healthCopingDao().insert(healthCoping)
+
+            val healthGaps = HealthGaps(id = generateId(), formId = formId)
+            mDatabase.healthGapsDao().insert(healthGaps)
+
             // endregion
         }
     }

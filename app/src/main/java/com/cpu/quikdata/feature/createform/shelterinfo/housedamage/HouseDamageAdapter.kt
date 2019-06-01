@@ -46,7 +46,7 @@ class HouseDamageAdapter(context: Context, rowSaveListener: (HouseDamageRow) -> 
             view.houseDamagePartiallyDamagedText.number = row.partiallyDamaged
             view.houseDamageTotallyDamagedText.number = row.totallyDamaged
 
-            // Setup listener for saving each population row
+            // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
                 val newRow = HouseDamageRow(
                     row.id,

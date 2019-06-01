@@ -5,6 +5,10 @@
         <attr name="dividerText" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="SubdividerText" parent="DividerText">
+        <attr name="dividerText" />
+    </declare-styleable>
+
     <declare-styleable name="CollapsibleContainer">
         <attr name="headerText" format="string" />
         <attr name="collapsed" format="boolean" />

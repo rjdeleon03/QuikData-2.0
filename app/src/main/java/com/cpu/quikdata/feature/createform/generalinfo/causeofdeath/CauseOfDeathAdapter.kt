@@ -56,7 +56,7 @@ class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -
             view.causeOfDeathOthersText.number1 = row.othersMale
             view.causeOfDeathOthersText.number2 = row.othersFemale
 
-            // Setup listener for saving each vulnerable population row
+            // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
                 val newRow = CauseOfDeathRow(
                     row.id,

@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.generalinfo.population
+package com.cpu.quikdata.feature.createform.healthinfo.psychosocial
 
 import android.content.Context
 import android.view.View
@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.common.AgeCategories
-import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
-import kotlinx.android.synthetic.main.item_population.view.*
+import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
+import kotlinx.android.synthetic.main.item_psychosocial.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Unit) :
-    BaseAdapter<PopulationRow, PopulationAdapter.ViewHolder>(context, rowSaveListener) {
+class PsychosocialAdapter(context: Context, rowSaveListener: (PsychosocialRow) -> Unit) :
+    BaseAdapter<PsychosocialRow, PsychosocialAdapter.ViewHolder>(context, rowSaveListener) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.item_population, parent, false)
+        val view = mInflater.inflate(R.layout.item_psychosocial, parent, false)
         return ViewHolder(view)
     }
 
@@ -27,29 +27,29 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
             })
     }
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<PopulationRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<PsychosocialRow>(itemView) {
 
-        override fun populateWithData(row: PopulationRow,
+        override fun populateWithData(row: PsychosocialRow,
                                       isCollapsed: Boolean,
-                                      rowSaveListener: (PopulationRow) -> Unit,
+                                      rowSaveListener: (PsychosocialRow) -> Unit,
                                       rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
 
             view.tag = row.id
             view.headerTextField.setText(AgeCategories.getStringId(row.type))
-            view.populationAffectedText.number1 = row.affectedMale
-            view.populationAffectedText.number2 = row.affectedFemale
-            view.populationDisplacedText.number1 = row.displacedMale
-            view.populationDisplacedText.number2 = row.displacedFemale
+            view.psychosocialCasesText.number1 = row.casesMale
+            view.psychosocialCasesText.number2 = row.casesFemale
+            view.psychosocialManifestationsText.text = row.manifestations
+            view.psychosocialNeedsText.text = row.needs
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
-                val newRow = PopulationRow(
+                val newRow = PsychosocialRow(
                     row.id,
                     row.type,
-                    view.populationAffectedText.number1,
-                    view.populationAffectedText.number2,
-                    view.populationDisplacedText.number1,
-                    view.populationDisplacedText.number2,
+                    view.psychosocialCasesText.number1,
+                    view.psychosocialCasesText.number2,
+                    view.psychosocialManifestationsText.text,
+                    view.psychosocialNeedsText.text,
                     row.formId
                 )
                 if (row != newRow) {
