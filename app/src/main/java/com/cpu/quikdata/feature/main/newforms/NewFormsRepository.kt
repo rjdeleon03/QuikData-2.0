@@ -20,6 +20,9 @@ import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
+import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
+import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
+import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeeds
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
@@ -137,6 +140,10 @@ class NewFormsRepository(application: Application) {
             val shelterGaps = ShelterGaps(id = generateId(), formId = formId)
             mDatabase.shelterGapsDao().insert(shelterGaps)
 
+            // endregion
+
+            // region Food security information
+
             val foodSecurityImpact = FoodSecurityImpact(id = generateId(), formId = formId)
             mDatabase.foodSecurityImpactDao().insert(foodSecurityImpact)
 
@@ -149,6 +156,19 @@ class NewFormsRepository(application: Application) {
             val foodSecurityGaps = FoodSecurityGaps(id = generateId(), formId = formId)
             mDatabase.foodSecurityGapsDao().insert(foodSecurityGaps)
 
+            // endregion
+
+            // region Livelihoods information
+
+            val livelihoodsCoping = LivelihoodsCoping(id = generateId(), formId = formId)
+            mDatabase.livelihoodsCopingDao().insert(livelihoodsCoping)
+
+            val livelihoodsNeeds = LivelihoodsNeeds(id = generateId(), formId = formId)
+            mDatabase.livelihoodsNeedsDao().insert(livelihoodsNeeds)
+
+            val livelihoodsGaps = LivelihoodsGaps(id = generateId(), formId = formId)
+            mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)            
+            
             // endregion
         }
     }
