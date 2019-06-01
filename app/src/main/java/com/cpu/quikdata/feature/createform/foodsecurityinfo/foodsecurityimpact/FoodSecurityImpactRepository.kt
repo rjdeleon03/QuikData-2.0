@@ -9,14 +9,14 @@ import com.cpu.quikdata.utils.runOnIoThread
 class FoodSecurityImpactRepository(application: Application, formId: String) :
     BaseRepository<FoodSecurityImpact>(application) {
 
-    private val mImpact = mDatabase.foodSecurityImpactDao().getByFormId(formId)
+    private val mFoodSecurityImpact = mDatabase.foodSecurityImpactDao().getByFormId(formId)
 
-    val impact : LiveData<FoodSecurityImpact>
-        get() = mImpact
+    val foodSecurityImpact : LiveData<FoodSecurityImpact>
+        get() = mFoodSecurityImpact
 
     override fun updateData(data: FoodSecurityImpact) {
         runOnIoThread {
-            val oldImpact = mImpact.value!!
+            val oldImpact = mFoodSecurityImpact.value!!
             oldImpact.copyFrom(data)
             mDatabase.foodSecurityImpactDao().update(oldImpact)
         }

@@ -150,4 +150,5 @@
     <string name="food_security_impact_food_needs">Are they able to meet their food needs?</string>
     <string name="food_security_impact_food_production">How has food production changed? (Are they still able to fish or farm?)</string>
     <string name="food_security_impact_food_ration">When is the next food ration needed and for how long?</string>
+    <string name="food_security_coping_title">Coping</string>
 </resources>

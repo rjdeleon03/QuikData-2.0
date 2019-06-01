@@ -9,6 +9,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
+import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactFragment
 import kotlinx.android.synthetic.main.fragment_food_security_info.*
 
@@ -30,6 +31,7 @@ class FoodSecurityInfoFragment : BaseCreateFormSectionFragment() {
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(FoodSecurityImpactFragment.newInstance(), getString(R.string.food_security_impact_title))
+        pagerAdapter.addFragment(FoodSecurityCopingFragment.newInstance(), getString(R.string.food_security_coping_title))
         foodSecurityInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

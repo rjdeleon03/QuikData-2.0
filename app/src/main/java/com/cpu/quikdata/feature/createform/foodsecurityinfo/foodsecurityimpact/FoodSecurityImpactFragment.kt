@@ -2,7 +2,6 @@ package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +52,7 @@ class FoodSecurityImpactFragment : BaseCreateFormFragment() {
         super.onActivityCreated(savedInstanceState)
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityImpactViewModel::class.java)
-        mViewModel.impact.observe(viewLifecycleOwner, Observer {
+        mViewModel.foodSecurityImpact.observe(viewLifecycleOwner, Observer {
             foodSecurityImpactFoodAvailabilityText.value = it.hasFoodAvailabilityProblem
             foodSecurityImpactFoodAvailabilityText.text = it.hasFoodAvailabilityProblemRemarks
             foodSecurityImpactFoodAccessText.value = it.lacksFoodAccess

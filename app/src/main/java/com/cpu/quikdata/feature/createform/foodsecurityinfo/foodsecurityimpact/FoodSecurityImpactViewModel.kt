@@ -10,8 +10,8 @@ class FoodSecurityImpactViewModel(application: Application, formId: String) :
 
     private val mRepository = FoodSecurityImpactRepository(application, formId)
 
-    val impact : LiveData<FoodSecurityImpact>
-        get() = mRepository.impact
+    val foodSecurityImpact : LiveData<FoodSecurityImpact>
+        get() = mRepository.foodSecurityImpact
 
     fun updateFoodSecurityImpact(impact: FoodSecurityImpact) = mRepository.updateData(impact)
 }
