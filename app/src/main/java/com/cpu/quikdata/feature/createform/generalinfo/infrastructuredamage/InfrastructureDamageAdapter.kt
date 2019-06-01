@@ -40,7 +40,7 @@ class InfrastructureDamageAdapter(context: Context, rowSaveListener: (Infrastruc
             view.infrastructureDamageFunctionalBool.value = row.isFunctional
             view.infrastructureDamageRemarksText.text = row.remarks
 
-            // Setup listener for saving each infrastructure damage row
+            // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
                 val newRow = InfrastructureDamageRow(
                     row.id,

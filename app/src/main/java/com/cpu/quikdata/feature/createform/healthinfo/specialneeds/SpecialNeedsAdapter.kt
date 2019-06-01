@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds
+package com.cpu.quikdata.feature.createform.healthinfo.specialneeds
 
 import android.content.Context
 import android.view.View
@@ -6,16 +6,16 @@ import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.common.AgeCategories
-import com.cpu.quikdata.common.MaterialCategories
-import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
-import kotlinx.android.synthetic.main.item_shelter_needs.view.*
+import com.cpu.quikdata.common.SpecialNeedsCategories
+import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
+import kotlinx.android.synthetic.main.item_special_needs.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class ShelterNeedsAdapter(context: Context, rowSaveListener: (ShelterNeedsRow) -> Unit) :
-    BaseAdapter<ShelterNeedsRow, ShelterNeedsAdapter.ViewHolder>(context, rowSaveListener) {
+class SpecialNeedsAdapter(context: Context, rowSaveListener: (SpecialNeedsRow) -> Unit) :
+    BaseAdapter<SpecialNeedsRow, SpecialNeedsAdapter.ViewHolder>(context, rowSaveListener) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.item_shelter_needs, parent, false)
+        val view = mInflater.inflate(R.layout.item_special_needs, parent, false)
         return ViewHolder(view)
     }
 
@@ -28,25 +28,25 @@ class ShelterNeedsAdapter(context: Context, rowSaveListener: (ShelterNeedsRow) -
             })
     }
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<ShelterNeedsRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<SpecialNeedsRow>(itemView) {
 
-        override fun populateWithData(row: ShelterNeedsRow,
+        override fun populateWithData(row: SpecialNeedsRow,
                                       isCollapsed: Boolean,
-                                      rowSaveListener: (ShelterNeedsRow) -> Unit,
+                                      rowSaveListener: (SpecialNeedsRow) -> Unit,
                                       rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
 
             view.tag = row.id
-            view.headerTextField.setText(MaterialCategories.getStringId(row.type))
-            view.shelterNeedsSpecificItemsText.text = row.specificItems
-            view.shelterNeedsFamiliesInNeedText.number = row.familiesInNeed
+            view.headerTextField.setText(SpecialNeedsCategories.getStringId(row.type))
+            view.specialNeedsNumberText.number = row.number
+            view.specialNeedsHealthMedicalText.text = row.healthMedical
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
-                val newRow = ShelterNeedsRow(
+                val newRow = SpecialNeedsRow(
                     row.id,
                     row.type,
-                    view.shelterNeedsSpecificItemsText.text,
-                    view.shelterNeedsFamiliesInNeedText.number,
+                    view.specialNeedsNumberText.number,
+                    view.specialNeedsHealthMedicalText.text,
                     row.formId
                 )
                 if (row != newRow) {

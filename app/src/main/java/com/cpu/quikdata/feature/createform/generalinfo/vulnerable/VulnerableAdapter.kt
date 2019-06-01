@@ -49,7 +49,7 @@ class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Un
             view.vulnerableDisabledText.number2 = row.disabledFemale
             view.vulnerableRemarksText.text = row.remarks
 
-            // Setup listener for saving each population row
+            // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
                 val newRow = VulnerableRow(
                     row.id,

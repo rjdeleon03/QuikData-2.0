@@ -43,7 +43,7 @@ class CasualtiesAdapter(context: Context, rowSaveListener: (CasualtiesRow) -> Un
             view.casualtiesInjuredText.number1 = row.injuredMale
             view.casualtiesInjuredText.number2 = row.injuredFemale
 
-            // Setup listener for saving each vulnerable population row
+            // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
                 val newRow = CasualtiesRow(
                     row.id,

@@ -55,7 +55,7 @@ class DiseasesAdapter(context: Context, rowSaveListener: (DiseasesRow) -> Unit) 
             view.diseasesMedicalOthersText.number1 = row.medicalOthersMale
             view.diseasesMedicalOthersText.number2 = row.medicalOthersFemale
 
-            // Setup listener for saving each population row
+            // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
                 val newRow = DiseasesRow(
                     row.id,

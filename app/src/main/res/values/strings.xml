@@ -61,7 +61,7 @@
     <string name="families_affected">Affected</string>
     <string name="families_displaced">Displaced</string>
     <string name="vulnerable_title">Vulnerable Population</string>
-    <string name="vulnerable_pregnant">Pregnant</string>
+    <string name="vulnerable_pregnant">Pregnant Women</string>
     <string name="vulnerable_lactating">Lactating Mothers</string>
     <string name="vulnerable_lgbt">LGBT</string>
     <string name="vulnerable_female_headed">Female-headed Households</string>
@@ -186,11 +186,14 @@
     <string name="diseases_hospitalization">Hospitalization</string>
     <string name="diseases_medicines">Medicines</string>
     <string name="diseases_title">Diseases and Critical Injuries</string>
-    <string name="text_pregnant">Pregnant</string>
-    <string name="text_lactating">Lactating Women</string>
+    <string name="text_pregnant">Pregnant Women</string>
+    <string name="text_lactating">Lactating Mothers</string>
     <string name="text_physically_challenged">Physically-challenged</string>
     <string name="text_mentally_challenged">Mentally-challenged</string>
     <string name="text_children">Children</string>
     <string name="text_senior_citizens">Senior Citizens</string>
     <string name="text_infants">Infants</string>
+    <string name="special_needs_number">Number of People</string>
+    <string name="special_needs_health_medical">Health / Medical Needs</string>
+    <string name="special_needs_title">People with Special Needs</string>
 </resources>
