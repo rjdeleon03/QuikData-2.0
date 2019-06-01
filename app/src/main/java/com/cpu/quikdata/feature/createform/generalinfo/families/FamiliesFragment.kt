@@ -44,8 +44,7 @@ class FamiliesFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(FamiliesViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, mFactory).get(FamiliesViewModel::class.java)
         mViewModel.families.observe(viewLifecycleOwner, Observer {
             familiesAffectedText.number = it.affectedFamilies
             householdsAffectedText.number = it.affectedHouseholds

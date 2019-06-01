@@ -7,9 +7,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
-import com.cpu.quikdata.customviews.CollapsibleContainer
 import kotlinx.android.synthetic.main.fragment_population.*
-import androidx.core.view.doOnNextLayout
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.setupTapToExpand
 
@@ -42,8 +40,7 @@ class PopulationFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(PopulationViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, mFactory).get(PopulationViewModel::class.java)
         mViewModel.population.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

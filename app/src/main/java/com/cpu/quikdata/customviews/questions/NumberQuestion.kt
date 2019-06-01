@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.setupNumberInputValidation
-import kotlinx.android.synthetic.main.question_string.view.*
+import kotlinx.android.synthetic.main.question_number.view.*
 
 class NumberQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
@@ -15,9 +15,9 @@ class NumberQuestion(context: Context, attrs: AttributeSet) : LinearLayout(conte
         orientation = LinearLayout.VERTICAL
 
         /* Retrieve view attributes then apply */
-        val attributes = context.obtainStyledAttributes(attrs, R.styleable.StringQuestion)
-        textLayout.hint = attributes.getString(R.styleable.StringQuestion_textHint)
-        textField.setText(attributes.getString(R.styleable.StringQuestion_text))
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.NumberQuestion)
+        textLayout.hint = attributes.getString(R.styleable.NumberQuestion_textHint)
+        textField.setText(attributes.getString(R.styleable.NumberQuestion_text))
         attributes.recycle()
 
         textField.setupNumberInputValidation()

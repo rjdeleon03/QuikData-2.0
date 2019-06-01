@@ -45,8 +45,7 @@ class CauseOfDeathFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(CauseOfDeathViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, mFactory).get(CauseOfDeathViewModel::class.java)
         mViewModel.casualties.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

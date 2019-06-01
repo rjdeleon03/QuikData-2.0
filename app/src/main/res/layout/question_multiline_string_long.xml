@@ -13,8 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimenExtraSmall"
         android:layout_marginStart="@dimen/dimenMid"
-        android:layout_marginEnd="@dimen/dimenMid"
-        android:paddingBottom="0dp"/>
+        android:layout_marginEnd="@dimen/dimenMid"/>
 
     <EditText
         android:id="@+id/textField"
@@ -22,6 +21,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/dimenMid"
         style="@style/EditTextTheme"
+        android:layout_marginTop="-4dp"
         android:layout_marginBottom="@dimen/dimenSmall"
         android:layout_marginStart="@dimen/dimenMid"
         android:layout_marginEnd="@dimen/dimenMid"/>

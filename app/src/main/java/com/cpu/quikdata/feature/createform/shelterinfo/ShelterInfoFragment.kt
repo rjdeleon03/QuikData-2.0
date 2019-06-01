@@ -1,21 +1,25 @@
 package com.cpu.quikdata.feature.createform.shelterinfo
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.setupViewPager
+import com.cpu.quikdata.base.BaseCreateFormSectionFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps.ShelterGapsFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsFragment
+import kotlinx.android.synthetic.main.fragment_shelter_info.*
 
-class ShelterInfoFragment : Fragment() {
+class ShelterInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
         fun newInstance() = ShelterInfoFragment()
     }
-
-    private lateinit var viewModel: ShelterInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +30,13 @@ class ShelterInfoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ShelterInfoViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        pagerAdapter.addFragment(HouseDamageFragment.newInstance(), getString(R.string.house_damage_title))
+        pagerAdapter.addFragment(ShelterCopingFragment.newInstance(), getString(R.string.shelter_coping_title))
+        pagerAdapter.addFragment(ShelterNeedsFragment.newInstance(), getString(R.string.shelter_needs_title))
+        pagerAdapter.addFragment(ShelterGapsFragment.newInstance(), getString(R.string.shelter_gaps_title))
+        shelterInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 
 }

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.setupOnFocusBehavior
 import kotlinx.android.synthetic.main.question_multiline_string_long.view.*
 
 class MultilineStringLongQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
@@ -18,6 +19,7 @@ class MultilineStringLongQuestion(context: Context, attrs: AttributeSet) : Linea
         questionText.hint = attributes.getString(R.styleable.MultilineStringLongQuestion_textHint)
         textField.setText(attributes.getString(R.styleable.MultilineStringLongQuestion_text))
         attributes.recycle()
+        setupOnFocusBehavior(questionText, textField)
     }
 
     var text: String

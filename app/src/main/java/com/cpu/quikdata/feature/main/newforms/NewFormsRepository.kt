@@ -3,8 +3,14 @@ package com.cpu.quikdata.feature.main.newforms
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.AgeCategories
+import com.cpu.quikdata.common.HouseCategories
 import com.cpu.quikdata.common.InfraCategories
+import com.cpu.quikdata.common.MaterialCategories
 import com.cpu.quikdata.data.AppDatabase
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeeds
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
@@ -14,6 +20,10 @@ import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
+import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
+import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
+import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
+import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import com.cpu.quikdata.utils.generateId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -98,6 +108,46 @@ class NewFormsRepository(application: Application) {
                 )
                 mDatabase.infrastructureDamageRowDao().insert(row)
             }
+
+            // endregion
+
+            // region Shelter and non-food information
+
+            for (i in 0 until HouseCategories.values().size) {
+                val row = HouseDamageRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.houseDamageRowDao().insert(row)
+            }
+
+            val shelterCoping = ShelterCoping(id = generateId(), formId = formId)
+            mDatabase.shelterCopingDao().insert(shelterCoping)
+
+            for (i in 0 until MaterialCategories.values().size) {
+                val row = ShelterNeedsRow(
+                    id = generateId(),
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.shelterNeedsRowDao().insert(row)
+            }
+
+            val shelterGaps = ShelterGaps(id = generateId(), formId = formId)
+            mDatabase.shelterGapsDao().insert(shelterGaps)
+
+            val foodSecurityImpact = FoodSecurityImpact(id = generateId(), formId = formId)
+            mDatabase.foodSecurityImpactDao().insert(foodSecurityImpact)
+
+            val foodSecurityCoping = FoodSecurityCoping(id = generateId(), formId = formId)
+            mDatabase.foodSecurityCopingDao().insert(foodSecurityCoping)
+
+            val foodSecurityNeeds = FoodSecurityNeeds(id = generateId(), formId = formId)
+            mDatabase.foodSecurityNeedsDao().insert(foodSecurityNeeds)
+
+            val foodSecurityGaps = FoodSecurityGaps(id = generateId(), formId = formId)
+            mDatabase.foodSecurityGapsDao().insert(foodSecurityGaps)
 
             // endregion
         }

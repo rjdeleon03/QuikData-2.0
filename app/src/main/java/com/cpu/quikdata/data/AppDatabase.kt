@@ -4,6 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingDao
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsDao
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactDao
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeeds
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeedsDao
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormDao
 import com.cpu.quikdata.data.formdetails.FormDetails
@@ -24,6 +32,14 @@ import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRowDao
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
+import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
+import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRowDao
+import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
+import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCopingDao
+import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
+import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGapsDao
+import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
+import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
 
 @Database(entities = [
         PrefilledData::class,
@@ -35,7 +51,15 @@ import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
         VulnerableRow::class,
         CasualtiesRow::class,
         CauseOfDeathRow::class,
-        InfrastructureDamageRow::class
+        InfrastructureDamageRow::class,
+        HouseDamageRow::class,
+        ShelterCoping::class,
+        ShelterNeedsRow::class,
+        ShelterGaps::class,
+        FoodSecurityImpact::class,
+        FoodSecurityCoping::class,
+        FoodSecurityNeeds::class,
+        FoodSecurityGaps::class
     ],
     exportSchema = false,
     version = 1)
@@ -51,6 +75,14 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun casualtiesRowDao(): CasualtiesRowDao
     abstract fun causeOfDeathRowDao(): CauseOfDeathRowDao
     abstract fun infrastructureDamageRowDao(): InfrastructureDamageRowDao
+    abstract fun houseDamageRowDao(): HouseDamageRowDao
+    abstract fun shelterCopingDao(): ShelterCopingDao
+    abstract fun shelterNeedsRowDao(): ShelterNeedsRowDao
+    abstract fun shelterGapsDao(): ShelterGapsDao
+    abstract fun foodSecurityImpactDao(): FoodSecurityImpactDao
+    abstract fun foodSecurityCopingDao(): FoodSecurityCopingDao
+    abstract fun foodSecurityNeedsDao(): FoodSecurityNeedsDao
+    abstract fun foodSecurityGapsDao(): FoodSecurityGapsDao
 
     companion object {
 

@@ -17,12 +17,9 @@
             android:orientation="vertical"
             android:background="@android:color/white">
 
-            <com.cpu.quikdata.customviews.DividerText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerText="@string/calamity_info_desc"/>
+            <include layout="@layout/view_divider_extra_large"/>
 
-            <com.cpu.quikdata.customviews.questions.StringQuestion
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/calamityTypeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,18 +31,15 @@
                 android:layout_height="wrap_content"
                 app:question="@string/calamity_info_date" />
 
-            <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/calamityDescText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:textHint="@string/calamity_info_event_desc"/>
 
-            <com.cpu.quikdata.customviews.DividerText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerText="@string/calamity_info_area_desc"/>
+            <include layout="@layout/view_divider_extra_large"/>
 
-            <com.cpu.quikdata.customviews.questions.MultilineStringQuestion
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/calamityAreaText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

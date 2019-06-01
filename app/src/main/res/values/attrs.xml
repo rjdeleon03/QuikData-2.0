@@ -27,6 +27,11 @@
         <attr name="text" />
     </declare-styleable>
 
+    <declare-styleable name="NumberQuestion" parent="StringQuestion">
+        <attr name="textHint" />
+        <attr name="text" />
+    </declare-styleable>
+
     <declare-styleable name="BooleanQuestion" parent="Question">
         <attr name="question" />
         <attr name="yesText" format="string" />
@@ -41,6 +46,14 @@
     <declare-styleable name="MultilineStringLongQuestion" parent="MultilineStringQuestion">
         <attr name="textHint" />
         <attr name="text" />
+    </declare-styleable>
+
+    <declare-styleable name="BooleanMultilineStringLongQuestion" parent="BooleanQuestion">
+        <attr name="questionBoolean" format="string" />
+        <attr name="questionString" format="string"/>
+        <attr name="textString" format="string" />
+        <attr name="yesText" />
+        <attr name="noText" />
     </declare-styleable>
 
     <declare-styleable name="DateQuestion" parent="Question">

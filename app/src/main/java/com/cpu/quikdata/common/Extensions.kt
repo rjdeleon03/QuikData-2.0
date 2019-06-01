@@ -1,18 +1,22 @@
 package com.cpu.quikdata.common
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Rect
 import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.cpu.quikdata.R
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.android.synthetic.main.fragment_population.*
-import kotlinx.android.synthetic.main.question_two_numbers.view.*
 import kotlin.math.roundToInt
 
 fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {
@@ -39,6 +43,42 @@ fun TextInputEditText.setupNumberInputValidation() {
             }
         }
     }
+}
+
+fun ViewGroup.setupOnFocusBehavior(target: TextView, focusSource: View) {
+
+    /* Retrieve default text view color */
+    val attrs2 = intArrayOf(android.R.attr.textColorHint)
+    val defaultAttributes = context.theme.obtainStyledAttributes(attrs2)
+    val defaultColor = defaultAttributes.getColor(0, Color.RED)
+    defaultAttributes.recycle()
+
+    setOnClickListener {
+        focusSource.requestFocus()
+    }
+
+    focusSource.setOnFocusChangeListener { _, hasFocus ->
+        if (hasFocus) {
+            target.setHintTextColor(ContextCompat.getColor(context, R.color.colorAccent))
+        } else {
+            target.setHintTextColor(defaultColor)
+        }
+    }
+}
+
+fun ViewPager.setupViewPager(pagerAdapter: PagerAdapter,
+                             titleChangedListener: (String) -> Unit) {
+
+    this.adapter = pagerAdapter
+    this.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+        override fun onPageScrollStateChanged(state: Int) {}
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            titleChangedListener.invoke(pagerAdapter.getPageTitle(position).toString())
+        }
+
+        override fun onPageSelected(position: Int) {}
+    })
 }
 
 fun RecyclerView.setupTapToExpand(context: Context) {
