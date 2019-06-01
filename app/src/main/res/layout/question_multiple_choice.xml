@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/questionChoiceText"
@@ -10,20 +11,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimenMid"
         android:layout_marginEnd="@dimen/dimenMid"
+        android:layout_marginTop="@dimen/dimenExtraSmall"
         android:textColor="?android:attr/textColorHint"/>
 
-    <LinearLayout
+    <GridLayout
         android:id="@+id/multipleChoiceLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="@dimen/dimenMid"
         android:layout_marginEnd="@dimen/dimenMid"
         android:layout_marginTop="@dimen/dimenExtraSmall"
+        android:columnCount="2"
+        android:layout_marginBottom="@dimen/dimenExtraSmall"
         android:gravity="center_vertical">
 
-    </LinearLayout>
+    </GridLayout>
 
     <include layout="@layout/view_divider"/>
 
-</merge>
+</LinearLayout>
