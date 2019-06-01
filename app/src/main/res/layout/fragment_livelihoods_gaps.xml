@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context=".feature.createform.livelihoodsinfo.livelihoodsgaps.LivelihoodsGapsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <com.cpu.quikdata.customviews.DividerText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerText="@string/livelihoods_gaps_question"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/livelihoodsGapsLocalMarketText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/livelihoods_gaps_local_market"
+                app:questionString="@string/text_details"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/livelihoodsGapsCashOpportunitiesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/livelihoods_gaps_cash_opportunities"
+                app:questionString="@string/text_details"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/livelihoodsGapsCreditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/livelihoods_gaps_credit"
+                app:questionString="@string/text_details"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/livelihoodsGapsMaterialsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/livelihoods_gaps_materials"
+                app:questionString="@string/text_details"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

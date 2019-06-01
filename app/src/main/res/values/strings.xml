@@ -168,4 +168,11 @@
     <string name="livelihoods_needs_resources_needed">What resources are needed to return to normal?</string>
     <string name="livelihoods_needs_families_in_assistance">How many families are in need of livelihood assistance?</string>
     <string name="livelihoods_needs_title">Needs</string>
+    <string name="livelihoods_gaps_local_market">Local market?</string>
+    <string name="text_details">Details</string>
+    <string name="livelihoods_gaps_question">Do women and men have equal access to:</string>
+    <string name="livelihoods_gaps_cash_opportunities">Cash and food-for-work opportunities?</string>
+    <string name="livelihoods_gaps_credit">Credit?</string>
+    <string name="livelihoods_gaps_materials">Livelihood materials and services?</string>
+    <string name="livelihoods_gaps_title">Gaps</string>
 </resources>
