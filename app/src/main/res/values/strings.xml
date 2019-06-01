@@ -186,4 +186,11 @@
     <string name="diseases_hospitalization">Hospitalization</string>
     <string name="diseases_medicines">Medicines</string>
     <string name="diseases_title">Diseases and Critical Injuries</string>
+    <string name="text_pregnant">Pregnant</string>
+    <string name="text_lactating">Lactating Women</string>
+    <string name="text_physically_challenged">Physically-challenged</string>
+    <string name="text_mentally_challenged">Mentally-challenged</string>
+    <string name="text_children">Children</string>
+    <string name="text_senior_citizens">Senior Citizens</string>
+    <string name="text_infants">Infants</string>
 </resources>
