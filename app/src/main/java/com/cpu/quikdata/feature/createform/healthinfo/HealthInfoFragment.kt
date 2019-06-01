@@ -10,6 +10,7 @@ import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.healthinfo.diseases.DiseasesFragment
+import com.cpu.quikdata.feature.createform.healthinfo.healthcoping.HealthCopingFragment
 import com.cpu.quikdata.feature.createform.healthinfo.psychosocial.PsychosocialFragment
 import com.cpu.quikdata.feature.createform.healthinfo.specialneeds.SpecialNeedsFragment
 import kotlinx.android.synthetic.main.fragment_health_info.*
@@ -34,6 +35,7 @@ class HealthInfoFragment : BaseCreateFormSectionFragment() {
         pagerAdapter.addFragment(DiseasesFragment.newInstance(), getString(R.string.diseases_title))
         pagerAdapter.addFragment(SpecialNeedsFragment.newInstance(), getString(R.string.special_needs_title))
         pagerAdapter.addFragment(PsychosocialFragment.newInstance(), getString(R.string.psychosocial_title))
+        pagerAdapter.addFragment(HealthCopingFragment.newInstance(), getString(R.string.health_coping_title))
         healthInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

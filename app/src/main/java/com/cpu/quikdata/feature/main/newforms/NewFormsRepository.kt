@@ -18,6 +18,7 @@ import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDama
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
+import com.cpu.quikdata.data.health.healthcoping.HealthCoping
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
@@ -199,6 +200,9 @@ class NewFormsRepository(application: Application) {
                 )
                 mDatabase.psychosocialRowDao().insert(row)
             }
+
+            val healthCoping = HealthCoping(id = generateId(), formId = formId)
+            mDatabase.healthCopingDao().insert(healthCoping)
 
             // endregion
         }

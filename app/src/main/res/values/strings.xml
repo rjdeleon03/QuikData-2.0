@@ -200,4 +200,6 @@
     <string name="psychosocial_manifestations">Manifestations of mental stress/trauma (Blank stare, nightmares, sleep disorder, violent tendencies, etc.)</string>
     <string name="psychosocial_needs">Needs (Counselling, referrals, etc.)</string>
     <string name="psychosocial_title">Psychosocial Conditions and Needs</string>
+    <string name="health_coping_strategies">What are the coping strategies employed?</string>
+    <string name="health_coping_title">Coping</string>
 </resources>
