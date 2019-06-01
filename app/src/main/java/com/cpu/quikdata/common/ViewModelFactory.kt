@@ -27,6 +27,7 @@ import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageVi
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps.ShelterGapsViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsViewModel
+import com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping.WashCopingViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(application: Application, formId: String) :
@@ -61,6 +62,7 @@ class ViewModelFactory(application: Application, formId: String) :
             PsychosocialViewModel::class.java -> PsychosocialViewModel(mApplication, mFormId) as T
             HealthCopingViewModel::class.java -> HealthCopingViewModel(mApplication, mFormId) as T
             HealthGapsViewModel::class.java -> HealthGapsViewModel(mApplication, mFormId) as T
+            WashCopingViewModel::class.java -> WashCopingViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }
     }

@@ -207,4 +207,6 @@
     <string name="health_gaps_services_accessible">Are these accessible to and sufficient for the target population?</string>
     <string name="health_gaps_reproductive_health">Are there specific services for reproductive health?</string>
     <string name="health_gaps_title">Gaps</string>
+    <string name="wash_coping_strategies">What are the coping strategies of the affected population?</string>
+    <string name="wash_coping_title">Coping</string>
 </resources>
