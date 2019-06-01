@@ -175,4 +175,14 @@
     <string name="livelihoods_gaps_credit">Credit?</string>
     <string name="livelihoods_gaps_materials">Livelihood materials and services?</string>
     <string name="livelihoods_gaps_title">Gaps</string>
+    <string name="diseases_diarrhea">Diarrhea</string>
+    <string name="diseases_pneumonia">Pneumonia</string>
+    <string name="diseases_dengue">Dengue</string>
+    <string name="diseases_number_of_cases">Number of Cases of Illnesses</string>
+    <string name="diseases_medical_needs">Medical Needs</string>
+    <string name="diseases_measles">Measles</string>
+    <string name="diseases_others">Others</string>
+    <string name="diseases_check_up">Check-up</string>
+    <string name="diseases_hospitalization">Hospitalization</string>
+    <string name="diseases_medicines">Medicines</string>
 </resources>
