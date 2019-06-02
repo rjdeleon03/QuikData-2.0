@@ -50,6 +50,8 @@ import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRowDao
+import com.cpu.quikdata.data.shelterinfo.shelterassistance.ShelterAssistanceRow
+import com.cpu.quikdata.data.shelterinfo.shelterassistance.ShelterAssistanceRowDao
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCopingDao
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
@@ -77,6 +79,7 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         HouseDamageRow::class,
         ShelterCoping::class,
         ShelterNeedsRow::class,
+        ShelterAssistanceRow::class,
         ShelterGaps::class,
         FoodSecurityImpact::class,
         FoodSecurityCoping::class,
@@ -111,6 +114,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun houseDamageRowDao(): HouseDamageRowDao
     abstract fun shelterCopingDao(): ShelterCopingDao
     abstract fun shelterNeedsRowDao(): ShelterNeedsRowDao
+    abstract fun shelterAssistanceRowDao(): ShelterAssistanceRowDao
     abstract fun shelterGapsDao(): ShelterGapsDao
     abstract fun foodSecurityImpactDao(): FoodSecurityImpactDao
     abstract fun foodSecurityCopingDao(): FoodSecurityCopingDao
