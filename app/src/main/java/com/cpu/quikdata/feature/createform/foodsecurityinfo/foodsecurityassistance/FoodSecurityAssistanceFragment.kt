@@ -1,7 +1,8 @@
-package com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance
+package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,32 +14,32 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupTapToExpand
-import kotlinx.android.synthetic.main.fragment_shelter_assistance.*
+import kotlinx.android.synthetic.main.fragment_food_security_assistance.*
 
-class ShelterAssistanceFragment : BaseAssistanceFragment() {
+class FoodSecurityAssistanceFragment : BaseAssistanceFragment() {
 
     companion object {
-        fun newInstance() = ShelterAssistanceFragment()
+        fun newInstance() = FoodSecurityAssistanceFragment()
     }
 
-    private lateinit var mViewModel: ShelterAssistanceViewModel
-    private lateinit var mAdapter: ShelterAssistanceAdapter
+    private lateinit var mViewModel: FoodSecurityAssistanceViewModel
+    private lateinit var mAdapter: FoodSecurityAssistanceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_shelter_assistance, container, false)
+        return inflater.inflate(R.layout.fragment_food_security_assistance, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = ShelterAssistanceAdapter(context!!) {
+        mAdapter = FoodSecurityAssistanceAdapter(context!!) {
             mViewModel.updateRow(it)
         }
-        shelterAssistanceRecyclerView.adapter = mAdapter
-        shelterAssistanceRecyclerView.setupTapToExpand(context!!)
-        shelterAssistanceAddButton.clickWithGuard {
+        foodSecurityAssistanceRecyclerView.adapter = mAdapter
+        foodSecurityAssistanceRecyclerView.setupTapToExpand(context!!)
+        foodSecurityAssistanceAddButton.clickWithGuard {
 
             if (isItemLimitReached) {
                 // TODO: Update this with a dialog
@@ -53,8 +54,8 @@ class ShelterAssistanceFragment : BaseAssistanceFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(ShelterAssistanceViewModel::class.java)
-        mViewModel.shelterAssistance.observe(viewLifecycleOwner, Observer {
+        mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityAssistanceViewModel::class.java)
+        mViewModel.foodSecurityAssistance.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
             isItemLimitReached = it.size >= itemLimit
         })

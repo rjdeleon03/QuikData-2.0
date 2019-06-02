@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRow
+import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRowDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
@@ -88,6 +90,7 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         FoodSecurityImpact::class,
         FoodSecurityCoping::class,
         FoodSecurityNeeds::class,
+        FoodSecurityAssistanceRow::class,
         FoodSecurityGaps::class,
         EstimatedDamageRow::class,
         EstimatedDamageType::class,
@@ -125,6 +128,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun foodSecurityImpactDao(): FoodSecurityImpactDao
     abstract fun foodSecurityCopingDao(): FoodSecurityCopingDao
     abstract fun foodSecurityNeedsDao(): FoodSecurityNeedsDao
+    abstract fun foodSecurityAssistanceRowDao(): FoodSecurityAssistanceRowDao
     abstract fun foodSecurityGapsDao(): FoodSecurityGapsDao
     abstract fun estimatedDamageRowDao(): EstimatedDamageRowDao
     abstract fun estimatedDamageTypeDao(): EstimatedDamageTypeDao

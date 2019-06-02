@@ -2,7 +2,7 @@ package com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseCreatableDataRepository
 import com.cpu.quikdata.data.shelterinfo.shelterassistance.ShelterAssistanceRow
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.runOnIoThread
@@ -10,7 +10,7 @@ import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 
 class ShelterAssistanceRepository(application: Application, formId: String) :
-    BaseRepository<ShelterAssistanceRow>(application) {
+    BaseCreatableDataRepository<ShelterAssistanceRow>(application) {
 
     private val mFormId = formId
     private val mShelterAssistance = mDatabase.shelterAssistanceRowDao().getByFormId(formId)
@@ -24,7 +24,7 @@ class ShelterAssistanceRepository(application: Application, formId: String) :
         }
     }
 
-    fun createData() {
+    override fun createData() {
         runOnIoThread {
             val dateTodayInMillis = LocalDate.now().toDateTimeAtStartOfDay().millis
             val row = ShelterAssistanceRow(id = generateId(),
