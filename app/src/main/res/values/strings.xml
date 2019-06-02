@@ -281,4 +281,5 @@
     <string name="text_girls">Girls</string>
     <string name="text_assistance">Assistance</string>
     <string name="assistance_item">Assistance Item</string>
+    <string name="assistance_add_limit_error">Only up to 10 assistance items are allowed. You cannot add any further.</string>
 </resources>
