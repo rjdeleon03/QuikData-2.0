@@ -20,10 +20,12 @@ import com.cpu.quikdata.feature.createform.healthinfo.healthcoping.HealthCopingV
 import com.cpu.quikdata.feature.createform.healthinfo.healthgaps.HealthGapsViewModel
 import com.cpu.quikdata.feature.createform.healthinfo.psychosocial.PsychosocialViewModel
 import com.cpu.quikdata.feature.createform.healthinfo.specialneeds.SpecialNeedsViewModel
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage.EstimatedDamageViewModel
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingViewModel
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsgaps.LivelihoodsGapsViewModel
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeedsViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageViewModel
+import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.ShelterAssistanceViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps.ShelterGapsViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsViewModel
@@ -51,11 +53,13 @@ class ViewModelFactory(application: Application, formId: String) :
             HouseDamageViewModel::class.java -> HouseDamageViewModel(mApplication, mFormId) as T
             ShelterCopingViewModel::class.java -> ShelterCopingViewModel(mApplication, mFormId) as T
             ShelterNeedsViewModel::class.java -> ShelterNeedsViewModel(mApplication, mFormId) as T
+            ShelterAssistanceViewModel::class.java -> ShelterAssistanceViewModel(mApplication, mFormId) as T
             ShelterGapsViewModel::class.java -> ShelterGapsViewModel(mApplication, mFormId) as T
             FoodSecurityImpactViewModel::class.java -> FoodSecurityImpactViewModel(mApplication, mFormId) as T
             FoodSecurityCopingViewModel::class.java -> FoodSecurityCopingViewModel(mApplication, mFormId) as T
             FoodSecurityNeedsViewModel::class.java -> FoodSecurityNeedsViewModel(mApplication, mFormId) as T
             FoodSecurityGapsViewModel::class.java -> FoodSecurityGapsViewModel(mApplication, mFormId) as T
+            EstimatedDamageViewModel::class.java -> EstimatedDamageViewModel(mApplication, mFormId) as T
             LivelihoodsCopingViewModel::class.java -> LivelihoodsCopingViewModel(mApplication, mFormId) as T
             LivelihoodsNeedsViewModel::class.java -> LivelihoodsNeedsViewModel(mApplication, mFormId) as T
             LivelihoodsGapsViewModel::class.java -> LivelihoodsGapsViewModel(mApplication, mFormId) as T

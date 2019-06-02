@@ -40,6 +40,10 @@ import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRowDao
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRowDao
+import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageRow
+import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageRowDao
+import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageType
+import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageTypeDao
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingDao
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
@@ -50,6 +54,8 @@ import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRowDao
+import com.cpu.quikdata.data.shelterinfo.shelterassistance.ShelterAssistanceRow
+import com.cpu.quikdata.data.shelterinfo.shelterassistance.ShelterAssistanceRowDao
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCopingDao
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
@@ -77,11 +83,14 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         HouseDamageRow::class,
         ShelterCoping::class,
         ShelterNeedsRow::class,
+        ShelterAssistanceRow::class,
         ShelterGaps::class,
         FoodSecurityImpact::class,
         FoodSecurityCoping::class,
         FoodSecurityNeeds::class,
         FoodSecurityGaps::class,
+        EstimatedDamageRow::class,
+        EstimatedDamageType::class,
         LivelihoodsCoping::class,
         LivelihoodsNeeds::class,
         LivelihoodsGaps::class,
@@ -111,11 +120,14 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun houseDamageRowDao(): HouseDamageRowDao
     abstract fun shelterCopingDao(): ShelterCopingDao
     abstract fun shelterNeedsRowDao(): ShelterNeedsRowDao
+    abstract fun shelterAssistanceRowDao(): ShelterAssistanceRowDao
     abstract fun shelterGapsDao(): ShelterGapsDao
     abstract fun foodSecurityImpactDao(): FoodSecurityImpactDao
     abstract fun foodSecurityCopingDao(): FoodSecurityCopingDao
     abstract fun foodSecurityNeedsDao(): FoodSecurityNeedsDao
     abstract fun foodSecurityGapsDao(): FoodSecurityGapsDao
+    abstract fun estimatedDamageRowDao(): EstimatedDamageRowDao
+    abstract fun estimatedDamageTypeDao(): EstimatedDamageTypeDao
     abstract fun livelihoodsCopingDao(): LivelihoodsCopingDao
     abstract fun livelihoodsNeedsDao(): LivelihoodsNeedsDao
     abstract fun livelihoodsGapsDao(): LivelihoodsGapsDao
