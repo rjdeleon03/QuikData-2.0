@@ -9,6 +9,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
+import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactFragment
@@ -35,6 +36,7 @@ class FoodSecurityInfoFragment : BaseCreateFormSectionFragment() {
         pagerAdapter.addFragment(FoodSecurityImpactFragment.newInstance(), getString(R.string.food_security_impact_title))
         pagerAdapter.addFragment(FoodSecurityCopingFragment.newInstance(), getString(R.string.food_security_coping_title))
         pagerAdapter.addFragment(FoodSecurityNeedsFragment.newInstance(), getString(R.string.food_security_needs_title))
+        pagerAdapter.addFragment(FoodSecurityAssistanceFragment.newInstance(), getString(R.string.text_assistance))
         pagerAdapter.addFragment(FoodSecurityGapsFragment.newInstance(), getString(R.string.food_security_gaps_title))
         foodSecurityInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
