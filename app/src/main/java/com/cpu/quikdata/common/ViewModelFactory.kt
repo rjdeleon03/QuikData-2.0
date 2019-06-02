@@ -31,6 +31,7 @@ import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.Shelter
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps.ShelterGapsViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsViewModel
+import com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance.WashAssistanceViewModel
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washconditions.WashConditionsViewModel
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping.WashCopingViewModel
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washgaps.WashGapsViewModel
@@ -74,6 +75,7 @@ class ViewModelFactory(application: Application, formId: String) :
             HealthGapsViewModel::class.java -> HealthGapsViewModel(mApplication, mFormId) as T
             WashConditionsViewModel::class.java -> WashConditionsViewModel(mApplication, mFormId) as T
             WashCopingViewModel::class.java -> WashCopingViewModel(mApplication, mFormId) as T
+            WashAssistanceViewModel::class.java -> WashAssistanceViewModel(mApplication, mFormId) as T
             WashGapsViewModel::class.java -> WashGapsViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }

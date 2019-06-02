@@ -66,6 +66,8 @@ import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGapsDao
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
+import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRow
+import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRowDao
 import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
 import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditionsDao
 import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
@@ -107,6 +109,7 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         HealthGaps::class,
         WashConditions::class,
         WashCoping::class,
+        WashAssistanceRow::class,
         WashGaps::class
     ],
     exportSchema = false,
@@ -146,6 +149,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun healthGapsDao(): HealthGapsDao
     abstract fun washConditionsDao(): WashConditionsDao
     abstract fun washCopingDao(): WashCopingDao
+    abstract fun washAssistanceRowDao(): WashAssistanceRowDao
     abstract fun washGapsDao(): WashGapsDao
 
     companion object {
