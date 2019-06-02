@@ -5,6 +5,15 @@
         <attr name="dividerText" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="SubdividerText" parent="DividerText">
+        <attr name="dividerText" />
+    </declare-styleable>
+
+    <declare-styleable name="CollapsibleContainer">
+        <attr name="headerText" format="string" />
+        <attr name="collapsed" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="TextItem">
         <attr name="text" format="string" />
     </declare-styleable>
@@ -22,9 +31,46 @@
         <attr name="text" />
     </declare-styleable>
 
+    <declare-styleable name="NumberQuestion" parent="StringQuestion">
+        <attr name="textHint" />
+        <attr name="text" />
+    </declare-styleable>
+
+    <declare-styleable name="BooleanQuestion" parent="Question">
+        <attr name="question" />
+        <attr name="yesText" format="string" />
+        <attr name="noText" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="MultilineStringQuestion" parent="StringQuestion">
         <attr name="textHint" />
         <attr name="text" />
+    </declare-styleable>
+
+    <declare-styleable name="MultilineStringLongQuestion" parent="MultilineStringQuestion">
+        <attr name="textHint" />
+        <attr name="text" />
+    </declare-styleable>
+
+    <declare-styleable name="BooleanMultilineStringLongQuestion" parent="BooleanQuestion">
+        <attr name="questionBoolean" format="string" />
+        <attr name="questionString" format="string"/>
+        <attr name="textString" format="string" />
+        <attr name="yesText" />
+        <attr name="noText" />
+    </declare-styleable>
+
+    <declare-styleable name="ThreeChoiceMultilineStringLongQuestion" parent="Question">
+        <attr name="questionChoice" format="string" />
+        <attr name="questionString"/>
+        <attr name="textString" />
+        <attr name="option1Text" format="string" />
+        <attr name="option2Text" format="string" />
+        <attr name="option3Text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="MultipleChoiceQuestion" parent="ThreeChoiceMultilineStringLongQuestion">
+        <attr name="questionChoice" />
     </declare-styleable>
 
     <declare-styleable name="DateQuestion" parent="Question">

@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseFocusableFragment
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import kotlinx.android.synthetic.main.fragment_prefilled_info.*
 
-class PrefilledInfoFragment : Fragment() {
+class PrefilledInfoFragment : BaseFocusableFragment() {
 
     companion object {
         fun newInstance() = PrefilledInfoFragment()

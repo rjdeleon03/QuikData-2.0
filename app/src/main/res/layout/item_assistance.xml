@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cpu.quikdata.customviews.CollapsibleContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:collapsed="true">
+
+    <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+        android:id="@+id/assistanceOrganizationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/assistance_organization"/>
+
+    <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+        android:id="@+id/assistanceTypeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/assistance_type"/>
+
+    <com.cpu.quikdata.customviews.questions.DateQuestion
+        android:id="@+id/assistanceDateReceivedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/assistance_date_received"/>
+
+    <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+        android:id="@+id/assistanceQuantityText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/assistance_quantity"/>
+
+    <com.cpu.quikdata.customviews.SubdividerText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerText="@string/assistance_beneficiaries"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2">
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/assistanceMenText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_men"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/assistanceWomenText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_women"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/assistanceBoysText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_boys"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/assistanceGirlsText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_girls"/>
+
+    </GridLayout>
+
+</com.cpu.quikdata.customviews.CollapsibleContainer>

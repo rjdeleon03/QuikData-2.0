@@ -2,25 +2,22 @@ package com.cpu.quikdata.feature.createform.formdetails
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.formdetails.FormDetails
-import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import kotlinx.android.synthetic.main.fragment_form_details.*
 
-class FormDetailsFragment : Fragment() {
+class FormDetailsFragment : BaseCreateFormFragment() {
 
     companion object {
         fun newInstance() = FormDetailsFragment()
     }
 
-    private lateinit var mParentViewModel: CreateFormViewModel
     private lateinit var mViewModel: FormDetailsViewModel
 
     override fun onCreateView(
@@ -45,10 +42,8 @@ class FormDetailsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
 
-        val factory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-        mViewModel = ViewModelProviders.of(this, factory).get(FormDetailsViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this, mFactory).get(FormDetailsViewModel::class.java)
         mViewModel.formDetails.observe(viewLifecycleOwner, Observer {
             formDetailsAssessmentDateText.date = it.assessmentDate
             formDetailsInterviewerText.text = it.interviewer

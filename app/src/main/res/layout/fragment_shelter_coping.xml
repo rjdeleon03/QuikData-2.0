@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context=".feature.createform.shelterinfo.sheltercoping.ShelterCopingFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/shelterCopingDisplacedFamiliesLocationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/shelter_coping_displaced_families_location"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/shelterCopingHowToGetHomesBackText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/shelter_coping_how_to_get_homes_back"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/shelterCopingWhenToReturnHomeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/shelter_coping_when_to_return_home"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/shelterCopingIfCannotReturnHomeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textHint="@string/shelter_coping_if_cannot_return_home"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

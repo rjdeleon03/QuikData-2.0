@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cpu.quikdata.customviews.CollapsibleContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:collapsed="true">
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/houseDamageOwnedHouseholdsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/house_damage_owned_households"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/houseDamageRentedHouseholdsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/house_damage_rented_households"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/houseDamageSharedHouseholdsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/house_damage_shared_households"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/houseDamageOwnedLandText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/house_damage_owned_land"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/houseDamageRentedLandText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/house_damage_rented_land"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/houseDamageTenantedLandText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/house_damage_tenanted_land"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/houseDamageInformalSettlersText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/house_damage_informal_settlers"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/houseDamagePartiallyDamagedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/house_damage_partially_damaged"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/houseDamageTotallyDamagedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/house_damage_totally_damaged"/>
+
+</com.cpu.quikdata.customviews.CollapsibleContainer>

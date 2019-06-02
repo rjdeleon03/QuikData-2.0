@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/dimenMid"
+        android:layout_marginEnd="@dimen/dimenMid"
+        android:layout_marginTop="@dimen/dimenExtraSmall"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/questionBooleanText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="?android:attr/textColorHint"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:theme="@style/RadioButtonStyle">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/radioYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_yes"
+                android:textColor="?android:attr/textColorHint"
+                android:layout_marginEnd="@dimen/dimenLarge"/>
+
+            <RadioButton
+                android:id="@+id/radioNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_no"
+                android:textColor="?android:attr/textColorHint"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/questionStringText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dimenMid"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimenExtraSmall"
+            android:layout_marginStart="@dimen/dimenMid"
+            android:layout_marginEnd="@dimen/dimenMid"
+            android:textColor="?android:attr/textColorHint"/>
+
+        <EditText
+            android:id="@+id/textField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dimenMid"
+            android:paddingTop="0dp"
+            android:layout_marginBottom="@dimen/dimenSmall"
+            android:layout_marginStart="@dimen/dimenMid"
+            android:layout_marginEnd="@dimen/dimenMid"
+            style="@style/EditTextTheme"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/view_divider"/>
+
+</merge>
