@@ -10,6 +10,7 @@ import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.ShelterAssistanceFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps.ShelterGapsFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsFragment
@@ -35,6 +36,7 @@ class ShelterInfoFragment : BaseCreateFormSectionFragment() {
         pagerAdapter.addFragment(HouseDamageFragment.newInstance(), getString(R.string.house_damage_title))
         pagerAdapter.addFragment(ShelterCopingFragment.newInstance(), getString(R.string.shelter_coping_title))
         pagerAdapter.addFragment(ShelterNeedsFragment.newInstance(), getString(R.string.shelter_needs_title))
+        pagerAdapter.addFragment(ShelterAssistanceFragment.newInstance(), getString(R.string.text_assistance))
         pagerAdapter.addFragment(ShelterGapsFragment.newInstance(), getString(R.string.shelter_gaps_title))
         shelterInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }

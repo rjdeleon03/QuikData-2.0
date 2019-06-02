@@ -25,6 +25,7 @@ import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping.Liv
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsgaps.LivelihoodsGapsViewModel
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeedsViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageViewModel
+import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.ShelterAssistanceViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps.ShelterGapsViewModel
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsViewModel
@@ -52,6 +53,7 @@ class ViewModelFactory(application: Application, formId: String) :
             HouseDamageViewModel::class.java -> HouseDamageViewModel(mApplication, mFormId) as T
             ShelterCopingViewModel::class.java -> ShelterCopingViewModel(mApplication, mFormId) as T
             ShelterNeedsViewModel::class.java -> ShelterNeedsViewModel(mApplication, mFormId) as T
+            ShelterAssistanceViewModel::class.java -> ShelterAssistanceViewModel(mApplication, mFormId) as T
             ShelterGapsViewModel::class.java -> ShelterGapsViewModel(mApplication, mFormId) as T
             FoodSecurityImpactViewModel::class.java -> FoodSecurityImpactViewModel(mApplication, mFormId) as T
             FoodSecurityCopingViewModel::class.java -> FoodSecurityCopingViewModel(mApplication, mFormId) as T

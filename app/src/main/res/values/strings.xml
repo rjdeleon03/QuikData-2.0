@@ -270,4 +270,15 @@
     <string name="estimated_damage_cost">Estimated Damage Cost (PHP)</string>
     <string name="estimated_damage_title">Estimated Cost of Damage to Livelihoods</string>
     <string name="estimated_damage_kinds">Kinds of Livelihoods</string>
+    <string name="assistance_organization">Name of Organization / Agency</string>
+    <string name="assistance_type">Type of Assistance Received</string>
+    <string name="assistance_date_received">Date Received</string>
+    <string name="assistance_quantity">Quantity / Amount</string>
+    <string name="assistance_beneficiaries">Beneficiaries</string>
+    <string name="text_men">Men</string>
+    <string name="text_women">Women</string>
+    <string name="text_boys">Boys</string>
+    <string name="text_girls">Girls</string>
+    <string name="text_assistance">Assistance</string>
+    <string name="assistance_item">Assistance Item</string>
 </resources>
