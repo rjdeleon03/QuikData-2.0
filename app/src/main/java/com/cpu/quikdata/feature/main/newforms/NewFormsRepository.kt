@@ -22,6 +22,8 @@ import com.cpu.quikdata.data.health.healthcoping.HealthCoping
 import com.cpu.quikdata.data.health.healthgaps.HealthGaps
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
+import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageRow
+import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageType
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeeds
@@ -164,6 +166,27 @@ class NewFormsRepository(application: Application) {
             // endregion
 
             // region Livelihoods information
+
+            for (i in 0 until LivelihoodCategories.values().size) {
+                val estimatedDamageId = generateId()
+                val row = EstimatedDamageRow(
+                    id = estimatedDamageId,
+                    type = i,
+                    formId = formId
+                )
+                mDatabase.estimatedDamageRowDao().insert(row)
+
+                val subcategories = LivelihoodCategories.values()[i].getSubcategories()
+                for (j in 0 until subcategories.size) {
+
+                    val subRow = EstimatedDamageType(
+                        id = generateId(),
+                        type = subcategories[j].ordinal,
+                        estimatedDamageId = estimatedDamageId
+                    )
+                    mDatabase.estimatedDamageTypeDao().insert(subRow)
+                }
+            }
 
             val livelihoodsCoping = LivelihoodsCoping(id = generateId(), formId = formId)
             mDatabase.livelihoodsCopingDao().insert(livelihoodsCoping)

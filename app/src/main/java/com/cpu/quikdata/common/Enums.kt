@@ -158,3 +158,105 @@ enum class SpecialNeedsCategories {
         }
     }
 }
+
+enum class LivelihoodCategories {
+    FARMING,
+    FISHING,
+    TRANSPORTATION,
+    ENTREPRENEURSHIP,
+    WORKERS;
+
+    fun getStringId(): Int {
+        return when(this) {
+            FARMING -> R.string.text_farming
+            FISHING -> R.string.text_fishing
+            TRANSPORTATION -> R.string.text_transportation
+            ENTREPRENEURSHIP -> R.string.text_entrepreneurship
+            WORKERS -> R.string.text_workers
+        }
+    }
+
+    fun getSubcategories(): Array<LivelihoodSubcategories> {
+        return when(this) {
+            FARMING -> arrayOf(LivelihoodSubcategories.RICE,
+                LivelihoodSubcategories.CORN,
+                LivelihoodSubcategories.VEGETABLES,
+                LivelihoodSubcategories.FRUITS,
+                LivelihoodSubcategories.LIVESTOCK,
+                LivelihoodSubcategories.FARMING_OTHERS)
+            FISHING -> arrayOf(LivelihoodSubcategories.BOAT,
+                LivelihoodSubcategories.FISHING_EQUIPMENT,
+                LivelihoodSubcategories.AQUACULTURES,
+                LivelihoodSubcategories.FISHING_OTHERS)
+            TRANSPORTATION -> arrayOf(LivelihoodSubcategories.JEEPNEY,
+                LivelihoodSubcategories.TRICYCLE,
+                LivelihoodSubcategories.VAN,
+                LivelihoodSubcategories.TRANSPORTATION_OTHERS)
+            ENTREPRENEURSHIP -> arrayOf(LivelihoodSubcategories.VENDOR,
+                LivelihoodSubcategories.SARI_SARI_STORE,
+                LivelihoodSubcategories.ENTREPRENEURSHIP_OTHERS)
+            WORKERS -> arrayOf(LivelihoodSubcategories.EMPLOYEES,
+                LivelihoodSubcategories.LABORERS)
+        }
+    }
+
+    companion object {
+
+        fun getStringId(idx: Int): Int {
+            return LivelihoodCategories.values()[idx].getStringId()
+        }
+    }
+}
+
+enum class LivelihoodSubcategories {
+    RICE,
+    CORN,
+    VEGETABLES,
+    FRUITS,
+    LIVESTOCK,
+    FARMING_OTHERS,
+    BOAT,
+    FISHING_EQUIPMENT,
+    AQUACULTURES,
+    FISHING_OTHERS,
+    JEEPNEY,
+    TRICYCLE,
+    VAN,
+    TRANSPORTATION_OTHERS,
+    VENDOR,
+    SARI_SARI_STORE,
+    ENTREPRENEURSHIP_OTHERS,
+    EMPLOYEES,
+    LABORERS;
+
+    fun getStringId(): Int {
+        return when(this) {
+            RICE -> R.string.text_rice
+            CORN -> R.string.text_corn
+            VEGETABLES -> R.string.text_vegetables
+            FRUITS -> R.string.text_fruits
+            LIVESTOCK -> R.string.text_livestock
+            FARMING_OTHERS -> R.string.text_others
+            BOAT -> R.string.text_boat
+            FISHING_EQUIPMENT -> R.string.text_fishing_equipment
+            AQUACULTURES -> R.string.text_aquacultures
+            FISHING_OTHERS -> R.string.text_others
+            JEEPNEY -> R.string.text_jeepney
+            TRICYCLE -> R.string.text_tricycle
+            VAN -> R.string.text_van
+            TRANSPORTATION_OTHERS -> R.string.text_others
+            VENDOR -> R.string.text_vendor
+            SARI_SARI_STORE -> R.string.text_sari_sari_store
+            ENTREPRENEURSHIP_OTHERS -> R.string.text_others
+            EMPLOYEES -> R.string.text_employees
+            LABORERS -> R.string.text_laborers
+        }
+    }
+
+    companion object {
+
+        fun getStringId(idx: Int): Int {
+            return LivelihoodSubcategories.values()[idx].getStringId()
+        }
+    }
+}
