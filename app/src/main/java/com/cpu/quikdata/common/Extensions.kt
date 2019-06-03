@@ -84,6 +84,7 @@ fun ViewPager.setupViewPager(pagerAdapter: PagerAdapter,
 fun RecyclerView.setupTapToExpand(context: Context) {
     var startX = 0F
     var startY = 0F
+    /*
     this.setOnTouchListener { _, event ->
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
@@ -108,6 +109,7 @@ fun RecyclerView.setupTapToExpand(context: Context) {
         }
         false
     }
+    */
 }
 
 private fun isClickAction(beforeX: Float, beforeY: Float, afterX: Float, afterY: Float, context: Context): Boolean{

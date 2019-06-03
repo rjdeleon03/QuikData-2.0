@@ -47,11 +47,12 @@ abstract class BaseAdapter<R, VH: RecyclerView.ViewHolder>(context: Context, row
             }
 
             // Expand if it is the item to be expanded
-            if (!isCollapsed) {
-                collapsibleView?.expand(false)
-            } else {
-                collapsibleView?.collapse(false)
-            }
+//            if (!isCollapsed) {
+//                collapsibleView?.expand(false)
+//            } else {
+//                collapsibleView?.collapse(false)
+//            }
+            collapsibleView?.isCollapsed = isCollapsed
 
 
 

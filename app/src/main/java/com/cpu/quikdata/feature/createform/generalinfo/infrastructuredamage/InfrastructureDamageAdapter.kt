@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.common.InfraCategories
+import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import kotlinx.android.synthetic.main.item_infrastructure_damage.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -20,14 +21,26 @@ class InfrastructureDamageAdapter(context: Context, rowSaveListener: (Infrastruc
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val row = mRows?.get(position)
-        holder.populateWithData(row!!, row.type,
-            mExpandedItem != row.type, mRowSaveListener,
+        holder.setOnClickListener {
+            notifyItemChanged(mExpandedItem)
+            mExpandedItem = position
+            notifyItemChanged(position)
+        }
+        holder.populateWithData(row!!, position,
+            mExpandedItem != position, mRowSaveListener,
             { idx, isCollapsed ->
-                if (!isCollapsed) mExpandedItem = idx
+//                if (!isCollapsed) mExpandedItem = idx
             })
     }
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<InfrastructureDamageRow>(itemView) {
+
+        fun setOnClickListener(l: () -> Unit) {
+            collapsibleView?.headerTextField?.clickWithGuard {
+                l.invoke()
+            }
+        }
+
 
         override fun populateWithData(row: InfrastructureDamageRow,
                                       isCollapsed: Boolean,

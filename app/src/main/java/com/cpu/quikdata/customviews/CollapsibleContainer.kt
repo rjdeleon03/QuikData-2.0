@@ -22,9 +22,16 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
     var isCollapsed: Boolean
         get() = mIsCollapsed
-        private set(value) {
+        set(value) {
             mIsCollapsed = value
-            mOnCollapsedStateChangedListener?.invoke(mIsCollapsed)
+//            mOnCollapsedStateChangedListener?.invoke(mIsCollapsed)
+            post {
+                if (mIsCollapsed) {
+                    contentLayout.visibility = View.GONE
+                } else {
+                    contentLayout.visibility = View.VISIBLE
+                }
+            }
         }
 
     var onDetachedListener: (() -> Unit)? = null

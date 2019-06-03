@@ -35,13 +35,13 @@ class GeneralInfoFragment : BaseCreateFormSectionFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        pagerAdapter.addFragment(InfrastructureDamageFragment.newInstance(), getString(R.string.infrastructure_damage_title))
         pagerAdapter.addFragment(CalamityInfoFragment.newInstance(), getString(R.string.calamity_info_title))
         pagerAdapter.addFragment(PopulationFragment.newInstance(), getString(R.string.population_title))
         pagerAdapter.addFragment(FamiliesFragment.newInstance(), getString(R.string.families_title))
         pagerAdapter.addFragment(VulnerableFragment.newInstance(), getString(R.string.vulnerable_title))
         pagerAdapter.addFragment(CasualtiesFragment.newInstance(), getString(R.string.casualties_title))
         pagerAdapter.addFragment(CauseOfDeathFragment.newInstance(), getString(R.string.cause_of_death_title))
-        pagerAdapter.addFragment(InfrastructureDamageFragment.newInstance(), getString(R.string.infrastructure_damage_title))
         genInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 
