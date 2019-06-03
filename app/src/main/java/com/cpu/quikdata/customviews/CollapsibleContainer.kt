@@ -29,8 +29,10 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
     var onDetachedListener: (() -> Unit)? = null
         set(value) {
-            field = value
-            mOnDetachedListener = field
+            if (mOnDetachedListener == null) {
+                field = value
+                mOnDetachedListener = field
+            }
         }
 
     var onCollapsedStateChangedListener: ((Boolean) -> Unit)? = null
