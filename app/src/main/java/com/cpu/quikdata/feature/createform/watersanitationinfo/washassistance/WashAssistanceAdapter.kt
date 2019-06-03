@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class WashAssistanceAdapter(context: Context, rowSaveListener: (WashAssistanceRow) -> Unit) :
-    BaseAdapter<WashAssistanceRow, WashAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+    BaseAssistanceAdapter<WashAssistanceRow, WashAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mInflater.inflate(R.layout.item_assistance, parent, false)

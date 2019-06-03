@@ -18,7 +18,7 @@ abstract class BaseAdapter<R, VH: RecyclerView.ViewHolder>(context: Context, row
         return if (mRows != null) mRows!!.size else 0
     }
 
-    fun setRows(rows: List<R>) {
+    open fun setRows(rows: List<R>) {
         mRows = rows
         notifyDataSetChanged()
     }
@@ -52,6 +52,9 @@ abstract class BaseAdapter<R, VH: RecyclerView.ViewHolder>(context: Context, row
             } else {
                 collapsibleView?.collapse(false)
             }
+
+
+
         }
 
         protected abstract fun populateWithData(row: R,

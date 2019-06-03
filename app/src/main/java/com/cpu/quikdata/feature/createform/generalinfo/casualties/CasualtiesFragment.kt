@@ -2,19 +2,14 @@ package com.cpu.quikdata.feature.createform.generalinfo.casualties
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.doOnNextLayout
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.common.setupTapToExpand
-import com.cpu.quikdata.customviews.CollapsibleContainer
-import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import kotlinx.android.synthetic.main.fragment_casualties.*
 
 class CasualtiesFragment : BaseCreateFormFragment() {

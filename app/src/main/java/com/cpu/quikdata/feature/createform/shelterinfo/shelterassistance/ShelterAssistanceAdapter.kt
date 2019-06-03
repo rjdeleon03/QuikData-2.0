@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.data.shelterinfo.shelterassistance.ShelterAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class ShelterAssistanceAdapter(context: Context, rowSaveListener: (ShelterAssistanceRow) -> Unit) :
-    BaseAdapter<ShelterAssistanceRow, ShelterAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+    BaseAssistanceAdapter<ShelterAssistanceRow, ShelterAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mInflater.inflate(R.layout.item_assistance, parent, false)
