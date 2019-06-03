@@ -150,5 +150,14 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         contentLayout.startAnimation(a)
     }
 
+    override fun onAnimationEnd() {
+        super.onAnimationEnd()
+        if (mIsCollapsed) {
+            contentLayout.visibility = View.GONE
+        } else {
+            contentLayout.visibility = View.VISIBLE
+        }
+    }
+
     // endregion
 }
