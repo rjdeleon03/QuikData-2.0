@@ -67,4 +67,8 @@ class MultipleChoiceQuestion(context: Context, attrs: AttributeSet) : LinearLayo
         }
         return booleanList
     }
+
+    fun clear() {
+        multipleChoiceLayout.removeAllViews()
+    }
 }

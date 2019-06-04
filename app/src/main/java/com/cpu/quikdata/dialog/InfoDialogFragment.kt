@@ -22,13 +22,13 @@ class InfoDialogFragment : DialogFragment() {
     companion object {
         const val TAG = "INFO_DIALOG_FRAGMENT"
         private const val TITLE_ID_KEY = "TITLE_ID_KEY"
-        private const val TEXT_ID_KEY = "TEXT_ID_KEY"
+        private const val CONTENT_ID_KEY = "CONTENT_ID_KEY"
 
         fun newInstance(titleId: Int, textId: Int) : InfoDialogFragment {
             val fragment = InfoDialogFragment()
             val bundle = Bundle()
             bundle.putInt(TITLE_ID_KEY, titleId)
-            bundle.putInt(TEXT_ID_KEY, textId)
+            bundle.putInt(CONTENT_ID_KEY, textId)
             fragment.arguments = bundle
             return fragment
         }
@@ -43,13 +43,13 @@ class InfoDialogFragment : DialogFragment() {
         val titleId = arguments?.getInt(TITLE_ID_KEY)
         val title = getString(titleId!!)
 
-        val textId = arguments?.getInt(TEXT_ID_KEY)
-        val text = getString(textId!!)
+        val contentId = arguments?.getInt(CONTENT_ID_KEY)
+        val content = LayoutInflater.from(context!!).inflate(contentId!!, null)
 
         val builder = AlertDialog.Builder(context!!)
         builder.setTitle(title)
-            .setMessage(text)
-            .setPositiveButton("OK") { _, _ ->
+            .setView(content)
+            .setPositiveButton(getString(R.string.text_ok)) { _, _ ->
             }
         return builder.create()
     }

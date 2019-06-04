@@ -222,6 +222,10 @@
     <string name="text_level2">Level 2</string>
     <string name="text_level3">Level 3</string>
     <string name="wash_conditions_title">Conditions</string>
+    <string name="wash_conditions_info_levels">Water System Levels</string>
+    <string name="wash_conditions_info_level_1">Stand-alone water points (hand pumps, shallow wells, rainwater collectors) serving an average of 15 hh within a 250-meter distance</string>
+    <string name="wash_conditions_info_level_2">Piped water with communal water point (borewell, spring system) serving an average of 4–6 hh within a 25-meter distance</string>
+    <string name="wash_conditions_info_level_3">Piped water supply with a private water point (house connection) based on a daily water demand of more than 100 liters per person</string>
     <string name="wash_conditions_drinking_water">Drinking and food preparation?</string>
     <string name="wash_conditions_bathing_water">Bathing, washing and domestic use?</string>
     <string name="wash_conditions_question">What is the current water source and level of water system available?</string>
@@ -286,4 +290,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_ok">OK</string>
+    <string name="text_cancel">Cancel</string>
 </resources>

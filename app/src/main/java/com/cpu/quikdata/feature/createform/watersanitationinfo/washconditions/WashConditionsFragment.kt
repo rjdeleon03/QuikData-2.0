@@ -32,7 +32,7 @@ class WashConditionsFragment : BaseCreateFormFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         washConditionsDrinkingWaterText.onInfoClickListener = {
-            val dialog = InfoDialogFragment.newInstance(R.string.wash_conditions_number_of_water_points, R.string.wash_conditions_water_potable)
+            val dialog = InfoDialogFragment.newInstance(R.string.wash_conditions_info_levels, R.layout.dialog_water_level)
             dialog.show(childFragmentManager, InfoDialogFragment.TAG)
         }
     }
