@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import kotlinx.android.synthetic.main.fragment_population.*
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.setupTapToExpand
 
 
 class PopulationFragment : BaseCreateFormFragment() {
@@ -33,7 +32,6 @@ class PopulationFragment : BaseCreateFormFragment() {
             mViewModel.updateRow(it)
         }
         populationRecyclerView.adapter = mAdapter
-        populationRecyclerView.setupTapToExpand(context!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

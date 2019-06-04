@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.setupTapToExpand
 import kotlinx.android.synthetic.main.fragment_vulnerable.*
 
 class VulnerableFragment : BaseCreateFormFragment() {
@@ -34,7 +33,6 @@ class VulnerableFragment : BaseCreateFormFragment() {
             mViewModel.updateRow(it)
         }
         vulnerableRecyclerView.adapter = mAdapter
-        vulnerableRecyclerView.setupTapToExpand(context!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

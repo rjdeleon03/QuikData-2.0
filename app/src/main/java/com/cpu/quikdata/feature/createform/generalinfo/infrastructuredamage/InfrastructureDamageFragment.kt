@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.setupTapToExpand
 import kotlinx.android.synthetic.main.fragment_infrastructure_damage.*
 
 class InfrastructureDamageFragment : BaseCreateFormFragment() {
@@ -34,7 +33,6 @@ class InfrastructureDamageFragment : BaseCreateFormFragment() {
             mViewModel.updateRow(it)
         }
         infrastructureDamageRecyclerView.adapter = mAdapter
-        infrastructureDamageRecyclerView.setupTapToExpand(context!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
