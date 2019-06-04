@@ -8,6 +8,8 @@ import com.cpu.quikdata.data.evacuation.EvacuationItem
 import com.cpu.quikdata.data.evacuation.EvacuationItemDao
 import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
 import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRowDao
+import com.cpu.quikdata.data.evacuation.evacuationfacilities.EvacuationFacilities
+import com.cpu.quikdata.data.evacuation.evacuationfacilities.EvacuationFacilitiesDao
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfoDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRow
@@ -128,7 +130,8 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         WashGaps::class,
         EvacuationItem::class,
         SiteInfo::class,
-        EvacuationAgeRow::class
+        EvacuationAgeRow::class,
+        EvacuationFacilities::class
     ],
     exportSchema = false,
     version = 1)
@@ -195,6 +198,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun evacuationItemDao(): EvacuationItemDao
     abstract fun siteInfoDao(): SiteInfoDao
     abstract fun evacuationAgeRowDao(): EvacuationAgeRowDao
+    abstract fun evacuationFacilitiesDao(): EvacuationFacilitiesDao
     // endregion
 
     companion object {
