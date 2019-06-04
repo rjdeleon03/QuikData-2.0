@@ -321,4 +321,13 @@
     <string name="text_lgbt">LGBT</string>
     <string name="text_disabled">Persons with Disabilities</string>
     <string name="text_sick">Sick</string>
+    <string name="evacuation_facilities_capacity">Accommodation Capacity (in Number of People)</string>
+    <string name="evacuation_facilities_toilets">Toilet(s)</string>
+    <string name="evacuation_facilities_toilets_remarks">Number of Toilets</string>
+    <string name="evacuation_facilities_wide_entrance">Wide Entrance / Exit</string>
+    <string name="evacuation_facilities_electricity">Electricity</string>
+    <string name="evacuation_facilities_water_supply">Water Supply</string>
+    <string name="evacuation_facilities_ventilation">Proper Ventilation</string>
+    <string name="evacuation_age_title">Breakdown on Number of Evacuees</string>
+    <string name="evacuation_facilities_title">Facilities in the Shelter</string>
 </resources>

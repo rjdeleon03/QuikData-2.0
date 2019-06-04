@@ -6,6 +6,7 @@ import com.cpu.quikdata.base.BaseCreatableDataRepository
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
+import com.cpu.quikdata.data.evacuation.evacuationfacilities.EvacuationFacilities
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.runOnIoThread
@@ -50,6 +51,11 @@ class EvacuationInfoRepository(application: Application, formId: String) :
                     evacuationId = id)
                 mDatabase.evacuationAgeRowDao().insert(row)
             }
+
+            val evacuationFacilities = EvacuationFacilities(
+                id = generateId(),
+                evacuationId = id)
+            mDatabase.evacuationFacilitiesDao().insert(evacuationFacilities)
         }
     }
 }
