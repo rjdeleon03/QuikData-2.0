@@ -22,9 +22,9 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
     var isCollapsed: Boolean
         get() = mIsCollapsed
-        private set(value) {
+        set(value) {
             mIsCollapsed = value
-            mOnCollapsedStateChangedListener?.invoke(mIsCollapsed)
+            collapseOrExpand(mIsCollapsed)
         }
 
     var onDetachedListener: (() -> Unit)? = null
@@ -54,19 +54,15 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
         // Collapse if collapsed flag is true
         if (collapsedFlag) {
-            isCollapsed = true
-            contentLayout.visibility = View.GONE
+            mIsCollapsed = true
+            collapse()
         }
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         mIsUpdateFinished = false
-        if (mIsCollapsed) {
-            contentLayout.visibility = View.GONE
-        } else {
-            contentLayout.visibility = View.VISIBLE
-        }
+        collapseOrExpand(mIsCollapsed)
     }
 
     override fun onDetachedFromWindow() {
@@ -85,70 +81,15 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         }
     }
 
-    // region Collapse/expand based on https://stackoverflow.com/questions/4946295/android-expand-collapse-animation
+    fun collapse() { contentLayout.visibility = View.GONE }
 
-    fun collapse(isAnimated: Boolean = true) {
-        if (mIsCollapsed) return
-        isCollapsed = true
+    fun expand() { contentLayout.visibility = View.VISIBLE }
 
-        if (!isAnimated) {
-            contentLayout.visibility = View.GONE
-            return
+    private fun collapseOrExpand(willCollapse: Boolean) {
+        if (willCollapse) {
+            collapse()
+        } else {
+            expand()
         }
-
-        val initialHeight = contentLayout.measuredHeight
-        val a = object : Animation() {
-            override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
-                if (interpolatedTime == 1f) {
-                    contentLayout.visibility = View.GONE
-                } else {
-                    contentLayout.layoutParams.height = (initialHeight - (initialHeight * interpolatedTime)).toInt()
-                    contentLayout.requestLayout()
-                }
-            }
-
-            override fun willChangeBounds(): Boolean {
-                return true
-            }
-        }
-        a.duration = 300
-        contentLayout.startAnimation(a)
     }
-
-    fun expand(isAnimated: Boolean = true) {
-        if (!mIsCollapsed) return
-        isCollapsed = false
-
-        if (!isAnimated) {
-            contentLayout.visibility = View.VISIBLE
-            return
-        }
-
-        val matchParentMeasureSpec =
-            View.MeasureSpec.makeMeasureSpec((contentLayout.parent as View).width, View.MeasureSpec.EXACTLY)
-        val wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-        contentLayout.measure(matchParentMeasureSpec, wrapContentMeasureSpec)
-        val targetHeight = contentLayout.measuredHeight
-
-        // Older versions of android (pre API 21) cancel animations for views with a height of 0.
-        contentLayout.layoutParams.height = 1
-        contentLayout.visibility = View.VISIBLE
-        val a = object : Animation() {
-            override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
-                contentLayout.layoutParams.height = if (interpolatedTime == 1f)
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                else
-                    (targetHeight * interpolatedTime).toInt()
-                contentLayout.requestLayout()
-            }
-
-            override fun willChangeBounds(): Boolean {
-                return true
-            }
-        }
-        a.duration = 300
-        contentLayout.startAnimation(a)
-    }
-
-    // endregion
 }

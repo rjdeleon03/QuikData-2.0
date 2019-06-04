@@ -11,30 +11,18 @@ import kotlinx.android.synthetic.main.item_house_damage.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class HouseDamageAdapter(context: Context, rowSaveListener: (HouseDamageRow) -> Unit) :
-    BaseAdapter<HouseDamageRow, HouseDamageAdapter.ViewHolder>(context, rowSaveListener) {
+    BaseAdapter<HouseDamageRow, HouseDamageAdapter.ViewHolder>(context, R.layout.item_house_damage, rowSaveListener) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.item_house_damage, parent, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val row = mRows?.get(position)
-        holder.populateWithData(row!!, row.type,
-            mExpandedItem != row.type, mRowSaveListener,
-            { idx, isCollapsed ->
-                if (!isCollapsed) mExpandedItem = idx
-            })
-    }
+    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<HouseDamageRow>(itemView) {
 
-        override fun populateWithData(row: HouseDamageRow,
-                                      isCollapsed: Boolean,
-                                      rowSaveListener: (HouseDamageRow) -> Unit,
-                                      rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
+        override fun populateWithDataInternal(row: HouseDamageRow,
+                                              idx: Int,
+                                              isCollapsed: Boolean,
+                                              rowSaveListener: (HouseDamageRow) -> Unit) {
 
-            view.tag = row.id
+            view.tag = idx
             view.headerTextField.setText(HouseCategories.getStringId(row.type))
             view.houseDamageOwnedHouseholdsText.number = row.ownedHouseholds
             view.houseDamageRentedHouseholdsText.number = row.rentedHouseholds

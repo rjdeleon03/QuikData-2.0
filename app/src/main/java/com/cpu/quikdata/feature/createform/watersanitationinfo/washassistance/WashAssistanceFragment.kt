@@ -2,7 +2,6 @@ package com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
-import com.cpu.quikdata.common.setupTapToExpand
 import kotlinx.android.synthetic.main.fragment_wash_assistance.*
 
 class WashAssistanceFragment : BaseAssistanceFragment() {
@@ -37,7 +35,6 @@ class WashAssistanceFragment : BaseAssistanceFragment() {
             mViewModel.updateRow(it)
         }
         washAssistanceRecyclerView.adapter = mAdapter
-        washAssistanceRecyclerView.setupTapToExpand(context!!)
         washAssistanceAddButton.clickWithGuard {
 
             if (isItemLimitReached) {

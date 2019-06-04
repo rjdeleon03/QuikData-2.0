@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.setupTapToExpand
 import kotlinx.android.synthetic.main.fragment_estimated_damage.*
 
 class EstimatedDamageFragment : BaseCreateFormFragment() {
@@ -34,7 +33,6 @@ class EstimatedDamageFragment : BaseCreateFormFragment() {
             mViewModel.updateRow(it)
         }
         estimatedDamageRecyclerView.adapter = mAdapter
-        estimatedDamageRecyclerView.setupTapToExpand(context!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
