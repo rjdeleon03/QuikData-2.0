@@ -3,7 +3,7 @@ package com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.LivelihoodCategories
 import com.cpu.quikdata.common.LivelihoodSubcategories
 import com.cpu.quikdata.customviews.questions.MultipleChoiceQuestion
@@ -13,11 +13,11 @@ import kotlinx.android.synthetic.main.item_estimated_damage.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class EstimatedDamageAdapter(context: Context, rowSaveListener: (EstimatedDamageComplete) -> Unit) :
-    BaseAdapter<EstimatedDamageComplete, EstimatedDamageAdapter.ViewHolder>(context, R.layout.item_estimated_damage, rowSaveListener) {
+    BaseCollapsibleAdapter<EstimatedDamageComplete, EstimatedDamageAdapter.ViewHolder>(context, R.layout.item_estimated_damage, rowSaveListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<EstimatedDamageComplete>(itemView) {
+    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<EstimatedDamageComplete>(itemView) {
 
         override fun populateWithDataInternal(row: EstimatedDamageComplete,
                                               idx: Int,

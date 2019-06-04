@@ -3,9 +3,8 @@ package com.cpu.quikdata.feature.createform.healthinfo.healthassistance
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
-import android.view.ViewGroup
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.data.health.healthassistance.HealthAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
@@ -16,7 +15,7 @@ class HealthAssistanceAdapter(context: Context, rowSaveListener: (HealthAssistan
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<HealthAssistanceRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<HealthAssistanceRow>(itemView) {
 
         private var mIndex = 0
 

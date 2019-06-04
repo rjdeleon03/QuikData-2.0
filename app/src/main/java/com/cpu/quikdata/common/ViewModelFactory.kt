@@ -3,6 +3,7 @@ package com.cpu.quikdata.common
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoViewModel
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceViewModel
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingViewModel
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsViewModel
@@ -83,6 +84,7 @@ class ViewModelFactory(application: Application, formId: String) :
             WashCopingViewModel::class.java -> WashCopingViewModel(mApplication, mFormId) as T
             WashAssistanceViewModel::class.java -> WashAssistanceViewModel(mApplication, mFormId) as T
             WashGapsViewModel::class.java -> WashGapsViewModel(mApplication, mFormId) as T
+            EvacuationInfoViewModel::class.java -> EvacuationInfoViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }
     }

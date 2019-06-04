@@ -34,4 +34,8 @@ class LivelihoodsAssistanceRepository(application: Application, formId: String) 
             mDatabase.livelihoodsAssistanceRowDao().insert(row)
         }
     }
+
+    override fun deleteData(data: LivelihoodsAssistanceRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

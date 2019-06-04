@@ -34,4 +34,8 @@ class WashAssistanceRepository(application: Application, formId: String) :
             mDatabase.washAssistanceRowDao().insert(row)
         }
     }
+
+    override fun deleteData(data: WashAssistanceRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

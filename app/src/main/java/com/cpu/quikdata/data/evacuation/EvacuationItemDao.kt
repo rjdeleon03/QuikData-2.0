@@ -8,5 +8,5 @@ import com.cpu.quikdata.base.BaseDao
 interface EvacuationItemDao : BaseDao<EvacuationItem> {
 
     @Query("SELECT * FROM evacuation_item WHERE formId = :formId")
-    fun getByFormId(formId: String): LiveData<EvacuationItem>
+    fun getByFormId(formId: String): LiveData<List<EvacuationItem>>
 }

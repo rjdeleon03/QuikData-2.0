@@ -2,20 +2,19 @@ package com.cpu.quikdata.feature.createform.generalinfo.population
 
 import android.content.Context
 import android.view.View
-import android.view.ViewGroup
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import kotlinx.android.synthetic.main.item_population.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Unit) :
-    BaseAdapter<PopulationRow, PopulationAdapter.ViewHolder>(context, R.layout.item_population, rowSaveListener) {
+    BaseCollapsibleAdapter<PopulationRow, PopulationAdapter.ViewHolder>(context, R.layout.item_population, rowSaveListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<PopulationRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<PopulationRow>(itemView) {
 
         override fun populateWithDataInternal(row: PopulationRow,
                                               idx: Int,

@@ -34,4 +34,8 @@ class ShelterAssistanceRepository(application: Application, formId: String) :
             mDatabase.shelterAssistanceRowDao().insert(row)
         }
     }
+
+    override fun deleteData(data: ShelterAssistanceRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

@@ -4,17 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.data.livelihoodsinfo.incomeafter.IncomeAfterRow
 import kotlinx.android.synthetic.main.item_income.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class IncomeAfterAdapter(context: Context, rowSaveListener: (IncomeAfterRow) -> Unit) :
-    BaseAdapter<IncomeAfterRow, IncomeAfterAdapter.ViewHolder>(context, R.layout.item_income, rowSaveListener) {
+    BaseCollapsibleAdapter<IncomeAfterRow, IncomeAfterAdapter.ViewHolder>(context, R.layout.item_income, rowSaveListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<IncomeAfterRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<IncomeAfterRow>(itemView) {
 
         @SuppressLint("SetTextI18n")
         override fun populateWithDataInternal(row: IncomeAfterRow,

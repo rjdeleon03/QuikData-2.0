@@ -3,18 +3,18 @@ package com.cpu.quikdata.feature.createform.healthinfo.diseases
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
 import kotlinx.android.synthetic.main.item_diseases.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class DiseasesAdapter(context: Context, rowSaveListener: (DiseasesRow) -> Unit) :
-    BaseAdapter<DiseasesRow, DiseasesAdapter.ViewHolder>(context, R.layout.item_diseases, rowSaveListener) {
+    BaseCollapsibleAdapter<DiseasesRow, DiseasesAdapter.ViewHolder>(context, R.layout.item_diseases, rowSaveListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<DiseasesRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<DiseasesRow>(itemView) {
 
         override fun populateWithDataInternal(row: DiseasesRow,
                                               idx: Int,

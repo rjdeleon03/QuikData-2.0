@@ -34,4 +34,8 @@ class FoodSecurityAssistanceRepository(application: Application, formId: String)
             mDatabase.foodSecurityAssistanceRowDao().insert(row)
         }
     }
+
+    override fun deleteData(data: FoodSecurityAssistanceRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

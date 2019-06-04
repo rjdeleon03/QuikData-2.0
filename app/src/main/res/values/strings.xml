@@ -300,4 +300,6 @@
     <string name="income_added">A new income source item has been created.</string>
     <string name="income_before_title">Income Sources Before the Emergency</string>
     <string name="income_after_title">Income Sources After the Emergency</string>
+    <string name="evacuation_add_limit_error">Only up to 10 evacuation sites can be added.</string>
+    <string name="evacuation_added">A new evacuation site has been created.</string>
 </resources>

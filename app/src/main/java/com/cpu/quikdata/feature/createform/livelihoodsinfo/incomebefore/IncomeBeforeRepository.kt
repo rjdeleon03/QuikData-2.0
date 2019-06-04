@@ -31,4 +31,8 @@ class IncomeBeforeRepository(application: Application, formId: String) :
             mDatabase.incomeBeforeRowDao().insert(row)
         }
     }
+
+    override fun deleteData(data: IncomeBeforeRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
