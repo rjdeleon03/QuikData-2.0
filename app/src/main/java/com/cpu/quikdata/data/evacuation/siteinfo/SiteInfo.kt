@@ -7,14 +7,14 @@ import androidx.room.PrimaryKey
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 
 @Entity(tableName = "site_info",
-    indices = [Index("formId")],
+    indices = [Index("evacuationId")],
     foreignKeys = [ForeignKey(entity = EvacuationItem::class,
         parentColumns = ["id"],
         childColumns = ["evacuationId"],
         onDelete = ForeignKey.CASCADE
     )])
 data class SiteInfo(@PrimaryKey(autoGenerate = false)
-                       val id: String = "",
+                    val id: String = "",
                     var name: String = "",
                     var location: String = "",
                     var type: Int = 0,

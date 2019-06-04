@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
 import com.cpu.quikdata.data.evacuation.EvacuationItem
+import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.runOnIoThread
 import org.joda.time.LocalDateTime
@@ -31,6 +32,10 @@ class EvacuationInfoRepository(application: Application, formId: String) :
                 dateCreated = LocalDateTime.now().toDateTime().millis,
                 formId = mFormId)
             mDatabase.evacuationItemDao().insert(evacuationItem)
+
+            val siteInfo = SiteInfo(id = generateId(),
+                evacuationId = id)
+            mDatabase.siteInfoDao().insert(siteInfo)
         }
     }
 }
