@@ -283,4 +283,7 @@
     <string name="assistance_item">Assistance Item</string>
     <string name="assistance_add_limit_error">Only up to five assistance items can be added.</string>
     <string name="assistance_added">A new assistance item has been created.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
