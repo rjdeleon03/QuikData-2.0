@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.cpu.quikdata.data.evacuation.EvacuationItem
+import com.cpu.quikdata.data.evacuation.EvacuationItemDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRow
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRowDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
@@ -119,7 +121,8 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         WashConditions::class,
         WashCoping::class,
         WashAssistanceRow::class,
-        WashGaps::class
+        WashGaps::class,
+        EvacuationItem::class
     ],
     exportSchema = false,
     version = 1)
@@ -128,6 +131,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun prefilledDataDao(): PrefilledDataDao
     abstract fun formDao(): FormDao
     abstract fun formDetailsDao(): FormDetailsDao
+
+    // region General info
     abstract fun calamityInfoDao(): CalamityInfoDao
     abstract fun populationRowDao(): PopulationRowDao
     abstract fun familiesDao(): FamiliesDao
@@ -135,16 +140,25 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun casualtiesRowDao(): CasualtiesRowDao
     abstract fun causeOfDeathRowDao(): CauseOfDeathRowDao
     abstract fun infrastructureDamageRowDao(): InfrastructureDamageRowDao
+    // endregion
+
+    // region Shelter info
     abstract fun houseDamageRowDao(): HouseDamageRowDao
     abstract fun shelterCopingDao(): ShelterCopingDao
     abstract fun shelterNeedsRowDao(): ShelterNeedsRowDao
     abstract fun shelterAssistanceRowDao(): ShelterAssistanceRowDao
     abstract fun shelterGapsDao(): ShelterGapsDao
+    // endregion
+
+    // region Food security
     abstract fun foodSecurityImpactDao(): FoodSecurityImpactDao
     abstract fun foodSecurityCopingDao(): FoodSecurityCopingDao
     abstract fun foodSecurityNeedsDao(): FoodSecurityNeedsDao
     abstract fun foodSecurityAssistanceRowDao(): FoodSecurityAssistanceRowDao
     abstract fun foodSecurityGapsDao(): FoodSecurityGapsDao
+    // endregion
+
+    // region Livelihoods
     abstract fun incomeBeforeRowDao(): IncomeBeforeRowDao
     abstract fun incomeAfterRowDao(): IncomeAfterRowDao
     abstract fun estimatedDamageRowDao(): EstimatedDamageRowDao
@@ -153,16 +167,25 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun livelihoodsNeedsDao(): LivelihoodsNeedsDao
     abstract fun livelihoodsAssistanceRowDao(): LivelihoodsAssistanceRowDao
     abstract fun livelihoodsGapsDao(): LivelihoodsGapsDao
+    // endregion
+
+    // region Health
     abstract fun diseasesRowDao(): DiseasesRowDao
     abstract fun specialNeedsRowDao(): SpecialNeedsRowDao
     abstract fun psychosocialRowDao(): PsychosocialRowDao
     abstract fun healthCopingDao(): HealthCopingDao
     abstract fun healthAssistanceRowDao(): HealthAssistanceRowDao
     abstract fun healthGapsDao(): HealthGapsDao
+    // endregion
+
+    // region WASH
     abstract fun washConditionsDao(): WashConditionsDao
     abstract fun washCopingDao(): WashCopingDao
     abstract fun washAssistanceRowDao(): WashAssistanceRowDao
     abstract fun washGapsDao(): WashGapsDao
+    // endregion
+
+    abstract fun evacuationItemDao(): EvacuationItemDao
 
     companion object {
 
