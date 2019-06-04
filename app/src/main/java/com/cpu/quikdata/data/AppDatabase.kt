@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 import com.cpu.quikdata.data.evacuation.EvacuationItemDao
+import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
+import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfoDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRow
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRowDao
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
@@ -122,7 +124,8 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         WashCoping::class,
         WashAssistanceRow::class,
         WashGaps::class,
-        EvacuationItem::class
+        EvacuationItem::class,
+        SiteInfo::class
     ],
     exportSchema = false,
     version = 1)
@@ -185,7 +188,10 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun washGapsDao(): WashGapsDao
     // endregion
 
+    // region Evacuation
     abstract fun evacuationItemDao(): EvacuationItemDao
+    abstract fun siteInfoDao(): SiteInfoDao
+    // endregion
 
     companion object {
 
