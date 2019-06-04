@@ -70,6 +70,15 @@ class CreateFormActivity : AppCompatActivity() {
         return true
     }
 
+    fun setToolbarTitle(title: CharSequence? = "") {
+        toolbarTitle.text = title
+        if (!title.isNullOrBlank()) {
+            toolbarTitle.visibility = View.VISIBLE
+        } else {
+            toolbarTitle.visibility = View.GONE
+        }
+    }
+
     fun setSubtitle(subtitle: CharSequence? = "") {
         toolbarSubtitle.text = subtitle
         if (!subtitle.isNullOrBlank()) {

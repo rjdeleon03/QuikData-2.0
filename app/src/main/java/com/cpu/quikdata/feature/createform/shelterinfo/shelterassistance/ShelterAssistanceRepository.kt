@@ -24,7 +24,7 @@ class ShelterAssistanceRepository(application: Application, formId: String) :
         }
     }
 
-    override fun createData() {
+    override fun createData(id: String) {
         runOnIoThread {
             val dateTodayInMillis = LocalDate.now().toDateTimeAtStartOfDay().millis
             val row = ShelterAssistanceRow(id = generateId(),

@@ -19,15 +19,15 @@ abstract class BaseAdapter<R, VH: BaseAdapter.ViewHolder<R>>(context: Context, l
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view = mInflater.inflate(mLayoutId, parent, false)
         val holder = createViewHolder(view)
-        holder.setOnClickListener {position ->
-            onItemClick(mRows!![position])
+        holder.setOnClickListener {itemId ->
+            onItemClick(itemId)
         }
         return holder
     }
 
     abstract fun createViewHolder(view: View) : VH
 
-    abstract fun onItemClick(item: R)
+    abstract fun onItemClick(id: String)
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val row = mRows?.get(position)
@@ -50,9 +50,9 @@ abstract class BaseAdapter<R, VH: BaseAdapter.ViewHolder<R>>(context: Context, l
         val view: View
             get() = mView
 
-        fun setOnClickListener(l: (Int) -> Unit) {
+        fun setOnClickListener(l: (String) -> Unit) {
             view.clickWithGuard {
-                l.invoke(view.tag as Int)
+                l.invoke(view.tag as String)
             }
         }
 

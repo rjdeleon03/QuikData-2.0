@@ -25,9 +25,9 @@ class EvacuationInfoRepository(application: Application, formId: String) :
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun createData() {
+    override fun createData(id: String) {
         runOnIoThread {
-            val evacuationItem = EvacuationItem(id = generateId(),
+            val evacuationItem = EvacuationItem(id = id,
                 dateCreated = LocalDateTime.now().toDateTime().millis,
                 formId = mFormId)
             mDatabase.evacuationItemDao().insert(evacuationItem)

@@ -302,4 +302,9 @@
     <string name="income_after_title">Income Sources After the Emergency</string>
     <string name="evacuation_add_limit_error">Only up to 10 evacuation sites can be added.</string>
     <string name="evacuation_added">A new evacuation site has been created.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="evacuation_create_title">Create Evacuation Site</string>
+    <string name="evacuation_edit_title">Edit Evacuation Site</string>
 </resources>

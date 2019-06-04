@@ -23,7 +23,7 @@ class IncomeBeforeRepository(application: Application, formId: String) :
         }
     }
 
-    override fun createData() {
+    override fun createData(id: String) {
         runOnIoThread {
             val row = IncomeBeforeRow(id = generateId(),
                 dateCreated = LocalDateTime.now().toDateTime().millis,

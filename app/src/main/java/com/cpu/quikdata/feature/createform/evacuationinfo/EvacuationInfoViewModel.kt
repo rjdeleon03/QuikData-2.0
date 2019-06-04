@@ -13,5 +13,5 @@ class EvacuationInfoViewModel(application: Application, formId: String) : Androi
     val evacuationInfos: LiveData<List<EvacuationItem>>
         get() = mRepository.evacuationInfos
 
-    fun createEvacuationInfo() = mRepository.createData()
+    fun createEvacuationInfo(id: String) = mRepository.createData(id)
 }

@@ -6,20 +6,21 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 
-class EvacuationInfoAdapter(context: Context) : BaseAdapter<EvacuationItem, EvacuationInfoAdapter.ViewHolder>(context, R.layout.item_evacuation) {
+class EvacuationInfoAdapter(context: Context, onClickListener: (String) -> Unit) :
+    BaseAdapter<EvacuationItem, EvacuationInfoAdapter.ViewHolder>(context, R.layout.item_evacuation) {
+
+    private val mOnClickListener = onClickListener
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    override fun onItemClick(item: EvacuationItem) {
-        // TODO: Open evacuation item activity, pass item ID
+    override fun onItemClick(id: String) {
+        mOnClickListener.invoke(id)
     }
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<EvacuationItem>(itemView) {
 
-        private val mView = itemView
-
         override fun populateWithData(data: EvacuationItem) {
-
+            view.tag = data.id
         }
     }
 }

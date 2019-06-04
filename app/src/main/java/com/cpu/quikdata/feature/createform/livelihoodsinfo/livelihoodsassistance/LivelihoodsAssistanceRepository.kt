@@ -24,7 +24,7 @@ class LivelihoodsAssistanceRepository(application: Application, formId: String) 
         }
     }
 
-    override fun createData() {
+    override fun createData(id: String) {
         runOnIoThread {
             val dateTodayInMillis = LocalDate.now().toDateTimeAtStartOfDay().millis
             val row = LivelihoodsAssistanceRow(id = generateId(),
