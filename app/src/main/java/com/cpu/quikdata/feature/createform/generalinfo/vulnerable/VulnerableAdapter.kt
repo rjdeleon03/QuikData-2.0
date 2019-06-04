@@ -2,40 +2,26 @@ package com.cpu.quikdata.feature.createform.generalinfo.vulnerable
 
 import android.content.Context
 import android.view.View
-import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.common.AgeCategories
-import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import kotlinx.android.synthetic.main.item_vulnerable.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Unit) :
-    BaseAdapter<VulnerableRow, VulnerableAdapter.ViewHolder>(context, rowSaveListener) {
+    BaseAdapter<VulnerableRow, VulnerableAdapter.ViewHolder>(context, R.layout.item_vulnerable, rowSaveListener) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.item_vulnerable, parent, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val row = mRows?.get(position)
-        holder.populateWithData(row!!, row.type,
-            mExpandedItem != row.type, mRowSaveListener,
-            { idx, isCollapsed ->
-                if (!isCollapsed) mExpandedItem = idx
-            })
-    }
+    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<VulnerableRow>(itemView) {
 
-        override fun populateWithData(row: VulnerableRow,
-                                      isCollapsed: Boolean,
-                                      rowSaveListener: (VulnerableRow) -> Unit,
-                                      rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
+        override fun populateWithDataInternal(row: VulnerableRow,
+                                              idx: Int,
+                                              isCollapsed: Boolean,
+                                              rowSaveListener: (VulnerableRow) -> Unit) {
 
-            view.tag = row.id
+            view.tag = idx
             view.headerTextField.setText(AgeCategories.getStringId(row.type))
             view.vulnerablePregnantText.number = row.pregnant
             view.vulnerableLactatingText.number = row.lactating

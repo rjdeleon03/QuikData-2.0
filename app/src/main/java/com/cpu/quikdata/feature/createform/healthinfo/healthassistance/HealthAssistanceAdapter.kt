@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance
+package com.cpu.quikdata.feature.createform.healthinfo.healthassistance
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,25 +7,33 @@ import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.base.BaseAssistanceAdapter
-import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRow
+import com.cpu.quikdata.data.health.healthassistance.HealthAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class WashAssistanceAdapter(context: Context, rowSaveListener: (WashAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<WashAssistanceRow, WashAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+class HealthAssistanceAdapter(context: Context, rowSaveListener: (HealthAssistanceRow) -> Unit) :
+    BaseAssistanceAdapter<HealthAssistanceRow, HealthAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<WashAssistanceRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<HealthAssistanceRow>(itemView) {
+
+        private var mIndex = 0
+
+        var index: Int = 0
+            set(value) {
+                mIndex = value
+                field = value
+            }
 
         @SuppressLint("SetTextI18n")
-        override fun populateWithDataInternal(row: WashAssistanceRow,
+        override fun populateWithDataInternal(row: HealthAssistanceRow,
                                               idx: Int,
                                               isCollapsed: Boolean,
-                                              rowSaveListener: (WashAssistanceRow) -> Unit) {
+                                              rowSaveListener: (HealthAssistanceRow) -> Unit) {
 
             view.tag = idx
-            view.headerTextField.text = "${view.resources.getString(R.string.assistance_item)} ${idx + 1}"
+            view.headerTextField.text = "${view.resources.getString(R.string.assistance_item)} ${mIndex + 1}"
             view.assistanceOrganizationText.text = row.organizationAgency
             view.assistanceTypeText.text = row.assistanceType
             view.assistanceDateReceivedText.date = row.dateReceived
@@ -37,7 +45,7 @@ class WashAssistanceAdapter(context: Context, rowSaveListener: (WashAssistanceRo
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
-                val newRow = WashAssistanceRow(
+                val newRow = HealthAssistanceRow(
                     row.id,
                     view.assistanceOrganizationText.text,
                     view.assistanceTypeText.text,

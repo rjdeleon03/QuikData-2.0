@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsassistance
+package com.cpu.quikdata.feature.createform.healthinfo.healthassistance
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -11,31 +11,31 @@ import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
-import kotlinx.android.synthetic.main.fragment_livelihoods_assistance.*
+import kotlinx.android.synthetic.main.fragment_health_assistance.*
 
-class LivelihoodsAssistanceFragment : BaseAssistanceFragment() {
+class HealthAssistanceFragment : BaseAssistanceFragment() {
 
     companion object {
-        fun newInstance() = LivelihoodsAssistanceFragment()
+        fun newInstance() = HealthAssistanceFragment()
     }
 
-    private lateinit var mViewModel: LivelihoodsAssistanceViewModel
-    private lateinit var mAdapter: LivelihoodsAssistanceAdapter
+    private lateinit var mViewModel: HealthAssistanceViewModel
+    private lateinit var mAdapter: HealthAssistanceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_livelihoods_assistance, container, false)
+        return inflater.inflate(R.layout.fragment_health_assistance, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = LivelihoodsAssistanceAdapter(context!!) {
+        mAdapter = HealthAssistanceAdapter(context!!) {
             mViewModel.updateRow(it)
         }
-        livelihoodsAssistanceRecyclerView.adapter = mAdapter
-        livelihoodsAssistanceAddButton.clickWithGuard {
+        healthAssistanceRecyclerView.adapter = mAdapter
+        healthAssistanceAddButton.clickWithGuard {
 
             if (isItemLimitReached) {
                 // TODO: Update this with a dialog
@@ -50,8 +50,8 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsAssistanceViewModel::class.java)
-        mViewModel.livelihoodsAssistance.observe(viewLifecycleOwner, Observer {
+        mViewModel = ViewModelProviders.of(this, mFactory).get(HealthAssistanceViewModel::class.java)
+        mViewModel.healthAssistance.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
             isItemLimitReached = it.size >= itemLimit
         })

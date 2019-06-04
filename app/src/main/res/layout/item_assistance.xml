@@ -35,39 +35,46 @@
         android:layout_height="wrap_content"
         app:dividerText="@string/assistance_beneficiaries"/>
 
-    <GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="2">
+        android:orientation="horizontal">
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/assistanceMenText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
+            android:layout_weight="1"
             app:textHint="@string/text_men"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/assistanceWomenText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
+            android:layout_weight="1"
             app:textHint="@string/text_women"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/assistanceBoysText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
+            android:layout_weight="1"
             app:textHint="@string/text_boys"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/assistanceGirlsText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
+            android:layout_weight="1"
             app:textHint="@string/text_girls"/>
 
-    </GridLayout>
+    </LinearLayout>
 
 </com.cpu.quikdata.customviews.CollapsibleContainer>

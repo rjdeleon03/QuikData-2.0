@@ -11,30 +11,18 @@ import kotlinx.android.synthetic.main.item_psychosocial.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class PsychosocialAdapter(context: Context, rowSaveListener: (PsychosocialRow) -> Unit) :
-    BaseAdapter<PsychosocialRow, PsychosocialAdapter.ViewHolder>(context, rowSaveListener) {
+    BaseAdapter<PsychosocialRow, PsychosocialAdapter.ViewHolder>(context, R.layout.item_psychosocial, rowSaveListener) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.item_psychosocial, parent, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val row = mRows?.get(position)
-        holder.populateWithData(row!!, row.type,
-            mExpandedItem != row.type, mRowSaveListener,
-            { idx, isCollapsed ->
-                if (!isCollapsed) mExpandedItem = idx
-            })
-    }
+    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<PsychosocialRow>(itemView) {
 
-        override fun populateWithData(row: PsychosocialRow,
-                                      isCollapsed: Boolean,
-                                      rowSaveListener: (PsychosocialRow) -> Unit,
-                                      rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
+        override fun populateWithDataInternal(row: PsychosocialRow,
+                                              idx: Int,
+                                              isCollapsed: Boolean,
+                                              rowSaveListener: (PsychosocialRow) -> Unit) {
 
-            view.tag = row.id
+            view.tag = idx
             view.headerTextField.setText(AgeCategories.getStringId(row.type))
             view.psychosocialCasesText.number1 = row.casesMale
             view.psychosocialCasesText.number2 = row.casesFemale
