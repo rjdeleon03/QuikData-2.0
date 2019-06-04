@@ -308,4 +308,14 @@
     <string name="evacuation_create_title">Create Evacuation Site</string>
     <string name="evacuation_edit_title">Edit Evacuation Site</string>
     <string name="evacuation_site_info_title">Site and Evacuation Details</string>
+    <string name="evacuation_site_info_name">Name of Evacuation Center or Temporary Shelter</string>
+    <string name="evacuation_site_info_location">Location</string>
+    <string name="evacuation_site_info_date">Date of Evacuation</string>
+    <string name="evacuation_site_info_displaced">Displaced</string>
+    <string name="evacuation_site_info_non_displaced">Non-displaced</string>
+    <string name="evacuation_site_shelter_size">Evacuation Center / Shelter Size (in Square Meters)</string>
+    <string name="evacuation_site_info_lgu_designated">Is it designated by the LGU?</string>
+    <string name="evacuation_site_info_displaced_question">Have they moved?</string>
+    <string name="evacuation_site_info_households">How many households and families are staying here?</string>
+    <string name="evacuation_site_distance">Distance from the Community (in Kilometers)</string>
 </resources>

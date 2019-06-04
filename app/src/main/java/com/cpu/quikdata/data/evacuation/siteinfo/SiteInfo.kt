@@ -17,6 +17,7 @@ data class SiteInfo(@PrimaryKey(autoGenerate = false)
                     val id: String = "",
                     var name: String = "",
                     var location: String = "",
+                    var haveMoved: Boolean = true,
                     var type: Int = 0,
                     var isLguDesignated: Boolean = true,
                     var distanceFromCommunity: String = "",
@@ -28,6 +29,7 @@ data class SiteInfo(@PrimaryKey(autoGenerate = false)
     fun copyFrom(siteInfo: SiteInfo) {
         name = siteInfo.name
         location = siteInfo.location
+        haveMoved = siteInfo.haveMoved
         type = siteInfo.type
         isLguDesignated = siteInfo.isLguDesignated
         distanceFromCommunity = siteInfo.distanceFromCommunity

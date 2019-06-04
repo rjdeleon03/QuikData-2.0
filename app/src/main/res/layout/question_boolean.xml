@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/text_yes"
                 android:textColor="?android:attr/textColorHint"
-                android:layout_marginEnd="@dimen/dimenLarge"/>
+                android:layout_marginEnd="@dimen/dimenMid"/>
 
             <RadioButton
                 android:id="@+id/radioNo"
