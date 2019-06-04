@@ -25,6 +25,7 @@ class EstimatedDamageAdapter(context: Context, rowSaveListener: (EstimatedDamage
                                               rowSaveListener: (EstimatedDamageComplete) -> Unit) {
 
             val multipleChoiceView = view.findViewById<MultipleChoiceQuestion>(R.id.estimatedDamageKindsText)
+            multipleChoiceView.clear()
             for (item in row.types!!) {
                 multipleChoiceView.addItem(LivelihoodSubcategories.getStringId(item.type), item.isSelected)
             }

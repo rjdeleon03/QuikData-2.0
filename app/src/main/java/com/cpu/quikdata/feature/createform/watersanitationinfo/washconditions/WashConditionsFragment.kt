@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
+import com.cpu.quikdata.dialog.InfoDialogFragment
 import kotlinx.android.synthetic.main.fragment_wash_conditions.*
 
 class WashConditionsFragment : BaseCreateFormFragment() {
@@ -26,6 +27,14 @@ class WashConditionsFragment : BaseCreateFormFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_wash_conditions, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        washConditionsDrinkingWaterText.onInfoClickListener = {
+            val dialog = InfoDialogFragment.newInstance(R.string.wash_conditions_info_levels, R.layout.dialog_water_level)
+            dialog.show(childFragmentManager, InfoDialogFragment.TAG)
+        }
     }
 
     override fun onDestroyView() {
