@@ -14,20 +14,7 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class HealthAssistanceAdapter(context: Context, rowSaveListener: (HealthAssistanceRow) -> Unit) :
     BaseAssistanceAdapter<HealthAssistanceRow, HealthAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.item_assistance, parent, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val row = mRows?.get(position)
-        holder.index = position
-        holder.populateWithData(row!!, position,
-            mExpandedItem != position, mRowSaveListener,
-            { idx, isCollapsed ->
-                if (!isCollapsed) mExpandedItem = idx
-            })
-    }
+    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<HealthAssistanceRow>(itemView) {
 
@@ -40,12 +27,12 @@ class HealthAssistanceAdapter(context: Context, rowSaveListener: (HealthAssistan
             }
 
         @SuppressLint("SetTextI18n")
-        override fun populateWithData(row: HealthAssistanceRow,
-                                      isCollapsed: Boolean,
-                                      rowSaveListener: (HealthAssistanceRow) -> Unit,
-                                      rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
+        override fun populateWithDataInternal(row: HealthAssistanceRow,
+                                              idx: Int,
+                                              isCollapsed: Boolean,
+                                              rowSaveListener: (HealthAssistanceRow) -> Unit) {
 
-            view.tag = row.id
+            view.tag = idx
             view.headerTextField.text = "${view.resources.getString(R.string.assistance_item)} ${mIndex + 1}"
             view.assistanceOrganizationText.text = row.organizationAgency
             view.assistanceTypeText.text = row.assistanceType

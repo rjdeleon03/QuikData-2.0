@@ -12,30 +12,18 @@ import kotlinx.android.synthetic.main.item_shelter_needs.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class ShelterNeedsAdapter(context: Context, rowSaveListener: (ShelterNeedsRow) -> Unit) :
-    BaseAdapter<ShelterNeedsRow, ShelterNeedsAdapter.ViewHolder>(context, rowSaveListener) {
+    BaseAdapter<ShelterNeedsRow, ShelterNeedsAdapter.ViewHolder>(context, R.layout.item_shelter_needs, rowSaveListener) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.item_shelter_needs, parent, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val row = mRows?.get(position)
-        holder.populateWithData(row!!, row.type,
-            mExpandedItem != row.type, mRowSaveListener,
-            { idx, isCollapsed ->
-                if (!isCollapsed) mExpandedItem = idx
-            })
-    }
+    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<ShelterNeedsRow>(itemView) {
 
-        override fun populateWithData(row: ShelterNeedsRow,
-                                      isCollapsed: Boolean,
-                                      rowSaveListener: (ShelterNeedsRow) -> Unit,
-                                      rowCollapsedStateChangedListener: (Int, Boolean) -> Unit) {
+        override fun populateWithDataInternal(row: ShelterNeedsRow,
+                                              idx: Int,
+                                              isCollapsed: Boolean,
+                                              rowSaveListener: (ShelterNeedsRow) -> Unit) {
 
-            view.tag = row.id
+            view.tag = idx
             view.headerTextField.setText(MaterialCategories.getStringId(row.type))
             view.shelterNeedsSpecificItemsText.text = row.specificItems
             view.shelterNeedsFamiliesInNeedText.number = row.familiesInNeed
