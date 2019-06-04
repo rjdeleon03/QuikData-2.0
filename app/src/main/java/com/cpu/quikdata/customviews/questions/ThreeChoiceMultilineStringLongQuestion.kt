@@ -5,10 +5,13 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupOnFocusBehavior
 import kotlinx.android.synthetic.main.question_three_choice_multiline_string_long.view.*
 
 class ThreeChoiceMultilineStringLongQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
+
+    private var mOnInfoClickListener: (() -> Unit)? = null
 
     init {
         View.inflate(context, R.layout.question_three_choice_multiline_string_long, this)
@@ -24,6 +27,10 @@ class ThreeChoiceMultilineStringLongQuestion(context: Context, attrs: AttributeS
         if (option3Text != null) radioOption3.text = option3Text
         questionStringText.hint = attributes.getString(R.styleable.ThreeChoiceMultilineStringLongQuestion_questionString)
         attributes.recycle()
+
+        radioInfoButton.clickWithGuard {
+            mOnInfoClickListener?.invoke()
+        }
 
         setupOnFocusBehavior(questionStringText, textField)
     }
@@ -46,5 +53,11 @@ class ThreeChoiceMultilineStringLongQuestion(context: Context, attrs: AttributeS
         get() = textField.text.toString()
         set(value) {
             textField.setText(value)
+        }
+
+    var onInfoClickListener: (() -> Unit)? = null
+        set (value) {
+            field = value
+            mOnInfoClickListener = field
         }
 }

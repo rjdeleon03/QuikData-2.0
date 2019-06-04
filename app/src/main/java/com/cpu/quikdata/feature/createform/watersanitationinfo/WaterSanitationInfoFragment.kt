@@ -1,7 +1,6 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
+import com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance.WashAssistanceFragment
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washconditions.WashConditionsFragment
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping.WashCopingFragment
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washgaps.WashGapsFragment
@@ -34,6 +34,7 @@ class WaterSanitationInfoFragment : BaseCreateFormSectionFragment() {
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(WashConditionsFragment.newInstance(), getString(R.string.wash_conditions_title))
         pagerAdapter.addFragment(WashCopingFragment.newInstance(), getString(R.string.wash_coping_title))
+        pagerAdapter.addFragment(WashAssistanceFragment.newInstance(), getString(R.string.text_assistance))
         pagerAdapter.addFragment(WashGapsFragment.newInstance(), getString(R.string.wash_gaps_title))
         washViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }

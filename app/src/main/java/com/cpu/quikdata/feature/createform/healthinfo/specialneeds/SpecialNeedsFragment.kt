@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.setupTapToExpand
 import kotlinx.android.synthetic.main.fragment_special_needs.*
 
 class SpecialNeedsFragment : BaseCreateFormFragment() {
@@ -34,7 +33,6 @@ class SpecialNeedsFragment : BaseCreateFormFragment() {
             mViewModel.updateRow(it)
         }
         specialNeedsRecyclerView.adapter = mAdapter
-        specialNeedsRecyclerView.setupTapToExpand(context!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

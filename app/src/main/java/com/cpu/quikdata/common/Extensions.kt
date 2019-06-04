@@ -81,36 +81,38 @@ fun ViewPager.setupViewPager(pagerAdapter: PagerAdapter,
     })
 }
 
+/*
 fun RecyclerView.setupTapToExpand(context: Context) {
-    var startX = 0F
-    var startY = 0F
-    this.setOnTouchListener { _, event ->
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                startX = event.x
-                startY = event.y
-            }
-            MotionEvent.ACTION_UP -> {
-                if (isClickAction(startX, startY, event.x, event.y, context)) {
-                    this.children.forEach {
-                        if (it is CollapsibleContainer) {
-                            val viewRect = Rect()
-                            it.getHitRect(viewRect)
-                            if (viewRect.contains(event.x.roundToInt(), event.y.roundToInt())) {
-                                it.expand()
-                            } else {
-                                it.collapse()
-                            }
+var startX = 0F
+var startY = 0F
+this.setOnTouchListener { _, event ->
+    when (event.action) {
+        MotionEvent.ACTION_DOWN -> {
+            startX = event.x
+            startY = event.y
+        }
+        MotionEvent.ACTION_UP -> {
+            if (isClickAction(startX, startY, event.x, event.y, context)) {
+                this.children.forEach {
+                    if (it is CollapsibleContainer) {
+                        val viewRect = Rect()
+                        it.getHitRect(viewRect)
+                        if (viewRect.contains(event.x.roundToInt(), event.y.roundToInt())) {
+                            it.expand()
+                        } else {
+                            it.collapse()
                         }
                     }
                 }
             }
         }
-        false
     }
+    false
+}
 }
 
 private fun isClickAction(beforeX: Float, beforeY: Float, afterX: Float, afterY: Float, context: Context): Boolean{
     val tolerance = ViewConfiguration.get(context).scaledTouchSlop
     return Math.abs(afterX - beforeX) <= tolerance && Math.abs(afterY - beforeY) <= tolerance
 }
+*/

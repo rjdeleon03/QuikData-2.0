@@ -34,6 +34,8 @@ import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRowDao
 import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
 import com.cpu.quikdata.data.health.diseasesrow.DiseasesRowDao
+import com.cpu.quikdata.data.health.healthassistance.HealthAssistanceRow
+import com.cpu.quikdata.data.health.healthassistance.HealthAssistanceRowDao
 import com.cpu.quikdata.data.health.healthcoping.HealthCoping
 import com.cpu.quikdata.data.health.healthcoping.HealthCopingDao
 import com.cpu.quikdata.data.health.healthgaps.HealthGaps
@@ -70,6 +72,8 @@ import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGapsDao
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRowDao
+import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRow
+import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRowDao
 import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
 import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditionsDao
 import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
@@ -110,9 +114,11 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         SpecialNeedsRow::class,
         PsychosocialRow::class,
         HealthCoping::class,
+        HealthAssistanceRow::class,
         HealthGaps::class,
         WashConditions::class,
         WashCoping::class,
+        WashAssistanceRow::class,
         WashGaps::class
     ],
     exportSchema = false,
@@ -151,9 +157,11 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun specialNeedsRowDao(): SpecialNeedsRowDao
     abstract fun psychosocialRowDao(): PsychosocialRowDao
     abstract fun healthCopingDao(): HealthCopingDao
+    abstract fun healthAssistanceRowDao(): HealthAssistanceRowDao
     abstract fun healthGapsDao(): HealthGapsDao
     abstract fun washConditionsDao(): WashConditionsDao
     abstract fun washCopingDao(): WashCopingDao
+    abstract fun washAssistanceRowDao(): WashAssistanceRowDao
     abstract fun washGapsDao(): WashGapsDao
 
     companion object {

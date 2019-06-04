@@ -2,7 +2,6 @@ package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassista
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
-import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
-import com.cpu.quikdata.common.setupTapToExpand
 import kotlinx.android.synthetic.main.fragment_food_security_assistance.*
 
 class FoodSecurityAssistanceFragment : BaseAssistanceFragment() {
@@ -38,7 +35,6 @@ class FoodSecurityAssistanceFragment : BaseAssistanceFragment() {
             mViewModel.updateRow(it)
         }
         foodSecurityAssistanceRecyclerView.adapter = mAdapter
-        foodSecurityAssistanceRecyclerView.setupTapToExpand(context!!)
         foodSecurityAssistanceAddButton.clickWithGuard {
 
             if (isItemLimitReached) {
