@@ -23,6 +23,8 @@ import com.cpu.quikdata.feature.createform.healthinfo.healthgaps.HealthGapsViewM
 import com.cpu.quikdata.feature.createform.healthinfo.psychosocial.PsychosocialViewModel
 import com.cpu.quikdata.feature.createform.healthinfo.specialneeds.SpecialNeedsViewModel
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage.EstimatedDamageViewModel
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter.IncomeAfterViewModel
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomebefore.IncomeBeforeViewModel
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsassistance.LivelihoodsAssistanceViewModel
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingViewModel
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsgaps.LivelihoodsGapsViewModel
@@ -64,6 +66,8 @@ class ViewModelFactory(application: Application, formId: String) :
             FoodSecurityNeedsViewModel::class.java -> FoodSecurityNeedsViewModel(mApplication, mFormId) as T
             FoodSecurityAssistanceViewModel::class.java -> FoodSecurityAssistanceViewModel(mApplication, mFormId) as T
             FoodSecurityGapsViewModel::class.java -> FoodSecurityGapsViewModel(mApplication, mFormId) as T
+            IncomeBeforeViewModel::class.java -> IncomeBeforeViewModel(mApplication, mFormId) as T
+            IncomeAfterViewModel::class.java -> IncomeAfterViewModel(mApplication, mFormId) as T
             EstimatedDamageViewModel::class.java -> EstimatedDamageViewModel(mApplication, mFormId) as T
             LivelihoodsCopingViewModel::class.java -> LivelihoodsCopingViewModel(mApplication, mFormId) as T
             LivelihoodsNeedsViewModel::class.java -> LivelihoodsNeedsViewModel(mApplication, mFormId) as T

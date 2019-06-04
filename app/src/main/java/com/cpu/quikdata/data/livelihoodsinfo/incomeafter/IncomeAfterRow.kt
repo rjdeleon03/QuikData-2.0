@@ -15,7 +15,8 @@ import com.cpu.quikdata.data.form.Form
     )])
 data class IncomeAfterRow(@PrimaryKey(autoGenerate = false)
                           val id: String = "",
-                          val isPrimary: Boolean = true,
+                          var source: String = "",
+                          var isPrimary: Boolean = true,
                           var households: Int = 0,
                           var male: Int = 0,
                           var female: Int = 0,
@@ -29,6 +30,7 @@ data class IncomeAfterRow(@PrimaryKey(autoGenerate = false)
         if (other == null || other !is IncomeAfterRow) return false
         if (this === other) return true
         if (id == other.id &&
+            source == other.source &&
             isPrimary == other.isPrimary &&
             households == other.households &&
             male == other.male &&

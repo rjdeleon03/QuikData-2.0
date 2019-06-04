@@ -285,11 +285,19 @@
     <string name="text_girls">Girls</string>
     <string name="text_assistance">Assistance</string>
     <string name="assistance_item">Assistance Item</string>
-    <string name="assistance_add_limit_error">Only up to five assistance items can be added.</string>
+    <string name="assistance_add_limit_error">Only up to 10 assistance items can be added.</string>
     <string name="assistance_added">A new assistance item has been created.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_ok">OK</string>
     <string name="text_cancel">Cancel</string>
+    <string name="income_households">Number of Households</string>
+    <string name="income_source">Source</string>
+    <string name="income_primary">Primary</string>
+    <string name="income_secondary">Secondary</string>
+    <string name="income_source_type">Type</string>
+    <string name="income_source_item">Income Source Item</string>
+    <string name="income_average_income">Estimated Average Monthly or Daily Income per Household (in PHP)</string>
+    <string name="income_add_limit_error">Only up to 10 income source items can be added.</string>
+    <string name="income_added">A new income source item has been created.</string>
+    <string name="income_before_title">Income Sources Before the Emergency</string>
+    <string name="income_after_title">Income Sources After the Emergency</string>
 </resources>
