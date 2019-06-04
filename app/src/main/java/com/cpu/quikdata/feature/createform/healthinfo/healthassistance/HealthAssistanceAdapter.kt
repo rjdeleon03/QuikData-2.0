@@ -22,8 +22,8 @@ class HealthAssistanceAdapter(context: Context, rowSaveListener: (HealthAssistan
 
         var index: Int = 0
             set(value) {
-                mIndex = value
                 field = value
+                mIndex = field
             }
 
         @SuppressLint("SetTextI18n")
