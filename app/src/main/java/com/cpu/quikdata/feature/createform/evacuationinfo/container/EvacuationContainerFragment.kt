@@ -14,6 +14,7 @@ import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationfacilities.EvacuationFacilitiesFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationwash.EvacuationWashFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo.SiteInfoFragment
 import kotlinx.android.synthetic.main.fragment_evacuation_container.*
 
@@ -47,6 +48,7 @@ class EvacuationContainerFragment : Fragment() {
         pagerAdapter.addFragment(SiteInfoFragment.newInstance(evacuationId), getString(R.string.evacuation_site_info_title))
         pagerAdapter.addFragment(EvacuationAgeFragment.newInstance(evacuationId), getString(R.string.evacuation_age_title))
         pagerAdapter.addFragment(EvacuationFacilitiesFragment.newInstance(evacuationId), getString(R.string.evacuation_facilities_title))
+        pagerAdapter.addFragment(EvacuationWashFragment.newInstance(evacuationId), getString(R.string.evacuation_wash_title))
         evacuationInfoViewPager.setupViewPager(pagerAdapter) { (activity as CreateFormActivity).setSubtitle(it) }
     }
 }

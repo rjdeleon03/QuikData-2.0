@@ -13,7 +13,7 @@
     <string name="food_security_title">Food Security</string>
     <string name="livelihoods_title">Livelihoods</string>
     <string name="health_title">Health</string>
-    <string name="water_sanitation_title">Water, Sanitation &amp; Hygiene</string>
+    <string name="water_sanitation_title">Water, Sanitation, and Hygiene</string>
     <string name="evacuation_title">Evacuation Sites</string>
     <string name="case_stories_title">Case Stories</string>
     <string name="prefilled_organization">Organization Name</string>
@@ -330,4 +330,12 @@
     <string name="evacuation_facilities_ventilation">Proper Ventilation</string>
     <string name="evacuation_age_title">Breakdown on Number of Evacuees</string>
     <string name="evacuation_facilities_title">Facilities in the Shelter</string>
+    <string name="evacuation_wash_food_preparation">Clean Space for Food Preparation</string>
+    <string name="evacuation_wash_water_source">Clean Source of Water</string>
+    <string name="evacuation_wash_toilet_baths"><![CDATA[Clean Toilet & Baths]]></string>
+    <string name="evacuation_wash_garbage_disposal">Proper Garbage Disposal</string>
+    <string name="evacuation_wash_clinic">Space for Clinic / Health Workers</string>
+    <string name="evacuation_wash_sick">Space for the Sick / Ill</string>
+    <string name="evacuation_wash_hand_washing">Hand Washing Facilities</string>
+    <string name="evacuation_wash_title">Water, Sanitation, and Hygiene</string>
 </resources>

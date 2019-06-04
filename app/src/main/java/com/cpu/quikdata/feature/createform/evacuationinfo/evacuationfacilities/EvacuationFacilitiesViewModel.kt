@@ -5,7 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.evacuation.evacuationfacilities.EvacuationFacilities
 
-class EvacuationFacilitiesViewModel(application: Application, evacuationId: String) : AndroidViewModel(application) {
+class EvacuationFacilitiesViewModel(application: Application, evacuationId: String) :
+    AndroidViewModel(application) {
 
     private val mRepository = EvacuationFacilitiesRepository(application, evacuationId)
 
