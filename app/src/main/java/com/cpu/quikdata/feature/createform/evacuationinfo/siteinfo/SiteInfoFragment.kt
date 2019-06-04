@@ -53,7 +53,7 @@ class SiteInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)
+        val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
         val factory = ViewModelFactory(activity!!.application, evacuationId)
         mViewModel = ViewModelProviders.of(this, factory).get(SiteInfoViewModel::class.java)
         mViewModel.siteInfo.observe(viewLifecycleOwner, Observer {

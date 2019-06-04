@@ -3,7 +3,9 @@ package com.cpu.quikdata.feature.createform.evacuationinfo
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
+import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.evacuation.EvacuationItem
+import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.runOnIoThread
@@ -29,15 +31,25 @@ class EvacuationInfoRepository(application: Application, formId: String) :
 
     override fun createData(id: String) {
         runOnIoThread {
-            val evacuationItem = EvacuationItem(id = id,
+            val evacuationItem = EvacuationItem(
+                id = id,
                 dateCreated = LocalDateTime.now().toDateTime().millis,
                 formId = mFormId)
             mDatabase.evacuationItemDao().insert(evacuationItem)
 
-            val siteInfo = SiteInfo(id = generateId(),
+            val siteInfo = SiteInfo(
+                id = generateId(),
                 evacuationDate = LocalDate.now().toDateTimeAtStartOfDay().millis,
                 evacuationId = id)
             mDatabase.siteInfoDao().insert(siteInfo)
+
+            for (i in 0 until AgeCategories.values().size) {
+                val row = EvacuationAgeRow(
+                    id = generateId(),
+                    type = i,
+                    evacuationId = id)
+                mDatabase.evacuationAgeRowDao().insert(row)
+            }
         }
     }
 }

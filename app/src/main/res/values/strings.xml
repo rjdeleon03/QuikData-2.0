@@ -318,4 +318,7 @@
     <string name="evacuation_site_info_displaced_question">Have they moved?</string>
     <string name="evacuation_site_info_households">How many households and families are staying here?</string>
     <string name="evacuation_site_distance">Distance from the Community (in Kilometers)</string>
+    <string name="text_lgbt">LGBT</string>
+    <string name="text_disabled">Persons with Disabilities</string>
+    <string name="text_sick">Sick</string>
 </resources>
