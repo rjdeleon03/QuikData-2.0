@@ -28,9 +28,11 @@
 
             <ImageView
                 android:id="@+id/radioInfoButton"
-                android:layout_width="24dp"
+                android:layout_width="28dp"
                 android:layout_gravity="center"
-                android:layout_height="24dp"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:background="?attr/actionBarItemBackground"
                 android:src="@drawable/ic_info_outline_24dp"/>
 
             <androidx.appcompat.widget.AppCompatRadioButton

@@ -42,15 +42,11 @@ class InfoDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        var titleId: Int
-        var contentId: Int
-        arguments.let {
-            titleId = getInt(TITLE_ID_KEY, 0)
-            contentId = getInt(CONTENT_ID_KEY, 0)
-        }
+        val titleId = arguments?.getInt(TITLE_ID_KEY)
+        val title = getString(titleId!!)
 
-        val title = getString(titleId)
-        val content = LayoutInflater.from(context!!).inflate(contentId, null)
+        val contentId = arguments?.getInt(CONTENT_ID_KEY)
+        val content = LayoutInflater.from(context!!).inflate(contentId!!, null)
 
         val builder = AlertDialog.Builder(context!!)
         builder.setTitle(title)
