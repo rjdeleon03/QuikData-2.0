@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_evacuation_info.*
 
@@ -73,6 +74,11 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
                 mIsItemLimitReached = true
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as CreateFormActivity).setSubtitle()
     }
 
 }

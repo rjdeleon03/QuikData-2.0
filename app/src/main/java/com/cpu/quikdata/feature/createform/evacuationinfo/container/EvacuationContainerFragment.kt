@@ -14,6 +14,7 @@ import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationfacilities.EvacuationFacilitiesFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationprotection.EvacuationProtectionFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationwash.EvacuationWashFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo.SiteInfoFragment
 import kotlinx.android.synthetic.main.fragment_evacuation_container.*
@@ -30,13 +31,14 @@ class EvacuationContainerFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_evacuation_container, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         val editMode = args.isEditMode
+        val parentActivity = activity as CreateFormActivity
         if (editMode) {
-            (activity as CreateFormActivity).setToolbarTitle(getString(R.string.evacuation_edit_title))
+            parentActivity.setToolbarTitle(getString(R.string.evacuation_edit_title))
         } else {
-            (activity as CreateFormActivity).setToolbarTitle(getString(R.string.evacuation_create_title))
+            parentActivity.setToolbarTitle(getString(R.string.evacuation_create_title))
         }
     }
 
@@ -49,6 +51,7 @@ class EvacuationContainerFragment : Fragment() {
         pagerAdapter.addFragment(EvacuationAgeFragment.newInstance(evacuationId), getString(R.string.evacuation_age_title))
         pagerAdapter.addFragment(EvacuationFacilitiesFragment.newInstance(evacuationId), getString(R.string.evacuation_facilities_title))
         pagerAdapter.addFragment(EvacuationWashFragment.newInstance(evacuationId), getString(R.string.evacuation_wash_title))
+        pagerAdapter.addFragment(EvacuationProtectionFragment.newInstance(evacuationId), getString(R.string.evacuation_protection_title))
         evacuationInfoViewPager.setupViewPager(pagerAdapter) { (activity as CreateFormActivity).setSubtitle(it) }
     }
 }

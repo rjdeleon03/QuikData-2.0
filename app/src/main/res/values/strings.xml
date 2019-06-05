@@ -338,4 +338,19 @@
     <string name="evacuation_wash_sick">Space for the Sick / Ill</string>
     <string name="evacuation_wash_hand_washing">Hand Washing Facilities</string>
     <string name="evacuation_wash_title">Water, Sanitation, and Hygiene</string>
+    <string name="evacuation_protection_unaccompanied_children">Unaccompanied Children</string>
+    <string name="evacuation_protection_unaccompanied_children_remarks">Number of Unaccompanied Children</string>
+    <string name="evacuation_protection_toilet_locks">Locks for Toilets / Baths</string>
+    <string name="evacuation_protection_segregated_toilet">Segregated Toilets / Bath for Men and Women</string>
+    <string name="evacuation_protection_proper_lighting">Proper Lighting Condition</string>
+    <string name="evacuation_protection_security_officers">Security Officer(s)</string>
+    <string name="evacuation_protection_sleeping_partitions">Partitions for Sleeping</string>
+    <string name="evacuation_protection_child_friendly">Child-friendly Space</string>
+    <string name="evacuation_protection_pregnant_space"><![CDATA[Safe Space for Pregnant & Lactating Mothers]]></string>
+    <string name="evacuation_protection_disabled_space">Safe Space for Persons with Disability</string>
+    <string name="evacuation_protection_religious_space">Space for Religious Practices</string>
+    <string name="evacuation_protection_gbv_referral">Is there a referral pathway for incidents of Gender Based Violence (GBV)?</string>
+    <string name="evacuation_protection_gbv_protection">Are there GBV protection services available?</string>
+    <string name="evacuation_protection_gbv_focal_point">Is there GBV protection focal point?</string>
+    <string name="evacuation_protection_title">Protection and Security</string>
 </resources>

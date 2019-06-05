@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context=".feature.createform.evacuationinfo.evacuationprotection.EvacuationProtectionFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionUnaccompaniedChildrenText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_unaccompanied_children"
+                app:questionString="@string/evacuation_protection_unaccompanied_children_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionToiletLocksText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_toilet_locks"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionSegregatedToiletText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_segregated_toilet"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionProperLightingText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_proper_lighting"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionSecurityOfficersText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_security_officers"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionSleepingPartitionsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_sleeping_partitions"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionChildFriendlyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_child_friendly"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionPregnantSpaceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_pregnant_space"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionDisabledSpaceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_disabled_space"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionReligiousSpaceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_religious_space"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionGbvReferralText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_gbv_referral"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionGbvProtectionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_gbv_protection"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+            <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
+                android:id="@+id/evacuationProtectionGbvFocalPointText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionBoolean="@string/evacuation_protection_gbv_focal_point"
+                app:questionString="@string/text_remarks"/>
+
+            <include layout="@layout/view_divider_extra_large"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
