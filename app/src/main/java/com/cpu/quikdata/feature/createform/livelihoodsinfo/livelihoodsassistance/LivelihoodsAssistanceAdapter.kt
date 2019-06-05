@@ -4,18 +4,19 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsassistance.LivelihoodsAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class LivelihoodsAssistanceAdapter(context: Context, rowSaveListener: (LivelihoodsAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<LivelihoodsAssistanceRow, LivelihoodsAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+class LivelihoodsAssistanceAdapter(context: Context,
+                                   rowSaveListener: (LivelihoodsAssistanceRow) -> Unit,
+                                   deleteClickListener: (LivelihoodsAssistanceRow) -> Unit) :
+    BaseAssistanceAdapter<LivelihoodsAssistanceRow, LivelihoodsAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<LivelihoodsAssistanceRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseAssistanceAdapter.ViewHolder<LivelihoodsAssistanceRow>(itemView) {
 
         @SuppressLint("SetTextI18n")
         override fun populateWithDataInternal(row: LivelihoodsAssistanceRow,

@@ -16,4 +16,6 @@ class IncomeAfterViewModel(application: Application, formId: String) :
     fun updateRow(incomeAfterRow: IncomeAfterRow) = mRepository.updateData(incomeAfterRow)
 
     fun createRow() = mRepository.createData()
+
+    fun deleteRow(row: IncomeAfterRow) = mRepository.deleteData(row)
 }

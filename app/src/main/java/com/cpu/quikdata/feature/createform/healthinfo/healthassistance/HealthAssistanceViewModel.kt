@@ -16,4 +16,6 @@ class HealthAssistanceViewModel(application: Application, formId: String) :
     fun updateRow(healthAssistanceRow: HealthAssistanceRow) = mRepository.updateData(healthAssistanceRow)
 
     fun createRow() = mRepository.createData()
+
+    fun deleteRow(row: HealthAssistanceRow) = mRepository.deleteData(row)
 }

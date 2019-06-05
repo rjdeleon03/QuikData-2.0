@@ -31,13 +31,13 @@ class HealthAssistanceFragment : BaseAssistanceFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = HealthAssistanceAdapter(context!!) {
-            mViewModel.updateRow(it)
+        mAdapter = HealthAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }
         healthAssistanceRecyclerView.adapter = mAdapter
         healthAssistanceAddButton.clickWithGuard {
 
-            if (isItemLimitReached) {
+            if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
@@ -53,7 +53,7 @@ class HealthAssistanceFragment : BaseAssistanceFragment() {
         mViewModel = ViewModelProviders.of(this, mFactory).get(HealthAssistanceViewModel::class.java)
         mViewModel.healthAssistance.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
-            isItemLimitReached = it.size >= itemLimit
+            mIsItemLimitReached = it.size >= mItemLimit
         })
     }
 

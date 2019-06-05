@@ -18,15 +18,15 @@ import java.lang.reflect.Array.getInt
  * A simple [Fragment] subclass.
  *
  */
-class InfoDialogFragment : DialogFragment() {
+class ConfirmationDialogFragment : DialogFragment() {
 
     companion object {
-        const val TAG = "INFO_DIALOG_FRAGMENT"
+        const val TAG = "CONFIRMATION_DIALOG_FRAGMENT"
         private const val TITLE_ID_KEY = "TITLE_ID_KEY"
         private const val CONTENT_ID_KEY = "CONTENT_ID_KEY"
 
-        fun newInstance(titleId: Int, textId: Int) : InfoDialogFragment {
-            val fragment = InfoDialogFragment()
+        fun newInstance(titleId: Int, textId: Int) : ConfirmationDialogFragment {
+            val fragment = ConfirmationDialogFragment()
             val bundle = Bundle()
             bundle.putInt(TITLE_ID_KEY, titleId)
             bundle.putInt(CONTENT_ID_KEY, textId)
@@ -34,6 +34,9 @@ class InfoDialogFragment : DialogFragment() {
             return fragment
         }
     }
+
+    private var mOnPositiveButtonListener: (() -> Unit)? = null
+    private var mOnNegativeButtonListener: (() -> Unit)? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +54,26 @@ class InfoDialogFragment : DialogFragment() {
         val builder = AlertDialog.Builder(context!!)
         builder.setTitle(title)
             .setView(content)
+            .setNegativeButton(R.string.text_cancel) { _, _ ->
+                dismiss()
+                onNegativeButtonListener?.invoke()
+            }
             .setPositiveButton(getString(R.string.text_ok)) { _, _ ->
+                dismiss()
+                onPositiveButtonListener?.invoke()
             }
         return builder.create()
     }
 
+    var onPositiveButtonListener: (() -> Unit)? = null
+        set(value) {
+            field = value
+            mOnPositiveButtonListener = field
+        }
+
+    var onNegativeButtonListener: (() -> Unit)? = null
+        set(value) {
+            field = value
+            mOnNegativeButtonListener = field
+        }
 }

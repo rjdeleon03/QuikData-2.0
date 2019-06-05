@@ -36,6 +36,8 @@ class LivelihoodsAssistanceRepository(application: Application, formId: String) 
     }
 
     override fun deleteData(data: LivelihoodsAssistanceRow) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        runOnIoThread {
+            mDatabase.livelihoodsAssistanceRowDao().delete(data)
+        }
     }
 }

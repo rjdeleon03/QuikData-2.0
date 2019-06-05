@@ -36,6 +36,8 @@ class ShelterAssistanceRepository(application: Application, formId: String) :
     }
 
     override fun deleteData(data: ShelterAssistanceRow) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        runOnIoThread {
+            mDatabase.shelterAssistanceRowDao().delete(data)
+        }
     }
 }

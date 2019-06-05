@@ -12,6 +12,7 @@
     <declare-styleable name="CollapsibleContainer">
         <attr name="headerText" format="string" />
         <attr name="collapsed" format="boolean" />
+        <attr name="deletable" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="TextItem">

@@ -45,9 +45,13 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
         notifyDataSetChanged()
     }
 
-    abstract class ViewHolder<R>(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    abstract class ViewHolder<R>(itemView: View, isDeletable: Boolean = false) : RecyclerView.ViewHolder(itemView) {
 
         private var mView = itemView
+
+        init {
+            collapsibleView?.isDeletable = isDeletable
+        }
 
         val view: View
             get() = mView
@@ -57,6 +61,12 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
 
         fun setOnClickListener(l: (Int) -> Unit) {
             collapsibleView?.headerTextField?.clickWithGuard {
+                l.invoke(view.tag as Int)
+            }
+        }
+
+        fun setOnDeleteClickListener(l: (Int) -> Unit) {
+            collapsibleView?.deleteButton?.clickWithGuard {
                 l.invoke(view.tag as Int)
             }
         }

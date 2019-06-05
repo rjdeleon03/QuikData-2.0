@@ -1,24 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/lightGray"
+    android:addStatesFromChildren="true">
 
-    <TextView
-        android:id="@+id/headerTextField"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimenMidLarge"
-        android:focusable="false"
-        android:clickable="false"
-        android:background="@color/lightGray"
-        android:gravity="center"
-        android:fontFamily="@font/nunitosans_bold"
-        android:textAllCaps="true"/>
+        android:layout_height="@dimen/dimenMidLarge">
+
+        <TextView
+            android:id="@+id/headerTextField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:clickable="false"
+            android:gravity="center"
+            android:fontFamily="@font/nunitosans_bold"
+            android:background="@drawable/ripple_accent"
+            android:textAllCaps="true"/>
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="44dp"
+            android:layout_height="32dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dimenSmall"
+            android:background="?attr/actionBarItemBackground"
+            android:src="@drawable/ic_close_24dp"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:background="@android:color/white"/>
 
-</merge>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+</LinearLayout>

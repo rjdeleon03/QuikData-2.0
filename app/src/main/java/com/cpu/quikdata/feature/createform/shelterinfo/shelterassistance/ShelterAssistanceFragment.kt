@@ -31,13 +31,13 @@ class ShelterAssistanceFragment : BaseAssistanceFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = ShelterAssistanceAdapter(context!!) {
-            mViewModel.updateRow(it)
+        mAdapter = ShelterAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }
         shelterAssistanceRecyclerView.adapter = mAdapter
         shelterAssistanceAddButton.clickWithGuard {
 
-            if (isItemLimitReached) {
+            if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
@@ -53,7 +53,7 @@ class ShelterAssistanceFragment : BaseAssistanceFragment() {
         mViewModel = ViewModelProviders.of(this, mFactory).get(ShelterAssistanceViewModel::class.java)
         mViewModel.shelterAssistance.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
-            isItemLimitReached = it.size >= itemLimit
+            mIsItemLimitReached = it.size >= mItemLimit
         })
     }
 

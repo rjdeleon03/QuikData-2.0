@@ -36,6 +36,8 @@ class WashAssistanceRepository(application: Application, formId: String) :
     }
 
     override fun deleteData(data: WashAssistanceRow) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        runOnIoThread {
+            mDatabase.washAssistanceRowDao().delete(data)
+        }
     }
 }

@@ -16,4 +16,6 @@ class LivelihoodsAssistanceViewModel(application: Application, formId: String) :
     fun updateRow(livelihoodsAssistanceRow: LivelihoodsAssistanceRow) = mRepository.updateData(livelihoodsAssistanceRow)
 
     fun createRow() = mRepository.createData()
+
+    fun deleteRow(row: LivelihoodsAssistanceRow) = mRepository.deleteData(row)
 }

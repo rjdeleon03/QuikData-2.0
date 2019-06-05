@@ -27,7 +27,7 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
     private lateinit var mViewModel: EvacuationInfoViewModel
     private lateinit var mAdapter: EvacuationInfoAdapter
     private lateinit var mNavController: NavController
-    private val mItemLimit = 10
+    private val mItemLimit = 5
     private var mIsItemLimitReached = false
 
     override fun onCreateView(

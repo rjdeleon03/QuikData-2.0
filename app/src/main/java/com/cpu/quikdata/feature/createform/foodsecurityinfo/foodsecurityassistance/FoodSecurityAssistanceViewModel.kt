@@ -16,4 +16,6 @@ class FoodSecurityAssistanceViewModel(application: Application, formId: String) 
     fun updateRow(foodSecurityAssistanceRow: FoodSecurityAssistanceRow) = mRepository.updateData(foodSecurityAssistanceRow)
 
     fun createRow() = mRepository.createData()
+
+    fun deleteRow(row: FoodSecurityAssistanceRow) = mRepository.deleteData(row)
 }

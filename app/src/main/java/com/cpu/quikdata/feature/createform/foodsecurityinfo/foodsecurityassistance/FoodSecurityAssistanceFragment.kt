@@ -31,13 +31,13 @@ class FoodSecurityAssistanceFragment : BaseAssistanceFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = FoodSecurityAssistanceAdapter(context!!) {
-            mViewModel.updateRow(it)
+        mAdapter = FoodSecurityAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }
         foodSecurityAssistanceRecyclerView.adapter = mAdapter
         foodSecurityAssistanceAddButton.clickWithGuard {
 
-            if (isItemLimitReached) {
+            if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
@@ -53,7 +53,7 @@ class FoodSecurityAssistanceFragment : BaseAssistanceFragment() {
         mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityAssistanceViewModel::class.java)
         mViewModel.foodSecurityAssistance.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
-            isItemLimitReached = it.size >= itemLimit
+            mIsItemLimitReached = it.size >= mItemLimit
         })
     }
 

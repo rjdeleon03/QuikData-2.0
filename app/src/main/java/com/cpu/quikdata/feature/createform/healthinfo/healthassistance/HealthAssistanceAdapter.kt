@@ -4,18 +4,19 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.data.health.healthassistance.HealthAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class HealthAssistanceAdapter(context: Context, rowSaveListener: (HealthAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<HealthAssistanceRow, HealthAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+class HealthAssistanceAdapter(context: Context,
+                              rowSaveListener: (HealthAssistanceRow) -> Unit,
+                              deleteClickListener: (HealthAssistanceRow) -> Unit) :
+    BaseAssistanceAdapter<HealthAssistanceRow, HealthAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<HealthAssistanceRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseAssistanceAdapter.ViewHolder<HealthAssistanceRow>(itemView) {
 
         private var mIndex = 0
 

@@ -33,6 +33,8 @@ class IncomeBeforeRepository(application: Application, formId: String) :
     }
 
     override fun deleteData(data: IncomeBeforeRow) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        runOnIoThread {
+            mDatabase.incomeBeforeRowDao().delete(data)
+        }
     }
 }
