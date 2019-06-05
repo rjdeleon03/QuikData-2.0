@@ -365,4 +365,5 @@
     <string name="text_emergency_makeshift">Emergency Shelter / Makeshift House</string>
     <string name="text_squatting">Squatting</string>
     <string name="evacuation_site_info_type">Type of Evacuation Center or Temporary Shelter</string>
+    <string name="text_delete">Delete</string>
 </resources>

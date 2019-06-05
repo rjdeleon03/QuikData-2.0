@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
@@ -15,7 +14,7 @@ class WashAssistanceAdapter(context: Context, rowSaveListener: (WashAssistanceRo
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<WashAssistanceRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseAssistanceAdapter.ViewHolder<WashAssistanceRow>(itemView) {
 
         @SuppressLint("SetTextI18n")
         override fun populateWithDataInternal(row: WashAssistanceRow,
