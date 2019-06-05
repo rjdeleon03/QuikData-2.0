@@ -9,8 +9,10 @@ import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurit
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class FoodSecurityAssistanceAdapter(context: Context, rowSaveListener: (FoodSecurityAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<FoodSecurityAssistanceRow, FoodSecurityAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+class FoodSecurityAssistanceAdapter(context: Context,
+                                    rowSaveListener: (FoodSecurityAssistanceRow) -> Unit,
+                                    deleteClickListener: (FoodSecurityAssistanceRow) -> Unit) :
+    BaseAssistanceAdapter<FoodSecurityAssistanceRow, FoodSecurityAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

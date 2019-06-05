@@ -31,13 +31,13 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = LivelihoodsAssistanceAdapter(context!!) {
-            mViewModel.updateRow(it)
+        mAdapter = LivelihoodsAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }
         livelihoodsAssistanceRecyclerView.adapter = mAdapter
         livelihoodsAssistanceAddButton.clickWithGuard {
 
-            if (isItemLimitReached) {
+            if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
@@ -53,7 +53,7 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment() {
         mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsAssistanceViewModel::class.java)
         mViewModel.livelihoodsAssistance.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
-            isItemLimitReached = it.size >= itemLimit
+            mIsItemLimitReached = it.size >= mItemLimit
         })
     }
 

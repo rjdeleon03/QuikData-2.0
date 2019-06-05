@@ -9,8 +9,10 @@ import com.cpu.quikdata.data.shelterinfo.shelterassistance.ShelterAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class ShelterAssistanceAdapter(context: Context, rowSaveListener: (ShelterAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<ShelterAssistanceRow, ShelterAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+class ShelterAssistanceAdapter(context: Context,
+                               rowSaveListener: (ShelterAssistanceRow) -> Unit,
+                               deleteClickListener: (ShelterAssistanceRow) -> Unit) :
+    BaseAssistanceAdapter<ShelterAssistanceRow, ShelterAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

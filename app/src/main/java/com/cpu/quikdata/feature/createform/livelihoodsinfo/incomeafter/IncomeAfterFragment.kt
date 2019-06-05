@@ -31,13 +31,15 @@ class IncomeAfterFragment : BaseAssistanceFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = IncomeAfterAdapter(context!!) {
-            mViewModel.updateRow(it)
+        mAdapter = IncomeAfterAdapter(context!!, { mViewModel.updateRow(it) }) {
+            showConfirmationDialog({ mViewModel.deleteRow(it) },
+                R.string.income_source_delete_confirmation,
+                R.layout.dialog_income_source_delete)
         }
         incomeAfterRecyclerView.adapter = mAdapter
         incomeAfterAddButton.clickWithGuard {
 
-            if (isItemLimitReached) {
+            if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.income_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
@@ -53,7 +55,7 @@ class IncomeAfterFragment : BaseAssistanceFragment() {
         mViewModel = ViewModelProviders.of(this, mFactory).get(IncomeAfterViewModel::class.java)
         mViewModel.incomeAfter.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
-            isItemLimitReached = it.size >= itemLimit
+            mIsItemLimitReached = it.size >= mItemLimit
         })
     }
 

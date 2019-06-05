@@ -9,8 +9,10 @@ import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsassistance.LivelihoodsAs
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class LivelihoodsAssistanceAdapter(context: Context, rowSaveListener: (LivelihoodsAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<LivelihoodsAssistanceRow, LivelihoodsAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+class LivelihoodsAssistanceAdapter(context: Context,
+                                   rowSaveListener: (LivelihoodsAssistanceRow) -> Unit,
+                                   deleteClickListener: (LivelihoodsAssistanceRow) -> Unit) :
+    BaseAssistanceAdapter<LivelihoodsAssistanceRow, LivelihoodsAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

@@ -9,8 +9,10 @@ import com.cpu.quikdata.data.health.healthassistance.HealthAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class HealthAssistanceAdapter(context: Context, rowSaveListener: (HealthAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<HealthAssistanceRow, HealthAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+class HealthAssistanceAdapter(context: Context,
+                              rowSaveListener: (HealthAssistanceRow) -> Unit,
+                              deleteClickListener: (HealthAssistanceRow) -> Unit) :
+    BaseAssistanceAdapter<HealthAssistanceRow, HealthAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

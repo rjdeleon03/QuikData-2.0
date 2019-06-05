@@ -26,11 +26,12 @@ class EvacuationInfoRepository(application: Application, formId: String) :
         get() = mEvacuationInfos
 
     override fun updateData(data: EvacuationItem) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun deleteData(data: EvacuationItem) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        runOnIoThread {
+            mDatabase.evacuationItemDao().delete(data)
+        }
     }
 
     override fun createData(id: String) {

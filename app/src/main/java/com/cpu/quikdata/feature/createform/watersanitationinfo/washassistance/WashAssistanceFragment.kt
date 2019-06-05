@@ -31,13 +31,13 @@ class WashAssistanceFragment : BaseAssistanceFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = WashAssistanceAdapter(context!!) {
-            mViewModel.updateRow(it)
+        mAdapter = WashAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }
         washAssistanceRecyclerView.adapter = mAdapter
         washAssistanceAddButton.clickWithGuard {
 
-            if (isItemLimitReached) {
+            if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
@@ -53,7 +53,7 @@ class WashAssistanceFragment : BaseAssistanceFragment() {
         mViewModel = ViewModelProviders.of(this, mFactory).get(WashAssistanceViewModel::class.java)
         mViewModel.washAssistance.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
-            isItemLimitReached = it.size >= itemLimit
+            mIsItemLimitReached = it.size >= mItemLimit
         })
     }
 

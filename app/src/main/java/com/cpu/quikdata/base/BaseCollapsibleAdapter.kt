@@ -65,6 +65,12 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
             }
         }
 
+        fun setOnDeleteClickListener(l: (Int) -> Unit) {
+            collapsibleView?.deleteButton?.clickWithGuard {
+                l.invoke(view.tag as Int)
+            }
+        }
+
         fun populateWithData(row: R,
                              idx: Int,
                              isCollapsed: Boolean = true,

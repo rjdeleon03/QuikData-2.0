@@ -36,6 +36,8 @@ class FoodSecurityAssistanceRepository(application: Application, formId: String)
     }
 
     override fun deleteData(data: FoodSecurityAssistanceRow) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        runOnIoThread {
+            mDatabase.foodSecurityAssistanceRowDao().delete(data)
+        }
     }
 }

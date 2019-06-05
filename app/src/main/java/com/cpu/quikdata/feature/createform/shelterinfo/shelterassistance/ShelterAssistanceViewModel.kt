@@ -16,4 +16,6 @@ class ShelterAssistanceViewModel(application: Application, formId: String) :
     fun updateRow(shelterAssistanceRow: ShelterAssistanceRow) = mRepository.updateData(shelterAssistanceRow)
 
     fun createRow() = mRepository.createData()
+
+    fun deleteRow(row: ShelterAssistanceRow) = mRepository.deleteData(row)
 }

@@ -9,8 +9,10 @@ import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRo
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class WashAssistanceAdapter(context: Context, rowSaveListener: (WashAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<WashAssistanceRow, WashAssistanceAdapter.ViewHolder>(context, rowSaveListener) {
+class WashAssistanceAdapter(context: Context,
+                            rowSaveListener: (WashAssistanceRow) -> Unit,
+                            deleteClickListener: (WashAssistanceRow) -> Unit) :
+    BaseAssistanceAdapter<WashAssistanceRow, WashAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

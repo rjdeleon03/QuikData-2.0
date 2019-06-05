@@ -16,4 +16,6 @@ class WashAssistanceViewModel(application: Application, formId: String) :
     fun updateRow(washAssistanceRow: WashAssistanceRow) = mRepository.updateData(washAssistanceRow)
 
     fun createRow() = mRepository.createData()
+
+    fun deleteRow(row: WashAssistanceRow) = mRepository.deleteData(row)
 }
