@@ -15,14 +15,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@android:color/white">
-
-            <include layout="@layout/view_divider_extra_large"/>
+            android:background="@color/lightGray">
 
             <com.cpu.quikdata.customviews.questions.StringQuestion
                 android:id="@+id/evacuationSiteInfoNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenMid"
                 app:textHint="@string/evacuation_site_info_name"/>
 
             <com.cpu.quikdata.customviews.questions.DateQuestion
@@ -35,9 +34,8 @@
                 android:id="@+id/evacuationSiteInfoLocationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/evacuation_site_info_location"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanQuestion
                 android:id="@+id/evacuationSiteInfoHaveMovedText"
@@ -63,9 +61,8 @@
                 android:id="@+id/evacuationSiteInfoHouseholdsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/evacuation_site_info_households"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.StringQuestion
                 android:id="@+id/evacuationSiteInfoDistanceText"
@@ -77,9 +74,8 @@
                 android:id="@+id/evacuationSiteInfoShelterSizeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/evacuation_site_shelter_size"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
         </LinearLayout>
 

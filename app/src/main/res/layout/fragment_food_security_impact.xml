@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@android:color/white">
+            android:background="@color/lightGray">
 
             <com.cpu.quikdata.customviews.DividerText
                 android:layout_width="match_parent"
@@ -82,9 +82,8 @@
                 android:id="@+id/foodSecurityImpactFoodNeedsAfterText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/food_security_impact_food_needs"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityImpactFoodProductionText"
@@ -96,9 +95,8 @@
                 android:id="@+id/foodSecurityImpactFoodRationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/food_security_impact_food_ration"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
         </LinearLayout>
 

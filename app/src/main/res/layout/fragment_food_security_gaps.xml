@@ -15,41 +15,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@android:color/white">
-
-            <include layout="@layout/view_divider_extra_large"/>
+            android:background="@color/lightGray">
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityGapsAssistanceAppropriateText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/food_security_gaps_assistance_appropriate"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityGapsAssistanceEnoughText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/food_security_gaps_assistance_enough"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityGapsAssistanceEqualAccessText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/food_security_gaps_assistance_equal_access"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityGapsSpecificNeedsMetText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/food_security_gaps_specific_needs_met"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
         </LinearLayout>
 

@@ -15,73 +15,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@android:color/white">
-
-            <include layout="@layout/view_divider_extra_large"/>
+            android:background="@color/lightGray">
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsCubicles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/shelter_gaps_cubicles"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsCulturalPracticeAssistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/shelter_gaps_cultural_practice_assistance"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsShelterAppropriate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/shelter_gaps_shelter_appropriate"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsServicesAccess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/shelter_gaps_services_access"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsAnyAbleBodied"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/shelter_gaps_any_able_bodied"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsGbvReferralPathway"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/shelter_gaps_gbv_referral_pathway"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsGbvProtectionServices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/shelter_gaps_gbv_protection_services"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsGbvProtectionFocalPoint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/shelter_gaps_gbv_protection_focal_point"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
         </LinearLayout>
 
