@@ -353,4 +353,6 @@
     <string name="evacuation_protection_gbv_protection">Are there GBV protection services available?</string>
     <string name="evacuation_protection_gbv_focal_point">Is there GBV protection focal point?</string>
     <string name="evacuation_protection_title">Protection and Security</string>
+    <string name="evacuation_coping_mechanism">What are the coping mechanisms or actions of the affected population?</string>
+    <string name="evacuation_coping_title">Coping Capacity</string>
 </resources>

@@ -13,6 +13,7 @@ import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationcoping.EvacuationCopingFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationfacilities.EvacuationFacilitiesFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationprotection.EvacuationProtectionFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationwash.EvacuationWashFragment
@@ -52,6 +53,7 @@ class EvacuationContainerFragment : Fragment() {
         pagerAdapter.addFragment(EvacuationFacilitiesFragment.newInstance(evacuationId), getString(R.string.evacuation_facilities_title))
         pagerAdapter.addFragment(EvacuationWashFragment.newInstance(evacuationId), getString(R.string.evacuation_wash_title))
         pagerAdapter.addFragment(EvacuationProtectionFragment.newInstance(evacuationId), getString(R.string.evacuation_protection_title))
+        pagerAdapter.addFragment(EvacuationCopingFragment.newInstance(evacuationId), getString(R.string.evacuation_coping_title))
         evacuationInfoViewPager.setupViewPager(pagerAdapter) { (activity as CreateFormActivity).setSubtitle(it) }
     }
 }

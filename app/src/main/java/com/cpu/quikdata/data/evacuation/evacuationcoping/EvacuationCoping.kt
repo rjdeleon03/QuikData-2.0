@@ -4,19 +4,19 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.data.evacuation.EvacuationItem
 
 @Entity(tableName = "evacuation_coping",
-    indices = [Index("formId")],
-    foreignKeys = [ForeignKey(entity = Form::class,
+    indices = [Index("evacuationId")],
+    foreignKeys = [ForeignKey(entity = EvacuationItem::class,
         parentColumns = ["id"],
-        childColumns = ["formId"],
+        childColumns = ["evacuationId"],
         onDelete = ForeignKey.CASCADE
     )])
 data class EvacuationCoping(@PrimaryKey(autoGenerate = false)
                             val id: String = "",
                             var copingMechanism: String = "",
-                            val formId: String = "") {
+                            val evacuationId: String = "") {
 
     fun copyFrom(evacuationCoping: EvacuationCoping) {
         copingMechanism = evacuationCoping.copingMechanism
