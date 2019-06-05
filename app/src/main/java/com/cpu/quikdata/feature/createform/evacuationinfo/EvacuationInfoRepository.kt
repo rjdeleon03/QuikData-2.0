@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.evacuation.EvacuationItem
+import com.cpu.quikdata.data.evacuation.EvacuationItemDetails
 import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
 import com.cpu.quikdata.data.evacuation.evacuationcoping.EvacuationCoping
 import com.cpu.quikdata.data.evacuation.evacuationfacilities.EvacuationFacilities
@@ -17,20 +18,20 @@ import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 
 class EvacuationInfoRepository(application: Application, formId: String) :
-    BaseCreatableDataRepository<EvacuationItem>(application) {
+    BaseCreatableDataRepository<EvacuationItemDetails>(application) {
 
     private val mFormId = formId
-    private val mEvacuationInfos = mDatabase.evacuationItemDao().getByFormId(mFormId)
+    private val mEvacuationInfo = mDatabase.evacuationItemDao().getByFormId(mFormId)
 
-    val evacuationInfos: LiveData<List<EvacuationItem>>
-        get() = mEvacuationInfos
+    val evacuationInfo: LiveData<List<EvacuationItemDetails>>
+        get() = mEvacuationInfo
 
-    override fun updateData(data: EvacuationItem) {
+    override fun updateData(data: EvacuationItemDetails) {
     }
 
-    override fun deleteData(data: EvacuationItem) {
+    override fun deleteData(data: EvacuationItemDetails) {
         runOnIoThread {
-            mDatabase.evacuationItemDao().delete(data)
+            mDatabase.evacuationItemDao().delete(data.item!!)
         }
     }
 
@@ -44,6 +45,7 @@ class EvacuationInfoRepository(application: Application, formId: String) :
 
             val siteInfo = SiteInfo(
                 id = generateId(),
+                name = "Evacuation Area",
                 evacuationDate = LocalDate.now().toDateTimeAtStartOfDay().millis,
                 evacuationId = id)
             mDatabase.siteInfoDao().insert(siteInfo)

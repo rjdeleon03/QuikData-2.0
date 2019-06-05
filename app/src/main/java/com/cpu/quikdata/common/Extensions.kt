@@ -1,23 +1,22 @@
 package com.cpu.quikdata.common
 
-import android.content.Context
 import android.graphics.Color
-import android.graphics.Rect
 import android.os.SystemClock
-import android.view.MotionEvent
 import android.view.View
-import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.children
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
-import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.google.android.material.textfield.TextInputEditText
-import kotlin.math.roundToInt
+import org.joda.time.format.DateTimeFormat
+
+
+fun Long.toDateString(): String {
+    val formatter = DateTimeFormat.forPattern("yyyy/MM/dd")
+    return formatter.print(this)
+}
 
 fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {
 

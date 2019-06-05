@@ -11,11 +11,12 @@ abstract class BaseAssistanceFragment: BaseCreateFormFragment() {
 
     protected fun showConfirmationDialog(positiveButtonListener: () -> Unit,
                                          titleId: Int = R.string.assistance_delete_confirmation,
-                                         layoutId: Int = R.layout.dialog_assistance_delete) {
+                                         layoutId: Int = R.layout.dialog_assistance_delete,
+                                         toastId: Int = R.string.assistance_delete_finished) {
         val dialog = ConfirmationDialogFragment.newInstance(titleId, layoutId)
         dialog.onPositiveButtonListener = {
             positiveButtonListener.invoke()
-            Toast.makeText(context!!, R.string.text_delete_confirmation, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context!!, toastId, Toast.LENGTH_SHORT).show()
         }
         dialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
     }

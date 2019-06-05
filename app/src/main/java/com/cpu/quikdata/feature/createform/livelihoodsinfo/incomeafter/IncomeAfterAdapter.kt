@@ -17,7 +17,7 @@ class IncomeAfterAdapter(context: Context,
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<IncomeAfterRow>(itemView, true) {
+    class ViewHolder(itemView: View) : BaseAssistanceAdapter.ViewHolder<IncomeAfterRow>(itemView) {
 
         @SuppressLint("SetTextI18n")
         override fun populateWithDataInternal(row: IncomeAfterRow,

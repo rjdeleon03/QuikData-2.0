@@ -34,7 +34,8 @@ class IncomeAfterFragment : BaseAssistanceFragment() {
         mAdapter = IncomeAfterAdapter(context!!, { mViewModel.updateRow(it) }) {
             showConfirmationDialog({ mViewModel.deleteRow(it) },
                 R.string.income_source_delete_confirmation,
-                R.layout.dialog_income_source_delete)
+                R.layout.dialog_income_source_delete,
+                R.string.income_source_delete_finished)
         }
         incomeAfterRecyclerView.adapter = mAdapter
         incomeAfterAddButton.clickWithGuard {
