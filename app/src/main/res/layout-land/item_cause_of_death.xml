@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cpu.quikdata.customviews.CollapsibleContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:collapsed="true">
+    
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2">
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/causeOfDeathMeaslesText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/cause_of_death_measles"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/causeOfDeathDiarrheaText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/cause_of_death_diarrhea"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/causeOfDeathPneumoniaText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/cause_of_death_pneumonia"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/causeOfDeathDengueText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/cause_of_death_dengue"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/causeOfDeathDrowningText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/cause_of_death_drowning"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/causeOfDeathHeartAttackText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/cause_of_death_heart_attack"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/causeOfDeathElectrocutionText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/cause_of_death_electrocution"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/causeOfDeathCollapsedBldgText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/cause_of_death_collapsed_bldg"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/causeOfDeathOthersText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/cause_of_death_others"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <include layout="@layout/view_divider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_columnWeight="1"/>
+
+    </GridLayout>
+
+</com.cpu.quikdata.customviews.CollapsibleContainer>
