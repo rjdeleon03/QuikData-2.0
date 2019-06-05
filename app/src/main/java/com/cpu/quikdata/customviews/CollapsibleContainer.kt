@@ -10,6 +10,7 @@ import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 import android.view.animation.Animation
 import android.view.animation.Transformation
+import androidx.core.content.ContextCompat
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class CollapsibleContainer(context: Context, attrs: AttributeSet) :
@@ -17,6 +18,7 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
 
     private var mIsUpdateFinished = false
     private var mIsCollapsed = false
+    private var mIsDeletable = false
     private var mOnDetachedListener: (() -> Unit)? = null
     private var mOnCollapsedStateChangedListener: ((Boolean) -> Unit)? = null
 
@@ -25,6 +27,13 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         set(value) {
             mIsCollapsed = value
             collapseOrExpand(mIsCollapsed)
+        }
+
+    var isDeletable: Boolean
+        get() = mIsDeletable
+        set(value) {
+            mIsDeletable = value
+            toggleDeleteButtonVisibility(mIsDeletable)
         }
 
     var onDetachedListener: (() -> Unit)? = null
@@ -50,12 +59,17 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CollapsibleContainer)
         headerTextField.text = attributes.getString(R.styleable.CollapsibleContainer_headerText)
         val collapsedFlag = attributes.getBoolean(R.styleable.CollapsibleContainer_collapsed, false)
+        val deletableFlag = attributes.getBoolean(R.styleable.CollapsibleContainer_deletable, false)
         attributes.recycle()
 
         // Collapse if collapsed flag is true
         if (collapsedFlag) {
-            mIsCollapsed = true
-            collapse()
+            isCollapsed = true
+        }
+
+        // Hide delete button if deletable flag is false
+        if (!deletableFlag) {
+            isDeletable = false
         }
     }
 
@@ -81,15 +95,31 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         }
     }
 
-    fun collapse() { contentLayout.visibility = View.GONE }
+    fun collapse() {
+        contentLayout.visibility = View.GONE
+        headerTextField.background = ContextCompat.getDrawable(context, R.drawable.ripple_accent)
+        mainLayout.background = ContextCompat.getDrawable(context, R.color.lightGray)
+    }
 
-    fun expand() { contentLayout.visibility = View.VISIBLE }
+    fun expand() {
+        contentLayout.visibility = View.VISIBLE
+        headerTextField.background = ContextCompat.getDrawable(context, R.color.colorAccentLight)
+        mainLayout.background = ContextCompat.getDrawable(context, R.color.colorAccentLight)
+    }
 
     private fun collapseOrExpand(willCollapse: Boolean) {
         if (willCollapse) {
             collapse()
         } else {
             expand()
+        }
+    }
+
+    private fun toggleDeleteButtonVisibility(isDeletable: Boolean) {
+        if (isDeletable) {
+            deleteButton.visibility = View.VISIBLE
+        } else {
+            deleteButton.visibility = View.GONE
         }
     }
 }

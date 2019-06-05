@@ -8,9 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginStart="@dimen/dimenMid"
-        android:layout_marginEnd="@dimen/dimenMid"
-        android:layout_marginTop="@dimen/dimenExtraSmall"
+        android:paddingStart="@dimen/dimenMid"
+        android:paddingEnd="@dimen/dimenMid"
+        android:paddingTop="@dimen/dimenExtraSmall"
+        android:background="@android:color/white"
         android:gravity="center_vertical">
 
         <TextView
