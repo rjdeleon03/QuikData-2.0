@@ -3,18 +3,18 @@ package com.cpu.quikdata.feature.createform.generalinfo.casualties
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRow
 import kotlinx.android.synthetic.main.item_casualties.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class CasualtiesAdapter(context: Context, rowSaveListener: (CasualtiesRow) -> Unit) :
-    BaseAdapter<CasualtiesRow, CasualtiesAdapter.ViewHolder>(context, R.layout.item_casualties, rowSaveListener) {
+    BaseCollapsibleAdapter<CasualtiesRow, CasualtiesAdapter.ViewHolder>(context, R.layout.item_casualties, rowSaveListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<CasualtiesRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<CasualtiesRow>(itemView) {
 
         override fun populateWithDataInternal(row: CasualtiesRow,
                                               idx: Int,

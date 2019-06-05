@@ -23,12 +23,16 @@ class IncomeBeforeRepository(application: Application, formId: String) :
         }
     }
 
-    override fun createData() {
+    override fun createData(id: String) {
         runOnIoThread {
             val row = IncomeBeforeRow(id = generateId(),
                 dateCreated = LocalDateTime.now().toDateTime().millis,
                 formId = mFormId)
             mDatabase.incomeBeforeRowDao().insert(row)
         }
+    }
+
+    override fun deleteData(data: IncomeBeforeRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

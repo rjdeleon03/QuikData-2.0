@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cpu.quikdata.customviews.CollapsibleContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:collapsed="true">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2">
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/evacuationAgeMaleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_male"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/evacuationAgeFemaleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/evacuationAgeLgbtText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_columnSpan="2"
+            app:textHint="@string/text_lgbt"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/evacuationAgePregnantText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_pregnant"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/evacuationAgeLactatingText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_lactating"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/evacuationAgeDisabledText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_disabled"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/evacuationAgeSickText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/text_sick"/>
+
+    </GridLayout>
+
+</com.cpu.quikdata.customviews.CollapsibleContainer>

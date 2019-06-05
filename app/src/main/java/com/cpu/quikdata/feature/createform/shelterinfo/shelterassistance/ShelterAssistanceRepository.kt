@@ -24,7 +24,7 @@ class ShelterAssistanceRepository(application: Application, formId: String) :
         }
     }
 
-    override fun createData() {
+    override fun createData(id: String) {
         runOnIoThread {
             val dateTodayInMillis = LocalDate.now().toDateTimeAtStartOfDay().millis
             val row = ShelterAssistanceRow(id = generateId(),
@@ -33,5 +33,9 @@ class ShelterAssistanceRepository(application: Application, formId: String) :
                 formId = mFormId)
             mDatabase.shelterAssistanceRowDao().insert(row)
         }
+    }
+
+    override fun deleteData(data: ShelterAssistanceRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

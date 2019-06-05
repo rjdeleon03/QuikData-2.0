@@ -24,7 +24,7 @@ class FoodSecurityAssistanceRepository(application: Application, formId: String)
         }
     }
 
-    override fun createData() {
+    override fun createData(id: String) {
         runOnIoThread {
             val dateTodayInMillis = LocalDate.now().toDateTimeAtStartOfDay().millis
             val row = FoodSecurityAssistanceRow(id = generateId(),
@@ -33,5 +33,9 @@ class FoodSecurityAssistanceRepository(application: Application, formId: String)
                 formId = mFormId)
             mDatabase.foodSecurityAssistanceRowDao().insert(row)
         }
+    }
+
+    override fun deleteData(data: FoodSecurityAssistanceRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

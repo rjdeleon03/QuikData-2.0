@@ -9,31 +9,29 @@ import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-abstract class BaseAdapter<R, VH: BaseAdapter.ViewHolder<R>>(context: Context, layoutId: Int, rowSaveListener: (R) -> Unit) :
+abstract class BaseAdapter<R, VH: BaseAdapter.ViewHolder<R>>(context: Context, layoutId: Int) :
     RecyclerView.Adapter<VH>() {
 
     private val mInflater = LayoutInflater.from(context)
     private val mLayoutId = layoutId
     protected var mRows: List<R>? = null
-    protected var mExpandedItem = 0
-    protected val mRowSaveListener = rowSaveListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view = mInflater.inflate(mLayoutId, parent, false)
         val holder = createViewHolder(view)
-        holder.setOnClickListener {position ->
-            notifyItemChanged(mExpandedItem)
-            mExpandedItem = position
-            notifyItemChanged(position)
+        holder.setOnClickListener {itemId ->
+            onItemClick(itemId)
         }
         return holder
     }
 
     abstract fun createViewHolder(view: View) : VH
 
+    abstract fun onItemClick(id: String)
+
     override fun onBindViewHolder(holder: VH, position: Int) {
         val row = mRows?.get(position)
-        holder.populateWithData(row!!, position, mExpandedItem != position, mRowSaveListener)
+        holder.populateWithData(row!!)
     }
 
     override fun getItemCount(): Int {
@@ -52,27 +50,12 @@ abstract class BaseAdapter<R, VH: BaseAdapter.ViewHolder<R>>(context: Context, l
         val view: View
             get() = mView
 
-        protected val collapsibleView: CollapsibleContainer?
-            get() = mView as CollapsibleContainer
-
-        fun setOnClickListener(l: (Int) -> Unit) {
-            collapsibleView?.headerTextField?.clickWithGuard {
-                l.invoke(view.tag as Int)
+        fun setOnClickListener(l: (String) -> Unit) {
+            view.clickWithGuard {
+                l.invoke(view.tag as String)
             }
         }
 
-        fun populateWithData(row: R,
-                             idx: Int,
-                             isCollapsed: Boolean = true,
-                             rowSaveListener: (R) -> Unit) {
-
-            populateWithDataInternal(row, idx, isCollapsed, rowSaveListener)
-            collapsibleView?.isCollapsed = isCollapsed
-        }
-
-        protected abstract fun populateWithDataInternal(row: R,
-                                                        idx: Int,
-                                                        isCollapsed: Boolean = true,
-                                                        rowSaveListener: (R) -> Unit)
+        abstract fun populateWithData(data: R)
     }
 }

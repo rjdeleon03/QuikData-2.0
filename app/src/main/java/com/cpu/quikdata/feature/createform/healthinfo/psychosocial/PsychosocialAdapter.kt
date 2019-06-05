@@ -2,20 +2,19 @@ package com.cpu.quikdata.feature.createform.healthinfo.psychosocial
 
 import android.content.Context
 import android.view.View
-import android.view.ViewGroup
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
 import kotlinx.android.synthetic.main.item_psychosocial.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class PsychosocialAdapter(context: Context, rowSaveListener: (PsychosocialRow) -> Unit) :
-    BaseAdapter<PsychosocialRow, PsychosocialAdapter.ViewHolder>(context, R.layout.item_psychosocial, rowSaveListener) {
+    BaseCollapsibleAdapter<PsychosocialRow, PsychosocialAdapter.ViewHolder>(context, R.layout.item_psychosocial, rowSaveListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<PsychosocialRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<PsychosocialRow>(itemView) {
 
         override fun populateWithDataInternal(row: PsychosocialRow,
                                               idx: Int,

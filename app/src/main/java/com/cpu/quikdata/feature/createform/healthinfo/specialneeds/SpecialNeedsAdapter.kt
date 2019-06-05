@@ -3,18 +3,18 @@ package com.cpu.quikdata.feature.createform.healthinfo.specialneeds
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.SpecialNeedsCategories
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
 import kotlinx.android.synthetic.main.item_special_needs.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class SpecialNeedsAdapter(context: Context, rowSaveListener: (SpecialNeedsRow) -> Unit) :
-    BaseAdapter<SpecialNeedsRow, SpecialNeedsAdapter.ViewHolder>(context, R.layout.item_special_needs, rowSaveListener) {
+    BaseCollapsibleAdapter<SpecialNeedsRow, SpecialNeedsAdapter.ViewHolder>(context, R.layout.item_special_needs, rowSaveListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<SpecialNeedsRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<SpecialNeedsRow>(itemView) {
 
         override fun populateWithDataInternal(row: SpecialNeedsRow,
                                               idx: Int,

@@ -1,13 +1,9 @@
 package com.cpu.quikdata.base
 
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import androidx.recyclerview.widget.RecyclerView
-import com.cpu.quikdata.customviews.CollapsibleContainer
 
-abstract class BaseAssistanceAdapter<R, VH: BaseAdapter.ViewHolder<R>>(context: Context, rowSaveListener: (R) -> Unit) :
-    BaseAdapter<R, VH>(context, com.cpu.quikdata.R.layout.item_assistance, rowSaveListener) {
+abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context, rowSaveListener: (R) -> Unit) :
+    BaseCollapsibleAdapter<R, VH>(context, com.cpu.quikdata.R.layout.item_assistance, rowSaveListener) {
 
     override fun getItemCount(): Int {
         return if (mRows != null) mRows!!.size else 0

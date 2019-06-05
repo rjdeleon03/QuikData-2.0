@@ -24,7 +24,7 @@ class WashAssistanceRepository(application: Application, formId: String) :
         }
     }
 
-    override fun createData() {
+    override fun createData(id: String) {
         runOnIoThread {
             val dateTodayInMillis = LocalDate.now().toDateTimeAtStartOfDay().millis
             val row = WashAssistanceRow(id = generateId(),
@@ -33,5 +33,9 @@ class WashAssistanceRepository(application: Application, formId: String) :
                 formId = mFormId)
             mDatabase.washAssistanceRowDao().insert(row)
         }
+    }
+
+    override fun deleteData(data: WashAssistanceRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

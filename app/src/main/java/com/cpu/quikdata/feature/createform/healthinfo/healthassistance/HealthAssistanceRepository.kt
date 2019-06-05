@@ -24,7 +24,7 @@ class HealthAssistanceRepository(application: Application, formId: String) :
         }
     }
 
-    override fun createData() {
+    override fun createData(id: String) {
         runOnIoThread {
             val dateTodayInMillis = LocalDate.now().toDateTimeAtStartOfDay().millis
             val row = HealthAssistanceRow(id = generateId(),
@@ -33,5 +33,9 @@ class HealthAssistanceRepository(application: Application, formId: String) :
                 formId = mFormId)
             mDatabase.healthAssistanceRowDao().insert(row)
         }
+    }
+
+    override fun deleteData(data: HealthAssistanceRow) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

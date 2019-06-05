@@ -260,3 +260,51 @@ enum class LivelihoodSubcategories {
         }
     }
 }
+
+enum class EvacuationCategories {
+    EVACUATION_CENTER_BLDG,
+    MULTI_PURPOSE_HALL,
+    CHURCH,
+    SCHOOL,
+    GYM,
+    LIVING_WITH_HOST,
+    RENTING_APARTMENT,
+    DAMAGED_HOUSE,
+    INFORMAL_SELF_SETTLED,
+    EMERGENCY_MAKESHIFT,
+    SQUATTING,
+    OTHERS;
+
+    fun getStringId(): Int {
+        return when(this) {
+            EVACUATION_CENTER_BLDG -> R.string.text_evacuation_center_bldg
+            MULTI_PURPOSE_HALL -> R.string.text_multi_purpose_hall
+            CHURCH -> R.string.text_church
+            SCHOOL -> R.string.text_school
+            GYM -> R.string.text_gym
+            LIVING_WITH_HOST -> R.string.text_living_with_host
+            RENTING_APARTMENT -> R.string.text_renting_apartment
+            DAMAGED_HOUSE -> R.string.text_damaged_house
+            INFORMAL_SELF_SETTLED -> R.string.text_informal_self_settled
+            EMERGENCY_MAKESHIFT -> R.string.text_emergency_makeshift
+            SQUATTING -> R.string.text_squatting
+            OTHERS -> R.string.text_others
+        }
+    }
+
+    companion object {
+
+        fun getStringId(idx: Int): Int {
+            return values()[idx].getStringId()
+        }
+
+        fun getStringIdList() : List<Int> {
+            val array = values()
+            val list = ArrayList<Int>()
+            for (category in array) {
+                list.add(category.getStringId())
+            }
+            return list
+        }
+    }
+}

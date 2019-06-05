@@ -77,10 +77,26 @@
         android:id="@+id/evacuationInfoFragment"
         android:name="com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment"
         android:label="@string/evacuation_title"
-        tools:layout="@layout/fragment_evacuation_info" />
+        tools:layout="@layout/fragment_evacuation_info" >
+        <action
+            android:id="@+id/action_evacuationInfoFragment_to_evacuationContainerFragment"
+            app:destination="@id/evacuationContainerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/caseStoriesFragment"
         android:name="com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment"
         android:label="@string/case_stories_title"
         tools:layout="@layout/fragment_case_stories" />
+    <fragment
+        android:id="@+id/evacuationContainerFragment"
+        android:name="com.cpu.quikdata.feature.createform.evacuationinfo.container.EvacuationContainerFragment"
+        android:label="@string/evacuation_title"
+        tools:layout="@layout/fragment_evacuation_container" >
+        <argument
+            android:name="evacuationId"
+            app:argType="string" />
+        <argument
+            android:name="isEditMode"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

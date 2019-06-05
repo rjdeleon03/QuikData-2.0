@@ -3,18 +3,18 @@ package com.cpu.quikdata.feature.createform.generalinfo.causeofdeath
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRow
 import kotlinx.android.synthetic.main.item_cause_of_death.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -> Unit) :
-    BaseAdapter<CauseOfDeathRow, CauseOfDeathAdapter.ViewHolder>(context, R.layout.item_cause_of_death, rowSaveListener) {
+    BaseCollapsibleAdapter<CauseOfDeathRow, CauseOfDeathAdapter.ViewHolder>(context, R.layout.item_cause_of_death, rowSaveListener) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    class ViewHolder(itemView: View) : BaseAdapter.ViewHolder<CauseOfDeathRow>(itemView) {
+    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<CauseOfDeathRow>(itemView) {
 
         override fun populateWithDataInternal(row: CauseOfDeathRow,
                                               idx: Int,

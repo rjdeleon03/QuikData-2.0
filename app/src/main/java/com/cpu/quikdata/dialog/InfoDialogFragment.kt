@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 
 import com.cpu.quikdata.R
+import java.lang.reflect.Array.getInt
 
 /**
  * A simple [Fragment] subclass.
@@ -40,11 +41,16 @@ class InfoDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val titleId = arguments?.getInt(TITLE_ID_KEY)
-        val title = getString(titleId!!)
 
-        val contentId = arguments?.getInt(CONTENT_ID_KEY)
-        val content = LayoutInflater.from(context!!).inflate(contentId!!, null)
+        var titleId: Int
+        var contentId: Int
+        arguments.let {
+            titleId = getInt(TITLE_ID_KEY, 0)
+            contentId = getInt(CONTENT_ID_KEY, 0)
+        }
+
+        val title = getString(titleId)
+        val content = LayoutInflater.from(context!!).inflate(contentId, null)
 
         val builder = AlertDialog.Builder(context!!)
         builder.setTitle(title)
