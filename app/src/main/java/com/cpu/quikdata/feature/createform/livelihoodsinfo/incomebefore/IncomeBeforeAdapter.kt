@@ -14,6 +14,11 @@ class IncomeBeforeAdapter(context: Context, rowSaveListener: (IncomeBeforeRow) -
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
+    override fun setRows(rows: List<IncomeBeforeRow>) {
+        if (mRows != null) mExpandedItem = rows.size - 1
+        super.setRows(rows)
+    }
+
     class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<IncomeBeforeRow>(itemView) {
 
         @SuppressLint("SetTextI18n")
