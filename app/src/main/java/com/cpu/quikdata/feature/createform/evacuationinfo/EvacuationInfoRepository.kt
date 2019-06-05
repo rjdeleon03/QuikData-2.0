@@ -45,7 +45,6 @@ class EvacuationInfoRepository(application: Application, formId: String) :
 
             val siteInfo = SiteInfo(
                 id = generateId(),
-                name = "Evacuation Area",
                 evacuationDate = LocalDate.now().toDateTimeAtStartOfDay().millis,
                 evacuationId = id)
             mDatabase.siteInfoDao().insert(siteInfo)

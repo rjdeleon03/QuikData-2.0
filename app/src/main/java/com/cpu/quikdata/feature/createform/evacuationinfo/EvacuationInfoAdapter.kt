@@ -7,6 +7,7 @@ import com.cpu.quikdata.base.BaseAdapter
 import com.cpu.quikdata.common.toDateString
 import com.cpu.quikdata.data.evacuation.EvacuationItemDetails
 import kotlinx.android.synthetic.main.item_evacuation.view.*
+import kotlinx.android.synthetic.main.view_divider_text.view.*
 
 class EvacuationInfoAdapter(context: Context, onClickListener: (String) -> Unit) :
     BaseAdapter<EvacuationItemDetails, EvacuationInfoAdapter.ViewHolder>(context, R.layout.item_evacuation) {
