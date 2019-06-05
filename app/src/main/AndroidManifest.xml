@@ -12,8 +12,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".feature.evacuation.EvacuationActivity"></activity>
         <activity
-            android:name=".feature.createform.CreateFormActivity"
-            android:configChanges="orientation">
+            android:name=".feature.createform.CreateFormActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cpu.quikdata.feature.main.MainActivity" />

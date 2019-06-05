@@ -45,7 +45,7 @@ fun TextInputEditText.setupNumberInputValidation() {
     }
 }
 
-fun ViewGroup.setupOnFocusBehavior(target: TextView, focusSource: View) {
+fun ViewGroup.setupOnFocusBehavior(target: TextView, focusSource: View, onFocusAction: (() -> Unit)? = null) {
 
     /* Retrieve default text view color */
     val attrs2 = intArrayOf(android.R.attr.textColorHint)
@@ -60,6 +60,7 @@ fun ViewGroup.setupOnFocusBehavior(target: TextView, focusSource: View) {
     focusSource.setOnFocusChangeListener { _, hasFocus ->
         if (hasFocus) {
             target.setHintTextColor(ContextCompat.getColor(context, R.color.colorAccent))
+            onFocusAction?.invoke()
         } else {
             target.setHintTextColor(defaultColor)
         }
