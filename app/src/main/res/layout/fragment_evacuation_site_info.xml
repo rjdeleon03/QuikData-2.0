@@ -53,6 +53,12 @@
                 android:layout_height="wrap_content"
                 app:question="@string/evacuation_site_info_lgu_designated"/>
 
+            <com.cpu.quikdata.customviews.questions.MultipleChoiceDropdownQuestion
+                android:id="@+id/evacuationSiteInfoTypeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:questionChoice="@string/evacuation_site_info_type"/>
+
             <com.cpu.quikdata.customviews.questions.NumberQuestion
                 android:id="@+id/evacuationSiteInfoHouseholdsText"
                 android:layout_width="match_parent"

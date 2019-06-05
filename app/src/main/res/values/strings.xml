@@ -355,4 +355,14 @@
     <string name="evacuation_protection_title">Protection and Security</string>
     <string name="evacuation_coping_mechanism">What are the coping mechanisms or actions of the affected population?</string>
     <string name="evacuation_coping_title">Coping Capacity</string>
+    <string name="text_evacuation_center_bldg">Evacuation Center Building</string>
+    <string name="text_multi_purpose_hall">Multi-Purpose Hall</string>
+    <string name="text_gym">Gym</string>
+    <string name="text_living_with_host">Living with Host Family / Friends</string>
+    <string name="text_renting_apartment">Renting an Apartment</string>
+    <string name="text_damaged_house">Living in Damaged House</string>
+    <string name="text_informal_self_settled">Informal Self-Settled Camp</string>
+    <string name="text_emergency_makeshift">Emergency Shelter / Makeshift House</string>
+    <string name="text_squatting">Squatting</string>
+    <string name="evacuation_site_info_type">Type of Evacuation Center or Temporary Shelter</string>
 </resources>

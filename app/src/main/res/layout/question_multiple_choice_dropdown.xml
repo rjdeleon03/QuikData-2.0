@@ -15,13 +15,13 @@
         android:textColor="?android:attr/textColorHint"/>
 
     <Spinner
+        android:id="@+id/questionChoiceSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimenMid"
         android:layout_marginEnd="@dimen/dimenMid"
         android:layout_marginTop="@dimen/dimenExtraSmall"
         android:layout_marginBottom="@dimen/dimenExtraSmall" />
-
 
     <include layout="@layout/view_divider"/>
 
