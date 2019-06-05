@@ -31,20 +31,20 @@ data class EvacuationWash(@PrimaryKey(autoGenerate = false)
                           var handWashingRemarks: String = "",
                           val evacuationId: String = "") {
 
-    fun copyFrom(evacuationFacilities: EvacuationWash) {
-        foodPreparation = evacuationFacilities.foodPreparation
-        foodPreparationRemarks = evacuationFacilities.foodPreparationRemarks
-        waterSource = evacuationFacilities.waterSource
-        waterSourceRemarks = evacuationFacilities.waterSourceRemarks
-        toiletBaths = evacuationFacilities.toiletBaths
-        toiletBathsRemarks = evacuationFacilities.toiletBathsRemarks
-        garbageDisposal = evacuationFacilities.garbageDisposal
-        garbageDisposalRemarks = evacuationFacilities.garbageDisposalRemarks
-        clinic = evacuationFacilities.clinic
-        clinicRemarks = evacuationFacilities.clinicRemarks
-        sick = evacuationFacilities.sick
-        sickRemarks = evacuationFacilities.sickRemarks
-        handWashing = evacuationFacilities.handWashing
-        handWashingRemarks = evacuationFacilities.handWashingRemarks
+    fun copyFrom(evacuationWash: EvacuationWash) {
+        foodPreparation = evacuationWash.foodPreparation
+        foodPreparationRemarks = evacuationWash.foodPreparationRemarks
+        waterSource = evacuationWash.waterSource
+        waterSourceRemarks = evacuationWash.waterSourceRemarks
+        toiletBaths = evacuationWash.toiletBaths
+        toiletBathsRemarks = evacuationWash.toiletBathsRemarks
+        garbageDisposal = evacuationWash.garbageDisposal
+        garbageDisposalRemarks = evacuationWash.garbageDisposalRemarks
+        clinic = evacuationWash.clinic
+        clinicRemarks = evacuationWash.clinicRemarks
+        sick = evacuationWash.sick
+        sickRemarks = evacuationWash.sickRemarks
+        handWashing = evacuationWash.handWashing
+        handWashingRemarks = evacuationWash.handWashingRemarks
     }
 }
