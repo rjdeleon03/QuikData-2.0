@@ -35,11 +35,6 @@ class InfoDialogFragment : DialogFragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val titleId = arguments?.getInt(TITLE_ID_KEY)
