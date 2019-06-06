@@ -59,7 +59,7 @@
     <style name="SelectableItemTheme">
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:background">@drawable/ripple_accent_lighter_gray</item>
     </style>
     <style name="RadioButtonStyle" parent="AppTheme">
         <item name="colorControlNormal">?android:attr/textColorHint</item>
