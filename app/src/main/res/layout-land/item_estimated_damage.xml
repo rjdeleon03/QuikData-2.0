@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cpu.quikdata.customviews.CollapsibleContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:collapsed="true">
+
+    <com.cpu.quikdata.customviews.questions.MultipleChoiceQuestion
+        android:id="@+id/estimatedDamageKindsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:columnCount="4"
+        app:questionChoice="@string/estimated_damage_kinds"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/estimatedDamageCostText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/estimated_damage_cost"/>
+
+    <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+        android:id="@+id/estimatedDamageRemarksText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/estimated_damage_remarks"/>
+
+</com.cpu.quikdata.customviews.CollapsibleContainer>

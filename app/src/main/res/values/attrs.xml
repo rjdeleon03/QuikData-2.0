@@ -72,6 +72,7 @@
 
     <declare-styleable name="MultipleChoiceQuestion" parent="ThreeChoiceMultilineStringLongQuestion">
         <attr name="questionChoice" />
+        <attr name="columnCount" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="MultipleChoiceDropdownQuestion" parent="MultipleChoiceQuestion">
