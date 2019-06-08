@@ -170,6 +170,61 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
+    fun submitFoodSecurity() {
+        submitFormSection {
+            run {
+                val dao = mDatabase.foodSecurityImpactDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_IMPACT, section)
+            }
+            run {
+                val dao = mDatabase.foodSecurityCopingDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_COPING, section)
+            }
+            run {
+                val dao = mDatabase.foodSecurityNeedsDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_NEEDS, section)
+            }
+            run {
+                val dao = mDatabase.foodSecurityAssistanceRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_ASSISTANCE, section)
+                }
+            }
+            run {
+                val dao = mDatabase.foodSecurityGapsDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_GAPS, section)
+            }
+        }
+    }
+
     // endregion
 
     // region Private methods

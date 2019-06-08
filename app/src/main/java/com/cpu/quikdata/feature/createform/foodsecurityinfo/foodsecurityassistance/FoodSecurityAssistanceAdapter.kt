@@ -48,6 +48,7 @@ class FoodSecurityAssistanceAdapter(context: Context,
                     view.assistanceBoysText.number,
                     view.assistanceGirlsText.number,
                     row.dateCreated,
+                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {

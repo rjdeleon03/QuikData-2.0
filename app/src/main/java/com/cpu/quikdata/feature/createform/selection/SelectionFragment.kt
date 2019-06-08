@@ -58,6 +58,10 @@ class SelectionFragment : BaseCreateFormFragment() {
             mParentViewModel.submitShelterInformation()
             true
         }
+        selectionFoodButton.setOnLongClickListener {
+            mParentViewModel.submitFoodSecurity()
+            true
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
