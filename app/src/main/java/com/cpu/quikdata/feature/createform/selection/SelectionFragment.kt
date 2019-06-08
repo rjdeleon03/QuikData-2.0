@@ -22,7 +22,6 @@ class SelectionFragment : BaseCreateFormFragment() {
     }
 
     private lateinit var mNavController: NavController
-    private lateinit var mViewModel: SelectionViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,13 +65,20 @@ class SelectionFragment : BaseCreateFormFragment() {
             mParentViewModel.submitLivelihoods()
             true
         }
+        selectionWaterButton.setOnLongClickListener {
+            mParentViewModel.submitWashInformation()
+            true
+        }
+        selectionHealthButton.setOnLongClickListener {
+            mParentViewModel.submitHealthInformation()
+            true
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         mParentViewModel.form.observe(viewLifecycleOwner, Observer {  })
-        mViewModel = ViewModelProviders.of(this).get(SelectionViewModel::class.java)
     }
 
 }

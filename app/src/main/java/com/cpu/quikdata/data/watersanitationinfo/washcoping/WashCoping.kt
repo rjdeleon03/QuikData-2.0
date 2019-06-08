@@ -16,9 +16,11 @@ import com.cpu.quikdata.data.form.Form
 data class WashCoping(@PrimaryKey(autoGenerate = false)
                       val id: String = "",
                       var copingStrategies: String = "",
+                      var formIdRemote: String = "",
                       val formId: String = "") {
 
     fun copyFrom(washCoping: WashCoping) {
         copingStrategies = washCoping.copingStrategies
+        formIdRemote = washCoping.formIdRemote
     }
 }

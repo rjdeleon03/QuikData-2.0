@@ -18,6 +18,7 @@ data class SpecialNeedsRow(@PrimaryKey(autoGenerate = false)
                            val type: Int = 0,
                            var number: Int = 0,
                            var healthMedical: String = "",
+                           var formIdRemote: String = "",
                            val formId: String = "") {
 
     override fun equals(other: Any?): Boolean {
@@ -27,6 +28,7 @@ data class SpecialNeedsRow(@PrimaryKey(autoGenerate = false)
             type == other.type &&
             number == other.number &&
             healthMedical == other.healthMedical &&
+            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

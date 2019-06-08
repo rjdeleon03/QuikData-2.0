@@ -23,6 +23,7 @@ data class WashGaps(@PrimaryKey(autoGenerate = false)
                     var attitudes: String = "",
                     var supportMechanisms: String = "",
                     var womenParticipation: String = "",
+                    var formIdRemote: String = "",
                     val formId: String = "") {
 
     fun copyFrom(washGaps: WashGaps) {
@@ -34,5 +35,6 @@ data class WashGaps(@PrimaryKey(autoGenerate = false)
         attitudes = washGaps.attitudes
         supportMechanisms = washGaps.supportMechanisms
         womenParticipation = washGaps.womenParticipation
+        formIdRemote = washGaps.formIdRemote
     }
 }

@@ -9,4 +9,7 @@ interface SpecialNeedsRowDao : BaseRowDao<SpecialNeedsRow> {
 
     @Query("SELECT * FROM special_needs_row WHERE formId = :formId ORDER BY type")
     fun getByFormId(formId: String): LiveData<List<SpecialNeedsRow>>
+
+    @Query("SELECT * FROM special_needs_row WHERE formId = :formId ORDER BY type")
+    fun getByFormIdNonLive(formId: String): List<SpecialNeedsRow>
 }

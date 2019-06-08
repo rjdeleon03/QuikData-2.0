@@ -9,4 +9,7 @@ interface WashConditionsDao : BaseDao<WashConditions> {
 
     @Query("SELECT * FROM wash_conditions WHERE formId = :formId")
     fun getByFormId(formId: String): LiveData<WashConditions>
+
+    @Query("SELECT * FROM wash_conditions WHERE formId = :formId")
+    fun getByFormIdNonLive(formId: String): WashConditions
 }

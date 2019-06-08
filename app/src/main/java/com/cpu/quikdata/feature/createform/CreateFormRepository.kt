@@ -300,6 +300,116 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
+    fun submitHealthInformation() {
+        submitFormSection {
+            run {
+                val dao = mDatabase.diseasesRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_DISEASES, section)
+                }
+            }
+            run {
+                val dao = mDatabase.specialNeedsRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_SPECIAL_NEEDS, section)
+                }
+            }
+            run {
+                val dao = mDatabase.psychosocialRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_PSYCHOSOCIAL, section)
+                }
+            }
+            run {
+                val dao = mDatabase.healthCopingDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_HEALTH_COPING, section)
+            }
+            run {
+                val dao = mDatabase.healthAssistanceRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_HEALTH_ASSISTANCE, section)
+                }
+            }
+            run {
+                val dao = mDatabase.healthGapsDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_HEALTH_GAPS, section)
+            }
+        }
+    }
+
+    fun submitWashInformation() {
+        submitFormSection {
+            run {
+                val dao = mDatabase.washConditionsDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_CONDITIONS, section)
+            }
+            run {
+                val dao = mDatabase.washCopingDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_COPING, section)
+            }
+            run {
+                val dao = mDatabase.washAssistanceRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_ASSISTANCE, section)
+                }
+            }
+            run {
+                val dao = mDatabase.washGapsDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_GAPS, section)
+            }
+        }
+    }
+
     // endregion
 
     // region Private methods
