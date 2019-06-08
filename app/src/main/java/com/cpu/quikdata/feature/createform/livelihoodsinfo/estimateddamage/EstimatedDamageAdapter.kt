@@ -42,6 +42,7 @@ class EstimatedDamageAdapter(context: Context, rowSaveListener: (EstimatedDamage
                     row.row!!.type,
                     view.estimatedDamageCostText.number,
                     view.estimatedDamageRemarksText.text,
+                    row.row!!.formIdRemote,
                     row.row!!.formId
                 )
 

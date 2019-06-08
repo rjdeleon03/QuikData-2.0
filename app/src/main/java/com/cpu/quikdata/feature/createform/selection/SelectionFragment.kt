@@ -62,6 +62,10 @@ class SelectionFragment : BaseCreateFormFragment() {
             mParentViewModel.submitFoodSecurity()
             true
         }
+        selectionLivelihoodsButton.setOnLongClickListener {
+            mParentViewModel.submitLivelihoods()
+            true
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

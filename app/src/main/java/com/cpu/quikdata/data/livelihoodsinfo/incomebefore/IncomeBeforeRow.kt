@@ -24,6 +24,7 @@ data class IncomeBeforeRow(@PrimaryKey(autoGenerate = false)
                            var girls: Int = 0,
                            var income: Int = 0,
                            val dateCreated: Long = 0L,
+                           var formIdRemote: String = "",
                            val formId: String = "") {
 
     override fun equals(other: Any?): Boolean {
@@ -39,6 +40,7 @@ data class IncomeBeforeRow(@PrimaryKey(autoGenerate = false)
             girls == other.girls &&
             income == other.income &&
             dateCreated == other.dateCreated &&
+            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

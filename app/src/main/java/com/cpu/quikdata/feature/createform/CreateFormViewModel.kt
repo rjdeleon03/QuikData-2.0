@@ -23,4 +23,6 @@ class CreateFormViewModel(application: Application, formId: String) : AndroidVie
     fun submitShelterInformation() = mRepository.submitShelterInformation()
 
     fun submitFoodSecurity() = mRepository.submitFoodSecurity()
+
+    fun submitLivelihoods() = mRepository.submitLivelihoods()
 }
