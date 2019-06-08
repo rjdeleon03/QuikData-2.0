@@ -6,6 +6,7 @@ import com.cpu.quikdata.*
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.utils.runOnIoThread
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class CreateFormRepository(application: Application, formId: String) {
@@ -23,6 +24,8 @@ class CreateFormRepository(application: Application, formId: String) {
 
     private val isFormAlreadyUploaded: Boolean
          get() = !formId.isBlank()
+
+    // region Submission methods
 
     fun submitFormDetails() {
         submitFormSection {
@@ -45,8 +48,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.child(section.formIdRemote)
-                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_CALAMITY_INFO).setValue(section)
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_CALAMITY_INFO, section)
             }
             run {
                 val dao = mDatabase.populationRowDao()
@@ -54,9 +57,9 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_POPULATION, section)
                 }
-                mServerRef.child(section[0].formIdRemote)
-                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_POPULATION).setValue(section)
             }
             run {
                 val dao = mDatabase.familiesDao()
@@ -65,8 +68,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.child(section.formIdRemote)
-                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_FAMILIES).setValue(section)
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_FAMILIES, section)
             }
             run {
                 val dao = mDatabase.vulnerableRowDao()
@@ -74,9 +77,9 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_VULNERABLE, section)
                 }
-                mServerRef.child(section[0].formIdRemote)
-                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_VULNERABLE).setValue(section)
             }
             run {
                 val dao = mDatabase.casualtiesRowDao()
@@ -84,9 +87,9 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_CASUALTIES, section)
                 }
-                mServerRef.child(section[0].formIdRemote)
-                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_CASUALTIES).setValue(section)
             }
             run {
                 val dao = mDatabase.causeOfDeathRowDao()
@@ -94,9 +97,9 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_CAUSE_OF_DEATH, section)
                 }
-                mServerRef.child(section[0].formIdRemote)
-                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_CAUSE_OF_DEATH).setValue(section)
             }
             run {
                 val dao = mDatabase.infrastructureDamageRowDao()
@@ -104,13 +107,70 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
+                    mServerRef.child(section[0].formIdRemote)
+                        .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_INFRASTRUCTURE).setValue(section)
                 }
-                mServerRef.child(section[0].formIdRemote)
-                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_INFRASTRUCTURE).setValue(section)
             }
         }
 
     }
+
+    fun submitShelterInformation() {
+        submitFormSection {
+            run {
+                val dao = mDatabase.houseDamageRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_HOUSE_DAMAGE, section)
+                }
+            }
+            run {
+                val dao = mDatabase.shelterCopingDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_COPING, section)
+            }
+            run {
+                val dao = mDatabase.shelterNeedsRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_NEEDS, section)
+                }
+            }
+            run {
+                val dao = mDatabase.shelterAssistanceRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_ASSISTANCE, section)
+                }
+            }
+            run {
+                val dao = mDatabase.shelterGapsDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_GAPS, section)
+            }
+        }
+    }
+
+    // endregion
 
     // region Private methods
 
@@ -152,6 +212,19 @@ class CreateFormRepository(application: Application, formId: String) {
                 }
             }
         }
+    }
+
+    // endregion
+
+    // region Extensions
+
+    private fun DatabaseReference.saveFormSection(formId: String,
+                                                  sectionKey: String,
+                                                  subsectionKey: String,
+                                                  data: Any) {
+        this.child(formId)
+            .child(sectionKey)
+            .child(subsectionKey).setValue(data)
     }
 
     // endregion

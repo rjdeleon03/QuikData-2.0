@@ -19,6 +19,7 @@ data class ShelterCoping(@PrimaryKey(autoGenerate = false)
                          var howToGetHomesBack: String = "",
                          var whenToReturnHome: String = "",
                          var ifCannotReturnHome: String = "",
+                         var formIdRemote: String = "",
                          val formId: String = "") {
 
     fun copyFrom(shelterCoping: ShelterCoping) {
@@ -26,5 +27,6 @@ data class ShelterCoping(@PrimaryKey(autoGenerate = false)
         howToGetHomesBack = shelterCoping.howToGetHomesBack
         whenToReturnHome = shelterCoping.whenToReturnHome
         ifCannotReturnHome = shelterCoping.ifCannotReturnHome
+        formIdRemote = shelterCoping.formIdRemote
     }
 }

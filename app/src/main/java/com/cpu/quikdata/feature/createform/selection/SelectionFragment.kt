@@ -48,11 +48,15 @@ class SelectionFragment : BaseCreateFormFragment() {
 
         selectionFormDetailsButton.setOnLongClickListener {
             mParentViewModel.submitFormDetails()
-            false
+            true
         }
         selectionGenInfoButton.setOnLongClickListener {
             mParentViewModel.submitGeneralInformation()
-            false
+            true
+        }
+        selectionShelterButton.setOnLongClickListener {
+            mParentViewModel.submitShelterInformation()
+            true
         }
     }
 

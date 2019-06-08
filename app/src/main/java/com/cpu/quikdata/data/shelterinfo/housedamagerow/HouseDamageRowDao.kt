@@ -9,4 +9,7 @@ interface HouseDamageRowDao : BaseRowDao<HouseDamageRow> {
 
     @Query("SELECT * FROM house_damage_row WHERE formId = :formId ORDER BY type")
     fun getByFormId(formId: String): LiveData<List<HouseDamageRow>>
+
+    @Query("SELECT * FROM house_damage_row WHERE formId = :formId ORDER BY type")
+    fun getByFormIdNonLive(formId: String): List<HouseDamageRow>
 }

@@ -19,4 +19,6 @@ class CreateFormViewModel(application: Application, formId: String) : AndroidVie
     fun submitFormDetails() = mRepository.submitFormDetails()
 
     fun submitGeneralInformation() = mRepository.submitGeneralInformation()
+
+    fun submitShelterInformation() = mRepository.submitShelterInformation()
 }
