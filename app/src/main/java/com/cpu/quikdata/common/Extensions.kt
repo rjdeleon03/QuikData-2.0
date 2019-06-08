@@ -1,23 +1,30 @@
 package com.cpu.quikdata.common
 
-import android.content.Context
 import android.graphics.Color
-import android.graphics.Rect
 import android.os.SystemClock
-import android.view.MotionEvent
 import android.view.View
-import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.children
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
-import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.google.android.material.textfield.TextInputEditText
-import kotlin.math.roundToInt
+
+
+fun <T> LiveData<T>.observeExceptFirst(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+    var isFirstEmit = true
+    observe(lifecycleOwner, Observer<T> {
+        if (isFirstEmit) {
+            isFirstEmit = false
+        } else {
+            observer.onChanged(it)
+        }
+    })
+}
 
 fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {
 
