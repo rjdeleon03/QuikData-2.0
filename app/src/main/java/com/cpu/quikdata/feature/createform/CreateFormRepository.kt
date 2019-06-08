@@ -45,7 +45,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.child(section.formIdRemote).child(FIREBASE_KEY_CALAMITY_INFO).setValue(section)
+                mServerRef.child(section.formIdRemote)
+                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_CALAMITY_INFO).setValue(section)
             }
             run {
                 val dao = mDatabase.populationRowDao()
@@ -54,7 +55,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
                 }
-                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_POPULATION).setValue(section)
+                mServerRef.child(section[0].formIdRemote)
+                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_POPULATION).setValue(section)
             }
             run {
                 val dao = mDatabase.familiesDao()
@@ -63,7 +65,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.child(section.formIdRemote).child(FIREBASE_KEY_FAMILIES).setValue(section)
+                mServerRef.child(section.formIdRemote)
+                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_FAMILIES).setValue(section)
             }
             run {
                 val dao = mDatabase.vulnerableRowDao()
@@ -72,7 +75,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
                 }
-                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_VULNERABLE).setValue(section)
+                mServerRef.child(section[0].formIdRemote)
+                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_VULNERABLE).setValue(section)
             }
             run {
                 val dao = mDatabase.casualtiesRowDao()
@@ -81,7 +85,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
                 }
-                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_CASUALTIES).setValue(section)
+                mServerRef.child(section[0].formIdRemote)
+                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_CASUALTIES).setValue(section)
             }
             run {
                 val dao = mDatabase.causeOfDeathRowDao()
@@ -90,7 +95,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
                 }
-                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_CAUSE_OF_DEATH).setValue(section)
+                mServerRef.child(section[0].formIdRemote)
+                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_CAUSE_OF_DEATH).setValue(section)
             }
             run {
                 val dao = mDatabase.infrastructureDamageRowDao()
@@ -99,7 +105,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
                 }
-                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_INFRASTRUCTURE).setValue(section)
+                mServerRef.child(section[0].formIdRemote)
+                    .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_INFRASTRUCTURE).setValue(section)
             }
         }
 
