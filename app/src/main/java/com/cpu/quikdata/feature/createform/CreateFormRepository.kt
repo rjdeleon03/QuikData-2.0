@@ -247,16 +247,16 @@ class CreateFormRepository(application: Application, formId: String) {
                         FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_INCOME_AFTER, section)
                 }
             }
-//            run {
-//                val dao = mDatabase.estimatedDamageRowDao()
-//                val section = dao.getByFormIdNonLive(mFormId)
-//                if (section.isNotEmpty() && section[0].row!!.formIdRemote.isBlank()) {
-//                    section.forEach { it.row!!.formIdRemote = formId }
-//                    dao.update(section[0].row!!)
-//                    mServerRef.saveFormSection(section[0].row!!.formIdRemote,
-//                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_ESTIMATED_DAMAGE, section)
-//                }
-//            }
+            run {
+                val dao = mDatabase.estimatedDamageRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].row!!.formIdRemote.isBlank()) {
+                    section.forEach { it.row!!.formIdRemote = formId }
+                    dao.update(section[0].row!!)
+                    mServerRef.saveFormSection(section[0].row!!.formIdRemote,
+                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_ESTIMATED_DAMAGE, section)
+                }
+            }
             run {
                 val dao = mDatabase.livelihoodsCopingDao()
                 val section = dao.getByFormIdNonLive(mFormId)
