@@ -31,5 +31,6 @@ data class FormDetails(@PrimaryKey(autoGenerate = false)
         interviewee = formDetails.interviewee
         intervieweeContact = formDetails.intervieweeContact
         sourcesOfInformation = formDetails.sourcesOfInformation
+        formIdRemote = formDetails.formIdRemote
     }
 }

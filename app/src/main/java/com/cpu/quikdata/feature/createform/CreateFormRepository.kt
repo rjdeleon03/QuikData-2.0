@@ -2,11 +2,7 @@ package com.cpu.quikdata.feature.createform
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import com.cpu.quikdata.FIREBASE_KEY_CALAMITY_INFO
-import com.cpu.quikdata.FIREBASE_KEY_FORM
-import com.cpu.quikdata.FIREBASE_KEY_FORM_DETAILS
+import com.cpu.quikdata.*
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.utils.runOnIoThread
@@ -31,7 +27,7 @@ class CreateFormRepository(application: Application, formId: String) {
     fun submitFormDetails() {
         submitFormSection {
             val dao = mDatabase.formDetailsDao()
-            val section = dao.getByFormIdSingle(mFormId)
+            val section = dao.getByFormIdNonLive(mFormId)
             if (section.formIdRemote.isBlank()) {
                 section.formIdRemote = formId
                 dao.update(section)
@@ -42,14 +38,35 @@ class CreateFormRepository(application: Application, formId: String) {
 
     fun submitGeneralInformation() {
         submitFormSection {
-            val dao = mDatabase.calamityInfoDao()
-            val section = dao.getByFormIdSingle(mFormId)
-            if (section.formIdRemote.isBlank()) {
-                section.formIdRemote = formId
-                dao.update(section)
+            run {
+                val dao = mDatabase.calamityInfoDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.child(section.formIdRemote).child(FIREBASE_KEY_CALAMITY_INFO).setValue(section)
             }
-            mServerRef.child(section.formIdRemote).child(FIREBASE_KEY_CALAMITY_INFO).setValue(section)
+            run {
+                val dao = mDatabase.populationRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                }
+                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_POPULATION).setValue(section)
+            }
+            run {
+                val dao = mDatabase.familiesDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.child(section.formIdRemote).child(FIREBASE_KEY_FAMILIES).setValue(section)
+            }
         }
+
     }
 
     private fun submitFormSection(f: () -> Unit) {

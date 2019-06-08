@@ -19,5 +19,5 @@ interface FormDetailsDao {
     fun getByFormId(formId: String): LiveData<FormDetails>
 
     @Query("SELECT * FROM form_details WHERE formId = :formId")
-    fun getByFormIdSingle(formId: String): FormDetails
+    fun getByFormIdNonLive(formId: String): FormDetails
 }

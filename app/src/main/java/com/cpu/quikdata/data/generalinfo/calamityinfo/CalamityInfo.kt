@@ -27,5 +27,6 @@ data class CalamityInfo(@PrimaryKey(autoGenerate = false)
         occurrenceDate = calamityInfo.occurrenceDate
         eventDescription = calamityInfo.eventDescription
         affectedAreaDescription = calamityInfo.affectedAreaDescription
+        formIdRemote = calamityInfo.formIdRemote
     }
 }

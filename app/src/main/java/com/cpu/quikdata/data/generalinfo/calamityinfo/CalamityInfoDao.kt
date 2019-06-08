@@ -11,5 +11,5 @@ interface CalamityInfoDao : BaseDao<CalamityInfo> {
     fun getByFormId(formId: String): LiveData<CalamityInfo>
 
     @Query("SELECT * FROM calamity_info WHERE formId = :formId")
-    fun getByFormIdSingle(formId: String): CalamityInfo
+    fun getByFormIdNonLive(formId: String): CalamityInfo
 }
