@@ -65,9 +65,47 @@ class CreateFormRepository(application: Application, formId: String) {
                 }
                 mServerRef.child(section.formIdRemote).child(FIREBASE_KEY_FAMILIES).setValue(section)
             }
+            run {
+                val dao = mDatabase.vulnerableRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                }
+                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_VULNERABLE).setValue(section)
+            }
+            run {
+                val dao = mDatabase.casualtiesRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                }
+                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_CASUALTIES).setValue(section)
+            }
+            run {
+                val dao = mDatabase.causeOfDeathRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                }
+                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_CAUSE_OF_DEATH).setValue(section)
+            }
+            run {
+                val dao = mDatabase.infrastructureDamageRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                }
+                mServerRef.child(section[0].formIdRemote).child(FIREBASE_KEY_INFRASTRUCTURE).setValue(section)
+            }
         }
 
     }
+
+    // region Private methods
 
     private fun submitFormSection(f: () -> Unit) {
         runOnIoThread {
@@ -108,4 +146,6 @@ class CreateFormRepository(application: Application, formId: String) {
             }
         }
     }
+
+    // endregion
 }

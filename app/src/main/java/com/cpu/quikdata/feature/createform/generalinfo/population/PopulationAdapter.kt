@@ -37,6 +37,7 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
                     view.populationAffectedText.number2,
                     view.populationDisplacedText.number1,
                     view.populationDisplacedText.number2,
+                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {
