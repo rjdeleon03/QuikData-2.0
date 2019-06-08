@@ -7,11 +7,17 @@ import com.cpu.quikdata.data.evacuation.evacuationcoping.EvacuationCoping
 import com.cpu.quikdata.data.evacuation.evacuationfacilities.EvacuationFacilities
 import com.cpu.quikdata.data.evacuation.evacuationprotection.EvacuationProtection
 import com.cpu.quikdata.data.evacuation.evacuationwash.EvacuationWash
+import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
 
 class EvacuationComplete {
 
     @Embedded
     var root: EvacuationItem? = null
+
+    @Relation(parentColumn = "id",
+        entityColumn = "evacuationId",
+        entity = SiteInfo::class)
+    var siteInfo: List<SiteInfo>? = null
 
     @Relation(parentColumn = "id",
         entityColumn = "evacuationId",

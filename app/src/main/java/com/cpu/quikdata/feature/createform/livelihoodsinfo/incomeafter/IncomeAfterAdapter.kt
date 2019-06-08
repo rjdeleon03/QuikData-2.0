@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.data.livelihoodsinfo.incomeafter.IncomeAfterRow
 import kotlinx.android.synthetic.main.item_income.view.*
@@ -12,22 +13,11 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class IncomeAfterAdapter(context: Context,
                          rowSaveListener: (IncomeAfterRow) -> Unit,
                          deleteClickListener: (IncomeAfterRow) -> Unit) :
-    BaseCollapsibleAdapter<IncomeAfterRow, IncomeAfterAdapter.ViewHolder>(context, R.layout.item_income, rowSaveListener) {
+    BaseAssistanceAdapter<IncomeAfterRow, IncomeAfterAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener, R.layout.item_income) {
 
-    private val mDeleteClickListener = deleteClickListener
+    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
-    override fun createViewHolder(view: View): ViewHolder {
-        val holder = ViewHolder(view)
-        holder.setOnDeleteClickListener { mDeleteClickListener.invoke(mRows!![it]) }
-        return holder
-    }
-
-    override fun setRows(rows: List<IncomeAfterRow>) {
-        if (mRows != null) mExpandedItem = rows.size - 1
-        super.setRows(rows)
-    }
-
-    class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<IncomeAfterRow>(itemView, true) {
+    class ViewHolder(itemView: View) : BaseAssistanceAdapter.ViewHolder<IncomeAfterRow>(itemView) {
 
         @SuppressLint("SetTextI18n")
         override fun populateWithDataInternal(row: IncomeAfterRow,

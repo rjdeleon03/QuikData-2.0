@@ -6,6 +6,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupOnFocusBehavior
@@ -21,7 +22,8 @@ class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context
 
     init {
         View.inflate(context, R.layout.question_date, this)
-        orientation = LinearLayout.VERTICAL
+        orientation = VERTICAL
+        background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.DateQuestion)
         questionText.hint = attributes.getString(R.styleable.DateQuestion_question)

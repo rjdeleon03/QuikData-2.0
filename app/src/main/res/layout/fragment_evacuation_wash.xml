@@ -15,72 +15,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@android:color/white">
-
-            <include layout="@layout/view_divider_extra_large"/>
+            android:background="@color/lightGray">
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationWashFoodPreparationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_wash_food_preparation"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationWashWaterSourceText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_wash_water_source"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationWashToiletBathsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_wash_toilet_baths"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationWashGarbageDisposalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_wash_garbage_disposal"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationWashClinicText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_wash_clinic"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationWashSickText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_wash_sick"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationWashHandWashingText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_wash_hand_washing"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
         </LinearLayout>
 

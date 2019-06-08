@@ -15,62 +15,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@android:color/white">
-
-            <include layout="@layout/view_divider_extra_large"/>
+            android:background="@color/lightGray">
 
             <com.cpu.quikdata.customviews.questions.NumberQuestion
                 android:id="@+id/evacuationFacilitiesCapacityText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/evacuation_facilities_capacity"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationFacilitiesToiletsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_facilities_toilets"
                 app:questionString="@string/evacuation_facilities_toilets_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationFacilitiesWideEntranceText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_facilities_wide_entrance"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationFacilitiesElectricityText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_facilities_electricity"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationFacilitiesWaterSupplyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_facilities_water_supply"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanMultilineStringLongQuestion
                 android:id="@+id/evacuationFacilitiesVentilationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:questionBoolean="@string/evacuation_facilities_ventilation"
                 app:questionString="@string/text_remarks"/>
-
-            <include layout="@layout/view_divider_extra_large"/>
 
         </LinearLayout>
 

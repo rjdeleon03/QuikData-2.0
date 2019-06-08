@@ -11,7 +11,7 @@
     <color name="colorAccentLight">#FFC107</color>
     <color name="colorAccentExtraLight">#FFD54F</color>
 
-    <color name="backgroundColor">#fcfcfc</color>
+    <color name="lighterGray">#fcfcfc</color>
     <color name="lightGray">#ededed</color>
     <color name="deepPurple">#7c4dff</color>
     <color name="yellow">#ffb300</color>

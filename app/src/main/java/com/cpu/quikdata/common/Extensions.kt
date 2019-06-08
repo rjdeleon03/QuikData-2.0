@@ -13,6 +13,7 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
 import com.google.android.material.textfield.TextInputEditText
+import org.joda.time.format.DateTimeFormat
 
 
 fun <T> LiveData<T>.observeExceptFirst(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
@@ -24,6 +25,11 @@ fun <T> LiveData<T>.observeExceptFirst(lifecycleOwner: LifecycleOwner, observer:
             observer.onChanged(it)
         }
     })
+}
+
+fun Long.toDateString(): String {
+    val formatter = DateTimeFormat.forPattern("yyyy/MM/dd")
+    return formatter.print(this)
 }
 
 fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {

@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.setupOnFocusBehavior
 import kotlinx.android.synthetic.main.question_boolean_multiline_string_long.view.*
@@ -12,7 +13,8 @@ class BooleanMultilineStringLongQuestion(context: Context, attrs: AttributeSet) 
 
     init {
         View.inflate(context, R.layout.question_boolean_multiline_string_long, this)
-        orientation = LinearLayout.VERTICAL
+        orientation = VERTICAL
+        background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.BooleanMultilineStringLongQuestion)
         questionBooleanText.text = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_questionBoolean)
