@@ -3,14 +3,14 @@ package com.cpu.quikdata.feature.createform
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 
-class CreateFormViewModel(application: Application) : AndroidViewModel(application) {
+class CreateFormViewModel(application: Application, formId: String) : AndroidViewModel(application) {
 
+    private val mRepository = CreateFormRepository(application)
     private var mFormId = formId
 
-    var formId: String
+    val formId: String
         get() = mFormId
-        set(value) {
-            mFormId = value
-        }
+
+    fun submitData() = mRepository.submitData(mFormId)
 
 }

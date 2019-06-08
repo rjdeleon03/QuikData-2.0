@@ -19,5 +19,8 @@ interface FormDao {
     fun getAll(): LiveData<List<Form>>
 
     @Query("SELECT * FROM form WHERE id = :id")
-    fun getById(id: String): LiveData<List<Form>>
+    fun getById(id: String): LiveData<Form>
+
+    @Query("SELECT * FROM form WHERE id = :id")
+    fun getByIdSingle(id: String): Form
 }
