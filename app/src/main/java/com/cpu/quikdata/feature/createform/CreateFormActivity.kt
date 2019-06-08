@@ -87,10 +87,4 @@ class CreateFormActivity : AppCompatActivity() {
             toolbarSubtitle.visibility = View.GONE
         }
     }
-
-    // TODO: Temp
-    override fun onStop() {
-        super.onStop()
-        mViewModel.submitData()
-    }
 }

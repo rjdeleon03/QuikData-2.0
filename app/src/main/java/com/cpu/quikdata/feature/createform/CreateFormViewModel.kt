@@ -16,6 +16,7 @@ class CreateFormViewModel(application: Application, formId: String) : AndroidVie
     val form: LiveData<Form>
         get() = mRepository.form
 
-    fun submitData() = mRepository.submitData()
+    fun submitFormDetails() = mRepository.submitFormDetails()
 
+    fun submitGeneralInformation() = mRepository.submitGeneralInformation()
 }
