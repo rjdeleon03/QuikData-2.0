@@ -9,4 +9,7 @@ interface LivelihoodsAssistanceRowDao : BaseRowDao<LivelihoodsAssistanceRow> {
 
     @Query("SELECT * FROM livelihoods_assistance_row WHERE formId = :formId ORDER BY dateCreated")
     fun getByFormId(formId: String): LiveData<List<LivelihoodsAssistanceRow>>
+
+    @Query("SELECT * FROM livelihoods_assistance_row WHERE formId = :formId ORDER BY dateCreated")
+    fun getByFormIdNonLive(formId: String): List<LivelihoodsAssistanceRow>
 }

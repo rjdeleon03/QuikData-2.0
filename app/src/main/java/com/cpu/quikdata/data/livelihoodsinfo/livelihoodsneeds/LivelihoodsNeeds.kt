@@ -18,11 +18,13 @@ data class LivelihoodsNeeds(@PrimaryKey(autoGenerate = false)
                             var assistanceFillGap: String = "",
                             var resourcesNeeded: String = "",
                             var familiesInAssistance: String = "",
+                            var formIdRemote: String = "",
                             val formId: String = "") {
 
     fun copyFrom(livelihoodsNeeds: LivelihoodsNeeds) {
         assistanceFillGap = livelihoodsNeeds.assistanceFillGap
         resourcesNeeded = livelihoodsNeeds.resourcesNeeded
         familiesInAssistance = livelihoodsNeeds.familiesInAssistance
+        formIdRemote = livelihoodsNeeds.formIdRemote
     }
 }

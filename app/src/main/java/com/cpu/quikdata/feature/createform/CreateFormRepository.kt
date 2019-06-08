@@ -257,6 +257,46 @@ class CreateFormRepository(application: Application, formId: String) {
 //                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_ESTIMATED_DAMAGE, section)
 //                }
 //            }
+            run {
+                val dao = mDatabase.livelihoodsCopingDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_COPING, section)
+            }
+            run {
+                val dao = mDatabase.livelihoodsNeedsDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_NEEDS, section)
+            }
+            run {
+                val dao = mDatabase.livelihoodsAssistanceRowDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
+                    section.forEach { it.formIdRemote = formId }
+                    dao.update(section)
+                    mServerRef.saveFormSection(section[0].formIdRemote,
+                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_ASSISTANCE, section)
+                }
+            }
+            run {
+                val dao = mDatabase.livelihoodsGapsDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.formIdRemote.isBlank()) {
+                    section.formIdRemote = formId
+                    dao.update(section)
+                }
+                mServerRef.saveFormSection(section.formIdRemote,
+                    FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_GAPS, section)
+            }
         }
     }
 
