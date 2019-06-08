@@ -410,6 +410,23 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
+    fun submitEvacuationInformation() {
+        submitFormSection {
+            run {
+                val dao = mDatabase.evacuationItemDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                if (section.isNotEmpty() && section[0].root!!.formIdRemote.isBlank()) {
+                    section.forEach {
+                        it.root!!.formIdRemote = formId
+                        dao.update(it.root!!)
+                    }
+                    mServerRef.saveFormSectionList(section[0].root!!.formIdRemote,
+                        FIREBASE_KEY_EVACUATION, section)
+                }
+            }
+        }
+    }
+
     // endregion
 
     // region Private methods
@@ -465,6 +482,14 @@ class CreateFormRepository(application: Application, formId: String) {
         this.child(formId)
             .child(sectionKey)
             .child(subsectionKey).setValue(data)
+    }
+
+    private fun DatabaseReference.saveFormSectionList(formId: String,
+                                                      sectionKey: String,
+                                                      data: Any) {
+        this.child(formId)
+            .child(sectionKey)
+            .setValue(data)
     }
 
     // endregion

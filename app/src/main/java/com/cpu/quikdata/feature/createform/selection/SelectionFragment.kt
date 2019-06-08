@@ -65,12 +65,16 @@ class SelectionFragment : BaseCreateFormFragment() {
             mParentViewModel.submitLivelihoods()
             true
         }
+        selectionHealthButton.setOnLongClickListener {
+            mParentViewModel.submitHealthInformation()
+            true
+        }
         selectionWaterButton.setOnLongClickListener {
             mParentViewModel.submitWashInformation()
             true
         }
-        selectionHealthButton.setOnLongClickListener {
-            mParentViewModel.submitHealthInformation()
+        selectionEvacuationButton.setOnLongClickListener {
+            mParentViewModel.submitEvacuationInformation()
             true
         }
     }

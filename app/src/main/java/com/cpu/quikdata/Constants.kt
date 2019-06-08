@@ -50,3 +50,5 @@ const val FIREBASE_KEY_WASH_CONDITIONS = "washConditions"
 const val FIREBASE_KEY_WASH_COPING = "washCoping"
 const val FIREBASE_KEY_WASH_ASSISTANCE = "washAssistance"
 const val FIREBASE_KEY_WASH_GAPS = "washGaps"
+
+const val FIREBASE_KEY_EVACUATION = "evacuationSites"

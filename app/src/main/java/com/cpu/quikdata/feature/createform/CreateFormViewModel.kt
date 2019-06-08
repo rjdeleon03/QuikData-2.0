@@ -29,4 +29,6 @@ class CreateFormViewModel(application: Application, formId: String) : AndroidVie
     fun submitHealthInformation() = mRepository.submitHealthInformation()
 
     fun submitWashInformation() = mRepository.submitWashInformation()
+
+    fun submitEvacuationInformation() = mRepository.submitEvacuationInformation()
 }
