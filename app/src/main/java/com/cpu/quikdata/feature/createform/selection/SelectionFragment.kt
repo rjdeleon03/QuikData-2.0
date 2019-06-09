@@ -1,11 +1,7 @@
 package com.cpu.quikdata.feature.createform.selection
 
-import android.graphics.Rect
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
@@ -22,10 +18,13 @@ import kotlinx.android.synthetic.main.fragment_selection.*
 class SelectionFragment : BaseCreateFormFragment() {
 
     companion object {
+        private const val EXPANDED_ITEM_KEY = "EXPANDED_ITEM_KEY"
+
         fun newInstance() = SelectionFragment()
     }
 
     private lateinit var mNavController: NavController
+    private var mExpandedItemId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +33,23 @@ class SelectionFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_selection, container, false)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(EXPANDED_ITEM_KEY, mExpandedItemId)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mNavController = findNavController()
 
+        if (savedInstanceState != null) {
+            mExpandedItemId = savedInstanceState.getInt(EXPANDED_ITEM_KEY, 0)
+            view.findViewById<ItemSection>(mExpandedItemId)?.expand(false)
+        }
+
         selectionSaveButton.clickWithGuard { activity!!.finish() }
         val itemSectionTouchedHandler = { item: ItemSection ->
+            mExpandedItemId = item.id
             gridSectionLayout.children.forEach {
                 if (it is ItemSection && it != item) {
                     it.collapse()
