@@ -374,4 +374,5 @@
     <string name="income_source_delete_finished">The income source item has been successfully deleted.</string>
     <string name="text_unknown">Unknown Location</string>
     <string name="text_unnamed_evacuation">Unnamed Evacuation Site</string>
+    <string name="text_submit">Submit</string>
 </resources>
