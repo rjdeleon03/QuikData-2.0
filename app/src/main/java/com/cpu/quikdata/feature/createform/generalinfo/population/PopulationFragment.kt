@@ -13,6 +13,8 @@ import com.cpu.quikdata.base.BaseCreateFormFragment
 class PopulationFragment : BaseCreateFormFragment() {
 
     companion object {
+        private const val EXPANDED_ITEM_INDEX_KEY = "EXPANDED_ITEM_INDEX_KEY"
+
         fun newInstance() = PopulationFragment()
     }
 
@@ -26,11 +28,20 @@ class PopulationFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_population, container, false)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(EXPANDED_ITEM_INDEX_KEY, mAdapter.expandedItemIndex)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = PopulationAdapter(context!!) {
-            mViewModel.updateRow(it)
+        var expandedItemIndex = 0
+        if (savedInstanceState != null) {
+            expandedItemIndex = savedInstanceState.getInt(EXPANDED_ITEM_INDEX_KEY, 0)
         }
+        mAdapter = PopulationAdapter(context!!, {
+            mViewModel.updateRow(it)
+        }, expandedItemIndex)
         populationRecyclerView.adapter = mAdapter
     }
 
