@@ -30,7 +30,7 @@
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionFormDetailsButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
@@ -45,7 +45,7 @@
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionGenInfoButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
@@ -54,7 +54,7 @@
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionShelterButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
@@ -69,7 +69,7 @@
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionFoodButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
@@ -78,7 +78,7 @@
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionLivelihoodsButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
@@ -93,7 +93,7 @@
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionHealthButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
@@ -102,7 +102,7 @@
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionWaterButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
@@ -117,7 +117,7 @@
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionEvacuationButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
@@ -126,7 +126,7 @@
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionCaseStoriesButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_columnSpan="3"
