@@ -59,39 +59,65 @@ class SelectionFragment : BaseCreateFormFragment() {
 
         selectionFormDetailsButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_formDetailsFragment) },
-            { mParentViewModel.submitFormDetails() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitFormDetails()
+            },
             { }, itemSectionTouchedHandler)
         selectionGenInfoButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) },
-            { mParentViewModel.submitGeneralInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitGeneralInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionShelterButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) },
-            { mParentViewModel.submitShelterInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitShelterInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionFoodButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_foodSecurityInfoFragment) },
-            { mParentViewModel.submitFoodSecurity() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitFoodSecurity()
+            },
             { }, itemSectionTouchedHandler)
         selectionLivelihoodsButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_livelihoodsInfoFragment) },
-            { mParentViewModel.submitLivelihoods() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitLivelihoods()
+            },
             { }, itemSectionTouchedHandler)
         selectionHealthButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_healthInfoFragment) },
-            { mParentViewModel.submitHealthInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitHealthInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionWaterButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_waterSanitationInfoFragment) },
-            { mParentViewModel.submitWashInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitWashInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionEvacuationButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_evacuationInfoFragment) },
-            { mParentViewModel.submitEvacuationInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitEvacuationInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionCaseStoriesButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) },
-            { },
+            {
+                mExpandedItemId = 0
+            },
             { }, itemSectionTouchedHandler)
     }
 
