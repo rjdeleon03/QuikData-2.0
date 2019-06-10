@@ -9,8 +9,8 @@ import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
 import kotlinx.android.synthetic.main.item_evacuation_age.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class EvacuationAgeAdapter(context: Context, rowSaveListener: (EvacuationAgeRow) -> Unit) :
-    BaseCollapsibleAdapter<EvacuationAgeRow, EvacuationAgeAdapter.ViewHolder>(context, R.layout.item_evacuation_age, rowSaveListener) {
+class EvacuationAgeAdapter(context: Context, rowSaveListener: (EvacuationAgeRow) -> Unit, expandedItem: Int = 0) :
+    BaseCollapsibleAdapter<EvacuationAgeRow, EvacuationAgeAdapter.ViewHolder>(context, R.layout.item_evacuation_age, rowSaveListener, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

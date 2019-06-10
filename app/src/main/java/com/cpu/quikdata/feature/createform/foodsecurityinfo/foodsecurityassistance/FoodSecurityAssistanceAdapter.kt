@@ -11,8 +11,10 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class FoodSecurityAssistanceAdapter(context: Context,
                                     rowSaveListener: (FoodSecurityAssistanceRow) -> Unit,
-                                    deleteClickListener: (FoodSecurityAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<FoodSecurityAssistanceRow, FoodSecurityAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
+                                    deleteClickListener: (FoodSecurityAssistanceRow) -> Unit,
+                                    expandedItem: Int = 0) :
+    BaseAssistanceAdapter<FoodSecurityAssistanceRow, FoodSecurityAssistanceAdapter.ViewHolder>(
+        context, rowSaveListener, deleteClickListener, expandedItem = expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

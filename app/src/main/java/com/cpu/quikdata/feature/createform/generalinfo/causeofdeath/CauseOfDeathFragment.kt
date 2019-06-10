@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_cause_of_death.*
 
-class CauseOfDeathFragment : BaseCreateFormFragment() {
+class CauseOfDeathFragment : BaseCollapsibleCreateFormFragment<CauseOfDeathAdapter, CauseOfDeathAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = CauseOfDeathFragment()
     }
 
     private lateinit var mViewModel: CauseOfDeathViewModel
-    private lateinit var mAdapter: CauseOfDeathAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +27,12 @@ class CauseOfDeathFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_cause_of_death, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = CauseOfDeathAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): CauseOfDeathAdapter {
+        val adapter = CauseOfDeathAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        causeOfDeathRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        causeOfDeathRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

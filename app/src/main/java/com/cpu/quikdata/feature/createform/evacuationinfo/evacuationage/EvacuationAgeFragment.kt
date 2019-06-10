@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.common.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_evacuation_age.*
 
-class EvacuationAgeFragment : Fragment() {
+class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAdapter, EvacuationAgeAdapter.ViewHolder>() {
 
     companion object {
         private const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
@@ -27,7 +28,6 @@ class EvacuationAgeFragment : Fragment() {
     }
 
     private lateinit var mViewModel: EvacuationAgeViewModel
-    private lateinit var mAdapter: EvacuationAgeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,12 +36,12 @@ class EvacuationAgeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_evacuation_age, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = EvacuationAgeAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): EvacuationAgeAdapter {
+        val adapter = EvacuationAgeAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        evacuationAgeRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        evacuationAgeRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

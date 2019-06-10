@@ -13,14 +13,13 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.fragment_livelihoods_assistance.*
 
-class LivelihoodsAssistanceFragment : BaseAssistanceFragment() {
+class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistanceAdapter, LivelihoodsAssistanceAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = LivelihoodsAssistanceFragment()
     }
 
     private lateinit var mViewModel: LivelihoodsAssistanceViewModel
-    private lateinit var mAdapter: LivelihoodsAssistanceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +28,17 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment() {
         return inflater.inflate(R.layout.fragment_livelihoods_assistance, container, false)
     }
 
+    override fun setupAdapter(expandedItemIndex: Int): LivelihoodsAssistanceAdapter {
+        val adapter = LivelihoodsAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
+        }, expandedItemIndex)
+        livelihoodsAssistanceRecyclerView.adapter = adapter
+        return adapter
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = LivelihoodsAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
-            showConfirmationDialog ({ mViewModel.deleteRow(it) })
-        }
-        livelihoodsAssistanceRecyclerView.adapter = mAdapter
         livelihoodsAssistanceAddButton.clickWithGuard {
-
             if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()

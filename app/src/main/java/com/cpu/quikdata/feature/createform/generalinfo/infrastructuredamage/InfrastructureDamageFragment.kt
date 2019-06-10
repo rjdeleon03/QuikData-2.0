@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_infrastructure_damage.*
 
-class InfrastructureDamageFragment : BaseCreateFormFragment() {
+class InfrastructureDamageFragment : BaseCollapsibleCreateFormFragment<InfrastructureDamageAdapter, InfrastructureDamageAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = InfrastructureDamageFragment()
     }
 
     private lateinit var mViewModel: InfrastructureDamageViewModel
-    private lateinit var mAdapter: InfrastructureDamageAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +27,12 @@ class InfrastructureDamageFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_infrastructure_damage, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = InfrastructureDamageAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): InfrastructureDamageAdapter {
+        val adapter = InfrastructureDamageAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        infrastructureDamageRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        infrastructureDamageRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

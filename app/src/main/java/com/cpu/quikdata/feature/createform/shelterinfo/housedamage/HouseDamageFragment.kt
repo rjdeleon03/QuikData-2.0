@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_house_damage.*
 
-class HouseDamageFragment : BaseCreateFormFragment() {
+class HouseDamageFragment : BaseCollapsibleCreateFormFragment<HouseDamageAdapter, HouseDamageAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = HouseDamageFragment()
     }
 
     private lateinit var mViewModel: HouseDamageViewModel
-    private lateinit var mAdapter: HouseDamageAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +27,12 @@ class HouseDamageFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_house_damage, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = HouseDamageAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): HouseDamageAdapter {
+        val adapter = HouseDamageAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        houseDamageRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        houseDamageRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

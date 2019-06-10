@@ -9,8 +9,8 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import kotlinx.android.synthetic.main.item_shelter_needs.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class ShelterNeedsAdapter(context: Context, rowSaveListener: (ShelterNeedsRow) -> Unit) :
-    BaseCollapsibleAdapter<ShelterNeedsRow, ShelterNeedsAdapter.ViewHolder>(context, R.layout.item_shelter_needs, rowSaveListener) {
+class ShelterNeedsAdapter(context: Context, rowSaveListener: (ShelterNeedsRow) -> Unit, expandedItem: Int = 0) :
+    BaseCollapsibleAdapter<ShelterNeedsRow, ShelterNeedsAdapter.ViewHolder>(context, R.layout.item_shelter_needs, rowSaveListener, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

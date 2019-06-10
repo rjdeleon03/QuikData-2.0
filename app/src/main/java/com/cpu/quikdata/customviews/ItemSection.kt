@@ -62,9 +62,14 @@ class ItemSection(context: Context, attrs: AttributeSet) : LinearLayout(context,
         mTouchListener = touch
     }
 
-    fun expand() {
+    fun expand(isAnimated: Boolean = true) {
         if (!mIsCollapsed) return
         mIsCollapsed = false
+
+        if (!isAnimated) {
+            optionsLayout.visibility = View.VISIBLE
+            return
+        }
 
         val matchParentMeasureSpec =
             MeasureSpec.makeMeasureSpec((optionsLayout.parent as View).width, MeasureSpec.EXACTLY)
@@ -88,9 +93,14 @@ class ItemSection(context: Context, attrs: AttributeSet) : LinearLayout(context,
         optionsLayout.startAnimation(a)
     }
 
-    fun collapse() {
+    fun collapse(isAnimated: Boolean = true) {
         if (mIsCollapsed) return
         mIsCollapsed = true
+
+        if (!isAnimated) {
+            optionsLayout.visibility = View.GONE
+            return
+        }
 
         val initialHeight = optionsLayout.measuredHeight
         val a = object : Animation() {

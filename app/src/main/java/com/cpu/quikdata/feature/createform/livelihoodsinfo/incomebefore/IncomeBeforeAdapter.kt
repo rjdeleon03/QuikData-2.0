@@ -12,8 +12,9 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class IncomeBeforeAdapter(context: Context,
                           rowSaveListener: (IncomeBeforeRow) -> Unit,
-                          deleteClickListener: (IncomeBeforeRow) -> Unit) :
-    BaseAssistanceAdapter<IncomeBeforeRow, IncomeBeforeAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener, R.layout.item_income) {
+                          deleteClickListener: (IncomeBeforeRow) -> Unit,
+                          expandedItem: Int = 0) :
+    BaseAssistanceAdapter<IncomeBeforeRow, IncomeBeforeAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener, R.layout.item_income, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

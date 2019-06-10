@@ -9,8 +9,8 @@ import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import kotlinx.android.synthetic.main.item_vulnerable.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Unit) :
-    BaseCollapsibleAdapter<VulnerableRow, VulnerableAdapter.ViewHolder>(context, R.layout.item_vulnerable, rowSaveListener) {
+class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Unit, expandedItem: Int = 0) :
+    BaseCollapsibleAdapter<VulnerableRow, VulnerableAdapter.ViewHolder>(context, R.layout.item_vulnerable, rowSaveListener, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

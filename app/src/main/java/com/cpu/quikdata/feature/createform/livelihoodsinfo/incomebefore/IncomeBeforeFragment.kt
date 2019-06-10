@@ -13,14 +13,13 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.fragment_income_before.*
 
-class IncomeBeforeFragment : BaseAssistanceFragment() {
+class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeBeforeAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = IncomeBeforeFragment()
     }
 
     private lateinit var mViewModel: IncomeBeforeViewModel
-    private lateinit var mAdapter: IncomeBeforeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +28,18 @@ class IncomeBeforeFragment : BaseAssistanceFragment() {
         return inflater.inflate(R.layout.fragment_income_before, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = IncomeBeforeAdapter(context!!, { mViewModel.updateRow(it) }) {
+    override fun setupAdapter(expandedItemIndex: Int): IncomeBeforeAdapter {
+        val adapter = IncomeBeforeAdapter(context!!, { mViewModel.updateRow(it) }, {
             showConfirmationDialog({ mViewModel.deleteRow(it) },
                 R.string.income_source_delete_confirmation,
                 R.layout.dialog_income_source_delete)
-        }
-        incomeBeforeRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        incomeBeforeRecyclerView.adapter = adapter
+        return adapter
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         incomeBeforeAddButton.clickWithGuard {
 
             if (mIsItemLimitReached) {
