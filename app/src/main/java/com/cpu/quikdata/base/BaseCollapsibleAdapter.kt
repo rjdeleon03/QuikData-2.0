@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context,
                                                                                    layoutId: Int,
                                                                                    rowSaveListener: (R) -> Unit,
-                                                                                   expandedItem: Int = 0) :
+                                                                                   expandedItem: Int) :
     RecyclerView.Adapter<VH>() {
 
     private val mInflater = LayoutInflater.from(context)

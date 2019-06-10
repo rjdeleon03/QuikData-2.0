@@ -13,14 +13,13 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.fragment_health_assistance.*
 
-class HealthAssistanceFragment : BaseAssistanceFragment() {
+class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter, HealthAssistanceAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = HealthAssistanceFragment()
     }
 
     private lateinit var mViewModel: HealthAssistanceViewModel
-    private lateinit var mAdapter: HealthAssistanceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +28,17 @@ class HealthAssistanceFragment : BaseAssistanceFragment() {
         return inflater.inflate(R.layout.fragment_health_assistance, container, false)
     }
 
+    override fun setupAdapter(expandedItemIndex: Int): HealthAssistanceAdapter {
+        val adapter = HealthAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
+        }, expandedItemIndex)
+        healthAssistanceRecyclerView.adapter = adapter
+        return adapter
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = HealthAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
-            showConfirmationDialog ({ mViewModel.deleteRow(it) })
-        }
-        healthAssistanceRecyclerView.adapter = mAdapter
         healthAssistanceAddButton.clickWithGuard {
-
             if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()

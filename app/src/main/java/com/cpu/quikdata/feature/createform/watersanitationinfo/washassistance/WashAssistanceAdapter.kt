@@ -11,8 +11,10 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class WashAssistanceAdapter(context: Context,
                             rowSaveListener: (WashAssistanceRow) -> Unit,
-                            deleteClickListener: (WashAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<WashAssistanceRow, WashAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
+                            deleteClickListener: (WashAssistanceRow) -> Unit,
+                            expandedItem: Int = 0) :
+    BaseAssistanceAdapter<WashAssistanceRow, WashAssistanceAdapter.ViewHolder>
+        (context, rowSaveListener, deleteClickListener, expandedItem = expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

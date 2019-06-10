@@ -13,14 +13,14 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.fragment_food_security_assistance.*
 
-class FoodSecurityAssistanceFragment : BaseAssistanceFragment() {
+class FoodSecurityAssistanceFragment :
+    BaseAssistanceFragment<FoodSecurityAssistanceAdapter, FoodSecurityAssistanceAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = FoodSecurityAssistanceFragment()
     }
 
     private lateinit var mViewModel: FoodSecurityAssistanceViewModel
-    private lateinit var mAdapter: FoodSecurityAssistanceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +29,17 @@ class FoodSecurityAssistanceFragment : BaseAssistanceFragment() {
         return inflater.inflate(R.layout.fragment_food_security_assistance, container, false)
     }
 
+    override fun setupAdapter(expandedItemIndex: Int): FoodSecurityAssistanceAdapter {
+        val adapter = FoodSecurityAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
+        }, expandedItemIndex)
+        foodSecurityAssistanceRecyclerView.adapter = adapter
+        return adapter
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = FoodSecurityAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
-            showConfirmationDialog ({ mViewModel.deleteRow(it) })
-        }
-        foodSecurityAssistanceRecyclerView.adapter = mAdapter
         foodSecurityAssistanceAddButton.clickWithGuard {
-
             if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()

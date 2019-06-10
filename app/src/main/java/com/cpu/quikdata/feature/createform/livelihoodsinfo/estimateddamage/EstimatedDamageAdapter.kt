@@ -12,8 +12,8 @@ import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageRow
 import kotlinx.android.synthetic.main.item_estimated_damage.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class EstimatedDamageAdapter(context: Context, rowSaveListener: (EstimatedDamageComplete) -> Unit) :
-    BaseCollapsibleAdapter<EstimatedDamageComplete, EstimatedDamageAdapter.ViewHolder>(context, R.layout.item_estimated_damage, rowSaveListener) {
+class EstimatedDamageAdapter(context: Context, rowSaveListener: (EstimatedDamageComplete) -> Unit, expandedItem: Int = 0) :
+    BaseCollapsibleAdapter<EstimatedDamageComplete, EstimatedDamageAdapter.ViewHolder>(context, R.layout.item_estimated_damage, rowSaveListener, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_special_needs.*
 
-class SpecialNeedsFragment : BaseCreateFormFragment() {
+class SpecialNeedsFragment : BaseCollapsibleCreateFormFragment<SpecialNeedsAdapter, SpecialNeedsAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = SpecialNeedsFragment()
     }
 
     private lateinit var mViewModel: SpecialNeedsViewModel
-    private lateinit var mAdapter: SpecialNeedsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +27,12 @@ class SpecialNeedsFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_special_needs, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = SpecialNeedsAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): SpecialNeedsAdapter {
+        val adapter = SpecialNeedsAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        specialNeedsRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        specialNeedsRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

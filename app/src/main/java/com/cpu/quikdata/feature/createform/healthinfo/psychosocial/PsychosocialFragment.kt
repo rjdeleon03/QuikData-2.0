@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_psychosocial.*
 
-class PsychosocialFragment : BaseCreateFormFragment() {
+class PsychosocialFragment : BaseCollapsibleCreateFormFragment<PsychosocialAdapter, PsychosocialAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = PsychosocialFragment()
     }
 
     private lateinit var mViewModel: PsychosocialViewModel
-    private lateinit var mAdapter: PsychosocialAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +27,12 @@ class PsychosocialFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_psychosocial, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = PsychosocialAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): PsychosocialAdapter {
+        val adapter = PsychosocialAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        psychosocialRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        psychosocialRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

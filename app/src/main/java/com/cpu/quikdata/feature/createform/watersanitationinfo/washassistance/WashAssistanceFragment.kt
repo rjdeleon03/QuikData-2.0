@@ -13,14 +13,13 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.fragment_wash_assistance.*
 
-class WashAssistanceFragment : BaseAssistanceFragment() {
+class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, WashAssistanceAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = WashAssistanceFragment()
     }
 
     private lateinit var mViewModel: WashAssistanceViewModel
-    private lateinit var mAdapter: WashAssistanceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +28,17 @@ class WashAssistanceFragment : BaseAssistanceFragment() {
         return inflater.inflate(R.layout.fragment_wash_assistance, container, false)
     }
 
+    override fun setupAdapter(expandedItemIndex: Int): WashAssistanceAdapter {
+        val adapter = WashAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
+        }, expandedItemIndex)
+        washAssistanceRecyclerView.adapter = adapter
+        return adapter
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = WashAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
-            showConfirmationDialog ({ mViewModel.deleteRow(it) })
-        }
-        washAssistanceRecyclerView.adapter = mAdapter
         washAssistanceAddButton.clickWithGuard {
-
             if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()

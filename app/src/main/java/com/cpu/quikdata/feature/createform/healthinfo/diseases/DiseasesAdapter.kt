@@ -9,8 +9,8 @@ import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
 import kotlinx.android.synthetic.main.item_diseases.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class DiseasesAdapter(context: Context, rowSaveListener: (DiseasesRow) -> Unit) :
-    BaseCollapsibleAdapter<DiseasesRow, DiseasesAdapter.ViewHolder>(context, R.layout.item_diseases, rowSaveListener) {
+class DiseasesAdapter(context: Context, rowSaveListener: (DiseasesRow) -> Unit, expandedItem: Int = 0) :
+    BaseCollapsibleAdapter<DiseasesRow, DiseasesAdapter.ViewHolder>(context, R.layout.item_diseases, rowSaveListener, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

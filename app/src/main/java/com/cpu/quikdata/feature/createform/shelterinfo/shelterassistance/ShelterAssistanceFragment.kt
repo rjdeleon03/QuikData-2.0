@@ -13,14 +13,13 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.fragment_shelter_assistance.*
 
-class ShelterAssistanceFragment : BaseAssistanceFragment() {
+class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapter, ShelterAssistanceAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = ShelterAssistanceFragment()
     }
 
     private lateinit var mViewModel: ShelterAssistanceViewModel
-    private lateinit var mAdapter: ShelterAssistanceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +28,17 @@ class ShelterAssistanceFragment : BaseAssistanceFragment() {
         return inflater.inflate(R.layout.fragment_shelter_assistance, container, false)
     }
 
+    override fun setupAdapter(expandedItemIndex: Int): ShelterAssistanceAdapter {
+        val adapter = ShelterAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+            showConfirmationDialog ({ mViewModel.deleteRow(it) })
+        }, expandedItemIndex)
+        shelterAssistanceRecyclerView.adapter = adapter
+        return adapter
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAdapter = ShelterAssistanceAdapter(context!!, { mViewModel.updateRow(it) }) {
-            showConfirmationDialog ({ mViewModel.deleteRow(it) })
-        }
-        shelterAssistanceRecyclerView.adapter = mAdapter
         shelterAssistanceAddButton.clickWithGuard {
-
             if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()

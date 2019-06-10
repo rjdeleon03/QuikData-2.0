@@ -9,8 +9,8 @@ import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRow
 import kotlinx.android.synthetic.main.item_casualties.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class CasualtiesAdapter(context: Context, rowSaveListener: (CasualtiesRow) -> Unit) :
-    BaseCollapsibleAdapter<CasualtiesRow, CasualtiesAdapter.ViewHolder>(context, R.layout.item_casualties, rowSaveListener) {
+class CasualtiesAdapter(context: Context, rowSaveListener: (CasualtiesRow) -> Unit, expandedItem: Int = 0) :
+    BaseCollapsibleAdapter<CasualtiesRow, CasualtiesAdapter.ViewHolder>(context, R.layout.item_casualties, rowSaveListener, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 
