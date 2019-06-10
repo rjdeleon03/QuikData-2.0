@@ -78,7 +78,7 @@
     <string name="cause_of_death_pneumonia">Pneumonia</string>
     <string name="cause_of_death_dengue">Dengue</string>
     <string name="cause_of_death_drowning">Drowning</string>
-    <string name="cause_of_death_heart_attack">HeartAttack</string>
+    <string name="cause_of_death_heart_attack">Heart Attack</string>
     <string name="cause_of_death_electrocution">Electrocution</string>
     <string name="cause_of_death_collapsed_bldg">Collapsed Building</string>
     <string name="cause_of_death_others">Others</string>

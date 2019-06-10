@@ -10,9 +10,7 @@
         android:id="@+id/shelterNeedsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/lightGray"
-        android:clickable="true"
-        android:focusable="true"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        style="@style/RecyclerViewTheme"/>
 
 </FrameLayout>
