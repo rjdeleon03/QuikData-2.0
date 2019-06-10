@@ -9,4 +9,7 @@ interface ShelterGapsDao : BaseDao<ShelterGaps> {
 
     @Query("SELECT * FROM shelter_gaps WHERE formId = :formId")
     fun getByFormId(formId: String): LiveData<ShelterGaps>
+
+    @Query("SELECT * FROM shelter_gaps WHERE formId = :formId")
+    fun getByFormIdNonLive(formId: String): ShelterGaps
 }

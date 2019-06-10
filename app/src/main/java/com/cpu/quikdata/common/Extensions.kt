@@ -1,23 +1,36 @@
 package com.cpu.quikdata.common
 
-import android.content.Context
 import android.graphics.Color
-import android.graphics.Rect
 import android.os.SystemClock
-import android.view.MotionEvent
 import android.view.View
-import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.children
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
-import com.cpu.quikdata.customviews.CollapsibleContainer
 import com.google.android.material.textfield.TextInputEditText
-import kotlin.math.roundToInt
+import org.joda.time.format.DateTimeFormat
+
+
+fun <T> LiveData<T>.observeExceptFirst(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+    var isFirstEmit = true
+    observe(lifecycleOwner, Observer<T> {
+        if (isFirstEmit) {
+            isFirstEmit = false
+        } else {
+            observer.onChanged(it)
+        }
+    })
+}
+
+fun Long.toDateString(): String {
+    val formatter = DateTimeFormat.forPattern("yyyy/MM/dd")
+    return formatter.print(this)
+}
 
 fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {
 
@@ -45,7 +58,7 @@ fun TextInputEditText.setupNumberInputValidation() {
     }
 }
 
-fun ViewGroup.setupOnFocusBehavior(target: TextView, focusSource: View) {
+fun ViewGroup.setupOnFocusBehavior(target: TextView, focusSource: View, onFocusAction: (() -> Unit)? = null) {
 
     /* Retrieve default text view color */
     val attrs2 = intArrayOf(android.R.attr.textColorHint)
@@ -60,6 +73,7 @@ fun ViewGroup.setupOnFocusBehavior(target: TextView, focusSource: View) {
     focusSource.setOnFocusChangeListener { _, hasFocus ->
         if (hasFocus) {
             target.setHintTextColor(ContextCompat.getColor(context, R.color.colorAccent))
+            onFocusAction?.invoke()
         } else {
             target.setHintTextColor(defaultColor)
         }

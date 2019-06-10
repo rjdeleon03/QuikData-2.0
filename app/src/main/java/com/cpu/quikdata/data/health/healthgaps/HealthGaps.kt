@@ -19,6 +19,7 @@ data class HealthGaps(@PrimaryKey(autoGenerate = false)
                       var servicesAvailable: String = "",
                       var servicesAccessible: String = "",
                       var reproductiveHealth: String = "",
+                      var formIdRemote: String = "",
                       val formId: String = "") {
 
     fun copyFrom(healthGaps: HealthGaps) {
@@ -26,5 +27,6 @@ data class HealthGaps(@PrimaryKey(autoGenerate = false)
         servicesAvailable = healthGaps.servicesAvailable
         servicesAccessible = healthGaps.servicesAccessible
         reproductiveHealth = healthGaps.reproductiveHealth
+        formIdRemote = healthGaps.formIdRemote
     }
 }

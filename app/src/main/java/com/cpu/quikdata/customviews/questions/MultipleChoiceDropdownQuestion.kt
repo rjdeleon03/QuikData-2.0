@@ -22,7 +22,8 @@ class MultipleChoiceDropdownQuestion(context: Context, attrs: AttributeSet) : Li
 
     init {
         View.inflate(context, R.layout.question_multiple_choice_dropdown, this)
-        orientation = LinearLayout.VERTICAL
+        orientation = VERTICAL
+        background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultipleChoiceDropdownQuestion)
         questionChoiceText.text = attributes.getString(R.styleable.MultipleChoiceDropdownQuestion_questionChoice)

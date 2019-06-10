@@ -33,6 +33,7 @@ class SpecialNeedsAdapter(context: Context, rowSaveListener: (SpecialNeedsRow) -
                     row.type,
                     view.specialNeedsNumberText.number,
                     view.specialNeedsHealthMedicalText.text,
+                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {

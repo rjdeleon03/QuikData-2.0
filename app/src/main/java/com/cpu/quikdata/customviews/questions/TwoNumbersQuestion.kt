@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.setupNumberInputValidation
 import kotlinx.android.synthetic.main.question_two_numbers.view.*
@@ -12,7 +13,8 @@ class TwoNumbersQuestion(context: Context, attrs: AttributeSet) : LinearLayout(c
 
     init {
         View.inflate(context, R.layout.question_two_numbers, this)
-        orientation = LinearLayout.VERTICAL
+        orientation = VERTICAL
+        background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.TwoNumbersQuestion)
         questionText.hint = attributes.getString(R.styleable.TwoNumbersQuestion_question)

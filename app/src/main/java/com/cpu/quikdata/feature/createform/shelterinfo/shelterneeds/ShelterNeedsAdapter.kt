@@ -33,6 +33,7 @@ class ShelterNeedsAdapter(context: Context, rowSaveListener: (ShelterNeedsRow) -
                     row.type,
                     view.shelterNeedsSpecificItemsText.text,
                     view.shelterNeedsFamiliesInNeedText.number,
+                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {

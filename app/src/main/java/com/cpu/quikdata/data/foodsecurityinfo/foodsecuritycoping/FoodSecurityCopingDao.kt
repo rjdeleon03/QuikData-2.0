@@ -9,4 +9,7 @@ interface FoodSecurityCopingDao : BaseDao<FoodSecurityCoping> {
 
     @Query("SELECT * FROM food_security_coping WHERE formId = :formId")
     fun getByFormId(formId: String): LiveData<FoodSecurityCoping>
+
+    @Query("SELECT * FROM food_security_coping WHERE formId = :formId")
+    fun getByFormIdNonLive(formId: String): FoodSecurityCoping
 }

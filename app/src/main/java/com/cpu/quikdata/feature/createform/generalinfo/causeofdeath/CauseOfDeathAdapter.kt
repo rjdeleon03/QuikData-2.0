@@ -65,6 +65,7 @@ class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -
                     view.causeOfDeathCollapsedBldgText.number2,
                     view.causeOfDeathOthersText.number1,
                     view.causeOfDeathOthersText.number2,
+                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {

@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
         onDelete = ForeignKey.CASCADE
     )])
 data class EstimatedDamageType(@PrimaryKey(autoGenerate = false)
-                                  val id: String = "",
+                               val id: String = "",
                                var type: Int = 0,
                                var isSelected: Boolean = false,
                                val estimatedDamageId: String = "") {

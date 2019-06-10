@@ -65,6 +65,7 @@ class DiseasesAdapter(context: Context, rowSaveListener: (DiseasesRow) -> Unit) 
                     view.diseasesMedicinesText.number2,
                     view.diseasesMedicalOthersText.number1,
                     view.diseasesMedicalOthersText.number2,
+                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {

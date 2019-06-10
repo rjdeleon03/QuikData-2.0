@@ -37,6 +37,7 @@ class PsychosocialAdapter(context: Context, rowSaveListener: (PsychosocialRow) -
                     view.psychosocialCasesText.number2,
                     view.psychosocialManifestationsText.text,
                     view.psychosocialNeedsText.text,
+                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {

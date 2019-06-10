@@ -9,4 +9,7 @@ interface HealthCopingDao : BaseDao<HealthCoping> {
 
     @Query("SELECT * FROM health_coping WHERE formId = :formId")
     fun getByFormId(formId: String): LiveData<HealthCoping>
+
+    @Query("SELECT * FROM health_coping WHERE formId = :formId")
+    fun getByFormIdNonLive(formId: String): HealthCoping
 }

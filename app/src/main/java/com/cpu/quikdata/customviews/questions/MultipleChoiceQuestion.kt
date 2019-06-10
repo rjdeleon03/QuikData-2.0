@@ -22,11 +22,16 @@ class MultipleChoiceQuestion(context: Context, attrs: AttributeSet) : LinearLayo
 
     init {
         View.inflate(context, R.layout.question_multiple_choice, this)
-        orientation = LinearLayout.VERTICAL
+        orientation = VERTICAL
+        background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultipleChoiceQuestion)
         questionChoiceText.text = attributes.getString(R.styleable.MultipleChoiceQuestion_questionChoice)
+        val columnCount = attributes.getInt(R.styleable.MultipleChoiceQuestion_columnCount, 2)
         attributes.recycle()
+
+        // Set column count
+        multipleChoiceLayout.columnCount = columnCount
 
         val attrs2 = intArrayOf(android.R.attr.textColorHint)
         val defaultAttributes = context.theme.obtainStyledAttributes(attrs2)

@@ -25,6 +25,7 @@ data class HouseDamageRow(@PrimaryKey(autoGenerate = false)
                           var informalSettlers: Int = 0,
                           var partiallyDamaged: Int = 0,
                           var totallyDamaged: Int = 0,
+                          var formIdRemote: String = "",
                           val formId: String = "") {
 
     override fun equals(other: Any?): Boolean {
@@ -41,6 +42,7 @@ data class HouseDamageRow(@PrimaryKey(autoGenerate = false)
             informalSettlers == other.informalSettlers &&
             partiallyDamaged == other.partiallyDamaged &&
             totallyDamaged == other.totallyDamaged &&
+            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

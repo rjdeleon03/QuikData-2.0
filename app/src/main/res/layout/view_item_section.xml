@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
+    android:id="@+id/mainLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:focusable="true"
+    android:clickable="true">
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/mainButton"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_marginStart="@dimen/dimenMid"
-        android:layout_marginEnd="@dimen/dimenMid"
+        android:paddingStart="@dimen/dimenMid"
+        android:paddingEnd="@dimen/dimenMid"
         android:textSize="16sp"
+        android:background="@drawable/ripple_accent_lighter_gray"
         android:fontFamily="@font/nunitosans_bold"/>
+
+    <LinearLayout
+        android:id="@+id/optionsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/optionsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.75"
+            android:gravity="center"
+            android:background="@color/lightGray"
+            android:textAllCaps="true"
+            android:fontFamily="@font/nunitosans_bold"/>
+
+        <include layout="@layout/view_divider"/>
+
+        <TextView
+            android:id="@+id/topButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/text_submit"
+            android:background="@drawable/ripple_accent_lighter_gray"/>
+
+        <include layout="@layout/view_divider"/>
+
+        <TextView
+            android:id="@+id/bottomButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/text_cancel"
+            android:background="@drawable/ripple_accent_lighter_gray"/>
+
+    </LinearLayout>
 
     <include layout="@layout/view_divider"/>
 
-</LinearLayout>
+</RelativeLayout>

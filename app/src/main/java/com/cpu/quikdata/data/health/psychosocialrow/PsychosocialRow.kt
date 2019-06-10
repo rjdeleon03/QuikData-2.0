@@ -20,6 +20,7 @@ data class PsychosocialRow(@PrimaryKey(autoGenerate = false)
                            var casesFemale: Int = 0,
                            var manifestations: String = "",
                            var needs: String = "",
+                           var formIdRemote: String = "",
                            val formId: String = "") {
 
     override fun equals(other: Any?): Boolean {
@@ -31,6 +32,7 @@ data class PsychosocialRow(@PrimaryKey(autoGenerate = false)
             casesFemale == other.casesFemale &&
             manifestations == other.manifestations &&
             needs == other.needs &&
+            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

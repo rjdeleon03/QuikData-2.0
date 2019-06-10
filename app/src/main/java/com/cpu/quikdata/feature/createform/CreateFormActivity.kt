@@ -47,8 +47,8 @@ class CreateFormActivity : AppCompatActivity() {
         // Initialize viewModel with form ID
         val formId = intent.getStringExtra(FORM_ID_KEY)
         if (!formId.isNullOrEmpty()) {
-            mViewModel = ViewModelProviders.of(this).get(CreateFormViewModel::class.java)
-            mViewModel.formId = formId
+            val factory = ViewModelFactory(application, formId)
+            mViewModel = ViewModelProviders.of(this, factory).get(CreateFormViewModel::class.java)
         }
 
         // Setup navController

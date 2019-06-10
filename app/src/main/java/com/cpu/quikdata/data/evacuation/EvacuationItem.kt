@@ -16,9 +16,11 @@ import com.cpu.quikdata.data.form.Form
 data class EvacuationItem(@PrimaryKey(autoGenerate = false)
                           val id: String = "",
                           var dateCreated: Long = 0L,
+                          var formIdRemote: String = "",
                           val formId: String = "") {
 
     fun copyFrom(evacuationItem: EvacuationItem) {
         dateCreated = evacuationItem.dateCreated
+        formIdRemote = evacuationItem.formIdRemote
     }
 }

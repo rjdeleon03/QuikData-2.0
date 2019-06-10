@@ -18,6 +18,7 @@ data class ShelterNeedsRow(@PrimaryKey(autoGenerate = false)
                            val type: Int = 0,
                            var specificItems: String = "",
                            var familiesInNeed: Int = 0,
+                           var formIdRemote: String = "",
                            val formId: String = "") {
 
     override fun equals(other: Any?): Boolean {
@@ -27,6 +28,7 @@ data class ShelterNeedsRow(@PrimaryKey(autoGenerate = false)
             type == other.type &&
             specificItems == other.specificItems &&
             familiesInNeed == other.familiesInNeed &&
+            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

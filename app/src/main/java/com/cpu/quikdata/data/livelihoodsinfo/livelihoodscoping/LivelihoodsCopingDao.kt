@@ -9,4 +9,7 @@ interface LivelihoodsCopingDao : BaseDao<LivelihoodsCoping> {
 
     @Query("SELECT * FROM livelihoods_coping WHERE formId = :formId")
     fun getByFormId(formId: String): LiveData<LivelihoodsCoping>
+
+    @Query("SELECT * FROM livelihoods_coping WHERE formId = :formId")
+    fun getByFormIdNonLive(formId: String): LivelihoodsCoping
 }

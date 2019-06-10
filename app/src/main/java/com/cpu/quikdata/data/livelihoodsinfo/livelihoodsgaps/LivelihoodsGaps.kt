@@ -23,6 +23,7 @@ data class LivelihoodsGaps(@PrimaryKey(autoGenerate = false)
                            var hasCreditRemarks: String = "",
                            var hasLivelihoodMaterials: Boolean = false,
                            var hasLivelihoodMaterialsRemarks: String = "",
+                           var formIdRemote: String = "",
                            val formId: String = "") {
 
     fun copyFrom(livelihoodsGaps: LivelihoodsGaps) {
@@ -34,5 +35,6 @@ data class LivelihoodsGaps(@PrimaryKey(autoGenerate = false)
         hasCreditRemarks = livelihoodsGaps.hasCreditRemarks
         hasLivelihoodMaterials = livelihoodsGaps.hasLivelihoodMaterials
         hasLivelihoodMaterialsRemarks = livelihoodsGaps.hasLivelihoodMaterialsRemarks
+        formIdRemote = livelihoodsGaps.formIdRemote
     }
 }

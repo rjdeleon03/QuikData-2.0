@@ -6,8 +6,9 @@ import android.view.ViewGroup
 
 abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context,
                                                                                   rowSaveListener: (R) -> Unit,
-                                                                                  deleteClickListener: (R) -> Unit) :
-    BaseCollapsibleAdapter<R, VH>(context, com.cpu.quikdata.R.layout.item_assistance, rowSaveListener) {
+                                                                                  deleteClickListener: (R) -> Unit,
+                                                                                  layoutId: Int = com.cpu.quikdata.R.layout.item_assistance) :
+    BaseCollapsibleAdapter<R, VH>(context, layoutId, rowSaveListener) {
 
     private val mDeleteClickListener = deleteClickListener
 

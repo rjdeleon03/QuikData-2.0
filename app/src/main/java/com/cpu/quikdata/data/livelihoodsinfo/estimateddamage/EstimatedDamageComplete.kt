@@ -1,7 +1,6 @@
 package com.cpu.quikdata.data.livelihoodsinfo.estimateddamage
 
 import androidx.room.*
-import com.cpu.quikdata.data.form.Form
 
 class EstimatedDamageComplete {
     @Embedded

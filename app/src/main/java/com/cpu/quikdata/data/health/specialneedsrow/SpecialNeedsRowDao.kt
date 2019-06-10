@@ -2,11 +2,14 @@ package com.cpu.quikdata.data.health.specialneedsrow
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.cpu.quikdata.base.BaseDao
+import com.cpu.quikdata.base.BaseRowDao
 
 @Dao
-interface SpecialNeedsRowDao : BaseDao<SpecialNeedsRow> {
+interface SpecialNeedsRowDao : BaseRowDao<SpecialNeedsRow> {
 
     @Query("SELECT * FROM special_needs_row WHERE formId = :formId ORDER BY type")
     fun getByFormId(formId: String): LiveData<List<SpecialNeedsRow>>
+
+    @Query("SELECT * FROM special_needs_row WHERE formId = :formId ORDER BY type")
+    fun getByFormIdNonLive(formId: String): List<SpecialNeedsRow>
 }

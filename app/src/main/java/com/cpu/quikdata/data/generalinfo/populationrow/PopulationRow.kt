@@ -20,6 +20,7 @@ data class PopulationRow(@PrimaryKey(autoGenerate = false)
                          var affectedFemale: Int = 0,
                          var displacedMale: Int = 0,
                          var displacedFemale: Int = 0,
+                         var formIdRemote: String = "",
                          val formId: String = "") {
 
     override fun equals(other: Any?): Boolean {
@@ -31,6 +32,7 @@ data class PopulationRow(@PrimaryKey(autoGenerate = false)
             affectedFemale == other.affectedFemale &&
             displacedMale == other.displacedMale &&
             displacedFemale == other.displacedFemale &&
+            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

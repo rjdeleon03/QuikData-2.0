@@ -19,6 +19,7 @@ data class InfrastructureDamageRow(@PrimaryKey(autoGenerate = false)
                                    var numberOfInfrastructure: Int = 0,
                                    var isFunctional: Boolean = true,
                                    var remarks: String = "",
+                                   var formIdRemote: String = "",
                                    val formId: String = "") {
 
     override fun equals(other: Any?): Boolean {
@@ -29,6 +30,7 @@ data class InfrastructureDamageRow(@PrimaryKey(autoGenerate = false)
             numberOfInfrastructure == other.numberOfInfrastructure &&
             isFunctional == other.isFunctional &&
             remarks == other.remarks &&
+            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false
