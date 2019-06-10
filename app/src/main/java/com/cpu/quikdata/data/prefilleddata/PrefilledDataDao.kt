@@ -15,4 +15,7 @@ interface PrefilledDataDao {
 
     @Query("SELECT * FROM prefilled_data WHERE id = :id")
     fun get(id: String = PREFILLED_DATA_ID): LiveData<PrefilledData>
+
+    @Query("SELECT * FROM prefilled_data WHERE id = :id")
+    fun getNonLive(id: String = PREFILLED_DATA_ID): PrefilledData
 }

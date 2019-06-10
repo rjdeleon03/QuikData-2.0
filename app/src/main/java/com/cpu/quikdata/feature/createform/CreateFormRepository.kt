@@ -448,7 +448,7 @@ class CreateFormRepository(application: Application, formId: String) {
         val form = mForm.value!!
 
         // Save to server
-        val pushRef = if (!form.idRemote.isEmpty()) {
+        val pushRef = if (form.idRemote.isNotEmpty()) {
             mServerRef.child(form.idRemote)
         } else {
             mServerRef.push()
