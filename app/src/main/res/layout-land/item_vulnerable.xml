@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cpu.quikdata.customviews.CollapsibleContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:collapsed="true">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2">
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/vulnerablePregnantText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/vulnerable_pregnant"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/vulnerableLactatingText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/vulnerable_lactating"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/vulnerableLgbtText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/vulnerable_lgbt"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/vulnerableFemaleHeadedText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:textHint="@string/vulnerable_female_headed"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/vulnerableChildHeadedText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/vulnerable_child_headed"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/vulnerableIndigenousText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/vulnerable_indigenous"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+            android:id="@+id/vulnerableDisabledText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:question="@string/vulnerable_disabled"
+            app:textHint1="@string/text_male"
+            app:textHint2="@string/text_female"/>
+
+        <include layout="@layout/view_divider"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:layout_gravity="bottom"/>
+
+    </GridLayout>
+
+    <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+        android:id="@+id/vulnerableRemarksText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/text_remarks"/>
+
+</com.cpu.quikdata.customviews.CollapsibleContainer>

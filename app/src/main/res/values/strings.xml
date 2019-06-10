@@ -289,7 +289,7 @@
     <string name="assistance_added">A new assistance item has been created.</string>
     <string name="text_ok">OK</string>
     <string name="text_cancel">Cancel</string>
-    <string name="income_households">Number of Households</string>
+    <string name="income_households">Households</string>
     <string name="income_source">Source</string>
     <string name="income_primary">Primary</string>
     <string name="income_secondary">Secondary</string>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cpu.quikdata.customviews.CollapsibleContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:collapsed="true">
+
+    <com.cpu.quikdata.customviews.questions.StringQuestion
+        android:id="@+id/incomeSourceText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/income_source"/>
+
+    <com.cpu.quikdata.customviews.questions.BooleanQuestion
+        android:id="@+id/incomeSourceTypeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:question="@string/income_source_type"
+        app:yesText="@string/income_primary"
+        app:noText="@string/income_secondary"/>
+
+    <com.cpu.quikdata.customviews.questions.NumberQuestion
+        android:id="@+id/incomeAverageIncomeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textHint="@string/income_average_income"/>
+
+    <com.cpu.quikdata.customviews.SubdividerText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerText="Dependents"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/incomeHouseholdsText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:textHint="@string/income_households"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/incomeMaleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:textHint="@string/text_male"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/incomeFemaleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:textHint="@string/text_female"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/incomeBoysText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:textHint="@string/text_boys"/>
+
+        <com.cpu.quikdata.customviews.questions.NumberQuestion
+            android:id="@+id/incomeGirlsText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:textHint="@string/text_girls"/>
+
+    </LinearLayout>
+
+</com.cpu.quikdata.customviews.CollapsibleContainer>
