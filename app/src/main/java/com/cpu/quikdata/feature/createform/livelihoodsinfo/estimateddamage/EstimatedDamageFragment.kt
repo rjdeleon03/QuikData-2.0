@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_estimated_damage.*
 
-class EstimatedDamageFragment : BaseCreateFormFragment() {
+class EstimatedDamageFragment : BaseCollapsibleCreateFormFragment<EstimatedDamageAdapter, EstimatedDamageAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = EstimatedDamageFragment()
     }
 
     private lateinit var mViewModel: EstimatedDamageViewModel
-    private lateinit var mAdapter: EstimatedDamageAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +27,12 @@ class EstimatedDamageFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_estimated_damage, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = EstimatedDamageAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): EstimatedDamageAdapter {
+        val adapter = EstimatedDamageAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        estimatedDamageRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        estimatedDamageRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

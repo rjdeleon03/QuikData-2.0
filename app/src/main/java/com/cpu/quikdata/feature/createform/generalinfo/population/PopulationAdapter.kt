@@ -9,8 +9,8 @@ import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import kotlinx.android.synthetic.main.item_population.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Unit) :
-    BaseCollapsibleAdapter<PopulationRow, PopulationAdapter.ViewHolder>(context, R.layout.item_population, rowSaveListener) {
+class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Unit, expandedItem: Int = 0) :
+    BaseCollapsibleAdapter<PopulationRow, PopulationAdapter.ViewHolder>(context, R.layout.item_population, rowSaveListener, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

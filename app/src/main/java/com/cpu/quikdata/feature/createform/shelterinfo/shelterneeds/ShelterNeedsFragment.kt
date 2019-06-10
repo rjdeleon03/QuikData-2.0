@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_shelter_needs.*
 
-class ShelterNeedsFragment : BaseCreateFormFragment() {
+class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapter, ShelterNeedsAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = ShelterNeedsFragment()
     }
 
     private lateinit var mViewModel: ShelterNeedsViewModel
-    private lateinit var mAdapter: ShelterNeedsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +27,12 @@ class ShelterNeedsFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_shelter_needs, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = ShelterNeedsAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): ShelterNeedsAdapter {
+        val adapter = ShelterNeedsAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        shelterNeedsRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        shelterNeedsRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

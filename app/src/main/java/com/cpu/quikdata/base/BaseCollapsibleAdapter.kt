@@ -9,14 +9,20 @@ import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context, layoutId: Int, rowSaveListener: (R) -> Unit) :
+abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context,
+                                                                                   layoutId: Int,
+                                                                                   rowSaveListener: (R) -> Unit,
+                                                                                   expandedItem: Int) :
     RecyclerView.Adapter<VH>() {
 
     private val mInflater = LayoutInflater.from(context)
     private val mLayoutId = layoutId
     private val mRowSaveListener = rowSaveListener
     protected var mRows: List<R>? = null
-    protected var mExpandedItem = 0
+    protected var mExpandedItem = expandedItem
+
+    val expandedItemIndex: Int
+        get() = mExpandedItem
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view = mInflater.inflate(mLayoutId, parent, false)

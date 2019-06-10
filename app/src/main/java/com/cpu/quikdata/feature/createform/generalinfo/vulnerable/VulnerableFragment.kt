@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_vulnerable.*
 
-class VulnerableFragment : BaseCreateFormFragment() {
+class VulnerableFragment : BaseCollapsibleCreateFormFragment<VulnerableAdapter, VulnerableAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = VulnerableFragment()
     }
 
     private lateinit var mViewModel: VulnerableViewModel
-    private lateinit var mAdapter: VulnerableAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +27,12 @@ class VulnerableFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_vulnerable, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = VulnerableAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): VulnerableAdapter {
+        val adapter = VulnerableAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        vulnerableRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        vulnerableRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

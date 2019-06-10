@@ -11,8 +11,10 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class HealthAssistanceAdapter(context: Context,
                               rowSaveListener: (HealthAssistanceRow) -> Unit,
-                              deleteClickListener: (HealthAssistanceRow) -> Unit) :
-    BaseAssistanceAdapter<HealthAssistanceRow, HealthAssistanceAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener) {
+                              deleteClickListener: (HealthAssistanceRow) -> Unit,
+                              expandedItem: Int = 0) :
+    BaseAssistanceAdapter<HealthAssistanceRow, HealthAssistanceAdapter.ViewHolder>
+        (context, rowSaveListener, deleteClickListener, expandedItem = expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

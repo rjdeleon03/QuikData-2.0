@@ -9,8 +9,8 @@ import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
 import kotlinx.android.synthetic.main.item_special_needs.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class SpecialNeedsAdapter(context: Context, rowSaveListener: (SpecialNeedsRow) -> Unit) :
-    BaseCollapsibleAdapter<SpecialNeedsRow, SpecialNeedsAdapter.ViewHolder>(context, R.layout.item_special_needs, rowSaveListener) {
+class SpecialNeedsAdapter(context: Context, rowSaveListener: (SpecialNeedsRow) -> Unit, expandedItem: Int = 0) :
+    BaseCollapsibleAdapter<SpecialNeedsRow, SpecialNeedsAdapter.ViewHolder>(context, R.layout.item_special_needs, rowSaveListener, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

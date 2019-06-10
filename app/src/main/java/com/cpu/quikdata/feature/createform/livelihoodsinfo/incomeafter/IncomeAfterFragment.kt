@@ -13,14 +13,13 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.fragment_income_after.*
 
-class IncomeAfterFragment : BaseAssistanceFragment() {
+class IncomeAfterFragment : BaseAssistanceFragment<IncomeAfterAdapter, IncomeAfterAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = IncomeAfterFragment()
     }
 
     private lateinit var mViewModel: IncomeAfterViewModel
-    private lateinit var mAdapter: IncomeAfterAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,17 +28,20 @@ class IncomeAfterFragment : BaseAssistanceFragment() {
         return inflater.inflate(R.layout.fragment_income_after, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = IncomeAfterAdapter(context!!, { mViewModel.updateRow(it) }) {
+    override fun setupAdapter(expandedItemIndex: Int): IncomeAfterAdapter {
+        val adapter = IncomeAfterAdapter(context!!, { mViewModel.updateRow(it) }, {
             showConfirmationDialog({ mViewModel.deleteRow(it) },
                 R.string.income_source_delete_confirmation,
                 R.layout.dialog_income_source_delete,
                 R.string.income_source_delete_finished)
-        }
-        incomeAfterRecyclerView.adapter = mAdapter
-        incomeAfterAddButton.clickWithGuard {
+        }, expandedItemIndex)
+        incomeAfterRecyclerView.adapter = adapter
+        return adapter
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        incomeAfterAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.income_add_limit_error, Toast.LENGTH_SHORT).show()

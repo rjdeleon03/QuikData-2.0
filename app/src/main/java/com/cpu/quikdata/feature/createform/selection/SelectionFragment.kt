@@ -1,11 +1,7 @@
 package com.cpu.quikdata.feature.createform.selection
 
-import android.graphics.Rect
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
@@ -22,10 +18,13 @@ import kotlinx.android.synthetic.main.fragment_selection.*
 class SelectionFragment : BaseCreateFormFragment() {
 
     companion object {
+        private const val EXPANDED_ITEM_KEY = "EXPANDED_ITEM_KEY"
+
         fun newInstance() = SelectionFragment()
     }
 
     private lateinit var mNavController: NavController
+    private var mExpandedItemId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +33,23 @@ class SelectionFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_selection, container, false)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(EXPANDED_ITEM_KEY, mExpandedItemId)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mNavController = findNavController()
 
+        if (savedInstanceState != null) {
+            mExpandedItemId = savedInstanceState.getInt(EXPANDED_ITEM_KEY, 0)
+            view.findViewById<ItemSection>(mExpandedItemId)?.expand(false)
+        }
+
         selectionSaveButton.clickWithGuard { activity!!.finish() }
         val itemSectionTouchedHandler = { item: ItemSection ->
+            mExpandedItemId = item.id
             gridSectionLayout.children.forEach {
                 if (it is ItemSection && it != item) {
                     it.collapse()
@@ -49,39 +59,65 @@ class SelectionFragment : BaseCreateFormFragment() {
 
         selectionFormDetailsButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_formDetailsFragment) },
-            { mParentViewModel.submitFormDetails() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitFormDetails()
+            },
             { }, itemSectionTouchedHandler)
         selectionGenInfoButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) },
-            { mParentViewModel.submitGeneralInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitGeneralInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionShelterButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) },
-            { mParentViewModel.submitShelterInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitShelterInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionFoodButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_foodSecurityInfoFragment) },
-            { mParentViewModel.submitFoodSecurity() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitFoodSecurity()
+            },
             { }, itemSectionTouchedHandler)
         selectionLivelihoodsButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_livelihoodsInfoFragment) },
-            { mParentViewModel.submitLivelihoods() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitLivelihoods()
+            },
             { }, itemSectionTouchedHandler)
         selectionHealthButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_healthInfoFragment) },
-            { mParentViewModel.submitHealthInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitHealthInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionWaterButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_waterSanitationInfoFragment) },
-            { mParentViewModel.submitWashInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitWashInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionEvacuationButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_evacuationInfoFragment) },
-            { mParentViewModel.submitEvacuationInformation() },
+            {
+                mExpandedItemId = 0
+                mParentViewModel.submitEvacuationInformation()
+            },
             { }, itemSectionTouchedHandler)
         selectionCaseStoriesButton.setButtonListeners(
             { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) },
-            { },
+            {
+                mExpandedItemId = 0
+            },
             { }, itemSectionTouchedHandler)
     }
 

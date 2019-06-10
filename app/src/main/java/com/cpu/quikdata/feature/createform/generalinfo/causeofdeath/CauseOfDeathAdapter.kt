@@ -9,8 +9,8 @@ import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRow
 import kotlinx.android.synthetic.main.item_cause_of_death.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -> Unit) :
-    BaseCollapsibleAdapter<CauseOfDeathRow, CauseOfDeathAdapter.ViewHolder>(context, R.layout.item_cause_of_death, rowSaveListener) {
+class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -> Unit, expandedItem: Int = 0) :
+    BaseCollapsibleAdapter<CauseOfDeathRow, CauseOfDeathAdapter.ViewHolder>(context, R.layout.item_cause_of_death, rowSaveListener, expandedItem) {
 
     override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
 

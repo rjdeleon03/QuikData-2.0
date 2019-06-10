@@ -6,18 +6,17 @@ import android.view.*
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_population.*
-import com.cpu.quikdata.base.BaseCreateFormFragment
 
 
-class PopulationFragment : BaseCreateFormFragment() {
+class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, PopulationAdapter.ViewHolder>() {
 
     companion object {
         fun newInstance() = PopulationFragment()
     }
 
     private lateinit var mViewModel: PopulationViewModel
-    private lateinit var mAdapter: PopulationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,12 +25,12 @@ class PopulationFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_population, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAdapter = PopulationAdapter(context!!) {
+    override fun setupAdapter(expandedItemIndex: Int): PopulationAdapter {
+        val adapter = PopulationAdapter(context!!, {
             mViewModel.updateRow(it)
-        }
-        populationRecyclerView.adapter = mAdapter
+        }, expandedItemIndex)
+        populationRecyclerView.adapter = adapter
+        return adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
