@@ -375,4 +375,8 @@
     <string name="text_unknown">Unknown Location</string>
     <string name="text_unnamed_evacuation">Unnamed Evacuation Site</string>
     <string name="text_submit">Submit</string>
+    <string name="text_continue">Continue</string>
+    <string name="text_phone_format">09xxxxxxxx</string>
+    <string name="app_subtitle">Disaster Response Reporting Tool</string>
+    <string name="auth_phone_instructions">Enter your mobile number to register this device.</string>
 </resources>
