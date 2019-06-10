@@ -2,7 +2,6 @@ package com.cpu.quikdata.feature.createform.evacuationinfo
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_evacuation_info.*
@@ -40,12 +40,17 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mNavController = findNavController()
-        mAdapter = EvacuationInfoAdapter(context!!) {
-
+        mAdapter = EvacuationInfoAdapter(context!!, {
             val action = EvacuationInfoFragmentDirections
                 .actionEvacuationInfoFragmentToEvacuationContainerFragment(it, true)
             mNavController.navigate(action)
-        }
+        }, {
+            showConfirmationDialog({
+                mViewModel.deleteEvacuationInfo(it)},
+                R.string.evacuation_delete_confirmation,
+                R.layout.dialog_evacuation_delete,
+                R.string.evacuation_delete_finished)
+        })
         evacuationRecyclerView.adapter = mAdapter
 
         evacuationAddButton.clickWithGuard {
