@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.data.casestories.CaseStories
 
 @Entity(tableName = "case_stories_image_item",
     indices = [Index("caseStoriesId")],
