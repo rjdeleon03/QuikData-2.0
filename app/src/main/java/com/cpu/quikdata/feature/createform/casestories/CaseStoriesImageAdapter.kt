@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cpu.quikdata.R
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
 import kotlinx.android.synthetic.main.item_image.view.*
@@ -58,6 +59,7 @@ class CaseStoriesImageAdapter(context: Context, deleteClickListener: (CaseStorie
             Glide.with(mItemView.context)
                 .load(uri)
                 .placeholder(R.drawable.ic_poll_24dp)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //using to load into cache then second time it will load fast.
                 .into(mItemView.caseStoriesImageView)
         }
     }

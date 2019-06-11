@@ -74,6 +74,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
+    // Permissions dispatcher
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.3.1"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.1"
+
 }
 
 // Must be at the bottom

@@ -1,5 +1,6 @@
 package com.cpu.quikdata.feature.createform.casestories
 
+import android.Manifest
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -13,10 +14,16 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.data.casestories.CaseStories
+import com.cpu.quikdata.dialog.InfoDialogFragment
 import com.myhexaville.smartimagepicker.ImagePicker
 import com.myhexaville.smartimagepicker.OnImagePickedListener
 import kotlinx.android.synthetic.main.fragment_case_stories.*
+import permissions.dispatcher.NeedsPermission
+import permissions.dispatcher.OnNeverAskAgain
+import permissions.dispatcher.OnPermissionDenied
+import permissions.dispatcher.RuntimePermissions
 
+@RuntimePermissions
 class CaseStoriesFragment : BaseCreateFormFragment() {
 
     companion object {
@@ -42,7 +49,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         caseStoriesAddImageButton.clickWithGuard {
-            mImagePicker.choosePicture(true)
+            startImagePickerWithPermissionCheck()
         }
         mAdapter = CaseStoriesImageAdapter(context!!) {
             System.out.println("===========> Deleting image...")
@@ -73,6 +80,18 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        mImagePicker.handlePermission(requestCode, grantResults)
+        onRequestPermissionsResult(requestCode, grantResults)
+    }
+
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+    fun startImagePicker() {
+        mImagePicker.choosePicture(true)
+    }
+
+    @OnNeverAskAgain
+    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+    fun showPermissionDeniedDialog() {
+        val dialog = InfoDialogFragment.newInstance(R.string.text_permissions_denied, R.layout.dialog_image_permissions_denied)
+        dialog.show(childFragmentManager, InfoDialogFragment.TAG)
     }
 }
