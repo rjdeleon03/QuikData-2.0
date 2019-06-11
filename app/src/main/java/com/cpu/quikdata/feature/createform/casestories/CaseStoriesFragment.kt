@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
@@ -23,6 +24,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     }
 
     private lateinit var mViewModel: CaseStoriesViewModel
+    private lateinit var mAdapter: CaseStoriesImageAdapter
     private lateinit var mImagePicker: ImagePicker
 
     override fun onCreateView(
@@ -42,6 +44,11 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         caseStoriesAddImageButton.clickWithGuard {
             mImagePicker.choosePicture(true)
         }
+        mAdapter = CaseStoriesImageAdapter(context!!) {
+            System.out.println("===========> Deleting image...")
+        }
+        caseStoriesRecyclerView.layoutManager = GridLayoutManager(context, 3)
+        caseStoriesRecyclerView.adapter = mAdapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -50,6 +57,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         mViewModel = ViewModelProviders.of(this, mFactory).get(CaseStoriesViewModel::class.java)
         mViewModel.caseStories.observe(viewLifecycleOwner, Observer {
             caseStoriesText.text = it.root!!.text
+            mAdapter.setImages(it.images!!)
         })
 
         // Setup image picker
