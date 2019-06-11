@@ -251,7 +251,7 @@ class NewFormsRepository(application: Application) {
             // endregion
 
             // region Case stories
-            
+
             val caseStories = CaseStories(id = generateId(), formId = formId)
             mDatabase.caseStoriesDao().insert(caseStories)
 

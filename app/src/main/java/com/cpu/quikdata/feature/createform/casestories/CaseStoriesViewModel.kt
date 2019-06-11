@@ -1,7 +1,17 @@
 package com.cpu.quikdata.feature.createform.casestories
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import com.cpu.quikdata.data.casestories.CaseStories
+import com.cpu.quikdata.data.casestories.CaseStoriesComplete
 
-class CaseStoriesViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class CaseStoriesViewModel(application: Application, formId: String) : AndroidViewModel(application) {
+
+    private val mRepository = CaseStoriesRepository(application, formId)
+
+    val caseStories: LiveData<CaseStoriesComplete>
+        get() = mRepository.caseStories
+
+    fun updateCaseStoriesText(data: CaseStories) = mRepository.updateCaseStoriesText(data)
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
+import com.cpu.quikdata.feature.createform.casestories.CaseStoriesViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationcoping.EvacuationCopingViewModel
@@ -99,6 +100,7 @@ class ViewModelFactory(application: Application, formId: String) :
             EvacuationWashViewModel::class.java -> EvacuationWashViewModel(mApplication, mFormId) as T
             EvacuationProtectionViewModel::class.java -> EvacuationProtectionViewModel(mApplication, mFormId) as T
             EvacuationCopingViewModel::class.java -> EvacuationCopingViewModel(mApplication, mFormId) as T
+            CaseStoriesViewModel::class.java -> CaseStoriesViewModel(mApplication, mFormId) as T
             else -> FormDetailsViewModel(mApplication, mFormId) as T
         }
     }
