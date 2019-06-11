@@ -7,18 +7,17 @@ import androidx.room.PrimaryKey
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "case_stories_image_item",
-    indices = [Index("formId")],
-    foreignKeys = [ForeignKey(entity = Form::class,
+    indices = [Index("caseStoriesId")],
+    foreignKeys = [ForeignKey(entity = CaseStories::class,
         parentColumns = ["id"],
-        childColumns = ["formId"],
+        childColumns = ["caseStoriesId"],
         onDelete = ForeignKey.CASCADE
     )])
 data class CaseStoriesImageItem(@PrimaryKey(autoGenerate = false)
                                 val id: String = "",
                                 var dateCreated: Long = 0L,
                                 var uri: String = "",
-                                var formIdRemote: String = "",
-                                val formId: String = "") {
+                                val caseStoriesId: String = "") {
 
     override fun equals(other: Any?): Boolean {
         if (other == null || other !is CaseStoriesImageItem) return false
@@ -26,8 +25,7 @@ data class CaseStoriesImageItem(@PrimaryKey(autoGenerate = false)
         if (id == other.id &&
             dateCreated == other.dateCreated &&
             uri == other.uri &&
-            formIdRemote == other.formIdRemote &&
-            formId == other.formId)
+            caseStoriesId == other.caseStoriesId)
             return true
         return false
     }
