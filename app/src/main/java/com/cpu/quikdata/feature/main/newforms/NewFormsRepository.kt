@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.AppDatabase
+import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
@@ -247,6 +248,13 @@ class NewFormsRepository(application: Application) {
             val washGaps = WashGaps(id = generateId(), formId = formId)
             mDatabase.washGapsDao().insert(washGaps)
             
+            // endregion
+
+            // region Case stories
+            
+            val caseStories = CaseStories(id = generateId(), formId = formId)
+            mDatabase.caseStoriesDao().insert(caseStories)
+
             // endregion
         }
     }

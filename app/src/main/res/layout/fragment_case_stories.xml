@@ -3,13 +3,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/lightGray"
     tools:context=".feature.createform.casestories.CaseStoriesFragment">
 
-    <include layout="@layout/view_appbarlayout"/>
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:orientation="vertical"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:id="@+id/questionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/dimenMid"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimenExtraSmall"
+                    android:layout_marginStart="@dimen/dimenMid"
+                    android:layout_marginEnd="@dimen/dimenMid"
+                    android:textColor="?android:attr/textColorHint"
+                    android:text="@string/text_case_stories_images"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimenExtraSmall"
+                    android:layout_marginBottom="@dimen/dimenSmall"
+                    android:layout_marginStart="@dimen/dimenMid"
+                    android:layout_marginEnd="@dimen/dimenMid"  />
+
+            </LinearLayout>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:layout_marginBottom="@dimen/dimenMid"
+                app:textHint="@string/text_case_stories_text"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>

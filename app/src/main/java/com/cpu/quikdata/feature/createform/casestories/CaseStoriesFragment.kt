@@ -2,20 +2,21 @@ package com.cpu.quikdata.feature.createform.casestories
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.feature.createform.CreateFormActivity
 
-class CaseStoriesFragment : Fragment() {
+class CaseStoriesFragment : BaseCreateFormFragment() {
 
     companion object {
         fun newInstance() = CaseStoriesFragment()
     }
 
-    private lateinit var viewModel: CaseStoriesViewModel
+    private lateinit var mViewModel: CaseStoriesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +25,19 @@ class CaseStoriesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_case_stories, container, false)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity!! as CreateFormActivity).setSubtitle()
+    }
+
+    fun setSubtitle(subtitle: CharSequence?) {
+        (activity!! as CreateFormActivity).setSubtitle(subtitle)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CaseStoriesViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        mViewModel = ViewModelProviders.of(this).get(CaseStoriesViewModel::class.java)
     }
 
 }
