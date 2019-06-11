@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 
@@ -33,6 +34,9 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     private lateinit var mViewModel: CaseStoriesViewModel
     private lateinit var mAdapter: CaseStoriesImageAdapter
     private lateinit var mImagePicker: ImagePicker
+    private val mItemLimit = 5
+    private var mIsItemLimitReached = false
+    private var mPreviousItemCount = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +53,10 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         caseStoriesAddImageButton.clickWithGuard {
+            if (mIsItemLimitReached) {
+                showToastMessage(R.string.case_stories_images_add_limit_error)
+                return@clickWithGuard
+            }
             startImagePickerWithPermissionCheck()
         }
         mAdapter = CaseStoriesImageAdapter(context!!) {
@@ -64,7 +72,19 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         mViewModel = ViewModelProviders.of(this, mFactory).get(CaseStoriesViewModel::class.java)
         mViewModel.caseStories.observe(viewLifecycleOwner, Observer {
             caseStoriesText.text = it.root!!.text
-            mAdapter.setImages(it.images!!)
+
+            val images = it.images!!
+            mAdapter.setImages(images)
+            mIsItemLimitReached = images.size >= mItemLimit
+
+            if (mPreviousItemCount != -1) {
+                if (mPreviousItemCount < images.size) {
+                    showToastMessage(R.string.case_stories_images_added)
+                } else if (mPreviousItemCount > images.size) {
+                    showToastMessage(R.string.case_stories_images_deleted)
+                }
+            }
+            mPreviousItemCount = images.size
         })
 
         // Setup image picker
@@ -93,5 +113,9 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     fun showPermissionDeniedDialog() {
         val dialog = InfoDialogFragment.newInstance(R.string.text_permissions_denied, R.layout.dialog_image_permissions_denied)
         dialog.show(childFragmentManager, InfoDialogFragment.TAG)
+    }
+
+    private fun showToastMessage(stringId: Int) {
+        Toast.makeText(context!!, stringId, Toast.LENGTH_SHORT).show()
     }
 }

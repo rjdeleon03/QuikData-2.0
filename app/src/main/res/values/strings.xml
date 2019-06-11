@@ -383,4 +383,7 @@
     <string name="case_stories_empty">No images.\nClick the \'+\' button to add an image.</string>
     <string name="text_permissions_denied">Permissions Denied</string>
     <string name="case_stories_images_permissions_denied_message"><![CDATA[You cannot add images unless the camera and storage read permissions are allowed.\n\nYou can configure them in Settings > Apps > Quik Data > Permissions.]]></string>
+    <string name="case_stories_images_add_limit_error">Only up to five images can be added.</string>
+    <string name="case_stories_images_deleted">The selected image has been successfully deleted.</string>
+    <string name="case_stories_images_added">A new image has been added.</string>
 </resources>
