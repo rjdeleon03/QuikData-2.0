@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.cpu.quikdata.R
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
 import kotlinx.android.synthetic.main.item_image.view.*
@@ -49,9 +50,15 @@ class CaseStoriesImageAdapter(context: Context, deleteClickListener: (CaseStorie
         }
 
         fun populateWithData(imageItem: CaseStoriesImageItem, position: Int) {
+//            if (!imageItem.uri.startsWith("file")) return
             val uri = Uri.parse(imageItem.uri)
             mItemView.tag = position
-            mItemView.caseStoriesImageView.setImageURI(uri)
+//            mItemView.caseStoriesImageView.setImageURI(uri)
+
+            Glide.with(mItemView.context)
+                .load(uri)
+                .placeholder(R.drawable.ic_poll_24dp)
+                .into(mItemView.caseStoriesImageView)
         }
     }
 }
