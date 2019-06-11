@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuikData</string>
+    <string name="app_name">Quik Data</string>
     <string name="new_forms_title">New Forms</string>
     <string name="sent_forms_title">Sent Forms</string>
     <string name="prefilled_title">Baseline Data</string>
