@@ -20,6 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimenMid"
+                android:layout_marginBottom="@dimen/dimenMid"
                 android:orientation="vertical"
                 android:background="@android:color/white">
 
@@ -35,13 +36,41 @@
                     android:textColor="?android:attr/textColorHint"
                     android:text="@string/text_case_stories_images"/>
 
-                <androidx.recyclerview.widget.RecyclerView
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/lightGray"
                     android:layout_marginTop="@dimen/dimenExtraSmall"
                     android:layout_marginBottom="@dimen/dimenSmall"
                     android:layout_marginStart="@dimen/dimenMid"
-                    android:layout_marginEnd="@dimen/dimenMid"  />
+                    android:layout_marginEnd="@dimen/dimenMid" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center"
+                        android:text="Empty list"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:nestedScrollingEnabled="false"/>
+
+                    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:layout_marginStart="@dimen/dimenMid"-->
+                        <!--android:layout_marginBottom="@dimen/dimenMid"-->
+                        <!--android:src="@drawable/ic_add_24dp" />-->
+
+                </RelativeLayout>
 
             </LinearLayout>
 
