@@ -5,7 +5,10 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.casestories.CaseStoriesComplete
+import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
+import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.runOnIoThread
+import org.joda.time.LocalDateTime
 
 class CaseStoriesRepository(application: Application, formId: String) {
 
@@ -20,6 +23,18 @@ class CaseStoriesRepository(application: Application, formId: String) {
             val oldCaseStoriesText = mCaseStories.value!!.root!!
             oldCaseStoriesText.copyFrom(data)
             mDatabase.caseStoriesDao().update(oldCaseStoriesText)
+        }
+    }
+
+    fun insertImage(uri: String) {
+        runOnIoThread {
+            val caseStoriesId = mCaseStories.value!!.root!!.id
+            mDatabase.caseStoriesImageItemDao().insert(CaseStoriesImageItem(
+                id = generateId(),
+                dateCreated = LocalDateTime.now().toDateTime().millis,
+                uri = uri,
+                caseStoriesId = caseStoriesId
+            ))
         }
     }
 }

@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
 import kotlinx.android.synthetic.main.activity_create_form.*
 
 class CreateFormActivity : AppCompatActivity() {
@@ -57,6 +59,16 @@ class CreateFormActivity : AppCompatActivity() {
             toolbarTitle.text = destination.label
             if (destination.id == R.id.selectionFragment) {
                 toolbarTitle.setText(titleId)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        fragment.childFragmentManager.fragments.forEach { f ->
+            if (f is CaseStoriesFragment) {
+                f.onActivityResult(requestCode, resultCode, data)
             }
         }
     }

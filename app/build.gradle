@@ -69,6 +69,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-database:17.0.0'
 
+    // Image picker and Glide
+    implementation 'com.myhexaville:smart-image-picker:1.0.4'
+
 }
 
 // Must be at the bottom
