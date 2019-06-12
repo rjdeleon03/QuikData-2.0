@@ -59,7 +59,7 @@
                     android:layout_marginBottom="@dimen/dimenExtraSmall"
                     android:padding="@dimen/dimenSmall"
                     android:minHeight="42dp"
-                    android:inputType="phone"
+                    android:inputType="number"
                     android:gravity="center"
                     android:textSize="16sp"
                     android:hint="@string/text_phone_format"
