@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="120dp">
 
     <ImageView
         android:id="@+id/caseStoriesImageView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
+
+    <FrameLayout
+        android:id="@+id/caseStoriesImageOptions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#aaededed"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimenMid"
+            app:cardCornerRadius="@dimen/dimenMid">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/caseStoriesImageDeleteButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/text_delete"
+                    android:background="@drawable/ripple_accent_lighter_gray"/>
+
+                <include layout="@layout/view_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/caseStoriesImageCancelButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/text_cancel"
+                    android:background="@drawable/ripple_accent_lighter_gray"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
 
 </RelativeLayout>

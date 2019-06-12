@@ -36,6 +36,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     private lateinit var mViewModel: CaseStoriesViewModel
     private lateinit var mAdapter: CaseStoriesImageAdapter
     private lateinit var mImagePicker: ImagePicker
+    private val mExpandedItemKey = "EXPANDED_ITEM_INDEX_KEY"
     private val mItemLimit = 5
     private var mIsItemLimitReached = false
     private var mPreviousItemCount = -1
@@ -52,6 +53,11 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         super.onDestroyView()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(mExpandedItemKey, mAdapter.expandedItemIndex)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         caseStoriesAddImageButton.clickWithGuard {
@@ -61,12 +67,17 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
             }
             startImagePickerWithPermissionCheck()
         }
+
+        var expandedItemIndex = -1
+        if (savedInstanceState != null) {
+            expandedItemIndex = savedInstanceState.getInt(mExpandedItemKey, 0)
+        }
         mAdapter = CaseStoriesImageAdapter(context!!, {
             val action = CaseStoriesFragmentDirections.actionCaseStoriesFragmentToImageViewerFragment(it.uri)
             findNavController().navigate(action)
         }, {
             System.out.println("===========> Deleting image...")
-        })
+        }, expandedItemIndex)
         caseStoriesRecyclerView.layoutManager = GridLayoutManager(context, 3)
         caseStoriesRecyclerView.adapter = mAdapter
     }
