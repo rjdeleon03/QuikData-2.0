@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.dialog.InfoDialogFragment
@@ -61,6 +62,9 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupClipping(view)
+
         caseStoriesAddImageButton.clickWithGuard {
             if (mIsItemLimitReached) {
                 showToastMessage(R.string.case_stories_images_add_limit_error)

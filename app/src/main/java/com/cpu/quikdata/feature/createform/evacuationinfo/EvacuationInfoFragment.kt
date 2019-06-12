@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
@@ -41,6 +42,9 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mNavController = findNavController()
+
+        setupClipping(view)
+
         mAdapter = EvacuationInfoAdapter(context!!, {
             val action = EvacuationInfoFragmentDirections
                 .actionEvacuationInfoFragmentToEvacuationContainerFragment(it, true)

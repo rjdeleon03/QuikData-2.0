@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/lightGray"
+    android:elevation="@dimen/dimenExtraSmall"
     tools:context=".feature.createform.formdetails.FormDetailsFragment">
-
-    <include layout="@layout/view_appbarlayout" />
 
     <ScrollView
         android:layout_width="match_parent"

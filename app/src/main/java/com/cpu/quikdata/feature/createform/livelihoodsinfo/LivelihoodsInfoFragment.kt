@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage.EstimatedDamageFragment
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter.IncomeAfterFragment
@@ -34,6 +35,8 @@ class LivelihoodsInfoFragment : BaseCreateFormSectionFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        setupClipping(livelihoodsInfoViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(IncomeBeforeFragment.newInstance(), getString(R.string.income_before_title))

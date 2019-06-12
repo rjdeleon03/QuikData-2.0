@@ -1,9 +1,12 @@
 package com.cpu.quikdata.common
 
+import android.app.Activity
 import android.graphics.Color
+import android.graphics.Outline
 import android.os.SystemClock
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -108,6 +111,26 @@ fun Fragment.showConfirmationDialog(positiveButtonListener: () -> Unit,
         Toast.makeText(this.context!!, toastId, Toast.LENGTH_SHORT).show()
     }
     dialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
+}
+
+fun Activity.setupClipping(rootLayout: ViewGroup) {
+    rootLayout.outlineProvider = object : ViewOutlineProvider() {
+        val curveRadius = resources.getDimension(R.dimen.dimenMid)
+        override fun getOutline(view: View?, outline: Outline?) {
+            outline?.setRoundRect(0, 0, view!!.width, (view.height + curveRadius).toInt(), curveRadius)
+        }
+    }
+    rootLayout.clipToOutline = true
+}
+
+fun Fragment.setupClipping(rootLayout: View) {
+    rootLayout.outlineProvider = object : ViewOutlineProvider() {
+        val curveRadius = resources.getDimension(R.dimen.dimenMid)
+        override fun getOutline(view: View?, outline: Outline?) {
+            outline?.setRoundRect(0, 0, view!!.width, (view.height + curveRadius).toInt(), curveRadius)
+        }
+    }
+    rootLayout.clipToOutline = true
 }
 
 /*

@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/selectionRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:elevation="@dimen/dimenExtraSmall"
     tools:context=".feature.createform.selection.SelectionFragment">
-
-    <include layout="@layout/view_appbarlayout"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/selectionSaveButton"
@@ -137,10 +137,5 @@
             app:text="@string/case_stories_title"/>
 
     </GridLayout>
-
-    <include layout="@layout/view_divider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

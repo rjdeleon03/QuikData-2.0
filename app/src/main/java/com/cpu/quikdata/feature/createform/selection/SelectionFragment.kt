@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.customviews.ItemSection
 import kotlinx.android.synthetic.main.fragment_selection.*
 
@@ -42,6 +43,8 @@ class SelectionFragment : BaseCreateFormFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mNavController = findNavController()
+
+        setupClipping(selectionRootLayout)
 
         if (savedInstanceState != null) {
             mExpandedItemId = savedInstanceState.getInt(EXPANDED_ITEM_KEY, 0)

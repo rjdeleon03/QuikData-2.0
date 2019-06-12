@@ -56,19 +56,19 @@ class ImageViewerFragment : Fragment() {
             .into(imageViewerView)
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
+    override fun onResume() {
+        super.onResume()
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         if (activity != null && activity is CreateFormActivity) {
             (activity as CreateFormActivity).hideToolbar()
         }
     }
 
-    override fun onDetach() {
+    override fun onPause() {
         if (activity != null && activity is CreateFormActivity) {
             (activity as CreateFormActivity).showToolbar()
         }
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        super.onDetach()
+        super.onPause()
     }
 }

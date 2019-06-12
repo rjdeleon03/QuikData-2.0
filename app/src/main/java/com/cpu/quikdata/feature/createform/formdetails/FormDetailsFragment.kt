@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.formdetails.FormDetails
 import kotlinx.android.synthetic.main.fragment_form_details.*
 
@@ -26,6 +27,11 @@ class FormDetailsFragment : BaseCreateFormFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_form_details, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupClipping(view)
     }
 
     override fun onDestroyView() {

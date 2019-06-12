@@ -10,6 +10,7 @@
     <color name="colorAccent">#FFA000</color>
     <color name="colorAccentLight">#FFC107</color>
     <color name="colorAccentExtraLight">#FFD54F</color>
+    <color name="colorAccentSuperExtraLight">#FFE392</color>
 
     <color name="lighterGray">#fcfcfc</color>
     <color name="lightGray">#ededed</color>
