@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".feature.createform.livelihoodsinfo.incomeafter.IncomeAfterFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.cpu.quikdata.customviews.CustomRecyclerView
         android:id="@+id/incomeAfterRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        style="@style/RecyclerViewTheme"/>
+        app:text="@string/text_income_empty"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/incomeAfterAddButton"

@@ -18,6 +18,7 @@ import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_evacuation_info.*
+import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
 
 class EvacuationInfoFragment : BaseCreateFormFragment() {
 
@@ -56,11 +57,10 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
                 R.layout.dialog_evacuation_delete,
                 R.string.evacuation_delete_finished)
         })
-        evacuationRecyclerView.adapter = mAdapter
+        evacuationRecyclerView.recyclerView.adapter = mAdapter
 
         evacuationAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
-                // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.evacuation_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 val id = generateId()
@@ -79,6 +79,7 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(EvacuationInfoViewModel::class.java)
         mViewModel.evacuationInfos.observe(viewLifecycleOwner, Observer {
+            evacuationRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)
             if (it.size >= mItemLimit) {
                 mIsItemLimitReached = true

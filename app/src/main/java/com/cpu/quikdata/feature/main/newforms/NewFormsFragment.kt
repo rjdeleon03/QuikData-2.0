@@ -13,6 +13,7 @@ import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_new_forms.*
+import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
 
 class NewFormsFragment : Fragment() {
 
@@ -35,7 +36,7 @@ class NewFormsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mAdapter = NewFormsAdapter(context!!)
-        newFormsRecyclerView.adapter = mAdapter
+        newFormsRecyclerView.recyclerView.adapter = mAdapter
         newFormsAddButton.clickWithGuard {
             val formId = generateId()
             mViewModel.createNewForm(formId)
@@ -47,6 +48,7 @@ class NewFormsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(this).get(NewFormsViewModel::class.java)
         mViewModel.newForms.observe(viewLifecycleOwner, Observer { forms ->
+            newFormsRecyclerView.updateDisplayBasedOnItemCount(forms.size)
             mAdapter.setForms(forms)
         })
     }

@@ -29,7 +29,7 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
-        android:columnCount="3">
+        android:columnCount="5">
 
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionFormDetailsButton"
@@ -55,6 +55,12 @@
             style="@style/SelectableItemTheme"
             app:text="@string/gen_info_title"/>
 
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:background="@color/lightGray"/>
+
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionShelterButton"
             android:layout_width="0dp"
@@ -64,12 +70,6 @@
             style="@style/SelectableItemTheme"
             app:text="@string/shelter_nonfood_title"/>
 
-        <View
-            android:layout_width="2dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:background="@color/lightGray"/>
-
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionFoodButton"
             android:layout_width="0dp"
@@ -78,6 +78,12 @@
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
             app:text="@string/food_security_title"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:background="@color/lightGray"/>
 
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionLivelihoodsButton"
@@ -127,13 +133,18 @@
             style="@style/SelectableItemTheme"
             app:text="@string/evacuation_title"/>
 
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:background="@color/lightGray"/>
+
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionCaseStoriesButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_columnSpan="3"
             style="@style/SelectableItemTheme"
             app:text="@string/case_stories_title"/>
 

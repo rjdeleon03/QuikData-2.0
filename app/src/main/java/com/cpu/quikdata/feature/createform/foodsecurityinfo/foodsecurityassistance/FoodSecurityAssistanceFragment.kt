@@ -13,6 +13,7 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_food_security_assistance.*
+import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
 
 class FoodSecurityAssistanceFragment :
     BaseAssistanceFragment<FoodSecurityAssistanceAdapter, FoodSecurityAssistanceAdapter.ViewHolder>() {
@@ -35,7 +36,7 @@ class FoodSecurityAssistanceFragment :
         val adapter = FoodSecurityAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
-        foodSecurityAssistanceRecyclerView.adapter = adapter
+        foodSecurityAssistanceRecyclerView.recyclerView.adapter = adapter
         return adapter
     }
 
@@ -57,6 +58,7 @@ class FoodSecurityAssistanceFragment :
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityAssistanceViewModel::class.java)
         mViewModel.foodSecurityAssistance.observe(viewLifecycleOwner, Observer {
+            foodSecurityAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)
             mIsItemLimitReached = it.size >= mItemLimit
         })
