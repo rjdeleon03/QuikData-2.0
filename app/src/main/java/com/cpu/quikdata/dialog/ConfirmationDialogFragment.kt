@@ -3,16 +3,12 @@ package com.cpu.quikdata.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 
 import com.cpu.quikdata.R
-import java.lang.reflect.Array.getInt
 
 /**
  * A simple [Fragment] subclass.
@@ -25,6 +21,7 @@ class ConfirmationDialogFragment : DialogFragment() {
         private const val TITLE_ID_KEY = "TITLE_ID_KEY"
         private const val CONTENT_ID_KEY = "CONTENT_ID_KEY"
 
+        @JvmStatic
         fun newInstance(titleId: Int, textId: Int) : ConfirmationDialogFragment {
             val fragment = ConfirmationDialogFragment()
             val bundle = Bundle()

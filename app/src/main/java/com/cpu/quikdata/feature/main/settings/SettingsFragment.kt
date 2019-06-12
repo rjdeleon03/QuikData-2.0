@@ -12,6 +12,7 @@ import com.cpu.quikdata.R
 class SettingsFragment : Fragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = SettingsFragment()
     }
 

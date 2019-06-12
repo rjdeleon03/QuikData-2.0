@@ -375,4 +375,17 @@
     <string name="text_unknown">Unknown Location</string>
     <string name="text_unnamed_evacuation">Unnamed Evacuation Site</string>
     <string name="text_submit">Submit</string>
+    <string name="evacuation_delete_confirmation">Delete Evacuation Site</string>
+    <string name="evacuation_delete_confirmation_message">Are you sure you want to delete this evacuation site?</string>
+    <string name="evacuation_delete_finished">The evacuation site has been successfully deleted.</string>
+    <string name="case_stories_text">Stories</string>
+    <string name="case_stories_images">Images</string>
+    <string name="case_stories_empty">No images.\nClick the \'+\' button to add an image.</string>
+    <string name="text_permissions_denied">Permissions Denied</string>
+    <string name="case_stories_images_permissions_denied_message"><![CDATA[You cannot add images unless the camera and storage read permissions are allowed.\n\nYou can configure them in Settings > Apps > Quik Data > Permissions.]]></string>
+    <string name="case_stories_images_add_limit_error">Only up to five images can be added.</string>
+    <string name="case_stories_images_deleted">The selected image has been successfully deleted.</string>
+    <string name="case_stories_images_added">A new image has been added.</string>
+    <string name="case_stories_images_delete_item">Delete Image</string>
+    <string name="case_stories_images_delete_item_message">Are you sure you want to delete this image?</string>
 </resources>

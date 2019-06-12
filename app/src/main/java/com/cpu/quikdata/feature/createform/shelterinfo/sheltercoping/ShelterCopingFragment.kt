@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_shelter_coping.*
 class ShelterCopingFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = ShelterCopingFragment()
     }
 

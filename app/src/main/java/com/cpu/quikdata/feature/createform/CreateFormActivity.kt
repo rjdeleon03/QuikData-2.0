@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
 import kotlinx.android.synthetic.main.activity_create_form.*
 
 class CreateFormActivity : AppCompatActivity() {
@@ -22,6 +24,7 @@ class CreateFormActivity : AppCompatActivity() {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
         private const val EDIT_MODE_KEY = "EDIT_MODE_KEY"
 
+        @JvmStatic
         fun newInstance(context: Context, formId: String = "", editMode: Boolean = false) {
             val intent = Intent(context, CreateFormActivity::class.java)
             intent.putExtra(FORM_ID_KEY, formId)
@@ -61,6 +64,16 @@ class CreateFormActivity : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        fragment.childFragmentManager.fragments.forEach { f ->
+            if (f is CaseStoriesFragment) {
+                f.onActivityResult(requestCode, resultCode, data)
+            }
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         if (fragment.childFragmentManager.backStackEntryCount > 0) {
             fragment.childFragmentManager.popBackStack()
@@ -86,5 +99,13 @@ class CreateFormActivity : AppCompatActivity() {
         } else {
             toolbarSubtitle.visibility = View.GONE
         }
+    }
+
+    fun hideToolbar() {
+        createFormToolbar.visibility = View.GONE
+    }
+
+    fun showToolbar() {
+        createFormToolbar.visibility = View.VISIBLE
     }
 }

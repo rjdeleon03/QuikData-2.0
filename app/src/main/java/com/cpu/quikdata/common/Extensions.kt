@@ -5,13 +5,16 @@ import android.os.SystemClock
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
+import com.cpu.quikdata.dialog.ConfirmationDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import org.joda.time.format.DateTimeFormat
 
@@ -93,6 +96,18 @@ fun ViewPager.setupViewPager(pagerAdapter: PagerAdapter,
 
         override fun onPageSelected(position: Int) {}
     })
+}
+
+fun Fragment.showConfirmationDialog(positiveButtonListener: () -> Unit,
+                                    titleId: Int = R.string.assistance_delete_confirmation,
+                                    layoutId: Int = R.layout.dialog_assistance_delete,
+                                    toastId: Int = R.string.assistance_delete_finished) {
+    val dialog = ConfirmationDialogFragment.newInstance(titleId, layoutId)
+    dialog.onPositiveButtonListener = {
+        positiveButtonListener.invoke()
+        Toast.makeText(this.context!!, toastId, Toast.LENGTH_SHORT).show()
+    }
+    dialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
 }
 
 /*

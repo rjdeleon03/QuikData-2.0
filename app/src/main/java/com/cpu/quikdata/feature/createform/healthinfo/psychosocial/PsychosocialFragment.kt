@@ -9,12 +9,12 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
-import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_psychosocial.*
 
 class PsychosocialFragment : BaseCollapsibleCreateFormFragment<PsychosocialAdapter, PsychosocialAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = PsychosocialFragment()
     }
 

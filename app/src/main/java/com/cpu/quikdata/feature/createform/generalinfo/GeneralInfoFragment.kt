@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_general_info.*
 class GeneralInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = GeneralInfoFragment()
     }
 

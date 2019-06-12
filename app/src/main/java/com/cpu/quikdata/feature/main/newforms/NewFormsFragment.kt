@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_new_forms.*
 class NewFormsFragment : Fragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = NewFormsFragment()
     }
 

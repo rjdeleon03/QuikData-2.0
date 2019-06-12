@@ -69,6 +69,18 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-database:17.0.0'
 
+    // Image picker and Glide
+    implementation 'com.myhexaville:smart-image-picker:1.0.4'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    // Permissions dispatcher
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.3.1"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.1"
+
+    // Photoview
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
 }
 
 // Must be at the bottom

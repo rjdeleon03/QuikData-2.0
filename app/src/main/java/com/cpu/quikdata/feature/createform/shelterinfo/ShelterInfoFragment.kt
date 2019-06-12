@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_shelter_info.*
 class ShelterInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = ShelterInfoFragment()
     }
 

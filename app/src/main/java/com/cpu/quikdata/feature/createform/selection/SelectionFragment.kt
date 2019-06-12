@@ -20,6 +20,7 @@ class SelectionFragment : BaseCreateFormFragment() {
     companion object {
         private const val EXPANDED_ITEM_KEY = "EXPANDED_ITEM_KEY"
 
+        @JvmStatic
         fun newInstance() = SelectionFragment()
     }
 
