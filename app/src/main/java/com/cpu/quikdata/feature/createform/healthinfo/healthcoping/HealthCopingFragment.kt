@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_health_coping.*
 class HealthCopingFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = HealthCopingFragment()
     }
 

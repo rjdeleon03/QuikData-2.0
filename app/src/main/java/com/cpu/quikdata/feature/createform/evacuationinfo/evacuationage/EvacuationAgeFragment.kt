@@ -18,6 +18,7 @@ class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAda
     companion object {
         private const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
 
+        @JvmStatic
         fun newInstance(evacuationId: String): EvacuationAgeFragment {
             val fragment = EvacuationAgeFragment()
             val bundle = Bundle()

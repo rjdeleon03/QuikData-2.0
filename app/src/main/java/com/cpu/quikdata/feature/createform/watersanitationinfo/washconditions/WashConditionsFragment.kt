@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_wash_conditions.*
 class WashConditionsFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = WashConditionsFragment()
     }
 

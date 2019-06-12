@@ -9,12 +9,12 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
-import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_special_needs.*
 
 class SpecialNeedsFragment : BaseCollapsibleCreateFormFragment<SpecialNeedsAdapter, SpecialNeedsAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = SpecialNeedsFragment()
     }
 

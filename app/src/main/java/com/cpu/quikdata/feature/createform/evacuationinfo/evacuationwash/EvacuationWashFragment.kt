@@ -18,6 +18,7 @@ class EvacuationWashFragment : Fragment() {
     companion object {
         private const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
 
+        @JvmStatic
         fun newInstance(evacuationId: String): EvacuationWashFragment {
             val fragment = EvacuationWashFragment()
             val bundle = Bundle()

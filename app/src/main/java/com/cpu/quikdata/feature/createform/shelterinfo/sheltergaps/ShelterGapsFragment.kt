@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_shelter_gaps.*
 class ShelterGapsFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = ShelterGapsFragment()
     }
 

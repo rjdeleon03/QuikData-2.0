@@ -18,6 +18,7 @@ class EvacuationFacilitiesFragment : Fragment() {
     companion object {
         private const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
 
+        @JvmStatic
         fun newInstance(evacuationId: String): EvacuationFacilitiesFragment {
             val fragment = EvacuationFacilitiesFragment()
             val bundle = Bundle()

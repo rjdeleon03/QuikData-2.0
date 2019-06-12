@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.cpu.quikdata.data.casestories.CaseStories
+import com.cpu.quikdata.data.casestories.CaseStoriesDao
+import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
+import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItemDao
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 import com.cpu.quikdata.data.evacuation.EvacuationItemDao
 import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
@@ -140,7 +144,9 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         EvacuationFacilities::class,
         EvacuationWash::class,
         EvacuationProtection::class,
-        EvacuationCoping::class
+        EvacuationCoping::class,
+        CaseStories::class,
+        CaseStoriesImageItem::class
     ],
     exportSchema = false,
     version = 1)
@@ -213,6 +219,11 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun evacuationCopingDao(): EvacuationCopingDao
     // endregion
 
+    // region Case Stories
+    abstract fun caseStoriesDao(): CaseStoriesDao
+    abstract fun caseStoriesImageItemDao(): CaseStoriesImageItemDao
+    // endregion
+
     companion object {
 
         @Volatile
@@ -220,6 +231,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         private const val DATABASE_NAME = "quikdata_database"
 
+        @JvmStatic
         fun get(context: Context): AppDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) return tempInstance

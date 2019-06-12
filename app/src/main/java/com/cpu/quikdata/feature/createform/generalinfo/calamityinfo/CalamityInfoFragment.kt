@@ -10,15 +10,13 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.base.BaseFocusableFragment
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
-import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import kotlinx.android.synthetic.main.fragment_calamity_info.*
 
 class CalamityInfoFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = CalamityInfoFragment()
     }
 

@@ -23,6 +23,7 @@ enum class AgeCategories {
 
     companion object {
 
+        @JvmStatic
         fun getStringId(idx: Int): Int {
             return AgeCategories.values()[idx].getStringId()
         }
@@ -70,6 +71,7 @@ enum class InfraCategories {
 
     companion object {
 
+        @JvmStatic
         fun getStringId(idx: Int): Int {
             return InfraCategories.values()[idx].getStringId()
         }
@@ -91,6 +93,7 @@ enum class HouseCategories {
 
     companion object {
 
+        @JvmStatic
         fun getStringId(idx: Int): Int {
             return HouseCategories.values()[idx].getStringId()
         }
@@ -122,6 +125,7 @@ enum class MaterialCategories {
 
     companion object {
 
+        @JvmStatic
         fun getStringId(idx: Int): Int {
             return MaterialCategories.values()[idx].getStringId()
         }
@@ -153,6 +157,7 @@ enum class SpecialNeedsCategories {
 
     companion object {
 
+        @JvmStatic
         fun getStringId(idx: Int): Int {
             return SpecialNeedsCategories.values()[idx].getStringId()
         }
@@ -202,6 +207,7 @@ enum class LivelihoodCategories {
 
     companion object {
 
+        @JvmStatic
         fun getStringId(idx: Int): Int {
             return LivelihoodCategories.values()[idx].getStringId()
         }
@@ -255,6 +261,7 @@ enum class LivelihoodSubcategories {
 
     companion object {
 
+        @JvmStatic
         fun getStringId(idx: Int): Int {
             return LivelihoodSubcategories.values()[idx].getStringId()
         }
@@ -294,10 +301,12 @@ enum class EvacuationCategories {
 
     companion object {
 
+        @JvmStatic
         fun getStringId(idx: Int): Int {
             return values()[idx].getStringId()
         }
 
+        @JvmStatic
         fun getStringIdList() : List<Int> {
             val array = values()
             val list = ArrayList<Int>()

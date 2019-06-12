@@ -9,12 +9,12 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
-import com.cpu.quikdata.base.BaseCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_diseases.*
 
 class DiseasesFragment : BaseCollapsibleCreateFormFragment<DiseasesAdapter, DiseasesAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = DiseasesFragment()
     }
 

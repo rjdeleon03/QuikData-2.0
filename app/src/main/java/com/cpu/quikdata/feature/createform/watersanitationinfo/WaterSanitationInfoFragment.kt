@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_water_sanitation_info.*
 class WaterSanitationInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = WaterSanitationInfoFragment()
     }
 

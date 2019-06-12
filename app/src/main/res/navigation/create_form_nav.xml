@@ -86,7 +86,11 @@
         android:id="@+id/caseStoriesFragment"
         android:name="com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment"
         android:label="@string/case_stories_title"
-        tools:layout="@layout/fragment_case_stories" />
+        tools:layout="@layout/fragment_case_stories" >
+        <action
+            android:id="@+id/action_caseStoriesFragment_to_imageViewerFragment"
+            app:destination="@id/imageViewerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/evacuationContainerFragment"
         android:name="com.cpu.quikdata.feature.createform.evacuationinfo.container.EvacuationContainerFragment"
@@ -98,5 +102,15 @@
         <argument
             android:name="isEditMode"
             app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageViewerFragment"
+        android:name="com.cpu.quikdata.feature.imageviewer.ImageViewerFragment"
+        android:label="fragment_image_viewer"
+        tools:layout="@layout/fragment_image_viewer" >
+        <argument
+            android:name="imageUri"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
 </navigation>

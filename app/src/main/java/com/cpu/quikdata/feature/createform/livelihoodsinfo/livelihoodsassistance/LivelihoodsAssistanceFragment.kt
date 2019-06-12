@@ -11,11 +11,13 @@ import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_livelihoods_assistance.*
 
 class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistanceAdapter, LivelihoodsAssistanceAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = LivelihoodsAssistanceFragment()
     }
 

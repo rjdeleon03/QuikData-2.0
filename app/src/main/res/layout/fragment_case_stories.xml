@@ -1,15 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".feature.createform.casestories.CaseStoriesFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.createform.casestories.CaseStoriesFragment">
+    android:background="@color/lightGray"
+    android:orientation="vertical">
 
-    <include layout="@layout/view_appbarlayout"/>
+    <include layout="@layout/view_appbarlayout" />
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:orientation="vertical"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:id="@+id/questionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/dimenMid"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimenExtraSmall"
+                    android:layout_marginStart="@dimen/dimenMid"
+                    android:layout_marginEnd="@dimen/dimenMid"
+                    android:textColor="?android:attr/textColorHint"
+                    android:text="@string/case_stories_images"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?attr/actionBarSize"
+                    android:layout_marginTop="@dimen/dimenExtraSmall"
+                    android:layout_marginBottom="@dimen/dimenSmall"
+                    android:layout_marginStart="@dimen/dimenMid"
+                    android:layout_marginEnd="@dimen/dimenMid" >
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:gravity="center"
+                        android:text="@string/case_stories_empty"
+                        android:textColor="?android:attr/textColorHint"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/caseStoriesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:nestedScrollingEnabled="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/caseStoriesAddImageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:fabSize="mini"
+                        android:layout_marginEnd="@dimen/dimenSmall"
+                        android:layout_marginBottom="@dimen/dimenSmall"
+                        android:src="@drawable/ic_add_24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/caseStoriesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:layout_marginBottom="@dimen/dimenMid"
+                app:textHint="@string/case_stories_text"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
