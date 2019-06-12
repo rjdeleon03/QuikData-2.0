@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.casestories.CaseStoriesComplete
+import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
 
 class CaseStoriesViewModel(application: Application, formId: String) : AndroidViewModel(application) {
 
@@ -16,4 +17,6 @@ class CaseStoriesViewModel(application: Application, formId: String) : AndroidVi
     fun updateCaseStoriesText(data: CaseStories) = mRepository.updateCaseStoriesText(data)
 
     fun insertImage(uri: String) = mRepository.insertImage(uri)
+
+    fun deleteImage(data: CaseStoriesImageItem) = mRepository.deleteImage(data)
 }

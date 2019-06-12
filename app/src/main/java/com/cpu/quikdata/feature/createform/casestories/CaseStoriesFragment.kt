@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.dialog.InfoDialogFragment
 import com.myhexaville.smartimagepicker.ImagePicker
@@ -72,12 +73,18 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         if (savedInstanceState != null) {
             expandedItemIndex = savedInstanceState.getInt(mExpandedItemKey, 0)
         }
+
         mAdapter = CaseStoriesImageAdapter(context!!, {
             val action = CaseStoriesFragmentDirections.actionCaseStoriesFragmentToImageViewerFragment(it.uri)
             findNavController().navigate(action)
         }, {
-            System.out.println("===========> Deleting image...")
+            showConfirmationDialog({
+                mViewModel.deleteImage(it)
+            }, R.string.case_stories_images_delete_item,
+                R.layout.dialog_image_delete,
+                R.string.case_stories_images_deleted)
         }, expandedItemIndex)
+
         caseStoriesRecyclerView.layoutManager = GridLayoutManager(context, 3)
         caseStoriesRecyclerView.adapter = mAdapter
     }
@@ -93,12 +100,8 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
             mAdapter.setImages(images)
             mIsItemLimitReached = images.size >= mItemLimit
 
-            if (mPreviousItemCount != -1) {
-                if (mPreviousItemCount < images.size) {
-                    showToastMessage(R.string.case_stories_images_added)
-                } else if (mPreviousItemCount > images.size) {
-                    showToastMessage(R.string.case_stories_images_deleted)
-                }
+            if (mPreviousItemCount != -1 && mPreviousItemCount < images.size) {
+                showToastMessage(R.string.case_stories_images_added)
             }
             mPreviousItemCount = images.size
         })

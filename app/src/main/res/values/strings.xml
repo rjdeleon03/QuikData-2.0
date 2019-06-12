@@ -386,4 +386,6 @@
     <string name="case_stories_images_add_limit_error">Only up to five images can be added.</string>
     <string name="case_stories_images_deleted">The selected image has been successfully deleted.</string>
     <string name="case_stories_images_added">A new image has been added.</string>
+    <string name="case_stories_images_delete_item">Delete Image</string>
+    <string name="case_stories_images_delete_item_message">Are you sure you want to delete this image?</string>
 </resources>

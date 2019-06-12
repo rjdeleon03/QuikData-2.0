@@ -37,4 +37,10 @@ class CaseStoriesRepository(application: Application, formId: String) {
             ))
         }
     }
+
+    fun deleteImage(data: CaseStoriesImageItem) {
+        runOnIoThread {
+            mDatabase.caseStoriesImageItemDao().delete(data)
+        }
+    }
 }
