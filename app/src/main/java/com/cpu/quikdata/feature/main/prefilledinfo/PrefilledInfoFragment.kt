@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_prefilled_info.*
 class PrefilledInfoFragment : BaseFocusableFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = PrefilledInfoFragment()
     }
 

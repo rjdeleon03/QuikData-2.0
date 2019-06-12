@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_income_after.*
 class IncomeAfterFragment : BaseAssistanceFragment<IncomeAfterAdapter, IncomeAfterAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = IncomeAfterFragment()
     }
 

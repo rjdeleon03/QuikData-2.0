@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_wash_assistance.*
 class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, WashAssistanceAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = WashAssistanceFragment()
     }
 

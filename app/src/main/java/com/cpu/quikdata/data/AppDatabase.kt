@@ -231,6 +231,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         private const val DATABASE_NAME = "quikdata_database"
 
+        @JvmStatic
         fun get(context: Context): AppDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) return tempInstance

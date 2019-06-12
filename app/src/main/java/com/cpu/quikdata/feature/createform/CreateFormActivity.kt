@@ -24,6 +24,7 @@ class CreateFormActivity : AppCompatActivity() {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
         private const val EDIT_MODE_KEY = "EDIT_MODE_KEY"
 
+        @JvmStatic
         fun newInstance(context: Context, formId: String = "", editMode: Boolean = false) {
             val intent = Intent(context, CreateFormActivity::class.java)
             intent.putExtra(FORM_ID_KEY, formId)
@@ -98,5 +99,13 @@ class CreateFormActivity : AppCompatActivity() {
         } else {
             toolbarSubtitle.visibility = View.GONE
         }
+    }
+
+    fun hideToolbar() {
+        createFormToolbar.visibility = View.GONE
+    }
+
+    fun showToolbar() {
+        createFormToolbar.visibility = View.VISIBLE
     }
 }

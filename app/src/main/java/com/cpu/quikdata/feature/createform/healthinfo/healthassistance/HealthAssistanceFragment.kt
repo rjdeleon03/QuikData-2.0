@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_health_assistance.*
 class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter, HealthAssistanceAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = HealthAssistanceFragment()
     }
 

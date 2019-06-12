@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_evacuation_info.*
 class EvacuationInfoFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = EvacuationInfoFragment()
     }
 

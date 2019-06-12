@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_food_security_impact.*
 class FoodSecurityImpactFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = FoodSecurityImpactFragment()
     }
 

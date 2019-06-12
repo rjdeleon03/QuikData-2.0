@@ -1,7 +1,6 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_livelihoods_info.*
 class LivelihoodsInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = LivelihoodsInfoFragment()
     }
 

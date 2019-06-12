@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_health_info.*
 class HealthInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = HealthInfoFragment()
     }
 

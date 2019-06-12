@@ -12,6 +12,7 @@ import com.cpu.quikdata.R
 class SentFormsFragment : Fragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = SentFormsFragment()
     }
 

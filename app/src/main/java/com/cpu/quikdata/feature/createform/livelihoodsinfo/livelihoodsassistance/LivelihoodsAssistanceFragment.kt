@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_livelihoods_assistance.*
 class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistanceAdapter, LivelihoodsAssistanceAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = LivelihoodsAssistanceFragment()
     }
 

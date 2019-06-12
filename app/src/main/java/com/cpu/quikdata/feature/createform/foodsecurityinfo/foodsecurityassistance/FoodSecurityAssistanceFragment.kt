@@ -18,6 +18,7 @@ class FoodSecurityAssistanceFragment :
     BaseAssistanceFragment<FoodSecurityAssistanceAdapter, FoodSecurityAssistanceAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = FoodSecurityAssistanceFragment()
     }
 

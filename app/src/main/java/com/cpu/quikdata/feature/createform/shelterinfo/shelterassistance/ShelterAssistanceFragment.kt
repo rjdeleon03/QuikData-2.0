@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_shelter_assistance.*
 class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapter, ShelterAssistanceAdapter.ViewHolder>() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = ShelterAssistanceFragment()
     }
 

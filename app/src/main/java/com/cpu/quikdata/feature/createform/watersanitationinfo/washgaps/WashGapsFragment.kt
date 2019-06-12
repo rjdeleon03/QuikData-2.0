@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_wash_gaps.*
 class WashGapsFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = WashGapsFragment()
     }
 

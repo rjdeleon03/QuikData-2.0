@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_wash_coping.*
 class WashCopingFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = WashCopingFragment()
     }
 

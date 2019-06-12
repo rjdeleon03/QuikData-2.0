@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_livelihoods_gaps.*
 class LivelihoodsGapsFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = LivelihoodsGapsFragment()
     }
 

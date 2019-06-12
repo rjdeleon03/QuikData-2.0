@@ -12,16 +12,20 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
 import kotlinx.android.synthetic.main.item_image.view.*
 
-class CaseStoriesImageAdapter(context: Context, deleteClickListener: (CaseStoriesImageItem) -> Unit) :
+class CaseStoriesImageAdapter(context: Context,
+                              clickListener: (CaseStoriesImageItem) -> Unit,
+                              deleteClickListener: (CaseStoriesImageItem) -> Unit) :
     RecyclerView.Adapter<CaseStoriesImageAdapter.ViewHolder>() {
 
     private var mImages: List<CaseStoriesImageItem>? = null
     private val mInflater = LayoutInflater.from(context)
+    private val mOnClickListener = clickListener
     private val mOnDeleteClickListener = deleteClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = mInflater.inflate(R.layout.item_image, parent, false)
         val holder = ViewHolder(view)
+        holder.setOnClickListener { mOnClickListener.invoke(mImages!![it]) }
         holder.setOnDeleteClickListener { mOnDeleteClickListener.invoke(mImages!![it]) }
         return holder
     }
@@ -42,6 +46,12 @@ class CaseStoriesImageAdapter(context: Context, deleteClickListener: (CaseStorie
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val mItemView = itemView
+
+        fun setOnClickListener(l: (Int) -> Unit) {
+            mItemView.setOnClickListener {
+                l.invoke(mItemView.tag as Int)
+            }
+        }
 
         fun setOnDeleteClickListener(l: (Int) -> Unit) {
             mItemView.setOnLongClickListener {

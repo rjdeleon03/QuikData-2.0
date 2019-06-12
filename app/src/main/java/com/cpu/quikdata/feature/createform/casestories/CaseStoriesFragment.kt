@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.cpu.quikdata.R
@@ -28,6 +29,7 @@ import permissions.dispatcher.RuntimePermissions
 class CaseStoriesFragment : BaseCreateFormFragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = CaseStoriesFragment()
     }
 
@@ -59,9 +61,12 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
             }
             startImagePickerWithPermissionCheck()
         }
-        mAdapter = CaseStoriesImageAdapter(context!!) {
+        mAdapter = CaseStoriesImageAdapter(context!!, {
+            val action = CaseStoriesFragmentDirections.actionCaseStoriesFragmentToImageViewerFragment(it.uri)
+            findNavController().navigate(action)
+        }, {
             System.out.println("===========> Deleting image...")
-        }
+        })
         caseStoriesRecyclerView.layoutManager = GridLayoutManager(context, 3)
         caseStoriesRecyclerView.adapter = mAdapter
     }
