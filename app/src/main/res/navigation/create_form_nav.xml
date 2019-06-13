@@ -106,7 +106,6 @@
     <fragment
         android:id="@+id/imageViewerFragment"
         android:name="com.cpu.quikdata.feature.imageviewer.ImageViewerFragment"
-        android:label="fragment_image_viewer"
         tools:layout="@layout/fragment_image_viewer" >
         <argument
             android:name="imageUri"
