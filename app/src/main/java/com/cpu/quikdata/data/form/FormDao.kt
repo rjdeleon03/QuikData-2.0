@@ -2,6 +2,7 @@ package com.cpu.quikdata.data.form
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.cpu.quikdata.data.generalinfo.GeneralInfoComplete
 
 @Dao
 interface FormDao {
@@ -23,4 +24,8 @@ interface FormDao {
 
     @Query("SELECT * FROM form WHERE id = :id")
     fun getByIdSingle(id: String): Form
+
+    @Transaction
+    @Query("SELECT * FROM form WHERE id = :formId")
+    fun getGeneralInfoNonLive(formId: String): GeneralInfoComplete
 }
