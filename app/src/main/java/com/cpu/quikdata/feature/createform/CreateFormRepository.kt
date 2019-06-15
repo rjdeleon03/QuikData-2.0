@@ -7,14 +7,15 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.utils.runOnIoThread
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class CreateFormRepository(application: Application, formId: String) {
 
     private val mDatabase = AppDatabase.get(application)
     private val mFormId = formId
     private val mForm = mDatabase.formDao().getById(mFormId)
-    private val mServerRef = FirebaseDatabase.getInstance().reference.child(FIREBASE_KEY_FORM)
+    private val mFirestore = FirebaseFirestore.getInstance()
+//    private val mServerRef = FirebaseDatabase.getInstance().reference.child(FIREBASE_KEY_FORM)
 
     val form: LiveData<Form>
         get() = mForm
@@ -23,7 +24,7 @@ class CreateFormRepository(application: Application, formId: String) {
         get() = mForm.value!!.idRemote
 
     private val isFormAlreadyUploaded: Boolean
-         get() = !formId.isBlank()
+        get() = !formId.isBlank()
 
     // region Submission methods
 
@@ -35,7 +36,7 @@ class CreateFormRepository(application: Application, formId: String) {
                 section.formIdRemote = formId
                 dao.update(section)
             }
-            mServerRef.child(section.formIdRemote).child(FIREBASE_KEY_FORM_DETAILS).setValue(section)
+//            mServerRef.child(section.formIdRemote).child(FIREBASE_KEY_FORM_DETAILS).setValue(section)
         }
     }
 
@@ -48,8 +49,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_CALAMITY_INFO, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_CALAMITY_INFO, section)
             }
             run {
                 val dao = mDatabase.populationRowDao()
@@ -57,8 +58,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_POPULATION, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_POPULATION, section)
                 }
             }
             run {
@@ -68,8 +69,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_FAMILIES, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_FAMILIES, section)
             }
             run {
                 val dao = mDatabase.vulnerableRowDao()
@@ -77,8 +78,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_VULNERABLE, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_VULNERABLE, section)
                 }
             }
             run {
@@ -87,8 +88,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_CASUALTIES, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_CASUALTIES, section)
                 }
             }
             run {
@@ -97,8 +98,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_CAUSE_OF_DEATH, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_GENERAL_INFO, FIREBASE_KEY_CAUSE_OF_DEATH, section)
                 }
             }
             run {
@@ -107,8 +108,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.child(section[0].formIdRemote)
-                        .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_INFRASTRUCTURE).setValue(section)
+//                    mServerRef.child(section[0].formIdRemote)
+//                        .child(FIREBASE_KEY_GENERAL_INFO).child(FIREBASE_KEY_INFRASTRUCTURE).setValue(section)
                 }
             }
         }
@@ -123,8 +124,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_HOUSE_DAMAGE, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_HOUSE_DAMAGE, section)
                 }
             }
             run {
@@ -134,8 +135,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_COPING, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_COPING, section)
             }
             run {
                 val dao = mDatabase.shelterNeedsRowDao()
@@ -143,8 +144,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_NEEDS, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_NEEDS, section)
                 }
             }
             run {
@@ -153,8 +154,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_ASSISTANCE, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_ASSISTANCE, section)
                 }
             }
             run {
@@ -164,8 +165,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_GAPS, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_SHELTER_INFO, FIREBASE_KEY_SHELTER_GAPS, section)
             }
         }
     }
@@ -179,8 +180,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_IMPACT, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_IMPACT, section)
             }
             run {
                 val dao = mDatabase.foodSecurityCopingDao()
@@ -189,8 +190,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_COPING, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_COPING, section)
             }
             run {
                 val dao = mDatabase.foodSecurityNeedsDao()
@@ -199,8 +200,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_NEEDS, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_NEEDS, section)
             }
             run {
                 val dao = mDatabase.foodSecurityAssistanceRowDao()
@@ -208,8 +209,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_ASSISTANCE, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_ASSISTANCE, section)
                 }
             }
             run {
@@ -219,8 +220,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_GAPS, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_FOOD_SECURITY, FIREBASE_KEY_FOOD_GAPS, section)
             }
         }
     }
@@ -233,8 +234,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_INCOME_BEFORE, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_INCOME_BEFORE, section)
                 }
             }
             run {
@@ -243,8 +244,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_INCOME_AFTER, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_INCOME_AFTER, section)
                 }
             }
             run {
@@ -253,8 +254,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].row!!.formIdRemote.isBlank()) {
                     section.forEach { it.row!!.formIdRemote = formId }
                     dao.update(section[0].row!!)
-                    mServerRef.saveFormSection(section[0].row!!.formIdRemote,
-                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_ESTIMATED_DAMAGE, section)
+//                    mServerRef.saveFormSection(section[0].row!!.formIdRemote,
+//                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_ESTIMATED_DAMAGE, section)
                 }
             }
             run {
@@ -264,8 +265,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_COPING, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_COPING, section)
             }
             run {
                 val dao = mDatabase.livelihoodsNeedsDao()
@@ -274,8 +275,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_NEEDS, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_NEEDS, section)
             }
             run {
                 val dao = mDatabase.livelihoodsAssistanceRowDao()
@@ -283,8 +284,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_ASSISTANCE, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_ASSISTANCE, section)
                 }
             }
             run {
@@ -294,8 +295,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_GAPS, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_LIVELIHOODS, FIREBASE_KEY_LIVELIHOODS_GAPS, section)
             }
         }
     }
@@ -308,8 +309,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_DISEASES, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_DISEASES, section)
                 }
             }
             run {
@@ -318,8 +319,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_SPECIAL_NEEDS, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_SPECIAL_NEEDS, section)
                 }
             }
             run {
@@ -328,8 +329,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_PSYCHOSOCIAL, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_PSYCHOSOCIAL, section)
                 }
             }
             run {
@@ -339,8 +340,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_HEALTH_COPING, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_HEALTH_COPING, section)
             }
             run {
                 val dao = mDatabase.healthAssistanceRowDao()
@@ -348,8 +349,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_HEALTH_ASSISTANCE, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_HEALTH_ASSISTANCE, section)
                 }
             }
             run {
@@ -359,8 +360,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_HEALTH_GAPS, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_HEALTH_INFO, FIREBASE_KEY_HEALTH_GAPS, section)
             }
         }
     }
@@ -374,8 +375,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_CONDITIONS, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_CONDITIONS, section)
             }
             run {
                 val dao = mDatabase.washCopingDao()
@@ -384,8 +385,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_COPING, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_COPING, section)
             }
             run {
                 val dao = mDatabase.washAssistanceRowDao()
@@ -393,8 +394,8 @@ class CreateFormRepository(application: Application, formId: String) {
                 if (section.isNotEmpty() && section[0].formIdRemote.isBlank()) {
                     section.forEach { it.formIdRemote = formId }
                     dao.update(section)
-                    mServerRef.saveFormSection(section[0].formIdRemote,
-                        FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_ASSISTANCE, section)
+//                    mServerRef.saveFormSection(section[0].formIdRemote,
+//                        FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_ASSISTANCE, section)
                 }
             }
             run {
@@ -404,8 +405,8 @@ class CreateFormRepository(application: Application, formId: String) {
                     section.formIdRemote = formId
                     dao.update(section)
                 }
-                mServerRef.saveFormSection(section.formIdRemote,
-                    FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_GAPS, section)
+//                mServerRef.saveFormSection(section.formIdRemote,
+//                    FIREBASE_KEY_WASH_INFO, FIREBASE_KEY_WASH_GAPS, section)
             }
         }
     }
@@ -420,8 +421,8 @@ class CreateFormRepository(application: Application, formId: String) {
                         it.root!!.formIdRemote = formId
                         dao.update(it.root!!)
                     }
-                    mServerRef.saveFormSectionList(section[0].root!!.formIdRemote,
-                        FIREBASE_KEY_EVACUATION, section)
+//                    mServerRef.saveFormSectionList(section[0].root!!.formIdRemote,
+//                        FIREBASE_KEY_EVACUATION, section)
                 }
             }
         }
@@ -447,13 +448,23 @@ class CreateFormRepository(application: Application, formId: String) {
         val dao = mDatabase.formDao()
         val form = mForm.value!!
 
+        val formCollection = mFirestore.collection(FIREBASE_KEY_FORM)
+
         // Save to server
-        val pushRef = if (form.idRemote.isNotEmpty()) {
-            mServerRef.child(form.idRemote)
+        if (!form.idRemote.isEmpty()) {
+            formCollection.document(form.idRemote)
         } else {
-            mServerRef.push()
+            formCollection.add(form)
+                .addOnSuccessListener {
+                    runOnIoThread {
+                        form.idRemote = it.id
+                        dao.update(form)
+                    }
+                }
+            f.invoke()
         }
 
+        /*
         val task = pushRef.setValue(form)
         task.addOnCompleteListener {
             if (form.idRemote.isEmpty()) {
@@ -469,6 +480,7 @@ class CreateFormRepository(application: Application, formId: String) {
                 }
             }
         }
+        */
     }
 
     // endregion

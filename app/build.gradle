@@ -80,6 +80,7 @@ dependencies {
 
     // Photoview
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.google.firebase:firebase-firestore:19.0.2'
 
 }
 
