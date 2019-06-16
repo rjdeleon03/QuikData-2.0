@@ -20,26 +20,12 @@ class CreateFormRepository(application: Application, formId: String) {
         get() = mForm
 
     private val formId: String
-        get() = mForm.value!!.idRemote
-
-    private val isFormAlreadyUploaded: Boolean
-        get() = !formId.isBlank()
+        get() = mForm.value!!.id
 
     // region Submission methods
 
     fun submitFormDetails() {
-        submitFormSection {
-            run {
-                val dao = mDatabase.formDetailsDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_FORM_DETAILS, section.id, section)
-            }
-            run {
-                val dao = mDatabase.baselineDataDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_BASELINE, section.id, section)
-            }
-        }
+        submitFormSection(true)
     }
 
     fun submitGeneralInformation() {
@@ -297,27 +283,25 @@ class CreateFormRepository(application: Application, formId: String) {
 
     // region Private methods
 
-    private fun submitFormSection(f: () -> Unit) {
+    private fun submitFormSection(resubmitForm: Boolean = false, f: (() -> Unit)? = null) {
         runOnIoThread {
-            if (isFormAlreadyUploaded) {
-                f.invoke()
-            } else {
-                submitData(f)
-            }
-        }
-    }
-
-    private fun submitData(f: () -> Unit) {
-
-        // Retrieve form
-        val form = mForm.value!!
-
-        saveData(FIREBASE_KEY_FORM, form.id, form)
-            .addOnCompleteListener {
-                runOnIoThread {
-                    f.invoke()
+            // Retrieve form
+            val formComplete = mDatabase.formDao().getFormDataNonLive(formId)
+            mFirestore.collection(FIREBASE_KEY_FORM).document(formId).get().continueWith {
+                if (!it.result!!.exists() || resubmitForm) {
+                    saveData(FIREBASE_KEY_FORM, formComplete.form!!.id, formComplete)
+                        .addOnCompleteListener {
+                            runOnIoThread {
+                                f?.invoke()
+                            }
+                        }
+                } else {
+                    runOnIoThread {
+                        f?.invoke()
+                    }
                 }
             }
+        }
     }
 
     // endregion

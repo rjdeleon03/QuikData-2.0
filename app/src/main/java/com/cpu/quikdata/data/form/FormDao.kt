@@ -27,5 +27,9 @@ interface FormDao {
 
     @Transaction
     @Query("SELECT * FROM form WHERE id = :formId")
+    fun getFormDataNonLive(formId: String): FormComplete
+
+    @Transaction
+    @Query("SELECT * FROM form WHERE id = :formId")
     fun getGeneralInfoNonLive(formId: String): GeneralInfoComplete
 }
