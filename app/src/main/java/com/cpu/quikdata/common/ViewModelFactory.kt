@@ -17,6 +17,7 @@ import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping.F
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsViewModel
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactViewModel
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeedsViewModel
+import com.cpu.quikdata.feature.createform.formdetailsandbaseline.baselinedata.BaselineDataViewModel
 import com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails.FormDetailsViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesViewModel
@@ -58,6 +59,7 @@ class ViewModelFactory(application: Application, formId: String) :
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
         return when (modelClass) {
+            BaselineDataViewModel::class.java -> BaselineDataViewModel(mApplication, mFormId) as T
             CreateFormViewModel::class.java -> CreateFormViewModel(mApplication, mFormId) as T
             CalamityInfoViewModel::class.java -> CalamityInfoViewModel(mApplication, mFormId) as T
             PopulationViewModel::class.java -> PopulationViewModel(mApplication, mFormId) as T

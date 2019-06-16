@@ -78,10 +78,10 @@ fun ViewGroup.setupOnFocusBehavior(target: TextView, focusSource: View, onFocusA
 
     focusSource.setOnFocusChangeListener { _, hasFocus ->
         if (hasFocus) {
-            target.setHintTextColor(ContextCompat.getColor(context, R.color.colorAccent))
+            target.setTextColor(ContextCompat.getColor(context, R.color.colorAccent))
             onFocusAction?.invoke()
         } else {
-            target.setHintTextColor(defaultColor)
+            target.setTextColor(defaultColor)
         }
     }
 }

@@ -17,7 +17,7 @@ class TwoNumbersQuestion(context: Context, attrs: AttributeSet) : LinearLayout(c
         background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.TwoNumbersQuestion)
-        questionText.hint = attributes.getString(R.styleable.TwoNumbersQuestion_question)
+        questionText.text = attributes.getString(R.styleable.TwoNumbersQuestion_question)
         textLayout1.hint = attributes.getString(R.styleable.TwoNumbersQuestion_textHint1)
         textField1.setText(attributes.getString(R.styleable.TwoNumbersQuestion_text1))
         textLayout2.hint = attributes.getString(R.styleable.TwoNumbersQuestion_textHint2)

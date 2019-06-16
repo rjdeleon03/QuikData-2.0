@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.AppDatabase
+import com.cpu.quikdata.data.baselinedata.BaselineData
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
@@ -62,6 +63,10 @@ class NewFormsRepository(application: Application) {
                 assessmentDate = dateNowInLong,
                 formId = formId)
             mDatabase.formDetailsDao().insert(formDetails)
+
+            val baselineData = BaselineData(id = generateId(),
+                formId = formId)
+            mDatabase.baselineDataDao().insert(baselineData)
 
             // endregion
 

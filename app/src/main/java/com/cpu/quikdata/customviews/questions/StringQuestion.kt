@@ -18,7 +18,7 @@ class StringQuestion(context: Context, attrs: AttributeSet) : LinearLayout(conte
 
         /* Retrieve view attributes then apply */
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.StringQuestion)
-        questionText.hint = attributes.getString(R.styleable.StringQuestion_textHint)
+        questionText.text = attributes.getString(R.styleable.StringQuestion_textHint)
         textField.setText(attributes.getString(R.styleable.StringQuestion_text))
         attributes.recycle()
         setupOnFocusBehavior(questionText, textField)

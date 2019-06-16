@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.cpu.quikdata.data.baselinedata.BaselineData
+import com.cpu.quikdata.data.baselinedata.BaselineDataDao
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.casestories.CaseStoriesDao
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
@@ -103,6 +105,7 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
         PrefilledData::class,
         Form::class,
         FormDetails::class,
+        BaselineData::class,
         CalamityInfo::class,
         PopulationRow::class,
         Families::class,
@@ -154,7 +157,11 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun prefilledDataDao(): PrefilledDataDao
     abstract fun formDao(): FormDao
+
+    // region Form details
     abstract fun formDetailsDao(): FormDetailsDao
+    abstract fun baselineDataDao(): BaselineDataDao
+    // endregion
 
     // region General info
     abstract fun calamityInfoDao(): CalamityInfoDao
