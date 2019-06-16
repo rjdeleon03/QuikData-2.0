@@ -62,7 +62,7 @@ class SelectionFragment : BaseCreateFormFragment() {
         }
 
         selectionFormDetailsButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_formDetailsFragment) },
+            { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) },
             {
                 mExpandedItemId = 0
                 mParentViewModel.submitFormDetails()

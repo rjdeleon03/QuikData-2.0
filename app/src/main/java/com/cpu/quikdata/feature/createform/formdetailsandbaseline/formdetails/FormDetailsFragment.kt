@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.formdetails
+package com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle

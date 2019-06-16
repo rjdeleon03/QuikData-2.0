@@ -396,4 +396,5 @@
     <string name="text_income_empty">No income source items found.\nClick the \'+\' button to add a new income source item.</string>
     <string name="text_evacuation_empty">No evacuation sites found.\nClick the \'+\' button to add a new evacuation site.</string>
     <string name="text_forms_empty">No DNCA forms found.\nClick the \'+\' button to add a new DNCA form.</string>
+    <string name="form_details_baseline_title">Form and Baseline Data</string>
 </resources>

@@ -11,8 +11,8 @@
         android:label="fragment_selection"
         tools:layout="@layout/fragment_selection" >
         <action
-            android:id="@+id/action_selection_to_formDetailsFragment"
-            app:destination="@id/formDetailsFragment" />
+            android:id="@+id/action_selection_to_formDetailsAndBaselineFragment"
+            app:destination="@id/formDetailsAndBaselineFragment" />
         <action
             android:id="@+id/action_selection_to_generalInfoFragment"
             app:destination="@id/generalInfoFragment" />
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/formDetailsFragment"
-        android:name="com.cpu.quikdata.feature.createform.formdetails.FormDetailsFragment"
+        android:name="com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails.FormDetailsFragment"
         android:label="@string/form_details_title"
         tools:layout="@layout/fragment_form_details" />
     <fragment
@@ -112,4 +112,9 @@
             app:argType="string"
             android:defaultValue='""' />
     </fragment>
+    <fragment
+        android:id="@+id/formDetailsAndBaselineFragment"
+        android:name="com.cpu.quikdata.feature.createform.formdetailsandbaseline.FormDetailsAndBaselineFragment"
+        android:label="@string/form_details_baseline_title"
+        tools:layout="@layout/fragment_form_details_and_baseline" />
 </navigation>

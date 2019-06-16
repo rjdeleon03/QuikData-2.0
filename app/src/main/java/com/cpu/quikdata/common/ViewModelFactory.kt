@@ -17,7 +17,7 @@ import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping.F
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsViewModel
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactViewModel
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeedsViewModel
-import com.cpu.quikdata.feature.createform.formdetails.FormDetailsViewModel
+import com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails.FormDetailsViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesViewModel
 import com.cpu.quikdata.feature.createform.generalinfo.causeofdeath.CauseOfDeathViewModel
