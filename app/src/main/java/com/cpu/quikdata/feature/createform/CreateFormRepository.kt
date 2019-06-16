@@ -29,9 +29,16 @@ class CreateFormRepository(application: Application, formId: String) {
 
     fun submitFormDetails() {
         submitFormSection {
-            val dao = mDatabase.formDetailsDao()
-            val section = dao.getByFormIdNonLive(mFormId)
-            saveData(FIREBASE_KEY_FORM_DETAILS, section.id, section)
+            run {
+                val dao = mDatabase.formDetailsDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                saveData(FIREBASE_KEY_FORM_DETAILS, section.id, section)
+            }
+            run {
+                val dao = mDatabase.baselineDataDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                saveData(FIREBASE_KEY_BASELINE, section.id, section)
+            }
         }
     }
 

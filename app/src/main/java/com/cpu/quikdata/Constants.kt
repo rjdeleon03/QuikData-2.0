@@ -7,7 +7,7 @@ const val DEVICE_ID_KEY = "DEVICE_ID_KEY"
 const val FIREBASE_KEY_DEVICES = "devices"
 
 const val FIREBASE_KEY_FORM = "form"
-const val FIREBASE_KEY_PREFILLED = "baselineData"
+const val FIREBASE_KEY_BASELINE = "baselineData"
 const val FIREBASE_KEY_FORM_DETAILS = "formDetails"
 
 const val FIREBASE_KEY_GENERAL_INFO = "generalInfo"
