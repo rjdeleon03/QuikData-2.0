@@ -31,6 +31,22 @@
         android:focusable="true"
         android:columnCount="5">
 
+        <TextView
+            android:layout_width="0dp"
+            android:height="36dp"
+            android:layout_columnWeight="1"
+            android:layout_columnSpan="5"
+            android:background="@color/colorAccentLight"
+            android:gravity="center"
+            android:text="@string/selection_instructions_single_line"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_columnWeight="1"
+            android:layout_columnSpan="5"
+            android:background="@color/lightGray"/>
+
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionFormDetailsButton"
             android:layout_width="0dp"

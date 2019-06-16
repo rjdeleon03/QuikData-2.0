@@ -399,4 +399,6 @@
     <string name="form_details_baseline_title">Form and Baseline Data</string>
     <string name="baseline_data_title">Baseline Data</string>
     <string name="prefilled_use_app_baseline">Use the baseline data from the app?</string>
+    <string name="selection_instructions">Tap on a tile to access the sections.\nLong-press for more options.</string>
+    <string name="selection_instructions_single_line">Tap on a tile to access the sections. Long-press for more options.</string>
 </resources>

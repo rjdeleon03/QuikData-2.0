@@ -18,7 +18,7 @@ class MultilineStringLongQuestion(context: Context, attrs: AttributeSet) : Linea
 
         /* Retrieve view attributes then apply */
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultilineStringLongQuestion)
-        questionText.hint = attributes.getString(R.styleable.MultilineStringLongQuestion_textHint)
+        questionText.text = attributes.getString(R.styleable.MultilineStringLongQuestion_textHint)
         textField.setText(attributes.getString(R.styleable.MultilineStringLongQuestion_text))
         attributes.recycle()
         setupOnFocusBehavior(questionText, textField)
