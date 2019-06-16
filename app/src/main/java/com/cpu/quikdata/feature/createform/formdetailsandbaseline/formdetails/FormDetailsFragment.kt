@@ -29,11 +29,6 @@ class FormDetailsFragment : BaseCreateFormFragment() {
         return inflater.inflate(R.layout.fragment_form_details, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupClipping(view)
-    }
-
     override fun onDestroyView() {
         val formDetails = FormDetails(
             assessmentDate = formDetailsAssessmentDateText.date,

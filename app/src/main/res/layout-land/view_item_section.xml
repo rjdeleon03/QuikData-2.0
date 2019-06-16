@@ -28,7 +28,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/dimenMid"
+            android:layout_margin="12dp"
             app:cardCornerRadius="@dimen/dimenMid">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/optionsLabel"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimenLarge"
+                android:layout_height="28dp"
                 android:background="@color/lightGray"
                 android:fontFamily="@font/nunitosans_bold"
                 android:gravity="center"
