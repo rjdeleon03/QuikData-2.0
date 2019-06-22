@@ -23,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
         homeNewDncaFormButton.clickWithGuard {
             val formId = generateId()
             mViewModel.createNewForm(formId)
-            CreateFormActivity.newInstance(this, formId)
+            CreateFormActivity.newInstance(this, formId, basicMode = true)
         }
         homeDncaArchiveButton.clickWithGuard {
             MainActivity.newInstance(this)

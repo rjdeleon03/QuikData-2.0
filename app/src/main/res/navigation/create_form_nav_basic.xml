@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/selectionFragment"
-        android:name="com.cpu.quikdata.feature.createform.selection.SelectionFragment"
+        android:name="com.cpu.quikdata.feature.createform.basicselection.BasicSelectionFragment"
         android:label="fragment_selection"
-        tools:layout="@layout/fragment_selection" >
+        tools:layout="@layout/fragment_basic_selection" >
         <action
             android:id="@+id/action_selection_to_formDetailsAndBaselineFragment"
             app:destination="@id/formDetailsAndBaselineFragment" />

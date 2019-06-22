@@ -24,13 +24,15 @@ class CreateFormActivity : AppCompatActivity() {
     companion object {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
         private const val EDIT_MODE_KEY = "EDIT_MODE_KEY"
+        private const val BASIC_MODE_KEY = "BASIC_MODE_KEY"
 
         @JvmStatic
-        fun newInstance(context: Context, formId: String = "", editMode: Boolean = false) {
+        fun newInstance(context: Context, formId: String = "", editMode: Boolean = false, basicMode: Boolean = false) {
             val intent = Intent(context, CreateFormActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             intent.putExtra(FORM_ID_KEY, formId)
             intent.putExtra(EDIT_MODE_KEY, editMode)
+            intent.putExtra(BASIC_MODE_KEY, basicMode)
             context.startActivity(intent)
         }
     }
@@ -56,6 +58,7 @@ class CreateFormActivity : AppCompatActivity() {
             mViewModel = ViewModelProviders.of(this, factory).get(CreateFormViewModel::class.java)
         }
 
+
         // Setup navController
         mNavController = findNavController(R.id.fragment)
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
@@ -63,6 +66,14 @@ class CreateFormActivity : AppCompatActivity() {
             if (destination.id == R.id.selectionFragment) {
                 toolbarTitle.setText(titleId)
             }
+        }
+
+        // Get basic mode flag and select the correct navigation graph
+        val basicMode = intent.getBooleanExtra(BASIC_MODE_KEY, false)
+        if (basicMode) {
+            mNavController.setGraph(R.navigation.create_form_nav_basic)
+        } else {
+            mNavController.setGraph(R.navigation.create_form_nav)
         }
 
 
