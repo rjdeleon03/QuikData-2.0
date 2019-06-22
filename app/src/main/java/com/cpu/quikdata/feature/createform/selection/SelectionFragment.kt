@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -15,6 +14,9 @@ import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.customviews.ItemSection
 import kotlinx.android.synthetic.main.fragment_selection.*
+import kotlinx.android.synthetic.main.fragment_selection.selectionCaseStoriesButton
+import kotlinx.android.synthetic.main.fragment_selection.selectionFormDetailsButton
+import kotlinx.android.synthetic.main.fragment_selection.selectionGenInfoButton
 
 class SelectionFragment : BaseCreateFormFragment() {
 

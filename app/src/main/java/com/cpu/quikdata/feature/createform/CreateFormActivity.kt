@@ -20,6 +20,7 @@ class CreateFormActivity : AppCompatActivity() {
     private lateinit var mNavController: NavController
     private lateinit var mViewModel: CreateFormViewModel
     private var mLayoutMargin: Int = 0
+    private var mEditMode = false
 
     companion object {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
@@ -29,7 +30,6 @@ class CreateFormActivity : AppCompatActivity() {
         @JvmStatic
         fun newInstance(context: Context, formId: String = "", editMode: Boolean = false, basicMode: Boolean = false) {
             val intent = Intent(context, CreateFormActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             intent.putExtra(FORM_ID_KEY, formId)
             intent.putExtra(EDIT_MODE_KEY, editMode)
             intent.putExtra(BASIC_MODE_KEY, basicMode)
@@ -45,9 +45,9 @@ class CreateFormActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Get edit mode flag and update toolbar title accordingly
-        val editMode = intent.getBooleanExtra(EDIT_MODE_KEY, false)
+        mEditMode = intent.getBooleanExtra(EDIT_MODE_KEY, false)
         var titleId = R.string.create_form_title_new
-        if (editMode) {
+        if (mEditMode) {
             titleId = R.string.create_form_title_edit
         }
 
@@ -91,6 +91,14 @@ class CreateFormActivity : AppCompatActivity() {
                 f.onActivityResult(requestCode, resultCode, data)
             }
         }
+    }
+
+    override fun onStop() {
+        if (!mEditMode) {
+            // Delete form if in create mode
+            mViewModel.deleteForm()
+        }
+        super.onStop()
     }
 
     override fun onSupportNavigateUp(): Boolean {

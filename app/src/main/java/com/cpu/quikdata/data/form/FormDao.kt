@@ -16,6 +16,9 @@ interface FormDao {
     @Delete
     fun delete(form: Form)
 
+    @Query("DELETE FROM form WHERE id = :id")
+    fun delete(id: String)
+
     @Query("SELECT * FROM form")
     fun getAll(): LiveData<List<Form>>
 

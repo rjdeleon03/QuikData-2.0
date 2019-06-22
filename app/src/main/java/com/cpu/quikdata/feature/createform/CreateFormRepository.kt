@@ -22,6 +22,12 @@ class CreateFormRepository(application: Application, formId: String) {
     private val formId: String
         get() = mForm.value!!.id
 
+    fun deleteForm() {
+        runOnIoThread {
+            mDatabase.formDao().delete(mFormId)
+        }
+    }
+
     // region Submission methods
 
     fun submitFormDetails() {
