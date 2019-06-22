@@ -12,17 +12,17 @@
         tools:layout="@layout/fragment_new_forms" />
     <fragment
         android:id="@+id/sentFormsFragment"
-        android:name="com.cpu.quikdata.feature.main.sentforms.SentFormsFragment"
+        android:name="com.cpu.quikdata.old.sentforms.SentFormsFragment"
         android:label="@string/sent_forms_title"
         tools:layout="@layout/fragment_sent_forms" />
     <fragment
         android:id="@+id/prefilledInfoFragment"
-        android:name="com.cpu.quikdata.feature.main.prefilledinfo.PrefilledInfoFragment"
+        android:name="com.cpu.quikdata.old.prefilledinfo.PrefilledInfoFragment"
         android:label="@string/prefilled_title"
         tools:layout="@layout/fragment_prefilled_info" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.cpu.quikdata.feature.main.settings.SettingsFragment"
+        android:name="com.cpu.quikdata.old.settings.SettingsFragment"
         android:label="@string/settings_title"
         tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.main.settings
+package com.cpu.quikdata.old.settings
 
 import androidx.lifecycle.ViewModel;
 

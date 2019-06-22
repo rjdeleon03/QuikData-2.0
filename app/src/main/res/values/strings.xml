@@ -404,4 +404,5 @@
     <string name="home_new_dnca">Create New DNCA Form</string>
     <string name="home_dnca_archive">DNCA Archive</string>
     <string name="home_consortium">Consortium</string>
+    <string name="consortium_title">Consortium</string>
 </resources>

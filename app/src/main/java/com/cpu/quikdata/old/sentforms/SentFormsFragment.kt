@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.main.settings
+package com.cpu.quikdata.old.sentforms
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,25 +9,25 @@ import android.view.ViewGroup
 
 import com.cpu.quikdata.R
 
-class SettingsFragment : Fragment() {
+class SentFormsFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = SettingsFragment()
+        fun newInstance() = SentFormsFragment()
     }
 
-    private lateinit var viewModel: SettingsViewModel
+    private lateinit var viewModel: SentFormsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        return inflater.inflate(R.layout.fragment_sent_forms, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(SentFormsViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

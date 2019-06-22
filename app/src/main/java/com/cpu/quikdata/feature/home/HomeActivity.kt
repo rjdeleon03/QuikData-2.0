@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.feature.consortium.ConsortiumActivity
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.main.MainActivity
 import com.cpu.quikdata.utils.generateId
@@ -26,6 +27,9 @@ class HomeActivity : AppCompatActivity() {
         }
         homeDncaArchiveButton.clickWithGuard {
             MainActivity.newInstance(this)
+        }
+        homeConsortiumButton.clickWithGuard {
+            ConsortiumActivity.newInstance(this)
         }
     }
 }
