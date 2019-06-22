@@ -201,8 +201,8 @@ class NewFormsRepository(application: Application) {
             mDatabase.livelihoodsNeedsDao().insert(livelihoodsNeeds)
 
             val livelihoodsGaps = LivelihoodsGaps(id = generateId(), formId = formId)
-            mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)            
-            
+            mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)
+
             // endregion
 
             // region Health information
@@ -252,7 +252,7 @@ class NewFormsRepository(application: Application) {
 
             val washGaps = WashGaps(id = generateId(), formId = formId)
             mDatabase.washGapsDao().insert(washGaps)
-            
+
             // endregion
 
             // region Case stories
@@ -263,6 +263,5 @@ class NewFormsRepository(application: Application) {
             // endregion
         }
     }
-
 
 }
