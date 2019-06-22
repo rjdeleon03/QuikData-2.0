@@ -13,7 +13,8 @@
         android:id="@+id/mainActivityToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:contentInsetEnd="16dp">
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        app:contentInsetEnd="56dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,19 +61,5 @@
             app:navGraph="@navigation/main_nav" />
 
     </FrameLayout>
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/white">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/mainActivityNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:menu="@menu/main_navigation_menu"
-            app:labelVisibilityMode="unlabeled"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
 </LinearLayout>

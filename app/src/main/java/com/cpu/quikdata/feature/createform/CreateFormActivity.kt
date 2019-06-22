@@ -28,6 +28,7 @@ class CreateFormActivity : AppCompatActivity() {
         @JvmStatic
         fun newInstance(context: Context, formId: String = "", editMode: Boolean = false) {
             val intent = Intent(context, CreateFormActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             intent.putExtra(FORM_ID_KEY, formId)
             intent.putExtra(EDIT_MODE_KEY, editMode)
             context.startActivity(intent)
