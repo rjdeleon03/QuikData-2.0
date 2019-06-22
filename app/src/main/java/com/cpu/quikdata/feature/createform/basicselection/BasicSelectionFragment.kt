@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.setupClipping
+import com.cpu.quikdata.customviews.ItemSection
 import kotlinx.android.synthetic.main.fragment_basic_selection.*
 
 /**
@@ -34,5 +35,9 @@ class BasicSelectionFragment : Fragment() {
         mNavController = findNavController()
 
         setupClipping(basicSelectionRootLayout)
+
+        selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
+        selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }
+        selectionCaseStoriesButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) }
     }
 }
