@@ -1,16 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/basicSelectionRootLayout"
     tools:context=".feature.createform.basicselection.BasicSelectionFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lighterGray">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearSectionLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@color/colorAccentLight"
+            android:gravity="center"
+            android:text="@string/selection_instructions_basic"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionFormDetailsButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/form_details_baseline_title"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionGenInfoButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/gen_info_title"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionCaseStoriesButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/case_stories_title"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
