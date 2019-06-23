@@ -24,7 +24,18 @@ class CreateFormRepository(application: Application, formId: String) {
 
     fun deleteForm() {
         runOnIoThread {
-            mDatabase.formDao().delete(mFormId)
+            val formValue = mDatabase.formDao().getByIdSingle(mFormId)
+            if (formValue.isTemporary) {
+                mDatabase.formDao().delete(formValue)
+            }
+        }
+    }
+
+    fun saveFormAsActual() {
+        runOnIoThread {
+            val formValue = mDatabase.formDao().getByIdSingle(mFormId)
+            formValue.isTemporary = false
+            mDatabase.formDao().update(formValue)
         }
     }
 

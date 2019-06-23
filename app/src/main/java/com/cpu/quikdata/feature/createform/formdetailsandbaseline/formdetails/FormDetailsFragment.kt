@@ -47,6 +47,7 @@ class FormDetailsFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(FormDetailsViewModel::class.java)
         mViewModel.formDetails.observe(viewLifecycleOwner, Observer {
+            if (it == null) return@Observer
             formDetailsAssessmentDateText.date = it.assessmentDate
             formDetailsInterviewerText.text = it.interviewer
             formDetailsInterviewerContactText.text = it.interviewerContact

@@ -9,4 +9,7 @@ data class Form(@PrimaryKey(autoGenerate = false)
                 val id: String,
 
                 @get:Exclude
+                var isTemporary: Boolean = true,
+
+                @get:Exclude
                 var idRemote: String = "")

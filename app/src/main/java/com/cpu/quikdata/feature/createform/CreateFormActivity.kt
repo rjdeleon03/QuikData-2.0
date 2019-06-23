@@ -93,14 +93,6 @@ class CreateFormActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStop() {
-        if (!mEditMode) {
-            // Delete form if in create mode
-            mViewModel.deleteForm()
-        }
-        super.onStop()
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         if (fragment.childFragmentManager.backStackEntryCount > 0) {
             fragment.childFragmentManager.popBackStack()

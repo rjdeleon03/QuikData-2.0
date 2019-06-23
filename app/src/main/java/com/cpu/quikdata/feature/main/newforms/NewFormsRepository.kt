@@ -46,7 +46,7 @@ import org.joda.time.LocalDate
 class NewFormsRepository(application: Application) {
 
     private val mDatabase = AppDatabase.get(application)
-    private val mNewForms = mDatabase.formDao().getAll()
+    private val mNewForms = mDatabase.formDao().getAllActual()
 
     val newForms: LiveData<List<Form>>
         get() = mNewForms

@@ -49,6 +49,7 @@ class BaselineDataFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(BaselineDataViewModel::class.java)
         mViewModel.baselineData.observe(viewLifecycleOwner, Observer {
+            if (it == null) return@Observer
             useBaselineSwitch.isChecked = it.usePrefilled
             organizationText.text = it.organization
             sitioText.text = it.sitio

@@ -40,7 +40,7 @@ class NewFormsFragment : Fragment() {
         newFormsAddButton.clickWithGuard {
             val formId = generateId()
             mViewModel.createNewForm(formId)
-            CreateFormActivity.newInstance(context!!, formId)
+            CreateFormActivity.newInstance(context!!, formId, basicMode = true)
         }
     }
 

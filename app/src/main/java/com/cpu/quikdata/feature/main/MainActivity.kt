@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         @JvmStatic
         fun newInstance(context: Context) {
             val intent = Intent(context, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             context.startActivity(intent)
         }
     }
