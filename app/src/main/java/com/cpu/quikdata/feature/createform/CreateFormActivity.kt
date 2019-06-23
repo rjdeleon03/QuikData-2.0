@@ -97,6 +97,7 @@ class CreateFormActivity : AppCompatActivity() {
         if (fragment.childFragmentManager.backStackEntryCount > 0) {
             fragment.childFragmentManager.popBackStack()
         } else {
+            mViewModel.deleteForm()
             finish()
         }
         return true

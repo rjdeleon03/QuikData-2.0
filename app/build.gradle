@@ -41,8 +41,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     // Navigation
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
@@ -53,10 +53,8 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$ktxNavVersion"
 
     // Room
-    implementation 'androidx.room:room-runtime:2.1.0'
-    kapt 'androidx.room:room-compiler:2.1.0'
-    implementation "androidx.room:room-ktx:2.1.0"
-
+    implementation 'androidx.room:room-runtime:2.0.0'
+    kapt 'androidx.room:room-compiler:2.0.0'
 
     // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha01'
@@ -70,7 +68,6 @@ dependencies {
     // Firebase
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-database:17.0.0'
-    implementation 'com.google.firebase:firebase-firestore:19.0.2'
 
     // Image picker and Glide
     implementation 'com.myhexaville:smart-image-picker:1.0.4'
@@ -83,6 +80,7 @@ dependencies {
 
     // Photoview
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.google.firebase:firebase-firestore:19.0.2'
 
 }
 

@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.observeOnly
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.customviews.ItemSection
 import kotlinx.android.synthetic.main.fragment_selection.*
@@ -67,8 +67,7 @@ class SelectionFragment : BaseCreateFormFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        mParentViewModel.form.observe(viewLifecycleOwner, Observer {  })
+        mParentViewModel.form.observeOnly(viewLifecycleOwner)
     }
 
 }
