@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.formdetails
+package com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.formdetails.FormDetails
 import kotlinx.android.synthetic.main.fragment_form_details.*
 

@@ -13,6 +13,7 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_health_assistance.*
+import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
 
 class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter, HealthAssistanceAdapter.ViewHolder>() {
 
@@ -34,7 +35,7 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
         val adapter = HealthAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
-        healthAssistanceRecyclerView.adapter = adapter
+        healthAssistanceRecyclerView.recyclerView.adapter = adapter
         return adapter
     }
 
@@ -42,7 +43,6 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
         super.onViewCreated(view, savedInstanceState)
         healthAssistanceAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
-                // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.createRow()
@@ -56,6 +56,7 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(HealthAssistanceViewModel::class.java)
         mViewModel.healthAssistance.observe(viewLifecycleOwner, Observer {
+            healthAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)
             mIsItemLimitReached = it.size >= mItemLimit
         })

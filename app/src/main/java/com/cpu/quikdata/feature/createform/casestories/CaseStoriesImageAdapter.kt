@@ -32,6 +32,7 @@ class CaseStoriesImageAdapter(context: Context,
         val view = mInflater.inflate(R.layout.item_image, parent, false)
         return ViewHolder(view, {
             mOnClickListener.invoke(mImages!![it]) }, {
+            mExpandedItem = -1
             mOnDeleteClickListener.invoke(mImages!![it]) }, { index, isOptionsDisplayed ->
             if (mExpandedItem >= 0) notifyItemChanged(mExpandedItem)
             mExpandedItem = if (isOptionsDisplayed) index else -1

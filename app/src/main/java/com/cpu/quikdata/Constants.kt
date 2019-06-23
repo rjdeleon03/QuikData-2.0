@@ -7,7 +7,7 @@ const val DEVICE_ID_KEY = "DEVICE_ID_KEY"
 const val FIREBASE_KEY_DEVICES = "devices"
 
 const val FIREBASE_KEY_FORM = "form"
-const val FIREBASE_KEY_PREFILLED = "baselineData"
+const val FIREBASE_KEY_BASELINE = "baselineData"
 const val FIREBASE_KEY_FORM_DETAILS = "formDetails"
 
 const val FIREBASE_KEY_GENERAL_INFO = "generalInfo"
@@ -57,3 +57,9 @@ const val FIREBASE_KEY_WASH_ASSISTANCE = "washAssistance"
 const val FIREBASE_KEY_WASH_GAPS = "washGaps"
 
 const val FIREBASE_KEY_EVACUATION = "evacuationSites"
+const val FIREBASE_KEY_EVACUATION_SITE_INFO = "evacuationSiteInfo"
+const val FIREBASE_KEY_EVACUATION_AGE = "evacuationAge"
+const val FIREBASE_KEY_EVACUATION_FACILITIES = "evacuationFacilities"
+const val FIREBASE_KEY_EVACUATION_WASH = "evacuationWash"
+const val FIREBASE_KEY_EVACUATION_PROTECTION = "evacuationProtection"
+const val FIREBASE_KEY_EVACUATION_COPING = "evacuationCoping"

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_form_nav"
+    app:startDestination="@id/selectionFragment">
+
+    <fragment
+        android:id="@+id/selectionFragment"
+        android:name="com.cpu.quikdata.feature.createform.basicselection.BasicSelectionFragment"
+        android:label="fragment_selection"
+        tools:layout="@layout/fragment_basic_selection" >
+        <action
+            android:id="@+id/action_selection_to_formDetailsAndBaselineFragment"
+            app:destination="@id/formDetailsAndBaselineFragment" />
+        <action
+            android:id="@+id/action_selection_to_generalInfoFragment"
+            app:destination="@id/generalInfoFragment" />
+        <action
+            android:id="@+id/action_selection_to_shelterInfoFragment"
+            app:destination="@id/shelterInfoFragment" />
+        <action
+            android:id="@+id/action_selection_to_foodSecurityInfoFragment"
+            app:destination="@id/foodSecurityInfoFragment" />
+        <action
+            android:id="@+id/action_selection_to_livelihoodsInfoFragment"
+            app:destination="@id/livelihoodsInfoFragment" />
+        <action
+            android:id="@+id/action_selection_to_healthInfoFragment"
+            app:destination="@id/healthInfoFragment" />
+        <action
+            android:id="@+id/action_selection_to_waterSanitationInfoFragment"
+            app:destination="@id/waterSanitationInfoFragment" />
+        <action
+            android:id="@+id/action_selection_to_evacuationInfoFragment"
+            app:destination="@id/evacuationInfoFragment" />
+        <action
+            android:id="@+id/action_selection_to_caseStoriesFragment"
+            app:destination="@id/caseStoriesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/generalInfoFragment"
+        android:name="com.cpu.quikdata.feature.createform.generalinfo.GeneralInfoFragment"
+        android:label="@string/gen_info_title"
+        tools:layout="@layout/fragment_general_info" />
+    <fragment
+        android:id="@+id/shelterInfoFragment"
+        android:name="com.cpu.quikdata.feature.createform.shelterinfo.ShelterInfoFragment"
+        android:label="@string/shelter_nonfood_title"
+        tools:layout="@layout/fragment_shelter_info" />
+    <fragment
+        android:id="@+id/foodSecurityInfoFragment"
+        android:name="com.cpu.quikdata.feature.createform.foodsecurityinfo.FoodSecurityInfoFragment"
+        android:label="@string/food_security_title"
+        tools:layout="@layout/fragment_food_security_info" />
+    <fragment
+        android:id="@+id/livelihoodsInfoFragment"
+        android:name="com.cpu.quikdata.feature.createform.livelihoodsinfo.LivelihoodsInfoFragment"
+        android:label="@string/livelihoods_title"
+        tools:layout="@layout/fragment_livelihoods_info" />
+    <fragment
+        android:id="@+id/healthInfoFragment"
+        android:name="com.cpu.quikdata.feature.createform.healthinfo.HealthInfoFragment"
+        android:label="@string/health_title"
+        tools:layout="@layout/fragment_health_info" />
+    <fragment
+        android:id="@+id/waterSanitationInfoFragment"
+        android:name="com.cpu.quikdata.feature.createform.watersanitationinfo.WaterSanitationInfoFragment"
+        android:label="@string/water_sanitation_title"
+        tools:layout="@layout/fragment_water_sanitation_info" />
+    <fragment
+        android:id="@+id/evacuationInfoFragment"
+        android:name="com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment"
+        android:label="@string/evacuation_title"
+        tools:layout="@layout/fragment_evacuation_info" >
+        <action
+            android:id="@+id/action_evacuationInfoFragment_to_evacuationContainerFragment"
+            app:destination="@id/evacuationContainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/caseStoriesFragment"
+        android:name="com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment"
+        android:label="@string/case_stories_title"
+        tools:layout="@layout/fragment_case_stories" >
+        <action
+            android:id="@+id/action_caseStoriesFragment_to_imageViewerFragment"
+            app:destination="@id/imageViewerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/evacuationContainerFragment"
+        android:name="com.cpu.quikdata.feature.createform.evacuationinfo.container.EvacuationContainerFragment"
+        android:label="@string/evacuation_title"
+        tools:layout="@layout/fragment_evacuation_container" >
+        <argument
+            android:name="evacuationId"
+            app:argType="string" />
+        <argument
+            android:name="isEditMode"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageViewerFragment"
+        android:name="com.cpu.quikdata.feature.imageviewer.ImageViewerFragment"
+        tools:layout="@layout/fragment_image_viewer" >
+        <argument
+            android:name="imageUri"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
+    <fragment
+        android:id="@+id/formDetailsAndBaselineFragment"
+        android:name="com.cpu.quikdata.feature.createform.formdetailsandbaseline.FormDetailsAndBaselineFragment"
+        android:label="@string/form_details_baseline_title"
+        tools:layout="@layout/fragment_form_details_and_baseline" />
+</navigation>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".feature.main.prefilledinfo.PrefilledInfoFragment">
+    tools:context=".old.prefilledinfo.PrefilledInfoFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,6 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/lightGray"
             android:orientation="vertical">
 
             <com.cpu.quikdata.customviews.DividerText
@@ -150,6 +151,7 @@
                 android:id="@+id/lightMaterialsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/text_light_materials"/>
 
         </LinearLayout>

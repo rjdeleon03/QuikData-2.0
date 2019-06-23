@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="@dimen/dimenExtraSmall"
     tools:context=".feature.createform.evacuationinfo.EvacuationInfoFragment">
 
     <LinearLayout
@@ -11,14 +12,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/view_appbarlayout"/>
-
-        <androidx.recyclerview.widget.RecyclerView
+        <com.cpu.quikdata.customviews.CustomRecyclerView
             android:id="@+id/evacuationRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            style="@style/RecyclerViewTheme"/>
+            app:text="@string/text_evacuation_empty"/>
 
     </LinearLayout>
 

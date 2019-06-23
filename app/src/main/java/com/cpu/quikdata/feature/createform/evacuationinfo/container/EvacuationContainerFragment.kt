@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeFragment
@@ -45,6 +46,8 @@ class EvacuationContainerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        setupClipping(evacuationInfoViewPager)
 
         val evacuationId = args.evacuationId
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)

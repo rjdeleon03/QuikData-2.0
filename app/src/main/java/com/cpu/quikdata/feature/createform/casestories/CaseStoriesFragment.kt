@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.dialog.InfoDialogFragment
+import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.myhexaville.smartimagepicker.ImagePicker
 import com.myhexaville.smartimagepicker.OnImagePickedListener
 import kotlinx.android.synthetic.main.fragment_case_stories.*
@@ -51,6 +53,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
     override fun onDestroyView() {
         mViewModel.updateCaseStoriesText(CaseStories(text = caseStoriesText.text))
+        (activity!! as CreateFormActivity).setSubtitle(getString(R.string.create_form_subtitle))
         super.onDestroyView()
     }
 
@@ -61,6 +64,10 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupClipping(view)
+        (activity!! as CreateFormActivity).setSubtitle()
+
         caseStoriesAddImageButton.clickWithGuard {
             if (mIsItemLimitReached) {
                 showToastMessage(R.string.case_stories_images_add_limit_error)

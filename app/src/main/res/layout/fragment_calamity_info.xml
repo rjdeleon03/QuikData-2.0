@@ -41,6 +41,7 @@
                 android:id="@+id/calamityAreaText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimenMid"
                 app:textHint="@string/calamity_info_area_desc_details"/>
 
         </LinearLayout>

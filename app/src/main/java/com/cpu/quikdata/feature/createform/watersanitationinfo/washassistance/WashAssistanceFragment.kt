@@ -13,6 +13,7 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_wash_assistance.*
+import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
 
 class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, WashAssistanceAdapter.ViewHolder>() {
 
@@ -34,7 +35,7 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
         val adapter = WashAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
-        washAssistanceRecyclerView.adapter = adapter
+        washAssistanceRecyclerView.recyclerView.adapter = adapter
         return adapter
     }
 
@@ -42,7 +43,6 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
         super.onViewCreated(view, savedInstanceState)
         washAssistanceAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
-                // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.createRow()
@@ -56,6 +56,7 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(WashAssistanceViewModel::class.java)
         mViewModel.washAssistance.observe(viewLifecycleOwner, Observer {
+            washAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)
             mIsItemLimitReached = it.size >= mItemLimit
         })

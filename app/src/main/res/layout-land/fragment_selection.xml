@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/selectionRootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:elevation="@dimen/dimenExtraSmall"
+    tools:context=".feature.createform.selection.SelectionFragment">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/selectionSaveButton"
+        android:layout_width="@dimen/dimenExtraLarge"
+        android:layout_height="@dimen/dimenExtraLarge"
+        android:layout_margin="@dimen/dimenMid"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:focusable="true"
+        android:clickable="true"
+        android:src="@drawable/ic_check_24dp"
+        app:tooltipText="@string/create_form_save"/>
+
+    <GridLayout
+        android:id="@+id/gridSectionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:columnCount="5">
+
+        <TextView
+            android:layout_width="0dp"
+            android:height="36dp"
+            android:layout_columnWeight="1"
+            android:layout_columnSpan="5"
+            android:background="@color/colorAccentLight"
+            android:gravity="center"
+            android:text="@string/selection_instructions_single_line"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_columnWeight="1"
+            android:layout_columnSpan="5"
+            android:background="@color/lightGray"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionFormDetailsButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/form_details_baseline_title"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:background="@color/lightGray"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionGenInfoButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/gen_info_title"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:background="@color/lightGray"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionShelterButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/shelter_nonfood_title"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionFoodButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/food_security_title"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:background="@color/lightGray"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionLivelihoodsButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/livelihoods_title"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:background="@color/lightGray"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionHealthButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/health_title"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionWaterButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/water_sanitation_title"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:background="@color/lightGray"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionEvacuationButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/evacuation_title"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:background="@color/lightGray"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionCaseStoriesButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/case_stories_title"/>
+
+    </GridLayout>
+
+</RelativeLayout>

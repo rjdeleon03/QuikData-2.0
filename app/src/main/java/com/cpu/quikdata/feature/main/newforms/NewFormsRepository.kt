@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.AppDatabase
+import com.cpu.quikdata.data.baselinedata.BaselineData
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
@@ -45,7 +46,7 @@ import org.joda.time.LocalDate
 class NewFormsRepository(application: Application) {
 
     private val mDatabase = AppDatabase.get(application)
-    private val mNewForms = mDatabase.formDao().getAll()
+    private val mNewForms = mDatabase.formDao().getAllActual()
 
     val newForms: LiveData<List<Form>>
         get() = mNewForms
@@ -62,6 +63,10 @@ class NewFormsRepository(application: Application) {
                 assessmentDate = dateNowInLong,
                 formId = formId)
             mDatabase.formDetailsDao().insert(formDetails)
+
+            val baselineData = BaselineData(id = generateId(),
+                formId = formId)
+            mDatabase.baselineDataDao().insert(baselineData)
 
             // endregion
 
@@ -196,8 +201,8 @@ class NewFormsRepository(application: Application) {
             mDatabase.livelihoodsNeedsDao().insert(livelihoodsNeeds)
 
             val livelihoodsGaps = LivelihoodsGaps(id = generateId(), formId = formId)
-            mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)            
-            
+            mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)
+
             // endregion
 
             // region Health information
@@ -247,7 +252,7 @@ class NewFormsRepository(application: Application) {
 
             val washGaps = WashGaps(id = generateId(), formId = formId)
             mDatabase.washGapsDao().insert(washGaps)
-            
+
             // endregion
 
             // region Case stories
@@ -258,6 +263,5 @@ class NewFormsRepository(application: Application) {
             // endregion
         }
     }
-
 
 }

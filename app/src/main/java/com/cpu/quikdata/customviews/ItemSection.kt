@@ -1,7 +1,6 @@
 package com.cpu.quikdata.customviews
 
 import android.content.Context
-import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -28,10 +27,12 @@ class ItemSection(context: Context, attrs: AttributeSet) : LinearLayout(context,
         optionsLabel.text = attributes.getString(R.styleable.ItemSection_text)
         attributes.recycle()
 
+        /*
         mainButton.setOnLongClickListener {
             expand()
             true
         }
+        */
         mainButton.clickWithGuard {
             mMainButtonListener?.invoke()
         }
@@ -44,12 +45,18 @@ class ItemSection(context: Context, attrs: AttributeSet) : LinearLayout(context,
         }
     }
 
+    /*
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
         // Collapse when another item is clicked
         if (!mIsCollapsed && ev != null && ev.action == MotionEvent.ACTION_UP) {
             mTouchListener?.invoke(this)
         }
         return super.onInterceptTouchEvent(ev)
+    }
+    */
+
+    fun setButtonListeners(main: () -> Unit) {
+        mMainButtonListener = main
     }
 
     fun setButtonListeners(main: () -> Unit,

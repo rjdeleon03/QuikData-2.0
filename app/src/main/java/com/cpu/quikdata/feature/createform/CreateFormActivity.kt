@@ -5,30 +5,34 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
+import android.widget.RelativeLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
 import kotlinx.android.synthetic.main.activity_create_form.*
 
+
 class CreateFormActivity : AppCompatActivity() {
 
     private lateinit var mNavController: NavController
     private lateinit var mViewModel: CreateFormViewModel
+    private var mLayoutMargin: Int = 0
+    private var mEditMode = false
 
     companion object {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
         private const val EDIT_MODE_KEY = "EDIT_MODE_KEY"
+        private const val BASIC_MODE_KEY = "BASIC_MODE_KEY"
 
         @JvmStatic
-        fun newInstance(context: Context, formId: String = "", editMode: Boolean = false) {
+        fun newInstance(context: Context, formId: String = "", editMode: Boolean = false, basicMode: Boolean = false) {
             val intent = Intent(context, CreateFormActivity::class.java)
             intent.putExtra(FORM_ID_KEY, formId)
             intent.putExtra(EDIT_MODE_KEY, editMode)
+            intent.putExtra(BASIC_MODE_KEY, basicMode)
             context.startActivity(intent)
         }
     }
@@ -41,9 +45,9 @@ class CreateFormActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Get edit mode flag and update toolbar title accordingly
-        val editMode = intent.getBooleanExtra(EDIT_MODE_KEY, false)
+        mEditMode = intent.getBooleanExtra(EDIT_MODE_KEY, false)
         var titleId = R.string.create_form_title_new
-        if (editMode) {
+        if (mEditMode) {
             titleId = R.string.create_form_title_edit
         }
 
@@ -54,6 +58,7 @@ class CreateFormActivity : AppCompatActivity() {
             mViewModel = ViewModelProviders.of(this, factory).get(CreateFormViewModel::class.java)
         }
 
+
         // Setup navController
         mNavController = findNavController(R.id.fragment)
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
@@ -62,6 +67,20 @@ class CreateFormActivity : AppCompatActivity() {
                 toolbarTitle.setText(titleId)
             }
         }
+
+        // Get basic mode flag and select the correct navigation graph
+        val basicMode = intent.getBooleanExtra(BASIC_MODE_KEY, false)
+        if (basicMode) {
+            mNavController.setGraph(R.navigation.create_form_nav_basic)
+        } else {
+            mNavController.setGraph(R.navigation.create_form_nav)
+        }
+
+
+        val ta = theme.obtainStyledAttributes(
+            intArrayOf(android.R.attr.actionBarSize)
+        )
+        mLayoutMargin = ta.getDimension(0, 0f).toInt()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -78,6 +97,7 @@ class CreateFormActivity : AppCompatActivity() {
         if (fragment.childFragmentManager.backStackEntryCount > 0) {
             fragment.childFragmentManager.popBackStack()
         } else {
+            mViewModel.deleteForm()
             finish()
         }
         return true
@@ -102,10 +122,16 @@ class CreateFormActivity : AppCompatActivity() {
     }
 
     fun hideToolbar() {
-        createFormToolbar.visibility = View.GONE
+        createFormToolbar?.visibility = View.GONE
+        val params = createFormFragmentLayout.layoutParams as RelativeLayout.LayoutParams
+        params.topMargin = 0
+        createFormFragmentLayout.layoutParams = params
     }
 
     fun showToolbar() {
-        createFormToolbar.visibility = View.VISIBLE
+        createFormToolbar?.visibility = View.VISIBLE
+        val params = createFormFragmentLayout.layoutParams as RelativeLayout.LayoutParams
+        params.topMargin = mLayoutMargin
+        createFormFragmentLayout.layoutParams = params
     }
 }

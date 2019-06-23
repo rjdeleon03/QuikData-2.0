@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".feature.auth.login.LoginFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_primary_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimenMid"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+            android:fontFamily="@font/nunitosans_bold"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-4dp"
+            android:gravity="center"
+            android:text="@string/app_subtitle"
+            android:fontFamily="@font/nunitosans_bold"
+            android:textColor="@android:color/white"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimenLarge"
+            android:layout_marginStart="@dimen/dimenMid"
+            android:layout_marginEnd="@dimen/dimenMid"
+            android:layout_marginBottom="@dimen/dimenLarge"
+            app:cardCornerRadius="@dimen/dimenMid">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.cpu.quikdata.customviews.SubdividerText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerText="@string/auth_phone_instructions"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textField1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimenExtraSmall"
+                    android:padding="@dimen/dimenSmall"
+                    android:minHeight="42dp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:hint="@string/text_phone_format"
+                    style="@style/EditTextTheme"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dimenMid"
+            android:background="@drawable/button_accent_bg"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/nunitosans_bold"
+            android:text="@string/text_continue"/>
+
+    </LinearLayout>
+
+</FrameLayout>
