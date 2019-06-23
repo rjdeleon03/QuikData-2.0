@@ -36,10 +36,17 @@ class CreateFormRepository(application: Application, formId: String) {
             val formValue = mForm.value!!
             formValue.isTemporary = false
             mDatabase.formDao().update(formValue)
+            submitBasicData()
         }
     }
 
     // region Submission methods
+
+    private fun submitBasicData() {
+        submitFormDetails()
+        submitGeneralInformation()
+        submitCaseStories()
+    }
 
     fun submitFormDetails() {
         submitFormSection(true)
@@ -294,6 +301,10 @@ class CreateFormRepository(application: Application, formId: String) {
                 }
             }
         }
+    }
+
+    fun submitCaseStories() {
+
     }
 
     // endregion
