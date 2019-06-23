@@ -1,6 +1,7 @@
 package com.cpu.quikdata.feature.createform
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.*
 import com.cpu.quikdata.data.AppDatabase
@@ -8,6 +9,7 @@ import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.utils.runOnIoThread
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 class CreateFormRepository(application: Application, formId: String) {
 
@@ -15,6 +17,7 @@ class CreateFormRepository(application: Application, formId: String) {
     private val mFormId = formId
     private val mForm = mDatabase.formDao().getById(mFormId)
     private val mFirestore = FirebaseFirestore.getInstance()
+    private val mStorage = FirebaseStorage.getInstance()
 
     val form: LiveData<Form>
         get() = mForm
@@ -48,11 +51,11 @@ class CreateFormRepository(application: Application, formId: String) {
         submitCaseStories()
     }
 
-    fun submitFormDetails() {
+    private fun submitFormDetails() {
         submitFormSection(true)
     }
 
-    fun submitGeneralInformation() {
+    private fun submitGeneralInformation() {
         submitFormSection {
             run {
                 val dao = mDatabase.calamityInfoDao()
@@ -103,7 +106,7 @@ class CreateFormRepository(application: Application, formId: String) {
 
     }
 
-    fun submitShelterInformation() {
+    private fun submitShelterInformation() {
         submitFormSection {
             run {
                 val dao = mDatabase.houseDamageRowDao()
@@ -139,7 +142,7 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
-    fun submitFoodSecurity() {
+    private fun submitFoodSecurity() {
         submitFormSection {
             run {
                 val dao = mDatabase.foodSecurityImpactDao()
@@ -171,7 +174,7 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
-    fun submitLivelihoods() {
+    private fun submitLivelihoods() {
         submitFormSection {
             run {
                 val dao = mDatabase.incomeBeforeRowDao()
@@ -219,7 +222,7 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
-    fun submitHealthInformation() {
+    private fun submitHealthInformation() {
         submitFormSection {
             run {
                 val dao = mDatabase.diseasesRowDao()
@@ -262,7 +265,7 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
-    fun submitWashInformation() {
+    private fun submitWashInformation() {
         submitFormSection {
             run {
                 val dao = mDatabase.washConditionsDao()
@@ -289,7 +292,7 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
-    fun submitEvacuationInformation() {
+    private fun submitEvacuationInformation() {
         submitFormSection {
             run {
                 val dao = mDatabase.evacuationItemDao()
@@ -303,8 +306,24 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
-    fun submitCaseStories() {
-
+    private fun submitCaseStories() {
+        submitFormSection {
+            run {
+                val dao = mDatabase.caseStoriesDao()
+                val section = dao.getByFormIdNonLive(mFormId)
+                saveData(FIREBASE_KEY_CASE_STORIES, section.root!!.id, section)
+                section.images?.forEach {
+                    mStorage.reference.child("images/${it.id}")
+                        .putFile(Uri.parse(it.uri))
+                        .addOnSuccessListener {
+                            val x = 1
+                        }
+                        .addOnFailureListener {
+                            val y = 2
+                        }
+                }
+            }
+        }
     }
 
     // endregion

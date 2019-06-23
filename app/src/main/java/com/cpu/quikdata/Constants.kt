@@ -63,3 +63,5 @@ const val FIREBASE_KEY_EVACUATION_FACILITIES = "evacuationFacilities"
 const val FIREBASE_KEY_EVACUATION_WASH = "evacuationWash"
 const val FIREBASE_KEY_EVACUATION_PROTECTION = "evacuationProtection"
 const val FIREBASE_KEY_EVACUATION_COPING = "evacuationCoping"
+
+const val FIREBASE_KEY_CASE_STORIES = "caseStories"
