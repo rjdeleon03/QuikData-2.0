@@ -27,6 +27,8 @@ import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.OnNeverAskAgain
 import permissions.dispatcher.OnPermissionDenied
 import permissions.dispatcher.RuntimePermissions
+import com.cpu.quikdata.utils.getImageUri
+
 
 @RuntimePermissions
 class CaseStoriesFragment : BaseCreateFormFragment() {
@@ -115,7 +117,8 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
         // Setup image picker
         mImagePicker = ImagePicker(activity!!, this, OnImagePickedListener {
-            mViewModel.insertImage(it.toString())
+            val imageUri = getImageUri(context!!, it)
+            mViewModel.insertImage(imageUri.toString())
         })
     }
 

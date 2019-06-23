@@ -28,6 +28,10 @@ class CaseStoriesRepository(application: Application, formId: String) {
 
     fun insertImage(uri: String) {
         runOnIoThread {
+            // TODO: If Google Photos URI, save to local first
+            
+
+
             val caseStoriesId = mCaseStories.value!!.root!!.id
             mDatabase.caseStoriesImageItemDao().insert(CaseStoriesImageItem(
                 id = generateId(),
