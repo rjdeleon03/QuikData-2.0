@@ -43,7 +43,7 @@
                 android:theme="@style/ToolbarSubtitleTheme"
                 android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
-                android:visibility="gone"/>
+                android:text="@string/create_form_subtitle"/>
 
         </LinearLayout>
 
