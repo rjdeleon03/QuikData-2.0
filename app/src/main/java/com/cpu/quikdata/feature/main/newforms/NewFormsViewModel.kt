@@ -15,4 +15,6 @@ class NewFormsViewModel(application: Application) : AndroidViewModel(application
 
     fun createNewForm(formId: String) = mRepository.createNewForm(formId)
 
+    fun deleteForm(formComplete: FormComplete) = mRepository.deleteForm(formComplete)
+
 }

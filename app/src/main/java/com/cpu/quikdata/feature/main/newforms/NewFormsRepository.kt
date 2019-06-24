@@ -38,6 +38,7 @@ import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
 import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
 import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
 import com.cpu.quikdata.utils.generateId
+import com.cpu.quikdata.utils.runOnIoThread
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -265,4 +266,9 @@ class NewFormsRepository(application: Application) {
         }
     }
 
+    fun deleteForm(formComplete: FormComplete) {
+        runOnIoThread {
+            mDatabase.formDao().delete(formComplete.form!!)
+        }
+    }
 }

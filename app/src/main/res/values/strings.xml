@@ -408,5 +408,7 @@
     <string name="home_consortium">Consortium</string>
     <string name="consortium_title">Consortium</string>
     <string name="text_form_item">DNCA Form</string>
-    <string name="form_item_assessed">Assessed on</string>
+    <string name="form_item_assessed">Assessed on %1$s</string>
+    <string name="text_empty_location">%1$s%2$s</string>
+    <string name="text_complete_location">%1$s, %2$s</string>
 </resources>

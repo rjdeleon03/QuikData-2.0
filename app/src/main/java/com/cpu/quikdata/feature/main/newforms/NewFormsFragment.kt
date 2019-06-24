@@ -35,7 +35,7 @@ class NewFormsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mAdapter = NewFormsAdapter(context!!)
+        mAdapter = NewFormsAdapter(context!!) { mViewModel.deleteForm(it) }
         newFormsRecyclerView.recyclerView.adapter = mAdapter
         newFormsAddButton.clickWithGuard {
             val formId = generateId()
