@@ -4,6 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.setupClipping
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,16 +23,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private lateinit var mNavController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setupClipping(mainActivityFragmentLayout)
 
-        setSupportActionBar(mainActivityToolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbarTitle.setText(R.string.new_forms_title)
-    }
+        mNavController = findNavController(R.id.mainActivityFragment)
+        mainActivityNavigationView.setupWithNavController(mNavController)
+        mNavController.addOnDestinationChangedListener { _, destination, _ ->
+            toolbarTitle.text = destination.label
+        }
+
+}
 
     override fun onSupportNavigateUp(): Boolean {
         finish()

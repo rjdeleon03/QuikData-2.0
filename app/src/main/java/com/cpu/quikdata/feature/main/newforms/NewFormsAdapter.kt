@@ -89,9 +89,7 @@ class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> U
             // endregion
 
             // region Calamity
-            if (calamityInfo.calamityType.isBlank()) {
-                view.formItemCalamityText.visibility = View.GONE
-            } else {
+            if (!calamityInfo.calamityType.isBlank()) {
                 view.formItemCalamityText.text = calamityInfo.calamityType
             }
             // endregion

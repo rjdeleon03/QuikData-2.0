@@ -53,7 +53,6 @@
             android:layout_marginStart="@dimen/dimenMid"
             android:layout_marginEnd="@dimen/dimenMid"
             android:textColor="?android:attr/textColorHint"
-            android:text="@string/text_unknown"
             android:maxLines="1"
             android:ellipsize="end"/>
 
@@ -65,7 +64,6 @@
             android:layout_marginStart="@dimen/dimenMid"
             android:layout_marginEnd="@dimen/dimenMid"
             android:textColor="?android:attr/textColorHint"
-            android:text="@string/text_unknown"
             android:maxLines="1"
             android:ellipsize="end"/>
 
@@ -78,7 +76,7 @@
             android:layout_marginEnd="@dimen/dimenMid"
             android:layout_marginBottom="@dimen/dimenMid"
             android:textColor="?android:attr/textColorHint"
-            android:text="@string/text_unknown"
+            android:text="@string/text_unknown_calamity"
             android:maxLines="1"
             android:ellipsize="end"/>
 

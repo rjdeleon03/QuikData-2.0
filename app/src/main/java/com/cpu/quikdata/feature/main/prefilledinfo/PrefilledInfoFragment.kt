@@ -1,4 +1,4 @@
-package com.cpu.quikdata.old.prefilledinfo
+package com.cpu.quikdata.feature.main.prefilledinfo
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle

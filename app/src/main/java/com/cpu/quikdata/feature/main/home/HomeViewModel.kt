@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.home
+package com.cpu.quikdata.feature.main.home
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

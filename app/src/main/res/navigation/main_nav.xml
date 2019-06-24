@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/newFormsFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/newFormsFragment"
@@ -17,12 +17,17 @@
         tools:layout="@layout/fragment_sent_forms" />
     <fragment
         android:id="@+id/prefilledInfoFragment"
-        android:name="com.cpu.quikdata.old.prefilledinfo.PrefilledInfoFragment"
+        android:name="com.cpu.quikdata.feature.main.prefilledinfo.PrefilledInfoFragment"
         android:label="@string/prefilled_title"
         tools:layout="@layout/fragment_prefilled_info" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.cpu.quikdata.old.settings.SettingsFragment"
+        android:name="com.cpu.quikdata.feature.main.settings.SettingsFragment"
         android:label="@string/settings_title"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.cpu.quikdata.feature.main.home.HomeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_home" />
 </navigation>
