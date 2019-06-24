@@ -407,4 +407,5 @@
     <string name="home_dnca_archive">DNCA Archive</string>
     <string name="home_consortium">Consortium</string>
     <string name="consortium_title">Consortium</string>
+    <string name="text_form_item">DNCA Form</string>
 </resources>
