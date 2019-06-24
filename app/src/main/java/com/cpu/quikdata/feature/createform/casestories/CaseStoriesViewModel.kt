@@ -16,7 +16,7 @@ class CaseStoriesViewModel(application: Application, formId: String) : AndroidVi
 
     fun updateCaseStoriesText(data: CaseStories) = mRepository.updateCaseStoriesText(data)
 
-    fun insertImage(uri: String) = mRepository.insertImage(uri)
+    fun insertImage(uri: String, id: String) = mRepository.insertImage(uri, id)
 
     fun deleteImage(data: CaseStoriesImageItem) = mRepository.deleteImage(data)
 }

@@ -10,6 +10,7 @@ import com.cpu.quikdata.utils.runOnIoThread
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 class CreateFormRepository(application: Application, formId: String) {
 
@@ -27,6 +28,13 @@ class CreateFormRepository(application: Application, formId: String) {
 
     fun deleteForm() {
         runOnIoThread {
+            // Delete image files associated with the form
+            val caseStories = mDatabase.caseStoriesDao().getByFormIdNonLive(mFormId)
+            caseStories.images?.forEach {
+                val file = File(Uri.parse(it.uri).path)
+                file.delete()
+            }
+
             val formValue = mForm.value!!
             if (formValue.isTemporary) {
                 mDatabase.formDao().delete(formValue)
