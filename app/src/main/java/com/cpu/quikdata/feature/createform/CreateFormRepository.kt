@@ -4,6 +4,7 @@ import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.*
+import com.cpu.quikdata.common.deleteFile
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.utils.runOnIoThread
@@ -31,8 +32,7 @@ class CreateFormRepository(application: Application, formId: String) {
             // Delete image files associated with the form
             val caseStories = mDatabase.caseStoriesDao().getByFormIdNonLive(mFormId)
             caseStories.images?.forEach {
-                val file = File(Uri.parse(it.uri).path)
-                file.delete()
+                Uri.parse(it.uri).deleteFile()
             }
 
             val formValue = mForm.value!!

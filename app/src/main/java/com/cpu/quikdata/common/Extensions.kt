@@ -3,6 +3,7 @@ package com.cpu.quikdata.common
 import android.app.Activity
 import android.graphics.Color
 import android.graphics.Outline
+import android.net.Uri
 import android.os.SystemClock
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,8 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.dialog.ConfirmationDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import org.joda.time.format.DateTimeFormat
+import java.io.File
+import java.lang.Exception
 
 fun <T> LiveData<T>.observeOnly(lifecycleOwner: LifecycleOwner) {
     observe(lifecycleOwner, Observer {  })
@@ -134,6 +137,16 @@ fun Fragment.setupClipping(rootLayout: View) {
         }
     }
     rootLayout.clipToOutline = true
+}
+
+fun Uri.deleteFile(): Boolean {
+    val file = File(path)
+    return try {
+        file.delete()
+        true
+    } catch (ex: Exception) {
+        false
+    }
 }
 
 /*
