@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:focusable="true"
     android:clickable="true"
@@ -46,16 +46,36 @@
         android:background="@android:color/white"
         android:orientation="vertical">
 
+        <!--<TextView-->
+            <!--android:id="@+id/formItemDateText"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="?android:attr/textColorHint"-->
+            <!--android:maxLines="1"-->
+            <!--android:ellipsize="end"/>-->
+
         <TextView
-            android:id="@+id/formItemDateText"
+            android:id="@+id/formItemSitioBarangayText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimenExtraSmall"
             android:textColor="?android:attr/textColorHint"
+            android:text="@string/text_unknown"
             android:maxLines="1"
             android:ellipsize="end"/>
 
         <TextView
-            android:id="@+id/formItemLocationText"
+            android:id="@+id/formItemCityProvinceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimenExtraSmall"
+            android:textColor="?android:attr/textColorHint"
+            android:text="@string/text_unknown"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/formItemCalamityText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimenExtraSmall"

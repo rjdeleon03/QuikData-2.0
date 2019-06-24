@@ -11,6 +11,7 @@ import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeeds
 import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.data.form.FormComplete
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
 import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRow
@@ -48,7 +49,7 @@ class NewFormsRepository(application: Application) {
     private val mDatabase = AppDatabase.get(application)
     private val mNewForms = mDatabase.formDao().getAllActual()
 
-    val newForms: LiveData<List<Form>>
+    val newForms: LiveData<List<FormComplete>>
         get() = mNewForms
 
     fun createNewForm(formId: String) {

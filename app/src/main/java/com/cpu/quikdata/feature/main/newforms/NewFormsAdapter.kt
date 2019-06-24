@@ -4,11 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.toDateString
 import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.data.form.FormComplete
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import kotlinx.android.synthetic.main.item_form.view.*
 import java.lang.ref.WeakReference
@@ -16,7 +17,7 @@ import java.lang.ref.WeakReference
 class NewFormsAdapter(context: Context) : RecyclerView.Adapter<NewFormsAdapter.ViewHolder>() {
 
     private var mContext: WeakReference<Context> = WeakReference(context)
-    private var mForms: List<Form>? = null
+    private var mForms: List<FormComplete>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(mContext.get())
@@ -37,7 +38,7 @@ class NewFormsAdapter(context: Context) : RecyclerView.Adapter<NewFormsAdapter.V
         holder.populateWithData(form)
     }
 
-    fun setForms(forms: List<Form>) {
+    fun setForms(forms: List<FormComplete>) {
         mForms = forms
         notifyDataSetChanged()
     }
@@ -49,8 +50,15 @@ class NewFormsAdapter(context: Context) : RecyclerView.Adapter<NewFormsAdapter.V
         val view: View
             get() = mView
 
-        fun populateWithData(form: Form) {
-            view.tag = form.id
+        fun populateWithData(form: FormComplete) {
+            view.tag = form.form!!.id
+            val formDetails = form.formDetails!![0]
+            val baselineData = form.baselineData!![0]
+            val calamityInfo = form.calamityInfo!![0]
+            view.formItemNameText.text = "${view.context.getString(R.string.form_item_assessed)}: ${formDetails.assessmentDate.toDateString()}"
+            view.formItemSitioBarangayText.text = "${baselineData.sitio}, ${baselineData.barangay}"
+            view.formItemCityProvinceText.text = "${baselineData.city}, ${baselineData.province}"
+            view.formItemCalamityText.text = calamityInfo.calamityType
         }
 
         fun setOnClickListener(listener: (String) -> Unit) {
