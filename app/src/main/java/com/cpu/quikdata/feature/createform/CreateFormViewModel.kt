@@ -19,20 +19,4 @@ class CreateFormViewModel(application: Application, formId: String) : AndroidVie
     fun deleteForm() = mRepository.deleteForm()
 
     fun saveFormAsActual() = mRepository.saveFormAsActual()
-
-    fun submitFormDetails() = mRepository.submitFormDetails()
-
-    fun submitGeneralInformation() = mRepository.submitGeneralInformation()
-
-    fun submitShelterInformation() = mRepository.submitShelterInformation()
-
-    fun submitFoodSecurity() = mRepository.submitFoodSecurity()
-
-    fun submitLivelihoods() = mRepository.submitLivelihoods()
-
-    fun submitHealthInformation() = mRepository.submitHealthInformation()
-
-    fun submitWashInformation() = mRepository.submitWashInformation()
-
-    fun submitEvacuationInformation() = mRepository.submitEvacuationInformation()
 }

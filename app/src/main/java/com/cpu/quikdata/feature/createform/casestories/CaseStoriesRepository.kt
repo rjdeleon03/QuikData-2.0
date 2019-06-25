@@ -1,7 +1,9 @@
 package com.cpu.quikdata.feature.createform.casestories
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.LiveData
+import com.cpu.quikdata.common.deleteFile
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.casestories.CaseStoriesComplete
@@ -26,11 +28,11 @@ class CaseStoriesRepository(application: Application, formId: String) {
         }
     }
 
-    fun insertImage(uri: String) {
+    fun insertImage(uri: String, id: String) {
         runOnIoThread {
             val caseStoriesId = mCaseStories.value!!.root!!.id
             mDatabase.caseStoriesImageItemDao().insert(CaseStoriesImageItem(
-                id = generateId(),
+                id = id,
                 dateCreated = LocalDateTime.now().toDateTime().millis,
                 uri = uri,
                 caseStoriesId = caseStoriesId
@@ -40,6 +42,7 @@ class CaseStoriesRepository(application: Application, formId: String) {
 
     fun deleteImage(data: CaseStoriesImageItem) {
         runOnIoThread {
+            Uri.parse(data.uri).deleteFile()
             mDatabase.caseStoriesImageItemDao().delete(data)
         }
     }

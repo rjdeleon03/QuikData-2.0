@@ -53,8 +53,9 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$ktxNavVersion"
 
     // Room
-    implementation 'androidx.room:room-runtime:2.0.0'
-    kapt 'androidx.room:room-compiler:2.0.0'
+    implementation 'androidx.room:room-runtime:2.1.0'
+    kapt 'androidx.room:room-compiler:2.1.0'
+    implementation 'androidx.room:room-ktx:2.1.0'
 
     // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha01'
@@ -66,8 +67,10 @@ dependencies {
     implementation 'net.danlew:android.joda:2.10.1.2'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-core:16.0.9'
-    implementation 'com.google.firebase:firebase-database:17.0.0'
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.google.firebase:firebase-database:18.0.0'
+    implementation 'com.google.firebase:firebase-firestore:20.1.0'
+    implementation 'com.google.firebase:firebase-storage:18.0.0'
 
     // Image picker and Glide
     implementation 'com.myhexaville:smart-image-picker:1.0.4'
@@ -80,7 +83,6 @@ dependencies {
 
     // Photoview
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
-    implementation 'com.google.firebase:firebase-firestore:19.0.2'
 
 }
 

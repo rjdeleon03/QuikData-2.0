@@ -129,6 +129,13 @@ class NewFormsRepository(application: Application) {
 
             // endregion
 
+            // region Case stories
+
+            val caseStories = CaseStories(id = generateId(), formId = formId)
+            mDatabase.caseStoriesDao().insert(caseStories)
+
+            // endregion
+
             // region Shelter and non-food information
 
             for (i in 0 until HouseCategories.values().size) {
@@ -254,13 +261,6 @@ class NewFormsRepository(application: Application) {
 
             val washGaps = WashGaps(id = generateId(), formId = formId)
             mDatabase.washGapsDao().insert(washGaps)
-
-            // endregion
-
-            // region Case stories
-
-            val caseStories = CaseStories(id = generateId(), formId = formId)
-            mDatabase.caseStoriesDao().insert(caseStories)
 
             // endregion
         }

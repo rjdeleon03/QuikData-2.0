@@ -20,6 +20,7 @@ import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.dialog.InfoDialogFragment
 import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.utils.generateId
 import com.myhexaville.smartimagepicker.ImagePicker
 import com.myhexaville.smartimagepicker.OnImagePickedListener
 import kotlinx.android.synthetic.main.fragment_case_stories.*
@@ -27,6 +28,8 @@ import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.OnNeverAskAgain
 import permissions.dispatcher.OnPermissionDenied
 import permissions.dispatcher.RuntimePermissions
+import com.cpu.quikdata.utils.getImageUri
+
 
 @RuntimePermissions
 class CaseStoriesFragment : BaseCreateFormFragment() {
@@ -115,7 +118,9 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
         // Setup image picker
         mImagePicker = ImagePicker(activity!!, this, OnImagePickedListener {
-            mViewModel.insertImage(it.toString())
+            val imageId = generateId()
+            val imageUri = getImageUri(context!!, it, imageId)
+            mViewModel.insertImage(imageUri.toString(), imageId)
         })
     }
 

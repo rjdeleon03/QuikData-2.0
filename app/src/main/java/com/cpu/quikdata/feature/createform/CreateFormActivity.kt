@@ -103,6 +103,10 @@ class CreateFormActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onBackPressed() {
+        onSupportNavigateUp()
+    }
+
     fun setToolbarTitle(title: CharSequence? = "") {
         toolbarTitle.text = title
         if (!title.isNullOrBlank()) {
