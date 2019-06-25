@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -103,6 +104,9 @@ class CreateFormActivity : AppCompatActivity() {
                     mViewModel.deleteForm()
                     finish()
                 })
+            } else {
+                Toast.makeText(this, R.string.form_item_changes_saved, Toast.LENGTH_SHORT).show()
+                finish()
             }
         }
         return true
