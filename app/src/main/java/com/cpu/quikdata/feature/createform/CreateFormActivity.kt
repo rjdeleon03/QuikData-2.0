@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
 import kotlinx.android.synthetic.main.activity_create_form.*
 
@@ -97,8 +98,12 @@ class CreateFormActivity : AppCompatActivity() {
         if (fragment.childFragmentManager.backStackEntryCount > 0) {
             fragment.childFragmentManager.popBackStack()
         } else {
-            mViewModel.deleteForm()
-            finish()
+            if (mViewModel.isFormTemporary) {
+                showConfirmationDialog({
+                    mViewModel.deleteForm()
+                    finish()
+                })
+            }
         }
         return true
     }

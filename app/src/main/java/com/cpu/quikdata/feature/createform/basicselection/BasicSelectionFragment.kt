@@ -38,11 +38,6 @@ class BasicSelectionFragment : BaseCreateFormFragment() {
         mNavController = findNavController()
 
         setupClipping(basicSelectionRootLayout)
-        selectionArchiveButton.clickWithGuard {
-            mParentViewModel.deleteForm()
-            MainActivity.newInstance(context!!)
-            activity!!.finish()
-        }
         selectionSendSaveButton.clickWithGuard {
             mParentViewModel.saveFormAsActual()
             MainActivity.newInstance(context!!)
