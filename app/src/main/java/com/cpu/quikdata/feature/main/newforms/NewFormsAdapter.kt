@@ -64,7 +64,7 @@ class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> U
 
             // region Sitio/Barangay
             if (baselineData.sitio.isBlank() && baselineData.barangay.isBlank()) {
-                view.formItemSitioBarangayText.visibility = View.GONE
+                view.formItemSitioBarangayText.text = view.context.getString(R.string.text_empty_sitio_barangay)
             }
             else if (baselineData.sitio.isBlank() || baselineData.barangay.isBlank()) {
                 view.formItemSitioBarangayText.text =
@@ -77,7 +77,7 @@ class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> U
 
             // region City/Province
             if (baselineData.city.isBlank() && baselineData.province.isBlank()) {
-                view.formItemCityProvinceText.visibility = View.GONE
+                view.formItemCityProvinceText.text = view.context.getString(R.string.text_empty_city_province)
             }
             else if (baselineData.city.isBlank() || baselineData.province.isBlank()) {
                 view.formItemCityProvinceText.text =

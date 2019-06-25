@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFocusableFragment
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import kotlinx.android.synthetic.main.fragment_prefilled_info.*
 
@@ -58,6 +59,11 @@ class PrefilledInfoFragment : BaseFocusableFragment() {
         mViewModel.updatePrefilledData(prefilledData)
 
         super.onDestroyView()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupClipping(prefilledMainLayout)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".feature.main.prefilledinfo.PrefilledInfoFragment"
+    android:id="@+id/prefilledMainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".feature.main.prefilledinfo.PrefilledInfoFragment">
+    android:elevation="@dimen/dimenExtraSmall"
+    android:background="@color/lightGray">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,7 +16,8 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:paddingBottom="@dimen/dimenMid"
+            android:background="@color/lightGray"
             android:columnCount="2">
 
             <com.cpu.quikdata.customviews.DividerText
@@ -167,14 +171,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
+                android:layout_columnSpan="2"
                 app:textHint="@string/text_light_materials"/>
-
-
-            <include layout="@layout/view_divider"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_columnWeight="1"
-                android:layout_gravity="bottom"/>
 
         </GridLayout>
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -30,12 +31,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setupClipping(mainActivityFragmentLayout)
-
         mNavController = findNavController(R.id.mainActivityFragment)
-        mainActivityNavigationView.setupWithNavController(mNavController)
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
             toolbarTitle.text = destination.label
         }
+        mainActivityNavigationView.setupWithNavController(mNavController)
 
 }
 

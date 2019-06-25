@@ -416,4 +416,6 @@
     <string name="text_archive">Archive</string>
     <string name="text_unknown_calamity">Unknown Calamity</string>
     <string name="text_home">Home</string>
+    <string name="text_empty_sitio_barangay">Unknown Sitio and Barangay</string>
+    <string name="text_empty_city_province">Unknown City/Municipality and Province</string>
 </resources>
