@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
@@ -117,6 +118,18 @@ fun Fragment.showConfirmationDialog(positiveButtonListener: () -> Unit,
         Toast.makeText(this.context!!, toastId, Toast.LENGTH_SHORT).show()
     }
     dialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
+}
+
+fun AppCompatActivity.showConfirmationDialog(positiveButtonListener: () -> Unit,
+                                    titleId: Int = R.string.form_item_discard_title,
+                                    layoutId: Int = R.layout.dialog_form_item_discard,
+                                    toastId: Int = R.string.form_item_discarded) {
+    val dialog = ConfirmationDialogFragment.newInstance(titleId, layoutId)
+    dialog.onPositiveButtonListener = {
+        positiveButtonListener.invoke()
+        Toast.makeText(this, toastId, Toast.LENGTH_SHORT).show()
+    }
+    dialog.show(this.supportFragmentManager, ConfirmationDialogFragment.TAG)
 }
 
 fun Activity.setupClipping(rootLayout: ViewGroup) {

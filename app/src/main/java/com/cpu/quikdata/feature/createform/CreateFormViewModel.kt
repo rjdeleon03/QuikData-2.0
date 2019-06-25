@@ -16,6 +16,9 @@ class CreateFormViewModel(application: Application, formId: String) : AndroidVie
     val form: LiveData<Form>
         get() = mRepository.form
 
+    val isFormTemporary: Boolean
+        get() = mRepository.isFormTemporary
+
     fun deleteForm() = mRepository.deleteForm()
 
     fun saveFormAsActual() = mRepository.saveFormAsActual()

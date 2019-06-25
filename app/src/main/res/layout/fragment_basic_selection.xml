@@ -9,18 +9,6 @@
     android:background="@color/lighterGray">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/selectionArchiveButton"
-        android:layout_width="@dimen/dimenExtraLarge"
-        android:layout_height="@dimen/dimenExtraLarge"
-        android:layout_margin="@dimen/dimenMid"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:focusable="true"
-        android:clickable="true"
-        android:src="@drawable/ic_archive_24dp"
-        app:tooltipText="@string/create_form_save"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/selectionSendSaveButton"
         android:layout_width="@dimen/dimenExtraLarge"
         android:layout_height="@dimen/dimenExtraLarge"

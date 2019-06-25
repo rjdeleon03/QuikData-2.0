@@ -12,9 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.consortium.ConsortiumActivity"></activity>
-        <activity android:name=".feature.auth.AuthActivity">
-
+        <activity android:name=".feature.consortium.ConsortiumActivity">
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
@@ -26,9 +24,6 @@
                 android:value="com.cpu.quikdata.feature.main.MainActivity" />
         </activity>
         <activity android:name=".feature.main.MainActivity">
-             <meta-data
-                 android:name="android.support.PARENT_ACTIVITY"
-                 android:value="com.cpu.quikdata.feature.auth.AuthActivity" />
              <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
 

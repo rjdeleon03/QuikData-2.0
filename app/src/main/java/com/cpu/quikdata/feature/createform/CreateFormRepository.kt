@@ -24,6 +24,9 @@ class CreateFormRepository(application: Application, formId: String) {
     val form: LiveData<Form>
         get() = mForm
 
+    val isFormTemporary: Boolean
+        get() = mForm.value!!.isTemporary
+
     private val formId: String
         get() = mForm.value!!.id
 
