@@ -9,6 +9,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoFragment
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesFragment
 import com.cpu.quikdata.feature.createform.generalinfo.causeofdeath.CauseOfDeathFragment
@@ -34,6 +35,8 @@ class GeneralInfoFragment : BaseCreateFormSectionFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupClipping(genInfoViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(CalamityInfoFragment.newInstance(), getString(R.string.calamity_info_title))

@@ -1,13 +1,10 @@
-package com.cpu.quikdata.feature.createform.formdetails
+package com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails
 
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseRepository
-import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.utils.runOnIoThread
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
 
 class FormDetailsRepository(application: Application, formId: String) :
     BaseRepository<FormDetails>(application) {

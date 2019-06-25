@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance.WashAssistanceFragment
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washconditions.WashConditionsFragment
@@ -31,6 +32,8 @@ class WaterSanitationInfoFragment : BaseCreateFormSectionFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        setupClipping(washViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(WashConditionsFragment.newInstance(), getString(R.string.wash_conditions_title))

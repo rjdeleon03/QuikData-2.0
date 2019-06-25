@@ -11,7 +11,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimenExtraSmall"
         android:layout_marginStart="@dimen/dimenMid"
-        android:layout_marginEnd="@dimen/dimenMid"/>
+        android:layout_marginEnd="@dimen/dimenMid"
+        android:textColor="?android:attr/textColorHint"/>
 
     <EditText
         android:id="@+id/textField"

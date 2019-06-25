@@ -5,20 +5,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
+import android.widget.RelativeLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
 import kotlinx.android.synthetic.main.activity_create_form.*
 
+
 class CreateFormActivity : AppCompatActivity() {
 
     private lateinit var mNavController: NavController
     private lateinit var mViewModel: CreateFormViewModel
+    private var mLayoutMargin: Int = 0
 
     companion object {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
@@ -62,6 +63,12 @@ class CreateFormActivity : AppCompatActivity() {
                 toolbarTitle.setText(titleId)
             }
         }
+
+
+        val ta = theme.obtainStyledAttributes(
+            intArrayOf(android.R.attr.actionBarSize)
+        )
+        mLayoutMargin = ta.getDimension(0, 0f).toInt()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -102,10 +109,16 @@ class CreateFormActivity : AppCompatActivity() {
     }
 
     fun hideToolbar() {
-        createFormToolbar.visibility = View.GONE
+        createFormToolbar?.visibility = View.GONE
+        val params = createFormFragmentLayout.layoutParams as RelativeLayout.LayoutParams
+        params.topMargin = 0
+        createFormFragmentLayout.layoutParams = params
     }
 
     fun showToolbar() {
-        createFormToolbar.visibility = View.VISIBLE
+        createFormToolbar?.visibility = View.VISIBLE
+        val params = createFormFragmentLayout.layoutParams as RelativeLayout.LayoutParams
+        params.topMargin = mLayoutMargin
+        createFormFragmentLayout.layoutParams = params
     }
 }

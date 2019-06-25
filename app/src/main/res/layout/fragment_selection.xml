@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/selectionRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:elevation="@dimen/dimenExtraSmall"
     tools:context=".feature.createform.selection.SelectionFragment">
-
-    <include layout="@layout/view_appbarlayout"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/selectionSaveButton"
@@ -20,6 +20,7 @@
         android:focusable="true"
         android:clickable="true"
         android:src="@drawable/ic_check_24dp"
+        android:visibility="gone"
         app:tooltipText="@string/create_form_save"/>
 
     <GridLayout
@@ -30,6 +31,22 @@
         android:focusable="true"
         android:columnCount="3">
 
+        <TextView
+            android:layout_width="0dp"
+            android:height="52dp"
+            android:layout_columnWeight="1"
+            android:layout_columnSpan="3"
+            android:background="@color/colorAccentLight"
+            android:gravity="center"
+            android:text="@string/selection_instructions"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_columnWeight="1"
+            android:layout_columnSpan="3"
+            android:background="@color/lightGray"/>
+
         <com.cpu.quikdata.customviews.ItemSection
             android:id="@+id/selectionFormDetailsButton"
             android:layout_width="0dp"
@@ -37,7 +54,7 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             style="@style/SelectableItemTheme"
-            app:text="@string/form_details_title"/>
+            app:text="@string/form_details_baseline_title"/>
 
         <View
             android:layout_width="2dp"
@@ -137,10 +154,5 @@
             app:text="@string/case_stories_title"/>
 
     </GridLayout>
-
-    <include layout="@layout/view_divider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

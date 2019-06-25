@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGray"
+    android:elevation="@dimen/dimenExtraSmall"
     android:orientation="vertical">
-
-    <include layout="@layout/view_appbarlayout" />
 
     <ScrollView
         android:layout_width="match_parent"

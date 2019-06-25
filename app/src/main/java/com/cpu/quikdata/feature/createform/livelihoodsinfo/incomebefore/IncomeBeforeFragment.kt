@@ -13,6 +13,7 @@ import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_income_before.*
+import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
 
 class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeBeforeAdapter.ViewHolder>() {
 
@@ -36,7 +37,7 @@ class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeB
                 R.string.income_source_delete_confirmation,
                 R.layout.dialog_income_source_delete)
         }, expandedItemIndex)
-        incomeBeforeRecyclerView.adapter = adapter
+        incomeBeforeRecyclerView.recyclerView.adapter = adapter
         return adapter
     }
 
@@ -45,7 +46,6 @@ class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeB
         incomeBeforeAddButton.clickWithGuard {
 
             if (mIsItemLimitReached) {
-                // TODO: Update this with a dialog
                 Toast.makeText(context!!, R.string.income_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.createRow()
@@ -59,6 +59,7 @@ class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeB
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(IncomeBeforeViewModel::class.java)
         mViewModel.incomeBefore.observe(viewLifecycleOwner, Observer {
+            incomeBeforeRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)
             mIsItemLimitReached = it.size >= mItemLimit
         })

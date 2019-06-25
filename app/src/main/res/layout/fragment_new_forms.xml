@@ -6,6 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".feature.main.newforms.NewFormsFragment">
 
+    <com.cpu.quikdata.customviews.CustomRecyclerView
+        android:id="@+id/newFormsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:text="@string/text_forms_empty"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/newFormsAddButton"
         android:layout_width="wrap_content"
@@ -14,11 +20,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_add_24dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/newFormsRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </RelativeLayout>

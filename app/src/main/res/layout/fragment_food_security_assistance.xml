@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".feature.createform.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.cpu.quikdata.customviews.CustomRecyclerView
         android:id="@+id/foodSecurityAssistanceRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        style="@style/RecyclerViewTheme"/>
+        app:text="@string/text_assistance_empty"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/foodSecurityAssistanceAddButton"

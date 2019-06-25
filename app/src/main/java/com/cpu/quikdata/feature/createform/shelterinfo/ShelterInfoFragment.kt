@@ -9,6 +9,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
+import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.ShelterAssistanceFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingFragment
@@ -32,6 +33,8 @@ class ShelterInfoFragment : BaseCreateFormSectionFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        setupClipping(shelterInfoViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(HouseDamageFragment.newInstance(), getString(R.string.house_damage_title))

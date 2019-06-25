@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.createform.formdetailsandbaseline.baselinedata.BaselineDataFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightGray">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:paddingStart="@dimen/dimenMid"
+                android:paddingEnd="@dimen/dimenMid"
+                android:paddingTop="@dimen/dimenExtraSmall"
+                android:paddingBottom="@dimen/dimenExtraSmall"
+                android:background="@android:color/white"
+                android:gravity="center_vertical">
+
+                <Switch
+                    android:id="@+id/useBaselineSwitch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/dimenExtraSmall"
+                    android:layout_marginBottom="@dimen/dimenExtraSmall"
+                    android:text="@string/prefilled_use_app_baseline"
+                    android:textColor="?android:attr/textColorHint"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hideablePrefilledData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.cpu.quikdata.customviews.DividerText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerText="@string/prefilled_organization_location"/>
+
+                <com.cpu.quikdata.customviews.questions.StringQuestion
+                    android:id="@+id/organizationText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textHint="@string/prefilled_organization"/>
+
+                <com.cpu.quikdata.customviews.questions.StringQuestion
+                    android:id="@+id/sitioText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textHint="@string/prefilled_sitio"/>
+
+                <com.cpu.quikdata.customviews.questions.StringQuestion
+                    android:id="@+id/barangayText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textHint="@string/prefilled_barangay"/>
+
+                <com.cpu.quikdata.customviews.questions.StringQuestion
+                    android:id="@+id/cityText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textHint="@string/prefilled_city"/>
+
+                <com.cpu.quikdata.customviews.questions.StringQuestion
+                    android:id="@+id/provinceText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textHint="@string/prefilled_province"/>
+
+                <com.cpu.quikdata.customviews.DividerText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerText="@string/prefilled_total_population"/>
+
+                <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+                    android:id="@+id/age0to5Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:question="@string/text_age_0to5"
+                    app:textHint1="@string/text_male"
+                    app:textHint2="@string/text_female"/>
+
+                <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+                    android:id="@+id/age6to9Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:question="@string/text_age_6to9"
+                    app:textHint1="@string/text_male"
+                    app:textHint2="@string/text_female"/>
+
+                <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+                    android:id="@+id/age10to12Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:question="@string/text_age_10to12"
+                    app:textHint1="@string/text_male"
+                    app:textHint2="@string/text_female"/>
+
+                <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+                    android:id="@+id/age13to17Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:question="@string/text_age_13to17"
+                    app:textHint1="@string/text_male"
+                    app:textHint2="@string/text_female"/>
+
+                <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+                    android:id="@+id/age18to59Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:question="@string/text_age_18to59"
+                    app:textHint1="@string/text_male"
+                    app:textHint2="@string/text_female"/>
+
+                <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
+                    android:id="@+id/age60PlusText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:question="@string/text_age_60plus"
+                    app:textHint1="@string/text_male"
+                    app:textHint2="@string/text_female"/>
+
+                <com.cpu.quikdata.customviews.DividerText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerText="@string/prefilled_families_households"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.cpu.quikdata.customviews.questions.NumberQuestion
+                        android:id="@+id/familiesText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:textHint="@string/prefilled_families"/>
+
+                    <com.cpu.quikdata.customviews.questions.NumberQuestion
+                        android:id="@+id/householdsText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:textHint="@string/prefilled_households"/>
+
+                </LinearLayout>
+
+                <com.cpu.quikdata.customviews.DividerText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerText="@string/prefilled_houses"/>
+
+                <com.cpu.quikdata.customviews.questions.NumberQuestion
+                    android:id="@+id/concreteText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textHint="@string/text_concrete"/>
+
+                <com.cpu.quikdata.customviews.questions.NumberQuestion
+                    android:id="@+id/semiConcreteText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textHint="@string/text_semiconcrete"/>
+
+                <com.cpu.quikdata.customviews.questions.NumberQuestion
+                    android:id="@+id/lightMaterialsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimenMid"
+                    app:textHint="@string/text_light_materials"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
