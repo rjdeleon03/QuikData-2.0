@@ -5,6 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.cpu.quikdata.data.casestories.CaseStories
+import com.google.firebase.database.Exclude
 
 @Entity(tableName = "case_stories_image_item",
     indices = [Index("caseStoriesId")],
@@ -16,7 +17,11 @@ import com.cpu.quikdata.data.casestories.CaseStories
 data class CaseStoriesImageItem(@PrimaryKey(autoGenerate = false)
                                 val id: String = "",
                                 var dateCreated: Long = 0L,
+
+                                @get:Exclude
                                 var uri: String = "",
+
+                                @get:Exclude
                                 val caseStoriesId: String = "") {
 
     override fun equals(other: Any?): Boolean {

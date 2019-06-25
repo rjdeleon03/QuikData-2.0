@@ -16,11 +16,9 @@ import com.cpu.quikdata.data.form.Form
 data class CaseStories(@PrimaryKey(autoGenerate = false)
                        val id: String = "",
                        var text: String = "",
-                       var formIdRemote: String = "",
                        val formId: String = "") {
 
     fun copyFrom(caseStories: CaseStories) {
         text = caseStories.text
-        formIdRemote = caseStories.formIdRemote
     }
 }

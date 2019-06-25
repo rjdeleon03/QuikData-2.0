@@ -19,7 +19,6 @@ data class FoodSecurityGaps(@PrimaryKey(autoGenerate = false)
                             var assistanceEnough: String = "",
                             var assistanceEqualAccess: String = "",
                             var specificNeedsMet: String = "",
-                            var formIdRemote: String = "",
                             val formId: String = "") {
 
     fun copyFrom(foodSecurityGaps: FoodSecurityGaps) {
@@ -27,6 +26,5 @@ data class FoodSecurityGaps(@PrimaryKey(autoGenerate = false)
         assistanceEnough = foodSecurityGaps.assistanceEnough
         assistanceEqualAccess = foodSecurityGaps.assistanceEqualAccess
         specificNeedsMet = foodSecurityGaps.specificNeedsMet
-        formIdRemote = foodSecurityGaps.formIdRemote
     }
 }

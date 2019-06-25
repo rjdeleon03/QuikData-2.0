@@ -57,282 +57,276 @@ class CreateFormRepository(application: Application, formId: String) {
     // region Submission methods
 
     private fun submitBasicData() {
-        submitFormDetails()
-        submitGeneralInformation()
-        submitCaseStories()
+        submitFormSection {
+            submitGeneralInformation()
+            submitCaseStories()
+        }
     }
 
-    private fun submitFormDetails() {
-        submitFormSection(true)
+    private fun submitAllData() {
+        submitFormSection {
+            submitGeneralInformation()
+            submitShelterInformation()
+            submitFoodSecurity()
+            submitLivelihoods()
+            submitHealthInformation()
+            submitWashInformation()
+            submitEvacuationInformation()
+            submitCaseStories()
+        }
     }
 
     private fun submitGeneralInformation() {
-        submitFormSection {
-            run {
-                val dao = mDatabase.calamityInfoDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_CALAMITY_INFO, section.id, section)
+        run {
+            val dao = mDatabase.calamityInfoDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_CALAMITY_INFO, section.id, section)
+        }
+        run {
+            val dao = mDatabase.populationRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_POPULATION, it.id, it)
             }
-            run {
-                val dao = mDatabase.populationRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_POPULATION, it.id, it)
-                }
+        }
+        run {
+            val dao = mDatabase.familiesDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_FAMILIES, section.id, section)
+        }
+        run {
+            val dao = mDatabase.vulnerableRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_VULNERABLE, it.id, it)
             }
-            run {
-                val dao = mDatabase.familiesDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_FAMILIES, section.id, section)
+        }
+        run {
+            val dao = mDatabase.casualtiesRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_CASUALTIES, it.id, it)
             }
-            run {
-                val dao = mDatabase.vulnerableRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_VULNERABLE, it.id, it)
-                }
+        }
+        run {
+            val dao = mDatabase.causeOfDeathRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_CAUSE_OF_DEATH, it.id, it)
             }
-            run {
-                val dao = mDatabase.casualtiesRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_CASUALTIES, it.id, it)
-                }
-            }
-            run {
-                val dao = mDatabase.causeOfDeathRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_CAUSE_OF_DEATH, it.id, it)
-                }
-            }
-            run {
-                val dao = mDatabase.infrastructureDamageRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_INFRASTRUCTURE, it.id, it)
-                }
+        }
+        run {
+            val dao = mDatabase.infrastructureDamageRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_INFRASTRUCTURE, it.id, it)
             }
         }
 
     }
 
     private fun submitShelterInformation() {
-        submitFormSection {
-            run {
-                val dao = mDatabase.houseDamageRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_HOUSE_DAMAGE, it.id, it)
-                }
+        run {
+            val dao = mDatabase.houseDamageRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_HOUSE_DAMAGE, it.id, it)
             }
-            run {
-                val dao = mDatabase.shelterCopingDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_SHELTER_COPING, section.id, section)
+        }
+        run {
+            val dao = mDatabase.shelterCopingDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_SHELTER_COPING, section.id, section)
+        }
+        run {
+            val dao = mDatabase.shelterNeedsRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_SHELTER_NEEDS, it.id, it)
             }
-            run {
-                val dao = mDatabase.shelterNeedsRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_SHELTER_NEEDS, it.id, it)
-                }
+        }
+        run {
+            val dao = mDatabase.shelterAssistanceRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_SHELTER_ASSISTANCE, it.id, it)
             }
-            run {
-                val dao = mDatabase.shelterAssistanceRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_SHELTER_ASSISTANCE, it.id, it)
-                }
-            }
-            run {
-                val dao = mDatabase.shelterGapsDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_SHELTER_GAPS, section.id, section)
-            }
+        }
+        run {
+            val dao = mDatabase.shelterGapsDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_SHELTER_GAPS, section.id, section)
         }
     }
 
     private fun submitFoodSecurity() {
-        submitFormSection {
-            run {
-                val dao = mDatabase.foodSecurityImpactDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_FOOD_IMPACT, section.id, section)
+        run {
+            val dao = mDatabase.foodSecurityImpactDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_FOOD_IMPACT, section.id, section)
+        }
+        run {
+            val dao = mDatabase.foodSecurityCopingDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_FOOD_COPING, section.id, section)
+        }
+        run {
+            val dao = mDatabase.foodSecurityNeedsDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_FOOD_NEEDS, section.id, section)
+        }
+        run {
+            val dao = mDatabase.foodSecurityAssistanceRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_FOOD_ASSISTANCE, it.id, it)
             }
-            run {
-                val dao = mDatabase.foodSecurityCopingDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_FOOD_COPING, section.id, section)
-            }
-            run {
-                val dao = mDatabase.foodSecurityNeedsDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_FOOD_NEEDS, section.id, section)
-            }
-            run {
-                val dao = mDatabase.foodSecurityAssistanceRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_FOOD_ASSISTANCE, it.id, it)
-                }
-            }
-            run {
-                val dao = mDatabase.foodSecurityGapsDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_FOOD_GAPS, section.id, section)
-            }
+        }
+        run {
+            val dao = mDatabase.foodSecurityGapsDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_FOOD_GAPS, section.id, section)
         }
     }
 
     private fun submitLivelihoods() {
-        submitFormSection {
-            run {
-                val dao = mDatabase.incomeBeforeRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_INCOME_BEFORE, it.id, it)
-                }
+        run {
+            val dao = mDatabase.incomeBeforeRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_INCOME_BEFORE, it.id, it)
             }
-            run {
-                val dao = mDatabase.incomeAfterRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_INCOME_AFTER, it.id, it)
-                }
+        }
+        run {
+            val dao = mDatabase.incomeAfterRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_INCOME_AFTER, it.id, it)
             }
-            run {
-                val dao = mDatabase.estimatedDamageRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_ESTIMATED_DAMAGE, it.row!!.id, it)
-                }
+        }
+        run {
+            val dao = mDatabase.estimatedDamageRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_ESTIMATED_DAMAGE, it.row!!.id, it)
             }
-            run {
-                val dao = mDatabase.livelihoodsCopingDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_LIVELIHOODS_COPING, section.id, section)
+        }
+        run {
+            val dao = mDatabase.livelihoodsCopingDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_LIVELIHOODS_COPING, section.id, section)
+        }
+        run {
+            val dao = mDatabase.livelihoodsNeedsDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_LIVELIHOODS_NEEDS, section.id, section)
+        }
+        run {
+            val dao = mDatabase.livelihoodsAssistanceRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_LIVELIHOODS_ASSISTANCE, it.id, it)
             }
-            run {
-                val dao = mDatabase.livelihoodsNeedsDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_LIVELIHOODS_NEEDS, section.id, section)
-            }
-            run {
-                val dao = mDatabase.livelihoodsAssistanceRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_LIVELIHOODS_ASSISTANCE, it.id, it)
-                }
-            }
-            run {
-                val dao = mDatabase.livelihoodsGapsDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_LIVELIHOODS_GAPS, section.id, section)
-            }
+        }
+        run {
+            val dao = mDatabase.livelihoodsGapsDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_LIVELIHOODS_GAPS, section.id, section)
         }
     }
 
     private fun submitHealthInformation() {
-        submitFormSection {
-            run {
-                val dao = mDatabase.diseasesRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_DISEASES, it.id, it)
-                }
+        run {
+            val dao = mDatabase.diseasesRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_DISEASES, it.id, it)
             }
-            run {
-                val dao = mDatabase.specialNeedsRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_SPECIAL_NEEDS, it.id, it)
-                }
+        }
+        run {
+            val dao = mDatabase.specialNeedsRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_SPECIAL_NEEDS, it.id, it)
             }
-            run {
-                val dao = mDatabase.psychosocialRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_PSYCHOSOCIAL, it.id, it)
-                }
+        }
+        run {
+            val dao = mDatabase.psychosocialRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_PSYCHOSOCIAL, it.id, it)
             }
-            run {
-                val dao = mDatabase.healthCopingDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_HEALTH_COPING, section.id, section)
+        }
+        run {
+            val dao = mDatabase.healthCopingDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_HEALTH_COPING, section.id, section)
+        }
+        run {
+            val dao = mDatabase.healthAssistanceRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_HEALTH_ASSISTANCE, it.id, it)
             }
-            run {
-                val dao = mDatabase.healthAssistanceRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_HEALTH_ASSISTANCE, it.id, it)
-                }
-            }
-            run {
-                val dao = mDatabase.healthGapsDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_HEALTH_GAPS, section.id, section)
-            }
+        }
+        run {
+            val dao = mDatabase.healthGapsDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_HEALTH_GAPS, section.id, section)
         }
     }
 
     private fun submitWashInformation() {
-        submitFormSection {
-            run {
-                val dao = mDatabase.washConditionsDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_WASH_CONDITIONS, section.id, section)
+        run {
+            val dao = mDatabase.washConditionsDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_WASH_CONDITIONS, section.id, section)
+        }
+        run {
+            val dao = mDatabase.washCopingDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_WASH_COPING, section.id, section)
+        }
+        run {
+            val dao = mDatabase.washAssistanceRowDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            section.forEach {
+                saveData(FIREBASE_KEY_WASH_ASSISTANCE, it.id, it)
             }
-            run {
-                val dao = mDatabase.washCopingDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_WASH_COPING, section.id, section)
-            }
-            run {
-                val dao = mDatabase.washAssistanceRowDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                section.forEach {
-                    saveData(FIREBASE_KEY_WASH_ASSISTANCE, it.id, it)
-                }
-            }
-            run {
-                val dao = mDatabase.washGapsDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_WASH_GAPS, section.id, section)
-            }
+        }
+        run {
+            val dao = mDatabase.washGapsDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_WASH_GAPS, section.id, section)
         }
     }
 
     private fun submitEvacuationInformation() {
-        submitFormSection {
-            run {
-                val dao = mDatabase.evacuationItemDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                if (section.isNotEmpty() && section[0].root!!.formIdRemote.isBlank()) {
-                    section.forEach {
-                        saveData(FIREBASE_KEY_EVACUATION, it.root!!.id, it)
-                    }
+        run {
+            val dao = mDatabase.evacuationItemDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            if (section.isNotEmpty()) {
+                section.forEach {
+                    saveData(FIREBASE_KEY_EVACUATION, it.root!!.id, it)
                 }
             }
         }
     }
 
     private fun submitCaseStories() {
-        submitFormSection {
-            run {
-                val dao = mDatabase.caseStoriesDao()
-                val section = dao.getByFormIdNonLive(mFormId)
-                saveData(FIREBASE_KEY_CASE_STORIES, section.root!!.id, section)
-                section.images?.forEach {
-                    mStorage.reference.child("images/${it.id}")
-                        .putFile(Uri.parse(it.uri))
-                        .addOnSuccessListener {
-                            val x = 1
-                        }
-                        .addOnFailureListener {
-                            val y = 2
-                        }
-                }
+        run {
+            val dao = mDatabase.caseStoriesDao()
+            val section = dao.getByFormIdNonLive(mFormId)
+            saveData(FIREBASE_KEY_CASE_STORIES, section.root!!.id, section)
+            section.images?.forEach {
+                mStorage.reference.child("images/${it.id}")
+                    .putFile(Uri.parse(it.uri))
+                    .addOnSuccessListener {
+                        val x = 1
+                    }
+                    .addOnFailureListener {
+                        val y = 2
+                    }
             }
         }
     }
@@ -341,23 +335,17 @@ class CreateFormRepository(application: Application, formId: String) {
 
     // region Private methods
 
-    private fun submitFormSection(resubmitForm: Boolean = false, f: (() -> Unit)? = null) {
+    private fun submitFormSection(f: (() -> Unit)? = null) {
         runOnIoThread {
             // Retrieve form
             val formComplete = mDatabase.formDao().getFormDataNonLive(formId)
             mFirestore.collection(FIREBASE_KEY_FORM).document(formId).get().continueWith {
-                if (!it.result!!.exists() || resubmitForm) {
-                    saveData(FIREBASE_KEY_FORM, formComplete.form!!.id, formComplete)
-                        .addOnCompleteListener {
-                            runOnIoThread {
-                                f?.invoke()
-                            }
+                saveData(FIREBASE_KEY_FORM, formComplete.form!!.id, formComplete)
+                    .addOnCompleteListener {
+                        runOnIoThread {
+                            f?.invoke()
                         }
-                } else {
-                    runOnIoThread {
-                        f?.invoke()
                     }
-                }
             }
         }
     }

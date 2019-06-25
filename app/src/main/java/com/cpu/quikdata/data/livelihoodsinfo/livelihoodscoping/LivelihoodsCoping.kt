@@ -18,13 +18,11 @@ data class LivelihoodsCoping(@PrimaryKey(autoGenerate = false)
                              var copingStrategies: String = "",
                              var newIncome: String = "",
                              var livelihoodSkills: String = "",
-                             var formIdRemote: String = "",
                              val formId: String = "") {
 
     fun copyFrom(livelihoodsCoping: LivelihoodsCoping) {
         copingStrategies = livelihoodsCoping.copingStrategies
         newIncome = livelihoodsCoping.newIncome
         livelihoodSkills = livelihoodsCoping.livelihoodSkills
-        formIdRemote = livelihoodsCoping.formIdRemote
     }
 }

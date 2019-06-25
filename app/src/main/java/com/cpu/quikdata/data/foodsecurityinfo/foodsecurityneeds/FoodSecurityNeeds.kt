@@ -17,12 +17,10 @@ data class FoodSecurityNeeds(@PrimaryKey(autoGenerate = false)
                              val id: String = "",
                              var foodGapAssistance: String = "",
                              var familiesInNeed: String = "",
-                             var formIdRemote: String = "",
                              val formId: String = "") {
 
     fun copyFrom(foodSecurityCoping: FoodSecurityNeeds) {
         foodGapAssistance = foodSecurityCoping.foodGapAssistance
         familiesInNeed = foodSecurityCoping.familiesInNeed
-        formIdRemote = foodSecurityCoping.formIdRemote
     }
 }

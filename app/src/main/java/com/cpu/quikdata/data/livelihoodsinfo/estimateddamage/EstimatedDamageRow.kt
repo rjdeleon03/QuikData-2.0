@@ -18,7 +18,6 @@ data class EstimatedDamageRow(@PrimaryKey(autoGenerate = false)
                               var type: Int = 0,
                               var damageCost: Int = 0,
                               var remarks: String = "",
-                              var formIdRemote: String = "",
                               val formId: String = "") {
 
     override fun equals(other: Any?): Boolean {
@@ -28,7 +27,6 @@ data class EstimatedDamageRow(@PrimaryKey(autoGenerate = false)
             type == other.type &&
             damageCost == other.damageCost &&
             remarks == other.remarks &&
-            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

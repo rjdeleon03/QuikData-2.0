@@ -29,7 +29,6 @@ data class FoodSecurityImpact(@PrimaryKey(autoGenerate = false)
                               var meetsFoodNeedsAfterEmergency: String = "",
                               var foodProductionChange: String = "",
                               var nextFoodRation: String = "",
-                              var formIdRemote: String = "",
                               val formId: String = "") {
 
     fun copyFrom(foodSecurityImpact: FoodSecurityImpact) {
@@ -47,6 +46,5 @@ data class FoodSecurityImpact(@PrimaryKey(autoGenerate = false)
         meetsFoodNeedsAfterEmergency = foodSecurityImpact.meetsFoodNeedsAfterEmergency
         foodProductionChange = foodSecurityImpact.foodProductionChange
         nextFoodRation = foodSecurityImpact.nextFoodRation
-        formIdRemote = foodSecurityImpact.formIdRemote
     }
 }

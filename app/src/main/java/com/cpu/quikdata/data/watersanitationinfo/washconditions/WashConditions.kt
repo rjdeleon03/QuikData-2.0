@@ -40,7 +40,6 @@ data class WashConditions(@PrimaryKey(autoGenerate = false)
                           var securityIssues: String = "",
                           var toiletSegregation: String = "",
                           var toiletAccessibility: String = "",
-                          var formIdRemote: String = "",
                           val formId: String = "") {
 
     fun copyFrom(washConditions: WashConditions) {
@@ -69,6 +68,5 @@ data class WashConditions(@PrimaryKey(autoGenerate = false)
         securityIssues = washConditions.securityIssues
         toiletSegregation = washConditions.toiletSegregation
         toiletAccessibility = washConditions.toiletAccessibility
-        formIdRemote = washConditions.formIdRemote
     }
 }

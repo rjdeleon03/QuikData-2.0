@@ -50,7 +50,6 @@ class IncomeAfterAdapter(context: Context,
                     view.incomeBoysText.number,
                     view.incomeGirlsText.number,
                     row.dateCreated,
-                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {
