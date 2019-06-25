@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.common.observeOnly
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.customviews.ItemSection
 import kotlinx.android.synthetic.main.fragment_selection.*
+import kotlinx.android.synthetic.main.fragment_selection.selectionCaseStoriesButton
+import kotlinx.android.synthetic.main.fragment_selection.selectionFormDetailsButton
+import kotlinx.android.synthetic.main.fragment_selection.selectionGenInfoButton
 
 class SelectionFragment : BaseCreateFormFragment() {
 
@@ -52,83 +54,20 @@ class SelectionFragment : BaseCreateFormFragment() {
         }
 
         selectionSaveButton.clickWithGuard { activity!!.finish() }
-        val itemSectionTouchedHandler = { item: ItemSection ->
-            mExpandedItemId = item.id
-            gridSectionLayout.children.forEach {
-                if (it is ItemSection && it != item) {
-                    it.collapse()
-                }
-            }
-        }
-
-        selectionFormDetailsButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) },
-            {
-                mExpandedItemId = 0
-                mParentViewModel.submitFormDetails()
-            },
-            { }, itemSectionTouchedHandler)
-        selectionGenInfoButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) },
-            {
-                mExpandedItemId = 0
-                mParentViewModel.submitGeneralInformation()
-            },
-            { }, itemSectionTouchedHandler)
-        selectionShelterButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) },
-            {
-                mExpandedItemId = 0
-                mParentViewModel.submitShelterInformation()
-            },
-            { }, itemSectionTouchedHandler)
-        selectionFoodButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_foodSecurityInfoFragment) },
-            {
-                mExpandedItemId = 0
-                mParentViewModel.submitFoodSecurity()
-            },
-            { }, itemSectionTouchedHandler)
-        selectionLivelihoodsButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_livelihoodsInfoFragment) },
-            {
-                mExpandedItemId = 0
-                mParentViewModel.submitLivelihoods()
-            },
-            { }, itemSectionTouchedHandler)
-        selectionHealthButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_healthInfoFragment) },
-            {
-                mExpandedItemId = 0
-                mParentViewModel.submitHealthInformation()
-            },
-            { }, itemSectionTouchedHandler)
-        selectionWaterButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_waterSanitationInfoFragment) },
-            {
-                mExpandedItemId = 0
-                mParentViewModel.submitWashInformation()
-            },
-            { }, itemSectionTouchedHandler)
-        selectionEvacuationButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_evacuationInfoFragment) },
-            {
-                mExpandedItemId = 0
-                mParentViewModel.submitEvacuationInformation()
-            },
-            { }, itemSectionTouchedHandler)
-        selectionCaseStoriesButton.setButtonListeners(
-            { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) },
-            {
-                mExpandedItemId = 0
-            },
-            { }, itemSectionTouchedHandler)
+        selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
+        selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }
+        selectionShelterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) }
+        selectionFoodButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_foodSecurityInfoFragment) }
+        selectionLivelihoodsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_livelihoodsInfoFragment) }
+        selectionHealthButton.setButtonListeners{ mNavController.navigate(R.id.action_selection_to_healthInfoFragment) }
+        selectionWaterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_waterSanitationInfoFragment) }
+        selectionEvacuationButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_evacuationInfoFragment) }
+        selectionCaseStoriesButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        mParentViewModel.form.observe(viewLifecycleOwner, Observer {  })
+        mParentViewModel.form.observeOnly(viewLifecycleOwner)
     }
 
 }

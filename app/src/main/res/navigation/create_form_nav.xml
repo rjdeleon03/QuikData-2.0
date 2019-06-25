@@ -39,11 +39,6 @@
             app:destination="@id/caseStoriesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/formDetailsFragment"
-        android:name="com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails.FormDetailsFragment"
-        android:label="@string/form_details_title"
-        tools:layout="@layout/fragment_form_details" />
-    <fragment
         android:id="@+id/generalInfoFragment"
         android:name="com.cpu.quikdata.feature.createform.generalinfo.GeneralInfoFragment"
         android:label="@string/gen_info_title"

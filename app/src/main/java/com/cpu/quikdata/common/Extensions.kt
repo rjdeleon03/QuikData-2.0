@@ -21,6 +21,9 @@ import com.cpu.quikdata.dialog.ConfirmationDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import org.joda.time.format.DateTimeFormat
 
+fun <T> LiveData<T>.observeOnly(lifecycleOwner: LifecycleOwner) {
+    observe(lifecycleOwner, Observer {  })
+}
 
 fun <T> LiveData<T>.observeExceptFirst(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
     var isFirstEmit = true

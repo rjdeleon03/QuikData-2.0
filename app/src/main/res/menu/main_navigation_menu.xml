@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home_24dp"
+        android:title="@string/text_home"/>
+    <item
         android:id="@+id/newFormsFragment"
         android:icon="@drawable/ic_list_24dp"
-        android:title="@string/new_forms_title"/>
-    <item
-        android:id="@+id/sentFormsFragment"
-        android:icon="@drawable/ic_list_check_24dp"
-        android:title="@string/sent_forms_title"/>
+        android:title="@string/text_archive"/>
     <item
         android:id="@+id/prefilledInfoFragment"
         android:icon="@drawable/ic_poll_24dp"

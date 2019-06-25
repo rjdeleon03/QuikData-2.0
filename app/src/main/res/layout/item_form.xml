@@ -3,16 +3,92 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:focusable="true"
     android:clickable="true"
     android:background="@drawable/ripple_accent">
 
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimenMidLarge"
+        android:background="@drawable/ripple_accent">
+
+        <TextView
+            android:id="@+id/formItemNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:fontFamily="@font/nunitosans_bold"
+            android:textAllCaps="true"
+            android:text="@string/text_form_item"/>
+
+        <ImageButton
+            android:id="@+id/formDeleteButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="@dimen/dimenSmall"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:background="?attr/actionBarItemBackground"
+            android:src="@drawable/ic_close_24dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/app_name"/>
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/formItemSitioBarangayText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimenMid"
+            android:layout_marginStart="@dimen/dimenMid"
+            android:layout_marginEnd="@dimen/dimenMid"
+            android:textColor="?android:attr/textColorHint"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/formItemCityProvinceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimenExtraSmall"
+            android:layout_marginStart="@dimen/dimenMid"
+            android:layout_marginEnd="@dimen/dimenMid"
+            android:textColor="?android:attr/textColorHint"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/formItemCalamityText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimenExtraSmall"
+            android:layout_marginStart="@dimen/dimenMid"
+            android:layout_marginEnd="@dimen/dimenMid"
+            android:layout_marginBottom="@dimen/dimenMid"
+            android:textColor="?android:attr/textColorHint"
+            android:text="@string/text_unknown_calamity"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/white"/>
 
 </LinearLayout>

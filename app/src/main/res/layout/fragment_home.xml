@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".feature.main.home.HomeFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimenMid"
+        android:layout_marginEnd="@dimen/dimenMid"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+            android:fontFamily="@font/nunitosans_bold"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-4dp"
+            android:gravity="center"
+            android:text="@string/app_subtitle"
+            android:fontFamily="@font/nunitosans_bold"
+            android:textColor="@android:color/white"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimenLarge"
+            android:layout_marginStart="@dimen/dimenMid"
+            android:layout_marginEnd="@dimen/dimenMid"
+            android:layout_marginBottom="@dimen/dimenLarge"
+            app:cardCornerRadius="@dimen/dimenMid">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/homeNewDncaFormButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dimenExtraSmall"
+                    android:background="@drawable/ripple_lighter_gray_accent_corner_top"
+                    android:padding="@dimen/dimenSmall"
+                    android:minHeight="42dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="@string/home_new_dnca"
+                    android:textColor="@android:color/white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    style="@style/EditTextTheme"/>
+
+                <include layout="@layout/view_divider"/>
+
+                <TextView
+                    android:id="@+id/homeConsortiumButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dimenExtraSmall"
+                    android:background="@drawable/ripple_accent_lighter_gray_corner_bottom"
+                    android:padding="@dimen/dimenSmall"
+                    android:minHeight="42dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="@string/home_consortium"
+                    android:clickable="true"
+                    android:focusable="true"
+                    style="@style/EditTextTheme"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</FrameLayout>

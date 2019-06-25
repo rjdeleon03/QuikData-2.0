@@ -43,7 +43,7 @@
                 android:theme="@style/ToolbarSubtitleTheme"
                 android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
-                android:visibility="gone"/>
+                android:text="@string/create_form_subtitle"/>
 
         </LinearLayout>
 
@@ -60,8 +60,7 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/create_form_nav" />
+            app:defaultNavHost="true"/>
 
     </FrameLayout>
 

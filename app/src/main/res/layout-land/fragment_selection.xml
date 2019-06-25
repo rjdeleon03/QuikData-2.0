@@ -20,7 +20,6 @@
         android:focusable="true"
         android:clickable="true"
         android:src="@drawable/ic_check_24dp"
-        android:visibility="gone"
         app:tooltipText="@string/create_form_save"/>
 
     <GridLayout

@@ -11,6 +11,7 @@ import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeeds
 import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.data.form.FormComplete
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
 import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRow
@@ -37,6 +38,7 @@ import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
 import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
 import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
 import com.cpu.quikdata.utils.generateId
+import com.cpu.quikdata.utils.runOnIoThread
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -46,9 +48,9 @@ import org.joda.time.LocalDate
 class NewFormsRepository(application: Application) {
 
     private val mDatabase = AppDatabase.get(application)
-    private val mNewForms = mDatabase.formDao().getAll()
+    private val mNewForms = mDatabase.formDao().getAllActual()
 
-    val newForms: LiveData<List<Form>>
+    val newForms: LiveData<List<FormComplete>>
         get() = mNewForms
 
     fun createNewForm(formId: String) {
@@ -201,8 +203,8 @@ class NewFormsRepository(application: Application) {
             mDatabase.livelihoodsNeedsDao().insert(livelihoodsNeeds)
 
             val livelihoodsGaps = LivelihoodsGaps(id = generateId(), formId = formId)
-            mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)            
-            
+            mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)
+
             // endregion
 
             // region Health information
@@ -252,7 +254,7 @@ class NewFormsRepository(application: Application) {
 
             val washGaps = WashGaps(id = generateId(), formId = formId)
             mDatabase.washGapsDao().insert(washGaps)
-            
+
             // endregion
 
             // region Case stories
@@ -264,5 +266,9 @@ class NewFormsRepository(application: Application) {
         }
     }
 
-
+    fun deleteForm(formComplete: FormComplete) {
+        runOnIoThread {
+            mDatabase.formDao().delete(formComplete.form!!)
+        }
+    }
 }

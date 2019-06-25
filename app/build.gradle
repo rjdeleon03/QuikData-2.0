@@ -72,7 +72,7 @@ dependencies {
     // Image picker and Glide
     implementation 'com.myhexaville:smart-image-picker:1.0.4'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
 
     // Permissions dispatcher
     implementation "org.permissionsdispatcher:permissionsdispatcher:4.3.1"

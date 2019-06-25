@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.setupClipping
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment() {
 
@@ -23,6 +25,11 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_settings, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupClipping(settingsMainLayout)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

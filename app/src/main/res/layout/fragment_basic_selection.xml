@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/basicSelectionRootLayout"
+    tools:context=".feature.createform.basicselection.BasicSelectionFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lighterGray">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/selectionArchiveButton"
+        android:layout_width="@dimen/dimenExtraLarge"
+        android:layout_height="@dimen/dimenExtraLarge"
+        android:layout_margin="@dimen/dimenMid"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:focusable="true"
+        android:clickable="true"
+        android:src="@drawable/ic_archive_24dp"
+        app:tooltipText="@string/create_form_save"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/selectionSendSaveButton"
+        android:layout_width="@dimen/dimenExtraLarge"
+        android:layout_height="@dimen/dimenExtraLarge"
+        android:layout_margin="@dimen/dimenMid"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:focusable="true"
+        android:clickable="true"
+        android:src="@drawable/ic_check_24dp"
+        app:tooltipText="@string/create_form_save"/>
+
+    <LinearLayout
+        android:id="@+id/linearSectionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@color/colorAccentLight"
+            android:gravity="center"
+            android:text="@string/selection_instructions_basic"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionFormDetailsButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/form_details_baseline_title"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionGenInfoButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/gen_info_title"/>
+
+        <com.cpu.quikdata.customviews.ItemSection
+            android:id="@+id/selectionCaseStoriesButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/SelectableItemTheme"
+            app:text="@string/case_stories_title"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

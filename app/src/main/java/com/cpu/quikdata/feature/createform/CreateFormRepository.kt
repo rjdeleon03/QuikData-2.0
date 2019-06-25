@@ -22,7 +22,31 @@ class CreateFormRepository(application: Application, formId: String) {
     private val formId: String
         get() = mForm.value!!.id
 
+    fun deleteForm() {
+        runOnIoThread {
+            val formValue = mForm.value!!
+            if (formValue.isTemporary) {
+                mDatabase.formDao().delete(formValue)
+            }
+        }
+    }
+
+    fun saveFormAsActual() {
+        runOnIoThread {
+            val formValue = mForm.value!!
+            formValue.isTemporary = false
+            mDatabase.formDao().update(formValue)
+            submitBasicData()
+        }
+    }
+
     // region Submission methods
+
+    private fun submitBasicData() {
+        submitFormDetails()
+        submitGeneralInformation()
+        submitCaseStories()
+    }
 
     fun submitFormDetails() {
         submitFormSection(true)
@@ -277,6 +301,10 @@ class CreateFormRepository(application: Application, formId: String) {
                 }
             }
         }
+    }
+
+    fun submitCaseStories() {
+
     }
 
     // endregion
