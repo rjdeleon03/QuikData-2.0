@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.cpu.quikdata.base.BaseDataWithId
 
 @Entity(tableName = "estimated_damage_type",
     indices = [Index("estimatedDamageId")],
@@ -13,10 +14,10 @@ import androidx.room.PrimaryKey
         onDelete = ForeignKey.CASCADE
     )])
 data class EstimatedDamageType(@PrimaryKey(autoGenerate = false)
-                               val id: String = "",
+                               override val id: String = "",
                                var type: Int = 0,
                                var isSelected: Boolean = false,
-                               val estimatedDamageId: String = "") {
+                               val estimatedDamageId: String = "") : BaseDataWithId {
 
     override fun equals(other: Any?): Boolean {
         if (other == null || other !is EstimatedDamageType) return false

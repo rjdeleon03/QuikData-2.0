@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 
 @Entity(tableName = "evacuation_coping",
@@ -14,9 +15,9 @@ import com.cpu.quikdata.data.evacuation.EvacuationItem
         onDelete = ForeignKey.CASCADE
     )])
 data class EvacuationCoping(@PrimaryKey(autoGenerate = false)
-                            val id: String = "",
+                            override val id: String = "",
                             var copingMechanism: String = "",
-                            val evacuationId: String = "") {
+                            val evacuationId: String = "") : BaseDataWithId {
 
     fun copyFrom(evacuationCoping: EvacuationCoping) {
         copingMechanism = evacuationCoping.copingMechanism

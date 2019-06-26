@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "diseases_row",
@@ -14,7 +15,7 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class DiseasesRow(@PrimaryKey(autoGenerate = false)
-                       val id: String = "",
+                       override val id: String = "",
                        val type: Int = 0,
                        var diarrheaMale: Int = 0,
                        var diarrheaFemale: Int = 0,
@@ -35,7 +36,7 @@ data class DiseasesRow(@PrimaryKey(autoGenerate = false)
                        var medicalOthersMale: Int = 0,
                        var medicalOthersFemale: Int = 0,
                        var formIdRemote: String = "",
-                       val formId: String = "") {
+                       val formId: String = "") : BaseDataWithId {
 
     override fun equals(other: Any?): Boolean {
         if (other == null || other !is DiseasesRow) return false

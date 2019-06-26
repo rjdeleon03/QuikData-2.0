@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "vulnerable_row",
@@ -14,7 +15,7 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class VulnerableRow(@PrimaryKey(autoGenerate = false)
-                         val id: String = "",
+                         override val id: String = "",
                          val type: Int = 0,
                          var pregnant: Int = 0,
                          var lactating: Int = 0,
@@ -28,7 +29,7 @@ data class VulnerableRow(@PrimaryKey(autoGenerate = false)
                          var disabledFemale: Int = 0,
                          var remarks: String = "",
                          var formIdRemote: String = "",
-                         val formId: String = "") {
+                         val formId: String = "") : BaseDataWithId {
 
     override fun equals(other: Any?): Boolean {
         if (other == null || other !is VulnerableRow) return false

@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 
@@ -16,7 +17,7 @@ import com.cpu.quikdata.data.prefilleddata.PrefilledData
         onDelete = ForeignKey.CASCADE
     )])
 data class BaselineData(@PrimaryKey(autoGenerate = false)
-                        val id: String = "",
+                        override val id: String = "",
                         var usePrefilled: Boolean = true,
                         var organization: String = "",
                         var sitio: String = "",
@@ -40,7 +41,7 @@ data class BaselineData(@PrimaryKey(autoGenerate = false)
                         var shelterConcrete: Int = 0,
                         var shelterSemiConcrete: Int = 0,
                         var shelterLightMaterials: Int = 0,
-                        val formId: String = "") {
+                        val formId: String = "") : BaseDataWithId {
 
     fun copyFrom(data: PrefilledData) {
         organization = data.organization

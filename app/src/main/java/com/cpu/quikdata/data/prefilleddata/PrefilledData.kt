@@ -3,10 +3,11 @@ package com.cpu.quikdata.data.prefilleddata
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.cpu.quikdata.PREFILLED_DATA_ID
+import com.cpu.quikdata.base.BaseDataWithId
 
 @Entity(tableName = "prefilled_data")
 data class PrefilledData(@PrimaryKey(autoGenerate = false)
-                         val id: String = PREFILLED_DATA_ID,
+                         override val id: String = PREFILLED_DATA_ID,
                          var organization: String = "",
                          var sitio: String = "",
                          var barangay: String = "",
@@ -28,4 +29,4 @@ data class PrefilledData(@PrimaryKey(autoGenerate = false)
                          var totalHouseholds: Int = 0,
                          var shelterConcrete: Int = 0,
                          var shelterSemiConcrete: Int = 0,
-                         var shelterLightMaterials: Int = 0)
+                         var shelterLightMaterials: Int = 0) : BaseDataWithId
