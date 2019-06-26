@@ -41,7 +41,7 @@ class BasicSelectionFragment : BaseCreateFormFragment() {
 
         setupClipping(basicSelectionRootLayout)
         selectionSendSaveButton.clickWithGuard {
-            mParentViewModel.saveFormAsActual()
+            mParentViewModel.saveFormAsActual(true)
         }
         selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
         selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }

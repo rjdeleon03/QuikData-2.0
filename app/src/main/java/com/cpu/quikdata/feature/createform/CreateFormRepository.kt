@@ -43,14 +43,18 @@ class CreateFormRepository(application: Application, formId: String) {
         }
     }
 
-    fun saveFormAsActual() {
+    fun saveFormAsActual(isBasicMode: Boolean) {
         runOnIoThread {
             val formValue = mForm.value!!
             formValue.isTemporary = false
             mDatabase.formDao().update(formValue)
 
             runOnMainThread {
-                val operation = mFirebaseHelper.submitBasicData(mDatabase, mFormId)
+                val operation = if (isBasicMode) {
+                    mFirebaseHelper.submitBasicData(mDatabase, mFormId)
+                } else {
+                    mFirebaseHelper.submitAllData(mDatabase, mFormId)
+                }
                 mSaveResult.addSource(operation) {
                     mSaveResult.value = it
                     if (it != null) mSaveResult.removeSource(operation)

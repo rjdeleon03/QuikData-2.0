@@ -48,9 +48,26 @@ class FirebaseHelper {
         return resultLiveData
     }
 
-    fun submitAllData(database: AppDatabase, formId: String,
-                      onSuccessListener: () -> Any,
-                      onFailureListener: () -> Any) {
+    fun submitAllData(database: AppDatabase, formId: String) : LiveData<Boolean?> {
+
+        val resultLiveData = MutableLiveData<Boolean?>()
+        runOnMainThread {
+            resultLiveData.value = null
+        }
+
+        val onSuccessListener = {
+            runOnMainThread {
+                if (resultLiveData.value != true) {
+                    resultLiveData.value = true
+                }
+            }
+        }
+        val onFailureListener = {
+            runOnMainThread {
+                if (resultLiveData.value != false) resultLiveData.value = false
+            }
+        }
+
         submitFormDetailsFirst(database, formId, { db, id ->
             submitSection(8, onSuccessListener, onFailureListener) { sc, fl ->
                 submitGeneralInformation(db, id, sc, fl)
@@ -63,6 +80,8 @@ class FirebaseHelper {
                 submitCaseStories(db, id, sc, fl)
             }
         }, onFailureListener)
+
+        return resultLiveData
     }
 
     private fun submitGeneralInformation(database: AppDatabase, formId: String,
@@ -78,9 +97,7 @@ class FirebaseHelper {
             run {
                 val dao = database.populationRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_POPULATION, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_POPULATION, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.familiesDao()
@@ -90,30 +107,22 @@ class FirebaseHelper {
             run {
                 val dao = database.vulnerableRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_VULNERABLE, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_VULNERABLE, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.casualtiesRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_CASUALTIES, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_CASUALTIES, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.causeOfDeathRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_CAUSE_OF_DEATH, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_CAUSE_OF_DEATH, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.infrastructureDamageRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_INFRASTRUCTURE, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_INFRASTRUCTURE, formId, ListWrapper(formId, section), sc, fl)
             }
         }
     }
@@ -125,9 +134,7 @@ class FirebaseHelper {
             run {
                 val dao = database.houseDamageRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_HOUSE_DAMAGE, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_HOUSE_DAMAGE, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.shelterCopingDao()
@@ -137,16 +144,12 @@ class FirebaseHelper {
             run {
                 val dao = database.shelterNeedsRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_SHELTER_NEEDS, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_SHELTER_NEEDS, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.shelterAssistanceRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_SHELTER_ASSISTANCE, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_SHELTER_ASSISTANCE, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.shelterGapsDao()
@@ -179,9 +182,7 @@ class FirebaseHelper {
             run {
                 val dao = database.foodSecurityAssistanceRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_FOOD_ASSISTANCE, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_FOOD_ASSISTANCE, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.foodSecurityGapsDao()
@@ -199,23 +200,17 @@ class FirebaseHelper {
             run {
                 val dao = database.incomeBeforeRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_INCOME_BEFORE, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_INCOME_BEFORE, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.incomeAfterRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_INCOME_AFTER, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_INCOME_AFTER, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.estimatedDamageRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_ESTIMATED_DAMAGE, it.row!!.id, section, scl, fl)
-                }
+                saveData(FIREBASE_KEY_ESTIMATED_DAMAGE, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.livelihoodsCopingDao()
@@ -230,9 +225,7 @@ class FirebaseHelper {
             run {
                 val dao = database.livelihoodsAssistanceRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_LIVELIHOODS_ASSISTANCE, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_LIVELIHOODS_ASSISTANCE, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.livelihoodsGapsDao()
@@ -250,23 +243,17 @@ class FirebaseHelper {
             run {
                 val dao = database.diseasesRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_DISEASES, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_DISEASES, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.specialNeedsRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_SPECIAL_NEEDS, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_SPECIAL_NEEDS, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.psychosocialRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_PSYCHOSOCIAL, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_PSYCHOSOCIAL, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.healthCopingDao()
@@ -276,9 +263,7 @@ class FirebaseHelper {
             run {
                 val dao = database.healthAssistanceRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_HEALTH_ASSISTANCE, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_HEALTH_ASSISTANCE, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.healthGapsDao()
@@ -306,9 +291,7 @@ class FirebaseHelper {
             run {
                 val dao = database.washAssistanceRowDao()
                 val section = dao.getByFormIdNonLive(formId)
-                saveListData(section, sc) { it, scl ->
-                    saveData(FIREBASE_KEY_WASH_ASSISTANCE, it.id, it, scl, fl)
-                }
+                saveData(FIREBASE_KEY_WASH_ASSISTANCE, formId, ListWrapper(formId, section), sc, fl)
             }
             run {
                 val dao = database.washGapsDao()
@@ -326,9 +309,7 @@ class FirebaseHelper {
                 val dao = database.evacuationItemDao()
                 val section = dao.getByFormIdNonLive(formId)
                 if (section.isNotEmpty()) {
-                    saveListData(section, sc) { it, scl ->
-                        saveData(FIREBASE_KEY_EVACUATION, it.root!!.id, it, scl, fl)
-                    }
+                    saveData(FIREBASE_KEY_EVACUATION, formId, ListWrapper(formId, section), sc, fl)
                 }
             }
         }
@@ -420,7 +401,6 @@ class FirebaseHelper {
             synchronized(lock) {
                 successCount++
                 if (successCount == targetCount) {
-                    System.out.println("------> FINISHED :: $successCount // $targetCount")
                     onSuccessListener()
                 }
             }
@@ -430,4 +410,6 @@ class FirebaseHelper {
     }
 
     // endregion
+
+    class ListWrapper(val formId: String, val list: List<Any>)
 }
