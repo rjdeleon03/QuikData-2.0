@@ -57,9 +57,11 @@ class CreateFormRepository(application: Application, formId: String) {
                 }
                 mSaveResult.addSource(operation) {
                     mSaveResult.value = it
-                    if (it != null) mSaveResult.removeSource(operation)
+                    mSaveResult.removeSource(operation)
                 }
             }
         }
     }
+
+    fun cancelSubmission() = mFirebaseHelper.cancelSubmission()
 }

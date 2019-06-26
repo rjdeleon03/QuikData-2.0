@@ -25,4 +25,6 @@ class CreateFormViewModel(application: Application, formId: String) : AndroidVie
     fun deleteForm() = mRepository.deleteForm()
 
     fun saveFormAsActual(isBasicMode: Boolean = false) = mRepository.saveFormAsActual(isBasicMode)
+
+    fun cancelSubmission() = mRepository.cancelSubmission()
 }

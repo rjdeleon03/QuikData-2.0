@@ -16,10 +16,12 @@ class FirebaseHelper {
     private val mFirestore = FirebaseFirestore.getInstance()
     private val mStorage = FirebaseStorage.getInstance()
 
+    fun cancelSubmission() {
+    }
+
     // region Submission methods
 
     fun submitBasicData(database: AppDatabase, formId: String) : LiveData<Boolean?> {
-
         val resultLiveData = MutableLiveData<Boolean?>()
         runOnMainThread {
             resultLiveData.value = null
@@ -49,7 +51,6 @@ class FirebaseHelper {
     }
 
     fun submitAllData(database: AppDatabase, formId: String) : LiveData<Boolean?> {
-
         val resultLiveData = MutableLiveData<Boolean?>()
         runOnMainThread {
             resultLiveData.value = null
@@ -365,7 +366,7 @@ class FirebaseHelper {
 
         mFirestore.collection(collectionName).document(id).set(data)
             .addOnSuccessListener { onSuccessListener() }
-            .addOnFailureListener { onFailureListener()  }
+            .addOnFailureListener { onFailureListener() }
 
     private fun <T: Any> saveListData(data: List<T>,
                                       onSuccessListener: () -> Any,
