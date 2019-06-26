@@ -3,16 +3,13 @@ package com.cpu.quikdata.feature.createform
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.*
+import androidx.lifecycle.MediatorLiveData
 import com.cpu.quikdata.common.FirebaseHelper
 import com.cpu.quikdata.common.deleteFile
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.utils.runOnIoThread
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import java.io.File
+import com.cpu.quikdata.utils.runOnMainThread
 
 class CreateFormRepository(application: Application, formId: String) {
 
@@ -20,12 +17,16 @@ class CreateFormRepository(application: Application, formId: String) {
     private val mFormId = formId
     private val mForm = mDatabase.formDao().getById(mFormId)
     private val mFirebaseHelper = FirebaseHelper()
+    private val mSaveResult: MediatorLiveData<Boolean?> = MediatorLiveData()
 
     val form: LiveData<Form>
         get() = mForm
 
     val isFormTemporary: Boolean
         get() = mForm.value!!.isTemporary
+
+    val saveResult: LiveData<Boolean?>
+        get() = mSaveResult
 
     fun deleteForm() {
         runOnIoThread {
@@ -47,7 +48,14 @@ class CreateFormRepository(application: Application, formId: String) {
             val formValue = mForm.value!!
             formValue.isTemporary = false
             mDatabase.formDao().update(formValue)
-            mFirebaseHelper.submitBasicData(mDatabase, mFormId)
+
+            runOnMainThread {
+                val operation = mFirebaseHelper.submitBasicData(mDatabase, mFormId)
+                mSaveResult.addSource(operation) {
+                    mSaveResult.value = it
+                    if (it != null) mSaveResult.removeSource(operation)
+                }
+            }
         }
     }
 }

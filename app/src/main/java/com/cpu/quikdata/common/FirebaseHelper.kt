@@ -1,10 +1,12 @@
 package com.cpu.quikdata.common
 
 import android.net.Uri
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.cpu.quikdata.*
-import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.utils.runOnIoThread
+import com.cpu.quikdata.utils.runOnMainThread
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -16,30 +18,56 @@ class FirebaseHelper {
 
     // region Submission methods
 
-    // TODO: Add failure listener for submitFormDetailsFirst
-    fun submitBasicData(database: AppDatabase, formId: String) {
+    fun submitBasicData(database: AppDatabase, formId: String) : LiveData<Boolean?> {
+
+        val resultLiveData = MutableLiveData<Boolean?>()
+        runOnMainThread {
+            resultLiveData.value = null
+        }
+
+        val onSuccessListener = {
+            runOnMainThread {
+                if (resultLiveData.value != true) {
+                    resultLiveData.value = true
+                }
+            }
+        }
+        val onFailureListener = {
+            runOnMainThread {
+                if (resultLiveData.value != false) resultLiveData.value = false
+            }
+        }
+
         submitFormDetailsFirst(database, formId, { db, id ->
-            submitGeneralInformation(db, id, {}, {})
-            submitCaseStories(db, id, {}, {})
-        }, {})
+            submitSection(2, onSuccessListener, onFailureListener) { sc, fl ->
+                submitGeneralInformation(db, id, sc, fl)
+                submitCaseStories(db, id, sc, fl)
+            }
+        }, onFailureListener)
+
+        return resultLiveData
     }
 
-    fun submitAllData(database: AppDatabase, formId: String) {
+    fun submitAllData(database: AppDatabase, formId: String,
+                      onSuccessListener: () -> Any,
+                      onFailureListener: () -> Any) {
         submitFormDetailsFirst(database, formId, { db, id ->
-            submitGeneralInformation(db, id, {}, {})
-            submitShelterInformation(db, id, {}, {})
-            submitFoodSecurity(db, id, {}, {})
-            submitLivelihoods(db, id, {}, {})
-            submitHealthInformation(db, id, {}, {})
-            submitWashInformation(db, id, {}, {})
-            submitEvacuationInformation(db, id, {}, {})
-            submitCaseStories(db, id, {}, {})
-        }, {})
+            submitSection(8, onSuccessListener, onFailureListener) { sc, fl ->
+                submitGeneralInformation(db, id, sc, fl)
+                submitShelterInformation(db, id, sc, fl)
+                submitFoodSecurity(db, id, sc, fl)
+                submitLivelihoods(db, id, sc, fl)
+                submitHealthInformation(db, id, sc, fl)
+                submitWashInformation(db, id, sc, fl)
+                submitEvacuationInformation(db, id, sc, fl)
+                submitCaseStories(db, id, sc, fl)
+            }
+        }, onFailureListener)
     }
 
     private fun submitGeneralInformation(database: AppDatabase, formId: String,
-                                         onSuccessListener: () -> Unit,
-                                         onFailureListener: () -> Unit) {
+                                         onSuccessListener: () -> Any,
+                                         onFailureListener: () -> Any) {
 
         submitSection(7, onSuccessListener, onFailureListener) { sc, fl ->
             run {
@@ -91,8 +119,8 @@ class FirebaseHelper {
     }
 
     private fun submitShelterInformation(database: AppDatabase, formId: String,
-                                         onSuccessListener: () -> Unit,
-                                         onFailureListener: () -> Unit) {
+                                         onSuccessListener: () -> Any,
+                                         onFailureListener: () -> Any) {
         submitSection(5, onSuccessListener, onFailureListener) { sc, fl ->
             run {
                 val dao = database.houseDamageRowDao()
@@ -129,8 +157,8 @@ class FirebaseHelper {
     }
 
     private fun submitFoodSecurity(database: AppDatabase, formId: String,
-                                   onSuccessListener: () -> Unit,
-                                   onFailureListener: () -> Unit) {
+                                   onSuccessListener: () -> Any,
+                                   onFailureListener: () -> Any) {
 
         submitSection(5, onSuccessListener, onFailureListener) { sc, fl ->
             run {
@@ -164,8 +192,8 @@ class FirebaseHelper {
     }
 
     private fun submitLivelihoods(database: AppDatabase, formId: String,
-                                  onSuccessListener: () -> Unit,
-                                  onFailureListener: () -> Unit) {
+                                  onSuccessListener: () -> Any,
+                                  onFailureListener: () -> Any) {
 
         submitSection(7, onSuccessListener, onFailureListener) { sc, fl ->
             run {
@@ -215,8 +243,8 @@ class FirebaseHelper {
     }
 
     private fun submitHealthInformation(database: AppDatabase, formId: String,
-                                        onSuccessListener: () -> Unit,
-                                        onFailureListener: () -> Unit) {
+                                        onSuccessListener: () -> Any,
+                                        onFailureListener: () -> Any) {
 
         submitSection(6, onSuccessListener, onFailureListener) { sc, fl ->
             run {
@@ -261,8 +289,8 @@ class FirebaseHelper {
     }
 
     private fun submitWashInformation(database: AppDatabase, formId: String,
-                                      onSuccessListener: () -> Unit,
-                                      onFailureListener: () -> Unit) {
+                                      onSuccessListener: () -> Any,
+                                      onFailureListener: () -> Any) {
 
         submitSection(4, onSuccessListener, onFailureListener) { sc, fl ->
             run {
@@ -291,8 +319,8 @@ class FirebaseHelper {
     }
 
     private fun submitEvacuationInformation(database: AppDatabase, formId: String,
-                                            onSuccessListener: () -> Unit,
-                                            onFailureListener: () -> Unit) {
+                                            onSuccessListener: () -> Any,
+                                            onFailureListener: () -> Any) {
         submitSection(1, onSuccessListener, onFailureListener) { sc, fl ->
             run {
                 val dao = database.evacuationItemDao()
@@ -307,8 +335,8 @@ class FirebaseHelper {
     }
 
     private fun submitCaseStories(database: AppDatabase, formId: String,
-                                  onSuccessListener: () -> Unit,
-                                  onFailureListener: () -> Unit) {
+                                  onSuccessListener: () -> Any,
+                                  onFailureListener: () -> Any) {
         submitSection(2, onSuccessListener, onFailureListener) { sc, fl ->
             run {
                 val dao = database.caseStoriesDao()
@@ -331,8 +359,8 @@ class FirebaseHelper {
     // region Private methods
 
     private fun submitFormDetailsFirst(database: AppDatabase, formId: String,
-                                       f: ((AppDatabase, String) -> Unit)? = null,
-                                       onFailureListener: () -> Unit) {
+                                       f: ((AppDatabase, String) -> Any)? = null,
+                                       onFailureListener: () -> Any) {
         runOnIoThread {
             // Retrieve form
             val formComplete = database.formDao().getFormDataNonLive(formId)
@@ -351,39 +379,50 @@ class FirebaseHelper {
     // region Utils
 
     private fun saveData(collectionName:String, id: String, data: Any,
-                         onSuccessListener: () -> Unit,
-                         onFailureListener: () -> Unit) : Task<Void> =
+                         onSuccessListener: () -> Any,
+                         onFailureListener: () -> Any) : Task<Void> =
 
         mFirestore.collection(collectionName).document(id).set(data)
             .addOnSuccessListener { onSuccessListener() }
             .addOnFailureListener { onFailureListener()  }
 
     private fun <T: Any> saveListData(data: List<T>,
-                                      onSuccessListener: () -> Unit,
-                                      saveAction: (T, () -> Unit) -> Any) {
+                                      onSuccessListener: () -> Any,
+                                      saveAction: (T, () -> Any) -> Any) {
 
         val targetCount = data.size
         var successCount = 0
+        val lock = Object()
         val successCounter = {
-            successCount++
-            if (successCount == targetCount) onSuccessListener()
+            synchronized(lock) {
+                successCount++
+                if (successCount == targetCount) onSuccessListener()
+            }
         }
 
+        if (targetCount == 0) {
+            onSuccessListener()
+            return
+        }
         data.forEach {
             saveAction(it, successCounter)
         }
     }
 
     private fun submitSection(targetCount: Int,
-                              onSuccessListener: () -> Unit,
-                              onFailureListener: () -> Unit,
-                              submissionTask: (() -> Unit, () -> Unit) -> Unit) {
+                              onSuccessListener: () -> Any,
+                              onFailureListener: () -> Any,
+                              submissionTask: (() -> Any, () -> Any) -> Any) {
 
         var successCount = 0
+        val lock = Object()
         val successCounter = {
-            successCount++
-            if (successCount == targetCount) {
-                onSuccessListener()
+            synchronized(lock) {
+                successCount++
+                if (successCount == targetCount) {
+                    System.out.println("------> FINISHED :: $successCount // $targetCount")
+                    onSuccessListener()
+                }
             }
         }
 

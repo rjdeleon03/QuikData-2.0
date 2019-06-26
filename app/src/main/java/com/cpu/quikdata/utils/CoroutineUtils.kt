@@ -10,3 +10,9 @@ fun runOnIoThread(method: () -> Unit) {
         method.invoke()
     }
 }
+
+fun runOnMainThread(method: () -> Unit) {
+    CoroutineScope(Job() + Dispatchers.Main).launch {
+        method.invoke()
+    }
+}
