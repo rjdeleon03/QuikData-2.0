@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 
@@ -53,7 +55,9 @@ class SelectionFragment : BaseCreateFormFragment() {
             view.findViewById<ItemSection>(mExpandedItemId)?.expand(false)
         }
 
-        selectionSaveButton.clickWithGuard { activity!!.finish() }
+        selectionSendSaveButton.clickWithGuard {
+            mParentViewModel.saveFormAsActual()
+        }
         selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
         selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }
         selectionShelterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) }
@@ -68,6 +72,17 @@ class SelectionFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mParentViewModel.form.observeOnly(viewLifecycleOwner)
+        mParentViewModel.saveResult.observe(this, Observer {
+            if (it == null) return@Observer
+            if (it) {
+                Toast.makeText(context!!, R.string.form_item_submission_success, Toast.LENGTH_SHORT).show()
+                activity!!.finish()
+            } else {
+                Toast.makeText(context!!, R.string.form_item_submission_failed, Toast.LENGTH_SHORT).show()
+
+                // TODO: Disable navigation and other controls
+            }
+        })
     }
 
 }

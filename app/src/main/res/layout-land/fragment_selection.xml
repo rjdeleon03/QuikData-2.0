@@ -11,7 +11,7 @@
     tools:context=".feature.createform.selection.SelectionFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/selectionSaveButton"
+        android:id="@+id/selectionSendSaveButton"
         android:layout_width="@dimen/dimenExtraLarge"
         android:layout_height="@dimen/dimenExtraLarge"
         android:layout_margin="@dimen/dimenMid"

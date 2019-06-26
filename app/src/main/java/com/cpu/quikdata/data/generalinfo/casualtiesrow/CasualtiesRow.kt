@@ -23,7 +23,6 @@ data class CasualtiesRow(@PrimaryKey(autoGenerate = false)
                          var missingFemale: Int = 0,
                          var injuredMale: Int = 0,
                          var injuredFemale: Int = 0,
-                         var formIdRemote: String = "",
                          val formId: String = "") : BaseDataWithId {
 
     override fun equals(other: Any?): Boolean {
@@ -37,7 +36,6 @@ data class CasualtiesRow(@PrimaryKey(autoGenerate = false)
             missingFemale == other.missingFemale &&
             injuredMale == other.injuredMale &&
             injuredFemale == other.injuredFemale &&
-            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

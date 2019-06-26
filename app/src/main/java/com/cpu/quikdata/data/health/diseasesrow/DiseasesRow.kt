@@ -35,7 +35,6 @@ data class DiseasesRow(@PrimaryKey(autoGenerate = false)
                        var medicinesFemale: Int = 0,
                        var medicalOthersMale: Int = 0,
                        var medicalOthersFemale: Int = 0,
-                       var formIdRemote: String = "",
                        val formId: String = "") : BaseDataWithId {
 
     override fun equals(other: Any?): Boolean {
@@ -61,7 +60,6 @@ data class DiseasesRow(@PrimaryKey(autoGenerate = false)
             medicinesFemale == other.medicinesFemale &&
             medicalOthersMale == other.medicalOthersMale &&
             medicalOthersFemale == other.medicalOthersFemale &&
-            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

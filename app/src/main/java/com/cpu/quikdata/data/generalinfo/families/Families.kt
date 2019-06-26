@@ -20,7 +20,6 @@ data class Families(@PrimaryKey(autoGenerate = false)
                     var affectedHouseholds: Int = 0,
                     var displacedFamilies: Int = 0,
                     var displacedHouseholds: Int = 0,
-                    var formIdRemote: String = "",
                     val formId: String = "") : BaseDataWithId {
 
     fun copyFrom(families: Families) {
@@ -28,6 +27,5 @@ data class Families(@PrimaryKey(autoGenerate = false)
         affectedHouseholds = families.affectedHouseholds
         displacedFamilies = families.displacedFamilies
         displacedHouseholds = families.displacedHouseholds
-        formIdRemote = families.formIdRemote
     }
 }

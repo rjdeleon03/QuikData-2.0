@@ -20,7 +20,6 @@ data class CalamityInfo(@PrimaryKey(autoGenerate = false)
                         var occurrenceDate: Long = 0L,
                         var eventDescription: String = "",
                         var affectedAreaDescription: String = "",
-                        var formIdRemote: String = "",
                         val formId: String = "") : BaseDataWithId {
 
     fun copyFrom(calamityInfo: CalamityInfo) {
@@ -28,6 +27,5 @@ data class CalamityInfo(@PrimaryKey(autoGenerate = false)
         occurrenceDate = calamityInfo.occurrenceDate
         eventDescription = calamityInfo.eventDescription
         affectedAreaDescription = calamityInfo.affectedAreaDescription
-        formIdRemote = calamityInfo.formIdRemote
     }
 }

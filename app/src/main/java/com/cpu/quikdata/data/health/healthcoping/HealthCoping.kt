@@ -17,11 +17,9 @@ import com.cpu.quikdata.data.form.Form
 data class HealthCoping(@PrimaryKey(autoGenerate = false)
                         override val id: String = "",
                         var copingStrategies: String = "",
-                        var formIdRemote: String = "",
                         val formId: String = "") : BaseDataWithId {
 
     fun copyFrom(healthCoping: HealthCoping) {
         copingStrategies = healthCoping.copingStrategies
-        formIdRemote = healthCoping.formIdRemote
     }
 }

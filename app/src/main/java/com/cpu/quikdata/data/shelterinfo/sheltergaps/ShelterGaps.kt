@@ -24,7 +24,6 @@ data class ShelterGaps(@PrimaryKey(autoGenerate = false)
                        var gbvReferralPathway: String = "",
                        var gbvProtectionServices: String = "",
                        var gbvProtectionFocalPoint: String = "",
-                       var formIdRemote: String = "",
                        val formId: String = "") : BaseDataWithId {
 
     fun copyFrom(shelterGaps: ShelterGaps) {
@@ -36,6 +35,5 @@ data class ShelterGaps(@PrimaryKey(autoGenerate = false)
         gbvReferralPathway = shelterGaps.gbvReferralPathway
         gbvProtectionServices = shelterGaps.gbvProtectionServices
         gbvProtectionFocalPoint = shelterGaps.gbvProtectionFocalPoint
-        formIdRemote = shelterGaps.formIdRemote
     }
 }

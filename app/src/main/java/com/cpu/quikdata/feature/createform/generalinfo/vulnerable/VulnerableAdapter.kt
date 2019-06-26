@@ -51,7 +51,6 @@ class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Un
                     view.vulnerableDisabledText.number1,
                     view.vulnerableDisabledText.number2,
                     view.vulnerableRemarksText.text,
-                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {

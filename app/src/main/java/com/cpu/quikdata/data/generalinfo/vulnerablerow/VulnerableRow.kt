@@ -28,7 +28,6 @@ data class VulnerableRow(@PrimaryKey(autoGenerate = false)
                          var disabledMale: Int = 0,
                          var disabledFemale: Int = 0,
                          var remarks: String = "",
-                         var formIdRemote: String = "",
                          val formId: String = "") : BaseDataWithId {
 
     override fun equals(other: Any?): Boolean {
@@ -47,7 +46,6 @@ data class VulnerableRow(@PrimaryKey(autoGenerate = false)
             disabledMale == other.disabledMale &&
             disabledFemale == other.disabledFemale &&
             remarks == other.remarks &&
-            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

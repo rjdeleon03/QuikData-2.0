@@ -25,7 +25,6 @@ data class ShelterAssistanceRow(@PrimaryKey(autoGenerate = false)
                                 var beneficiariesBoys: Int = 0,
                                 var beneficiariesGirls: Int = 0,
                                 val dateCreated: Long = 0L,
-                                var formIdRemote: String = "",
                                 val formId: String = "") : BaseDataWithId {
 
     override fun equals(other: Any?): Boolean {
@@ -41,7 +40,6 @@ data class ShelterAssistanceRow(@PrimaryKey(autoGenerate = false)
             beneficiariesBoys == other.beneficiariesBoys &&
             beneficiariesGirls == other.beneficiariesGirls &&
             dateCreated == other.dateCreated &&
-            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false
