@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
@@ -46,10 +47,12 @@ class FamiliesFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(FamiliesViewModel::class.java)
         mViewModel.families.observe(viewLifecycleOwner, Observer {
-            familiesAffectedText.number = it.affectedFamilies
-            householdsAffectedText.number = it.affectedHouseholds
-            familiesDisplacedText.number = it.displacedFamilies
-            householdsDisplacedText.number = it.displacedHouseholds
+            UIJobScheduler.submitJob {
+                familiesAffectedText.number = it.affectedFamilies
+                householdsAffectedText.number = it.affectedHouseholds
+                familiesDisplacedText.number = it.displacedFamilies
+                householdsDisplacedText.number = it.displacedHouseholds
+            }
         })
     }
 

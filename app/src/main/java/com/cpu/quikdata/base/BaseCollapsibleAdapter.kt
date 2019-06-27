@@ -1,10 +1,9 @@
 package com.cpu.quikdata.base
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -13,10 +12,8 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
                                                                                    layoutId: Int,
                                                                                    rowSaveListener: (R) -> Unit,
                                                                                    expandedItem: Int) :
-    RecyclerView.Adapter<VH>() {
+    BaseAsyncInflaterAdapter<VH>(context, layoutId) {
 
-    private val mInflater = LayoutInflater.from(context)
-    private val mLayoutId = layoutId
     private val mRowSaveListener = rowSaveListener
     protected var mRows: List<R>? = null
     protected var mExpandedItem = expandedItem
@@ -24,9 +21,8 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
     val expandedItemIndex: Int
         get() = mExpandedItem
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val view = mInflater.inflate(mLayoutId, parent, false)
-        val holder = createViewHolder(view)
+    override fun createViewHolder(view: View): VH {
+        val holder = initCollapsibleViewHolder(view)
         holder.setOnClickListener {position ->
             notifyItemChanged(mExpandedItem)
             mExpandedItem = position
@@ -35,7 +31,7 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
         return holder
     }
 
-    abstract fun createViewHolder(view: View) : VH
+    abstract fun initCollapsibleViewHolder(view: View) : VH
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val row = mRows?.get(position)
@@ -82,8 +78,10 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
                              isCollapsed: Boolean = true,
                              rowSaveListener: (R) -> Unit) {
 
-            populateWithDataInternal(row, idx, isCollapsed, rowSaveListener)
-            collapsibleView?.isCollapsed = isCollapsed
+            UIJobScheduler.submitJob {
+                populateWithDataInternal(row, idx, isCollapsed, rowSaveListener)
+                collapsibleView?.isCollapsed = isCollapsed
+            }
         }
 
         protected abstract fun populateWithDataInternal(row: R,

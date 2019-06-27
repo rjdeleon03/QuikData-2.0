@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.health.healthcoping.HealthCoping
 import kotlinx.android.synthetic.main.fragment_health_coping.*
 
@@ -41,7 +42,7 @@ class HealthCopingFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(HealthCopingViewModel::class.java)
         mViewModel.healthCoping.observe(viewLifecycleOwner, Observer {
-            healthCopingStrategiesText.text = it.copingStrategies
+            UIJobScheduler.submitJob { healthCopingStrategiesText.text = it.copingStrategies }
         })
     }
 

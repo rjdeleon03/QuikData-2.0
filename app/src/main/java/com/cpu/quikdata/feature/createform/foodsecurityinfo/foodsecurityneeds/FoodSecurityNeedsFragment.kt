@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeeds
 import kotlinx.android.synthetic.main.fragment_food_security_needs.*
 
@@ -43,8 +44,8 @@ class FoodSecurityNeedsFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityNeedsViewModel::class.java)
         mViewModel.foodSecurityNeeds.observe(viewLifecycleOwner, Observer {
-            foodSecurityNeedsFoodGapText.text = it.foodGapAssistance
-            foodSecurityNeedsFamiliesInNeedText.text = it.familiesInNeed
+            UIJobScheduler.submitJob { foodSecurityNeedsFoodGapText.text = it.foodGapAssistance }
+            UIJobScheduler.submitJob { foodSecurityNeedsFamiliesInNeedText.text = it.familiesInNeed }
         })
     }
 
