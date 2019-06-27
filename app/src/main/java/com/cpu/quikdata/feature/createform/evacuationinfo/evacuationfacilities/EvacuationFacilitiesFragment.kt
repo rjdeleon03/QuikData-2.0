@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.evacuationfacilities.EvacuationFacilities
 import kotlinx.android.synthetic.main.fragment_evacuation_facilities.*
@@ -61,17 +62,17 @@ class EvacuationFacilitiesFragment : Fragment() {
         val factory = ViewModelFactory(activity!!.application, evacuationId)
         mViewModel = ViewModelProviders.of(this, factory).get(EvacuationFacilitiesViewModel::class.java)
         mViewModel.evacuationFacilities.observe(viewLifecycleOwner, Observer {
-            evacuationFacilitiesCapacityText.number = it.capacity
-            evacuationFacilitiesToiletsText.value = it.toilet
-            evacuationFacilitiesToiletsText.text = it.toiletRemarks
-            evacuationFacilitiesWideEntranceText.value = it.wideEntrance
-            evacuationFacilitiesWideEntranceText.text = it.wideEntranceRemarks
-            evacuationFacilitiesElectricityText.value = it.electricity
-            evacuationFacilitiesElectricityText.text = it.electricityRemarks
-            evacuationFacilitiesWaterSupplyText.value = it.waterSupply
-            evacuationFacilitiesWaterSupplyText.text = it.waterSupplyRemarks
-            evacuationFacilitiesVentilationText.value = it.ventilation
-            evacuationFacilitiesVentilationText.text = it.ventilationRemarks
+            UIJobScheduler.submitJob { evacuationFacilitiesCapacityText.number = it.capacity }
+            UIJobScheduler.submitJob { evacuationFacilitiesToiletsText.value = it.toilet }
+            UIJobScheduler.submitJob { evacuationFacilitiesToiletsText.text = it.toiletRemarks }
+            UIJobScheduler.submitJob { evacuationFacilitiesWideEntranceText.value = it.wideEntrance }
+            UIJobScheduler.submitJob { evacuationFacilitiesWideEntranceText.text = it.wideEntranceRemarks }
+            UIJobScheduler.submitJob { evacuationFacilitiesElectricityText.value = it.electricity }
+            UIJobScheduler.submitJob { evacuationFacilitiesElectricityText.text = it.electricityRemarks }
+            UIJobScheduler.submitJob { evacuationFacilitiesWaterSupplyText.value = it.waterSupply }
+            UIJobScheduler.submitJob { evacuationFacilitiesWaterSupplyText.text = it.waterSupplyRemarks }
+            UIJobScheduler.submitJob { evacuationFacilitiesVentilationText.value = it.ventilation }
+            UIJobScheduler.submitJob { evacuationFacilitiesVentilationText.text = it.ventilationRemarks }
         })
     }
 

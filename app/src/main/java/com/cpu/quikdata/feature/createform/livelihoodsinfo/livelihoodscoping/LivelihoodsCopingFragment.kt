@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import kotlinx.android.synthetic.main.fragment_livelihoods_coping.*
 
@@ -44,9 +45,9 @@ class LivelihoodsCopingFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsCopingViewModel::class.java)
         mViewModel.livelihoodsCoping.observe(viewLifecycleOwner, Observer {
-            livelihoodsCopingStrategiesText.text = it.copingStrategies
-            livelihoodsCopingNewIncomeText.text = it.newIncome
-            livelihoodsCopingLivelihoodSkillsText.text = it.livelihoodSkills
+            UIJobScheduler.submitJob { livelihoodsCopingStrategiesText.text = it.copingStrategies }
+            UIJobScheduler.submitJob { livelihoodsCopingNewIncomeText.text = it.newIncome }
+            UIJobScheduler.submitJob { livelihoodsCopingLivelihoodSkillsText.text = it.livelihoodSkills }
         })
     }
 
