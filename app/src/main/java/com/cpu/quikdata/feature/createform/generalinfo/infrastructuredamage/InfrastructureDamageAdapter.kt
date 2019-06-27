@@ -5,6 +5,7 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.InfraCategories
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import kotlinx.android.synthetic.main.item_infrastructure_damage.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -24,23 +25,25 @@ class InfrastructureDamageAdapter(context: Context, rowSaveListener: (Infrastruc
                                               rowSaveListener: (InfrastructureDamageRow) -> Unit) {
 
             view.tag = idx
-            view.headerTextField.setText(InfraCategories.getStringId(row.type))
-            view.infrastructureDamageNumberText.number = row.numberOfInfrastructure
-            view.infrastructureDamageFunctionalBool.value = row.isFunctional
-            view.infrastructureDamageRemarksText.text = row.remarks
+            UIJobScheduler.submitJob { view.headerTextField.setText(InfraCategories.getStringId(row.type)) }
+            UIJobScheduler.submitJob { view.infrastructureDamageNumberText.number = row.numberOfInfrastructure }
+            UIJobScheduler.submitJob { view.infrastructureDamageFunctionalBool.value = row.isFunctional }
+            UIJobScheduler.submitJob { view.infrastructureDamageRemarksText.text = row.remarks }
 
             // Setup listener for saving each row
-            collapsibleView?.onDetachedListener = {
-                val newRow = InfrastructureDamageRow(
-                    row.id,
-                    row.type,
-                    view.infrastructureDamageNumberText.number,
-                    view.infrastructureDamageFunctionalBool.value,
-                    view.infrastructureDamageRemarksText.text,
-                    row.formId
-                )
-                if (row != newRow) {
-                    rowSaveListener(newRow)
+            UIJobScheduler.submitJob {
+                collapsibleView?.onDetachedListener = {
+                    val newRow = InfrastructureDamageRow(
+                        row.id,
+                        row.type,
+                        view.infrastructureDamageNumberText.number,
+                        view.infrastructureDamageFunctionalBool.value,
+                        view.infrastructureDamageRemarksText.text,
+                        row.formId
+                    )
+                    if (row != newRow) {
+                        rowSaveListener(newRow)
+                    }
                 }
             }
         }
