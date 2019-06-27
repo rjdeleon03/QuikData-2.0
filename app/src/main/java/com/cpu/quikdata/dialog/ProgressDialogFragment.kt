@@ -3,6 +3,7 @@ package com.cpu.quikdata.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -45,13 +46,13 @@ class ProgressDialogFragment : DialogFragment() {
         val builder = AlertDialog.Builder(context!!)
             .setView(content)
             .setPositiveButton(R.string.text_cancel) { dialog, _ ->
-                mOnDialogCanceledListener?.invoke()
                 dialog.cancel()
             }
         if (willUseTitle) {
             builder.setTitle(getString(titleId!!))
         }
         val dialog = builder.create()
+        dialog.setCanceledOnTouchOutside(false)
         return dialog
     }
 
@@ -59,4 +60,8 @@ class ProgressDialogFragment : DialogFragment() {
         mOnDialogCanceledListener = listener
     }
 
+    override fun onCancel(dialog: DialogInterface?) {
+        super.onCancel(dialog)
+        mOnDialogCanceledListener?.invoke()
+    }
 }
