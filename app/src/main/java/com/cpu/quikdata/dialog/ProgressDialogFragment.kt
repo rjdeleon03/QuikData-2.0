@@ -32,6 +32,8 @@ class ProgressDialogFragment : DialogFragment() {
         }
     }
 
+    private var mOnDialogCanceledListener: (() -> Unit)? = null
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val titleId = arguments?.getInt(TITLE_ID_KEY, -1)
@@ -41,15 +43,20 @@ class ProgressDialogFragment : DialogFragment() {
         val content = LayoutInflater.from(context!!).inflate(contentId!!, null)
 
         val builder = AlertDialog.Builder(context!!)
-        builder
             .setView(content)
-            .setPositiveButton(getString(R.string.text_cancel)) { _, _ ->
+            .setPositiveButton(R.string.text_cancel) { dialog, _ ->
+                mOnDialogCanceledListener?.invoke()
+                dialog.cancel()
             }
-
         if (willUseTitle) {
             builder.setTitle(getString(titleId!!))
         }
-        return builder.create()
+        val dialog = builder.create()
+        return dialog
+    }
+
+    fun setOnDialogCanceledListener(listener: () -> Unit) {
+        mOnDialogCanceledListener = listener
     }
 
 }

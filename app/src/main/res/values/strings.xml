@@ -426,4 +426,5 @@
     <string name="form_item_submission_success">The DNCA form has been submitted successfully.</string>
     <string name="form_item_submission_failed">The DNCA form has been saved, but it was not submitted successfully.</string>
     <string name="form_item_submitting">Submitting DNCA form...</string>
+    <string name="form_item_submission_cancelled">The submission of the DNCA form has been cancelled.</string>
 </resources>

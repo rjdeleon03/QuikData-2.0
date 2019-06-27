@@ -15,6 +15,7 @@ import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.observeOnly
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.customviews.ItemSection
+import com.cpu.quikdata.dialog.ProgressDialogFragment
 import kotlinx.android.synthetic.main.fragment_selection.*
 import kotlinx.android.synthetic.main.fragment_selection.selectionCaseStoriesButton
 import kotlinx.android.synthetic.main.fragment_selection.selectionFormDetailsButton
@@ -30,6 +31,7 @@ class SelectionFragment : BaseCreateFormFragment() {
     }
 
     private lateinit var mNavController: NavController
+    private var mDialog: ProgressDialogFragment? = null
     private var mExpandedItemId = 0
 
     override fun onCreateView(
@@ -56,6 +58,7 @@ class SelectionFragment : BaseCreateFormFragment() {
         }
 
         selectionSendSaveButton.clickWithGuard {
+            showProgressDialog()
             mParentViewModel.saveFormAsActual()
         }
         selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
@@ -74,6 +77,7 @@ class SelectionFragment : BaseCreateFormFragment() {
         mParentViewModel.form.observeOnly(viewLifecycleOwner)
         mParentViewModel.saveResult.observe(this, Observer {
             if (it == null) return@Observer
+            mDialog?.dismiss()
             if (it) {
                 Toast.makeText(context!!, R.string.form_item_submission_success, Toast.LENGTH_SHORT).show()
                 activity!!.finish()
@@ -83,6 +87,16 @@ class SelectionFragment : BaseCreateFormFragment() {
                 // TODO: Disable navigation and other controls
             }
         })
+    }
+
+    private fun showProgressDialog() {
+        mDialog?.dismiss()
+        mDialog = ProgressDialogFragment.newInstance(textId = R.layout.dialog_progress)
+        mDialog?.show(childFragmentManager, ProgressDialogFragment.TAG)
+        mDialog?.setOnDialogCanceledListener {
+            mParentViewModel.cancelSubmission()
+            Toast.makeText(context!!, R.string.form_item_submission_cancelled, Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
