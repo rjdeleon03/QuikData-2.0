@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "calamity_info",
@@ -15,12 +14,12 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class CalamityInfo(@PrimaryKey(autoGenerate = false)
-                        override val id: String = "",
+                        val id: String = "",
                         var calamityType: String = "",
                         var occurrenceDate: Long = 0L,
                         var eventDescription: String = "",
                         var affectedAreaDescription: String = "",
-                        val formId: String = "") : BaseDataWithId {
+                        val formId: String = "") {
 
     fun copyFrom(calamityInfo: CalamityInfo) {
         calamityType = calamityInfo.calamityType

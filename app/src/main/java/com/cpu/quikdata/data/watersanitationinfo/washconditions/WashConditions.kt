@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "wash_conditions",
@@ -15,7 +14,7 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class WashConditions(@PrimaryKey(autoGenerate = false)
-                          override val id: String = "",
+                          val id: String = "",
                           var drinkingWaterLevel: Int = 0,
                           var drinkingWaterRemarks: String = "",
                           var bathingWaterLevel: Int = 0,
@@ -41,7 +40,7 @@ data class WashConditions(@PrimaryKey(autoGenerate = false)
                           var securityIssues: String = "",
                           var toiletSegregation: String = "",
                           var toiletAccessibility: String = "",
-                          val formId: String = "") : BaseDataWithId {
+                          val formId: String = "") {
 
     fun copyFrom(washConditions: WashConditions) {
         drinkingWaterLevel = washConditions.drinkingWaterLevel

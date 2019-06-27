@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 
 @Entity(tableName = "evacuation_protection",
@@ -15,7 +14,7 @@ import com.cpu.quikdata.data.evacuation.EvacuationItem
         onDelete = ForeignKey.CASCADE
     )])
 data class EvacuationProtection(@PrimaryKey(autoGenerate = false)
-                                override val id: String = "",
+                                val id: String = "",
                                 var unaccompaniedChildren: Boolean = true,
                                 var unaccompaniedChildrenRemarks: String = "",
                                 var toiletLocks: Boolean = true,
@@ -42,7 +41,7 @@ data class EvacuationProtection(@PrimaryKey(autoGenerate = false)
                                 var gbvProtectionRemarks: String = "",
                                 var gbvFocal: Boolean = true,
                                 var gbvFocalRemarks: String = "",
-                                val evacuationId: String = "") : BaseDataWithId {
+                                val evacuationId: String = "") {
 
     fun copyFrom(evacuationProtection: EvacuationProtection) {
         unaccompaniedChildren = evacuationProtection.unaccompaniedChildren

@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "health_gaps",
@@ -15,12 +14,12 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class HealthGaps(@PrimaryKey(autoGenerate = false)
-                      override val id: String = "",
+                      val id: String = "",
                       var nearestHospital: String = "",
                       var servicesAvailable: String = "",
                       var servicesAccessible: String = "",
                       var reproductiveHealth: String = "",
-                      val formId: String = "") : BaseDataWithId {
+                      val formId: String = "") {
 
     fun copyFrom(healthGaps: HealthGaps) {
         nearestHospital = healthGaps.nearestHospital

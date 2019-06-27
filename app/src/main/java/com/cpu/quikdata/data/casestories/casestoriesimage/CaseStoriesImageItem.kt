@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.google.firebase.database.Exclude
 
@@ -16,14 +15,14 @@ import com.google.firebase.database.Exclude
         onDelete = ForeignKey.CASCADE
     )])
 data class CaseStoriesImageItem(@PrimaryKey(autoGenerate = false)
-                                override val id: String = "",
+                                val id: String = "",
                                 var dateCreated: Long = 0L,
 
                                 @get:Exclude
                                 var uri: String = "",
 
                                 @get:Exclude
-                                val caseStoriesId: String = "") : BaseDataWithId {
+                                val caseStoriesId: String = "") {
 
     override fun equals(other: Any?): Boolean {
         if (other == null || other !is CaseStoriesImageItem) return false
