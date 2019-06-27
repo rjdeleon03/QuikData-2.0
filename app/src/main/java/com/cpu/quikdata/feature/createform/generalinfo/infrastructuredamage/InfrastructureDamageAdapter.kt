@@ -37,7 +37,6 @@ class InfrastructureDamageAdapter(context: Context, rowSaveListener: (Infrastruc
                     view.infrastructureDamageNumberText.number,
                     view.infrastructureDamageFunctionalBool.value,
                     view.infrastructureDamageRemarksText.text,
-                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {

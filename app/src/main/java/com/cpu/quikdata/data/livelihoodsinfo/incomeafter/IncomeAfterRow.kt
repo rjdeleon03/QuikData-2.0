@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "income_after_row",
@@ -14,7 +15,7 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class IncomeAfterRow(@PrimaryKey(autoGenerate = false)
-                          val id: String = "",
+                          override val id: String = "",
                           var source: String = "",
                           var isPrimary: Boolean = true,
                           var households: Int = 0,
@@ -24,8 +25,7 @@ data class IncomeAfterRow(@PrimaryKey(autoGenerate = false)
                           var girls: Int = 0,
                           var income: Int = 0,
                           val dateCreated: Long = 0L,
-                          var formIdRemote: String = "",
-                          val formId: String = "") {
+                          val formId: String = "") : BaseDataWithId {
 
     override fun equals(other: Any?): Boolean {
         if (other == null || other !is IncomeAfterRow) return false
@@ -40,7 +40,6 @@ data class IncomeAfterRow(@PrimaryKey(autoGenerate = false)
             girls == other.girls &&
             income == other.income &&
             dateCreated == other.dateCreated &&
-            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

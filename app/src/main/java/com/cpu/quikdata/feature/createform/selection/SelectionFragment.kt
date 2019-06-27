@@ -8,17 +8,13 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
-import com.cpu.quikdata.common.observeOnly
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.customviews.ItemSection
+import com.cpu.quikdata.feature.createform.BaseSelectionFragment
 import kotlinx.android.synthetic.main.fragment_selection.*
-import kotlinx.android.synthetic.main.fragment_selection.selectionCaseStoriesButton
-import kotlinx.android.synthetic.main.fragment_selection.selectionFormDetailsButton
-import kotlinx.android.synthetic.main.fragment_selection.selectionGenInfoButton
 
-class SelectionFragment : BaseCreateFormFragment() {
+class SelectionFragment : BaseSelectionFragment() {
 
     companion object {
         private const val EXPANDED_ITEM_KEY = "EXPANDED_ITEM_KEY"
@@ -53,7 +49,10 @@ class SelectionFragment : BaseCreateFormFragment() {
             view.findViewById<ItemSection>(mExpandedItemId)?.expand(false)
         }
 
-        selectionSaveButton.clickWithGuard { activity!!.finish() }
+        selectionSendSaveButton.clickWithGuard {
+            showProgressDialog()
+            mParentViewModel.saveFormAsActual()
+        }
         selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
         selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }
         selectionShelterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) }
@@ -63,11 +62,6 @@ class SelectionFragment : BaseCreateFormFragment() {
         selectionWaterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_waterSanitationInfoFragment) }
         selectionEvacuationButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_evacuationInfoFragment) }
         selectionCaseStoriesButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) }
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        mParentViewModel.form.observeOnly(viewLifecycleOwner)
     }
 
 }

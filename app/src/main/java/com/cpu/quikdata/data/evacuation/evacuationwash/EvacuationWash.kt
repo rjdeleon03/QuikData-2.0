@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 
 @Entity(tableName = "evacuation_wash",
@@ -14,7 +15,7 @@ import com.cpu.quikdata.data.evacuation.EvacuationItem
         onDelete = ForeignKey.CASCADE
     )])
 data class EvacuationWash(@PrimaryKey(autoGenerate = false)
-                          val id: String = "",
+                          override val id: String = "",
                           var foodPreparation: Boolean = true,
                           var foodPreparationRemarks: String = "",
                           var waterSource: Boolean = true,
@@ -29,7 +30,7 @@ data class EvacuationWash(@PrimaryKey(autoGenerate = false)
                           var sickRemarks: String = "",
                           var handWashing: Boolean = true,
                           var handWashingRemarks: String = "",
-                          val evacuationId: String = "") {
+                          val evacuationId: String = "") : BaseDataWithId {
 
     fun copyFrom(evacuationWash: EvacuationWash) {
         foodPreparation = evacuationWash.foodPreparation

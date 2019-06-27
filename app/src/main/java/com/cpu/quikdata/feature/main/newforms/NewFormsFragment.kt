@@ -40,7 +40,8 @@ class NewFormsFragment : Fragment() {
         setupClipping(newFormsMainLayout)
         mAdapter = NewFormsAdapter(context!!) { showConfirmationDialog({ mViewModel.deleteForm(it) },
             R.string.form_item_delete_confirmation,
-            R.layout.dialog_form_item_delete) }
+            R.layout.dialog_form_item_delete,
+            R.string.form_item_deleted) }
         newFormsRecyclerView.recyclerView.adapter = mAdapter
         newFormsAddButton.clickWithGuard {
             val formId = generateId()

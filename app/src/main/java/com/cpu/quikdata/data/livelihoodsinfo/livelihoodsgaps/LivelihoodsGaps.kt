@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "livelihoods_gaps",
@@ -14,7 +15,7 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class LivelihoodsGaps(@PrimaryKey(autoGenerate = false)
-                           val id: String = "",
+                           override val id: String = "",
                            var hasLocalMarket: Boolean = false,
                            var hasLocalMarketRemarks: String = "",
                            var hasCashOpportunities: Boolean = false,
@@ -23,8 +24,7 @@ data class LivelihoodsGaps(@PrimaryKey(autoGenerate = false)
                            var hasCreditRemarks: String = "",
                            var hasLivelihoodMaterials: Boolean = false,
                            var hasLivelihoodMaterialsRemarks: String = "",
-                           var formIdRemote: String = "",
-                           val formId: String = "") {
+                           val formId: String = "") : BaseDataWithId {
 
     fun copyFrom(livelihoodsGaps: LivelihoodsGaps) {
         hasLocalMarket = livelihoodsGaps.hasLocalMarket
@@ -35,6 +35,5 @@ data class LivelihoodsGaps(@PrimaryKey(autoGenerate = false)
         hasCreditRemarks = livelihoodsGaps.hasCreditRemarks
         hasLivelihoodMaterials = livelihoodsGaps.hasLivelihoodMaterials
         hasLivelihoodMaterialsRemarks = livelihoodsGaps.hasLivelihoodMaterialsRemarks
-        formIdRemote = livelihoodsGaps.formIdRemote
     }
 }

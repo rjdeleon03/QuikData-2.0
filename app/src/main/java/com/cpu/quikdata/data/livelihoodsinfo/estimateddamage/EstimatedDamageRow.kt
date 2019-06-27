@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "estimated_damage_row",
@@ -14,12 +15,11 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class EstimatedDamageRow(@PrimaryKey(autoGenerate = false)
-                              val id: String = "",
+                              override val id: String = "",
                               var type: Int = 0,
                               var damageCost: Int = 0,
                               var remarks: String = "",
-                              var formIdRemote: String = "",
-                              val formId: String = "") {
+                              val formId: String = "") : BaseDataWithId {
 
     override fun equals(other: Any?): Boolean {
         if (other == null || other !is EstimatedDamageRow) return false
@@ -28,7 +28,6 @@ data class EstimatedDamageRow(@PrimaryKey(autoGenerate = false)
             type == other.type &&
             damageCost == other.damageCost &&
             remarks == other.remarks &&
-            formIdRemote == other.formIdRemote &&
             formId == other.formId)
             return true
         return false

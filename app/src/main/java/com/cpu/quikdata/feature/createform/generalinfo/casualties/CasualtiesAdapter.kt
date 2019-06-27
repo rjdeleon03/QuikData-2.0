@@ -41,7 +41,6 @@ class CasualtiesAdapter(context: Context, rowSaveListener: (CasualtiesRow) -> Un
                     view.casualtiesMissingText.number2,
                     view.casualtiesInjuredText.number1,
                     view.casualtiesInjuredText.number2,
-                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {

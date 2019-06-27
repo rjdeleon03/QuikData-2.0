@@ -47,7 +47,6 @@ class HouseDamageAdapter(context: Context, rowSaveListener: (HouseDamageRow) -> 
                     view.houseDamageInformalSettlersText.number,
                     view.houseDamagePartiallyDamagedText.number,
                     view.houseDamageTotallyDamagedText.number,
-                    row.formIdRemote,
                     row.formId
                 )
                 if (row != newRow) {
