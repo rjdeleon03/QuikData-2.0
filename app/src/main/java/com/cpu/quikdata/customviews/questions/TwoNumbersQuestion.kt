@@ -30,13 +30,13 @@ class TwoNumbersQuestion(context: Context, attrs: AttributeSet) : LinearLayout(c
     }
 
     var number1: Int
-        get() = textField1.text.toString().toInt()
+        get() = textField1.text.toString().toIntOrNull() ?: 0
         set(value) {
             textField1.setText(value.toString())
         }
 
     var number2: Int
-        get() = textField2.text.toString().toInt()
+        get() = textField2.text.toString().toIntOrNull() ?: 0
         set(value) {
             textField2.setText(value.toString())
         }

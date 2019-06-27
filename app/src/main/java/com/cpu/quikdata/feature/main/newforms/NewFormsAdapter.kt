@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.toDateString
 import com.cpu.quikdata.data.form.FormComplete
@@ -78,34 +79,54 @@ class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> U
             view.formItemNameText.text = String.format(view.context.getString(R.string.form_item_assessed), formDetails.assessmentDate.toDateString())
 
             // region Sitio/Barangay
-            if (baselineData.sitio.isBlank() && baselineData.barangay.isBlank()) {
-                view.formItemSitioBarangayText.text = view.context.getString(R.string.text_empty_sitio_barangay)
-            }
-            else if (baselineData.sitio.isBlank() || baselineData.barangay.isBlank()) {
-                view.formItemSitioBarangayText.text =
-                    String.format(view.context.getString(R.string.text_empty_location), baselineData.sitio, baselineData.barangay)
-            } else {
-                view.formItemSitioBarangayText.text =
-                    String.format(view.context.getString(R.string.text_complete_location), baselineData.sitio, baselineData.barangay)
+            UIJobScheduler.submitJob {
+                if (baselineData.sitio.isBlank() && baselineData.barangay.isBlank()) {
+                    view.formItemSitioBarangayText.text = view.context.getString(R.string.text_empty_sitio_barangay)
+                } else if (baselineData.sitio.isBlank() || baselineData.barangay.isBlank()) {
+                    view.formItemSitioBarangayText.text =
+                        String.format(
+                            view.context.getString(R.string.text_empty_location),
+                            baselineData.sitio,
+                            baselineData.barangay
+                        )
+                } else {
+                    view.formItemSitioBarangayText.text =
+                        String.format(
+                            view.context.getString(R.string.text_complete_location),
+                            baselineData.sitio,
+                            baselineData.barangay
+                        )
+                }
             }
             // endregion
 
             // region City/Province
-            if (baselineData.city.isBlank() && baselineData.province.isBlank()) {
-                view.formItemCityProvinceText.text = view.context.getString(R.string.text_empty_city_province)
-            }
-            else if (baselineData.city.isBlank() || baselineData.province.isBlank()) {
-                view.formItemCityProvinceText.text =
-                    String.format(view.context.getString(R.string.text_empty_location), baselineData.city, baselineData.province)
-            } else {
-                view.formItemCityProvinceText.text =
-                    String.format(view.context.getString(R.string.text_complete_location), baselineData.city, baselineData.province)
+            UIJobScheduler.submitJob {
+                if (baselineData.city.isBlank() && baselineData.province.isBlank()) {
+                    view.formItemCityProvinceText.text = view.context.getString(R.string.text_empty_city_province)
+                } else if (baselineData.city.isBlank() || baselineData.province.isBlank()) {
+                    view.formItemCityProvinceText.text =
+                        String.format(
+                            view.context.getString(R.string.text_empty_location),
+                            baselineData.city,
+                            baselineData.province
+                        )
+                } else {
+                    view.formItemCityProvinceText.text =
+                        String.format(
+                            view.context.getString(R.string.text_complete_location),
+                            baselineData.city,
+                            baselineData.province
+                        )
+                }
             }
             // endregion
 
             // region Calamity
-            if (!calamityInfo.calamityType.isBlank()) {
-                view.formItemCalamityText.text = calamityInfo.calamityType
+            UIJobScheduler.submitJob {
+                if (!calamityInfo.calamityType.isBlank()) {
+                    view.formItemCalamityText.text = calamityInfo.calamityType
+                }
             }
             // endregion
         }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAdapter
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.toDateString
 import com.cpu.quikdata.data.evacuation.EvacuationItem
@@ -33,16 +34,22 @@ class EvacuationInfoAdapter(context: Context, onClickListener: (String) -> Unit,
             val info = data.siteInfo!![0]
             view.tag = item.id
 
-            if (info.name.isNotEmpty()) {
-                view.evacuationItemNameText.text = info.name
+            UIJobScheduler.submitJob {
+                if (info.name.isNotEmpty()) {
+                    view.evacuationItemNameText.text = info.name
+                }
             }
-            if (info.location.isNotEmpty()) {
-                view.evacuationItemLocationText.text = info.location
+            UIJobScheduler.submitJob {
+                if (info.location.isNotEmpty()) {
+                    view.evacuationItemLocationText.text = info.location
+                }
             }
-            view.evacuationDeleteButton.clickWithGuard {
-                mOnDeleteListener.invoke(data)
+            UIJobScheduler.submitJob {
+                view.evacuationDeleteButton.clickWithGuard {
+                    mOnDeleteListener.invoke(data)
+                }
+                view.evacuationItemDateText.text = info.evacuationDate.toDateString()
             }
-            view.evacuationItemDateText.text = info.evacuationDate.toDateString()
         }
     }
 }

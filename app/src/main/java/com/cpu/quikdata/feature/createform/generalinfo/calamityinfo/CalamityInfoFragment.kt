@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
 import kotlinx.android.synthetic.main.fragment_calamity_info.*
 
@@ -44,10 +45,10 @@ class CalamityInfoFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(CalamityInfoViewModel::class.java)
         mViewModel.calamityInfo.observe(viewLifecycleOwner, Observer {
-            calamityTypeText.text = it.calamityType
-            calamityDateText.date = it.occurrenceDate
-            calamityDescText.text = it.eventDescription
-            calamityAreaText.text = it.affectedAreaDescription
+            UIJobScheduler.submitJob { calamityTypeText.text = it.calamityType }
+            UIJobScheduler.submitJob { calamityDateText.date = it.occurrenceDate }
+            UIJobScheduler.submitJob { calamityDescText.text = it.eventDescription }
+            UIJobScheduler.submitJob { calamityAreaText.text = it.affectedAreaDescription }
         })
     }
 

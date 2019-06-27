@@ -5,6 +5,7 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.SpecialNeedsCategories
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
 import kotlinx.android.synthetic.main.item_special_needs.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -22,9 +23,9 @@ class SpecialNeedsAdapter(context: Context, rowSaveListener: (SpecialNeedsRow) -
                                               rowSaveListener: (SpecialNeedsRow) -> Unit) {
 
             view.tag = idx
-            view.headerTextField.setText(SpecialNeedsCategories.getStringId(row.type))
-            view.specialNeedsNumberText.number = row.number
-            view.specialNeedsHealthMedicalText.text = row.healthMedical
+            UIJobScheduler.submitJob { view.headerTextField.setText(SpecialNeedsCategories.getStringId(row.type)) }
+            UIJobScheduler.submitJob { view.specialNeedsNumberText.number = row.number }
+            UIJobScheduler.submitJob { view.specialNeedsHealthMedicalText.text = row.healthMedical }
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {

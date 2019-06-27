@@ -26,7 +26,9 @@ class NumberQuestion(context: Context, attrs: AttributeSet) : LinearLayout(conte
     }
 
     var number: Int
-        get() = textField.text.toString().toInt()
+        get() {
+            return textField.text.toString().toIntOrNull() ?: 0
+        }
         set(value) {
             textField.setText(value.toString())
         }

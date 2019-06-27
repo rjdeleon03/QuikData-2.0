@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeeds
 import kotlinx.android.synthetic.main.fragment_livelihoods_needs.*
 
@@ -44,9 +45,9 @@ class LivelihoodsNeedsFragment : BaseCreateFormFragment() {
         
         mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsNeedsViewModel::class.java)
         mViewModel.livelihoodsNeeds.observe(viewLifecycleOwner, Observer {
-            livelihoodsNeedsAssistanceFillGapText.text = it.assistanceFillGap
-            livelihoodsResourcesNeededText.text = it.resourcesNeeded
-            livelihoodsNeedsFamiliesInAssistanceText.text = it.familiesInAssistance
+            UIJobScheduler.submitJob { livelihoodsNeedsAssistanceFillGapText.text = it.assistanceFillGap }
+            UIJobScheduler.submitJob { livelihoodsResourcesNeededText.text = it.resourcesNeeded }
+            UIJobScheduler.submitJob { livelihoodsNeedsFamiliesInAssistanceText.text = it.familiesInAssistance }
         })
     }
 

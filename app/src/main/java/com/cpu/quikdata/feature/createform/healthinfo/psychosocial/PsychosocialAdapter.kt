@@ -5,6 +5,7 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
 import kotlinx.android.synthetic.main.item_psychosocial.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -22,11 +23,11 @@ class PsychosocialAdapter(context: Context, rowSaveListener: (PsychosocialRow) -
                                               rowSaveListener: (PsychosocialRow) -> Unit) {
 
             view.tag = idx
-            view.headerTextField.setText(AgeCategories.getStringId(row.type))
-            view.psychosocialCasesText.number1 = row.casesMale
-            view.psychosocialCasesText.number2 = row.casesFemale
-            view.psychosocialManifestationsText.text = row.manifestations
-            view.psychosocialNeedsText.text = row.needs
+            UIJobScheduler.submitJob { view.headerTextField.setText(AgeCategories.getStringId(row.type)) }
+            UIJobScheduler.submitJob { view.psychosocialCasesText.number1 = row.casesMale }
+            UIJobScheduler.submitJob { view.psychosocialCasesText.number2 = row.casesFemale }
+            UIJobScheduler.submitJob { view.psychosocialManifestationsText.text = row.manifestations }
+            UIJobScheduler.submitJob { view.psychosocialNeedsText.text = row.needs }
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
