@@ -37,6 +37,7 @@ class FirebaseHelper {
 
     fun submitBasicData(database: AppDatabase, formId: String) : LiveData<Boolean?> {
         cancelUploadTasks()
+        mIsCancelled = false
         val resultLiveData = MutableLiveData<Boolean?>()
         val onSuccessListener = {
             runOnMainThread {
@@ -69,6 +70,7 @@ class FirebaseHelper {
 
     fun submitAllData(database: AppDatabase, formId: String) : LiveData<Boolean?> {
         cancelUploadTasks()
+        mIsCancelled = false
         val resultLiveData = MutableLiveData<Boolean?>()
         val onSuccessListener = {
             runOnMainThread {
