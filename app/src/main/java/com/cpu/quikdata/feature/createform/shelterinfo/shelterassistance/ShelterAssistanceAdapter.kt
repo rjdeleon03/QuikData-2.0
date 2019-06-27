@@ -17,7 +17,7 @@ class ShelterAssistanceAdapter(context: Context,
     BaseAssistanceAdapter<ShelterAssistanceRow, ShelterAssistanceAdapter.ViewHolder>
         (context, rowSaveListener, deleteClickListener, expandedItem = expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseAssistanceAdapter.ViewHolder<ShelterAssistanceRow>(itemView) {
 

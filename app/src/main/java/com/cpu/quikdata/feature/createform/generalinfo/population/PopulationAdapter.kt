@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Unit, expandedItem: Int = 0) :
     BaseCollapsibleAdapter<PopulationRow, PopulationAdapter.ViewHolder>(context, R.layout.item_population, rowSaveListener, expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<PopulationRow>(itemView) {
 

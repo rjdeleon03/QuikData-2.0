@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class PsychosocialAdapter(context: Context, rowSaveListener: (PsychosocialRow) -> Unit, expandedItem: Int = 0) :
     BaseCollapsibleAdapter<PsychosocialRow, PsychosocialAdapter.ViewHolder>(context, R.layout.item_psychosocial, rowSaveListener, expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<PsychosocialRow>(itemView) {
 

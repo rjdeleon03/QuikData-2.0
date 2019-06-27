@@ -17,7 +17,7 @@ class LivelihoodsAssistanceAdapter(context: Context,
     BaseAssistanceAdapter<LivelihoodsAssistanceRow, LivelihoodsAssistanceAdapter.ViewHolder>
         (context, rowSaveListener, deleteClickListener, expandedItem = expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseAssistanceAdapter.ViewHolder<LivelihoodsAssistanceRow>(itemView) {
 

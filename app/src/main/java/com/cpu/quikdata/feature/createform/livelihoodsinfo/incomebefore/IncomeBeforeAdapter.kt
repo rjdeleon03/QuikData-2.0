@@ -17,7 +17,7 @@ class IncomeBeforeAdapter(context: Context,
                           expandedItem: Int = 0) :
     BaseAssistanceAdapter<IncomeBeforeRow, IncomeBeforeAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener, R.layout.item_income, expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseAssistanceAdapter.ViewHolder<IncomeBeforeRow>(itemView) {
 

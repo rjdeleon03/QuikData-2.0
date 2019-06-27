@@ -1,58 +1,28 @@
 package com.cpu.quikdata.base
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import android.widget.LinearLayout
-import androidx.asynclayoutinflater.view.AsyncLayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
-import java.util.*
 
 abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context,
                                                                                    layoutId: Int,
                                                                                    rowSaveListener: (R) -> Unit,
                                                                                    expandedItem: Int) :
-    RecyclerView.Adapter<VH>() {
+    BaseAsyncInflaterAdapter<VH>(context, layoutId) {
 
-    companion object {
-        const val MAX_CACHED_VIEWS = 3
-    }
-
-    private val mInflater = LayoutInflater.from(context)
-    private val mLayoutId = layoutId
     private val mRowSaveListener = rowSaveListener
-    private val mAsyncLayoutInflater = AsyncLayoutInflater(context)
-    private val mCachedViews = Stack<View>()
-
     protected var mRows: List<R>? = null
     protected var mExpandedItem = expandedItem
 
     val expandedItemIndex: Int
         get() = mExpandedItem
 
-    init {
-        // Create views asynchronously and add them to the stack
-        for (i in 0 until MAX_CACHED_VIEWS) {
-            mAsyncLayoutInflater.inflate(layoutId, null) { view, _, _ ->
-                mCachedViews.push(view)
-            }
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val view = if (mCachedViews.isEmpty()) {
-            mInflater.inflate(mLayoutId, parent, false)
-        } else {
-            mCachedViews.pop().also { it.layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) }
-        }
-        val holder = createViewHolder(view)
+    override fun createViewHolder(view: View): VH {
+        val holder = initCollapsibleViewHolder(view)
         holder.setOnClickListener {position ->
             notifyItemChanged(mExpandedItem)
             mExpandedItem = position
@@ -61,7 +31,7 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
         return holder
     }
 
-    abstract fun createViewHolder(view: View) : VH
+    abstract fun initCollapsibleViewHolder(view: View) : VH
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val row = mRows?.get(position)

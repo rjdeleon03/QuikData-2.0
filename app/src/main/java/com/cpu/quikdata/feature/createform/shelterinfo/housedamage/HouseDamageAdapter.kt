@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class HouseDamageAdapter(context: Context, rowSaveListener: (HouseDamageRow) -> Unit, expandedItem: Int = 0) :
     BaseCollapsibleAdapter<HouseDamageRow, HouseDamageAdapter.ViewHolder>(context, R.layout.item_house_damage, rowSaveListener, expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<HouseDamageRow>(itemView) {
 

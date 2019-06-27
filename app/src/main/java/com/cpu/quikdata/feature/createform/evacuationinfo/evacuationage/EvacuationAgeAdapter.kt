@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class EvacuationAgeAdapter(context: Context, rowSaveListener: (EvacuationAgeRow) -> Unit, expandedItem: Int = 0) :
     BaseCollapsibleAdapter<EvacuationAgeRow, EvacuationAgeAdapter.ViewHolder>(context, R.layout.item_evacuation_age, rowSaveListener, expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<EvacuationAgeRow>(itemView) {
 

@@ -16,7 +16,7 @@ class WashAssistanceAdapter(context: Context,
     BaseAssistanceAdapter<WashAssistanceRow, WashAssistanceAdapter.ViewHolder>
         (context, rowSaveListener, deleteClickListener, expandedItem = expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseAssistanceAdapter.ViewHolder<WashAssistanceRow>(itemView) {
 

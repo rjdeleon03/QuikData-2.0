@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 class SpecialNeedsAdapter(context: Context, rowSaveListener: (SpecialNeedsRow) -> Unit, expandedItem: Int = 0) :
     BaseCollapsibleAdapter<SpecialNeedsRow, SpecialNeedsAdapter.ViewHolder>(context, R.layout.item_special_needs, rowSaveListener, expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<SpecialNeedsRow>(itemView) {
 

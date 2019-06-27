@@ -14,7 +14,7 @@ class InfrastructureDamageAdapter(context: Context, rowSaveListener: (Infrastruc
     BaseCollapsibleAdapter<InfrastructureDamageRow, InfrastructureDamageAdapter.ViewHolder>
         (context, R.layout.item_infrastructure_damage, rowSaveListener, expandedItem) {
 
-    override fun createViewHolder(view: View): ViewHolder = ViewHolder(view)
+    override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
     class ViewHolder(itemView: View) : BaseCollapsibleAdapter.ViewHolder<InfrastructureDamageRow>(itemView) {
 

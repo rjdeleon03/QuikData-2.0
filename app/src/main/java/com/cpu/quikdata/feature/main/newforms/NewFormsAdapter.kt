@@ -1,33 +1,28 @@
 package com.cpu.quikdata.feature.main.newforms
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseAsyncInflaterAdapter
 import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.toDateString
 import com.cpu.quikdata.data.form.FormComplete
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import kotlinx.android.synthetic.main.item_form.view.*
-import java.lang.ref.WeakReference
 
 class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> Unit) :
-    RecyclerView.Adapter<NewFormsAdapter.ViewHolder>() {
+    BaseAsyncInflaterAdapter<NewFormsAdapter.ViewHolder>(context, R.layout.item_form) {
 
-    private var mContext: WeakReference<Context> = WeakReference(context)
     private var mForms: List<FormComplete>? = null
     private val mDeleteClickListener = deleteClickListener
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(mContext.get())
-        val view = inflater.inflate(R.layout.item_form, parent, false)
+    override fun createViewHolder(view: View): ViewHolder {
         val holder = ViewHolder(view) { mDeleteClickListener.invoke(mForms!![it]) }
         holder.setOnClickListener {
-            CreateFormActivity.newInstance(mContext.get()!!, mForms!![it].form!!.id, true)
+            CreateFormActivity.newInstance(view.context, mForms!![it].form!!.id, true)
         }
         return holder
     }
@@ -55,8 +50,8 @@ class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> U
             get() = mView
 
         init {
-            view.formDeleteButton.clickWithGuard {
-                val popup = PopupMenu(view.context, view.formDeleteButton)
+            view.formOptionsButton.clickWithGuard {
+                val popup = PopupMenu(view.context, view.formOptionsButton)
                 popup.menuInflater.inflate(R.menu.form_item_menu, popup.menu)
                 popup.setOnMenuItemClickListener {
                     when (it.itemId) {
