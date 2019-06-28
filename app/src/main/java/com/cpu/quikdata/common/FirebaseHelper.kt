@@ -47,6 +47,10 @@ class FirebaseHelper {
 
     private fun getOnProgressListener(resultLiveData: MutableLiveData<ProgressNotification>) = { pn: ProgressNotification ->
         runOnMainThread {
+            if (mIsCancelled) {
+                resultLiveData.value = ProgressNotification.CANCELLED
+                return@runOnMainThread
+            }
             when (pn) {
                 ProgressNotification.FINISHED,
                 ProgressNotification.CANCELLED,

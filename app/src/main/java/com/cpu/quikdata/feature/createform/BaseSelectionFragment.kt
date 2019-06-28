@@ -7,6 +7,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.common.observeOnly
+import com.cpu.quikdata.common.showToast
 import com.cpu.quikdata.dialog.ProgressDialogFragment
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -20,7 +21,6 @@ abstract class BaseSelectionFragment : BaseCreateFormFragment() {
         mDialog?.show(childFragmentManager, ProgressDialogFragment.TAG)
         mDialog?.setOnDialogCanceledListener {
             mParentViewModel.cancelSubmission()
-            Toast.makeText(context!!, R.string.form_item_submission_cancelled, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -28,21 +28,23 @@ abstract class BaseSelectionFragment : BaseCreateFormFragment() {
         super.onActivityCreated(savedInstanceState)
         mParentViewModel.form.observeOnly(viewLifecycleOwner)
         mParentViewModel.saveResult.observe(this, Observer {
-            if (it == null) return@Observer
-            mDialog?.dismiss()
-//            if (it) {
-//                Toast.makeText(context!!, R.string.form_item_submission_success, Toast.LENGTH_SHORT).show()
-//                activity!!.finish()
-//            } else {
-//                Toast.makeText(context!!, R.string.form_item_submission_failed, Toast.LENGTH_SHORT).show()
-//
-//                // TODO: Disable navigation and other controls
-//            }
-            showToast(it.toString())
+            when (it) {
+                ProgressNotification.FINISHED -> {
+                    mDialog?.dismiss()
+                    showToast(R.string.form_item_submission_success)
+                    activity!!.finish()
+                }
+                ProgressNotification.ERROR_OCCURRED -> {
+                    mDialog?.dismiss()
+                    showToast(R.string.form_item_submission_failed)
+                }
+                ProgressNotification.CANCELLED -> {
+                    showToast(R.string.form_item_submission_cancelled)
+                }
+                else -> {
+                    mDialog?.updateBasedOnProgress(it)
+                }
+            }
         })
-    }
-
-    private fun showToast(text: String) {
-        Toast.makeText(context!!, text, Toast.LENGTH_SHORT).show()
     }
 }

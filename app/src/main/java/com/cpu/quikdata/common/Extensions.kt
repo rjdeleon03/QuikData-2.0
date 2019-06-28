@@ -132,6 +132,16 @@ fun AppCompatActivity.showConfirmationDialog(positiveButtonListener: () -> Unit,
     dialog.show(this.supportFragmentManager, ConfirmationDialogFragment.TAG)
 }
 
+fun Fragment.setupClipping(rootLayout: View) {
+    rootLayout.outlineProvider = object : ViewOutlineProvider() {
+        val curveRadius = resources.getDimension(R.dimen.dimenMid)
+        override fun getOutline(view: View?, outline: Outline?) {
+            outline?.setRoundRect(0, 0, view!!.width, (view.height + curveRadius).toInt(), curveRadius)
+        }
+    }
+    rootLayout.clipToOutline = true
+}
+
 fun Activity.setupClipping(rootLayout: ViewGroup) {
     rootLayout.outlineProvider = object : ViewOutlineProvider() {
         val curveRadius = resources.getDimension(R.dimen.dimenMid)
@@ -142,14 +152,12 @@ fun Activity.setupClipping(rootLayout: ViewGroup) {
     rootLayout.clipToOutline = true
 }
 
-fun Fragment.setupClipping(rootLayout: View) {
-    rootLayout.outlineProvider = object : ViewOutlineProvider() {
-        val curveRadius = resources.getDimension(R.dimen.dimenMid)
-        override fun getOutline(view: View?, outline: Outline?) {
-            outline?.setRoundRect(0, 0, view!!.width, (view.height + curveRadius).toInt(), curveRadius)
-        }
-    }
-    rootLayout.clipToOutline = true
+fun Fragment.showToast(textId: Int) {
+    Toast.makeText(context!!, textId, Toast.LENGTH_SHORT).show()
+}
+
+fun AppCompatActivity.showToast(textId: Int) {
+    Toast.makeText(this, textId, Toast.LENGTH_SHORT).show()
 }
 
 fun Uri.deleteFile(): Boolean {
