@@ -20,6 +20,7 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
 import com.cpu.quikdata.dialog.ConfirmationDialogFragment
+import com.cpu.quikdata.dialog.ProgressDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import org.joda.time.format.DateTimeFormat
 import java.io.File
@@ -169,6 +170,31 @@ fun Uri.deleteFile(): Boolean {
         false
     }
 }
+
+fun LiveData<ProgressNotification>.observeProgress(lifecycleOwner: LifecycleOwner,
+                                                   onFinishListener: () -> Unit,
+                                                   onErrorListener: () -> Unit,
+                                                   onCanceledListener: () -> Unit,
+                                                   onProgressUpdate: (ProgressNotification) -> Unit) {
+
+    this.observe(lifecycleOwner, Observer {
+        when (it) {
+            ProgressNotification.FINISHED -> {
+                onFinishListener()
+            }
+            ProgressNotification.ERROR_OCCURRED -> {
+                onErrorListener()
+            }
+            ProgressNotification.CANCELLED -> {
+                onCanceledListener()
+            }
+            else -> {
+                onProgressUpdate(it)
+            }
+        }
+    })
+}
+
 
 /*
 fun RecyclerView.setupTapToExpand(context: Context) {

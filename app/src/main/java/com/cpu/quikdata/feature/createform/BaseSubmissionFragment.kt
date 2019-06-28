@@ -1,17 +1,15 @@
 package com.cpu.quikdata.feature.createform
 
 import android.os.Bundle
-import android.widget.Toast
-import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.common.observeOnly
+import com.cpu.quikdata.common.observeProgress
 import com.cpu.quikdata.common.showToast
 import com.cpu.quikdata.dialog.ProgressDialogFragment
 
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class BaseSelectionFragment : BaseCreateFormFragment() {
+abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
 
     protected var mDialog: ProgressDialogFragment? = null
 
@@ -27,24 +25,17 @@ abstract class BaseSelectionFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mParentViewModel.form.observeOnly(viewLifecycleOwner)
-        mParentViewModel.saveResult.observe(this, Observer {
-            when (it) {
-                ProgressNotification.FINISHED -> {
-                    mDialog?.dismiss()
-                    showToast(R.string.form_item_submission_success)
-                    activity!!.finish()
-                }
-                ProgressNotification.ERROR_OCCURRED -> {
-                    mDialog?.dismiss()
-                    showToast(R.string.form_item_submission_failed)
-                }
-                ProgressNotification.CANCELLED -> {
-                    showToast(R.string.form_item_submission_cancelled)
-                }
-                else -> {
-                    mDialog?.updateBasedOnProgress(it)
-                }
-            }
+        mParentViewModel.saveResult.observeProgress(viewLifecycleOwner, {
+            mDialog?.dismiss()
+            showToast(R.string.form_item_submission_success)
+            activity!!.finish()
+        }, {
+            mDialog?.dismiss()
+            showToast(R.string.form_item_submission_failed)
+        }, {
+            showToast(R.string.form_item_submission_cancelled)
+        }, {
+            mDialog?.updateBasedOnProgress(it)
         })
     }
 }

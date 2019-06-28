@@ -51,6 +51,7 @@ class FirebaseHelper {
                 resultLiveData.value = ProgressNotification.CANCELLED
                 return@runOnMainThread
             }
+            System.out.println("============ $pn =============")
             when (pn) {
                 ProgressNotification.FINISHED,
                 ProgressNotification.CANCELLED,
@@ -334,6 +335,10 @@ class FirebaseHelper {
                                       f: (() -> Any) -> Any) {
 
         var successCount = 0
+        if (successCount == targetCount) {
+            onProgressListener(progressNotificationOnComplete)
+        }
+
         val successCounter = {
             successCount++
             if (successCount == targetCount) {
