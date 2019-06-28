@@ -121,6 +121,8 @@ class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> U
             UIJobScheduler.submitJob {
                 if (!calamityInfo.calamityType.isBlank()) {
                     view.formItemCalamityText.text = calamityInfo.calamityType
+                } else {
+                    view.formItemCalamityText.text = view.context.getString(R.string.text_unknown_calamity)
                 }
             }
             // endregion

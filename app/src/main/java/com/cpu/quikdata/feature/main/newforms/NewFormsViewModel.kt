@@ -3,7 +3,6 @@ package com.cpu.quikdata.feature.main.newforms
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormComplete
 
 class NewFormsViewModel(application: Application) : AndroidViewModel(application) {

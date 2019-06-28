@@ -17,7 +17,7 @@ interface FormDao {
     fun delete(form: Form)
 
     @Transaction
-    @Query("SELECT * FROM form WHERE isTemporary = 0")
+    @Query("SELECT * FROM form WHERE isTemporary = 0 ORDER BY dateCreated DESC")
     fun getAllActual(): LiveData<List<FormComplete>>
 
     @Query("SELECT * FROM form WHERE id = :id")

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
 import com.cpu.quikdata.data.livelihoodsinfo.incomebefore.IncomeBeforeRow
 import com.cpu.quikdata.utils.generateId
+import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import org.joda.time.LocalDateTime
 
@@ -26,7 +27,7 @@ class IncomeBeforeRepository(application: Application, formId: String) :
     override fun createData(id: String) {
         runOnIoThread {
             val row = IncomeBeforeRow(id = generateId(),
-                dateCreated = LocalDateTime.now().toDateTime().millis,
+                dateCreated = getDateTimeNowInLong(),
                 formId = mFormId)
             mDatabase.incomeBeforeRowDao().insert(row)
         }

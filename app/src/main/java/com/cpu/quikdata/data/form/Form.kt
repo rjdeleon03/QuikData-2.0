@@ -8,6 +8,8 @@ import com.google.firebase.firestore.Exclude
 data class Form(@PrimaryKey(autoGenerate = false)
                 val id: String,
 
+                val dateCreated: Long = 0L,
+
                 @get:Exclude
                 var isTemporary: Boolean = true,
 

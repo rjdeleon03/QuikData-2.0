@@ -13,6 +13,8 @@ import com.cpu.quikdata.data.evacuation.evacuationprotection.EvacuationProtectio
 import com.cpu.quikdata.data.evacuation.evacuationwash.EvacuationWash
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
 import com.cpu.quikdata.utils.generateId
+import com.cpu.quikdata.utils.getDateNowInLong
+import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
@@ -39,13 +41,13 @@ class EvacuationInfoRepository(application: Application, formId: String) :
         runOnIoThread {
             val evacuationItem = EvacuationItem(
                 id = id,
-                dateCreated = LocalDateTime.now().toDateTime().millis,
+                dateCreated = getDateTimeNowInLong(),
                 formId = mFormId)
             mDatabase.evacuationItemDao().insert(evacuationItem)
 
             val siteInfo = SiteInfo(
                 id = generateId(),
-                evacuationDate = LocalDate.now().toDateTimeAtStartOfDay().millis,
+                evacuationDate = getDateNowInLong(),
                 evacuationId = id)
             mDatabase.siteInfoDao().insert(siteInfo)
 
