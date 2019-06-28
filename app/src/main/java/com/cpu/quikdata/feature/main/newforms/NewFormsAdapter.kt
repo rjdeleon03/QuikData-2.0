@@ -13,14 +13,21 @@ import com.cpu.quikdata.data.form.FormComplete
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import kotlinx.android.synthetic.main.item_form.view.*
 
-class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> Unit) :
+class NewFormsAdapter(context: Context,
+                      submitClickListener: (FormComplete) -> Unit,
+                      deleteClickListener: (FormComplete) -> Unit) :
     BaseAsyncInflaterAdapter<NewFormsAdapter.ViewHolder>(context, R.layout.item_form) {
 
     private var mForms: List<FormComplete>? = null
+    private val mSubmitClickListener = submitClickListener
     private val mDeleteClickListener = deleteClickListener
 
     override fun createViewHolder(view: View): ViewHolder {
-        val holder = ViewHolder(view) { mDeleteClickListener.invoke(mForms!![it]) }
+        val holder = ViewHolder(view, {
+            mSubmitClickListener.invoke(mForms!![it])
+        }, {
+            mDeleteClickListener.invoke(mForms!![it])
+        })
         holder.setOnClickListener {
             CreateFormActivity.newInstance(view.context, mForms!![it].form!!.id, true)
         }
@@ -41,10 +48,12 @@ class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> U
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View, listener: (Int) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, submitListener: (Int) -> Unit, deleteListener: (Int) -> Unit) :
+        RecyclerView.ViewHolder(itemView) {
 
         private val mView = itemView
-        private val mDeleteListener = listener
+        private val mSubmitListener = submitListener
+        private val mDeleteListener = deleteListener
 
         val view: View
             get() = mView
@@ -55,7 +64,9 @@ class NewFormsAdapter(context: Context, deleteClickListener: (FormComplete) -> U
                 popup.menuInflater.inflate(R.menu.form_item_menu, popup.menu)
                 popup.setOnMenuItemClickListener {
                     when (it.itemId) {
-                        R.id.menuSubmit -> {}
+                        R.id.menuSubmit -> {
+                            mSubmitListener.invoke(view.tag as Int)
+                        }
                         else -> {
                             mDeleteListener.invoke(view.tag as Int)
                         }

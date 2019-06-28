@@ -50,6 +50,7 @@ import org.joda.time.LocalDate
 class NewFormsRepository(application: Application) {
 
     private val mDatabase = AppDatabase.get(application)
+    private val mFirebaseHelper = FirebaseHelper()
     private val mNewForms = mDatabase.formDao().getAllActual()
 
     val newForms: LiveData<List<FormComplete>>

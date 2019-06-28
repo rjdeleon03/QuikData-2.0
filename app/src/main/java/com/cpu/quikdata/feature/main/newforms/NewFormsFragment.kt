@@ -12,6 +12,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.showConfirmationDialog
+import com.cpu.quikdata.data.form.FormComplete
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_new_forms.*
@@ -38,10 +39,18 @@ class NewFormsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupClipping(newFormsMainLayout)
-        mAdapter = NewFormsAdapter(context!!) { showConfirmationDialog({ mViewModel.deleteForm(it) },
+
+
+        val submitListener = { fc: FormComplete -> showConfirmationDialog({ mViewModel.deleteForm(fc) },
             R.string.form_item_delete_confirmation,
             R.layout.dialog_form_item_delete,
-            R.string.form_item_deleted) }
+            R.string.form_item_deleted)}
+        val deleteListener = { fc: FormComplete -> showConfirmationDialog({ mViewModel.deleteForm(fc) },
+            R.string.form_item_delete_confirmation,
+            R.layout.dialog_form_item_delete,
+            R.string.form_item_deleted)}
+        mAdapter = NewFormsAdapter(context!!, submitListener, deleteListener)
+
         newFormsRecyclerView.recyclerView.adapter = mAdapter
         newFormsAddButton.clickWithGuard {
             val formId = generateId()
