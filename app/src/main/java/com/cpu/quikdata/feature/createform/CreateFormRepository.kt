@@ -58,7 +58,11 @@ class CreateFormRepository(application: Application, formId: String) {
                 }
                 mSaveResult.addSource(operation) {
                     mSaveResult.value = it
-                    mSaveResult.removeSource(operation)
+                    if (it == ProgressNotification.FINISHED ||
+                        it == ProgressNotification.CANCELLED ||
+                        it == ProgressNotification.ERROR_OCCURRED) {
+                        mSaveResult.removeSource(operation)
+                    }
                 }
             }
         }

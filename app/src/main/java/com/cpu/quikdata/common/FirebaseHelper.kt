@@ -48,13 +48,12 @@ class FirebaseHelper {
     private fun getOnProgressListener(resultLiveData: MutableLiveData<ProgressNotification>) = { pn: ProgressNotification ->
         runOnMainThread {
             when (pn) {
-                ProgressNotification.FINISHED, ProgressNotification.ERROR_OCCURRED -> {
+                ProgressNotification.FINISHED,
+                ProgressNotification.CANCELLED,
+                ProgressNotification.ERROR_OCCURRED -> {
                     if (resultLiveData.value != pn) {
                         resultLiveData.value = pn
                     }
-                }
-                ProgressNotification.CANCELLED -> {
-                    resultLiveData.value = ProgressNotification.CANCELLED
                 }
                 else -> {
                     resultLiveData.value = pn
@@ -72,16 +71,16 @@ class FirebaseHelper {
         val progressListener = getOnProgressListener(resultLiveData)
 
         runOnIoThread {
-            runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pn ->
+            runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pnl ->
                 val batch = mFirestore.batch()
                 submitFormDetails(database, formId, batch)
                 submitGeneralInformation(database, formId, batch)
-                submitCaseStories(database, formId, batch, progressListener)
+                submitCaseStories(database, formId, batch, progressListener, pnl)
                 batch.commit()
                     .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
                     .addOnSuccessListener {
                         progressListener(ProgressNotification.FORM_SUBMITTED)
-                        pn()
+                        pnl()
                     }
             }
         }
@@ -96,7 +95,7 @@ class FirebaseHelper {
         val progressListener = getOnProgressListener(resultLiveData)
 
         runOnIoThread {
-            runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pn ->
+            runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pnl ->
                 val batch = mFirestore.batch()
                 submitFormDetails(database, formId, batch)
                 submitGeneralInformation(database, formId, batch)
@@ -106,12 +105,12 @@ class FirebaseHelper {
                 submitHealthInformation(database, formId, batch)
                 submitWashInformation(database, formId, batch)
                 submitEvacuationInformation(database, formId, batch)
-                submitCaseStories(database, formId, batch, progressListener)
+                submitCaseStories(database, formId, batch, progressListener, pnl)
                 batch.commit()
                     .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
                     .addOnSuccessListener {
                         progressListener(ProgressNotification.FORM_SUBMITTED)
-                        pn()
+                        pnl()
                     }
             }
         }
@@ -288,12 +287,19 @@ class FirebaseHelper {
     }
 
     private fun submitCaseStories(database: AppDatabase, formId: String, batch: WriteBatch,
-                                  onProgressListener: (ProgressNotification) -> Unit) {
+                                  onProgressListener: (ProgressNotification) -> Any,
+                                  completionListener: () -> Any) {
         run {
+            val listener = { progress : ProgressNotification ->
+                onProgressListener(progress)
+                if (progress == ProgressNotification.IMAGE_UPLOAD_COMPLETED) {
+                    completionListener()
+                }
+            }
             val section = database.caseStoriesDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_CASE_STORIES).document(section.root!!.id), section)
             if (section.images != null) {
-                runWithSuccessCounter(section.images!!.size, onProgressListener, ProgressNotification.IMAGE_UPLOAD_COMPLETED) { pn ->
+                runWithSuccessCounter(section.images!!.size, listener, ProgressNotification.IMAGE_UPLOAD_COMPLETED) { pn ->
                     section.images!!.forEach {
                         val task = mStorage.reference.child("images/${it.id}")
                             .putFile(Uri.parse(it.uri))
