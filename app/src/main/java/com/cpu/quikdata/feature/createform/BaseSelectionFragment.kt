@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.common.observeOnly
 import com.cpu.quikdata.dialog.ProgressDialogFragment
 
@@ -29,14 +30,19 @@ abstract class BaseSelectionFragment : BaseCreateFormFragment() {
         mParentViewModel.saveResult.observe(this, Observer {
             if (it == null) return@Observer
             mDialog?.dismiss()
-            if (it) {
-                Toast.makeText(context!!, R.string.form_item_submission_success, Toast.LENGTH_SHORT).show()
-                activity!!.finish()
-            } else {
-                Toast.makeText(context!!, R.string.form_item_submission_failed, Toast.LENGTH_SHORT).show()
-
-                // TODO: Disable navigation and other controls
-            }
+//            if (it) {
+//                Toast.makeText(context!!, R.string.form_item_submission_success, Toast.LENGTH_SHORT).show()
+//                activity!!.finish()
+//            } else {
+//                Toast.makeText(context!!, R.string.form_item_submission_failed, Toast.LENGTH_SHORT).show()
+//
+//                // TODO: Disable navigation and other controls
+//            }
+            showToast(it.toString())
         })
+    }
+
+    private fun showToast(text: String) {
+        Toast.makeText(context!!, text, Toast.LENGTH_SHORT).show()
     }
 }
