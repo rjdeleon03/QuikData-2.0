@@ -24,8 +24,10 @@ abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>
     }
 
     override fun setRows(rows: List<R>) {
-        if (mRows != null) mExpandedItem = rows.size - 1
-        super.setRows(rows)
+        if (mRows == null || mRows!!.size != rows.size) {
+            if (mRows != null) mExpandedItem = rows.size - 1
+            super.setRows(rows)
+        }
     }
 
     abstract class ViewHolder<R>(itemView: View) : BaseCollapsibleAdapter.ViewHolder<R>(itemView, true)

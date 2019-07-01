@@ -58,19 +58,15 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         // Retrieve attributes then apply
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CollapsibleContainer)
         headerTextField.text = attributes.getString(R.styleable.CollapsibleContainer_headerText)
-        val collapsedFlag = attributes.getBoolean(R.styleable.CollapsibleContainer_collapsed, false)
+        val collapsedFlag = attributes.getBoolean(R.styleable.CollapsibleContainer_collapsed, true)
         val deletableFlag = attributes.getBoolean(R.styleable.CollapsibleContainer_deletable, false)
         attributes.recycle()
 
         // Collapse if collapsed flag is true
-        if (collapsedFlag) {
-            isCollapsed = true
-        }
+        isCollapsed = collapsedFlag
 
         // Hide delete button if deletable flag is false
-        if (!deletableFlag) {
-            isDeletable = false
-        }
+        isDeletable = !deletableFlag
     }
 
     override fun onAttachedToWindow() {
