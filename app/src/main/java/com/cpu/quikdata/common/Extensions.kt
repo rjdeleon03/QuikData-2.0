@@ -20,6 +20,7 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
 import com.cpu.quikdata.dialog.ConfirmationDialogFragment
+import com.cpu.quikdata.dialog.ProgressDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import org.joda.time.format.DateTimeFormat
 import java.io.File
@@ -132,6 +133,16 @@ fun AppCompatActivity.showConfirmationDialog(positiveButtonListener: () -> Unit,
     dialog.show(this.supportFragmentManager, ConfirmationDialogFragment.TAG)
 }
 
+fun Fragment.setupClipping(rootLayout: View) {
+    rootLayout.outlineProvider = object : ViewOutlineProvider() {
+        val curveRadius = resources.getDimension(R.dimen.dimenMid)
+        override fun getOutline(view: View?, outline: Outline?) {
+            outline?.setRoundRect(0, 0, view!!.width, (view.height + curveRadius).toInt(), curveRadius)
+        }
+    }
+    rootLayout.clipToOutline = true
+}
+
 fun Activity.setupClipping(rootLayout: ViewGroup) {
     rootLayout.outlineProvider = object : ViewOutlineProvider() {
         val curveRadius = resources.getDimension(R.dimen.dimenMid)
@@ -142,14 +153,12 @@ fun Activity.setupClipping(rootLayout: ViewGroup) {
     rootLayout.clipToOutline = true
 }
 
-fun Fragment.setupClipping(rootLayout: View) {
-    rootLayout.outlineProvider = object : ViewOutlineProvider() {
-        val curveRadius = resources.getDimension(R.dimen.dimenMid)
-        override fun getOutline(view: View?, outline: Outline?) {
-            outline?.setRoundRect(0, 0, view!!.width, (view.height + curveRadius).toInt(), curveRadius)
-        }
-    }
-    rootLayout.clipToOutline = true
+fun Fragment.showToast(textId: Int) {
+    Toast.makeText(context!!, textId, Toast.LENGTH_SHORT).show()
+}
+
+fun AppCompatActivity.showToast(textId: Int) {
+    Toast.makeText(this, textId, Toast.LENGTH_SHORT).show()
 }
 
 fun Uri.deleteFile(): Boolean {
@@ -161,6 +170,31 @@ fun Uri.deleteFile(): Boolean {
         false
     }
 }
+
+fun LiveData<ProgressNotification>.observeProgress(lifecycleOwner: LifecycleOwner,
+                                                   onFinishListener: () -> Unit,
+                                                   onErrorListener: () -> Unit,
+                                                   onCanceledListener: () -> Unit,
+                                                   onProgressUpdate: (ProgressNotification) -> Unit) {
+
+    this.observe(lifecycleOwner, Observer {
+        when (it) {
+            ProgressNotification.FINISHED -> {
+                onFinishListener()
+            }
+            ProgressNotification.ERROR_OCCURRED -> {
+                onErrorListener()
+            }
+            ProgressNotification.CANCELLED -> {
+                onCanceledListener()
+            }
+            else -> {
+                onProgressUpdate(it)
+            }
+        }
+    })
+}
+
 
 /*
 fun RecyclerView.setupTapToExpand(context: Context) {

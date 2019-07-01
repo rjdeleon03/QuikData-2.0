@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.ProgressNotification
+import kotlinx.android.synthetic.main.dialog_progress.*
 
 /**
  * A simple [Fragment] subclass.
@@ -63,5 +65,12 @@ class ProgressDialogFragment : DialogFragment() {
     override fun onCancel(dialog: DialogInterface?) {
         super.onCancel(dialog)
         mOnDialogCanceledListener?.invoke()
+    }
+
+    fun updateBasedOnProgress(progress: ProgressNotification) {
+        if (dialog == null) return
+        if (progress == ProgressNotification.FORM_SUBMITTED) {
+                dialog.progressDialogText.setText(R.string.form_item_submitting_image)
+        }
     }
 }

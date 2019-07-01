@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.cpu.quikdata.common.FirebaseHelper
+import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.common.deleteFile
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
@@ -17,7 +18,7 @@ class CreateFormRepository(application: Application, formId: String) {
     private val mFormId = formId
     private val mForm = mDatabase.formDao().getById(mFormId)
     private val mFirebaseHelper = FirebaseHelper()
-    private val mSaveResult: MediatorLiveData<Boolean?> = MediatorLiveData()
+    private val mSaveResult: MediatorLiveData<ProgressNotification> = MediatorLiveData()
 
     val form: LiveData<Form>
         get() = mForm
@@ -25,7 +26,7 @@ class CreateFormRepository(application: Application, formId: String) {
     val isFormTemporary: Boolean
         get() = mForm.value!!.isTemporary
 
-    val saveResult: LiveData<Boolean?>
+    val saveResult: LiveData<ProgressNotification>
         get() = mSaveResult
 
     fun deleteForm() {
@@ -57,7 +58,11 @@ class CreateFormRepository(application: Application, formId: String) {
                 }
                 mSaveResult.addSource(operation) {
                     mSaveResult.value = it
-                    mSaveResult.removeSource(operation)
+                    if (it == ProgressNotification.FINISHED ||
+                        it == ProgressNotification.CANCELLED ||
+                        it == ProgressNotification.ERROR_OCCURRED) {
+                        mSaveResult.removeSource(operation)
+                    }
                 }
             }
         }

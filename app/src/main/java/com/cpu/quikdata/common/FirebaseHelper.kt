@@ -13,6 +13,15 @@ import com.google.firebase.firestore.WriteBatch
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 
+enum class ProgressNotification {
+    FORM_SUBMITTED,
+    IMAGE_UPLOADED,
+    IMAGE_UPLOAD_COMPLETED,
+    FINISHED,
+    ERROR_OCCURRED,
+    CANCELLED
+}
+
 class FirebaseHelper {
 
     private val mFirestore = FirebaseFirestore.getInstance()
@@ -22,7 +31,10 @@ class FirebaseHelper {
 
     fun cancelSubmission() {
         mIsCancelled = true
+
+        // TODO: Remove this after wards
         System.out.println("============ CANCELLING SUBMISSION =============")
+
         cancelUploadTasks()
     }
 
@@ -33,63 +45,62 @@ class FirebaseHelper {
         mUploadTasks.clear()
     }
 
-    // region Submission methods
-
-    fun submitBasicData(database: AppDatabase, formId: String) : LiveData<Boolean?> {
-        cancelUploadTasks()
-        mIsCancelled = false
-        val resultLiveData = MutableLiveData<Boolean?>()
-        val onSuccessListener = {
-            runOnMainThread {
-                if (mIsCancelled) {
-                    resultLiveData.value = null
-                } else if (resultLiveData.value != true) {
-                    resultLiveData.value = true
+    private fun getOnProgressListener(resultLiveData: MutableLiveData<ProgressNotification>) = { pn: ProgressNotification ->
+        runOnMainThread {
+            if (mIsCancelled) {
+                resultLiveData.value = ProgressNotification.CANCELLED
+                return@runOnMainThread
+            }
+            System.out.println("============ $pn =============")
+            when (pn) {
+                ProgressNotification.FINISHED,
+                ProgressNotification.CANCELLED,
+                ProgressNotification.ERROR_OCCURRED -> {
+                    if (resultLiveData.value != pn) {
+                        resultLiveData.value = pn
+                    }
+                }
+                else -> {
+                    resultLiveData.value = pn
                 }
             }
         }
-        val onFailureListener = {
-            runOnMainThread {
-                if (resultLiveData.value != false) resultLiveData.value = false
-            }
-        }
+    }
+
+    // region Submission methods
+
+    fun submitBasicData(database: AppDatabase, formId: String) : LiveData<ProgressNotification> {
+        cancelUploadTasks()
+        mIsCancelled = false
+        val resultLiveData = MutableLiveData<ProgressNotification>()
+        val progressListener = getOnProgressListener(resultLiveData)
 
         runOnIoThread {
-            runWithSuccessCounter(2, onSuccessListener) {
+            runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pnl ->
                 val batch = mFirestore.batch()
                 submitFormDetails(database, formId, batch)
                 submitGeneralInformation(database, formId, batch)
-                submitCaseStories(database, formId, batch, onSuccessListener)
-                batch.commit().addOnSuccessListener { onSuccessListener() }
-                    .addOnFailureListener { onFailureListener() }
+                submitCaseStories(database, formId, batch, progressListener, pnl)
+                batch.commit()
+                    .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
+                    .addOnSuccessListener {
+                        progressListener(ProgressNotification.FORM_SUBMITTED)
+                        pnl()
+                    }
             }
         }
 
         return resultLiveData
     }
 
-    fun submitAllData(database: AppDatabase, formId: String) : LiveData<Boolean?> {
+    fun submitAllData(database: AppDatabase, formId: String) : LiveData<ProgressNotification> {
         cancelUploadTasks()
         mIsCancelled = false
-        val resultLiveData = MutableLiveData<Boolean?>()
-        val onSuccessListener = {
-            runOnMainThread {
-                if (mIsCancelled) {
-                    resultLiveData.value = null
-                }
-                else if (resultLiveData.value != true) {
-                    resultLiveData.value = true
-                }
-            }
-        }
-        val onFailureListener = {
-            runOnMainThread {
-                if (resultLiveData.value != false) resultLiveData.value = false
-            }
-        }
+        val resultLiveData = MutableLiveData<ProgressNotification>()
+        val progressListener = getOnProgressListener(resultLiveData)
 
         runOnIoThread {
-            runWithSuccessCounter(2, onSuccessListener) {
+            runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pnl ->
                 val batch = mFirestore.batch()
                 submitFormDetails(database, formId, batch)
                 submitGeneralInformation(database, formId, batch)
@@ -99,9 +110,13 @@ class FirebaseHelper {
                 submitHealthInformation(database, formId, batch)
                 submitWashInformation(database, formId, batch)
                 submitEvacuationInformation(database, formId, batch)
-                submitCaseStories(database, formId, batch, onSuccessListener)
-                batch.commit().addOnSuccessListener { onSuccessListener() }
-                    .addOnFailureListener { onFailureListener() }
+                submitCaseStories(database, formId, batch, progressListener, pnl)
+                batch.commit()
+                    .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
+                    .addOnSuccessListener {
+                        progressListener(ProgressNotification.FORM_SUBMITTED)
+                        pnl()
+                    }
             }
         }
 
@@ -276,16 +291,29 @@ class FirebaseHelper {
         }
     }
 
-    private fun submitCaseStories(database: AppDatabase, formId: String, batch: WriteBatch, onSuccessListener: () -> Unit) {
+    private fun submitCaseStories(database: AppDatabase, formId: String, batch: WriteBatch,
+                                  onProgressListener: (ProgressNotification) -> Any,
+                                  completionListener: () -> Any) {
         run {
+            val listener = { progress : ProgressNotification ->
+                onProgressListener(progress)
+                if (progress == ProgressNotification.IMAGE_UPLOAD_COMPLETED) {
+                    completionListener()
+                }
+            }
             val section = database.caseStoriesDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_CASE_STORIES).document(section.root!!.id), section)
             if (section.images != null) {
-                runWithSuccessCounter(section.images!!.size, onSuccessListener) { sc ->
+                runWithSuccessCounter(section.images!!.size, listener, ProgressNotification.IMAGE_UPLOAD_COMPLETED) { pn ->
                     section.images!!.forEach {
                         val task = mStorage.reference.child("images/${it.id}")
                             .putFile(Uri.parse(it.uri))
-                        task.addOnSuccessListener { sc() }.addOnCanceledListener { sc() }
+                        task.addOnCanceledListener { onProgressListener(ProgressNotification.CANCELLED) }
+                            .addOnFailureListener { onProgressListener(ProgressNotification.ERROR_OCCURRED) }
+                            .addOnSuccessListener {
+                                onProgressListener(ProgressNotification.IMAGE_UPLOADED)
+                                pn()
+                            }
                         mUploadTasks.add(task)
                     }
                 }
@@ -301,13 +329,20 @@ class FirebaseHelper {
         this.set(ref, data)
     }
 
-    private fun runWithSuccessCounter(targetCount: Int, onSuccessListener: () -> Any, f: (() -> Any) -> Any) {
+    private fun runWithSuccessCounter(targetCount: Int,
+                                      onProgressListener: (ProgressNotification) -> Any,
+                                      progressNotificationOnComplete: ProgressNotification,
+                                      f: (() -> Any) -> Any) {
 
         var successCount = 0
+        if (successCount == targetCount) {
+            onProgressListener(progressNotificationOnComplete)
+        }
+
         val successCounter = {
             successCount++
             if (successCount == targetCount) {
-                onSuccessListener()
+                onProgressListener(progressNotificationOnComplete)
             }
         }
         f(successCounter)

@@ -2,17 +2,16 @@ package com.cpu.quikdata.feature.main.newforms
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.clickWithGuard
-import com.cpu.quikdata.common.setupClipping
-import com.cpu.quikdata.common.showConfirmationDialog
+import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.form.FormComplete
+import com.cpu.quikdata.dialog.ProgressDialogFragment
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_new_forms.*
@@ -27,6 +26,7 @@ class NewFormsFragment : Fragment() {
 
     private lateinit var mViewModel: NewFormsViewModel
     private lateinit var mAdapter: NewFormsAdapter
+    private var mDialog: ProgressDialogFragment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +41,10 @@ class NewFormsFragment : Fragment() {
         setupClipping(newFormsMainLayout)
 
 
-        val submitListener = { fc: FormComplete -> showConfirmationDialog({ mViewModel.deleteForm(fc) },
-            R.string.form_item_delete_confirmation,
-            R.layout.dialog_form_item_delete,
-            R.string.form_item_deleted)}
+        val submitListener = { fc: FormComplete ->
+            mViewModel.submitForm(fc.form!!.id)
+            showProgressDialog()
+        }
         val deleteListener = { fc: FormComplete -> showConfirmationDialog({ mViewModel.deleteForm(fc) },
             R.string.form_item_delete_confirmation,
             R.layout.dialog_form_item_delete,
@@ -66,5 +66,25 @@ class NewFormsFragment : Fragment() {
             newFormsRecyclerView.updateDisplayBasedOnItemCount(forms.size)
             mAdapter.setForms(forms)
         })
+        mViewModel.saveResult.observeProgress(viewLifecycleOwner, {
+            mDialog?.dismiss()
+            showToast(R.string.form_item_submission_success)
+        }, {
+            mDialog?.dismiss()
+            showToast(R.string.form_item_submission_failed)
+        }, {
+            showToast(R.string.form_item_submission_cancelled)
+        }, {
+            mDialog?.updateBasedOnProgress(it)
+        })
+    }
+
+    private fun showProgressDialog() {
+        mDialog?.dismiss()
+        mDialog = ProgressDialogFragment.newInstance(textId = R.layout.dialog_progress)
+        mDialog?.show(childFragmentManager, ProgressDialogFragment.TAG)
+        mDialog?.setOnDialogCanceledListener {
+            mViewModel.cancelSubmission()
+        }
     }
 }

@@ -11,10 +11,10 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.customviews.ItemSection
-import com.cpu.quikdata.feature.createform.BaseSelectionFragment
+import com.cpu.quikdata.feature.createform.BaseSubmissionFragment
 import kotlinx.android.synthetic.main.fragment_selection.*
 
-class SelectionFragment : BaseSelectionFragment() {
+class SelectionFragment : BaseSubmissionFragment() {
 
     companion object {
         private const val EXPANDED_ITEM_KEY = "EXPANDED_ITEM_KEY"

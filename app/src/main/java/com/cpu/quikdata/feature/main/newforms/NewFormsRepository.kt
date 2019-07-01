@@ -2,6 +2,7 @@ package com.cpu.quikdata.feature.main.newforms
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.baselinedata.BaselineData
@@ -52,9 +53,13 @@ class NewFormsRepository(application: Application) {
     private val mDatabase = AppDatabase.get(application)
     private val mFirebaseHelper = FirebaseHelper()
     private val mNewForms = mDatabase.formDao().getAllActual()
+    private val mSaveResult = MediatorLiveData<ProgressNotification>()
 
     val newForms: LiveData<List<FormComplete>>
         get() = mNewForms
+
+    val saveResult: LiveData<ProgressNotification>
+        get() = mSaveResult
 
     fun createNewForm(formId: String) {
         CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {
@@ -274,4 +279,18 @@ class NewFormsRepository(application: Application) {
             mDatabase.formDao().delete(formComplete.form!!)
         }
     }
+
+    fun submitForm(formId: String) {
+        val operation = mFirebaseHelper.submitAllData(mDatabase, formId)
+        mSaveResult.addSource(operation) {
+            mSaveResult.value = it
+            if (it == ProgressNotification.FINISHED ||
+                it == ProgressNotification.CANCELLED ||
+                it == ProgressNotification.ERROR_OCCURRED) {
+                mSaveResult.removeSource(operation)
+            }
+        }
+    }
+
+    fun cancelSubmission() = mFirebaseHelper.cancelSubmission()
 }

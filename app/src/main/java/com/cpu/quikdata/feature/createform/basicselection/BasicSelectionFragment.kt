@@ -12,14 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
-import com.cpu.quikdata.feature.createform.BaseSelectionFragment
+import com.cpu.quikdata.feature.createform.BaseSubmissionFragment
 import kotlinx.android.synthetic.main.fragment_basic_selection.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class BasicSelectionFragment : BaseSelectionFragment() {
+class BasicSelectionFragment : BaseSubmissionFragment() {
 
     private lateinit var mNavController : NavController
 
