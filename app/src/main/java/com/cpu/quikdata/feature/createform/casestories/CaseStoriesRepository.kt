@@ -9,6 +9,7 @@ import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.casestories.CaseStoriesComplete
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
 import com.cpu.quikdata.utils.generateId
+import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import org.joda.time.LocalDateTime
 
@@ -33,7 +34,7 @@ class CaseStoriesRepository(application: Application, formId: String) {
             val caseStoriesId = mCaseStories.value!!.root!!.id
             mDatabase.caseStoriesImageItemDao().insert(CaseStoriesImageItem(
                 id = id,
-                dateCreated = LocalDateTime.now().toDateTime().millis,
+                dateCreated = getDateTimeNowInLong(),
                 uri = uri,
                 caseStoriesId = caseStoriesId
             ))

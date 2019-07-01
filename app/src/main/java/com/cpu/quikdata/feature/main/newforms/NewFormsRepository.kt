@@ -38,6 +38,8 @@ import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
 import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
 import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
 import com.cpu.quikdata.utils.generateId
+import com.cpu.quikdata.utils.getDateNowInLong
+import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -48,6 +50,7 @@ import org.joda.time.LocalDate
 class NewFormsRepository(application: Application) {
 
     private val mDatabase = AppDatabase.get(application)
+    private val mFirebaseHelper = FirebaseHelper()
     private val mNewForms = mDatabase.formDao().getAllActual()
 
     val newForms: LiveData<List<FormComplete>>
@@ -55,8 +58,8 @@ class NewFormsRepository(application: Application) {
 
     fun createNewForm(formId: String) {
         CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {
-            val dateNowInLong = LocalDate.now().toDateTimeAtStartOfDay().millis
-            val form = Form(formId)
+            val dateNowInLong = getDateNowInLong()
+            val form = Form(formId, getDateTimeNowInLong())
             mDatabase.formDao().insert(form)
 
             // region Form details

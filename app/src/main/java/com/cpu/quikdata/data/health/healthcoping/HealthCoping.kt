@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.form.Form
 
 @Entity(tableName = "health_coping",
@@ -15,9 +14,9 @@ import com.cpu.quikdata.data.form.Form
         onDelete = ForeignKey.CASCADE
     )])
 data class HealthCoping(@PrimaryKey(autoGenerate = false)
-                        override val id: String = "",
+                        val id: String = "",
                         var copingStrategies: String = "",
-                        val formId: String = "") : BaseDataWithId {
+                        val formId: String = "") {
 
     fun copyFrom(healthCoping: HealthCoping) {
         copingStrategies = healthCoping.copingStrategies

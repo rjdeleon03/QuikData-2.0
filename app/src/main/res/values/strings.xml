@@ -417,7 +417,7 @@
     <string name="text_unknown_calamity">Unknown Calamity</string>
     <string name="text_home">Home</string>
     <string name="text_empty_sitio_barangay">Unknown Sitio and Barangay</string>
-    <string name="text_empty_city_province">Unknown City/Municipality and Province</string>
+    <string name="text_empty_city_province">Unknown City / Municipality and Province</string>
     <string name="form_item_discard_title">Discard Form</string>
     <string name="form_item_deleted">The DNCA form has been deleted successfully.</string>
     <string name="form_item_discard_confirmation_message">Going back without saving this DNCA form will discard it. Do you want to proceed?</string>

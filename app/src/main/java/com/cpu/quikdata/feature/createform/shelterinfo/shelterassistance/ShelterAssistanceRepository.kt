@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
 import com.cpu.quikdata.data.shelterinfo.shelterassistance.ShelterAssistanceRow
 import com.cpu.quikdata.utils.generateId
+import com.cpu.quikdata.utils.getDateNowInLong
+import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
@@ -26,10 +28,9 @@ class ShelterAssistanceRepository(application: Application, formId: String) :
 
     override fun createData(id: String) {
         runOnIoThread {
-            val dateTodayInMillis = LocalDate.now().toDateTimeAtStartOfDay().millis
             val row = ShelterAssistanceRow(id = generateId(),
-                dateReceived = dateTodayInMillis,
-                dateCreated = LocalDateTime.now().toDateTime().millis,
+                dateReceived = getDateNowInLong(),
+                dateCreated = getDateTimeNowInLong(),
                 formId = mFormId)
             mDatabase.shelterAssistanceRowDao().insert(row)
         }

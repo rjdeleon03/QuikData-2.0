@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 
 @Entity(tableName = "evacuation_age_row",
@@ -15,7 +14,7 @@ import com.cpu.quikdata.data.evacuation.EvacuationItem
         onDelete = ForeignKey.CASCADE
     )])
 data class EvacuationAgeRow(@PrimaryKey(autoGenerate = false)
-                            override val id: String = "",
+                            val id: String = "",
                             val type: Int = 0,
                             var male: Int = 0,
                             var female: Int = 0,
@@ -24,7 +23,7 @@ data class EvacuationAgeRow(@PrimaryKey(autoGenerate = false)
                             var lactating: Int = 0,
                             var disabled: Int = 0,
                             var sick: Int = 0,
-                            val evacuationId: String = "") : BaseDataWithId {
+                            val evacuationId: String = "") {
 
     override fun equals(other: Any?): Boolean {
         if (other == null || other !is EvacuationAgeRow) return false

@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cpu.quikdata.base.BaseDataWithId
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 
 @Entity(tableName = "site_info",
@@ -15,7 +14,7 @@ import com.cpu.quikdata.data.evacuation.EvacuationItem
         onDelete = ForeignKey.CASCADE
     )])
 data class SiteInfo(@PrimaryKey(autoGenerate = false)
-                    override val id: String = "",
+                    val id: String = "",
                     var name: String = "",
                     var location: String = "",
                     var haveMoved: Boolean = true,
@@ -25,7 +24,7 @@ data class SiteInfo(@PrimaryKey(autoGenerate = false)
                     var evacuationDate: Long = 0L,
                     var shelterSize: String = "",
                     var householdsAndFamilies: Int = 0,
-                    val evacuationId: String = "") : BaseDataWithId {
+                    val evacuationId: String = "") {
 
     fun copyFrom(siteInfo: SiteInfo) {
         name = siteInfo.name
