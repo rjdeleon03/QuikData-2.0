@@ -24,10 +24,14 @@ abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>
     }
 
     override fun setRows(rows: List<R>) {
-        if (mRows == null || mRows!!.size != rows.size) {
-            if (mRows != null) mExpandedItem = rows.size - 1
-            super.setRows(rows)
+        // Move focus to last-added item if:
+        // - a new item is added
+        // - expanded item is already deleted
+        if (mRows != null ) {
+            if (mRows!!.size < rows.size || mExpandedItem >= rows.size)
+                mExpandedItem = rows.size - 1
         }
+        super.setRows(rows)
     }
 
     abstract class ViewHolder<R>(itemView: View) : BaseCollapsibleAdapter.ViewHolder<R>(itemView, true)
