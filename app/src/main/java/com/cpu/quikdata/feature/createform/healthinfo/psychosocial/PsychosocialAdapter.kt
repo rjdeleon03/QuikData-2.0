@@ -23,11 +23,11 @@ class PsychosocialAdapter(context: Context, rowSaveListener: (PsychosocialRow) -
                                               rowSaveListener: (PsychosocialRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(AgeCategories.getStringId(row.type)) }
-            UIJobScheduler.submitJob { view.psychosocialCasesText.number1 = row.casesMale }
-            UIJobScheduler.submitJob { view.psychosocialCasesText.number2 = row.casesFemale }
-            UIJobScheduler.submitJob { view.psychosocialManifestationsText.text = row.manifestations }
-            UIJobScheduler.submitJob { view.psychosocialNeedsText.text = row.needs }
+            view.headerTextField.setText(AgeCategories.getStringId(row.type))
+            view.psychosocialCasesText.number1 = row.casesMale
+            view.psychosocialCasesText.number2 = row.casesFemale
+            view.psychosocialManifestationsText.text = row.manifestations
+            view.psychosocialNeedsText.text = row.needs
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {

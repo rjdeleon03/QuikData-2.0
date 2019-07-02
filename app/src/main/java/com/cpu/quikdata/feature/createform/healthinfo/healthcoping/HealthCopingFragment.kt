@@ -42,7 +42,7 @@ class HealthCopingFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(HealthCopingViewModel::class.java)
         mViewModel.healthCoping.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { healthCopingStrategiesText.text = it.copingStrategies }
+            healthCopingStrategiesText.text = it.copingStrategies
         })
     }
 

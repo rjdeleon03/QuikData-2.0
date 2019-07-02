@@ -43,7 +43,7 @@ class FoodSecurityCopingFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityCopingViewModel::class.java)
         mViewModel.foodSecurityCoping.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { foodSecurityCopingStrategiesText.text = it.copingStrategies }
+            foodSecurityCopingStrategiesText.text = it.copingStrategies
         })
     }
 

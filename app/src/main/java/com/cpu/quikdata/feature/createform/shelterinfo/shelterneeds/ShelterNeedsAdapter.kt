@@ -23,9 +23,9 @@ class ShelterNeedsAdapter(context: Context, rowSaveListener: (ShelterNeedsRow) -
                                               rowSaveListener: (ShelterNeedsRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(MaterialCategories.getStringId(row.type)) }
-            UIJobScheduler.submitJob { view.shelterNeedsSpecificItemsText.text = row.specificItems }
-            UIJobScheduler.submitJob { view.shelterNeedsFamiliesInNeedText.number = row.familiesInNeed }
+            view.headerTextField.setText(MaterialCategories.getStringId(row.type))
+            view.shelterNeedsSpecificItemsText.text = row.specificItems
+            view.shelterNeedsFamiliesInNeedText.number = row.familiesInNeed
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {

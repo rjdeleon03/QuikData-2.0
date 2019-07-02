@@ -45,10 +45,10 @@ class CalamityInfoFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(CalamityInfoViewModel::class.java)
         mViewModel.calamityInfo.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { calamityTypeText.text = it.calamityType }
-            UIJobScheduler.submitJob { calamityDateText.date = it.occurrenceDate }
-            UIJobScheduler.submitJob { calamityDescText.text = it.eventDescription }
-            UIJobScheduler.submitJob { calamityAreaText.text = it.affectedAreaDescription }
+            calamityTypeText.text = it.calamityType
+            calamityDateText.date = it.occurrenceDate
+            calamityDescText.text = it.eventDescription
+            calamityAreaText.text = it.affectedAreaDescription
         })
     }
 

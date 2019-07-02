@@ -46,10 +46,10 @@ class FoodSecurityGapsFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityGapsViewModel::class.java)
         mViewModel.foodSecurityGaps.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { foodSecurityGapsAssistanceAppropriateText.text = it.assistanceAppropriate }
-            UIJobScheduler.submitJob { foodSecurityGapsAssistanceEnoughText.text = it.assistanceEnough }
-            UIJobScheduler.submitJob { foodSecurityGapsAssistanceEqualAccessText.text = it.assistanceEqualAccess }
-            UIJobScheduler.submitJob { foodSecurityGapsSpecificNeedsMetText.text = it.specificNeedsMet }
+            foodSecurityGapsAssistanceAppropriateText.text = it.assistanceAppropriate
+            foodSecurityGapsAssistanceEnoughText.text = it.assistanceEnough
+            foodSecurityGapsAssistanceEqualAccessText.text = it.assistanceEqualAccess
+            foodSecurityGapsSpecificNeedsMetText.text = it.specificNeedsMet
         })
     }
 

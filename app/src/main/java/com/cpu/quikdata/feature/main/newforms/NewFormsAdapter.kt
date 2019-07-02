@@ -85,24 +85,22 @@ class NewFormsAdapter(context: Context,
             view.formItemNameText.text = String.format(view.context.getString(R.string.form_item_assessed), formDetails.assessmentDate.toDateString())
 
             // region Sitio/Barangay
-            UIJobScheduler.submitJob {
-                if (baselineData.sitio.isBlank() && baselineData.barangay.isBlank()) {
-                    view.formItemSitioBarangayText.text = view.context.getString(R.string.text_empty_sitio_barangay)
-                } else if (baselineData.sitio.isBlank() || baselineData.barangay.isBlank()) {
-                    view.formItemSitioBarangayText.text =
-                        String.format(
-                            view.context.getString(R.string.text_empty_location),
-                            baselineData.sitio,
-                            baselineData.barangay
-                        )
-                } else {
-                    view.formItemSitioBarangayText.text =
-                        String.format(
-                            view.context.getString(R.string.text_complete_location),
-                            baselineData.sitio,
-                            baselineData.barangay
-                        )
-                }
+            if (baselineData.sitio.isBlank() && baselineData.barangay.isBlank()) {
+                view.formItemSitioBarangayText.text = view.context.getString(R.string.text_empty_sitio_barangay)
+            } else if (baselineData.sitio.isBlank() || baselineData.barangay.isBlank()) {
+                view.formItemSitioBarangayText.text =
+                    String.format(
+                        view.context.getString(R.string.text_empty_location),
+                        baselineData.sitio,
+                        baselineData.barangay
+                    )
+            } else {
+                view.formItemSitioBarangayText.text =
+                    String.format(
+                        view.context.getString(R.string.text_complete_location),
+                        baselineData.sitio,
+                        baselineData.barangay
+                    )
             }
             // endregion
 

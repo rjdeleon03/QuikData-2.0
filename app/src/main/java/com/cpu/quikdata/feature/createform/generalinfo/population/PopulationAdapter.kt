@@ -23,11 +23,11 @@ class PopulationAdapter(context: Context, rowSaveListener: (PopulationRow) -> Un
                                               rowSaveListener: (PopulationRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(AgeCategories.getStringId(row.type)) }
-            UIJobScheduler.submitJob { view.populationAffectedText.number1 = row.affectedMale }
-            UIJobScheduler.submitJob { view.populationAffectedText.number2 = row.affectedFemale }
-            UIJobScheduler.submitJob { view.populationDisplacedText.number1 = row.displacedMale }
-            UIJobScheduler.submitJob { view.populationDisplacedText.number2 = row.displacedFemale }
+            view.headerTextField.setText(AgeCategories.getStringId(row.type))
+            view.populationAffectedText.number1 = row.affectedMale
+            view.populationAffectedText.number2 = row.affectedFemale
+            view.populationDisplacedText.number1 = row.displacedMale
+            view.populationDisplacedText.number2 = row.displacedFemale
 
             // Setup listener for saving each row
             UIJobScheduler.submitJob {

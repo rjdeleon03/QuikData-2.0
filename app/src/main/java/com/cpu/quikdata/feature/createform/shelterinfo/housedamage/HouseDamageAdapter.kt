@@ -23,16 +23,16 @@ class HouseDamageAdapter(context: Context, rowSaveListener: (HouseDamageRow) -> 
                                               rowSaveListener: (HouseDamageRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(HouseCategories.getStringId(row.type)) }
-            UIJobScheduler.submitJob { view.houseDamageOwnedHouseholdsText.number = row.ownedHouseholds }
-            UIJobScheduler.submitJob { view.houseDamageRentedHouseholdsText.number = row.rentedHouseholds }
-            UIJobScheduler.submitJob { view.houseDamageSharedHouseholdsText.number = row.sharedHouseholds }
-            UIJobScheduler.submitJob { view.houseDamageOwnedLandText.number = row.ownedLand }
-            UIJobScheduler.submitJob { view.houseDamageRentedLandText.number = row.rentedLand }
-            UIJobScheduler.submitJob { view.houseDamageTenantedLandText.number = row.tenantedLand }
-            UIJobScheduler.submitJob { view.houseDamageInformalSettlersText.number = row.informalSettlers }
-            UIJobScheduler.submitJob { view.houseDamagePartiallyDamagedText.number = row.partiallyDamaged }
-            UIJobScheduler.submitJob { view.houseDamageTotallyDamagedText.number = row.totallyDamaged }
+            view.headerTextField.setText(HouseCategories.getStringId(row.type))
+            view.houseDamageOwnedHouseholdsText.number = row.ownedHouseholds
+            view.houseDamageRentedHouseholdsText.number = row.rentedHouseholds
+            view.houseDamageSharedHouseholdsText.number = row.sharedHouseholds
+            view.houseDamageOwnedLandText.number = row.ownedLand
+            view.houseDamageRentedLandText.number = row.rentedLand
+            view.houseDamageTenantedLandText.number = row.tenantedLand
+            view.houseDamageInformalSettlersText.number = row.informalSettlers
+            view.houseDamagePartiallyDamagedText.number = row.partiallyDamaged
+            view.houseDamageTotallyDamagedText.number = row.totallyDamaged
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {

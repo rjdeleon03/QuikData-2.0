@@ -45,9 +45,9 @@ class LivelihoodsNeedsFragment : BaseCreateFormFragment() {
         
         mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsNeedsViewModel::class.java)
         mViewModel.livelihoodsNeeds.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { livelihoodsNeedsAssistanceFillGapText.text = it.assistanceFillGap }
-            UIJobScheduler.submitJob { livelihoodsResourcesNeededText.text = it.resourcesNeeded }
-            UIJobScheduler.submitJob { livelihoodsNeedsFamiliesInAssistanceText.text = it.familiesInAssistance }
+            livelihoodsNeedsAssistanceFillGapText.text = it.assistanceFillGap
+            livelihoodsResourcesNeededText.text = it.resourcesNeeded
+            livelihoodsNeedsFamiliesInAssistanceText.text = it.familiesInAssistance
         })
     }
 

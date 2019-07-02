@@ -48,14 +48,14 @@ class ShelterGapsFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(ShelterGapsViewModel::class.java)
         mViewModel.shelterGaps.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { shelterGapsCubicles.text = it.cubicles }
-            UIJobScheduler.submitJob { shelterGapsCulturalPracticeAssistance.text = it.culturalPracticeAssistance }
-            UIJobScheduler.submitJob { shelterGapsShelterAppropriate.text = it.shelterAppropriate }
-            UIJobScheduler.submitJob { shelterGapsServicesAccess.text = it.servicesAccess }
-            UIJobScheduler.submitJob { shelterGapsAnyAbleBodied.text = it.anyAbleBodied }
-            UIJobScheduler.submitJob { shelterGapsGbvReferralPathway.text = it.gbvReferralPathway }
-            UIJobScheduler.submitJob { shelterGapsGbvProtectionServices.text = it.gbvProtectionServices }
-            UIJobScheduler.submitJob { shelterGapsGbvProtectionFocalPoint.text = it.gbvProtectionFocalPoint }
+            shelterGapsCubicles.text = it.cubicles
+            shelterGapsCulturalPracticeAssistance.text = it.culturalPracticeAssistance
+            shelterGapsShelterAppropriate.text = it.shelterAppropriate
+            shelterGapsServicesAccess.text = it.servicesAccess
+            shelterGapsAnyAbleBodied.text = it.anyAbleBodied
+            shelterGapsGbvReferralPathway.text = it.gbvReferralPathway
+            shelterGapsGbvProtectionServices.text = it.gbvProtectionServices
+            shelterGapsGbvProtectionFocalPoint.text = it.gbvProtectionFocalPoint
         })
     }
 

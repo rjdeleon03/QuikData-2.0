@@ -23,9 +23,9 @@ class SpecialNeedsAdapter(context: Context, rowSaveListener: (SpecialNeedsRow) -
                                               rowSaveListener: (SpecialNeedsRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(SpecialNeedsCategories.getStringId(row.type)) }
-            UIJobScheduler.submitJob { view.specialNeedsNumberText.number = row.number }
-            UIJobScheduler.submitJob { view.specialNeedsHealthMedicalText.text = row.healthMedical }
+            view.headerTextField.setText(SpecialNeedsCategories.getStringId(row.type))
+            view.specialNeedsNumberText.number = row.number
+            view.specialNeedsHealthMedicalText.text = row.healthMedical
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {

@@ -23,25 +23,25 @@ class DiseasesAdapter(context: Context, rowSaveListener: (DiseasesRow) -> Unit, 
                                               rowSaveListener: (DiseasesRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(AgeCategories.getStringId(row.type)) }
-            UIJobScheduler.submitJob { view.diseasesDiarrheaText.number1 = row.diarrheaMale }
-            UIJobScheduler.submitJob { view.diseasesDiarrheaText.number2 = row.diarrheaFemale }
-            UIJobScheduler.submitJob { view.diseasesPneumoniaText.number1 = row.pneumoniaMale }
-            UIJobScheduler.submitJob { view.diseasesPneumoniaText.number2 = row.pneumoniaFemale }
-            UIJobScheduler.submitJob { view.diseasesDengueText.number1 = row.dengueMale }
-            UIJobScheduler.submitJob { view.diseasesDengueText.number2 = row.dengueFemale }
-            UIJobScheduler.submitJob { view.diseasesMeaslesText.number1 = row.measlesMale }
-            UIJobScheduler.submitJob { view.diseasesMeaslesText.number2 = row.measlesFemale }
-            UIJobScheduler.submitJob { view.diseasesOthersText.number1 = row.othersMale }
-            UIJobScheduler.submitJob { view.diseasesOthersText.number2 = row.othersFemale }
-            UIJobScheduler.submitJob { view.diseasesCheckUpText.number1 = row.checkUpMale }
-            UIJobScheduler.submitJob { view.diseasesCheckUpText.number2 = row.checkUpFemale }
-            UIJobScheduler.submitJob { view.diseasesHospitalizationText.number1 = row.hospitalizationMale }
-            UIJobScheduler.submitJob { view.diseasesHospitalizationText.number2 = row.hospitalizationFemale }
-            UIJobScheduler.submitJob { view.diseasesMedicinesText.number1 = row.medicinesMale }
-            UIJobScheduler.submitJob { view.diseasesMedicinesText.number2 = row.medicinesFemale }
-            UIJobScheduler.submitJob { view.diseasesMedicalOthersText.number1 = row.medicalOthersMale }
-            UIJobScheduler.submitJob { view.diseasesMedicalOthersText.number2 = row.medicalOthersFemale }
+            view.headerTextField.setText(AgeCategories.getStringId(row.type))
+            view.diseasesDiarrheaText.number1 = row.diarrheaMale
+            view.diseasesDiarrheaText.number2 = row.diarrheaFemale
+            view.diseasesPneumoniaText.number1 = row.pneumoniaMale
+            view.diseasesPneumoniaText.number2 = row.pneumoniaFemale
+            view.diseasesDengueText.number1 = row.dengueMale
+            view.diseasesDengueText.number2 = row.dengueFemale
+            view.diseasesMeaslesText.number1 = row.measlesMale
+            view.diseasesMeaslesText.number2 = row.measlesFemale
+            view.diseasesOthersText.number1 = row.othersMale
+            view.diseasesOthersText.number2 = row.othersFemale
+            view.diseasesCheckUpText.number1 = row.checkUpMale
+            view.diseasesCheckUpText.number2 = row.checkUpFemale
+            view.diseasesHospitalizationText.number1 = row.hospitalizationMale
+            view.diseasesHospitalizationText.number2 = row.hospitalizationFemale
+            view.diseasesMedicinesText.number1 = row.medicinesMale
+            view.diseasesMedicinesText.number2 = row.medicinesFemale
+            view.diseasesMedicalOthersText.number1 = row.medicalOthersMale
+            view.diseasesMedicalOthersText.number2 = row.medicalOthersFemale
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {

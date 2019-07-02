@@ -52,7 +52,7 @@ class EvacuationCopingFragment : Fragment() {
         val factory = ViewModelFactory(activity!!.application, evacuationId)
         mViewModel = ViewModelProviders.of(this, factory).get(EvacuationCopingViewModel::class.java)
         mViewModel.evacuationCoping.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { evacuationCopingMechanismText.text = it.copingMechanism }
+            evacuationCopingMechanismText.text = it.copingMechanism
         })
     }
 

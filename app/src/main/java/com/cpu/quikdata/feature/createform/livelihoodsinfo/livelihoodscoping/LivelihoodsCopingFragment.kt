@@ -45,9 +45,9 @@ class LivelihoodsCopingFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsCopingViewModel::class.java)
         mViewModel.livelihoodsCoping.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { livelihoodsCopingStrategiesText.text = it.copingStrategies }
-            UIJobScheduler.submitJob { livelihoodsCopingNewIncomeText.text = it.newIncome }
-            UIJobScheduler.submitJob { livelihoodsCopingLivelihoodSkillsText.text = it.livelihoodSkills }
+            livelihoodsCopingStrategiesText.text = it.copingStrategies
+            livelihoodsCopingNewIncomeText.text = it.newIncome
+            livelihoodsCopingLivelihoodSkillsText.text = it.livelihoodSkills
         })
     }
 

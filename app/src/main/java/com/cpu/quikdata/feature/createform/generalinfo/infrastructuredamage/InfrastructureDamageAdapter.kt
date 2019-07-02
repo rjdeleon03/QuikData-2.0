@@ -25,10 +25,10 @@ class InfrastructureDamageAdapter(context: Context, rowSaveListener: (Infrastruc
                                               rowSaveListener: (InfrastructureDamageRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(InfraCategories.getStringId(row.type)) }
-            UIJobScheduler.submitJob { view.infrastructureDamageNumberText.number = row.numberOfInfrastructure }
-            UIJobScheduler.submitJob { view.infrastructureDamageFunctionalBool.value = row.isFunctional }
-            UIJobScheduler.submitJob { view.infrastructureDamageRemarksText.text = row.remarks }
+            view.headerTextField.setText(InfraCategories.getStringId(row.type))
+            view.infrastructureDamageNumberText.number = row.numberOfInfrastructure
+            view.infrastructureDamageFunctionalBool.value = row.isFunctional
+            view.infrastructureDamageRemarksText.text = row.remarks
 
             // Setup listener for saving each row
             UIJobScheduler.submitJob {

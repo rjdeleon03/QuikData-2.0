@@ -23,13 +23,13 @@ class CasualtiesAdapter(context: Context, rowSaveListener: (CasualtiesRow) -> Un
                                               rowSaveListener: (CasualtiesRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(AgeCategories.getStringId(row.type)) }
-            UIJobScheduler.submitJob { view.casualtiesDeadText.number1 = row.deadMale }
-            UIJobScheduler.submitJob { view.casualtiesDeadText.number2 = row.deadFemale }
-            UIJobScheduler.submitJob { view.casualtiesMissingText.number1 = row.missingMale }
-            UIJobScheduler.submitJob { view.casualtiesMissingText.number2 = row.missingFemale }
-            UIJobScheduler.submitJob { view.casualtiesInjuredText.number1 = row.injuredMale }
-            UIJobScheduler.submitJob { view.casualtiesInjuredText.number2 = row.injuredFemale }
+            view.headerTextField.setText(AgeCategories.getStringId(row.type))
+            view.casualtiesDeadText.number1 = row.deadMale
+            view.casualtiesDeadText.number2 = row.deadFemale
+            view.casualtiesMissingText.number1 = row.missingMale
+            view.casualtiesMissingText.number2 = row.missingFemale
+            view.casualtiesInjuredText.number1 = row.injuredMale
+            view.casualtiesInjuredText.number2 = row.injuredFemale
 
             // Setup listener for saving each row
             UIJobScheduler.submitJob {

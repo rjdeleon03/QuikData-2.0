@@ -46,10 +46,10 @@ class HealthGapsFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(HealthGapsViewModel::class.java)
         mViewModel.healthGaps.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { healthGapsNearestHospitalText.text = it.nearestHospital }
-            UIJobScheduler.submitJob { healthGapsServicesAvailableText.text = it.servicesAvailable }
-            UIJobScheduler.submitJob { healthGapsServicesAccessibleText.text = it.servicesAccessible }
-            UIJobScheduler.submitJob { healthGapsReproductiveHealthText.text = it.reproductiveHealth }
+            healthGapsNearestHospitalText.text = it.nearestHospital
+            healthGapsServicesAvailableText.text = it.servicesAvailable
+            healthGapsServicesAccessibleText.text = it.servicesAccessible
+            healthGapsReproductiveHealthText.text = it.reproductiveHealth
         })
     }
 

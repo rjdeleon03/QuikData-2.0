@@ -66,15 +66,15 @@ class SiteInfoFragment : Fragment() {
         val factory = ViewModelFactory(activity!!.application, evacuationId)
         mViewModel = ViewModelProviders.of(this, factory).get(SiteInfoViewModel::class.java)
         mViewModel.siteInfo.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { evacuationSiteInfoNameText.text = it.name }
-            UIJobScheduler.submitJob { evacuationSiteInfoLocationText.text = it.location }
-            UIJobScheduler.submitJob { evacuationSiteInfoTypeText.selectedIndex = it.type }
-            UIJobScheduler.submitJob { evacuationSiteInfoHaveMovedText.value = it.haveMoved }
-            UIJobScheduler.submitJob { evacuationSiteInfoLguDesignatedText.value = it.isLguDesignated }
-            UIJobScheduler.submitJob { evacuationSiteInfoDistanceText.text = it.distanceFromCommunity }
-            UIJobScheduler.submitJob { evacuationSiteInfoDateText.date = it.evacuationDate }
-            UIJobScheduler.submitJob { evacuationSiteInfoShelterSizeText.text = it.shelterSize }
-            UIJobScheduler.submitJob { evacuationSiteInfoHouseholdsText.number = it.householdsAndFamilies }
+            evacuationSiteInfoNameText.text = it.name
+            evacuationSiteInfoLocationText.text = it.location
+            evacuationSiteInfoTypeText.selectedIndex = it.type
+            evacuationSiteInfoHaveMovedText.value = it.haveMoved
+            evacuationSiteInfoLguDesignatedText.value = it.isLguDesignated
+            evacuationSiteInfoDistanceText.text = it.distanceFromCommunity
+            evacuationSiteInfoDateText.date = it.evacuationDate
+            evacuationSiteInfoShelterSizeText.text = it.shelterSize
+            evacuationSiteInfoHouseholdsText.number = it.householdsAndFamilies
         })
     }
 
