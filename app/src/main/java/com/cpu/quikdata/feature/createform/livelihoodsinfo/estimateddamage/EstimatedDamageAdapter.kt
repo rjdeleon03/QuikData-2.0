@@ -28,15 +28,15 @@ class EstimatedDamageAdapter(context: Context, rowSaveListener: (EstimatedDamage
             val multipleChoiceView = view.findViewById<MultipleChoiceQuestion>(R.id.estimatedDamageKindsText)
             multipleChoiceView.clear()
             for (item in row.types!!) {
-                UIJobScheduler.submitJob {
-                    multipleChoiceView.addItem(LivelihoodSubcategories.getStringId(item.type), item.isSelected)
-                }
+                multipleChoiceView.addItem(LivelihoodSubcategories.getStringId(item.type), item.isSelected)
             }
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(LivelihoodCategories.getStringId(row.row!!.type)) }
-            UIJobScheduler.submitJob { view.estimatedDamageCostText.number = row.row!!.damageCost }
-            UIJobScheduler.submitJob { view.estimatedDamageRemarksText.text = row.row!!.remarks }
+            view.headerTextField.setText(LivelihoodCategories.getStringId(row.row!!.type))
+            UIJobScheduler.submitJob {
+                view.estimatedDamageCostText.number = row.row!!.damageCost
+                view.estimatedDamageRemarksText.text = row.row!!.remarks
+            }
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {

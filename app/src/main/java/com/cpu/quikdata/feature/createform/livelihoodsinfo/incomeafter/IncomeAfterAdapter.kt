@@ -28,15 +28,17 @@ class IncomeAfterAdapter(context: Context,
                                               rowSaveListener: (IncomeAfterRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.text = "${view.resources.getString(R.string.income_source_item)} ${idx + 1}" }
-            UIJobScheduler.submitJob { view.incomeSourceText.text = row.source }
-            UIJobScheduler.submitJob { view.incomeSourceTypeText.value = row.isPrimary }
-            UIJobScheduler.submitJob { view.incomeAverageIncomeText.number = row.income }
-            UIJobScheduler.submitJob { view.incomeHouseholdsText.number = row.households }
-            UIJobScheduler.submitJob { view.incomeMaleText.number = row.male }
-            UIJobScheduler.submitJob { view.incomeFemaleText.number = row.female }
-            UIJobScheduler.submitJob { view.incomeBoysText.number = row.boys }
-            UIJobScheduler.submitJob { view.incomeGirlsText.number = row.girls }
+            view.headerTextField.text = "${view.resources.getString(R.string.income_source_item)} ${idx + 1}"
+            UIJobScheduler.submitJob {
+                view.incomeSourceText.text = row.source
+                view.incomeSourceTypeText.value = row.isPrimary
+                view.incomeAverageIncomeText.number = row.income
+                view.incomeHouseholdsText.number = row.households
+                view.incomeMaleText.number = row.male
+                view.incomeFemaleText.number = row.female
+                view.incomeBoysText.number = row.boys
+                view.incomeGirlsText.number = row.girls
+            }
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
