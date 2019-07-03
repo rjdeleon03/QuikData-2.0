@@ -5,7 +5,6 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRow
 import kotlinx.android.synthetic.main.item_cause_of_death.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -44,34 +43,32 @@ class CauseOfDeathAdapter(context: Context, rowSaveListener: (CauseOfDeathRow) -
             view.causeOfDeathOthersText.number2 = row.othersFemale
 
             // Setup listener for saving each row
-            UIJobScheduler.submitJob {
-                collapsibleView?.onDetachedListener = {
-                    val newRow = CauseOfDeathRow(
-                        row.id,
-                        row.type,
-                        view.causeOfDeathMeaslesText.number1,
-                        view.causeOfDeathMeaslesText.number2,
-                        view.causeOfDeathDiarrheaText.number1,
-                        view.causeOfDeathDiarrheaText.number2,
-                        view.causeOfDeathPneumoniaText.number1,
-                        view.causeOfDeathPneumoniaText.number2,
-                        view.causeOfDeathDengueText.number1,
-                        view.causeOfDeathDengueText.number2,
-                        view.causeOfDeathDrowningText.number1,
-                        view.causeOfDeathDrowningText.number2,
-                        view.causeOfDeathHeartAttackText.number1,
-                        view.causeOfDeathHeartAttackText.number2,
-                        view.causeOfDeathElectrocutionText.number1,
-                        view.causeOfDeathElectrocutionText.number2,
-                        view.causeOfDeathCollapsedBldgText.number1,
-                        view.causeOfDeathCollapsedBldgText.number2,
-                        view.causeOfDeathOthersText.number1,
-                        view.causeOfDeathOthersText.number2,
-                        row.formId
-                    )
-                    if (row != newRow) {
-                        rowSaveListener(newRow)
-                    }
+            collapsibleView?.onDetachedListener = {
+                val newRow = CauseOfDeathRow(
+                    row.id,
+                    row.type,
+                    view.causeOfDeathMeaslesText.number1,
+                    view.causeOfDeathMeaslesText.number2,
+                    view.causeOfDeathDiarrheaText.number1,
+                    view.causeOfDeathDiarrheaText.number2,
+                    view.causeOfDeathPneumoniaText.number1,
+                    view.causeOfDeathPneumoniaText.number2,
+                    view.causeOfDeathDengueText.number1,
+                    view.causeOfDeathDengueText.number2,
+                    view.causeOfDeathDrowningText.number1,
+                    view.causeOfDeathDrowningText.number2,
+                    view.causeOfDeathHeartAttackText.number1,
+                    view.causeOfDeathHeartAttackText.number2,
+                    view.causeOfDeathElectrocutionText.number1,
+                    view.causeOfDeathElectrocutionText.number2,
+                    view.causeOfDeathCollapsedBldgText.number1,
+                    view.causeOfDeathCollapsedBldgText.number2,
+                    view.causeOfDeathOthersText.number1,
+                    view.causeOfDeathOthersText.number2,
+                    row.formId
+                )
+                if (row != newRow) {
+                    rowSaveListener(newRow)
                 }
             }
         }

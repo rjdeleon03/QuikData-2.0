@@ -5,7 +5,6 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.MaterialCategories
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import kotlinx.android.synthetic.main.item_shelter_needs.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*

@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFocusableFragment
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import kotlinx.android.synthetic.main.fragment_prefilled_info.*

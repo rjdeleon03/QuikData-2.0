@@ -5,7 +5,6 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
 import kotlinx.android.synthetic.main.item_evacuation_age.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*

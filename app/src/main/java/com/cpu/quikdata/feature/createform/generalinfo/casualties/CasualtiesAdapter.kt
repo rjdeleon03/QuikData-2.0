@@ -5,7 +5,6 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRow
 import kotlinx.android.synthetic.main.item_casualties.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -32,22 +31,20 @@ class CasualtiesAdapter(context: Context, rowSaveListener: (CasualtiesRow) -> Un
             view.casualtiesInjuredText.number2 = row.injuredFemale
 
             // Setup listener for saving each row
-            UIJobScheduler.submitJob {
-                collapsibleView?.onDetachedListener = {
-                    val newRow = CasualtiesRow(
-                        row.id,
-                        row.type,
-                        view.casualtiesDeadText.number1,
-                        view.casualtiesDeadText.number2,
-                        view.casualtiesMissingText.number1,
-                        view.casualtiesMissingText.number2,
-                        view.casualtiesInjuredText.number1,
-                        view.casualtiesInjuredText.number2,
-                        row.formId
-                    )
-                    if (row != newRow) {
-                        rowSaveListener(newRow)
-                    }
+            collapsibleView?.onDetachedListener = {
+                val newRow = CasualtiesRow(
+                    row.id,
+                    row.type,
+                    view.casualtiesDeadText.number1,
+                    view.casualtiesDeadText.number2,
+                    view.casualtiesMissingText.number1,
+                    view.casualtiesMissingText.number2,
+                    view.casualtiesInjuredText.number1,
+                    view.casualtiesInjuredText.number2,
+                    row.formId
+                )
+                if (row != newRow) {
+                    rowSaveListener(newRow)
                 }
             }
         }

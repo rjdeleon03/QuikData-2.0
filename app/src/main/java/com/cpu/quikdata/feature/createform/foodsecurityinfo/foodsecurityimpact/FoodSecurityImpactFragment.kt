@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
 import kotlinx.android.synthetic.main.fragment_food_security_impact.*
 

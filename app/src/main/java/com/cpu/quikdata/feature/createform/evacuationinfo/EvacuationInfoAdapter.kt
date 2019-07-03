@@ -5,7 +5,6 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAsyncInflaterAdapter
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.toDateString
 import com.cpu.quikdata.data.evacuation.EvacuationItemDetails
@@ -60,22 +59,19 @@ class EvacuationInfoAdapter(context: Context, onClickListener: (String) -> Unit,
             val info = data.siteInfo!![0]
             view.tag = item.id
 
-            UIJobScheduler.submitJob {
-                if (info.name.isNotEmpty()) {
-                    view.evacuationItemNameText.text = info.name
-                }
+
+            if (info.name.isNotEmpty()) {
+                view.evacuationItemNameText.text = info.name
             }
-            UIJobScheduler.submitJob {
-                if (info.location.isNotEmpty()) {
-                    view.evacuationItemLocationText.text = info.location
-                }
+
+            if (info.location.isNotEmpty()) {
+                view.evacuationItemLocationText.text = info.location
             }
-            UIJobScheduler.submitJob {
-                view.evacuationDeleteButton.clickWithGuard {
-                    mOnDeleteListener.invoke(data)
-                }
-                view.evacuationItemDateText.text = info.evacuationDate.toDateString()
+
+            view.evacuationDeleteButton.clickWithGuard {
+                mOnDeleteListener.invoke(data)
             }
+            view.evacuationItemDateText.text = info.evacuationDate.toDateString()
         }
     }
 }

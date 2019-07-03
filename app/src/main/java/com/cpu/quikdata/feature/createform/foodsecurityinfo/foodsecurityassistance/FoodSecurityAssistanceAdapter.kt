@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceAdapter
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRow
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*

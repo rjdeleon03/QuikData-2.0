@@ -5,7 +5,6 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.HouseCategories
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
 import kotlinx.android.synthetic.main.item_house_damage.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*

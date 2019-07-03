@@ -6,7 +6,6 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.livelihoodsinfo.incomeafter.IncomeAfterRow
 import kotlinx.android.synthetic.main.item_income.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -29,16 +28,14 @@ class IncomeAfterAdapter(context: Context,
 
             view.tag = idx
             view.headerTextField.text = "${view.resources.getString(R.string.income_source_item)} ${idx + 1}"
-            UIJobScheduler.submitJob {
-                view.incomeSourceText.text = row.source
-                view.incomeSourceTypeText.value = row.isPrimary
-                view.incomeAverageIncomeText.number = row.income
-                view.incomeHouseholdsText.number = row.households
-                view.incomeMaleText.number = row.male
-                view.incomeFemaleText.number = row.female
-                view.incomeBoysText.number = row.boys
-                view.incomeGirlsText.number = row.girls
-            }
+            view.incomeSourceText.text = row.source
+            view.incomeSourceTypeText.value = row.isPrimary
+            view.incomeAverageIncomeText.number = row.income
+            view.incomeHouseholdsText.number = row.households
+            view.incomeMaleText.number = row.male
+            view.incomeFemaleText.number = row.female
+            view.incomeBoysText.number = row.boys
+            view.incomeGirlsText.number = row.girls
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {
