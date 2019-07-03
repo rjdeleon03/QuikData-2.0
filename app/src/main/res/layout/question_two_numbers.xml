@@ -19,43 +19,62 @@
             android:layout_gravity="center"
             android:textColor="?android:attr/textColorHint"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textLayout1"
+        <LinearLayout
+            android:id="@+id/layout1"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:minHeight="48dp"
-            android:layout_marginTop="@dimen/dimenExtraSmall"
-            android:layout_marginStart="@dimen/dimenSmall"
-            android:layout_marginBottom="-4dp"
-            android:hint="@string/text_male">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                android:id="@+id/textLabel1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/dimenMid"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimenMidExtraSmall"
+                android:textSize="13sp"
+                android:textColor="?android:attr/textColorHint"
+                android:text="@string/text_male"/>
+
+            <EditText
                 android:id="@+id/textField1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextTheme.Number"/>
+                android:minHeight="@dimen/dimenMid"
+                style="@style/EditTextTheme"
+                android:layout_marginTop="-4dp"
+                android:layout_marginBottom="@dimen/dimenMidExtraSmall"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textLayout2"
+        <LinearLayout
+            android:id="@+id/layout2"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:minHeight="48dp"
-            android:layout_marginTop="@dimen/dimenExtraSmall"
-            android:layout_marginStart="@dimen/dimenSmall"
-            android:layout_marginBottom="-4dp"
-            android:hint="@string/text_female">
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/dimenSmall">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                android:id="@+id/textLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/dimenMid"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimenMidExtraSmall"
+                android:textSize="13sp"
+                android:textColor="?android:attr/textColorHint"
+                android:text="@string/text_female"/>
+
+            <EditText
                 android:id="@+id/textField2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextTheme.Number"/>
+                android:minHeight="@dimen/dimenMid"
+                style="@style/EditTextTheme"
+                android:layout_marginTop="-4dp"
+                android:layout_marginBottom="@dimen/dimenMidExtraSmall"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

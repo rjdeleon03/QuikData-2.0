@@ -8,6 +8,7 @@ import android.os.SystemClock
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -60,7 +61,7 @@ fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {
     })
 }
 
-fun TextInputEditText.setupNumberInputValidation() {
+fun EditText.setupNumberInputValidation() {
 
     this.setOnFocusChangeListener { _, hasFocus ->
         if (!hasFocus) {
@@ -81,7 +82,11 @@ fun ViewGroup.setupOnFocusBehavior(target: TextView, focusSource: View, onFocusA
     defaultAttributes.recycle()
 
     setOnClickListener {
-        focusSource.requestFocus()
+        focusSource.performClick()
+    }
+
+    target.setOnClickListener {
+        focusSource.performClick()
     }
 
     focusSource.setOnFocusChangeListener { _, hasFocus ->
