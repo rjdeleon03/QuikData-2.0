@@ -11,9 +11,8 @@ import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.UIJobScheduler
 import kotlinx.android.synthetic.main.question_multiple_choice.view.*
-
-
 
 class MultipleChoiceQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
@@ -26,9 +25,10 @@ class MultipleChoiceQuestion(context: Context, attrs: AttributeSet) : LinearLayo
         background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultipleChoiceQuestion)
-        questionChoiceText.text = attributes.getString(R.styleable.MultipleChoiceQuestion_questionChoice)
+        val question = attributes.getString(R.styleable.MultipleChoiceQuestion_questionChoice)
         val columnCount = attributes.getInt(R.styleable.MultipleChoiceQuestion_columnCount, 2)
         attributes.recycle()
+        questionChoiceText.text = question
 
         // Set column count
         multipleChoiceLayout.columnCount = columnCount

@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.setupOnFocusBehavior
 import kotlinx.android.synthetic.main.question_date.view.*
 import org.joda.time.LocalDate
@@ -25,9 +26,11 @@ class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context
         background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.DateQuestion)
-        questionText.hint = attributes.getString(R.styleable.DateQuestion_question)
-        textField.setText(attributes.getString(R.styleable.DateQuestion_text))
+        val question = attributes.getString(R.styleable.DateQuestion_question)
+        val text = attributes.getString(R.styleable.DateQuestion_text)
         attributes.recycle()
+        questionText.hint = question
+        textField.setText(text)
 
         // Ensure that all clicks in children trigger the parent's onClick listener
         setupOnFocusBehavior(questionText, textField) {openDatePicker()}

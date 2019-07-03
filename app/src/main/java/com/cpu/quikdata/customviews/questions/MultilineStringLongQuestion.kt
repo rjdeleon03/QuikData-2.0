@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.setupOnFocusBehavior
 import kotlinx.android.synthetic.main.question_multiline_string_long.view.*
 
@@ -18,9 +19,11 @@ class MultilineStringLongQuestion(context: Context, attrs: AttributeSet) : Linea
 
         /* Retrieve view attributes then apply */
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultilineStringLongQuestion)
-        questionText.text = attributes.getString(R.styleable.MultilineStringLongQuestion_question)
-        textField.setText(attributes.getString(R.styleable.MultilineStringLongQuestion_text))
+        val question = attributes.getString(R.styleable.MultilineStringLongQuestion_question)
+        val text = attributes.getString(R.styleable.MultilineStringLongQuestion_text)
         attributes.recycle()
+        questionText.text = question
+        textField.setText(text)
         setupOnFocusBehavior(questionText, textField)
     }
 

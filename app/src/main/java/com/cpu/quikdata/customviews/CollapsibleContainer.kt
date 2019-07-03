@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
-import android.view.animation.Animation
-import android.view.animation.Transformation
 import androidx.core.content.ContextCompat
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
@@ -52,7 +49,7 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         View.inflate(context, R.layout.view_collapsible_container, this)
 
         // Set other layout properties
-        orientation = LinearLayout.VERTICAL
+        orientation = VERTICAL
         background = context.getDrawable(android.R.color.white)
 
         // Retrieve attributes then apply

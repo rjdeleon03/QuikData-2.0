@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.CustomArrayAdapter
 import com.cpu.quikdata.common.EvacuationCategories
+import com.cpu.quikdata.common.UIJobScheduler
 import kotlinx.android.synthetic.main.question_multiple_choice.view.questionChoiceText
 import kotlinx.android.synthetic.main.question_multiple_choice_dropdown.view.*
 
@@ -26,8 +27,9 @@ class MultipleChoiceDropdownQuestion(context: Context, attrs: AttributeSet) : Li
         background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultipleChoiceDropdownQuestion)
-        questionChoiceText.text = attributes.getString(R.styleable.MultipleChoiceDropdownQuestion_questionChoice)
+        val question = attributes.getString(R.styleable.MultipleChoiceDropdownQuestion_questionChoice)
         attributes.recycle()
+        questionChoiceText.text = question
 
         val attrs2 = intArrayOf(android.R.attr.textColorHint)
         val defaultAttributes = context.theme.obtainStyledAttributes(attrs2)

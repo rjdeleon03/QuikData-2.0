@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.UIJobScheduler
 import kotlinx.android.synthetic.main.question_boolean.view.*
 
 class BooleanQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
@@ -16,13 +17,13 @@ class BooleanQuestion(context: Context, attrs: AttributeSet) : LinearLayout(cont
         background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.BooleanQuestion)
-        questionText.text = attributes.getString(R.styleable.BooleanQuestion_question)
+        val question = attributes.getString(R.styleable.BooleanQuestion_question)
         val yesText = attributes.getString(R.styleable.BooleanQuestion_yesText)
         val noText = attributes.getString(R.styleable.BooleanQuestion_noText)
+        attributes.recycle()
+        questionText.text = question
         if (yesText != null) radioYes.text = yesText
         if (noText != null) radioNo.text = noText
-
-        attributes.recycle()
     }
 
     var value: Boolean
