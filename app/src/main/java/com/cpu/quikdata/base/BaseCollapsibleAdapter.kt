@@ -3,7 +3,6 @@ package com.cpu.quikdata.base
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.customviews.CollapsibleContainer
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -81,10 +80,8 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
                              isCollapsed: Boolean = true,
                              rowSaveListener: (R) -> Unit) {
 
-            UIJobScheduler.submitJob {
-                populateWithDataInternal(row, idx, isCollapsed, rowSaveListener)
-                collapsibleView?.isCollapsed = isCollapsed
-            }
+            populateWithDataInternal(row, idx, isCollapsed, rowSaveListener)
+            collapsibleView?.isCollapsed = isCollapsed
         }
 
         protected abstract fun populateWithDataInternal(row: R,

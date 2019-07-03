@@ -76,9 +76,9 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
     }
 
     override fun onDetachedFromWindow() {
-        if (!mIsUpdateFinished) {
-            mOnDetachedListener?.invoke()
+        if (!mIsUpdateFinished && !isCollapsed) {
             mIsUpdateFinished = true
+            onDetachedListener?.invoke()
         }
         super.onDetachedFromWindow()
     }
