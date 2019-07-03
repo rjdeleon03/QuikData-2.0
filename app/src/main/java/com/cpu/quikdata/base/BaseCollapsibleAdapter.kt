@@ -43,10 +43,8 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
     }
 
     open fun setRows(rows: List<R>) {
-        if (mRows == null || mRows!!.size != rows.size) {
-            mRows = rows
-            notifyDataSetChanged()
-        }
+        mRows = rows
+        notifyDataSetChanged()
     }
 
     abstract class ViewHolder<R>(itemView: View, isDeletable: Boolean = false) : RecyclerView.ViewHolder(itemView) {
