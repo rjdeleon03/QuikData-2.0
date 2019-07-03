@@ -23,56 +23,56 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimenMid"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_gaps_cubicles"/>
+                app:question="@string/shelter_gaps_cubicles"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsCulturalPracticeAssistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_gaps_cultural_practice_assistance"/>
+                app:question="@string/shelter_gaps_cultural_practice_assistance"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsShelterAppropriate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_gaps_shelter_appropriate"/>
+                app:question="@string/shelter_gaps_shelter_appropriate"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsServicesAccess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_gaps_services_access"/>
+                app:question="@string/shelter_gaps_services_access"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsAnyAbleBodied"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_gaps_any_able_bodied"/>
+                app:question="@string/shelter_gaps_any_able_bodied"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsGbvReferralPathway"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_gaps_gbv_referral_pathway"/>
+                app:question="@string/shelter_gaps_gbv_referral_pathway"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsGbvProtectionServices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_gaps_gbv_protection_services"/>
+                app:question="@string/shelter_gaps_gbv_protection_services"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterGapsGbvProtectionFocalPoint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_gaps_gbv_protection_focal_point"/>
+                app:question="@string/shelter_gaps_gbv_protection_focal_point"/>
 
         </LinearLayout>
 

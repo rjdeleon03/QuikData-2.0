@@ -10,13 +10,13 @@
         android:id="@+id/assistanceOrganizationText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/assistance_organization"/>
+        app:question="@string/assistance_organization"/>
 
     <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
         android:id="@+id/assistanceTypeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/assistance_type"/>
+        app:question="@string/assistance_type"/>
 
     <com.cpu.quikdata.customviews.questions.DateQuestion
         android:id="@+id/assistanceDateReceivedText"
@@ -28,7 +28,7 @@
         android:id="@+id/assistanceQuantityText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/assistance_quantity"/>
+        app:question="@string/assistance_quantity"/>
 
     <com.cpu.quikdata.customviews.SubdividerText
         android:layout_width="match_parent"
@@ -45,14 +45,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:textHint="@string/text_men"/>
+            app:question="@string/text_men"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/assistanceWomenText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:textHint="@string/text_women"/>
+            app:question="@string/text_women"/>
 
     </LinearLayout>
 
@@ -66,14 +66,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:textHint="@string/text_boys"/>
+            app:question="@string/text_boys"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/assistanceGirlsText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:textHint="@string/text_girls"/>
+            app:question="@string/text_girls"/>
 
     </LinearLayout>
 

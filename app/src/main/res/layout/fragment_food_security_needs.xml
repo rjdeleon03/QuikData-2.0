@@ -23,14 +23,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimenMid"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/food_security_needs_food_gap"/>
+                app:question="@string/food_security_needs_food_gap"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityNeedsFamiliesInNeedText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/food_security_needs_families_in_need"/>
+                app:question="@string/food_security_needs_families_in_need"/>
 
         </LinearLayout>
 

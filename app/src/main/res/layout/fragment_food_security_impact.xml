@@ -59,13 +59,13 @@
                 android:id="@+id/foodSecurityImpactEatingTimesBeforeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/food_security_impact_eating_times"/>
+                app:question="@string/food_security_impact_eating_times"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityImpactFoodNeedsBeforeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/food_security_impact_food_needs"/>
+                app:question="@string/food_security_impact_food_needs"/>
 
             <com.cpu.quikdata.customviews.DividerText
                 android:layout_width="match_parent"
@@ -76,27 +76,27 @@
                 android:id="@+id/foodSecurityImpactEatingTimesAfterText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/food_security_impact_eating_times"/>
+                app:question="@string/food_security_impact_eating_times"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityImpactFoodNeedsAfterText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/food_security_impact_food_needs"/>
+                app:question="@string/food_security_impact_food_needs"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityImpactFoodProductionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/food_security_impact_food_production"/>
+                app:question="@string/food_security_impact_food_production"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/foodSecurityImpactFoodRationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/food_security_impact_food_ration"/>
+                app:question="@string/food_security_impact_food_ration"/>
 
         </LinearLayout>
 

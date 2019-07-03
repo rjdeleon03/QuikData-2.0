@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_columnSpan="2"
-            app:textHint="@string/text_male"/>
+            app:question="@string/text_male"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/evacuationAgeFemaleText"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_columnSpan="2"
-            app:textHint="@string/text_female"/>
+            app:question="@string/text_female"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/evacuationAgeLgbtText"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_columnSpan="2"
-            app:textHint="@string/text_lgbt"/>
+            app:question="@string/text_lgbt"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/evacuationAgePregnantText"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_columnSpan="3"
-            app:textHint="@string/text_pregnant"/>
+            app:question="@string/text_pregnant"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/evacuationAgeLactatingText"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_columnSpan="3"
-            app:textHint="@string/text_lactating"/>
+            app:question="@string/text_lactating"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/evacuationAgeDisabledText"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_columnSpan="3"
-            app:textHint="@string/text_disabled"/>
+            app:question="@string/text_disabled"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/evacuationAgeSickText"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_columnSpan="3"
-            app:textHint="@string/text_sick"/>
+            app:question="@string/text_sick"/>
 
     </GridLayout>
 

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimenMid"
             android:layout_marginBottom="@dimen/dimenMid"
-            app:textHint="@string/evacuation_coping_mechanism"/>
+            app:question="@string/evacuation_coping_mechanism"/>
 
         </LinearLayout>
 

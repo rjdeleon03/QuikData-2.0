@@ -18,7 +18,7 @@ class NumberQuestion(context: Context, attrs: AttributeSet) : LinearLayout(conte
 
         /* Retrieve view attributes then apply */
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.NumberQuestion)
-        textLayout.hint = attributes.getString(R.styleable.NumberQuestion_textHint)
+        textLayout.hint = attributes.getString(R.styleable.NumberQuestion_question)
         textField.setText(attributes.getString(R.styleable.NumberQuestion_text))
         attributes.recycle()
 

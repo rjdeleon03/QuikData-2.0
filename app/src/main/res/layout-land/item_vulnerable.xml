@@ -17,28 +17,28 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            app:textHint="@string/vulnerable_pregnant"/>
+            app:question="@string/vulnerable_pregnant"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/vulnerableLactatingText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            app:textHint="@string/vulnerable_lactating"/>
+            app:question="@string/vulnerable_lactating"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/vulnerableLgbtText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            app:textHint="@string/vulnerable_lgbt"/>
+            app:question="@string/vulnerable_lgbt"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/vulnerableFemaleHeadedText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            app:textHint="@string/vulnerable_female_headed"/>
+            app:question="@string/vulnerable_female_headed"/>
 
         <com.cpu.quikdata.customviews.questions.TwoNumbersQuestion
             android:id="@+id/vulnerableChildHeadedText"
@@ -79,6 +79,6 @@
         android:id="@+id/vulnerableRemarksText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/text_remarks"/>
+        app:question="@string/text_remarks"/>
 
 </com.cpu.quikdata.customviews.CollapsibleContainer>

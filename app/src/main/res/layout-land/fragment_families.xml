@@ -30,14 +30,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                app:textHint="@string/families_families" />
+                app:question="@string/families_families" />
 
             <com.cpu.quikdata.customviews.questions.NumberQuestion
                 android:id="@+id/householdsAffectedText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                app:textHint="@string/families_households" />
+                app:question="@string/families_households" />
 
             <com.cpu.quikdata.customviews.DividerText
                 android:layout_width="0dp"
@@ -51,14 +51,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                app:textHint="@string/families_families" />
+                app:question="@string/families_families" />
 
             <com.cpu.quikdata.customviews.questions.NumberQuestion
                 android:id="@+id/householdsDisplacedText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                app:textHint="@string/families_households" />
+                app:question="@string/families_households" />
 
         </GridLayout>
 

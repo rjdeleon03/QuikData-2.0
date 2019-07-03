@@ -23,21 +23,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimenMid"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/livelihoods_coping_strategies"/>
+                app:question="@string/livelihoods_coping_strategies"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/livelihoodsCopingNewIncomeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/livelihoods_coping_new_income"/>
+                app:question="@string/livelihoods_coping_new_income"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/livelihoodsCopingLivelihoodSkillsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/livelihoods_coping_livelihood_skills"/>
+                app:question="@string/livelihoods_coping_livelihood_skills"/>
 
         </LinearLayout>
 

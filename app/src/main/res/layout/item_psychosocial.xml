@@ -18,12 +18,12 @@
         android:id="@+id/psychosocialManifestationsText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/psychosocial_manifestations"/>
+        app:question="@string/psychosocial_manifestations"/>
 
     <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
         android:id="@+id/psychosocialNeedsText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/psychosocial_needs"/>
+        app:question="@string/psychosocial_needs"/>
 
 </com.cpu.quikdata.customviews.CollapsibleContainer>

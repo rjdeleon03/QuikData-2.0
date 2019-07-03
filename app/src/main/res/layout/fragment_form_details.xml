@@ -31,33 +31,33 @@
                 android:id="@+id/formDetailsInterviewerText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/form_details_interviewer_name"/>
+                app:question="@string/form_details_interviewer_name"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/formDetailsInterviewerContactText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/form_details_interviewer_contact"/>
+                app:question="@string/form_details_interviewer_contact"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/formDetailsIntervieweeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/form_details_interviewee_name"/>
+                app:question="@string/form_details_interviewee_name"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/formDetailsIntervieweeContactText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/form_details_interviewee_contact" />
+                app:question="@string/form_details_interviewee_contact" />
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/formDetailsSourcesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/form_details_sources" />
+                app:question="@string/form_details_sources" />
 
         </LinearLayout>
 
