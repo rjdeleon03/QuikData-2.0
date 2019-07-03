@@ -5,14 +5,10 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.CustomArrayAdapter
-import com.cpu.quikdata.common.EvacuationCategories
-import com.cpu.quikdata.common.UIJobScheduler
 import kotlinx.android.synthetic.main.question_multiple_choice.view.questionChoiceText
 import kotlinx.android.synthetic.main.question_multiple_choice_dropdown.view.*
 

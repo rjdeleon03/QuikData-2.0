@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.setupOnFocusBehavior
 import kotlinx.android.synthetic.main.question_date.view.*
 import org.joda.time.LocalDate

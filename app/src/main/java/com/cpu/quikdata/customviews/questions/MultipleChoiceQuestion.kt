@@ -11,7 +11,6 @@ import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.UIJobScheduler
 import kotlinx.android.synthetic.main.question_multiple_choice.view.*
 
 class MultipleChoiceQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {

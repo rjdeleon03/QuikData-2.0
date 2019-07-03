@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.setupOnFocusBehavior
 import kotlinx.android.synthetic.main.question_boolean_multiline_string_long.view.*
 
