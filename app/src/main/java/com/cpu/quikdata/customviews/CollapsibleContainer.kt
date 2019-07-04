@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.clickWithGuard
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
-import android.view.animation.Animation
-import android.view.animation.Transformation
 import androidx.core.content.ContextCompat
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
@@ -52,25 +49,21 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
         View.inflate(context, R.layout.view_collapsible_container, this)
 
         // Set other layout properties
-        orientation = LinearLayout.VERTICAL
+        orientation = VERTICAL
         background = context.getDrawable(android.R.color.white)
 
         // Retrieve attributes then apply
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CollapsibleContainer)
         headerTextField.text = attributes.getString(R.styleable.CollapsibleContainer_headerText)
-        val collapsedFlag = attributes.getBoolean(R.styleable.CollapsibleContainer_collapsed, false)
+        val collapsedFlag = attributes.getBoolean(R.styleable.CollapsibleContainer_collapsed, true)
         val deletableFlag = attributes.getBoolean(R.styleable.CollapsibleContainer_deletable, false)
         attributes.recycle()
 
         // Collapse if collapsed flag is true
-        if (collapsedFlag) {
-            isCollapsed = true
-        }
+        isCollapsed = collapsedFlag
 
         // Hide delete button if deletable flag is false
-        if (!deletableFlag) {
-            isDeletable = false
-        }
+        isDeletable = !deletableFlag
     }
 
     override fun onAttachedToWindow() {
@@ -80,9 +73,9 @@ class CollapsibleContainer(context: Context, attrs: AttributeSet) :
     }
 
     override fun onDetachedFromWindow() {
-        if (!mIsUpdateFinished) {
-            mOnDetachedListener?.invoke()
+        if (!mIsUpdateFinished && !isCollapsed) {
             mIsUpdateFinished = true
+            onDetachedListener?.invoke()
         }
         super.onDetachedFromWindow()
     }

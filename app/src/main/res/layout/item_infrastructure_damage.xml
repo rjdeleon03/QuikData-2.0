@@ -10,7 +10,7 @@
         android:id="@+id/infrastructureDamageNumberText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/infrastructure_damage_number"/>
+        app:question="@string/infrastructure_damage_number"/>
 
     <com.cpu.quikdata.customviews.questions.BooleanQuestion
         android:id="@+id/infrastructureDamageFunctionalBool"
@@ -22,7 +22,7 @@
         android:id="@+id/infrastructureDamageRemarksText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/infrastructure_damage_remarks"
+        app:question="@string/infrastructure_damage_remarks"
         app:text=""/>
 
 </com.cpu.quikdata.customviews.CollapsibleContainer>

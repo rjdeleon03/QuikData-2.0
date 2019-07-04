@@ -10,12 +10,12 @@
         android:id="@+id/specialNeedsNumberText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/special_needs_number"/>
+        app:question="@string/special_needs_number"/>
 
     <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
         android:id="@+id/specialNeedsHealthMedicalText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/special_needs_health_medical"/>
+        app:question="@string/special_needs_health_medical"/>
 
 </com.cpu.quikdata.customviews.CollapsibleContainer>

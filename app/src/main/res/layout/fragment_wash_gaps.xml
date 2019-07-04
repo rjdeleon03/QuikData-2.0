@@ -23,56 +23,56 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimenMid"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_gaps_assistance_enough"/>
+                app:question="@string/wash_gaps_assistance_enough"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washGapsAssistanceRelevantText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_gaps_assistance_relevant"/>
+                app:question="@string/wash_gaps_assistance_relevant"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washWaterSourceAccessibleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_gaps_water_source_accessible"/>
+                app:question="@string/wash_gaps_water_source_accessible"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washGapsReliefConsultationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_gaps_relief_consultation"/>
+                app:question="@string/wash_gaps_relief_consultation"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washGapsWasteManagementText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_gaps_waste_management"/>
+                app:question="@string/wash_gaps_waste_management"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washGapsAttitudesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_gaps_attitudes"/>
+                app:question="@string/wash_gaps_attitudes"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washGapsSupportMechanisms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_gaps_support_mechanisms"/>
+                app:question="@string/wash_gaps_support_mechanisms"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washGapsWomenParticipationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_gaps_women_participation"/>
+                app:question="@string/wash_gaps_women_participation"/>
 
         </LinearLayout>
 

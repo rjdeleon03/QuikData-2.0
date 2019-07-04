@@ -31,13 +31,8 @@
         <attr name="question" format="string" />
     </declare-styleable>
 
-    <declare-styleable name="StringQuestion" parent="Question">
-        <attr name="textHint" format="string" />
-        <attr name="text" />
-    </declare-styleable>
-
-    <declare-styleable name="NumberQuestion" parent="StringQuestion">
-        <attr name="textHint" />
+    <declare-styleable name="NumberQuestion" parent="Question">
+        <attr name="question" />
         <attr name="text" />
     </declare-styleable>
 
@@ -47,20 +42,15 @@
         <attr name="noText" format="string" />
     </declare-styleable>
 
-    <declare-styleable name="MultilineStringQuestion" parent="StringQuestion">
-        <attr name="textHint" />
-        <attr name="text" />
-    </declare-styleable>
-
-    <declare-styleable name="MultilineStringLongQuestion" parent="MultilineStringQuestion">
-        <attr name="textHint" />
+    <declare-styleable name="MultilineStringLongQuestion" parent="Question">
+        <attr name="question" />
         <attr name="text" />
     </declare-styleable>
 
     <declare-styleable name="BooleanMultilineStringLongQuestion" parent="BooleanQuestion">
         <attr name="questionBoolean" format="string" />
         <attr name="questionString" format="string"/>
-        <attr name="textString" format="string" />
+        <attr name="text" />
         <attr name="yesText" />
         <attr name="noText" />
     </declare-styleable>
@@ -68,7 +58,7 @@
     <declare-styleable name="ThreeChoiceMultilineStringLongQuestion" parent="Question">
         <attr name="questionChoice" format="string" />
         <attr name="questionString"/>
-        <attr name="textString" />
+        <attr name="text" />
         <attr name="option1Text" format="string" />
         <attr name="option2Text" format="string" />
         <attr name="option3Text" format="string" />

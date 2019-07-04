@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
 import kotlinx.android.synthetic.main.fragment_livelihoods_gaps.*
 
@@ -50,14 +49,14 @@ class LivelihoodsGapsFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsGapsViewModel::class.java)
         mViewModel.livelihoodsGaps.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { livelihoodsGapsLocalMarketText.value = it.hasLocalMarket }
-            UIJobScheduler.submitJob { livelihoodsGapsLocalMarketText.text = it.hasLocalMarketRemarks }
-            UIJobScheduler.submitJob { livelihoodsGapsCashOpportunitiesText.value = it.hasCashOpportunities }
-            UIJobScheduler.submitJob { livelihoodsGapsCashOpportunitiesText.text = it.hasCashOpportunitiesRemarks }
-            UIJobScheduler.submitJob { livelihoodsGapsCreditText.value = it.hasCredit }
-            UIJobScheduler.submitJob { livelihoodsGapsCreditText.text = it.hasCreditRemarks }
-            UIJobScheduler.submitJob { livelihoodsGapsMaterialsText.value = it.hasLivelihoodMaterials }
-            UIJobScheduler.submitJob { livelihoodsGapsMaterialsText.text = it.hasLivelihoodMaterialsRemarks }
+            livelihoodsGapsLocalMarketText.value = it.hasLocalMarket
+            livelihoodsGapsLocalMarketText.text = it.hasLocalMarketRemarks
+            livelihoodsGapsCashOpportunitiesText.value = it.hasCashOpportunities
+            livelihoodsGapsCashOpportunitiesText.text = it.hasCashOpportunitiesRemarks
+            livelihoodsGapsCreditText.value = it.hasCredit
+            livelihoodsGapsCreditText.text = it.hasCreditRemarks
+            livelihoodsGapsMaterialsText.value = it.hasLivelihoodMaterials
+            livelihoodsGapsMaterialsText.text = it.hasLivelihoodMaterialsRemarks
         })
     }
 

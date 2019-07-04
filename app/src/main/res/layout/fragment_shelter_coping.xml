@@ -23,28 +23,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimenMid"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_coping_displaced_families_location"/>
+                app:question="@string/shelter_coping_displaced_families_location"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterCopingHowToGetHomesBackText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_coping_how_to_get_homes_back"/>
+                app:question="@string/shelter_coping_how_to_get_homes_back"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterCopingWhenToReturnHomeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_coping_when_to_return_home"/>
+                app:question="@string/shelter_coping_when_to_return_home"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/shelterCopingIfCannotReturnHomeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/shelter_coping_if_cannot_return_home"/>
+                app:question="@string/shelter_coping_if_cannot_return_home"/>
 
         </LinearLayout>
 

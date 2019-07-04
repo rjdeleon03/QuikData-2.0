@@ -51,35 +51,35 @@
                     android:layout_height="wrap_content"
                     app:dividerText="@string/prefilled_organization_location"/>
 
-                <com.cpu.quikdata.customviews.questions.StringQuestion
+                <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                     android:id="@+id/organizationText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:textHint="@string/prefilled_organization"/>
+                    app:question="@string/prefilled_organization"/>
 
-                <com.cpu.quikdata.customviews.questions.StringQuestion
+                <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                     android:id="@+id/sitioText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:textHint="@string/prefilled_sitio"/>
+                    app:question="@string/prefilled_sitio"/>
 
-                <com.cpu.quikdata.customviews.questions.StringQuestion
+                <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                     android:id="@+id/barangayText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:textHint="@string/prefilled_barangay"/>
+                    app:question="@string/prefilled_barangay"/>
 
-                <com.cpu.quikdata.customviews.questions.StringQuestion
+                <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                     android:id="@+id/cityText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:textHint="@string/prefilled_city"/>
+                    app:question="@string/prefilled_city"/>
 
-                <com.cpu.quikdata.customviews.questions.StringQuestion
+                <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                     android:id="@+id/provinceText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:textHint="@string/prefilled_province"/>
+                    app:question="@string/prefilled_province"/>
 
                 <com.cpu.quikdata.customviews.DividerText
                     android:layout_width="match_parent"
@@ -149,14 +149,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:textHint="@string/prefilled_families"/>
+                        app:question="@string/prefilled_families"/>
 
                     <com.cpu.quikdata.customviews.questions.NumberQuestion
                         android:id="@+id/householdsText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:textHint="@string/prefilled_households"/>
+                        app:question="@string/prefilled_households"/>
 
                 </LinearLayout>
 
@@ -169,20 +169,20 @@
                     android:id="@+id/concreteText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:textHint="@string/text_concrete"/>
+                    app:question="@string/text_concrete"/>
 
                 <com.cpu.quikdata.customviews.questions.NumberQuestion
                     android:id="@+id/semiConcreteText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:textHint="@string/text_semiconcrete"/>
+                    app:question="@string/text_semiconcrete"/>
 
                 <com.cpu.quikdata.customviews.questions.NumberQuestion
                     android:id="@+id/lightMaterialsText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dimenMid"
-                    app:textHint="@string/text_light_materials"/>
+                    app:question="@string/text_light_materials"/>
 
             </LinearLayout>
 

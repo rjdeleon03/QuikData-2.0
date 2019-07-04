@@ -13,8 +13,6 @@ import androidx.core.view.children
 import com.cpu.quikdata.R
 import kotlinx.android.synthetic.main.question_multiple_choice.view.*
 
-
-
 class MultipleChoiceQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     private var mDefaultColor: Int
@@ -26,9 +24,10 @@ class MultipleChoiceQuestion(context: Context, attrs: AttributeSet) : LinearLayo
         background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultipleChoiceQuestion)
-        questionChoiceText.text = attributes.getString(R.styleable.MultipleChoiceQuestion_questionChoice)
+        val question = attributes.getString(R.styleable.MultipleChoiceQuestion_questionChoice)
         val columnCount = attributes.getInt(R.styleable.MultipleChoiceQuestion_columnCount, 2)
         attributes.recycle()
+        questionChoiceText.text = question
 
         // Set column count
         multipleChoiceLayout.columnCount = columnCount

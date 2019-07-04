@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.evacuationwash.EvacuationWash
 import kotlinx.android.synthetic.main.fragment_evacuation_wash.*
@@ -65,20 +64,20 @@ class EvacuationWashFragment : Fragment() {
         val factory = ViewModelFactory(activity!!.application, evacuationId)
         mViewModel = ViewModelProviders.of(this, factory).get(EvacuationWashViewModel::class.java)
         mViewModel.evacuationWash.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { evacuationWashFoodPreparationText.value = it.foodPreparation }
-            UIJobScheduler.submitJob { evacuationWashFoodPreparationText.text = it.foodPreparationRemarks }
-            UIJobScheduler.submitJob { evacuationWashWaterSourceText.value = it.waterSource }
-            UIJobScheduler.submitJob { evacuationWashWaterSourceText.text = it.waterSourceRemarks }
-            UIJobScheduler.submitJob { evacuationWashToiletBathsText.value = it.toiletBaths }
-            UIJobScheduler.submitJob { evacuationWashToiletBathsText.text = it.toiletBathsRemarks }
-            UIJobScheduler.submitJob { evacuationWashGarbageDisposalText.value = it.garbageDisposal }
-            UIJobScheduler.submitJob { evacuationWashGarbageDisposalText.text = it.garbageDisposalRemarks }
-            UIJobScheduler.submitJob { evacuationWashClinicText.value = it.clinic }
-            UIJobScheduler.submitJob { evacuationWashClinicText.text = it.clinicRemarks }
-            UIJobScheduler.submitJob { evacuationWashSickText.value = it.sick }
-            UIJobScheduler.submitJob { evacuationWashSickText.text = it.sickRemarks }
-            UIJobScheduler.submitJob { evacuationWashHandWashingText.value = it.handWashing }
-            UIJobScheduler.submitJob { evacuationWashHandWashingText.text = it.handWashingRemarks }
+            evacuationWashFoodPreparationText.value = it.foodPreparation
+            evacuationWashFoodPreparationText.text = it.foodPreparationRemarks
+            evacuationWashWaterSourceText.value = it.waterSource
+            evacuationWashWaterSourceText.text = it.waterSourceRemarks
+            evacuationWashToiletBathsText.value = it.toiletBaths
+            evacuationWashToiletBathsText.text = it.toiletBathsRemarks
+            evacuationWashGarbageDisposalText.value = it.garbageDisposal
+            evacuationWashGarbageDisposalText.text = it.garbageDisposalRemarks
+            evacuationWashClinicText.value = it.clinic
+            evacuationWashClinicText.text = it.clinicRemarks
+            evacuationWashSickText.value = it.sick
+            evacuationWashSickText.text = it.sickRemarks
+            evacuationWashHandWashingText.value = it.handWashing
+            evacuationWashHandWashingText.text = it.handWashingRemarks
         })
     }
 

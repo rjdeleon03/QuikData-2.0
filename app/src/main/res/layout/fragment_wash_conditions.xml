@@ -45,147 +45,147 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_number_of_water_points"/>
+                app:question="@string/wash_conditions_number_of_water_points"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsWaterPotableText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_water_potable"/>
+                app:question="@string/wash_conditions_water_potable"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsFetchingWaterTimeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_fetching_water_time"/>
+                app:question="@string/wash_conditions_fetching_water_time"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsWaterSourceOwnerText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_water_source_owner"/>
+                app:question="@string/wash_conditions_water_source_owner"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsWaterCostText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_water_cost"/>
+                app:question="@string/wash_conditions_water_cost"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsTransportationCostText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_transportation_cost"/>
+                app:question="@string/wash_conditions_transportation_cost"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsTimesOfNoWaterText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_times_of_no_water"/>
+                app:question="@string/wash_conditions_times_of_no_water"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsHandWashingFacilitiesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_hand_washing_facilities"/>
+                app:question="@string/wash_conditions_hand_washing_facilities"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsGarbageDisposalFacilitiesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_garbage_disposal_facilities"/>
+                app:question="@string/wash_conditions_garbage_disposal_facilities"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsWasteSegregationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_waste_segregation"/>
+                app:question="@string/wash_conditions_waste_segregation"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsMenstruationManagementText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_menstruation_management"/>
+                app:question="@string/wash_conditions_menstruation_management"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsNapkinsDisposalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_napkins_disposal"/>
+                app:question="@string/wash_conditions_napkins_disposal"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsDiapersDisposalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_diapers_disposal"/>
+                app:question="@string/wash_conditions_diapers_disposal"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsDefecationPracticesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_defecation_practices"/>
+                app:question="@string/wash_conditions_defecation_practices"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsToiletFacilitiesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_toilet_facilities"/>
+                app:question="@string/wash_conditions_toilet_facilities"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsToiletConditionsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_toilet_conditions"/>
+                app:question="@string/wash_conditions_toilet_conditions"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsDefecationThreatText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_defecation_threat"/>
+                app:question="@string/wash_conditions_defecation_threat"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsExistingFacilitiesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_existing_facilities"/>
+                app:question="@string/wash_conditions_existing_facilities"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsSecurityIssuesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_security_issues"/>
+                app:question="@string/wash_conditions_security_issues"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsToiletSegregationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_toilet_segregation"/>
+                app:question="@string/wash_conditions_toilet_segregation"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/washConditionsToiletAccessibilityText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/wash_conditions_toilet_accessibility"/>
+                app:question="@string/wash_conditions_toilet_accessibility"/>
 
         </LinearLayout>
 

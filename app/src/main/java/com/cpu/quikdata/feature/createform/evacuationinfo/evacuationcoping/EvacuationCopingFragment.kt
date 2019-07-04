@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.evacuationcoping.EvacuationCoping
 import kotlinx.android.synthetic.main.fragment_evacuation_coping.*
@@ -52,7 +51,7 @@ class EvacuationCopingFragment : Fragment() {
         val factory = ViewModelFactory(activity!!.application, evacuationId)
         mViewModel = ViewModelProviders.of(this, factory).get(EvacuationCopingViewModel::class.java)
         mViewModel.evacuationCoping.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { evacuationCopingMechanismText.text = it.copingMechanism }
+            evacuationCopingMechanismText.text = it.copingMechanism
         })
     }
 

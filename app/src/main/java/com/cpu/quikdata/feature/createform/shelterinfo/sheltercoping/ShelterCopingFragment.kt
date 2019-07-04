@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
 import kotlinx.android.synthetic.main.fragment_shelter_coping.*
 
@@ -44,10 +43,10 @@ class ShelterCopingFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(ShelterCopingViewModel::class.java)
         mViewModel.shelterCoping.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { shelterCopingDisplacedFamiliesLocationText.text = it.displacedFamiliesLocation }
-            UIJobScheduler.submitJob { shelterCopingHowToGetHomesBackText.text = it.howToGetHomesBack }
-            UIJobScheduler.submitJob { shelterCopingWhenToReturnHomeText.text = it.whenToReturnHome }
-            UIJobScheduler.submitJob { shelterCopingIfCannotReturnHomeText.text = it.ifCannotReturnHome }
+            shelterCopingDisplacedFamiliesLocationText.text = it.displacedFamiliesLocation
+            shelterCopingHowToGetHomesBackText.text = it.howToGetHomesBack
+            shelterCopingWhenToReturnHomeText.text = it.whenToReturnHome
+            shelterCopingIfCannotReturnHomeText.text = it.ifCannotReturnHome
         })
     }
 

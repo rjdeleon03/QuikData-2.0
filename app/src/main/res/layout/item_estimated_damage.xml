@@ -16,12 +16,12 @@
         android:id="@+id/estimatedDamageCostText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/estimated_damage_cost"/>
+        app:question="@string/estimated_damage_cost"/>
 
     <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
         android:id="@+id/estimatedDamageRemarksText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/estimated_damage_remarks"/>
+        app:question="@string/estimated_damage_remarks"/>
 
 </com.cpu.quikdata.customviews.CollapsibleContainer>

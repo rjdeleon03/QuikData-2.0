@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimenMid"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/case_stories_text"/>
+                app:question="@string/case_stories_text"/>
 
         </LinearLayout>
 

@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFocusableFragment
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import kotlinx.android.synthetic.main.fragment_prefilled_info.*
@@ -73,28 +72,28 @@ class PrefilledInfoFragment : BaseFocusableFragment() {
 
         /* Retrieve prefilled data from viewModel */
         mViewModel.prefilledData.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { organizationText.text = it.organization }
-            UIJobScheduler.submitJob { sitioText.text = it.sitio }
-            UIJobScheduler.submitJob { barangayText.text = it.barangay }
-            UIJobScheduler.submitJob { cityText.text = it.city }
-            UIJobScheduler.submitJob { provinceText.text = it.province }
-            UIJobScheduler.submitJob { age0to5Text.number1 = it.male_0to5 }
-            UIJobScheduler.submitJob { age0to5Text.number2 = it.female_0to5 }
-            UIJobScheduler.submitJob { age6to9Text.number1 = it.male_6to9 }
-            UIJobScheduler.submitJob { age6to9Text.number2 = it.female_6to9 }
-            UIJobScheduler.submitJob { age10to12Text.number1 = it.male_10to12 }
-            UIJobScheduler.submitJob { age10to12Text.number2 = it.female_10to12 }
-            UIJobScheduler.submitJob { age13to17Text.number1 = it.male_13to17 }
-            UIJobScheduler.submitJob { age13to17Text.number2 = it.female_13to17 }
-            UIJobScheduler.submitJob { age18to59Text.number1 = it.male_18to59 }
-            UIJobScheduler.submitJob { age18to59Text.number2 = it.female_18to59 }
-            UIJobScheduler.submitJob { age60PlusText.number1 = it.male_60plus }
-            UIJobScheduler.submitJob { age60PlusText.number2 = it.female_60plus }
-            UIJobScheduler.submitJob { familiesText.number = it.totalFamilies }
-            UIJobScheduler.submitJob { householdsText.number = it.totalHouseholds }
-            UIJobScheduler.submitJob { concreteText.number = it.shelterConcrete }
-            UIJobScheduler.submitJob { semiConcreteText.number = it.shelterSemiConcrete }
-            UIJobScheduler.submitJob { lightMaterialsText.number = it.shelterLightMaterials }
+            organizationText.text = it.organization
+            sitioText.text = it.sitio
+            barangayText.text = it.barangay
+            cityText.text = it.city
+            provinceText.text = it.province
+            age0to5Text.number1 = it.male_0to5
+            age0to5Text.number2 = it.female_0to5
+            age6to9Text.number1 = it.male_6to9
+            age6to9Text.number2 = it.female_6to9
+            age10to12Text.number1 = it.male_10to12
+            age10to12Text.number2 = it.female_10to12
+            age13to17Text.number1 = it.male_13to17
+            age13to17Text.number2 = it.female_13to17
+            age18to59Text.number1 = it.male_18to59
+            age18to59Text.number2 = it.female_18to59
+            age60PlusText.number1 = it.male_60plus
+            age60PlusText.number2 = it.female_60plus
+            familiesText.number = it.totalFamilies
+            householdsText.number = it.totalHouseholds
+            concreteText.number = it.shelterConcrete
+            semiConcreteText.number = it.shelterSemiConcrete
+            lightMaterialsText.number = it.shelterLightMaterials
         })
     }
 

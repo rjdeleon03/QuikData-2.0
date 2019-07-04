@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textLayout"
+    <TextView
+        android:id="@+id/questionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        app:hintTextAppearance="@style/EditTextTheme.Hint"
-        style="@style/EditTextTheme.Layout">
+        android:minHeight="@dimen/dimenMid"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimenExtraSmall"
+        android:layout_marginStart="@dimen/dimenMid"
+        android:layout_marginEnd="@dimen/dimenMid"
+        android:textColor="?android:attr/textColorHint"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/EditTextTheme.Number"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:id="@+id/textField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dimenMid"
+        style="@style/EditTextTheme.Number"
+        android:layout_marginTop="-4dp"
+        android:layout_marginBottom="@dimen/dimenSmall"
+        android:layout_marginStart="@dimen/dimenMid"
+        android:layout_marginEnd="@dimen/dimenMid"/>
 
     <include layout="@layout/view_divider"/>
 

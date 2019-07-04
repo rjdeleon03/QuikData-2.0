@@ -25,9 +25,11 @@ class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context
         background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.DateQuestion)
-        questionText.hint = attributes.getString(R.styleable.DateQuestion_question)
-        textField.setText(attributes.getString(R.styleable.DateQuestion_text))
+        val question = attributes.getString(R.styleable.DateQuestion_question)
+        val text = attributes.getString(R.styleable.DateQuestion_text)
         attributes.recycle()
+        questionText.hint = question
+        textField.setText(text)
 
         // Ensure that all clicks in children trigger the parent's onClick listener
         setupOnFocusBehavior(questionText, textField) {openDatePicker()}

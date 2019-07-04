@@ -5,7 +5,6 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.MaterialCategories
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import kotlinx.android.synthetic.main.item_shelter_needs.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
@@ -23,9 +22,9 @@ class ShelterNeedsAdapter(context: Context, rowSaveListener: (ShelterNeedsRow) -
                                               rowSaveListener: (ShelterNeedsRow) -> Unit) {
 
             view.tag = idx
-            UIJobScheduler.submitJob { view.headerTextField.setText(MaterialCategories.getStringId(row.type)) }
-            UIJobScheduler.submitJob { view.shelterNeedsSpecificItemsText.text = row.specificItems }
-            UIJobScheduler.submitJob { view.shelterNeedsFamiliesInNeedText.number = row.familiesInNeed }
+            view.headerTextField.setText(MaterialCategories.getStringId(row.type))
+            view.shelterNeedsSpecificItemsText.text = row.specificItems
+            view.shelterNeedsFamiliesInNeedText.number = row.familiesInNeed
 
             // Setup listener for saving each row
             collapsibleView?.onDetachedListener = {

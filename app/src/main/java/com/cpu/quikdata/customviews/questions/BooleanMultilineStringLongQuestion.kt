@@ -17,13 +17,15 @@ class BooleanMultilineStringLongQuestion(context: Context, attrs: AttributeSet) 
         background = ContextCompat.getDrawable(context, android.R.color.white)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.BooleanMultilineStringLongQuestion)
-        questionBooleanText.text = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_questionBoolean)
+        val text = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_questionBoolean)
         val yesText = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_yesText)
         val noText = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_noText)
+        val question = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_questionString)
+        attributes.recycle()
+        questionBooleanText.text = text
         if (yesText != null) radioYes.text = yesText
         if (noText != null) radioNo.text = noText
-        questionStringText.hint = attributes.getString(R.styleable.BooleanMultilineStringLongQuestion_questionString)
-        attributes.recycle()
+        questionStringText.hint = question
 
         setupOnFocusBehavior(questionStringText, textField)
     }

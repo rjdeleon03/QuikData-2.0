@@ -17,12 +17,12 @@
             android:orientation="vertical"
             android:background="@color/lightGray">
 
-            <com.cpu.quikdata.customviews.questions.StringQuestion
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/evacuationSiteInfoNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimenMid"
-                app:textHint="@string/evacuation_site_info_name"/>
+                app:question="@string/evacuation_site_info_name"/>
 
             <com.cpu.quikdata.customviews.questions.DateQuestion
                 android:id="@+id/evacuationSiteInfoDateText"
@@ -30,12 +30,12 @@
                 android:layout_height="wrap_content"
                 app:question="@string/evacuation_site_info_date" />
 
-            <com.cpu.quikdata.customviews.questions.StringQuestion
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/evacuationSiteInfoLocationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/evacuation_site_info_location"/>
+                app:question="@string/evacuation_site_info_location"/>
 
             <com.cpu.quikdata.customviews.questions.BooleanQuestion
                 android:id="@+id/evacuationSiteInfoHaveMovedText"
@@ -62,20 +62,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/evacuation_site_info_households"/>
+                app:question="@string/evacuation_site_info_households"/>
 
-            <com.cpu.quikdata.customviews.questions.StringQuestion
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/evacuationSiteInfoDistanceText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:textHint="@string/evacuation_site_distance"/>
+                app:question="@string/evacuation_site_distance"/>
 
-            <com.cpu.quikdata.customviews.questions.StringQuestion
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
                 android:id="@+id/evacuationSiteInfoShelterSizeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
-                app:textHint="@string/evacuation_site_shelter_size"/>
+                app:question="@string/evacuation_site_shelter_size"/>
 
         </LinearLayout>
 

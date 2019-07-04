@@ -10,12 +10,12 @@
         android:id="@+id/shelterNeedsSpecificItemsText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/shelter_needs_specific_items"/>
+        app:question="@string/shelter_needs_specific_items"/>
 
     <com.cpu.quikdata.customviews.questions.NumberQuestion
         android:id="@+id/shelterNeedsFamiliesInNeedText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/shelter_needs_families_in_need"/>
+        app:question="@string/shelter_needs_families_in_need"/>
 
 </com.cpu.quikdata.customviews.CollapsibleContainer>

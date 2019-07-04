@@ -2,6 +2,7 @@
 <resources>
     <dimen name="dimenZero">0dp</dimen>
     <dimen name="dimenExtraSmall">4dp</dimen>
+    <dimen name="dimenMidExtraSmall">6dp</dimen>
     <dimen name="dimenSmall">8dp</dimen>
     <dimen name="dimenMid">16dp</dimen>
     <dimen name="dimenLarge">32dp</dimen>

@@ -3,6 +3,7 @@ package com.cpu.quikdata.base
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
+import com.cpu.quikdata.utils.runOnMainThread
 
 abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context,
                                                                                   rowSaveListener: (R) -> Unit,
@@ -12,10 +13,18 @@ abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>
     BaseCollapsibleAdapter<R, VH>(context, layoutId, rowSaveListener, expandedItem) {
 
     private val mDeleteClickListener = deleteClickListener
+    private var mDeletedItemTag = DeletedItem.SUCCEEDING
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val holder = super.onCreateViewHolder(parent, viewType)
-        holder.setOnDeleteClickListener { mDeleteClickListener.invoke(mRows!![it]) }
+        holder.setOnDeleteClickListener {
+            mDeleteClickListener.invoke(mRows!![holder.position])
+            if (holder.position == mExpandedItem) {
+                mDeletedItemTag = DeletedItem.EXPANDED
+            } else if (holder.position < mExpandedItem) {
+                mDeletedItemTag = DeletedItem.PRECEDING
+            }
+        }
         return holder
     }
 
@@ -24,9 +33,29 @@ abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>
     }
 
     override fun setRows(rows: List<R>) {
-        if (mRows != null) mExpandedItem = rows.size - 1
+        // Move focus to last-added item if:
+        // - a new item is added
+        // - expanded or preceding item is already deleted
+        if (mRows != null ) {
+            if (mRows!!.size < rows.size ||
+                (mRows!!.size > rows.size && mDeletedItemTag != DeletedItem.SUCCEEDING)) {
+                when (mDeletedItemTag) {
+                    DeletedItem.PRECEDING -> mExpandedItem -= 1
+                    else -> mExpandedItem = rows.size - 1
+                }
+                mDeletedItemTag = DeletedItem.SUCCEEDING
+                runOnMainThread { notifyItemChanged(mExpandedItem) }
+            }
+        }
         super.setRows(rows)
+
     }
 
     abstract class ViewHolder<R>(itemView: View) : BaseCollapsibleAdapter.ViewHolder<R>(itemView, true)
+
+    private enum class DeletedItem {
+        EXPANDED,
+        PRECEDING,
+        SUCCEEDING
+    }
 }

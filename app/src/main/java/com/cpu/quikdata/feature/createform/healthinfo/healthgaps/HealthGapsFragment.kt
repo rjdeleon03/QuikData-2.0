@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.UIJobScheduler
 import com.cpu.quikdata.data.health.healthgaps.HealthGaps
 import kotlinx.android.synthetic.main.fragment_health_gaps.*
 
@@ -46,10 +45,10 @@ class HealthGapsFragment : BaseCreateFormFragment() {
 
         mViewModel = ViewModelProviders.of(this, mFactory).get(HealthGapsViewModel::class.java)
         mViewModel.healthGaps.observe(viewLifecycleOwner, Observer {
-            UIJobScheduler.submitJob { healthGapsNearestHospitalText.text = it.nearestHospital }
-            UIJobScheduler.submitJob { healthGapsServicesAvailableText.text = it.servicesAvailable }
-            UIJobScheduler.submitJob { healthGapsServicesAccessibleText.text = it.servicesAccessible }
-            UIJobScheduler.submitJob { healthGapsReproductiveHealthText.text = it.reproductiveHealth }
+            healthGapsNearestHospitalText.text = it.nearestHospital
+            healthGapsServicesAvailableText.text = it.servicesAvailable
+            healthGapsServicesAccessibleText.text = it.servicesAccessible
+            healthGapsReproductiveHealthText.text = it.reproductiveHealth
         })
     }
 

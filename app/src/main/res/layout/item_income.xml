@@ -6,11 +6,11 @@
     android:layout_height="wrap_content"
     app:collapsed="true">
 
-    <com.cpu.quikdata.customviews.questions.StringQuestion
+    <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
         android:id="@+id/incomeSourceText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/income_source"/>
+        app:question="@string/income_source"/>
 
     <com.cpu.quikdata.customviews.questions.BooleanQuestion
         android:id="@+id/incomeSourceTypeText"
@@ -24,7 +24,7 @@
         android:id="@+id/incomeAverageIncomeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/income_average_income"/>
+        app:question="@string/income_average_income"/>
 
     <com.cpu.quikdata.customviews.SubdividerText
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:id="@+id/incomeHouseholdsText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textHint="@string/income_households"/>
+        app:question="@string/income_households"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,14 +47,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:textHint="@string/text_male"/>
+            app:question="@string/text_male"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/incomeFemaleText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:textHint="@string/text_female"/>
+            app:question="@string/text_female"/>
 
     </LinearLayout>
 
@@ -68,14 +68,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:textHint="@string/text_boys"/>
+            app:question="@string/text_boys"/>
 
         <com.cpu.quikdata.customviews.questions.NumberQuestion
             android:id="@+id/incomeGirlsText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:textHint="@string/text_girls"/>
+            app:question="@string/text_girls"/>
 
     </LinearLayout>
 
