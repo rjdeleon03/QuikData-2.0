@@ -27,7 +27,7 @@ class HealthAssistanceAdapter(context: Context,
                                               rowSaveListener: (HealthAssistanceRow) -> Unit) {
 
             view.tag = idx
-            view.headerTextField.text = "${view.resources.getString(R.string.assistance_item)} ${idx + 1}"
+            view.headerTextField.text = view.resources.getString(R.string.assistance_item)
             view.assistanceOrganizationText.text = row.organizationAgency
             view.assistanceTypeText.text = row.assistanceType
             view.assistanceDateReceivedText.date = row.dateReceived

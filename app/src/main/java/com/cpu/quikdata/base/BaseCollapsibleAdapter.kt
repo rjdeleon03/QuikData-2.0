@@ -2,9 +2,11 @@ package com.cpu.quikdata.base
 
 import android.content.Context
 import android.view.View
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.customviews.CollapsibleContainer
+import com.cpu.quikdata.utils.DiffUtilCallback
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context,
@@ -22,10 +24,10 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
 
     override fun createViewHolder(view: View): VH {
         val holder = initCollapsibleViewHolder(view)
-        holder.setOnClickListener {position ->
-            val oldExpandedItem = mExpandedItem
-            mExpandedItem = position
-            notifyItemChanged(position)
+        holder.setOnClickListener {
+            val oldExpandedItem = if (mExpandedItem >= mRows!!.size) mRows!!.size - 1 else mExpandedItem
+            mExpandedItem = holder.position
+            notifyItemChanged(mExpandedItem)
             notifyItemChanged(oldExpandedItem)
         }
         return holder
@@ -43,8 +45,9 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
     }
 
     open fun setRows(rows: List<R>) {
+        val diffResult = DiffUtil.calculateDiff(DiffUtilCallback(mRows, rows))
+        diffResult.dispatchUpdatesTo(this)
         mRows = rows
-        notifyDataSetChanged()
     }
 
     abstract class ViewHolder<R>(itemView: View, isDeletable: Boolean = false) : RecyclerView.ViewHolder(itemView) {

@@ -17,12 +17,12 @@ data class IncomeAfterRow(@PrimaryKey(autoGenerate = false)
                           val id: String = "",
                           var source: String = "",
                           var isPrimary: Boolean = true,
+                          var income: Int = 0,
                           var households: Int = 0,
                           var male: Int = 0,
                           var female: Int = 0,
                           var boys: Int = 0,
                           var girls: Int = 0,
-                          var income: Int = 0,
                           val dateCreated: Long = 0L,
                           val formId: String = "") {
 

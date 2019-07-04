@@ -27,7 +27,7 @@ class IncomeAfterAdapter(context: Context,
                                               rowSaveListener: (IncomeAfterRow) -> Unit) {
 
             view.tag = idx
-            view.headerTextField.text = "${view.resources.getString(R.string.income_source_item)} ${idx + 1}"
+            view.headerTextField.text = view.resources.getString(R.string.income_source_item)
             view.incomeSourceText.text = row.source
             view.incomeSourceTypeText.value = row.isPrimary
             view.incomeAverageIncomeText.number = row.income
