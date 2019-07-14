@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/mainLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/mainButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dimenMid"
+        android:paddingEnd="@dimen/dimenMid"
+        android:textSize="16sp"
+        android:background="@drawable/ripple_accent_lighter_gray"
+        android:fontFamily="@font/nunitosans_bold"/>
+
+    <include layout="@layout/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+    <Switch
+        android:id="@+id/mainSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:paddingStart="@dimen/dimenMid"
+        android:paddingEnd="@dimen/dimenMid"/>
+
+</RelativeLayout>

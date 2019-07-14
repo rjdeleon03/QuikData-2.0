@@ -55,13 +55,13 @@ class SelectionFragment : BaseSubmissionFragment() {
         }
         selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
         selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }
-        selectionShelterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) }
+        selectionCaseStoriesButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) }
+//        selectionShelterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) }
         selectionFoodButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_foodSecurityInfoFragment) }
         selectionLivelihoodsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_livelihoodsInfoFragment) }
         selectionHealthButton.setButtonListeners{ mNavController.navigate(R.id.action_selection_to_healthInfoFragment) }
         selectionWaterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_waterSanitationInfoFragment) }
         selectionEvacuationButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_evacuationInfoFragment) }
-        selectionCaseStoriesButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) }
     }
 
 }

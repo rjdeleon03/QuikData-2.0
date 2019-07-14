@@ -27,6 +27,11 @@
         <attr name="text" />
     </declare-styleable>
 
+    <declare-styleable name="ItemSectionOptional" parent="ItemSection">
+        <attr name="text" />
+        <attr name="include" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="Question" parent="TextItem">
         <attr name="question" format="string" />
     </declare-styleable>

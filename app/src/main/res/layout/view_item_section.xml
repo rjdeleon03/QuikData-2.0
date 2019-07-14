@@ -11,7 +11,7 @@
         android:id="@+id/mainButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:paddingStart="@dimen/dimenMid"
         android:paddingEnd="@dimen/dimenMid"
         android:textSize="16sp"
