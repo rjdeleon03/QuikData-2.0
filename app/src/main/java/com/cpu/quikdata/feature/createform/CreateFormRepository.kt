@@ -9,6 +9,7 @@ import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.common.deleteFile
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import com.cpu.quikdata.utils.runOnMainThread
 
@@ -48,6 +49,7 @@ class CreateFormRepository(application: Application, formId: String) {
         runOnIoThread {
             val formValue = mForm.value!!
             formValue.isTemporary = false
+            formValue.dateModified = getDateTimeNowInLong()
             mDatabase.formDao().update(formValue)
 
             runOnMainThread {

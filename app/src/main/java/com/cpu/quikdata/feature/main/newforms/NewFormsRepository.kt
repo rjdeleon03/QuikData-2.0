@@ -64,7 +64,7 @@ class NewFormsRepository(application: Application) {
     fun createNewForm(formId: String) {
         CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {
             val dateNowInLong = getDateNowInLong()
-            val form = Form(formId, getDateTimeNowInLong())
+            val form = Form(formId, getDateTimeNowInLong(), getDateTimeNowInLong())
             mDatabase.formDao().insert(form)
 
             // region Form details
