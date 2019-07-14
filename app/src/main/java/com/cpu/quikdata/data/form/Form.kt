@@ -10,6 +10,8 @@ data class Form(@PrimaryKey(autoGenerate = false)
 
                 val dateCreated: Long = 0L,
 
+                var dateModified: Long = 0L,
+
                 @get:Exclude
                 var isTemporary: Boolean = true,
 
