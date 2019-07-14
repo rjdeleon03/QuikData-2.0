@@ -429,5 +429,5 @@
     <string name="form_item_submission_cancelled">The submission of the DNCA form has been cancelled.</string>
     <string name="form_item_submitting_image">Uploading images...</string>
     <string name="selection_optionals">Optional Sections</string>
-    <string name="selection_optionals_instructions">Tap the toggle to include/exclude each section.</string>
+    <string name="selection_optionals_instructions">Tap the toggles to include/exclude the sections.</string>
 </resources>
