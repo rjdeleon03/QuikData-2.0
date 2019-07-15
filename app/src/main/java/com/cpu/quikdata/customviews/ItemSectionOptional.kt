@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.view_item_section_optional.view.*
 class ItemSectionOptional(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     private var mMainButtonListener: (() -> Unit)? = null
+    private var mMainSwitchListener: ((Boolean) -> Unit)? = null
 
     init {
         View.inflate(context, R.layout.view_item_section_optional, this)
@@ -24,12 +25,20 @@ class ItemSectionOptional(context: Context, attrs: AttributeSet) : LinearLayout(
         mainButton.clickWithGuard {
             mMainButtonListener?.invoke()
         }
+        mainSwitch.setOnCheckedChangeListener { _, isChecked ->
+            mMainSwitchListener?.invoke(isChecked)
+        }
     }
 
-    val isIncluded: Boolean
+    var isIncluded: Boolean = false
         get() = mainSwitch.isChecked
+        set(value) {
+            field = value
+            mainSwitch.isChecked = field
+        }
 
-    fun setButtonListeners(main: () -> Unit) {
+    fun setButtonListeners(main: () -> Unit, switch: ((Boolean) -> Unit)? = null) {
         mMainButtonListener = main
+        mMainSwitchListener = switch
     }
 }

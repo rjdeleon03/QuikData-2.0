@@ -12,6 +12,18 @@ data class Form(@PrimaryKey(autoGenerate = false)
 
                 var dateModified: Long = 0L,
 
+                var includeShelter: Boolean = false,
+
+                var includeFood: Boolean = false,
+
+                var includeLivelihoods: Boolean = false,
+
+                var includeHealth: Boolean = false,
+
+                var includeWash: Boolean = false,
+
+                var includeEvacuation: Boolean = false,
+
                 @get:Exclude
                 var isTemporary: Boolean = true,
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 
@@ -56,12 +57,26 @@ class SelectionFragment : BaseSubmissionFragment() {
         selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
         selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }
         selectionCaseStoriesButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) }
-//        selectionShelterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) }
-        selectionFoodButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_foodSecurityInfoFragment) }
-        selectionLivelihoodsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_livelihoodsInfoFragment) }
-        selectionHealthButton.setButtonListeners{ mNavController.navigate(R.id.action_selection_to_healthInfoFragment) }
-        selectionWaterButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_waterSanitationInfoFragment) }
-        selectionEvacuationButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_evacuationInfoFragment) }
+
+        /* Optional sections */
+        selectionShelterButton.setButtonListeners ({
+            mNavController.navigate(R.id.action_selection_to_shelterInfoFragment)
+        }, {
+            mParentViewModel.toggleShelterInclusion(it)
+        })
+        selectionFoodButton.setButtonListeners ({ mNavController.navigate(R.id.action_selection_to_foodSecurityInfoFragment) })
+        selectionLivelihoodsButton.setButtonListeners ({ mNavController.navigate(R.id.action_selection_to_livelihoodsInfoFragment) })
+        selectionHealthButton.setButtonListeners ({ mNavController.navigate(R.id.action_selection_to_healthInfoFragment) })
+        selectionWaterButton.setButtonListeners ({ mNavController.navigate(R.id.action_selection_to_waterSanitationInfoFragment) })
+        selectionEvacuationButton.setButtonListeners ({ mNavController.navigate(R.id.action_selection_to_evacuationInfoFragment) })
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        mParentViewModel.form.observe(viewLifecycleOwner) {
+            selectionShelterButton.isIncluded = it.includeShelter
+        }
     }
 
 }

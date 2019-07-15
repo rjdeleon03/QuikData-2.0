@@ -30,6 +30,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:paddingStart="@dimen/dimenMid"
-        android:paddingEnd="@dimen/dimenMid"/>
+        android:paddingEnd="12dp"/>
 
 </RelativeLayout>
