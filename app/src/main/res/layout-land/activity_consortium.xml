@@ -46,83 +46,83 @@
         android:layout_marginTop="?attr/actionBarSize"
         android:background="@color/lighterGray">
 
-        <GridLayout
+        <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:columnCount="12">
+            app:columnCount="12">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/consortiumPlanButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dimenSmall"
-                android:layout_columnWeight="3"
-                android:layout_rowWeight="1"
-                android:layout_columnSpan="3"
-                android:src="@drawable/logo_plan"
+                android:layout_height="0dp"
+                app:layout_columnWeight="3"
+                app:layout_rowWeight="1"
+                app:layout_columnSpan="3"
+                app:srcCompat="@drawable/logo_plan"
                 style="@style/ConsortiumImageViewTheme"/>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/consortiumActionButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dimenSmall"
-                android:layout_columnWeight="3"
-                android:layout_rowWeight="1"
-                android:layout_columnSpan="3"
-                android:src="@drawable/logo_action"
+                android:layout_height="0dp"
+                app:layout_columnWeight="3"
+                app:layout_rowWeight="1"
+                app:layout_columnSpan="3"
+                app:srcCompat="@drawable/logo_action"
                 style="@style/ConsortiumImageViewTheme"/>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/consortiumCdrcButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dimenSmall"
-                android:layout_columnWeight="3"
-                android:layout_rowWeight="1"
-                android:layout_columnSpan="3"
-                android:src="@drawable/logo_cdrc"
+                android:layout_height="0dp"
+                app:layout_columnWeight="3"
+                app:layout_rowWeight="1"
+                app:layout_columnSpan="3"
+                app:srcCompat="@drawable/logo_cdrc"
                 style="@style/ConsortiumImageViewTheme"/>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/consortiumCdacButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dimenSmall"
-                android:layout_columnWeight="3"
-                android:layout_rowWeight="1"
-                android:layout_columnSpan="3"
-                android:src="@drawable/logo_cdac"
+                android:layout_height="0dp"
+                app:layout_columnWeight="3"
+                app:layout_rowWeight="1"
+                app:layout_columnSpan="3"
+                app:srcCompat="@drawable/logo_cdac"
                 style="@style/ConsortiumImageViewTheme"/>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/consortiumStartButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dimenLarge"
-                android:layout_columnWeight="4"
-                android:layout_rowWeight="1"
-                android:layout_columnSpan="4"
-                android:src="@drawable/logo_start"
+                android:layout_height="0dp"
+                app:layout_columnWeight="4"
+                app:layout_rowWeight="1"
+                app:layout_columnSpan="4"
+                app:srcCompat="@drawable/logo_start"
                 style="@style/ConsortiumImageViewTheme"/>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/consortiumUkaidButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dimenLarge"
-                android:layout_columnWeight="4"
-                android:layout_rowWeight="1"
-                android:layout_columnSpan="4"
-                android:src="@drawable/logo_ukaid"
+                android:layout_height="0dp"
+                app:layout_columnWeight="4"
+                app:layout_rowWeight="1"
+                app:layout_columnSpan="4"
+                app:srcCompat="@drawable/logo_ukaid"
                 android:padding="@dimen/dimenLarge"
                 style="@style/ConsortiumImageViewTheme"/>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/consortiumCareButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dimenLarge"
-                android:layout_columnWeight="4"
-                android:layout_rowWeight="1"
-                android:layout_columnSpan="4"
-                android:src="@drawable/logo_care"
+                android:layout_height="0dp"
+                app:layout_columnWeight="4"
+                app:layout_rowWeight="1"
+                app:layout_columnSpan="4"
+                app:srcCompat="@drawable/logo_care"
                 style="@style/ConsortiumImageViewTheme"/>
 
-        </GridLayout>
+        </androidx.gridlayout.widget.GridLayout>
 
     </FrameLayout>
 
