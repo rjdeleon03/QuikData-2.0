@@ -71,8 +71,8 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimenLarge"
-            android:paddingTop="@dimen/dimenSmall"
+            android:layout_height="24dp"
+            android:paddingTop="6dp"
             android:background="@color/colorAccentLight"
             android:gravity="center"
             android:text="@string/selection_optionals"
@@ -81,8 +81,8 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimenLarge"
-            android:paddingBottom="@dimen/dimenSmall"
+            android:layout_height="24dp"
+            android:paddingBottom="6dp"
             android:background="@color/colorAccentLight"
             android:gravity="center"
             android:text="@string/selection_optionals_instructions"/>
