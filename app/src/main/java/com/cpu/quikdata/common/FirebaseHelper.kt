@@ -100,17 +100,18 @@ class FirebaseHelper {
         val progressListener = getOnProgressListener(resultLiveData)
 
         runOnIoThread {
+            val formData = database.formDao().getFormDataNonLive(formId)
             runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pnl ->
                 val batch = mFirestore.batch()
                 submitFormDetails(database, formId, batch)
                 submitGeneralInformation(database, formId, batch)
-                submitShelterInformation(database, formId, batch)
-                submitFoodSecurity(database, formId, batch)
-                submitLivelihoods(database, formId, batch)
-                submitHealthInformation(database, formId, batch)
-                submitWashInformation(database, formId, batch)
-                submitEvacuationInformation(database, formId, batch)
                 submitCaseStories(database, formId, batch, progressListener, pnl)
+                if (formData.form!!.includeShelter) submitShelterInformation(database, formId, batch)
+                if (formData.form!!.includeFood) submitFoodSecurity(database, formId, batch)
+                if (formData.form!!.includeLivelihoods) submitLivelihoods(database, formId, batch)
+                if (formData.form!!.includeHealth) submitHealthInformation(database, formId, batch)
+                if (formData.form!!.includeWash) submitWashInformation(database, formId, batch)
+                if (formData.form!!.includeEvacuation) submitEvacuationInformation(database, formId, batch)
                 batch.commit()
                     .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
                     .addOnSuccessListener {
