@@ -18,10 +18,10 @@ abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val holder = super.onCreateViewHolder(parent, viewType)
         holder.setOnDeleteClickListener {
-            mDeleteClickListener.invoke(mRows!![holder.position])
-            if (holder.position == mExpandedItem) {
+            mDeleteClickListener.invoke(mRows!![holder.adapterPosition])
+            if (holder.adapterPosition == mExpandedItem) {
                 mDeletedItemTag = DeletedItem.EXPANDED
-            } else if (holder.position < mExpandedItem) {
+            } else if (holder.adapterPosition < mExpandedItem) {
                 mDeletedItemTag = DeletedItem.PRECEDING
             }
         }

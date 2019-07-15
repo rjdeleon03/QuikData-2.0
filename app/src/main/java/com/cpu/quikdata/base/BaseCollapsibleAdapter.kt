@@ -26,7 +26,7 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
         val holder = initCollapsibleViewHolder(view)
         holder.setOnClickListener {
             val oldExpandedItem = if (mExpandedItem >= mRows!!.size) mRows!!.size - 1 else mExpandedItem
-            mExpandedItem = holder.position
+            mExpandedItem = holder.adapterPosition
             notifyItemChanged(mExpandedItem)
             notifyItemChanged(oldExpandedItem)
         }
