@@ -29,5 +29,11 @@ class CreateFormViewModel(application: Application, formId: String) : AndroidVie
 
     fun cancelSubmission() = mRepository.cancelSubmission()
 
-    fun toggleShelterInclusion(isIncluded: Boolean) = mRepository.toggleShelterInclusion(isIncluded)
+    fun toggleSectionInclusions(includeShelter: Boolean,
+                                includeFood: Boolean,
+                                includeLivelihoods: Boolean,
+                                includeHealth: Boolean,
+                                includeWash: Boolean,
+                                includeEvacuation: Boolean) =
+        mRepository.toggleSectionInclusions(includeShelter, includeFood, includeLivelihoods, includeHealth, includeWash, includeEvacuation)
 }

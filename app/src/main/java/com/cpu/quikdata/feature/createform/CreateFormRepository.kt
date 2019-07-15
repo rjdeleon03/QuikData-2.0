@@ -72,16 +72,20 @@ class CreateFormRepository(application: Application, formId: String) {
 
     fun cancelSubmission() = mFirebaseHelper.cancelSubmission()
 
-    fun toggleShelterInclusion(isIncluded: Boolean) {
-        runOnIoThreadAndToggleInclusion {
-            it.includeShelter = isIncluded
-        }
-    }
-
-    private fun runOnIoThreadAndToggleInclusion(f: (Form) -> Unit) {
+    fun toggleSectionInclusions(includeShelter: Boolean,
+                                includeFood: Boolean,
+                                includeLivelihoods: Boolean,
+                                includeHealth: Boolean,
+                                includeWash: Boolean,
+                                includeEvacuation: Boolean) {
         runOnIoThread {
             val formValue = mForm.value!!
-            f.invoke(formValue)
+            formValue.includeShelter = includeShelter
+            formValue.includeFood = includeFood
+            formValue.includeLivelihoods = includeLivelihoods
+            formValue.includeHealth = includeHealth
+            formValue.includeWash = includeWash
+            formValue.includeEvacuation = includeEvacuation
             mDatabase.formDao().update(formValue)
         }
     }

@@ -59,11 +59,7 @@ class SelectionFragment : BaseSubmissionFragment() {
         selectionCaseStoriesButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_caseStoriesFragment) }
 
         /* Optional sections */
-        selectionShelterButton.setButtonListeners ({
-            mNavController.navigate(R.id.action_selection_to_shelterInfoFragment)
-        }, {
-            mParentViewModel.toggleShelterInclusion(it)
-        })
+        selectionShelterButton.setButtonListeners ({ mNavController.navigate(R.id.action_selection_to_shelterInfoFragment) })
         selectionFoodButton.setButtonListeners ({ mNavController.navigate(R.id.action_selection_to_foodSecurityInfoFragment) })
         selectionLivelihoodsButton.setButtonListeners ({ mNavController.navigate(R.id.action_selection_to_livelihoodsInfoFragment) })
         selectionHealthButton.setButtonListeners ({ mNavController.navigate(R.id.action_selection_to_healthInfoFragment) })
@@ -73,10 +69,26 @@ class SelectionFragment : BaseSubmissionFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         mParentViewModel.form.observe(viewLifecycleOwner) {
             selectionShelterButton.isIncluded = it.includeShelter
+            selectionFoodButton.isIncluded = it.includeFood
+            selectionLivelihoodsButton.isIncluded = it.includeLivelihoods
+            selectionHealthButton.isIncluded = it.includeHealth
+            selectionWaterButton.isIncluded = it.includeWash
+            selectionEvacuationButton.isIncluded = it.includeEvacuation
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mParentViewModel.toggleSectionInclusions(
+            selectionShelterButton.isIncluded,
+            selectionFoodButton.isIncluded,
+            selectionLivelihoodsButton.isIncluded,
+            selectionHealthButton.isIncluded,
+            selectionWaterButton.isIncluded,
+            selectionEvacuationButton.isIncluded
+        )
     }
 
 }
