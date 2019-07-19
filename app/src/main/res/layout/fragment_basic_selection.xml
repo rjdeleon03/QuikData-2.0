@@ -24,6 +24,8 @@
         android:id="@+id/linearSectionLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/dimenExtraLarge"
+        android:background="@color/lightGray"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical">
