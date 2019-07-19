@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:layout_columnSpan="2"
+                app:isTextSingleLine="true"
                 app:question="@string/prefilled_organization"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
@@ -40,6 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
+                app:isTextSingleLine="true"
                 app:question="@string/prefilled_sitio"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
@@ -47,6 +49,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
+                app:isTextSingleLine="true"
                 app:question="@string/prefilled_barangay"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
@@ -54,6 +57,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
+                app:isTextSingleLine="true"
                 app:question="@string/prefilled_city"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
@@ -61,6 +65,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
+                app:isTextSingleLine="true"
                 app:question="@string/prefilled_province"/>
 
             <com.cpu.quikdata.customviews.DividerText

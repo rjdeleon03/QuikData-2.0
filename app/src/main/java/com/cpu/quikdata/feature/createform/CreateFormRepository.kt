@@ -47,11 +47,7 @@ class CreateFormRepository(application: Application, formId: String) {
 
     fun saveFormAsActual(isBasicMode: Boolean) {
         runOnIoThread {
-            val formValue = mForm.value!!
-            formValue.isTemporary = false
-            formValue.dateModified = getDateTimeNowInLong()
-            mDatabase.formDao().update(formValue)
-
+            performSaveChangesToFormOnly()
             runOnMainThread {
                 val operation = if (isBasicMode) {
                     mFirebaseHelper.submitBasicData(mDatabase, mFormId)
@@ -68,6 +64,19 @@ class CreateFormRepository(application: Application, formId: String) {
                 }
             }
         }
+    }
+
+    fun saveChangesToFormOnly() {
+        runOnIoThread {
+            performSaveChangesToFormOnly()
+        }
+    }
+
+    private fun performSaveChangesToFormOnly() {
+        val formValue = mForm.value!!
+        formValue.isTemporary = false
+        formValue.dateModified = getDateTimeNowInLong()
+        mDatabase.formDao().update(formValue)
     }
 
     fun cancelSubmission() = mFirebaseHelper.cancelSubmission()

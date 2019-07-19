@@ -40,6 +40,8 @@ class NewFormsFragment : Fragment() {
 
         setupClipping(newFormsMainLayout)
 
+        val dialog = childFragmentManager.findFragmentByTag(ProgressDialogFragment.TAG) as? ProgressDialogFragment
+        if (dialog != null) mDialog = dialog
 
         val submitListener = { fc: FormComplete ->
             mViewModel.submitForm(fc.form!!.id)

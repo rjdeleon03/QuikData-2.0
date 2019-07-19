@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/dimenMid"
-        android:paddingEnd="@dimen/dimenMid"
+        android:paddingEnd="@dimen/dimenSuperExtraLarge"
         android:textSize="16sp"
         android:background="@drawable/ripple_accent_lighter_gray"
         android:fontFamily="@font/nunitosans_bold"/>
@@ -25,11 +25,11 @@
     <Switch
         android:id="@+id/mainSwitch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:paddingStart="@dimen/dimenMid"
-        android:paddingEnd="12dp"/>
+        android:paddingEnd="@dimen/dimenExtraSmall"/>
 
 </RelativeLayout>

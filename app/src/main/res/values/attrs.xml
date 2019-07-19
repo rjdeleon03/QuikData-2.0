@@ -50,6 +50,7 @@
     <declare-styleable name="MultilineStringLongQuestion" parent="Question">
         <attr name="question" />
         <attr name="text" />
+        <attr name="isTextSingleLine" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="BooleanMultilineStringLongQuestion" parent="BooleanQuestion">

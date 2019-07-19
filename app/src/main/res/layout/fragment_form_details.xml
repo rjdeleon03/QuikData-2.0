@@ -31,6 +31,7 @@
                 android:id="@+id/formDetailsInterviewerText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:isTextSingleLine="true"
                 app:question="@string/form_details_interviewer_name"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
@@ -38,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimenMid"
+                app:isTextSingleLine="true"
                 app:question="@string/form_details_interviewer_contact"/>
 
             <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion

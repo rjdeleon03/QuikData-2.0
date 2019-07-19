@@ -1,6 +1,7 @@
 package com.cpu.quikdata.common
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Outline
 import android.net.Uri
@@ -162,7 +163,7 @@ fun Fragment.showToast(textId: Int) {
     Toast.makeText(context!!, textId, Toast.LENGTH_SHORT).show()
 }
 
-fun AppCompatActivity.showToast(textId: Int) {
+fun Context.showToast(textId: Int) {
     Toast.makeText(this, textId, Toast.LENGTH_SHORT).show()
 }
 

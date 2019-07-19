@@ -13,6 +13,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.feature.createform.BaseSubmissionFragment
+import com.cpu.quikdata.utils.isInternetAvailableThenToast
 import kotlinx.android.synthetic.main.fragment_basic_selection.*
 
 /**
@@ -37,6 +38,10 @@ class BasicSelectionFragment : BaseSubmissionFragment() {
 
         setupClipping(basicSelectionRootLayout)
         selectionSendSaveButton.clickWithGuard {
+            if (!isInternetAvailableThenToast(view.context, R.string.text_error_no_internet_save_only)) {
+                mParentViewModel.saveChangesToFormOnly()
+                return@clickWithGuard
+            }
             showProgressDialog()
             mParentViewModel.saveFormAsActual(true)
         }

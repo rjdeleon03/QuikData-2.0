@@ -20,9 +20,14 @@ class MultilineStringLongQuestion(context: Context, attrs: AttributeSet) : Linea
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.MultilineStringLongQuestion)
         val question = attributes.getString(R.styleable.MultilineStringLongQuestion_question)
         val text = attributes.getString(R.styleable.MultilineStringLongQuestion_text)
+        val isSingleLine = attributes.getBoolean(R.styleable.MultilineStringLongQuestion_isTextSingleLine, false)
         attributes.recycle()
         questionText.text = question
         textField.setText(text)
+        if (isSingleLine) {
+            textField.maxLines = 1
+            textField.setSingleLine(true)
+        }
         setupOnFocusBehavior(questionText, textField)
     }
 
