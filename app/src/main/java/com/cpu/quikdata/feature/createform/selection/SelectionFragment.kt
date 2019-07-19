@@ -12,6 +12,7 @@ import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.customviews.ItemSection
 import com.cpu.quikdata.feature.createform.BaseSubmissionFragment
+import com.cpu.quikdata.utils.isInternetAvailableThenToast
 import kotlinx.android.synthetic.main.fragment_selection.*
 
 class SelectionFragment : BaseSubmissionFragment() {

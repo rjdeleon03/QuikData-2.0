@@ -430,4 +430,6 @@
     <string name="form_item_submitting_image">Uploading images...</string>
     <string name="selection_optionals">Optional Sections</string>
     <string name="selection_optionals_instructions">Tap the toggles to include/exclude the sections.</string>
+    <string name="text_error_no_internet">The form cannot be submitted. Please make sure that you are connected to the Internet.</string>
+    <string name="text_error_no_internet_save_only">The form has been saved but cannot be submitted. Please make sure that you are connected to the Internet.</string>
 </resources>
