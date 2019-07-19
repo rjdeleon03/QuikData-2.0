@@ -21,6 +21,7 @@ class ProgressDialogFragment : DialogFragment() {
 
     companion object {
         const val TAG = "PROGRESS_DIALOG_FRAGMENT"
+        const val TEXT_TAG = "PROGRESS_DIALOG_TEXT_TAG"
         private const val TITLE_ID_KEY = "TITLE_ID_KEY"
         private const val CONTENT_ID_KEY = "CONTENT_ID_KEY"
 
@@ -58,6 +59,17 @@ class ProgressDialogFragment : DialogFragment() {
         return dialog
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(TEXT_TAG, dialog.progressDialogText.text.toString())
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val dialogText = savedInstanceState?.getString(TEXT_TAG)
+        if (dialog.progressDialogText != null) dialog.progressDialogText.text = dialogText
+    }
+
     fun setOnDialogCanceledListener(listener: () -> Unit) {
         mOnDialogCanceledListener = listener
     }
@@ -70,7 +82,7 @@ class ProgressDialogFragment : DialogFragment() {
     fun updateBasedOnProgress(progress: ProgressNotification) {
         if (dialog == null) return
         if (progress == ProgressNotification.FORM_SUBMITTED) {
-                dialog.progressDialogText.setText(R.string.form_item_submitting_image)
+            dialog.progressDialogText.setText(R.string.form_item_submitting_image)
         }
     }
 }

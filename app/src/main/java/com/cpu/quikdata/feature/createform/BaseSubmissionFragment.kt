@@ -1,6 +1,7 @@
 package com.cpu.quikdata.feature.createform
 
 import android.os.Bundle
+import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.observeOnly
@@ -20,6 +21,12 @@ abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
         mDialog?.setOnDialogCanceledListener {
             mParentViewModel.cancelSubmission()
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val dialog = childFragmentManager.findFragmentByTag(ProgressDialogFragment.TAG) as? ProgressDialogFragment
+        if (dialog != null) mDialog = dialog
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
