@@ -32,8 +32,8 @@ class FirebaseHelper {
     fun cancelSubmission() {
         mIsCancelled = true
 
-        // TODO: Remove this after wards
-        System.out.println("============ CANCELLING SUBMISSION =============")
+        // TODO: Remove this afterwards
+        // System.out.println("============ CANCELLING SUBMISSION =============")
 
         cancelUploadTasks()
     }
@@ -51,7 +51,7 @@ class FirebaseHelper {
                 resultLiveData.value = ProgressNotification.CANCELLED
                 return@runOnMainThread
             }
-            System.out.println("============ $pn =============")
+            // System.out.println("============ $pn =============")
             when (pn) {
                 ProgressNotification.FINISHED,
                 ProgressNotification.CANCELLED,
