@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupOnFocusBehavior
 import kotlinx.android.synthetic.main.question_date.view.*
 import org.joda.time.LocalDate
@@ -32,7 +33,9 @@ class DateQuestion(context: Context, attrs: AttributeSet) : LinearLayout(context
         textField.setText(text)
 
         // Ensure that all clicks in children trigger the parent's onClick listener
-        setupOnFocusBehavior(questionText, textField) {openDatePicker()}
+        questionText.clickWithGuard { openDatePicker() }
+        textField.clickWithGuard { openDatePicker() }
+        clickWithGuard { openDatePicker() }
     }
 
     var date: Long
