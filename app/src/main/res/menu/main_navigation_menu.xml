@@ -6,14 +6,14 @@
         android:title="@string/text_home"/>
     <item
         android:id="@+id/newFormsFragment"
-        android:icon="@drawable/ic_list_24dp"
+        android:icon="@drawable/ic_archive_24dp"
         android:title="@string/text_archive"/>
     <item
         android:id="@+id/prefilledInfoFragment"
         android:icon="@drawable/ic_poll_24dp"
         android:title="@string/prefilled_title"/>
     <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_settings_24dp"
-        android:title="@string/settings_title"/>
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_info_outline_24dp"
+        android:title="@string/about_title"/>
 </menu>

@@ -2,6 +2,7 @@ package com.cpu.quikdata.common
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Outline
 import android.net.Uri
@@ -60,6 +61,13 @@ fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {
             lastClickTime = SystemClock.elapsedRealtime()
         }
     })
+}
+
+fun View.addWebLink(url: String, context: Context) {
+    this.clickWithGuard {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        context.startActivity(intent)
+    }
 }
 
 fun EditText.setupNumberInputValidation() {

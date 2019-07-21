@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/gradient_primary_bg"/>
+
+    <item>
+        <bitmap android:src="@drawable/qd_fg"
+            android:gravity="center" />
+    </item>
+
+</layer-list>

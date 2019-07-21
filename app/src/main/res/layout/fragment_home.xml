@@ -67,6 +67,23 @@
                 <include layout="@layout/view_divider"/>
 
                 <TextView
+                    android:id="@+id/homeAboutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dimenExtraSmall"
+                    android:background="@drawable/ripple_accent_lighter_gray"
+                    android:padding="@dimen/dimenSmall"
+                    android:minHeight="42dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="@string/home_about"
+                    android:clickable="true"
+                    android:focusable="true"
+                    style="@style/EditTextTheme"/>
+
+                <include layout="@layout/view_divider"/>
+
+                <TextView
                     android:id="@+id/homeConsortiumButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

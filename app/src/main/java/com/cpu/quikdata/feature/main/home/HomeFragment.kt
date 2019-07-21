@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
@@ -39,6 +40,10 @@ class HomeFragment : Fragment() {
             val formId = generateId()
             mViewModel.createNewForm(formId)
             CreateFormActivity.newInstance(context!!, formId, basicMode = true)
+        }
+
+        homeAboutButton.clickWithGuard {
+            findNavController().navigate(R.id.action_homeFragment_to_aboutFragment)
         }
 
         homeConsortiumButton.clickWithGuard {

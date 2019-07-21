@@ -10,5 +10,6 @@
     <dimen name="dimenExtraLarge">64dp</dimen>
     <dimen name="dimenSuperExtraLarge">72dp</dimen>
     <dimen name="dimenImageLarge">140dp</dimen>
+    <dimen name="dimenImageExtraLarge">300dp</dimen>
     <dimen name="dividerLargeHeight">12dp</dimen>
 </resources>
