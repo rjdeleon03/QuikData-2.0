@@ -436,4 +436,5 @@
     <string name="about_quik_data_part_2">Quik Data has two components - (1) Community-Based Disaster Management and (2) the Quik Data mobile app. The CBDM will train community members on disaster risk management and help them create their own Community Disaster Preparedness Plans.</string>
     <string name="about_button_ICRED">ICRED</string>
     <string name="about_button_consortium">Consortium</string>
+    <string name="home_about">About Quik Data</string>
 </resources>

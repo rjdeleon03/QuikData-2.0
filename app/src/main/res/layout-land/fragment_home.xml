@@ -66,20 +66,49 @@
 
                 <include layout="@layout/view_divider"/>
 
-                <TextView
-                    android:id="@+id/homeConsortiumButton"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dimenExtraSmall"
-                    android:background="@drawable/ripple_accent_lighter_gray_corner_bottom"
-                    android:padding="@dimen/dimenSmall"
-                    android:minHeight="42dp"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:text="@string/home_consortium"
-                    android:clickable="true"
-                    android:focusable="true"
-                    style="@style/EditTextTheme"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/homeAboutButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="@dimen/dimenExtraSmall"
+                        android:background="@drawable/ripple_accent_lighter_gray_corner_bottom_left"
+                        android:padding="@dimen/dimenSmall"
+                        android:minHeight="42dp"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:text="@string/home_about"
+                        android:clickable="true"
+                        android:focusable="true"
+                        style="@style/EditTextTheme"/>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/lightGray"/>
+
+                    <TextView
+                        android:id="@+id/homeConsortiumButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="@dimen/dimenExtraSmall"
+                        android:background="@drawable/ripple_accent_lighter_gray_corner_bottom_right"
+                        android:padding="@dimen/dimenSmall"
+                        android:minHeight="42dp"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:text="@string/home_consortium"
+                        android:clickable="true"
+                        android:focusable="true"
+                        style="@style/EditTextTheme"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
