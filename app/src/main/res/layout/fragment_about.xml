@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".feature.main.about.AboutFragment"
+    android:id="@+id/settingsMainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="@dimen/dimenExtraSmall"
+    android:background="@color/lightGray">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <com.cpu.quikdata.customviews.DividerText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerText="What is Quik Data?"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimenSmall"
+                android:layout_marginStart="@dimen/dimenMid"
+                android:layout_marginEnd="@dimen/dimenMid"
+                android:gravity="center"
+                android:text="@string/about_quik_data_part_1"/>
+
+            <ImageView
+                android:layout_width="@dimen/dimenImageLarge"
+                android:layout_height="@dimen/dimenImageLarge"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimenMid"
+                android:layout_marginBottom="@dimen/dimenMid"
+                android:src="@drawable/logo_icred"/>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimenMid"
+                android:layout_marginEnd="@dimen/dimenMid"
+                android:layout_marginBottom="@dimen/dimenMid"
+                android:gravity="center"
+                android:text="@string/about_quik_data_part_2"/>
+
+
+            <com.cpu.quikdata.customviews.DividerText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerText="External Links"/>
+
+            <TextView
+                android:id="@+id/aboutICREDButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimenMidLarge"
+                android:paddingStart="@dimen/dimenMid"
+                android:paddingEnd="@dimen/dimenMid"
+                android:paddingTop="@dimen/dimenSmall"
+                android:paddingBottom="@dimen/dimenSmall"
+                android:background="?android:attr/selectableItemBackground"
+                android:focusable="true"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/about_button_ICRED"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/lightGray"/>
+
+            <TextView
+                android:id="@+id/aboutConsortiumButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimenMidLarge"
+                android:paddingStart="@dimen/dimenMid"
+                android:paddingEnd="@dimen/dimenMid"
+                android:paddingTop="@dimen/dimenSmall"
+                android:paddingBottom="@dimen/dimenSmall"
+                android:background="?android:attr/selectableItemBackground"
+                android:focusable="true"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/about_button_consortium"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimenMid"
+                android:background="@color/lightGray"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</FrameLayout>

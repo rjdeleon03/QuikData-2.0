@@ -11,20 +11,15 @@
         android:label="@string/new_forms_title"
         tools:layout="@layout/fragment_new_forms" />
     <fragment
-        android:id="@+id/sentFormsFragment"
-        android:name="com.cpu.quikdata.old.sentforms.SentFormsFragment"
-        android:label="@string/sent_forms_title"
-        tools:layout="@layout/fragment_sent_forms" />
-    <fragment
         android:id="@+id/prefilledInfoFragment"
         android:name="com.cpu.quikdata.feature.main.prefilledinfo.PrefilledInfoFragment"
         android:label="@string/prefilled_title"
         tools:layout="@layout/fragment_prefilled_info" />
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.cpu.quikdata.feature.main.settings.SettingsFragment"
-        android:label="@string/settings_title"
-        tools:layout="@layout/fragment_settings" />
+        android:id="@+id/aboutFragment"
+        android:name="com.cpu.quikdata.feature.main.about.AboutFragment"
+        android:label="@string/about_title"
+        tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.cpu.quikdata.feature.main.home.HomeFragment"

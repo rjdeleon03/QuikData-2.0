@@ -3,7 +3,7 @@
     <string name="new_forms_title">DNCA Forms Archive</string>
     <string name="sent_forms_title">Sent Forms</string>
     <string name="prefilled_title">Baseline Data</string>
-    <string name="settings_title">Settings</string>
+    <string name="about_title">About</string>
     <string name="create_form_title_new">Create New DNCA Form</string>
     <string name="create_form_title_edit">Edit DNCA Form</string>
     <string name="create_form_subtitle">Damage, Needs, Capacities Assessment</string>
@@ -432,4 +432,8 @@
     <string name="selection_optionals_instructions">Tap the toggles to include/exclude the sections.</string>
     <string name="text_error_no_internet">The form cannot be submitted. Please make sure that you are connected to the Internet.</string>
     <string name="text_error_no_internet_save_only">The form has been saved but cannot be submitted. Please make sure that you are connected to the Internet.</string>
+    <string name="about_quik_data_part_1">Quik Data is a community-based disaster reporting app by Ilocos Center for Research, Empowerment and Development (ICRED).</string>
+    <string name="about_quik_data_part_2">Quik Data has two components - (1) Community-Based Disaster Management and (2) the Quik Data mobile app. The CBDM will train community members on disaster risk management and help them create their own Community Disaster Preparedness Plans.</string>
+    <string name="about_button_ICRED">ICRED</string>
+    <string name="about_button_consortium">Consortium</string>
 </resources>

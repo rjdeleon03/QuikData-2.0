@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_poll_24dp"
         android:title="@string/prefilled_title"/>
     <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_settings_24dp"
-        android:title="@string/settings_title"/>
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_info_outline_24dp"
+        android:title="@string/about_title"/>
 </menu>
