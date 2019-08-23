@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/dimenMid"
-                style="@style/EditTextTheme"
+                style="@style/EditTextTheme.Number"
                 android:layout_marginTop="-4dp"
                 android:layout_marginBottom="@dimen/dimenMidExtraSmall"/>
 
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/dimenMid"
-                style="@style/EditTextTheme"
+                style="@style/EditTextTheme.Number"
                 android:layout_marginTop="-4dp"
                 android:layout_marginBottom="@dimen/dimenMidExtraSmall"/>
 
