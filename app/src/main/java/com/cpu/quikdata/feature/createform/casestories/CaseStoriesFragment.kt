@@ -126,6 +126,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        mViewModel.updateCaseStoriesText(CaseStories(text = caseStoriesText.text))
         mImagePicker.handleActivityResult(resultCode, requestCode, data)
     }
 
