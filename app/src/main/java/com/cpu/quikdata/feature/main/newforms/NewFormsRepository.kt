@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature.main.newforms
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.cpu.quikdata.common.*
@@ -38,6 +37,10 @@ import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
 import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
 import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
 import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
+import com.cpu.quikdata.di.component.repository.DaggerNewFormsRepositoryComponent
+import com.cpu.quikdata.di.module.DatabaseModule
+import com.cpu.quikdata.di.module.FirebaseHelperModule
+import com.cpu.quikdata.feature.QuikDataApp
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
@@ -46,14 +49,30 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.joda.time.LocalDate
+import javax.inject.Inject
 
-class NewFormsRepository(application: Application) {
+class NewFormsRepository(application: QuikDataApp) {
 
-    private val mDatabase = AppDatabase.get(application)
-    private val mFirebaseHelper = FirebaseHelper()
-    private val mNewForms = mDatabase.formDao().getAllActual()
+    @Inject
+    lateinit var database: AppDatabase
+
+    @Inject
+    lateinit var firebaseHelper: FirebaseHelper
+
+    private val mNewForms: LiveData<List<FormComplete>>
+    
     private val mSaveResult = MediatorLiveData<ProgressNotification>()
+
+    init {
+        DaggerNewFormsRepositoryComponent.builder()
+            .databaseModule(DatabaseModule(application))
+            .firebaseHelperModule(FirebaseHelperModule())
+            .build()
+            .inject(this)
+
+        mNewForms = database.formDao().getAllActual()
+    }
+
 
     val newForms: LiveData<List<FormComplete>>
         get() = mNewForms
@@ -65,18 +84,18 @@ class NewFormsRepository(application: Application) {
         CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {
             val dateNowInLong = getDateNowInLong()
             val form = Form(formId, getDateTimeNowInLong(), getDateTimeNowInLong())
-            mDatabase.formDao().insert(form)
+            database.formDao().insert(form)
 
             // region Form details
 
             val formDetails = FormDetails(id = generateId(),
                 assessmentDate = dateNowInLong,
                 formId = formId)
-            mDatabase.formDetailsDao().insert(formDetails)
+            database.formDetailsDao().insert(formDetails)
 
             val baselineData = BaselineData(id = generateId(),
                 formId = formId)
-            mDatabase.baselineDataDao().insert(baselineData)
+            database.baselineDataDao().insert(baselineData)
 
             // endregion
 
@@ -85,54 +104,54 @@ class NewFormsRepository(application: Application) {
             val calamityInfo = CalamityInfo(id = generateId(),
                 formId = formId,
                 occurrenceDate = dateNowInLong)
-            mDatabase.calamityInfoDao().insert(calamityInfo)
+            database.calamityInfoDao().insert(calamityInfo)
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = PopulationRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.populationRowDao().insert(row)
+                database.populationRowDao().insert(row)
             }
 
             val families = Families(id = generateId(), formId = formId)
-            mDatabase.familiesDao().insert(families)
+            database.familiesDao().insert(families)
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = VulnerableRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.vulnerableRowDao().insert(row)
+                database.vulnerableRowDao().insert(row)
             }
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = CasualtiesRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.casualtiesRowDao().insert(row)
+                database.casualtiesRowDao().insert(row)
             }
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = CauseOfDeathRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.causeOfDeathRowDao().insert(row)
+                database.causeOfDeathRowDao().insert(row)
             }
 
-            for (i in 0 until InfraCategories.values().size) {
+            for (i in InfraCategories.values().indices) {
                 val row = InfrastructureDamageRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.infrastructureDamageRowDao().insert(row)
+                database.infrastructureDamageRowDao().insert(row)
             }
 
             // endregion
@@ -140,64 +159,64 @@ class NewFormsRepository(application: Application) {
             // region Case stories
 
             val caseStories = CaseStories(id = generateId(), formId = formId)
-            mDatabase.caseStoriesDao().insert(caseStories)
+            database.caseStoriesDao().insert(caseStories)
 
             // endregion
 
             // region Shelter and non-food information
 
-            for (i in 0 until HouseCategories.values().size) {
+            for (i in HouseCategories.values().indices) {
                 val row = HouseDamageRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.houseDamageRowDao().insert(row)
+                database.houseDamageRowDao().insert(row)
             }
 
             val shelterCoping = ShelterCoping(id = generateId(), formId = formId)
-            mDatabase.shelterCopingDao().insert(shelterCoping)
+            database.shelterCopingDao().insert(shelterCoping)
 
-            for (i in 0 until MaterialCategories.values().size) {
+            for (i in MaterialCategories.values().indices) {
                 val row = ShelterNeedsRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.shelterNeedsRowDao().insert(row)
+                database.shelterNeedsRowDao().insert(row)
             }
 
             val shelterGaps = ShelterGaps(id = generateId(), formId = formId)
-            mDatabase.shelterGapsDao().insert(shelterGaps)
+            database.shelterGapsDao().insert(shelterGaps)
 
             // endregion
 
             // region Food security information
 
             val foodSecurityImpact = FoodSecurityImpact(id = generateId(), formId = formId)
-            mDatabase.foodSecurityImpactDao().insert(foodSecurityImpact)
+            database.foodSecurityImpactDao().insert(foodSecurityImpact)
 
             val foodSecurityCoping = FoodSecurityCoping(id = generateId(), formId = formId)
-            mDatabase.foodSecurityCopingDao().insert(foodSecurityCoping)
+            database.foodSecurityCopingDao().insert(foodSecurityCoping)
 
             val foodSecurityNeeds = FoodSecurityNeeds(id = generateId(), formId = formId)
-            mDatabase.foodSecurityNeedsDao().insert(foodSecurityNeeds)
+            database.foodSecurityNeedsDao().insert(foodSecurityNeeds)
 
             val foodSecurityGaps = FoodSecurityGaps(id = generateId(), formId = formId)
-            mDatabase.foodSecurityGapsDao().insert(foodSecurityGaps)
+            database.foodSecurityGapsDao().insert(foodSecurityGaps)
 
             // endregion
 
             // region Livelihoods information
 
-            for (i in 0 until LivelihoodCategories.values().size) {
+            for (i in LivelihoodCategories.values().indices) {
                 val estimatedDamageId = generateId()
                 val row = EstimatedDamageRow(
                     id = estimatedDamageId,
                     type = i,
                     formId = formId
                 )
-                mDatabase.estimatedDamageRowDao().insert(row)
+                database.estimatedDamageRowDao().insert(row)
 
                 val subcategories = LivelihoodCategories.values()[i].getSubcategories()
                 for (j in 0 until subcategories.size) {
@@ -207,68 +226,68 @@ class NewFormsRepository(application: Application) {
                         type = subcategories[j].ordinal,
                         estimatedDamageId = estimatedDamageId
                     )
-                    mDatabase.estimatedDamageTypeDao().insert(subRow)
+                    database.estimatedDamageTypeDao().insert(subRow)
                 }
             }
 
             val livelihoodsCoping = LivelihoodsCoping(id = generateId(), formId = formId)
-            mDatabase.livelihoodsCopingDao().insert(livelihoodsCoping)
+            database.livelihoodsCopingDao().insert(livelihoodsCoping)
 
             val livelihoodsNeeds = LivelihoodsNeeds(id = generateId(), formId = formId)
-            mDatabase.livelihoodsNeedsDao().insert(livelihoodsNeeds)
+            database.livelihoodsNeedsDao().insert(livelihoodsNeeds)
 
             val livelihoodsGaps = LivelihoodsGaps(id = generateId(), formId = formId)
-            mDatabase.livelihoodsGapsDao().insert(livelihoodsGaps)
+            database.livelihoodsGapsDao().insert(livelihoodsGaps)
 
             // endregion
 
             // region Health information
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = DiseasesRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.diseasesRowDao().insert(row)
+                database.diseasesRowDao().insert(row)
             }
 
-            for (i in 0 until SpecialNeedsCategories.values().size) {
+            for (i in SpecialNeedsCategories.values().indices) {
                 val row = SpecialNeedsRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.specialNeedsRowDao().insert(row)
+                database.specialNeedsRowDao().insert(row)
             }
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = PsychosocialRow(
                     id = generateId(),
                     type = i,
                     formId = formId
                 )
-                mDatabase.psychosocialRowDao().insert(row)
+                database.psychosocialRowDao().insert(row)
             }
 
             val healthCoping = HealthCoping(id = generateId(), formId = formId)
-            mDatabase.healthCopingDao().insert(healthCoping)
+            database.healthCopingDao().insert(healthCoping)
 
             val healthGaps = HealthGaps(id = generateId(), formId = formId)
-            mDatabase.healthGapsDao().insert(healthGaps)
+            database.healthGapsDao().insert(healthGaps)
 
             // endregion
 
             // region Water, sanitation, and hygiene
 
             val washConditions = WashConditions(id = generateId(), formId = formId)
-            mDatabase.washConditionsDao().insert(washConditions)
+            database.washConditionsDao().insert(washConditions)
 
             val washCoping = WashCoping(id = generateId(), formId = formId)
-            mDatabase.washCopingDao().insert(washCoping)
+            database.washCopingDao().insert(washCoping)
 
             val washGaps = WashGaps(id = generateId(), formId = formId)
-            mDatabase.washGapsDao().insert(washGaps)
+            database.washGapsDao().insert(washGaps)
 
             // endregion
         }
@@ -276,12 +295,12 @@ class NewFormsRepository(application: Application) {
 
     fun deleteForm(formComplete: FormComplete) {
         runOnIoThread {
-            mDatabase.formDao().delete(formComplete.form!!)
+            database.formDao().delete(formComplete.form!!)
         }
     }
 
     fun submitForm(formId: String) {
-        val operation = mFirebaseHelper.submitAllData(mDatabase, formId)
+        val operation = firebaseHelper.submitAllData(database, formId)
         mSaveResult.addSource(operation) {
             mSaveResult.value = it
             if (it == ProgressNotification.FINISHED ||
@@ -292,5 +311,5 @@ class NewFormsRepository(application: Application) {
         }
     }
 
-    fun cancelSubmission() = mFirebaseHelper.cancelSubmission()
+    fun cancelSubmission() = firebaseHelper.cancelSubmission()
 }

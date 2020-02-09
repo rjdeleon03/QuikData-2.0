@@ -5,10 +5,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.data.form.FormComplete
+import com.cpu.quikdata.feature.QuikDataApp
 
 class NewFormsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val mRepository = NewFormsRepository(application)
+    private val mRepository = NewFormsRepository(application as QuikDataApp)
 
     val newForms: LiveData<List<FormComplete>>
         get() = mRepository.newForms
