@@ -1,25 +1,33 @@
 package com.cpu.quikdata.feature
 
 import android.app.Application
-import android.content.Context
 import android.os.Build
-import com.cpu.quikdata.DEVICE_ID_KEY
 import com.cpu.quikdata.FIREBASE_KEY_DEVICES
-import com.cpu.quikdata.SHARED_PREFS_KEY
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
+import com.cpu.quikdata.di.component.DaggerQuikDataAppComponent
+import com.cpu.quikdata.di.module.AppModule
+import com.cpu.quikdata.di.module.SharedPrefsModule
+import com.cpu.quikdata.helpers.SharedPreferencesHelper
 import com.cpu.quikdata.utils.runOnIoThread
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import net.danlew.android.joda.JodaTimeAndroid
+import javax.inject.Inject
 
 class QuikDataApp : Application() {
 
+    @Inject
+    lateinit var sharedPrefsHelper: SharedPreferencesHelper
+
     override fun onCreate() {
         super.onCreate()
+
+        DaggerQuikDataAppComponent.builder()
+            .appModule(AppModule(this))
+            .sharedPrefsModule(SharedPrefsModule())
+            .build()
+            .inject(this)
+
         JodaTimeAndroid.init(this)
 
         setupDatabase()
@@ -43,16 +51,13 @@ class QuikDataApp : Application() {
             val task = push.setValue("${Build.MANUFACTURER} ${Build.MODEL}")
 
             task.addOnCompleteListener {
-                val editor = getSharedPreferences(SHARED_PREFS_KEY, Context.MODE_PRIVATE).edit()
-                editor.putString(DEVICE_ID_KEY, push.key)
-                editor.apply()
+                sharedPrefsHelper.saveDeviceId(push.key)
             }
         }
     }
 
     private fun isDeviceRegistered(): Boolean {
-        val sharedPrefs = getSharedPreferences(SHARED_PREFS_KEY, Context.MODE_PRIVATE)
-        val deviceId = sharedPrefs.getString(DEVICE_ID_KEY, "")
+        val deviceId = sharedPrefsHelper.getDeviceId()
         return !deviceId.isNullOrBlank()
     }
 }
