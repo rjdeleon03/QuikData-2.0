@@ -31,5 +31,9 @@ class DatabaseModule(val application: QuikDataApp) {
 
     @Singleton
     @Provides
+    fun provideBaselineDataDao() = mDatabase.baselineDataDao()
+
+    @Singleton
+    @Provides
     fun provideCaseStoriesDao() = mDatabase.caseStoriesDao()
 }

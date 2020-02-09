@@ -5,10 +5,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.baselinedata.BaselineData
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
+import com.cpu.quikdata.feature.QuikDataApp
 
 class BaselineDataViewModel(application: Application, formId: String) : AndroidViewModel(application) {
 
-    private val mRepository = BaselineDataRepository(application, formId)
+    private val mRepository = BaselineDataRepository(application as QuikDataApp, formId)
 
     val baselineData : LiveData<BaselineData>
         get() = mRepository.baselineData
