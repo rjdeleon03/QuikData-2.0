@@ -60,21 +60,25 @@ class ProgressDialogFragment : DialogFragment() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString(TEXT_TAG, dialog.progressDialogText.text.toString())
-        super.onSaveInstanceState(outState)
+        dialog?.progressDialogText?.let {
+            outState.putString(TEXT_TAG, it.text.toString())
+            super.onSaveInstanceState(outState)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val dialogText = savedInstanceState?.getString(TEXT_TAG)
-        if (dialog.progressDialogText != null) dialog.progressDialogText.text = dialogText
+        dialog?.let {
+            it.progressDialogText.text = dialogText
+        }
     }
 
     fun setOnDialogCanceledListener(listener: () -> Unit) {
         mOnDialogCanceledListener = listener
     }
 
-    override fun onCancel(dialog: DialogInterface?) {
+    override fun onCancel(dialog: DialogInterface) {
         super.onCancel(dialog)
         mOnDialogCanceledListener?.invoke()
     }
@@ -82,7 +86,9 @@ class ProgressDialogFragment : DialogFragment() {
     fun updateBasedOnProgress(progress: ProgressNotification) {
         if (dialog == null) return
         if (progress == ProgressNotification.FORM_SUBMITTED) {
-            dialog.progressDialogText.setText(R.string.form_item_submitting_image)
+            dialog?.let {
+                it.progressDialogText.setText(R.string.form_item_submitting_image)
+            }
         }
     }
 }

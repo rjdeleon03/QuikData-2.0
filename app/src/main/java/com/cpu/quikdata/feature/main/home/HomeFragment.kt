@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
 import com.cpu.quikdata.R
@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         homeNewDncaFormButton.clickWithGuard {
             val formId = generateId()

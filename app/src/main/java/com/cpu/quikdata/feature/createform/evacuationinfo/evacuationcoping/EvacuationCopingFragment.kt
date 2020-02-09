@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationcoping
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -49,7 +49,7 @@ class EvacuationCopingFragment : Fragment() {
 
         val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
         val factory = ViewModelFactory(activity!!.application, evacuationId)
-        mViewModel = ViewModelProviders.of(this, factory).get(EvacuationCopingViewModel::class.java)
+        mViewModel = ViewModelProvider(this, factory).get(EvacuationCopingViewModel::class.java)
         mViewModel.evacuationCoping.observe(viewLifecycleOwner, Observer {
             evacuationCopingMechanismText.text = it.copingMechanism
         })

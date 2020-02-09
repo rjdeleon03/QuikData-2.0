@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -63,7 +63,7 @@ class SiteInfoFragment : Fragment() {
 
         val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
         val factory = ViewModelFactory(activity!!.application, evacuationId)
-        mViewModel = ViewModelProviders.of(this, factory).get(SiteInfoViewModel::class.java)
+        mViewModel = ViewModelProvider(this, factory).get(SiteInfoViewModel::class.java)
         mViewModel.siteInfo.observe(viewLifecycleOwner, Observer {
             evacuationSiteInfoNameText.text = it.name
             evacuationSiteInfoLocationText.text = it.location

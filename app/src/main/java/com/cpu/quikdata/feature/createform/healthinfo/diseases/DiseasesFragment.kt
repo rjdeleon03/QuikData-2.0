@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.healthinfo.diseases
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +38,7 @@ class DiseasesFragment : BaseCollapsibleCreateFormFragment<DiseasesAdapter, Dise
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(DiseasesViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(DiseasesViewModel::class.java)
         mViewModel.diseases.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

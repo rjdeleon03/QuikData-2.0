@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.generalinfo.families
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,7 +44,7 @@ class FamiliesFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(FamiliesViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(FamiliesViewModel::class.java)
         mViewModel.families.observe(viewLifecycleOwner, Observer {
             familiesAffectedText.number = it.affectedFamilies
             householdsAffectedText.number = it.affectedHouseholds

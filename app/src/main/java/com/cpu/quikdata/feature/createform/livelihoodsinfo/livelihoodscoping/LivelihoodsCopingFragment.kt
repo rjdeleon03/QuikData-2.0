@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -42,7 +42,7 @@ class LivelihoodsCopingFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsCopingViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(LivelihoodsCopingViewModel::class.java)
         mViewModel.livelihoodsCoping.observe(viewLifecycleOwner, Observer {
             livelihoodsCopingStrategiesText.text = it.copingStrategies
             livelihoodsCopingNewIncomeText.text = it.newIncome

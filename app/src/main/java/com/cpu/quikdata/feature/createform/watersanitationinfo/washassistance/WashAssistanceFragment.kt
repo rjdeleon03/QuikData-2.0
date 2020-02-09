@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -54,7 +54,7 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(WashAssistanceViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(WashAssistanceViewModel::class.java)
         mViewModel.washAssistance.observe(viewLifecycleOwner, Observer {
             washAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

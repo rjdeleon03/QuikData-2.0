@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.generalinfo.population
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
 import androidx.lifecycle.Observer
@@ -36,7 +36,7 @@ class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(PopulationViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(PopulationViewModel::class.java)
         mViewModel.population.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

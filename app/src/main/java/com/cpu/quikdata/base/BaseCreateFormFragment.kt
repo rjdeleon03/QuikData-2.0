@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
 
@@ -15,7 +15,7 @@ abstract class BaseCreateFormFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
+        mParentViewModel = ViewModelProvider(activity!!).get(CreateFormViewModel::class.java)
         mFactory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
     }
 

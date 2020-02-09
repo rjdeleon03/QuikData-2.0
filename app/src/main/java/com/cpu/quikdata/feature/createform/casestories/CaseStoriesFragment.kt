@@ -2,7 +2,7 @@ package com.cpu.quikdata.feature.createform.casestories
 
 import android.Manifest
 import android.content.Intent
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -102,7 +102,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(CaseStoriesViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(CaseStoriesViewModel::class.java)
         mViewModel.caseStories.observe(viewLifecycleOwner, Observer {
             caseStoriesText.text = it.root!!.text
 

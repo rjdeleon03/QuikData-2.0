@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.main.newforms
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -63,7 +63,7 @@ class NewFormsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this).get(NewFormsViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(NewFormsViewModel::class.java)
         mViewModel.newForms.observe(viewLifecycleOwner, Observer { forms ->
             newFormsRecyclerView.updateDisplayBasedOnItemCount(forms.size)
             mAdapter.setForms(forms)
