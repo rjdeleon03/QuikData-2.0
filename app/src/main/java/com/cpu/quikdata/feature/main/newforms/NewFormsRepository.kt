@@ -295,7 +295,9 @@ class NewFormsRepository(application: QuikDataApp) {
 
     fun deleteForm(formComplete: FormComplete) {
         runOnIoThread {
-            database.formDao().delete(formComplete.form!!)
+            formComplete.form?.let {
+                database.formDao().delete(it)
+            }
         }
     }
 

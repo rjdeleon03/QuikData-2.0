@@ -43,9 +43,10 @@ class BaselineDataRepository(application: QuikDataApp,
 
     fun updateData(data: BaselineData) {
         runOnIoThread {
-            val oldBaselineData = mBaselineData.value!!
-            oldBaselineData.copyFrom(data)
-            baselineDataDao.update(oldBaselineData)
+            mBaselineData.value?.let {
+                it.copyFrom(data)
+                baselineDataDao.update(it)
+            }
         }
     }
 

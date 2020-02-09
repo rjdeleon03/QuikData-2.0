@@ -52,7 +52,7 @@ class CreateFormRepository(application: QuikDataApp,
         get() = mForm
 
     val isFormTemporary: Boolean
-        get() = mForm.value!!.isTemporary
+        get() = mForm.value?.isTemporary ?: false
 
     val saveResult: LiveData<ProgressNotification>
         get() = mSaveResult
@@ -65,9 +65,10 @@ class CreateFormRepository(application: QuikDataApp,
                 Uri.parse(it.uri).deleteFile()
             }
 
-            val formValue = mForm.value!!
-            if (formValue.isTemporary) {
-                formDao.delete(formValue)
+            mForm.value?.let {
+                if (it.isTemporary) {
+                    formDao.delete(it)
+                }
             }
         }
     }
@@ -100,10 +101,11 @@ class CreateFormRepository(application: QuikDataApp,
     }
 
     private fun performSaveChangesToFormOnly() {
-        val formValue = mForm.value!!
-        formValue.isTemporary = false
-        formValue.dateModified = getDateTimeNowInLong()
-        formDao.update(formValue)
+        mForm.value?.let {
+            it.isTemporary = false
+            it.dateModified = getDateTimeNowInLong()
+            formDao.update(it)
+        }
     }
 
     fun cancelSubmission() = firebaseHelper.cancelSubmission()
@@ -115,14 +117,15 @@ class CreateFormRepository(application: QuikDataApp,
                                 includeWash: Boolean,
                                 includeEvacuation: Boolean) {
         runOnIoThread {
-            val formValue = mForm.value!!
-            formValue.includeShelter = includeShelter
-            formValue.includeFood = includeFood
-            formValue.includeLivelihoods = includeLivelihoods
-            formValue.includeHealth = includeHealth
-            formValue.includeWash = includeWash
-            formValue.includeEvacuation = includeEvacuation
-            formDao.update(formValue)
+            mForm.value?.let {
+                it.includeShelter = includeShelter
+                it.includeFood = includeFood
+                it.includeLivelihoods = includeLivelihoods
+                it.includeHealth = includeHealth
+                it.includeWash = includeWash
+                it.includeEvacuation = includeEvacuation
+                formDao.update(it)
+            }
         }
     }
 }

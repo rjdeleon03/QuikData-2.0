@@ -1,25 +1,40 @@
 package com.cpu.quikdata.feature.createform.generalinfo.calamityinfo
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
-import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
+import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfoDao
+import com.cpu.quikdata.di.component.repository.DaggerCalamityInfoRepositoryComponent
+import com.cpu.quikdata.di.module.DatabaseModule
+import com.cpu.quikdata.feature.QuikDataApp
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class CalamityInfoRepository(application: Application, formId: String) :
-    BaseRepository<CalamityInfo>(application) {
+class CalamityInfoRepository(application: QuikDataApp, formId: String) {
 
-    private val mCalamityInfo = mDatabase.calamityInfoDao().getByFormId(formId)
+    @Inject
+    lateinit var calamityInfoDao: CalamityInfoDao
+
+    private val mCalamityInfo: LiveData<CalamityInfo>
+
+    init {
+        DaggerCalamityInfoRepositoryComponent
+            .builder()
+            .databaseModule(DatabaseModule(application))
+            .build()
+            .inject(this)
+
+        mCalamityInfo = calamityInfoDao.getByFormId(formId)
+    }
 
     val calamityInfo: LiveData<CalamityInfo>
         get() = mCalamityInfo
 
-    override fun updateData(data: CalamityInfo) {
+    fun updateData(data: CalamityInfo) {
         runOnIoThread {
-            val oldCalamityInfo = mCalamityInfo.value!!
-            oldCalamityInfo.copyFrom(data)
-            mDatabase.calamityInfoDao().update(oldCalamityInfo)
+            mCalamityInfo.value?.let {
+                it.copyFrom(data)
+                calamityInfoDao.update(it)
+            }
         }
     }
 }
