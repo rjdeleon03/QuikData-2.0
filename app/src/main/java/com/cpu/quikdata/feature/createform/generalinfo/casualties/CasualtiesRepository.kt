@@ -1,22 +1,37 @@
 package com.cpu.quikdata.feature.createform.generalinfo.casualties
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
 import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRow
+import com.cpu.quikdata.data.generalinfo.casualtiesrow.CasualtiesRowDao
+import com.cpu.quikdata.di.component.repository.DaggerCasualtiesRepositoryComponent
+import com.cpu.quikdata.di.module.DatabaseModule
+import com.cpu.quikdata.feature.QuikDataApp
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class CasualtiesRepository(application: Application, formId: String) :
-    BaseRepository<CasualtiesRow>(application) {
+class CasualtiesRepository(application: QuikDataApp, formId: String) {
 
-    private val mCasualties = mDatabase.casualtiesRowDao().getByFormId(formId)
+    @Inject
+    lateinit var casualtiesRowDao: CasualtiesRowDao
+
+    private val mCasualties: LiveData<List<CasualtiesRow>>
+
+    init {
+        DaggerCasualtiesRepositoryComponent
+            .builder()
+            .databaseModule(DatabaseModule(application))
+            .build()
+            .inject(this)
+
+        mCasualties = casualtiesRowDao.getByFormId(formId)
+    }
 
     val casualties: LiveData<List<CasualtiesRow>>
         get() = mCasualties
 
-    override fun updateData(data: CasualtiesRow) {
+    fun updateData(data: CasualtiesRow) {
         runOnIoThread {
-            mDatabase.casualtiesRowDao().update(data)
+            casualtiesRowDao.update(data)
         }
     }
 }

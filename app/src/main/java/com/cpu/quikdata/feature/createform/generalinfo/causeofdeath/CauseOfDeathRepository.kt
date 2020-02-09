@@ -1,22 +1,38 @@
 package com.cpu.quikdata.feature.createform.generalinfo.causeofdeath
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
 import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRow
+import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRowDao
+import com.cpu.quikdata.di.component.repository.DaggerCauseOfDeathRepositoryComponent
+import com.cpu.quikdata.di.module.DatabaseModule
+import com.cpu.quikdata.feature.QuikDataApp
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class CauseOfDeathRepository(application: Application, formId: String) :
-    BaseRepository<CauseOfDeathRow>(application) {
+class CauseOfDeathRepository(application: QuikDataApp, formId: String) {
 
-    private val mCausesOfDeath = mDatabase.causeOfDeathRowDao().getByFormId(formId)
+    @Inject
+    lateinit var causeOfDeathRowDao: CauseOfDeathRowDao
+
+    private val mCausesOfDeath: LiveData<List<CauseOfDeathRow>>
+
+    init {
+
+        DaggerCauseOfDeathRepositoryComponent
+            .builder()
+            .databaseModule(DatabaseModule(application))
+            .build()
+            .inject(this)
+
+        mCausesOfDeath = causeOfDeathRowDao.getByFormId(formId)
+    }
 
     val causesOfDeath: LiveData<List<CauseOfDeathRow>>
         get() = mCausesOfDeath
 
-    override fun updateData(data: CauseOfDeathRow) {
+    fun updateData(data: CauseOfDeathRow) {
         runOnIoThread {
-            mDatabase.causeOfDeathRowDao().update(data)
+            causeOfDeathRowDao.update(data)
         }
     }
 }
