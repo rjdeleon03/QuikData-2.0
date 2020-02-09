@@ -1,12 +1,12 @@
 package com.cpu.quikdata.feature.createform
 
-import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.feature.QuikDataApp
 
-class CreateFormViewModel(application: Application, formId: String) : AndroidViewModel(application) {
+class CreateFormViewModel(application: QuikDataApp, formId: String) : AndroidViewModel(application) {
 
     private var mFormId = formId
     private val mRepository = CreateFormRepository(application, mFormId)

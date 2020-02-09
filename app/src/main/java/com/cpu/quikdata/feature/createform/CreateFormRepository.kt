@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature.createform
 
-import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -8,18 +7,46 @@ import com.cpu.quikdata.common.FirebaseHelper
 import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.common.deleteFile
 import com.cpu.quikdata.data.AppDatabase
+import com.cpu.quikdata.data.casestories.CaseStoriesDao
 import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.data.form.FormDao
+import com.cpu.quikdata.di.component.repository.DaggerCreateFormRepositoryComponent
+import com.cpu.quikdata.di.module.AppModule
+import com.cpu.quikdata.di.module.DatabaseModule
+import com.cpu.quikdata.feature.QuikDataApp
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import com.cpu.quikdata.utils.runOnMainThread
+import javax.inject.Inject
 
-class CreateFormRepository(application: Application, formId: String) {
+class CreateFormRepository(application: QuikDataApp,
+                           private val mFormId: String) {
 
-    private val mDatabase = AppDatabase.get(application)
-    private val mFormId = formId
-    private val mForm = mDatabase.formDao().getById(mFormId)
-    private val mFirebaseHelper = FirebaseHelper()
+    @Inject
+    lateinit var database: AppDatabase
+
+    @Inject
+    lateinit var formDao: FormDao
+
+    @Inject
+    lateinit var caseStoriesDao: CaseStoriesDao
+
+    @Inject
+    lateinit var firebaseHelper: FirebaseHelper
+
+    private val mForm: LiveData<Form>
+
     private val mSaveResult: MediatorLiveData<ProgressNotification> = MediatorLiveData()
+
+    init {
+        DaggerCreateFormRepositoryComponent
+            .builder()
+            .databaseModule(DatabaseModule(application))
+            .build()
+            .inject(this)
+
+        mForm = formDao.getById(mFormId)
+    }
 
     val form: LiveData<Form>
         get() = mForm
@@ -33,14 +60,14 @@ class CreateFormRepository(application: Application, formId: String) {
     fun deleteForm() {
         runOnIoThread {
             // Delete image files associated with the form
-            val caseStories = mDatabase.caseStoriesDao().getByFormIdNonLive(mFormId)
+            val caseStories = caseStoriesDao.getByFormIdNonLive(mFormId)
             caseStories.images?.forEach {
                 Uri.parse(it.uri).deleteFile()
             }
 
             val formValue = mForm.value!!
             if (formValue.isTemporary) {
-                mDatabase.formDao().delete(formValue)
+                formDao.delete(formValue)
             }
         }
     }
@@ -50,9 +77,9 @@ class CreateFormRepository(application: Application, formId: String) {
             performSaveChangesToFormOnly()
             runOnMainThread {
                 val operation = if (isBasicMode) {
-                    mFirebaseHelper.submitBasicData(mDatabase, mFormId)
+                    firebaseHelper.submitBasicData(database, mFormId)
                 } else {
-                    mFirebaseHelper.submitAllData(mDatabase, mFormId)
+                    firebaseHelper.submitAllData(database, mFormId)
                 }
                 mSaveResult.addSource(operation) {
                     mSaveResult.value = it
@@ -76,10 +103,10 @@ class CreateFormRepository(application: Application, formId: String) {
         val formValue = mForm.value!!
         formValue.isTemporary = false
         formValue.dateModified = getDateTimeNowInLong()
-        mDatabase.formDao().update(formValue)
+        formDao.update(formValue)
     }
 
-    fun cancelSubmission() = mFirebaseHelper.cancelSubmission()
+    fun cancelSubmission() = firebaseHelper.cancelSubmission()
 
     fun toggleSectionInclusions(includeShelter: Boolean,
                                 includeFood: Boolean,
@@ -95,7 +122,7 @@ class CreateFormRepository(application: Application, formId: String) {
             formValue.includeHealth = includeHealth
             formValue.includeWash = includeWash
             formValue.includeEvacuation = includeEvacuation
-            mDatabase.formDao().update(formValue)
+            formDao.update(formValue)
         }
     }
 }
