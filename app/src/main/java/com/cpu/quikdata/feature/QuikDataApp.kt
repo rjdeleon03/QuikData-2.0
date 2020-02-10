@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature
 
-import android.app.Application
 import android.content.Context
 import android.os.Build
 import com.cpu.quikdata.DEVICE_ID_KEY
@@ -8,15 +7,20 @@ import com.cpu.quikdata.FIREBASE_KEY_DEVICES
 import com.cpu.quikdata.SHARED_PREFS_KEY
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
+import com.cpu.quikdata.di.DaggerQuikDataAppComponent
 import com.cpu.quikdata.utils.runOnIoThread
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 import net.danlew.android.joda.JodaTimeAndroid
 
-class QuikDataApp : Application() {
+class QuikDataApp : DaggerApplication() {
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerQuikDataAppComponent.builder()
+            .application(this)
+            .build()
+    }
 
     override fun onCreate() {
         super.onCreate()
