@@ -1,13 +1,16 @@
-package com.cpu.quikdata.di
+package com.cpu.quikdata.di.component
 
 import android.app.Application
+import com.cpu.quikdata.di.module.ActivityBuildersModule
 import com.cpu.quikdata.feature.QuikDataApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 
-@Component(modules = [AndroidSupportInjectionModule::class])
+@Component(modules = [
+    AndroidSupportInjectionModule::class,
+    ActivityBuildersModule::class])
 interface QuikDataAppComponent: AndroidInjector<QuikDataApp> {
 
     @Component.Builder

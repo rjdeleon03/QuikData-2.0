@@ -7,7 +7,7 @@ import com.cpu.quikdata.FIREBASE_KEY_DEVICES
 import com.cpu.quikdata.SHARED_PREFS_KEY
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
-import com.cpu.quikdata.di.DaggerQuikDataAppComponent
+import com.cpu.quikdata.di.component.DaggerQuikDataAppComponent
 import com.cpu.quikdata.utils.runOnIoThread
 import com.google.firebase.database.FirebaseDatabase
 import dagger.android.AndroidInjector

@@ -1,4 +1,4 @@
-package com.cpu.quikdata.di
+package com.cpu.quikdata.di.module
 
 import android.app.Application
 import com.cpu.quikdata.helpers.SharedPreferencesHelper
