@@ -7,21 +7,21 @@ import javax.inject.Provider
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelProviderFactory
-    @Inject constructor(creators: Map<Class<out ViewModel>, Provider<ViewModel>>)
+    @Inject constructor(creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>)
     : ViewModelProvider.Factory {
 
     companion object {
         private val TAG = "ViewModelProviderFactory"
     }
 
-    private val mCreators: Map<Class<out ViewModel>, Provider<ViewModel>> = creators
+    private val mCreators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>> = creators
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         var creator = mCreators.get(modelClass)
         if (creator == null) {
 
             // If the viewmodel has not been created,
-            // loop through allowable keys (or allowed classes with the @ViewModelKey)
+            // loop through allowable keys (or allowed classes with the @ViewModelKey2)
             mCreators.entries.forEach {
 
                 // If allowed, set the Provider<ViewModel>

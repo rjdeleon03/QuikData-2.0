@@ -1,9 +1,10 @@
 package com.cpu.quikdata.di.component
 
 import android.app.Application
-import com.cpu.quikdata.di.module.ActivityBuildersModule
+import com.cpu.quikdata.di.module.ActivityBuilderModule
 import com.cpu.quikdata.di.module.AppModule
-import com.cpu.quikdata.di.module.FragmentBuildersModule
+import com.cpu.quikdata.di.module.FragmentBuilderModule
+import com.cpu.quikdata.di.module.ViewModelFactoryModule
 import com.cpu.quikdata.feature.QuikDataApp
 import dagger.BindsInstance
 import dagger.Component
@@ -15,8 +16,9 @@ import javax.inject.Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     AppModule::class,
-    ActivityBuildersModule::class,
-    FragmentBuildersModule::class])
+    ActivityBuilderModule::class,
+    FragmentBuilderModule::class,
+    ViewModelFactoryModule::class])
 interface AppComponent: AndroidInjector<QuikDataApp> {
 
     @Component.Builder
