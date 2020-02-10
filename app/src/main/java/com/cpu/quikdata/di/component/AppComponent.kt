@@ -3,6 +3,7 @@ package com.cpu.quikdata.di.component
 import android.app.Application
 import com.cpu.quikdata.di.module.ActivityBuildersModule
 import com.cpu.quikdata.di.module.AppModule
+import com.cpu.quikdata.di.module.FragmentBuildersModule
 import com.cpu.quikdata.feature.QuikDataApp
 import dagger.BindsInstance
 import dagger.Component
@@ -12,7 +13,8 @@ import dagger.android.support.AndroidSupportInjectionModule
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     AppModule::class,
-    ActivityBuildersModule::class])
+    ActivityBuildersModule::class,
+    FragmentBuildersModule::class])
 interface AppComponent: AndroidInjector<QuikDataApp> {
 
     @Component.Builder

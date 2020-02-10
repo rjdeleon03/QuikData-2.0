@@ -11,16 +11,22 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.feature.createform.CreateFormActivity
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_image_viewer.*
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
+import javax.inject.Inject
 
 @RuntimePermissions
-class ImageViewerFragment : Fragment() {
+class ImageViewerFragment : DaggerFragment() {
+
+    @Inject
+    lateinit var glideRequestManager: RequestManager
 
     private val args: ImageViewerFragmentArgs by navArgs()
 
@@ -49,10 +55,7 @@ class ImageViewerFragment : Fragment() {
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
     fun loadImageFromUri(imageUri: String) {
         val uri = Uri.parse(imageUri)
-        Glide.with(context!!)
-            .load(uri)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(imageViewerView)
+        glideRequestManager.load(uri).into(imageViewerView)
     }
 
     override fun onResume() {

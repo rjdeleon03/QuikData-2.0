@@ -10,12 +10,8 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.setupClipping
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
-
-    @Inject
-    lateinit var someString: String
 
     companion object {
         @JvmStatic
@@ -31,8 +27,6 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        println("----- $someString -----")
 
         setupClipping(mainActivityFragmentLayout)
         mNavController = findNavController(R.id.mainActivityFragment)
