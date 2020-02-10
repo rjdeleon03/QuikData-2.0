@@ -10,14 +10,4 @@ abstract class ActivityBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeMainActivity(): MainActivity
-
-    @Module
-    companion object {
-
-        @JvmStatic
-        @Provides
-        fun someString(): String {
-            return "This is an injected String!"
-        }
-    }
 }
