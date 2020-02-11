@@ -7,17 +7,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-abstract class BaseCreateFormFragment: Fragment() {
+abstract class BaseCreateFormFragment: DaggerFragment() {
 
-    protected lateinit var mParentViewModel: CreateFormViewModel
-    protected lateinit var mFactory: ViewModelFactory
+    @Inject
+    lateinit var mParentViewModel: CreateFormViewModel
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        mParentViewModel = ViewModelProvider(activity!!).get(CreateFormViewModel::class.java)
-        mFactory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-    }
+//    protected lateinit var mParentViewModel: CreateFormViewModel
+
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        mParentViewModel = ViewModelProvider(activity!!).get(CreateFormViewModel::class.java)
+//        mFactory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
+//    }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)

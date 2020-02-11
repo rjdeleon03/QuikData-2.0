@@ -21,7 +21,14 @@ import javax.inject.Inject
 class CreateFormActivity : DaggerAppCompatActivity() {
 
     @Inject
-    lateinit var mViewModel: CreateFormViewModel
+    lateinit var mFactory: CreateFormViewModel.Factory
+
+    private val mViewModel: CreateFormViewModel? by lazy {
+        intent.getStringExtra(FORM_ID_KEY)?.let {
+            if (it.isEmpty()) return@let null
+            return@let mFactory.create(it)
+        }
+    }
 
     private lateinit var mNavController: NavController
     private var mLayoutMargin: Int = 0
@@ -54,13 +61,6 @@ class CreateFormActivity : DaggerAppCompatActivity() {
         var titleId = R.string.create_form_title_new
         if (mEditMode) {
             titleId = R.string.create_form_title_edit
-        }
-
-        // Initialize viewModel with form ID
-        val formId = intent.getStringExtra(FORM_ID_KEY)
-        if (!formId.isNullOrEmpty()) {
-            val factory = ViewModelFactory(application, formId)
-//            mViewModel = ViewModelProvider(this, factory).get(CreateFormViewModel::class.java)
         }
 
         // Setup navController
@@ -101,14 +101,17 @@ class CreateFormActivity : DaggerAppCompatActivity() {
         if (fragment.childFragmentManager.backStackEntryCount > 0) {
             fragment.childFragmentManager.popBackStack()
         } else {
-            if (mViewModel.isFormTemporary) {
-                showConfirmationDialog({
-                    mViewModel.deleteForm()
+            mViewModel?.let {
+                if (it.isFormTemporary) {
+                    showConfirmationDialog({
+                        it.deleteForm()
+                        finish()
+                    })
+                } else {
+                    Toast.makeText(this, R.string.form_item_changes_saved, Toast.LENGTH_SHORT)
+                        .show()
                     finish()
-                })
-            } else {
-                Toast.makeText(this, R.string.form_item_changes_saved, Toast.LENGTH_SHORT).show()
-                finish()
+                }
             }
         }
         return true

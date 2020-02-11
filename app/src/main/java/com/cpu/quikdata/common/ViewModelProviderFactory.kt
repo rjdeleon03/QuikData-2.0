@@ -10,10 +10,6 @@ class ViewModelProviderFactory
     @Inject constructor(creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>)
     : ViewModelProvider.Factory {
 
-    companion object {
-        private val TAG = "ViewModelProviderFactory"
-    }
-
     private val mCreators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>> = creators
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
