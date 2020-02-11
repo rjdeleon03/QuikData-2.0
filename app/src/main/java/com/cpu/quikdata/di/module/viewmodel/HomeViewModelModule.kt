@@ -1,6 +1,7 @@
 package com.cpu.quikdata.di.module.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.common.FirebaseHelper
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.main.home.HomeViewModel
@@ -20,7 +21,9 @@ abstract class HomeViewModelModule {
 
     companion object {
         @Provides
-        fun provideNewFormsRepository(database: AppDatabase): NewFormsRepository
-                = NewFormsRepository(database)
+        fun provideNewFormsRepository(database: AppDatabase,
+                                      firebaseHelper: FirebaseHelper)
+                : NewFormsRepository
+                = NewFormsRepository(database, firebaseHelper)
     }
 }

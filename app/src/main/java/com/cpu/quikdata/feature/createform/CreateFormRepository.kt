@@ -12,13 +12,15 @@ import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import com.cpu.quikdata.utils.runOnMainThread
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 class CreateFormRepository(application: Application, formId: String) {
 
     private val mDatabase = AppDatabase.get(application)
     private val mFormId = formId
     private val mForm = mDatabase.formDao().getById(mFormId)
-    private val mFirebaseHelper = FirebaseHelper()
+    private val mFirebaseHelper = FirebaseHelper(FirebaseFirestore.getInstance(), FirebaseStorage.getInstance())
     private val mSaveResult: MediatorLiveData<ProgressNotification> = MediatorLiveData()
 
     val form: LiveData<Form>

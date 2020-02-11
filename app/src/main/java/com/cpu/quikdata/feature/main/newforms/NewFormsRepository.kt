@@ -47,9 +47,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase) {
+class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase,
+                                              private val mFirebaseHelper: FirebaseHelper) {
 
-    private val mFirebaseHelper = FirebaseHelper()
     private val mNewForms = mDatabase.formDao().getAllActual()
     private val mSaveResult = MediatorLiveData<ProgressNotification>()
 
@@ -58,6 +58,10 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
 
     val saveResult: LiveData<ProgressNotification>
         get() = mSaveResult
+
+    init {
+        println("-------> $mFirebaseHelper")
+    }
 
     fun createNewForm(formId: String) {
         CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {

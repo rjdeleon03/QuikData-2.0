@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.WriteBatch
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import javax.inject.Inject
 
 enum class ProgressNotification {
     FORM_SUBMITTED,
@@ -22,10 +23,9 @@ enum class ProgressNotification {
     CANCELLED
 }
 
-class FirebaseHelper {
+class FirebaseHelper @Inject constructor(private val mFirestore: FirebaseFirestore,
+                                         private val mStorage: FirebaseStorage) {
 
-    private val mFirestore = FirebaseFirestore.getInstance()
-    private val mStorage = FirebaseStorage.getInstance()
     private val mUploadTasks = arrayListOf<UploadTask>()
     @Volatile private var mIsCancelled = false
 

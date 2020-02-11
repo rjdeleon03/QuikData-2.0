@@ -1,4 +1,4 @@
-package com.cpu.quikdata.di.module
+package com.cpu.quikdata.di.module.common
 
 import android.app.Application
 import com.cpu.quikdata.helpers.SharedPreferencesHelper
@@ -12,7 +12,6 @@ class SharedPrefsModule {
     companion object{
 
         @Provides
-        @Singleton
         fun provideSharedPrefsHelper(application: Application): SharedPreferencesHelper {
             return SharedPreferencesHelper(application)
         }
