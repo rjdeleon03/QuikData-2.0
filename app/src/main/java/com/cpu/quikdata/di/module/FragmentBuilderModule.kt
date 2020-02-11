@@ -1,13 +1,20 @@
 package com.cpu.quikdata.di.module
 
+import com.cpu.quikdata.di.newforms.HomeViewModelModule
 import com.cpu.quikdata.di.newforms.NewFormsViewModelModule
 import com.cpu.quikdata.feature.imageviewer.ImageViewerFragment
+import com.cpu.quikdata.feature.main.home.HomeFragment
 import com.cpu.quikdata.feature.main.newforms.NewFormsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class FragmentBuilderModule {
+
+    @ContributesAndroidInjector(
+        modules = [HomeViewModelModule::class]
+    )
+    abstract fun contributeHomeFragment(): HomeFragment
 
     @ContributesAndroidInjector(
         modules = [NewFormsViewModelModule::class]

@@ -6,21 +6,21 @@ import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.data.form.FormComplete
 import javax.inject.Inject
 
-class NewFormsViewModel @Inject constructor (private val repository: NewFormsRepository)
+class NewFormsViewModel @Inject constructor (private val mRepository: NewFormsRepository)
     : ViewModel() {
 
     val newForms: LiveData<List<FormComplete>>
-        get() = repository.newForms
+        get() = mRepository.newForms
 
     val saveResult: LiveData<ProgressNotification>
-        get() = repository.saveResult
+        get() = mRepository.saveResult
 
-    fun createNewForm(formId: String) = repository.createNewForm(formId)
+    fun createNewForm(formId: String) = mRepository.createNewForm(formId)
 
-    fun deleteForm(formComplete: FormComplete) = repository.deleteForm(formComplete)
+    fun deleteForm(formComplete: FormComplete) = mRepository.deleteForm(formComplete)
 
-    fun submitForm(formId: String) = repository.submitForm(formId)
+    fun submitForm(formId: String) = mRepository.submitForm(formId)
 
-    fun cancelSubmission() = repository.cancelSubmission()
+    fun cancelSubmission() = mRepository.cancelSubmission()
 
 }

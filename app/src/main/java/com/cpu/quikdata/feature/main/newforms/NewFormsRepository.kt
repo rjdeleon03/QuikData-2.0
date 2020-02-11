@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature.main.newforms
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.cpu.quikdata.common.*
@@ -46,11 +45,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.joda.time.LocalDate
+import javax.inject.Inject
 
-class NewFormsRepository(application: Application) {
+class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase) {
 
-    private val mDatabase = AppDatabase.get(application)
     private val mFirebaseHelper = FirebaseHelper()
     private val mNewForms = mDatabase.formDao().getAllActual()
     private val mSaveResult = MediatorLiveData<ProgressNotification>()

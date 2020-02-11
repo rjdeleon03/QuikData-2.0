@@ -236,7 +236,7 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        private const val DATABASE_NAME = "quikdata_database"
+        const val DATABASE_NAME = "quikdata_database"
 
         @JvmStatic
         fun get(context: Context): AppDatabase {

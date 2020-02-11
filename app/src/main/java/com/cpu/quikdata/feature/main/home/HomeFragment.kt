@@ -15,6 +15,7 @@ import com.cpu.quikdata.feature.consortium.ConsortiumActivity
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_home.*
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
@@ -22,7 +23,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment : Fragment() {
 
-    private lateinit var mViewModel: HomeViewModel
+    @Inject
+    lateinit var mViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +36,6 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         homeNewDncaFormButton.clickWithGuard {
             val formId = generateId()
