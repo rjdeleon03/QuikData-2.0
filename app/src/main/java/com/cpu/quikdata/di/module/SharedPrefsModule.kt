@@ -9,9 +9,13 @@ import javax.inject.Singleton
 @Module
 class SharedPrefsModule {
 
-    @Provides
-    @Singleton
-    fun provideSharedPrefsHelper(application: Application): SharedPreferencesHelper {
-        return SharedPreferencesHelper(application)
+    companion object{
+
+        @Provides
+        @Singleton
+        fun provideSharedPrefsHelper(application: Application): SharedPreferencesHelper {
+            return SharedPreferencesHelper(application)
+        }
+
     }
 }

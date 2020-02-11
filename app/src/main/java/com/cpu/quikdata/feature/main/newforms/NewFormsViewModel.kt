@@ -1,29 +1,26 @@
 package com.cpu.quikdata.feature.main.newforms
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.data.form.FormComplete
 import javax.inject.Inject
 
-class NewFormsViewModel @Inject constructor (application: Application)
-    : AndroidViewModel(application) {
-
-    private val mRepository = NewFormsRepository(application)
+class NewFormsViewModel @Inject constructor (private val repository: NewFormsRepository)
+    : ViewModel() {
 
     val newForms: LiveData<List<FormComplete>>
-        get() = mRepository.newForms
+        get() = repository.newForms
 
     val saveResult: LiveData<ProgressNotification>
-        get() = mRepository.saveResult
+        get() = repository.saveResult
 
-    fun createNewForm(formId: String) = mRepository.createNewForm(formId)
+    fun createNewForm(formId: String) = repository.createNewForm(formId)
 
-    fun deleteForm(formComplete: FormComplete) = mRepository.deleteForm(formComplete)
+    fun deleteForm(formComplete: FormComplete) = repository.deleteForm(formComplete)
 
-    fun submitForm(formId: String) = mRepository.submitForm(formId)
+    fun submitForm(formId: String) = repository.submitForm(formId)
 
-    fun cancelSubmission() = mRepository.cancelSubmission()
+    fun cancelSubmission() = repository.cancelSubmission()
 
 }
