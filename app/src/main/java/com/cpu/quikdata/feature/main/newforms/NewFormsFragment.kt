@@ -25,9 +25,8 @@ class NewFormsFragment : DaggerFragment() {
     }
 
     @Inject
-    lateinit var providerFactory: ViewModelProviderFactory
+    lateinit var mViewModel: NewFormsViewModel
 
-    private lateinit var mViewModel: NewFormsViewModel
     private lateinit var mAdapter: NewFormsAdapter
     private var mDialog: ProgressDialogFragment? = null
 
@@ -66,9 +65,8 @@ class NewFormsFragment : DaggerFragment() {
     }
 
     private fun setupViewModel() {
-        mViewModel = ViewModelProvider(this, providerFactory).get(NewFormsViewModel::class.java)
+//        mViewModel = ViewModelProvider(this, providerFactory).get(NewFormsViewModel::class.java)
 
-        mViewModel = ViewModelProvider(this).get(NewFormsViewModel::class.java)
         mViewModel.newForms.observe(viewLifecycleOwner, Observer { forms ->
             newFormsRecyclerView.updateDisplayBasedOnItemCount(forms.size)
             mAdapter.setForms(forms)

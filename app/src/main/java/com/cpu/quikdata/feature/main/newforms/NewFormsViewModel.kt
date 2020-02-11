@@ -5,8 +5,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.data.form.FormComplete
+import javax.inject.Inject
 
-class NewFormsViewModel(application: Application) : AndroidViewModel(application) {
+class NewFormsViewModel @Inject constructor (application: Application)
+    : AndroidViewModel(application) {
 
     private val mRepository = NewFormsRepository(application)
 

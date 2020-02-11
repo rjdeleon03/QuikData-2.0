@@ -29,7 +29,7 @@ class CustomArrayAdapter(context: Context, list: List<Int>) :
             view = mInflater.inflate(R.layout.item_dropdown_option, parent, false)
         }
 
-        view!!.dropdownText.text = mInflater.context.resources.getString(getItem(position))
+        view!!.dropdownText.text = mInflater.context.resources.getString(getItem(position)!!)
         return view
     }
 }
