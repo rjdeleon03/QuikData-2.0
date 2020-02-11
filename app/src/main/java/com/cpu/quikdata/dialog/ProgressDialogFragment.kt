@@ -69,8 +69,8 @@ class ProgressDialogFragment : DialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val dialogText = savedInstanceState?.getString(TEXT_TAG)
-        dialog?.let {
-            it.progressDialogText.text = dialogText
+        dialog?.progressDialogText?.let {
+            it.text = dialogText
         }
     }
 
@@ -86,8 +86,8 @@ class ProgressDialogFragment : DialogFragment() {
     fun updateBasedOnProgress(progress: ProgressNotification) {
         if (dialog == null) return
         if (progress == ProgressNotification.FORM_SUBMITTED) {
-            dialog?.let {
-                it.progressDialogText.setText(R.string.form_item_submitting_image)
+            dialog?.progressDialogText?.let {
+                it.setText(R.string.form_item_submitting_image)
             }
         }
     }
