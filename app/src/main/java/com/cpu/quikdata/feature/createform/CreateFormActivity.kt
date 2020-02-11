@@ -2,12 +2,10 @@ package com.cpu.quikdata.feature.createform
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -15,13 +13,17 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_form.*
+import javax.inject.Inject
 
 
-class CreateFormActivity : AppCompatActivity() {
+class CreateFormActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var mViewModel: CreateFormViewModel
 
     private lateinit var mNavController: NavController
-    private lateinit var mViewModel: CreateFormViewModel
     private var mLayoutMargin: Int = 0
     private var mEditMode = false
 
@@ -58,7 +60,7 @@ class CreateFormActivity : AppCompatActivity() {
         val formId = intent.getStringExtra(FORM_ID_KEY)
         if (!formId.isNullOrEmpty()) {
             val factory = ViewModelFactory(application, formId)
-            mViewModel = ViewModelProvider(this, factory).get(CreateFormViewModel::class.java)
+//            mViewModel = ViewModelProvider(this, factory).get(CreateFormViewModel::class.java)
         }
 
         // Setup navController
