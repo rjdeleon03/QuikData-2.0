@@ -106,12 +106,14 @@ class FirebaseHelper {
                 submitFormDetails(database, formId, batch)
                 submitGeneralInformation(database, formId, batch)
                 submitCaseStories(database, formId, batch, progressListener, pnl)
-                if (formData.form!!.includeShelter) submitShelterInformation(database, formId, batch)
-                if (formData.form!!.includeFood) submitFoodSecurity(database, formId, batch)
-                if (formData.form!!.includeLivelihoods) submitLivelihoods(database, formId, batch)
-                if (formData.form!!.includeHealth) submitHealthInformation(database, formId, batch)
-                if (formData.form!!.includeWash) submitWashInformation(database, formId, batch)
-                if (formData.form!!.includeEvacuation) submitEvacuationInformation(database, formId, batch)
+
+                formData.form?.includeShelter?.let { submitShelterInformation(database, formId, batch) }
+                formData.form?.includeFood?.let { submitFoodSecurity(database, formId, batch) }
+                formData.form?.includeLivelihoods?.let { submitLivelihoods(database, formId, batch) }
+                formData.form?.includeHealth?.let { submitHealthInformation(database, formId, batch) }
+                formData.form?.includeWash?.let { submitWashInformation(database, formId, batch) }
+                formData.form?.includeEvacuation?.let { submitEvacuationInformation(database, formId, batch) }
+
                 batch.commit()
                     .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
                     .addOnSuccessListener {
