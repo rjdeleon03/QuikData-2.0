@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.ViewModelProviderFactory
 import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
 import dagger.android.support.DaggerAppCompatActivity
@@ -18,8 +19,11 @@ import javax.inject.Inject
 
 class CreateFormActivity : DaggerAppCompatActivity() {
 
+
     @Inject
-    lateinit var mViewModel: CreateFormAltViewModel
+    lateinit var mViewModelProviderFactory: ViewModelProviderFactory
+
+    private lateinit var mViewModel: CreateFormAltViewModel
 
     private lateinit var mNavController: NavController
 
@@ -44,6 +48,8 @@ class CreateFormActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_form)
+
+        mViewModel = mViewModelProviderFactory.create(CreateFormAltViewModel::class.java)
 
         setSupportActionBar(createFormToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
