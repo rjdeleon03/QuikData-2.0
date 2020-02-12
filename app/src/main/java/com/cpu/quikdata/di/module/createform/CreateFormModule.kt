@@ -1,4 +1,4 @@
-package com.cpu.quikdata.di.module.view
+package com.cpu.quikdata.di.module.createform
 
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.feature.createform.basicselection.BasicSelectionFragment

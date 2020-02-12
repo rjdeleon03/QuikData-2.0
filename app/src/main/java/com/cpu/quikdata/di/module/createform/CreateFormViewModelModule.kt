@@ -1,4 +1,4 @@
-package com.cpu.quikdata.di.module.viewmodel
+package com.cpu.quikdata.di.module.createform
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
@@ -6,7 +6,6 @@ import com.cpu.quikdata.di.annotation.CreateFormActivityScope
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.CreateFormAltViewModel
 import com.cpu.quikdata.feature.createform.CreateFormRepository
-import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

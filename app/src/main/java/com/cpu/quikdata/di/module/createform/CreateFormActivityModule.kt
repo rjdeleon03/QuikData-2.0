@@ -1,4 +1,4 @@
-package com.cpu.quikdata.di.module.view
+package com.cpu.quikdata.di.module.createform
 
 import android.app.Activity
 import android.os.Bundle
@@ -13,7 +13,7 @@ import dagger.Provides
  * Provides activities' dependencies
  */
 @Module
-abstract class ActivityModule {
+abstract class CreateFormActivityModule {
 
     @Binds
     abstract fun bindsCreateFormActivity(activity: CreateFormActivity): Activity
@@ -30,31 +30,4 @@ abstract class ActivityModule {
         fun provideFormId(bundle: Bundle): String = bundle.getString(FORM_ID_KEY, "")
 
     }
-
-    /*
-
-
-
-    @Binds
-    abstract fun bindViewModelFactory(factory: MyViewModelFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun mainViewModel(mainViewModel: MainViewModel): ViewModel
-
-    @Module
-    companion object {
-
-        @JvmStatic
-        @Provides
-        fun bundle(activity: Activity): Bundle = activity.intent.extras ?: Bundle.EMPTY
-
-        @JvmStatic
-        @Provides
-        fun someParam(bundle: Bundle): String = bundle.getString("test", "abc")
-
-    }
-     */
-
 }
