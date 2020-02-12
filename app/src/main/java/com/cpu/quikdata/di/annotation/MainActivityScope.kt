@@ -1,11 +1,8 @@
 package com.cpu.quikdata.di.annotation
 
-import dagger.MapKey
+import javax.inject.Scope
 
+@Scope
 @MustBeDocumented
-@kotlin.annotation.Target(AnnotationTarget.FUNCTION,
-    AnnotationTarget.VALUE_PARAMETER,
-    AnnotationTarget.FIELD)
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
-@MapKey
 annotation class MainActivityScope()
