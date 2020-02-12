@@ -1,16 +1,15 @@
 package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
 import kotlinx.android.synthetic.main.fragment_food_security_impact.*
+import javax.inject.Inject
 
 class FoodSecurityImpactFragment : BaseCreateFormFragment() {
 
@@ -19,7 +18,8 @@ class FoodSecurityImpactFragment : BaseCreateFormFragment() {
         fun newInstance() = FoodSecurityImpactFragment()
     }
 
-    private lateinit var mViewModel: FoodSecurityImpactViewModel
+    @Inject
+    lateinit var mViewModel: FoodSecurityImpactViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +52,6 @@ class FoodSecurityImpactFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(FoodSecurityImpactViewModel::class.java)
         mViewModel.foodSecurityImpact.observe(viewLifecycleOwner, Observer {
             foodSecurityImpactFoodAvailabilityText.value = it.hasFoodAvailabilityProblem
             foodSecurityImpactFoodAvailabilityText.text = it.hasFoodAvailabilityProblemRemarks

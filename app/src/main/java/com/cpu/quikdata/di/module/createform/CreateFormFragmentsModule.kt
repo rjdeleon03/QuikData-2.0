@@ -4,6 +4,11 @@ import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.di.module.createform.sections.*
 import com.cpu.quikdata.feature.createform.basicselection.BasicSelectionFragment
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
+import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceFragment
+import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingFragment
+import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsFragment
+import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactFragment
+import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeedsFragment
 import com.cpu.quikdata.feature.createform.formdetailsandbaseline.baselinedata.BaselineDataFragment
 import com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails.FormDetailsFragment
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoFragment
@@ -78,6 +83,21 @@ abstract class CreateFormFragmentsModule {
 
     @ContributesAndroidInjector(modules = [ShelterGapsModule::class])
     abstract fun contributeShelterGapsFragment(): ShelterGapsFragment
+
+    @ContributesAndroidInjector(modules = [FoodSecurityImpactModule::class])
+    abstract fun contributeFoodSecurityImpactsFragment(): FoodSecurityImpactFragment
+
+    @ContributesAndroidInjector(modules = [FoodSecurityCopingModule::class])
+    abstract fun contributeFoodSecurityCopingFragment(): FoodSecurityCopingFragment
+
+    @ContributesAndroidInjector(modules = [FoodSecurityNeedsModule::class])
+    abstract fun contributeFoodSecurityNeedsFragment(): FoodSecurityNeedsFragment
+
+    @ContributesAndroidInjector(modules = [FoodSecurityAssistanceModule::class])
+    abstract fun contributeFoodSecurityAssistanceFragment(): FoodSecurityAssistanceFragment
+
+    @ContributesAndroidInjector(modules = [FoodSecurityGapsModule::class])
+    abstract fun contributeFoodSecurityGapsFragment(): FoodSecurityGapsFragment
 
     @ContributesAndroidInjector(modules = [CaseStoriesModule::class])
     abstract fun contributeCaseStoriesFragment(): CaseStoriesFragment

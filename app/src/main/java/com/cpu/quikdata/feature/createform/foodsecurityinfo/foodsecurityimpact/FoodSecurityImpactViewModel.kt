@@ -3,12 +3,12 @@ package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
+import javax.inject.Inject
 
-class FoodSecurityImpactViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = FoodSecurityImpactRepository(application, formId)
+class FoodSecurityImpactViewModel @Inject constructor (private val mRepository: FoodSecurityImpactRepository)
+    : ViewModel() {
 
     val foodSecurityImpact : LiveData<FoodSecurityImpact>
         get() = mRepository.foodSecurityImpact
