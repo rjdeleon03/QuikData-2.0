@@ -6,6 +6,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.common.ViewModelProviderFactory
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
