@@ -1,17 +1,15 @@
 package com.cpu.quikdata.feature.createform.healthinfo.healthgaps
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.health.healthgaps.HealthGaps
 import kotlinx.android.synthetic.main.fragment_health_gaps.*
+import javax.inject.Inject
 
 class HealthGapsFragment : BaseCreateFormFragment() {
 
@@ -20,7 +18,8 @@ class HealthGapsFragment : BaseCreateFormFragment() {
         fun newInstance() = HealthGapsFragment()
     }
 
-    private lateinit var mViewModel: HealthGapsViewModel
+    @Inject
+    lateinit var mViewModel: HealthGapsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +42,6 @@ class HealthGapsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(HealthGapsViewModel::class.java)
         mViewModel.healthGaps.observe(viewLifecycleOwner, Observer {
             healthGapsNearestHospitalText.text = it.nearestHospital
             healthGapsServicesAvailableText.text = it.servicesAvailable

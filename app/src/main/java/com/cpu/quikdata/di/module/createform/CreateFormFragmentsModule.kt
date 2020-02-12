@@ -18,6 +18,12 @@ import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesFragment
 import com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage.InfrastructureDamageFragment
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationFragment
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableFragment
+import com.cpu.quikdata.feature.createform.healthinfo.diseases.DiseasesFragment
+import com.cpu.quikdata.feature.createform.healthinfo.healthassistance.HealthAssistanceFragment
+import com.cpu.quikdata.feature.createform.healthinfo.healthcoping.HealthCopingFragment
+import com.cpu.quikdata.feature.createform.healthinfo.healthgaps.HealthGapsFragment
+import com.cpu.quikdata.feature.createform.healthinfo.psychosocial.PsychosocialFragment
+import com.cpu.quikdata.feature.createform.healthinfo.specialneeds.SpecialNeedsFragment
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage.EstimatedDamageFragment
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter.IncomeAfterFragment
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomebefore.IncomeBeforeFragment
@@ -126,6 +132,24 @@ abstract class CreateFormFragmentsModule {
 
     @ContributesAndroidInjector(modules = [LivelihoodsGapsModule::class])
     abstract fun contributeLivelihoodsGapsFragment(): LivelihoodsGapsFragment
+
+    @ContributesAndroidInjector(modules = [DiseasesModule::class])
+    abstract fun contributeDiseasesFragment(): DiseasesFragment
+
+    @ContributesAndroidInjector(modules = [SpecialNeedsModule::class])
+    abstract fun contributeSpecialNeedsFragment(): SpecialNeedsFragment
+
+    @ContributesAndroidInjector(modules = [PsychosocialModule::class])
+    abstract fun contributePsychosocialFragment(): PsychosocialFragment
+
+    @ContributesAndroidInjector(modules = [HealthCopingModule::class])
+    abstract fun contributeHealthCopingFragment(): HealthCopingFragment
+
+    @ContributesAndroidInjector(modules = [HealthAssistanceModule::class])
+    abstract fun contributeHealthAssistanceFragment(): HealthAssistanceFragment
+
+    @ContributesAndroidInjector(modules = [HealthGapsModule::class])
+    abstract fun contributeHealthGapsFragment(): HealthGapsFragment
 
     @ContributesAndroidInjector(modules = [CaseStoriesModule::class])
     abstract fun contributeCaseStoriesFragment(): CaseStoriesFragment

@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.healthinfo.psychosocial
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
+import javax.inject.Inject
 
-class PsychosocialViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = PsychosocialRepository(application, formId)
+class PsychosocialViewModel @Inject constructor(private val mRepository: PsychosocialRepository)
+    : ViewModel() {
 
     val psychosocial: LiveData<List<PsychosocialRow>>
         get() = mRepository.psychosocial

@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.healthinfo.healthassistance
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.health.healthassistance.HealthAssistanceRow
+import javax.inject.Inject
 
-class HealthAssistanceViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = HealthAssistanceRepository(application, formId)
+class HealthAssistanceViewModel @Inject constructor(private val mRepository: HealthAssistanceRepository)
+    : ViewModel() {
 
     val healthAssistance: LiveData<List<HealthAssistanceRow>>
         get() = mRepository.healthAssistance

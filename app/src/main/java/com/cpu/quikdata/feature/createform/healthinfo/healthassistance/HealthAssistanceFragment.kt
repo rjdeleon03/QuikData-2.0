@@ -1,19 +1,18 @@
 package com.cpu.quikdata.feature.createform.healthinfo.healthassistance
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_health_assistance.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
+import javax.inject.Inject
 
 class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter, HealthAssistanceAdapter.ViewHolder>() {
 
@@ -22,7 +21,8 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
         fun newInstance() = HealthAssistanceFragment()
     }
 
-    private lateinit var mViewModel: HealthAssistanceViewModel
+    @Inject
+    lateinit var mViewModel: HealthAssistanceViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +54,6 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(HealthAssistanceViewModel::class.java)
         mViewModel.healthAssistance.observe(viewLifecycleOwner, Observer {
             healthAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)
