@@ -1,4 +1,4 @@
-package com.cpu.quikdata.common
+package com.cpu.quikdata.di.module.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

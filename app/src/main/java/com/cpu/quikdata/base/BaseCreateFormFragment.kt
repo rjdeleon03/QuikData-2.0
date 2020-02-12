@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import com.cpu.quikdata.common.ViewModelFactory
-import com.cpu.quikdata.common.ViewModelProviderFactory
+import com.cpu.quikdata.di.module.viewmodel.ViewModelProviderFactory
 import com.cpu.quikdata.feature.createform.CreateFormAltViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject

@@ -1,11 +1,10 @@
-package com.cpu.quikdata.di.module
+package com.cpu.quikdata.di.module.viewmodel
 
 import androidx.lifecycle.ViewModelProvider
-import com.cpu.quikdata.common.ViewModelProviderFactory
+import com.cpu.quikdata.di.module.viewmodel.ViewModelProviderFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Reusable
-import javax.inject.Singleton
 
 @Module
 abstract class ViewModelFactoryModule {

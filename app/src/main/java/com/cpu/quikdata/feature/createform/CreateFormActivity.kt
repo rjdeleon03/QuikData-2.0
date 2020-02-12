@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.ViewModelProviderFactory
+import com.cpu.quikdata.di.module.viewmodel.ViewModelProviderFactory
 import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
 import dagger.android.support.DaggerAppCompatActivity
