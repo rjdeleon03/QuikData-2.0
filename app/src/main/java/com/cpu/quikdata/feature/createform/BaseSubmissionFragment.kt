@@ -19,7 +19,7 @@ abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
         mDialog = ProgressDialogFragment.newInstance(textId = R.layout.dialog_progress)
         mDialog?.show(childFragmentManager, ProgressDialogFragment.TAG)
         mDialog?.setOnDialogCanceledListener {
-            mParentViewModel.cancelSubmission()
+            mParentViewModel?.cancelSubmission()
         }
     }
 
@@ -31,8 +31,8 @@ abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mParentViewModel.form.observeOnly(viewLifecycleOwner)
-        mParentViewModel.saveResult.observeProgress(viewLifecycleOwner, {
+        mParentViewModel?.form?.observeOnly(viewLifecycleOwner)
+        mParentViewModel?.saveResult?.observeProgress(viewLifecycleOwner, {
             mDialog?.dismiss()
             showToast(R.string.form_item_submission_success)
             activity!!.finish()

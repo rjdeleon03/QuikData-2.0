@@ -39,11 +39,11 @@ class BasicSelectionFragment : BaseSubmissionFragment() {
         setupClipping(basicSelectionRootLayout)
         selectionSendSaveButton.clickWithGuard {
             if (!isInternetAvailableThenToast(view.context, R.string.text_error_no_internet_save_only)) {
-                mParentViewModel.saveChangesToFormOnly()
+                mParentViewModel?.saveChangesToFormOnly()
                 return@clickWithGuard
             }
             showProgressDialog()
-            mParentViewModel.saveFormAsActual(true)
+            mParentViewModel?.saveFormAsActual(true)
         }
         selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
         selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }

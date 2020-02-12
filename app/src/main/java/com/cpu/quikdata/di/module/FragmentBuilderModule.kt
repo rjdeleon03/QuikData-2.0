@@ -4,6 +4,7 @@ import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.di.module.viewmodel.CreateFormViewModelModule
 import com.cpu.quikdata.di.module.viewmodel.HomeViewModelModule
 import com.cpu.quikdata.di.module.viewmodel.NewFormsViewModelModule
+import com.cpu.quikdata.feature.createform.basicselection.BasicSelectionFragment
 import com.cpu.quikdata.feature.imageviewer.ImageViewerFragment
 import com.cpu.quikdata.feature.main.home.HomeFragment
 import com.cpu.quikdata.feature.main.newforms.NewFormsFragment
@@ -19,8 +20,15 @@ abstract class FragmentBuilderModule {
     )
     abstract fun contributeHomeFragment(): HomeFragment
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(
+        modules = [CreateFormViewModelModule::class]
+    )
     abstract fun contributeBaseCreateFormFragment(): BaseCreateFormFragment
+
+    @ContributesAndroidInjector(
+        modules = [CreateFormViewModelModule::class]
+    )
+    abstract fun contributeBasicSelectionFragment(): BasicSelectionFragment
 
     @ContributesAndroidInjector(
         modules = [NewFormsViewModelModule::class]

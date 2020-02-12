@@ -13,15 +13,23 @@ import javax.inject.Inject
 abstract class BaseCreateFormFragment: DaggerFragment() {
 
     @Inject
-    lateinit var mParentViewModel: CreateFormViewModel
+    lateinit var mParentViewModelFactory: CreateFormViewModel.Factory
+
+    protected lateinit var mFactory: ViewModelFactory
+
+    protected val mParentViewModel: CreateFormViewModel? by lazy {
+        mParentViewModelFactory.create("")
+    }
 
 //    protected lateinit var mParentViewModel: CreateFormViewModel
 
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 //        mParentViewModel = ViewModelProvider(activity!!).get(CreateFormViewModel::class.java)
-//        mFactory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
-//    }
+        mParentViewModel?.let {
+            mFactory = ViewModelFactory(activity!!.application, it.formId)
+        }
+    }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)

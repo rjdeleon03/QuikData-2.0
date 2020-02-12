@@ -53,7 +53,7 @@ class SelectionFragment : BaseSubmissionFragment() {
 
         selectionSendSaveButton.clickWithGuard {
             showProgressDialog()
-            mParentViewModel.saveFormAsActual()
+            mParentViewModel?.saveFormAsActual()
         }
         selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
         selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }
@@ -70,7 +70,7 @@ class SelectionFragment : BaseSubmissionFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mParentViewModel.form.observe(viewLifecycleOwner) {
+        mParentViewModel?.form?.observe(viewLifecycleOwner) {
             selectionShelterButton.isIncluded = it.includeShelter
             selectionFoodButton.isIncluded = it.includeFood
             selectionLivelihoodsButton.isIncluded = it.includeLivelihoods
@@ -82,7 +82,7 @@ class SelectionFragment : BaseSubmissionFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mParentViewModel.toggleSectionInclusions(
+        mParentViewModel?.toggleSectionInclusions(
             selectionShelterButton.isIncluded,
             selectionFoodButton.isIncluded,
             selectionLivelihoodsButton.isIncluded,
