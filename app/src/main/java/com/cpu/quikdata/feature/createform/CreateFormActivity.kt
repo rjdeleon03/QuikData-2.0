@@ -11,8 +11,10 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.common.ViewModelProviderFactory
 import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
+import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_form.*
 import javax.inject.Inject
@@ -20,22 +22,25 @@ import javax.inject.Inject
 
 class CreateFormActivity : DaggerAppCompatActivity() {
 
-    @Inject
-    lateinit var mFactory: CreateFormViewModel.Factory
+//    @Inject
+//    lateinit var mFactory: CreateFormViewModel.Factory
+//
+//    private val mViewModel: CreateFormViewModel? by lazy {
+//        intent.getStringExtra(FORM_ID_KEY)?.let {
+//            if (it.isEmpty()) return@let null
+//            return@let mFactory.create(it)
+//        }
+//    }
 
-    private val mViewModel: CreateFormViewModel? by lazy {
-        intent.getStringExtra(FORM_ID_KEY)?.let {
-            if (it.isEmpty()) return@let null
-            return@let mFactory.create(it)
-        }
-    }
+    @Inject
+    lateinit var mViewModel: CreateFormViewModel
 
     private lateinit var mNavController: NavController
     private var mLayoutMargin: Int = 0
     private var mEditMode = false
 
     companion object {
-        private const val FORM_ID_KEY = "FORM_ID_KEY"
+        const val FORM_ID_KEY = "FORM_ID_KEY"
         private const val EDIT_MODE_KEY = "EDIT_MODE_KEY"
         private const val BASIC_MODE_KEY = "BASIC_MODE_KEY"
 

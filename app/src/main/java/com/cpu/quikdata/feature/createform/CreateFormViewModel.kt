@@ -9,11 +9,8 @@ import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import javax.inject.Inject
 
-class CreateFormViewModel @AssistedInject constructor (application: Application, @Assisted formId: String)
+class CreateFormViewModel @Inject constructor (application: Application, formId: String)
     : AndroidViewModel(application) {
-
-    @AssistedInject.Factory
-    interface Factory { fun create(formId: String) : CreateFormViewModel }
 
     private var mFormId = formId
     private val mRepository = CreateFormRepository(application, mFormId)
