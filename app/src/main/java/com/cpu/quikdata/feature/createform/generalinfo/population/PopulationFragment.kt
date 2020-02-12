@@ -1,13 +1,15 @@
 package com.cpu.quikdata.feature.createform.generalinfo.population
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_population.*
+import javax.inject.Inject
 
 
 class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, PopulationAdapter.ViewHolder>() {
@@ -16,7 +18,8 @@ class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, 
         fun newInstance() = PopulationFragment()
     }
 
-    private lateinit var mViewModel: PopulationViewModel
+    @Inject
+    lateinit var mViewModel: PopulationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +39,6 @@ class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(PopulationViewModel::class.java)
         mViewModel.population.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

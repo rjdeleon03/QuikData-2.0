@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_cause_of_death.*
+import javax.inject.Inject
 
 class CauseOfDeathFragment : BaseCollapsibleCreateFormFragment<CauseOfDeathAdapter, CauseOfDeathAdapter.ViewHolder>() {
 
@@ -18,7 +19,8 @@ class CauseOfDeathFragment : BaseCollapsibleCreateFormFragment<CauseOfDeathAdapt
         fun newInstance() = CauseOfDeathFragment()
     }
 
-    private lateinit var mViewModel: CauseOfDeathViewModel
+    @Inject
+    lateinit var mViewModel: CauseOfDeathViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +40,6 @@ class CauseOfDeathFragment : BaseCollapsibleCreateFormFragment<CauseOfDeathAdapt
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(CauseOfDeathViewModel::class.java)
         mViewModel.casualties.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

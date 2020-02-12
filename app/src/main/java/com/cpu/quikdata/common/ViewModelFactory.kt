@@ -59,13 +59,6 @@ class ViewModelFactory(application: Application, formId: String) :
 
         return when (modelClass) {
             BaselineDataViewModel::class.java -> BaselineDataViewModel(mApplication, mFormId) as T
-            CalamityInfoViewModel::class.java -> CalamityInfoViewModel(mApplication, mFormId) as T
-            PopulationViewModel::class.java -> PopulationViewModel(mApplication, mFormId) as T
-            FamiliesViewModel::class.java -> FamiliesViewModel(mApplication, mFormId) as T
-            VulnerableViewModel::class.java -> VulnerableViewModel(mApplication, mFormId) as T
-            CasualtiesViewModel::class.java -> CasualtiesViewModel(mApplication, mFormId) as T
-            CauseOfDeathViewModel::class.java -> CauseOfDeathViewModel(mApplication, mFormId) as T
-            InfrastructureDamageViewModel::class.java -> InfrastructureDamageViewModel(mApplication, mFormId) as T
             HouseDamageViewModel::class.java -> HouseDamageViewModel(mApplication, mFormId) as T
             ShelterCopingViewModel::class.java -> ShelterCopingViewModel(mApplication, mFormId) as T
             ShelterNeedsViewModel::class.java -> ShelterNeedsViewModel(mApplication, mFormId) as T

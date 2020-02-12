@@ -1,13 +1,12 @@
 package com.cpu.quikdata.feature.createform.generalinfo.vulnerable
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
+import javax.inject.Inject
 
-class VulnerableViewModel(application: Application, formId: String) : AndroidViewModel(application) {
-
-    private val mRepository = VulnerableRepository(application, formId)
+class VulnerableViewModel @Inject constructor (private val mRepository: VulnerableRepository)
+    : ViewModel() {
 
     val vulnerable: LiveData<List<VulnerableRow>>
         get() = mRepository.vulnerable
