@@ -1,13 +1,12 @@
 package com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.formdetails.FormDetails
+import javax.inject.Inject
 
-class FormDetailsViewModel(application: Application, formId: String) : AndroidViewModel(application) {
-
-    private val mRepository = FormDetailsRepository(application, formId)
+class FormDetailsViewModel @Inject constructor (private val mRepository: FormDetailsRepository)
+    : ViewModel() {
 
     val formDetails : LiveData<FormDetails>
         get() = mRepository.formDetails

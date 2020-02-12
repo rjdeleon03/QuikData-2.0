@@ -3,6 +3,7 @@ package com.cpu.quikdata.common
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeViewModel
@@ -58,7 +59,6 @@ class ViewModelFactory(application: Application, formId: String) :
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
         return when (modelClass) {
-            BaselineDataViewModel::class.java -> BaselineDataViewModel(mApplication, mFormId) as T
             HouseDamageViewModel::class.java -> HouseDamageViewModel(mApplication, mFormId) as T
             ShelterCopingViewModel::class.java -> ShelterCopingViewModel(mApplication, mFormId) as T
             ShelterNeedsViewModel::class.java -> ShelterNeedsViewModel(mApplication, mFormId) as T
@@ -93,8 +93,7 @@ class ViewModelFactory(application: Application, formId: String) :
             EvacuationWashViewModel::class.java -> EvacuationWashViewModel(mApplication, mFormId) as T
             EvacuationProtectionViewModel::class.java -> EvacuationProtectionViewModel(mApplication, mFormId) as T
             EvacuationCopingViewModel::class.java -> EvacuationCopingViewModel(mApplication, mFormId) as T
-            CaseStoriesViewModel::class.java -> CaseStoriesViewModel(mApplication, mFormId) as T
-            else -> FormDetailsViewModel(mApplication, mFormId) as T
+            else -> CreateFormViewModel(mApplication, mFormId) as T
         }
     }
 }
