@@ -1,19 +1,18 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_wash_assistance.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
+import javax.inject.Inject
 
 class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, WashAssistanceAdapter.ViewHolder>() {
 
@@ -22,7 +21,8 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
         fun newInstance() = WashAssistanceFragment()
     }
 
-    private lateinit var mViewModel: WashAssistanceViewModel
+    @Inject
+    lateinit var mViewModel: WashAssistanceViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +54,6 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(WashAssistanceViewModel::class.java)
         mViewModel.washAssistance.observe(viewLifecycleOwner, Observer {
             washAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

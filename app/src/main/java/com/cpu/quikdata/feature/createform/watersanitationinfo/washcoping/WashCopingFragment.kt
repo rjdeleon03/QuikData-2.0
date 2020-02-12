@@ -1,16 +1,15 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
 import kotlinx.android.synthetic.main.fragment_wash_coping.*
+import javax.inject.Inject
 
 class WashCopingFragment : BaseCreateFormFragment() {
 
@@ -19,7 +18,7 @@ class WashCopingFragment : BaseCreateFormFragment() {
         fun newInstance() = WashCopingFragment()
     }
 
-    private lateinit var mViewModel: WashCopingViewModel
+    @Inject lateinit var mViewModel: WashCopingViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +38,6 @@ class WashCopingFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(WashCopingViewModel::class.java)
         mViewModel.washCoping.observe(viewLifecycleOwner, Observer {
             washCopingStrategiesText.text = it.copingStrategies
         })

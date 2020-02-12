@@ -1,16 +1,15 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washgaps
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
 import kotlinx.android.synthetic.main.fragment_wash_gaps.*
+import javax.inject.Inject
 
 class WashGapsFragment : BaseCreateFormFragment() {
 
@@ -19,7 +18,7 @@ class WashGapsFragment : BaseCreateFormFragment() {
         fun newInstance() = WashGapsFragment()
     }
 
-    private lateinit var mViewModel: WashGapsViewModel
+    @Inject lateinit var mViewModel: WashGapsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +45,6 @@ class WashGapsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(WashGapsViewModel::class.java)
         mViewModel.washGaps.observe(viewLifecycleOwner, Observer {
             washGapsAssistanceEnoughText.text = it.assistanceEnough
             washGapsAssistanceRelevantText.text = it.assistanceRelevant

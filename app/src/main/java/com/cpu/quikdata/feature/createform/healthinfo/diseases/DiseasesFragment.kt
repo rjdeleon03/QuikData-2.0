@@ -1,15 +1,14 @@
 package com.cpu.quikdata.feature.createform.healthinfo.diseases
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_diseases.*
+import javax.inject.Inject
 
 class DiseasesFragment : BaseCollapsibleCreateFormFragment<DiseasesAdapter, DiseasesAdapter.ViewHolder>() {
 
@@ -18,7 +17,8 @@ class DiseasesFragment : BaseCollapsibleCreateFormFragment<DiseasesAdapter, Dise
         fun newInstance() = DiseasesFragment()
     }
 
-    private lateinit var mViewModel: DiseasesViewModel
+    @Inject
+    lateinit var mViewModel: DiseasesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +38,6 @@ class DiseasesFragment : BaseCollapsibleCreateFormFragment<DiseasesAdapter, Dise
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(DiseasesViewModel::class.java)
         mViewModel.diseases.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

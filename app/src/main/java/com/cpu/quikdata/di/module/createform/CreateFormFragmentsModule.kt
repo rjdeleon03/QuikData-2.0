@@ -37,6 +37,10 @@ import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.Shelter
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps.ShelterGapsFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsFragment
+import com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance.WashAssistanceFragment
+import com.cpu.quikdata.feature.createform.watersanitationinfo.washconditions.WashConditionsFragment
+import com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping.WashCopingFragment
+import com.cpu.quikdata.feature.createform.watersanitationinfo.washgaps.WashGapsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -150,6 +154,18 @@ abstract class CreateFormFragmentsModule {
 
     @ContributesAndroidInjector(modules = [HealthGapsModule::class])
     abstract fun contributeHealthGapsFragment(): HealthGapsFragment
+
+    @ContributesAndroidInjector(modules = [WashConditionsModule::class])
+    abstract fun contributeWashConditionsFragment(): WashConditionsFragment
+
+    @ContributesAndroidInjector(modules = [WashCopingModule::class])
+    abstract fun contributeWashCopingFragment(): WashCopingFragment
+
+    @ContributesAndroidInjector(modules = [WashAssistanceModule::class])
+    abstract fun contributeWashAssistanceFragment(): WashAssistanceFragment
+
+    @ContributesAndroidInjector(modules = [WashGapsModule::class])
+    abstract fun contributeWashGapsFragment(): WashGapsFragment
 
     @ContributesAndroidInjector(modules = [CaseStoriesModule::class])
     abstract fun contributeCaseStoriesFragment(): CaseStoriesFragment
