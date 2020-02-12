@@ -8,6 +8,9 @@ import com.cpu.quikdata.feature.main.newforms.NewFormsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
+/**
+ * Builds independent fragments
+ */
 @Module
 abstract class FragmentBuilderModule {
 

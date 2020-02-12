@@ -1,14 +1,16 @@
 package com.cpu.quikdata.di.module
 
 import com.cpu.quikdata.di.annotation.CreateFormActivityScope
-import com.cpu.quikdata.di.module.createform.CreateFormActivityModule
-import com.cpu.quikdata.di.module.createform.CreateFormModule
-import com.cpu.quikdata.di.module.createform.CreateFormViewModelModule
+import com.cpu.quikdata.di.module.createform.CreateFormFragmentsModule
+import com.cpu.quikdata.di.module.createform.CreateFormSharedModule
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
+/**
+ * Builds all activities
+ */
 @Module
 abstract class ActivityBuilderModule {
 
@@ -17,7 +19,7 @@ abstract class ActivityBuilderModule {
 
     @CreateFormActivityScope
     @ContributesAndroidInjector(
-        modules = [CreateFormActivityModule::class, CreateFormViewModelModule::class, CreateFormModule::class]
+        modules = [CreateFormSharedModule::class, CreateFormFragmentsModule::class]
     )
     abstract fun contributeCreateFormActivity(): CreateFormActivity
 }
