@@ -1,17 +1,15 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import kotlinx.android.synthetic.main.fragment_livelihoods_coping.*
+import javax.inject.Inject
 
 class LivelihoodsCopingFragment : BaseCreateFormFragment() {
 
@@ -20,7 +18,8 @@ class LivelihoodsCopingFragment : BaseCreateFormFragment() {
         fun newInstance() = LivelihoodsCopingFragment()
     }
 
-    private lateinit var mViewModel: LivelihoodsCopingViewModel
+    @Inject
+    lateinit var mViewModel: LivelihoodsCopingViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +41,6 @@ class LivelihoodsCopingFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(LivelihoodsCopingViewModel::class.java)
         mViewModel.livelihoodsCoping.observe(viewLifecycleOwner, Observer {
             livelihoodsCopingStrategiesText.text = it.copingStrategies
             livelihoodsCopingNewIncomeText.text = it.newIncome

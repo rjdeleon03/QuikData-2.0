@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.incomebefore
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.livelihoodsinfo.incomebefore.IncomeBeforeRow
+import javax.inject.Inject
 
-class IncomeBeforeViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = IncomeBeforeRepository(application, formId)
+class IncomeBeforeViewModel @Inject constructor (private val mRepository: IncomeBeforeRepository)
+    : ViewModel() {
 
     val incomeBefore: LiveData<List<IncomeBeforeRow>>
         get() = mRepository.incomeBefore

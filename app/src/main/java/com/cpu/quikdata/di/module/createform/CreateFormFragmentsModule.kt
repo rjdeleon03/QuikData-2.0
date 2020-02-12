@@ -18,6 +18,13 @@ import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesFragment
 import com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage.InfrastructureDamageFragment
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationFragment
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableFragment
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage.EstimatedDamageFragment
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter.IncomeAfterFragment
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomebefore.IncomeBeforeFragment
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsassistance.LivelihoodsAssistanceFragment
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingFragment
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsgaps.LivelihoodsGapsFragment
+import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeedsFragment
 import com.cpu.quikdata.feature.createform.selection.SelectionFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageFragment
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.ShelterAssistanceFragment
@@ -98,6 +105,27 @@ abstract class CreateFormFragmentsModule {
 
     @ContributesAndroidInjector(modules = [FoodSecurityGapsModule::class])
     abstract fun contributeFoodSecurityGapsFragment(): FoodSecurityGapsFragment
+
+    @ContributesAndroidInjector(modules = [IncomeBeforeModule::class])
+    abstract fun contributeIncomeBeforeFragment(): IncomeBeforeFragment
+
+    @ContributesAndroidInjector(modules = [IncomeAfterModule::class])
+    abstract fun contributeIncomeAfterFragment(): IncomeAfterFragment
+
+    @ContributesAndroidInjector(modules = [EstimatedDamageModule::class])
+    abstract fun contributeEstimatedDamageFragment(): EstimatedDamageFragment
+
+    @ContributesAndroidInjector(modules = [LivelihoodsCopingModule::class])
+    abstract fun contributeLivelihoodsCopingFragment(): LivelihoodsCopingFragment
+
+    @ContributesAndroidInjector(modules = [LivelihoodsNeedsModule::class])
+    abstract fun contributeLivelihoodsNeedsFragment(): LivelihoodsNeedsFragment
+
+    @ContributesAndroidInjector(modules = [LivelihoodsAssistanceModule::class])
+    abstract fun contributeLivelihoodsAssistanceFragment(): LivelihoodsAssistanceFragment
+
+    @ContributesAndroidInjector(modules = [LivelihoodsGapsModule::class])
+    abstract fun contributeLivelihoodsGapsFragment(): LivelihoodsGapsFragment
 
     @ContributesAndroidInjector(modules = [CaseStoriesModule::class])
     abstract fun contributeCaseStoriesFragment(): CaseStoriesFragment
