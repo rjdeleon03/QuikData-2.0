@@ -13,6 +13,9 @@ import javax.inject.Inject
 abstract class BaseCreateFormFragment: Fragment() {
 
 //    @Inject
+//    lateinit var mVM: CreateFormViewModel
+
+//    @Inject
 //    lateinit var mViewModelProviderFactory: ViewModelProviderFactory
 
     protected lateinit var mParentViewModel: CreateFormViewModel

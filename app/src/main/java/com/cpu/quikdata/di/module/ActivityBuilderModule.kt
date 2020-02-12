@@ -1,5 +1,6 @@
 package com.cpu.quikdata.di.module
 
+import com.cpu.quikdata.di.annotation.CreateFormActivityScope
 import com.cpu.quikdata.di.module.view.ActivityModule
 import com.cpu.quikdata.di.module.viewmodel.CreateFormViewModelModule
 import com.cpu.quikdata.feature.createform.CreateFormActivity
@@ -13,8 +14,9 @@ abstract class ActivityBuilderModule {
     @ContributesAndroidInjector
     abstract fun contributeMainActivity(): MainActivity
 
+    @CreateFormActivityScope
     @ContributesAndroidInjector(
         modules = [ActivityModule::class, CreateFormViewModelModule::class]
     )
-    abstract fun contributCreateFormActivity(): CreateFormActivity
+    abstract fun contributeCreateFormActivity(): CreateFormActivity
 }

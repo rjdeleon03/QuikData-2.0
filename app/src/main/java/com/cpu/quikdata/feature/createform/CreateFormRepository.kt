@@ -23,6 +23,9 @@ class CreateFormRepository(application: Application, formId: String) {
     private val mFirebaseHelper = FirebaseHelper(FirebaseFirestore.getInstance(), FirebaseStorage.getInstance())
     private val mSaveResult: MediatorLiveData<ProgressNotification> = MediatorLiveData()
 
+    val formId: String
+        get() = mFormId
+
     val form: LiveData<Form>
         get() = mForm
 
