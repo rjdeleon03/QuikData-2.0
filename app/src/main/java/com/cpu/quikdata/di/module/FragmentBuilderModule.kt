@@ -1,5 +1,7 @@
 package com.cpu.quikdata.di.module
 
+import com.cpu.quikdata.base.BaseCreateFormFragment
+import com.cpu.quikdata.di.module.viewmodel.CreateFormViewModelModule
 import com.cpu.quikdata.di.module.viewmodel.HomeViewModelModule
 import com.cpu.quikdata.di.module.viewmodel.NewFormsViewModelModule
 import com.cpu.quikdata.feature.imageviewer.ImageViewerFragment
@@ -15,6 +17,11 @@ abstract class FragmentBuilderModule {
         modules = [HomeViewModelModule::class]
     )
     abstract fun contributeHomeFragment(): HomeFragment
+
+    @ContributesAndroidInjector(
+        modules = [CreateFormViewModelModule::class]
+    )
+    abstract fun contributeBaseCreateFormFragment(): BaseCreateFormFragment
 
     @ContributesAndroidInjector(
         modules = [NewFormsViewModelModule::class]
