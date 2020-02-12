@@ -14,6 +14,11 @@ import com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage.Infr
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationFragment
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableFragment
 import com.cpu.quikdata.feature.createform.selection.SelectionFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.ShelterAssistanceFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps.ShelterGapsFragment
+import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -58,6 +63,21 @@ abstract class CreateFormFragmentsModule {
 
     @ContributesAndroidInjector(modules = [InfrastructureDamageModule::class])
     abstract fun contributeInfrastructureDamageFragment(): InfrastructureDamageFragment
+
+    @ContributesAndroidInjector(modules = [HouseDamageModule::class])
+    abstract fun contributeHouseDamageFragment(): HouseDamageFragment
+
+    @ContributesAndroidInjector(modules = [ShelterCopingModule::class])
+    abstract fun contributeShelterCopingFragment(): ShelterCopingFragment
+
+    @ContributesAndroidInjector(modules = [ShelterNeedsModule::class])
+    abstract fun contributeShelterNeedsFragment(): ShelterNeedsFragment
+
+    @ContributesAndroidInjector(modules = [ShelterAssistanceModule::class])
+    abstract fun contributeShelterAssistanceFragment(): ShelterAssistanceFragment
+
+    @ContributesAndroidInjector(modules = [ShelterGapsModule::class])
+    abstract fun contributeShelterGapsFragment(): ShelterGapsFragment
 
     @ContributesAndroidInjector(modules = [CaseStoriesModule::class])
     abstract fun contributeCaseStoriesFragment(): CaseStoriesFragment

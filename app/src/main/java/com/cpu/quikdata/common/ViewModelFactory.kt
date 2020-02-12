@@ -59,11 +59,6 @@ class ViewModelFactory(application: Application, formId: String) :
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
         return when (modelClass) {
-            HouseDamageViewModel::class.java -> HouseDamageViewModel(mApplication, mFormId) as T
-            ShelterCopingViewModel::class.java -> ShelterCopingViewModel(mApplication, mFormId) as T
-            ShelterNeedsViewModel::class.java -> ShelterNeedsViewModel(mApplication, mFormId) as T
-            ShelterAssistanceViewModel::class.java -> ShelterAssistanceViewModel(mApplication, mFormId) as T
-            ShelterGapsViewModel::class.java -> ShelterGapsViewModel(mApplication, mFormId) as T
             FoodSecurityImpactViewModel::class.java -> FoodSecurityImpactViewModel(mApplication, mFormId) as T
             FoodSecurityCopingViewModel::class.java -> FoodSecurityCopingViewModel(mApplication, mFormId) as T
             FoodSecurityNeedsViewModel::class.java -> FoodSecurityNeedsViewModel(mApplication, mFormId) as T

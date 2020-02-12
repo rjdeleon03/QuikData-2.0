@@ -1,15 +1,13 @@
 package com.cpu.quikdata.feature.createform.shelterinfo.housedamage
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
+import javax.inject.Inject
 
 
-class HouseDamageViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = HouseDamageRepository(application, formId)
+class HouseDamageViewModel @Inject constructor(private val mRepository: HouseDamageRepository)
+    : ViewModel() {
 
     val houseDamage: LiveData<List<HouseDamageRow>>
         get() = mRepository.houseDamage
