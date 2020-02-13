@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter.IncomeAfterRepository
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter.IncomeAfterViewModel
@@ -21,7 +22,7 @@ abstract class IncomeAfterModule {
     companion object {
 
         @Provides
-        fun provideIncomeAfterRepository(application: Application, formId: String)
+        fun provideIncomeAfterRepository(application: Application, @FormIdQualifier formId: String)
                 : IncomeAfterRepository {
             return IncomeAfterRepository(application, formId)
         }

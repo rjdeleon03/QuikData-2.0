@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping.WashCopingRepository
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping.WashCopingViewModel
@@ -21,7 +22,7 @@ abstract class WashCopingModule {
     companion object {
 
         @Provides
-        fun provideWashCopingRepository(application: Application, formId: String)
+        fun provideWashCopingRepository(application: Application, @FormIdQualifier formId: String)
                 : WashCopingRepository {
             return WashCopingRepository(application, formId)
         }

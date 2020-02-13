@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsgaps.LivelihoodsGapsRepository
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsgaps.LivelihoodsGapsViewModel
@@ -21,7 +22,7 @@ abstract class LivelihoodsGapsModule {
     companion object {
 
         @Provides
-        fun provideLivelihoodsGapsRepository(application: Application, formId: String)
+        fun provideLivelihoodsGapsRepository(application: Application, @FormIdQualifier formId: String)
                 : LivelihoodsGapsRepository {
             return LivelihoodsGapsRepository(application, formId)
         }

@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoRepository
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoViewModel
@@ -21,7 +22,7 @@ abstract class CalamityInfoModule {
     companion object {
 
         @Provides
-        fun provideCalamityInfoRepository(application: Application, formId: String)
+        fun provideCalamityInfoRepository(application: Application, @FormIdQualifier formId: String)
                 : CalamityInfoRepository {
             return CalamityInfoRepository(application, formId)
         }

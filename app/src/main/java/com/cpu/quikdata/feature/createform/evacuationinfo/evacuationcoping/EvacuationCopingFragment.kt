@@ -1,20 +1,17 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationcoping
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.evacuationcoping.EvacuationCoping
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment.Companion.EVACUATION_ID_KEY
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_evacuation_coping.*
 
-class EvacuationCopingFragment : Fragment() {
+class EvacuationCopingFragment : DaggerFragment() {
 
     companion object {
 
@@ -47,9 +44,6 @@ class EvacuationCopingFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(activity!!.application, evacuationId)
-        mViewModel = ViewModelProvider(this, factory).get(EvacuationCopingViewModel::class.java)
         mViewModel.evacuationCoping.observe(viewLifecycleOwner, Observer {
             evacuationCopingMechanismText.text = it.copingMechanism
         })

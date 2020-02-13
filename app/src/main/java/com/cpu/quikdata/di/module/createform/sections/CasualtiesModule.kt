@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesRepository
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesViewModel
@@ -21,7 +22,7 @@ abstract class CasualtiesModule {
     companion object {
 
         @Provides
-        fun provideCasualtiesRepository(application: Application, formId: String)
+        fun provideCasualtiesRepository(application: Application, @FormIdQualifier formId: String)
                 : CasualtiesRepository {
             return CasualtiesRepository(application, formId)
         }

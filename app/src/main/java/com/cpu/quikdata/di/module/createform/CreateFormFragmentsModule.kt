@@ -5,6 +5,12 @@ import com.cpu.quikdata.di.module.createform.sections.*
 import com.cpu.quikdata.feature.createform.basicselection.BasicSelectionFragment
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationcoping.EvacuationCopingFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationfacilities.EvacuationFacilitiesFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationprotection.EvacuationProtectionFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationwash.EvacuationWashFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo.SiteInfoFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsFragment
@@ -170,6 +176,30 @@ abstract class CreateFormFragmentsModule {
 
     @ContributesAndroidInjector(modules = [EvacuationInfoModule::class])
     abstract fun contributeEvacuationInfoFragment(): EvacuationInfoFragment
+
+    @ContributesAndroidInjector(modules = [
+        EvacuationSiteInfoModule::class, EvacuationSharedModule::class])
+    abstract fun contributeSiteInfoFragment(): SiteInfoFragment
+
+    @ContributesAndroidInjector(modules = [
+        EvacuationAgeModule::class, EvacuationSharedModule::class])
+    abstract fun contributeEvacuationAgeFragment(): EvacuationAgeFragment
+
+    @ContributesAndroidInjector(modules = [
+        EvacuationFacilitiesModule::class, EvacuationSharedModule::class])
+    abstract fun contributeEvacuationFacilitiesFragment(): EvacuationFacilitiesFragment
+
+    @ContributesAndroidInjector(modules = [
+        EvacuationWashModule::class, EvacuationSharedModule::class])
+    abstract fun contributeEvacuationWashFragment(): EvacuationWashFragment
+
+    @ContributesAndroidInjector(modules = [
+        EvacuationProtectionModule::class, EvacuationSharedModule::class])
+    abstract fun contributeEvacuationProtectionFragment(): EvacuationProtectionFragment
+
+    @ContributesAndroidInjector(modules = [
+        EvacuationCopingModule::class, EvacuationSharedModule::class])
+    abstract fun contributeEvacuationCopingFragment(): EvacuationCopingFragment
 
     @ContributesAndroidInjector(modules = [CaseStoriesModule::class])
     abstract fun contributeCaseStoriesFragment(): CaseStoriesFragment

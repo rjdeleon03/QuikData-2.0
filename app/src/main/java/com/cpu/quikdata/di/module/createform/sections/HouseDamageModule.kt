@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageRepository
 import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageViewModel
@@ -21,7 +22,7 @@ abstract class HouseDamageModule {
     companion object {
 
         @Provides
-        fun provideHouseDamageRepository(application: Application, formId: String)
+        fun provideHouseDamageRepository(application: Application, @FormIdQualifier formId: String)
                 : HouseDamageRepository {
             return HouseDamageRepository(application, formId)
         }

@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +8,9 @@ import androidx.lifecycle.Observer
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment.Companion.EVACUATION_ID_KEY
 import kotlinx.android.synthetic.main.fragment_evacuation_age.*
+import javax.inject.Inject
 
 class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAdapter, EvacuationAgeAdapter.ViewHolder>() {
 
@@ -27,7 +26,8 @@ class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAda
         }
     }
 
-    private lateinit var mViewModel: EvacuationAgeViewModel
+    @Inject
+    lateinit var mViewModel: EvacuationAgeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,9 +47,6 @@ class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAda
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(activity!!.application, evacuationId)
-        mViewModel = ViewModelProvider(this, factory).get(EvacuationAgeViewModel::class.java)
         mViewModel.evacuationAge.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

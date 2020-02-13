@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage.InfrastructureDamageRepository
 import com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage.InfrastructureDamageViewModel
@@ -21,7 +22,7 @@ abstract class InfrastructureDamageModule {
     companion object {
 
         @Provides
-        fun provideInfrastructureDamageRepository(application: Application, formId: String)
+        fun provideInfrastructureDamageRepository(application: Application, @FormIdQualifier formId: String)
                 : InfrastructureDamageRepository {
             return InfrastructureDamageRepository(application, formId)
         }

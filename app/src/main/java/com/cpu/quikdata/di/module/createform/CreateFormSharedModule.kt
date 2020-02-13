@@ -5,6 +5,8 @@ import android.app.Application
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.di.annotation.CreateFormActivityScope
+import com.cpu.quikdata.di.annotation.FormBundleQualifier
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.createform.CreateFormActivity.Companion.FORM_ID_KEY
@@ -34,16 +36,18 @@ abstract class CreateFormSharedModule {
     companion object {
 
         @Provides
+        @FormBundleQualifier
         @CreateFormActivityScope
         fun provideBundle(activity: Activity): Bundle = activity.intent.extras ?: Bundle.EMPTY
 
         @Provides
+        @FormIdQualifier
         @CreateFormActivityScope
-        fun provideFormId(bundle: Bundle): String = bundle.getString(FORM_ID_KEY, "")
+        fun provideFormId(@FormBundleQualifier bundle: Bundle): String = bundle.getString(FORM_ID_KEY, "")
 
         @Provides
         @CreateFormActivityScope
-        fun provideCreateFormRepository(application: Application, formId: String)
+        fun provideCreateFormRepository(application: Application, @FormIdQualifier formId: String)
                 : CreateFormRepository {
             return CreateFormRepository(application, formId)
         }

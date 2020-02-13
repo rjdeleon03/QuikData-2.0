@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoRepository
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoViewModel
@@ -21,7 +22,7 @@ abstract class EvacuationInfoModule {
     companion object {
 
         @Provides
-        fun provideEvacuationInfoRepository(application: Application, formId: String)
+        fun provideEvacuationInfoRepository(application: Application, @FormIdQualifier formId: String)
                 : EvacuationInfoRepository {
             return EvacuationInfoRepository(application, formId)
         }

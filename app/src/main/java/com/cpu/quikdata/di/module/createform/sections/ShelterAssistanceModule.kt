@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.ShelterAssistanceRepository
 import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.ShelterAssistanceViewModel
@@ -21,7 +22,7 @@ abstract class ShelterAssistanceModule {
     companion object {
 
         @Provides
-        fun provideShelterAssistanceRepository(application: Application, formId: String)
+        fun provideShelterAssistanceRepository(application: Application, @FormIdQualifier formId: String)
                 : ShelterAssistanceRepository {
             return ShelterAssistanceRepository(application, formId)
         }

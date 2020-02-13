@@ -1,21 +1,19 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.EvacuationCategories
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment.Companion.EVACUATION_ID_KEY
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_evacuation_site_info.*
+import javax.inject.Inject
 
-class SiteInfoFragment : Fragment() {
+class SiteInfoFragment : DaggerFragment() {
 
     companion object {
 
@@ -29,7 +27,8 @@ class SiteInfoFragment : Fragment() {
         }
     }
 
-    private lateinit var mViewModel: SiteInfoViewModel
+    @Inject
+    lateinit var mViewModel: SiteInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,9 +60,6 @@ class SiteInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(activity!!.application, evacuationId)
-        mViewModel = ViewModelProvider(this, factory).get(SiteInfoViewModel::class.java)
         mViewModel.siteInfo.observe(viewLifecycleOwner, Observer {
             evacuationSiteInfoNameText.text = it.name
             evacuationSiteInfoLocationText.text = it.location

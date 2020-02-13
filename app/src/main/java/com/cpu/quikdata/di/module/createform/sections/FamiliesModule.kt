@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesRepository
 import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesViewModel
@@ -21,7 +22,7 @@ abstract class FamiliesModule {
     companion object {
 
         @Provides
-        fun provideFamiliesRepository(application: Application, formId: String)
+        fun provideFamiliesRepository(application: Application, @FormIdQualifier formId: String)
                 : FamiliesRepository {
             return FamiliesRepository(application, formId)
         }

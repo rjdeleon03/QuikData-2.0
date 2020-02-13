@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.module.createform.sections
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.healthinfo.psychosocial.PsychosocialRepository
 import com.cpu.quikdata.feature.createform.healthinfo.psychosocial.PsychosocialViewModel
@@ -21,7 +22,7 @@ abstract class PsychosocialModule {
     companion object {
 
         @Provides
-        fun providePsychosocialRepository(application: Application, formId: String)
+        fun providePsychosocialRepository(application: Application, @FormIdQualifier formId: String)
                 : PsychosocialRepository {
             return PsychosocialRepository(application, formId)
         }

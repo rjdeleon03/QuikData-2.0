@@ -9,13 +9,15 @@ import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.common.deleteFile
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import com.cpu.quikdata.utils.runOnMainThread
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import javax.inject.Inject
 
-class CreateFormRepository(application: Application, formId: String) {
+class CreateFormRepository @Inject constructor (application: Application, @FormIdQualifier formId: String) {
 
     private val mDatabase = AppDatabase.get(application)
     private val mFormId = formId
