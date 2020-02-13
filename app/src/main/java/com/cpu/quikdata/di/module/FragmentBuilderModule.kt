@@ -2,9 +2,11 @@ package com.cpu.quikdata.di.module
 
 import com.cpu.quikdata.di.module.viewmodel.HomeViewModelModule
 import com.cpu.quikdata.di.module.viewmodel.NewFormsViewModelModule
+import com.cpu.quikdata.di.module.viewmodel.PrefilledInfoViewModelModule
 import com.cpu.quikdata.feature.imageviewer.ImageViewerFragment
 import com.cpu.quikdata.feature.main.home.HomeFragment
 import com.cpu.quikdata.feature.main.newforms.NewFormsFragment
+import com.cpu.quikdata.feature.main.prefilledinfo.PrefilledInfoFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -23,6 +25,11 @@ abstract class FragmentBuilderModule {
         modules = [NewFormsViewModelModule::class]
     )
     abstract fun contributeNewFormsFragment(): NewFormsFragment
+
+    @ContributesAndroidInjector(
+        modules = [PrefilledInfoViewModelModule::class]
+    )
+    abstract fun contributePrefilledInfoFragment(): PrefilledInfoFragment
 
     @ContributesAndroidInjector
     abstract fun contributeImageViewerFragment(): ImageViewerFragment

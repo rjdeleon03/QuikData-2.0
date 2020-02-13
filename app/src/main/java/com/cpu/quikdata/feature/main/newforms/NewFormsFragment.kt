@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.form.FormComplete

@@ -10,6 +10,7 @@ import com.cpu.quikdata.data.evacuation.evacuationcoping.EvacuationCoping
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment.Companion.EVACUATION_ID_KEY
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_evacuation_coping.*
+import javax.inject.Inject
 
 class EvacuationCopingFragment : DaggerFragment() {
 
@@ -25,7 +26,8 @@ class EvacuationCopingFragment : DaggerFragment() {
         }
     }
 
-    private lateinit var mViewModel: EvacuationCopingViewModel
+    @Inject
+    lateinit var mViewModel: EvacuationCopingViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
