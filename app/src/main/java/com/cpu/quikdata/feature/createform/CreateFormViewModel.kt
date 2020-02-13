@@ -6,7 +6,7 @@ import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.data.form.Form
 import javax.inject.Inject
 
-class CreateFormAltViewModel @Inject constructor (private val mRepository: CreateFormRepository)
+class CreateFormViewModel @Inject constructor (private val mRepository: CreateFormRepository)
     : ViewModel() {
 
     val formId: String

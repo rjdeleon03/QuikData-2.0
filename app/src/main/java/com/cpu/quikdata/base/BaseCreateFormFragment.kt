@@ -3,7 +3,7 @@ package com.cpu.quikdata.base
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import com.cpu.quikdata.di.module.viewmodel.ViewModelProviderFactory
-import com.cpu.quikdata.feature.createform.CreateFormAltViewModel
+import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -12,8 +12,8 @@ abstract class BaseCreateFormFragment: DaggerFragment() {
     @Inject
     lateinit var mViewModelProviderFactory: ViewModelProviderFactory
 
-    protected val mParentViewModel: CreateFormAltViewModel by lazy {
-        mViewModelProviderFactory.create(CreateFormAltViewModel::class.java)
+    protected val mParentViewModel: CreateFormViewModel by lazy {
+        mViewModelProviderFactory.create(CreateFormViewModel::class.java)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {

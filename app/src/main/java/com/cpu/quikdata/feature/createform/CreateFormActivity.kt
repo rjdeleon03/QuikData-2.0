@@ -19,12 +19,10 @@ import javax.inject.Inject
 
 class CreateFormActivity : DaggerAppCompatActivity() {
 
-
     @Inject
     lateinit var mViewModelProviderFactory: ViewModelProviderFactory
 
-    private lateinit var mViewModel: CreateFormAltViewModel
-
+    private lateinit var mViewModel: CreateFormViewModel
     private lateinit var mNavController: NavController
 
     private var mLayoutMargin: Int = 0
@@ -49,7 +47,7 @@ class CreateFormActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_form)
 
-        mViewModel = mViewModelProviderFactory.create(CreateFormAltViewModel::class.java)
+        mViewModel = mViewModelProviderFactory.create(CreateFormViewModel::class.java)
 
         setSupportActionBar(createFormToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

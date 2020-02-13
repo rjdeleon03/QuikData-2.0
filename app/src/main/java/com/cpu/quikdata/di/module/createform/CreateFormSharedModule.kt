@@ -10,7 +10,7 @@ import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.createform.CreateFormActivity.Companion.FORM_ID_KEY
-import com.cpu.quikdata.feature.createform.CreateFormAltViewModel
+import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import com.cpu.quikdata.feature.createform.CreateFormRepository
 import dagger.Binds
 import dagger.Module
@@ -30,8 +30,8 @@ abstract class CreateFormSharedModule {
     @Binds
     @IntoMap
     @CreateFormActivityScope
-    @ViewModelKey(CreateFormAltViewModel::class)
-    abstract fun bindsCreateFormViewModel(createFormViewModel: CreateFormAltViewModel): ViewModel
+    @ViewModelKey(CreateFormViewModel::class)
+    abstract fun bindsCreateFormViewModel(createFormViewModel: CreateFormViewModel): ViewModel
 
     companion object {
 
