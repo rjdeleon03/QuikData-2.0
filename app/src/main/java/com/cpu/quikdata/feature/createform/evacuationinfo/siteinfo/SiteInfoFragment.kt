@@ -12,12 +12,12 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.EvacuationCategories
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
+import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment.Companion.EVACUATION_ID_KEY
 import kotlinx.android.synthetic.main.fragment_evacuation_site_info.*
 
 class SiteInfoFragment : Fragment() {
 
     companion object {
-        private const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
 
         @JvmStatic
         fun newInstance(evacuationId: String): SiteInfoFragment {

@@ -22,6 +22,7 @@ import dagger.multibindings.IntoMap
 abstract class CreateFormSharedModule {
 
     @Binds
+    @CreateFormActivityScope
     abstract fun bindsCreateFormActivity(activity: CreateFormActivity): Activity
 
     @Binds
@@ -30,7 +31,6 @@ abstract class CreateFormSharedModule {
     @ViewModelKey(CreateFormAltViewModel::class)
     abstract fun bindsCreateFormViewModel(createFormViewModel: CreateFormAltViewModel): ViewModel
 
-    @Module
     companion object {
 
         @Provides

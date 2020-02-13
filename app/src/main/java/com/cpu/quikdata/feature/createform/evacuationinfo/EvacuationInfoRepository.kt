@@ -25,6 +25,8 @@ class EvacuationInfoRepository(application: Application, formId: String) :
     private val mFormId = formId
     private val mEvacuationInfo = mDatabase.evacuationItemDao().getByFormIdForDisplay(mFormId)
 
+    val formId = mFormId
+
     val evacuationInfo: LiveData<List<EvacuationItemDetails>>
         get() = mEvacuationInfo
 

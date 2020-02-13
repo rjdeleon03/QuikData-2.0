@@ -11,12 +11,12 @@ import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.evacuationcoping.EvacuationCoping
+import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment.Companion.EVACUATION_ID_KEY
 import kotlinx.android.synthetic.main.fragment_evacuation_coping.*
 
 class EvacuationCopingFragment : Fragment() {
 
     companion object {
-        private const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
 
         @JvmStatic
         fun newInstance(evacuationId: String): EvacuationCopingFragment {

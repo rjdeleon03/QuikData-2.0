@@ -4,6 +4,7 @@ import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.di.module.createform.sections.*
 import com.cpu.quikdata.feature.createform.basicselection.BasicSelectionFragment
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingFragment
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsFragment
@@ -166,6 +167,9 @@ abstract class CreateFormFragmentsModule {
 
     @ContributesAndroidInjector(modules = [WashGapsModule::class])
     abstract fun contributeWashGapsFragment(): WashGapsFragment
+
+    @ContributesAndroidInjector(modules = [EvacuationInfoModule::class])
+    abstract fun contributeEvacuationInfoFragment(): EvacuationInfoFragment
 
     @ContributesAndroidInjector(modules = [CaseStoriesModule::class])
     abstract fun contributeCaseStoriesFragment(): CaseStoriesFragment
