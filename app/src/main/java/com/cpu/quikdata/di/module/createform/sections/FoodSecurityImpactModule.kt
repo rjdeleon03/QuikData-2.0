@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactRepository
@@ -22,9 +22,9 @@ abstract class FoodSecurityImpactModule {
     companion object {
 
         @Provides
-        fun provideFoodSecurityImpactRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideFoodSecurityImpactRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : FoodSecurityImpactRepository {
-            return FoodSecurityImpactRepository(application, formId)
+            return FoodSecurityImpactRepository(database, formId)
         }
     }
 }

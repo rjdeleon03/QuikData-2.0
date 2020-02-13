@@ -1,8 +1,8 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.EvacuationIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationprotection.EvacuationProtectionFragment
@@ -27,9 +27,9 @@ abstract class EvacuationProtectionModule {
     companion object {
 
         @Provides
-        fun provideEvacuationProtectionRepository(application: Application, @EvacuationIdQualifier evacuationId: String)
+        fun provideEvacuationProtectionRepository(database: AppDatabase, @EvacuationIdQualifier evacuationId: String)
                 : EvacuationProtectionRepository {
-            return EvacuationProtectionRepository(application, evacuationId)
+            return EvacuationProtectionRepository(database, evacuationId)
         }
     }
 }

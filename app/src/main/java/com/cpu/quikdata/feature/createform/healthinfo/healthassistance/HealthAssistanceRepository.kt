@@ -1,20 +1,17 @@
 package com.cpu.quikdata.feature.createform.healthinfo.healthassistance
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.health.healthassistance.HealthAssistanceRow
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
-import org.joda.time.LocalDate
-import org.joda.time.LocalDateTime
 
-class HealthAssistanceRepository(application: Application, formId: String) :
-    BaseCreatableDataRepository<HealthAssistanceRow>(application) {
+class HealthAssistanceRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseCreatableDataRepository<HealthAssistanceRow>() {
 
-    private val mFormId = formId
     private val mHealthAssistance = mDatabase.healthAssistanceRowDao().getByFormId(formId)
 
     val healthAssistance: LiveData<List<HealthAssistanceRow>>
@@ -31,7 +28,7 @@ class HealthAssistanceRepository(application: Application, formId: String) :
             val row = HealthAssistanceRow(id = generateId(),
                 dateReceived = getDateNowInLong(),
                 dateCreated = getDateTimeNowInLong(),
-                formId = mFormId)
+                formId = formId)
             mDatabase.healthAssistanceRowDao().insert(row)
         }
     }

@@ -1,14 +1,13 @@
 package com.cpu.quikdata.feature.createform.generalinfo.calamityinfo
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
 import com.cpu.quikdata.utils.runOnIoThread
 
-class CalamityInfoRepository(application: Application, formId: String) :
-    BaseRepository<CalamityInfo>(application) {
+class CalamityInfoRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<CalamityInfo>() {
 
     private val mCalamityInfo = mDatabase.calamityInfoDao().getByFormId(formId)
 

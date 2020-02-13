@@ -1,9 +1,9 @@
 package com.cpu.quikdata.di.module.createform
 
 import android.app.Activity
-import android.app.Application
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.CreateFormActivityScope
 import com.cpu.quikdata.di.annotation.FormBundleQualifier
 import com.cpu.quikdata.di.annotation.FormIdQualifier
@@ -47,9 +47,9 @@ abstract class CreateFormSharedModule {
 
         @Provides
         @CreateFormActivityScope
-        fun provideCreateFormRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideCreateFormRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : CreateFormRepository {
-            return CreateFormRepository(application, formId)
+            return CreateFormRepository(database, formId)
         }
 
     }

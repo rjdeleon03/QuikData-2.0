@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature.createform
 
-import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -17,16 +16,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import javax.inject.Inject
 
-class CreateFormRepository @Inject constructor (application: Application, @FormIdQualifier formId: String) {
+class CreateFormRepository @Inject constructor (private val mDatabase: AppDatabase, @FormIdQualifier val formId: String) {
 
-    private val mDatabase = AppDatabase.get(application)
-    private val mFormId = formId
-    private val mForm = mDatabase.formDao().getById(mFormId)
+    private val mForm = mDatabase.formDao().getById(formId)
     private val mFirebaseHelper = FirebaseHelper(FirebaseFirestore.getInstance(), FirebaseStorage.getInstance())
     private val mSaveResult: MediatorLiveData<ProgressNotification> = MediatorLiveData()
-
-    val formId: String
-        get() = mFormId
 
     val form: LiveData<Form>
         get() = mForm
@@ -40,7 +34,7 @@ class CreateFormRepository @Inject constructor (application: Application, @FormI
     fun deleteForm() {
         runOnIoThread {
             // Delete image files associated with the form
-            val caseStories = mDatabase.caseStoriesDao().getByFormIdNonLive(mFormId)
+            val caseStories = mDatabase.caseStoriesDao().getByFormIdNonLive(formId)
             caseStories.images?.forEach {
                 Uri.parse(it.uri).deleteFile()
             }
@@ -57,9 +51,9 @@ class CreateFormRepository @Inject constructor (application: Application, @FormI
             performSaveChangesToFormOnly()
             runOnMainThread {
                 val operation = if (isBasicMode) {
-                    mFirebaseHelper.submitBasicData(mDatabase, mFormId)
+                    mFirebaseHelper.submitBasicData(mDatabase, formId)
                 } else {
-                    mFirebaseHelper.submitAllData(mDatabase, mFormId)
+                    mFirebaseHelper.submitAllData(mDatabase, formId)
                 }
                 mSaveResult.addSource(operation) {
                     mSaveResult.value = it

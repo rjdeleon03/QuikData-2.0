@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodscoping.LivelihoodsCoping
 import com.cpu.quikdata.utils.runOnIoThread
 
-class LivelihoodsCopingRepository(application: Application, formId: String) :
-    BaseRepository<LivelihoodsCoping>(application) {
+class LivelihoodsCopingRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<LivelihoodsCoping>() {
 
     private val mLivelihoodsCoping = mDatabase.livelihoodsCopingDao().getByFormId(formId)
 

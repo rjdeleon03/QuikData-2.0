@@ -1,14 +1,13 @@
 package com.cpu.quikdata.feature.createform.generalinfo.families
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.families.Families
 import com.cpu.quikdata.utils.runOnIoThread
 
-class FamiliesRepository(application: Application, formId: String):
-    BaseRepository<Families>(application) {
+class FamiliesRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<Families>() {
 
     private val mFamilies = mDatabase.familiesDao().getByFormId(formId)
 

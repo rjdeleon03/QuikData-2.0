@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.healthinfo.healthcoping
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.health.healthcoping.HealthCoping
 import com.cpu.quikdata.utils.runOnIoThread
 
-class HealthCopingRepository(application: Application, formId: String) :
-    BaseRepository<HealthCoping>(application) {
+class HealthCopingRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<HealthCoping>() {
 
     private val mHealthCoping = mDatabase.healthCopingDao().getByFormId(formId)
 

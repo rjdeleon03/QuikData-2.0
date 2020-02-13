@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
 import com.cpu.quikdata.utils.runOnIoThread
 
-class SiteInfoRepository(application: Application, formId: String) :
-    BaseRepository<SiteInfo>(application) {
+class SiteInfoRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<SiteInfo>() {
 
     private val mSiteInfo = mDatabase.siteInfoDao().getByEvacuationId(formId)
 

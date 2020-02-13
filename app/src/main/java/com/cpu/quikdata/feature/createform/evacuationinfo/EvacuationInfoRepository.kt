@@ -1,9 +1,9 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
 import com.cpu.quikdata.common.AgeCategories
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.EvacuationItem
 import com.cpu.quikdata.data.evacuation.EvacuationItemDetails
 import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
@@ -16,16 +16,11 @@ import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
-import org.joda.time.LocalDate
-import org.joda.time.LocalDateTime
 
-class EvacuationInfoRepository(application: Application, formId: String) :
-    BaseCreatableDataRepository<EvacuationItemDetails>(application) {
+class EvacuationInfoRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseCreatableDataRepository<EvacuationItemDetails>() {
 
-    private val mFormId = formId
-    private val mEvacuationInfo = mDatabase.evacuationItemDao().getByFormIdForDisplay(mFormId)
-
-    val formId = mFormId
+    private val mEvacuationInfo = mDatabase.evacuationItemDao().getByFormIdForDisplay(formId)
 
     val evacuationInfo: LiveData<List<EvacuationItemDetails>>
         get() = mEvacuationInfo
@@ -44,7 +39,7 @@ class EvacuationInfoRepository(application: Application, formId: String) :
             val evacuationItem = EvacuationItem(
                 id = id,
                 dateCreated = getDateTimeNowInLong(),
-                formId = mFormId)
+                formId = formId)
             mDatabase.evacuationItemDao().insert(evacuationItem)
 
             val siteInfo = SiteInfo(
@@ -53,7 +48,7 @@ class EvacuationInfoRepository(application: Application, formId: String) :
                 evacuationId = id)
             mDatabase.siteInfoDao().insert(siteInfo)
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = EvacuationAgeRow(
                     id = generateId(),
                     type = i,

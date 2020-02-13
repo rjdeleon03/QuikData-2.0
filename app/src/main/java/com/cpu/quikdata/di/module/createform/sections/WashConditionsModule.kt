@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washconditions.WashConditionsRepository
@@ -22,9 +22,9 @@ abstract class WashConditionsModule {
     companion object {
 
         @Provides
-        fun provideWashConditionsRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideWashConditionsRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : WashConditionsRepository {
-            return WashConditionsRepository(application, formId)
+            return WashConditionsRepository(database, formId)
         }
     }
 }

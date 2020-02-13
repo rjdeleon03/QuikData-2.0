@@ -1,8 +1,8 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.EvacuationIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo.SiteInfoFragment
@@ -27,9 +27,9 @@ abstract class EvacuationSiteInfoModule {
     companion object {
 
         @Provides
-        fun provideSiteInfoRepository(application: Application, @EvacuationIdQualifier evacuationId: String)
+        fun provideSiteInfoRepository(database: AppDatabase, @EvacuationIdQualifier evacuationId: String)
                 : SiteInfoRepository {
-            return SiteInfoRepository(application, evacuationId)
+            return SiteInfoRepository(database, evacuationId)
         }
     }
 }

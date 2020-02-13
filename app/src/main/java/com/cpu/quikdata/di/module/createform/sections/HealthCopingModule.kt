@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.healthinfo.healthcoping.HealthCopingRepository
@@ -22,9 +22,9 @@ abstract class HealthCopingModule {
     companion object {
 
         @Provides
-        fun provideHealthCopingRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideHealthCopingRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : HealthCopingRepository {
-            return HealthCopingRepository(application, formId)
+            return HealthCopingRepository(database, formId)
         }
     }
 }

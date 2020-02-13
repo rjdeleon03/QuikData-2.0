@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
 import com.cpu.quikdata.utils.runOnIoThread
 
-class EvacuationAgeRepository(application: Application, formId: String) :
-    BaseRepository<EvacuationAgeRow>(application) {
+class EvacuationAgeRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<EvacuationAgeRow>() {
 
     private val mEvacuationAge = mDatabase.evacuationAgeRowDao().getByEvacuationId(formId)
 

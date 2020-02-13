@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableRepository
@@ -22,9 +22,9 @@ abstract class VulnerableModule {
     companion object {
 
         @Provides
-        fun provideVulnerableRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideVulnerableRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : VulnerableRepository {
-            return VulnerableRepository(application, formId)
+            return VulnerableRepository(database, formId)
         }
     }
 }

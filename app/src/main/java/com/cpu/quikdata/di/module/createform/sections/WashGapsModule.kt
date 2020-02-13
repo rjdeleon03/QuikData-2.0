@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washgaps.WashGapsRepository
@@ -22,9 +22,9 @@ abstract class WashGapsModule {
     companion object {
 
         @Provides
-        fun provideWashGapsRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideWashGapsRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : WashGapsRepository {
-            return WashGapsRepository(application, formId)
+            return WashGapsRepository(database, formId)
         }
     }
 }

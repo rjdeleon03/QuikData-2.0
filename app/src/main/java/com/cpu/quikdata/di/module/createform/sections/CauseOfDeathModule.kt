@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.generalinfo.causeofdeath.CauseOfDeathRepository
@@ -22,9 +22,9 @@ abstract class CauseOfDeathModule {
     companion object {
 
         @Provides
-        fun provideCauseOfDeathRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideCauseOfDeathRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : CauseOfDeathRepository {
-            return CauseOfDeathRepository(application, formId)
+            return CauseOfDeathRepository(database, formId)
         }
     }
 }

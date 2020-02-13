@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesRepository
@@ -22,9 +22,9 @@ abstract class CaseStoriesModule {
     companion object {
 
         @Provides
-        fun provideCaseStoriesRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideCaseStoriesRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : CaseStoriesRepository {
-            return CaseStoriesRepository(application, formId)
+            return CaseStoriesRepository(database, formId)
         }
     }
 }

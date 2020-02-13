@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.watersanitationinfo.washcoping.WashCoping
 import com.cpu.quikdata.utils.runOnIoThread
 
-class WashCopingRepository(application: Application, formId: String) :
-    BaseRepository<WashCoping>(application) {
+class WashCopingRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<WashCoping>() {
 
     private val mWashCoping = mDatabase.washCopingDao().getByFormId(formId)
 

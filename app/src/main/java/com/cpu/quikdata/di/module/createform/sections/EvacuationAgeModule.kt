@@ -1,8 +1,8 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.EvacuationIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeFragment
@@ -27,9 +27,9 @@ abstract class EvacuationAgeModule {
     companion object {
 
         @Provides
-        fun provideEvacuationAgeRepository(application: Application, @EvacuationIdQualifier evacuationId: String)
+        fun provideEvacuationAgeRepository(database: AppDatabase, @EvacuationIdQualifier evacuationId: String)
                 : EvacuationAgeRepository {
-            return EvacuationAgeRepository(application, evacuationId)
+            return EvacuationAgeRepository(database, evacuationId)
         }
     }
 }

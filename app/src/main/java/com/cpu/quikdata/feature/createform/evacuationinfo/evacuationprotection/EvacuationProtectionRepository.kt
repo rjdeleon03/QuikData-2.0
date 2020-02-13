@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationprotection
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.evacuationprotection.EvacuationProtection
 import com.cpu.quikdata.utils.runOnIoThread
 
-class EvacuationProtectionRepository(application: Application, formId: String) :
-    BaseRepository<EvacuationProtection>(application) {
+class EvacuationProtectionRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<EvacuationProtection>() {
 
     private val mEvacuationProtection = mDatabase.evacuationProtectionDao().getByEvacuationId(formId)
 

@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.healthinfo.diseases.DiseasesRepository
@@ -22,9 +22,9 @@ abstract class DiseasesModule {
     companion object {
 
         @Provides
-        fun provideDiseasesRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideDiseasesRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : DiseasesRepository {
-            return DiseasesRepository(application, formId)
+            return DiseasesRepository(database, formId)
         }
     }
 }

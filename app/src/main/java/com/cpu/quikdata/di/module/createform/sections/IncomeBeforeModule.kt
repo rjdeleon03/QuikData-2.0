@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomebefore.IncomeBeforeRepository
@@ -22,9 +22,9 @@ abstract class IncomeBeforeModule {
     companion object {
 
         @Provides
-        fun provideIncomeBeforeRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideIncomeBeforeRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : IncomeBeforeRepository {
-            return IncomeBeforeRepository(application, formId)
+            return IncomeBeforeRepository(database, formId)
         }
     }
 }
