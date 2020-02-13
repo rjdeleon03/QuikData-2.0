@@ -1,7 +1,7 @@
 package com.cpu.quikdata.di.module.createform.sections
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
 import com.cpu.quikdata.feature.createform.formdetailsandbaseline.baselinedata.BaselineDataRepository
@@ -22,9 +22,9 @@ abstract class BaselineDataModule {
     companion object {
 
         @Provides
-        fun provideBaselineDataRepository(application: Application, @FormIdQualifier formId: String)
+        fun provideBaselineDataRepository(database: AppDatabase, @FormIdQualifier formId: String)
                 : BaselineDataRepository {
-            return BaselineDataRepository(application, formId)
+            return BaselineDataRepository(database, formId)
         }
     }
 }
