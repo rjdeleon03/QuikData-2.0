@@ -20,6 +20,9 @@ class InfrastructureDamageFragment : BaseCollapsibleCreateFormFragment<Infrastru
     @Inject
     lateinit var mViewModel: InfrastructureDamageViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: InfrastructureDamageAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,7 @@ class InfrastructureDamageFragment : BaseCollapsibleCreateFormFragment<Infrastru
     }
 
     override fun setupAdapter(expandedItemIndex: Int): InfrastructureDamageAdapter {
-        val adapter = InfrastructureDamageAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         infrastructureDamageRecyclerView.adapter = adapter

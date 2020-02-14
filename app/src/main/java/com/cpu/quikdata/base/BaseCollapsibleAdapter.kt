@@ -20,6 +20,8 @@ abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R
     val expandedItemIndex: Int
         get() = mExpandedItem
 
+    private val mContext = context
+
     override fun createViewHolder(view: View): VH {
         val holder = initCollapsibleViewHolder(view)
         holder.setOnClickListener {

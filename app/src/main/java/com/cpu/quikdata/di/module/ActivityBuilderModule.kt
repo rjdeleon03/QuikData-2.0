@@ -1,6 +1,6 @@
 package com.cpu.quikdata.di.module
 
-import com.cpu.quikdata.di.annotation.CreateFormActivityScope
+import com.cpu.quikdata.di.annotation.ActivityScope
 import com.cpu.quikdata.di.module.createform.CreateFormFragmentsModule
 import com.cpu.quikdata.di.module.createform.CreateFormSharedModule
 import com.cpu.quikdata.feature.createform.CreateFormActivity
@@ -17,7 +17,7 @@ abstract class ActivityBuilderModule {
     @ContributesAndroidInjector
     abstract fun contributeMainActivity(): MainActivity
 
-    @CreateFormActivityScope
+    @ActivityScope
     @ContributesAndroidInjector(
         modules = [CreateFormSharedModule::class, CreateFormFragmentsModule::class]
     )

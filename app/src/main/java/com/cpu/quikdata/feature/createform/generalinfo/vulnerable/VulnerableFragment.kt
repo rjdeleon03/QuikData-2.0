@@ -21,6 +21,9 @@ class VulnerableFragment : BaseCollapsibleCreateFormFragment<VulnerableAdapter, 
     @Inject
     lateinit var mViewModel: VulnerableViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: VulnerableAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +32,7 @@ class VulnerableFragment : BaseCollapsibleCreateFormFragment<VulnerableAdapter, 
     }
 
     override fun setupAdapter(expandedItemIndex: Int): VulnerableAdapter {
-        val adapter = VulnerableAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         vulnerableRecyclerView.adapter = adapter

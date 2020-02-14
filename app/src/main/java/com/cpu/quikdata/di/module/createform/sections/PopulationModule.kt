@@ -19,13 +19,6 @@ import dagger.multibindings.IntoMap
 abstract class PopulationModule {
 
     @Binds
-    abstract fun bindsPopulationAdapter(populationAdapter: PopulationAdapter)
-            : RecyclerView.Adapter<PopulationAdapter.ViewHolder>
-
-    @Binds
-    abstract fun bindsPopulationFragment(populationFragment: PopulationFragment): Fragment
-
-    @Binds
     @IntoMap
     @ViewModelKey(PopulationViewModel::class)
     abstract fun bindsPopulationViewModel(populationViewModel: PopulationViewModel): ViewModel

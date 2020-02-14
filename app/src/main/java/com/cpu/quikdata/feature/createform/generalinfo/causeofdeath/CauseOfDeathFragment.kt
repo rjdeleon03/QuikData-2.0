@@ -20,6 +20,9 @@ class CauseOfDeathFragment : BaseCollapsibleCreateFormFragment<CauseOfDeathAdapt
     @Inject
     lateinit var mViewModel: CauseOfDeathViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: CauseOfDeathAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,7 @@ class CauseOfDeathFragment : BaseCollapsibleCreateFormFragment<CauseOfDeathAdapt
     }
 
     override fun setupAdapter(expandedItemIndex: Int): CauseOfDeathAdapter {
-        val adapter = CauseOfDeathAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         causeOfDeathRecyclerView.adapter = adapter
