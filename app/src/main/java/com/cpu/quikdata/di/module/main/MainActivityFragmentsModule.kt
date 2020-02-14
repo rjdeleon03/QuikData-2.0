@@ -3,6 +3,7 @@ package com.cpu.quikdata.di.module.main
 import com.cpu.quikdata.di.module.main.sections.HomeModule
 import com.cpu.quikdata.di.module.main.sections.NewFormsModule
 import com.cpu.quikdata.di.module.main.sections.PrefilledInfoModule
+import com.cpu.quikdata.feature.main.about.AboutFragment
 import com.cpu.quikdata.feature.main.home.HomeFragment
 import com.cpu.quikdata.feature.main.newforms.NewFormsFragment
 import com.cpu.quikdata.feature.main.prefilledinfo.PrefilledInfoFragment
@@ -26,4 +27,7 @@ abstract class MainActivityFragmentsModule {
         modules = [PrefilledInfoModule::class]
     )
     abstract fun contributePrefilledInfoFragment(): PrefilledInfoFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeAboutFragment(): AboutFragment
 }

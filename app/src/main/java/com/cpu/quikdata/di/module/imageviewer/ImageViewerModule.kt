@@ -1,14 +1,11 @@
-package com.cpu.quikdata.di.module
+package com.cpu.quikdata.di.module.imageviewer
 
 import com.cpu.quikdata.feature.imageviewer.ImageViewerFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-/**
- * Builds independent fragments
- */
 @Module
-abstract class FragmentBuilderModule {
+abstract class ImageViewerModule {
 
     @ContributesAndroidInjector
     abstract fun contributeImageViewerFragment(): ImageViewerFragment
