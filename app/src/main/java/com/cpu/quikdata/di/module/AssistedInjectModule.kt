@@ -1,4 +1,4 @@
-package com.cpu.quikdata.di.module.viewmodel
+package com.cpu.quikdata.di.module
 
 import android.app.Activity
 import android.content.Context

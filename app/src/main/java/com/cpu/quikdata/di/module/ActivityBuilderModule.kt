@@ -3,8 +3,8 @@ package com.cpu.quikdata.di.module
 import com.cpu.quikdata.di.annotation.ActivityScope
 import com.cpu.quikdata.di.module.createform.CreateFormFragmentsModule
 import com.cpu.quikdata.di.module.createform.CreateFormSharedModule
-import com.cpu.quikdata.di.module.main.MainActivityModule
-import com.cpu.quikdata.di.module.viewmodel.AssistedInjectModule
+import com.cpu.quikdata.di.module.main.MainActivityFragmentsModule
+import com.cpu.quikdata.di.module.main.MainActivitySharedModule
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.main.MainActivity
 import dagger.Module
@@ -17,7 +17,9 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBuilderModule {
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = [MainActivityModule::class])
+    @ContributesAndroidInjector(
+        modules = [MainActivitySharedModule::class, MainActivityFragmentsModule::class]
+    )
     abstract fun contributeMainActivity(): MainActivity
 
     @ActivityScope

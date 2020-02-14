@@ -31,6 +31,9 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
     @Inject
     lateinit var mViewModel: EvacuationInfoViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: EvacuationInfoAdapter.Factory
+
     private lateinit var mAdapter: EvacuationInfoAdapter
     private lateinit var mNavController: NavController
     private val mItemLimit = 5
@@ -49,7 +52,7 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
 
         setupClipping(view)
 
-        mAdapter = EvacuationInfoAdapter(context!!, {
+        mAdapter = mAdapterFactory.create({
             val action = EvacuationInfoFragmentDirections
                 .actionEvacuationInfoFragmentToEvacuationContainerFragment(it, true)
             mNavController.navigate(action)

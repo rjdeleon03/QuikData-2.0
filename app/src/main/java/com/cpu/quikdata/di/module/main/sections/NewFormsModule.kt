@@ -1,4 +1,4 @@
-package com.cpu.quikdata.di.module.viewmodel
+package com.cpu.quikdata.di.module.main.sections
 
 import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.common.FirebaseHelper
@@ -12,7 +12,7 @@ import dagger.Provides
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class NewFormsViewModelModule {
+abstract class NewFormsModule {
 
     @Binds
     @IntoMap

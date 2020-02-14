@@ -29,6 +29,9 @@ class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAda
     @Inject
     lateinit var mViewModel: EvacuationAgeViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: EvacuationAgeAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +40,7 @@ class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAda
     }
 
     override fun setupAdapter(expandedItemIndex: Int): EvacuationAgeAdapter {
-        val adapter = EvacuationAgeAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         evacuationAgeRecyclerView.adapter = adapter

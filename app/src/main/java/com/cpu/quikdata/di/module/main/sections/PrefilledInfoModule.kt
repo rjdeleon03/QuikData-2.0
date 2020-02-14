@@ -1,4 +1,4 @@
-package com.cpu.quikdata.di.module.viewmodel
+package com.cpu.quikdata.di.module.main.sections
 
 import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.AppDatabase
@@ -11,7 +11,7 @@ import dagger.Provides
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class PrefilledInfoViewModelModule {
+abstract class PrefilledInfoModule {
 
     @Binds
     @IntoMap

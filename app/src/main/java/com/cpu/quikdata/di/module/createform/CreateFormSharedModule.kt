@@ -8,7 +8,7 @@ import com.cpu.quikdata.di.annotation.ActivityScope
 import com.cpu.quikdata.di.annotation.FormBundleQualifier
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
-import com.cpu.quikdata.di.module.viewmodel.AssistedInjectModule
+import com.cpu.quikdata.di.module.AssistedInjectModule
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.feature.createform.CreateFormActivity.Companion.FORM_ID_KEY
 import com.cpu.quikdata.feature.createform.CreateFormRepository

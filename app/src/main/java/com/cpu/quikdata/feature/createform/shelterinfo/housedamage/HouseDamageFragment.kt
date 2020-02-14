@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_house_damage.*
@@ -21,6 +20,9 @@ class HouseDamageFragment : BaseCollapsibleCreateFormFragment<HouseDamageAdapter
     @Inject
     lateinit var mViewModel: HouseDamageViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: HouseDamageAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +31,7 @@ class HouseDamageFragment : BaseCollapsibleCreateFormFragment<HouseDamageAdapter
     }
 
     override fun setupAdapter(expandedItemIndex: Int): HouseDamageAdapter {
-        val adapter = HouseDamageAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         houseDamageRecyclerView.adapter = adapter
