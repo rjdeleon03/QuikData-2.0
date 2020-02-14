@@ -20,6 +20,9 @@ class DiseasesFragment : BaseCollapsibleCreateFormFragment<DiseasesAdapter, Dise
     @Inject
     lateinit var mViewModel: DiseasesViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: DiseasesAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,7 @@ class DiseasesFragment : BaseCollapsibleCreateFormFragment<DiseasesAdapter, Dise
     }
 
     override fun setupAdapter(expandedItemIndex: Int): DiseasesAdapter {
-        val adapter = DiseasesAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         diseasesRecyclerView.adapter = adapter

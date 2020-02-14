@@ -25,6 +25,9 @@ class FoodSecurityAssistanceFragment :
     @Inject
     lateinit var mViewModel: FoodSecurityAssistanceViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: FoodSecurityAssistanceAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +36,7 @@ class FoodSecurityAssistanceFragment :
     }
 
     override fun setupAdapter(expandedItemIndex: Int): FoodSecurityAssistanceAdapter {
-        val adapter = FoodSecurityAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = mAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         foodSecurityAssistanceRecyclerView.recyclerView.adapter = adapter

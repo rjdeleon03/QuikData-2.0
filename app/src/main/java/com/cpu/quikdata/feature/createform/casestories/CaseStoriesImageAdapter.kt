@@ -11,18 +11,28 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_image.view.*
 
-class CaseStoriesImageAdapter(context: Context,
-                              clickListener: (CaseStoriesImageItem) -> Unit,
-                              deleteClickListener: (CaseStoriesImageItem) -> Unit,
-                              expandedItem: Int = -1) :
+class CaseStoriesImageAdapter @AssistedInject constructor (
+    context: Context,
+    @Assisted onClickListener: (CaseStoriesImageItem) -> Unit,
+    @Assisted onDeleteClickListener: (CaseStoriesImageItem) -> Unit,
+    @Assisted expandedItem: Int = -1) :
     RecyclerView.Adapter<CaseStoriesImageAdapter.ViewHolder>() {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(mOnClickListener: (CaseStoriesImageItem) -> Unit,
+                   mOnDeleteClickListener: (CaseStoriesImageItem) -> Unit,
+                   mExpandedItem: Int): CaseStoriesImageAdapter
+    }
 
     private var mImages: List<CaseStoriesImageItem>? = null
     private val mInflater = LayoutInflater.from(context)
-    private val mOnClickListener = clickListener
-    private val mOnDeleteClickListener = deleteClickListener
+    private val mOnClickListener = onClickListener
+    private val mOnDeleteClickListener = onDeleteClickListener
     private var mExpandedItem = expandedItem
 
     val expandedItemIndex: Int

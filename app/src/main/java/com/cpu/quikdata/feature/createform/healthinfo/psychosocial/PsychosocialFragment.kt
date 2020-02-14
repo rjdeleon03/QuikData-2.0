@@ -20,6 +20,9 @@ class PsychosocialFragment : BaseCollapsibleCreateFormFragment<PsychosocialAdapt
     @Inject
     lateinit var mViewModel: PsychosocialViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: PsychosocialAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,7 @@ class PsychosocialFragment : BaseCollapsibleCreateFormFragment<PsychosocialAdapt
     }
 
     override fun setupAdapter(expandedItemIndex: Int): PsychosocialAdapter {
-        val adapter = PsychosocialAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         psychosocialRecyclerView.adapter = adapter

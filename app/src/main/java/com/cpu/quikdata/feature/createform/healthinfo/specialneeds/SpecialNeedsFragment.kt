@@ -20,6 +20,9 @@ class SpecialNeedsFragment : BaseCollapsibleCreateFormFragment<SpecialNeedsAdapt
     @Inject
     lateinit var mViewModel: SpecialNeedsViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: SpecialNeedsAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,7 @@ class SpecialNeedsFragment : BaseCollapsibleCreateFormFragment<SpecialNeedsAdapt
     }
 
     override fun setupAdapter(expandedItemIndex: Int): SpecialNeedsAdapter {
-        val adapter = SpecialNeedsAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         specialNeedsRecyclerView.adapter = adapter

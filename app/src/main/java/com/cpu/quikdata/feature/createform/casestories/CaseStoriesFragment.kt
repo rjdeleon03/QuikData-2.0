@@ -34,6 +34,9 @@ import javax.inject.Inject
 class CaseStoriesFragment : BaseCreateFormFragment() {
 
     companion object {
+        private const val EXPANDED_ITEM_INDEX_KEY = "EXPANDED_ITEM_INDEX_KEY"
+        private const val ITEM_LIMIT = 5
+
         @JvmStatic
         fun newInstance() = CaseStoriesFragment()
     }
@@ -41,10 +44,11 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     @Inject
     lateinit var mViewModel: CaseStoriesViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: CaseStoriesImageAdapter.Factory
+
     private lateinit var mAdapter: CaseStoriesImageAdapter
     private lateinit var mImagePicker: ImagePicker
-    private val mExpandedItemKey = "EXPANDED_ITEM_INDEX_KEY"
-    private val mItemLimit = 5
     private var mIsItemLimitReached = false
     private var mPreviousItemCount = -1
 
@@ -62,7 +66,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(mExpandedItemKey, mAdapter.expandedItemIndex)
+        outState.putInt(EXPANDED_ITEM_INDEX_KEY, mAdapter.expandedItemIndex)
         super.onSaveInstanceState(outState)
     }
 
@@ -81,11 +85,11 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         }
 
         var expandedItemIndex = -1
-        if (savedInstanceState != null) {
-            expandedItemIndex = savedInstanceState.getInt(mExpandedItemKey, 0)
+        savedInstanceState?.let {
+            expandedItemIndex = savedInstanceState.getInt(EXPANDED_ITEM_INDEX_KEY, 0)
         }
 
-        mAdapter = CaseStoriesImageAdapter(context!!, {
+        mAdapter = mAdapterFactory.create({
             val action = CaseStoriesFragmentDirections.actionCaseStoriesFragmentToImageViewerFragment(it.uri)
             findNavController().navigate(action)
         }, {
@@ -108,7 +112,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
             val images = it.images!!
             mAdapter.setImages(images)
-            mIsItemLimitReached = images.size >= mItemLimit
+            mIsItemLimitReached = images.size >= ITEM_LIMIT
 
             if (mPreviousItemCount != -1 && mPreviousItemCount < images.size) {
                 showToastMessage(R.string.case_stories_images_added)

@@ -24,6 +24,9 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
     @Inject
     lateinit var mViewModel: HealthAssistanceViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: HealthAssistanceAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +35,7 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
     }
 
     override fun setupAdapter(expandedItemIndex: Int): HealthAssistanceAdapter {
-        val adapter = HealthAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = mAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         healthAssistanceRecyclerView.recyclerView.adapter = adapter
