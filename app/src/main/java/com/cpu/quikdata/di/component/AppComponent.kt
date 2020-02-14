@@ -4,7 +4,6 @@ import android.app.Application
 import com.cpu.quikdata.di.module.ActivityBuilderModule
 import com.cpu.quikdata.di.module.AppModule
 import com.cpu.quikdata.di.module.FragmentBuilderModule
-import com.cpu.quikdata.di.module.common.FirebaseModule
 import com.cpu.quikdata.di.module.viewmodel.ViewModelFactoryModule
 import com.cpu.quikdata.feature.QuikDataApp
 import dagger.BindsInstance
@@ -19,8 +18,7 @@ import javax.inject.Singleton
     AppModule::class,
     ActivityBuilderModule::class,
     FragmentBuilderModule::class,
-    ViewModelFactoryModule::class,
-    FirebaseModule::class])
+    ViewModelFactoryModule::class])
 interface AppComponent: AndroidInjector<QuikDataApp> {
 
     @Component.Builder

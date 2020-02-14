@@ -22,11 +22,6 @@ abstract class FragmentBuilderModule {
     abstract fun contributeHomeFragment(): HomeFragment
 
     @ContributesAndroidInjector(
-        modules = [NewFormsViewModelModule::class]
-    )
-    abstract fun contributeNewFormsFragment(): NewFormsFragment
-
-    @ContributesAndroidInjector(
         modules = [PrefilledInfoViewModelModule::class]
     )
     abstract fun contributePrefilledInfoFragment(): PrefilledInfoFragment

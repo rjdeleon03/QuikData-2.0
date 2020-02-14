@@ -9,11 +9,21 @@ import com.cpu.quikdata.common.LivelihoodSubcategories
 import com.cpu.quikdata.customviews.questions.MultipleChoiceQuestion
 import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageComplete
 import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageRow
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_estimated_damage.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class EstimatedDamageAdapter(context: Context, rowSaveListener: (EstimatedDamageComplete) -> Unit, expandedItem: Int = 0) :
+class EstimatedDamageAdapter @AssistedInject constructor (
+    context: Context,
+    @Assisted rowSaveListener: (EstimatedDamageComplete) -> Unit,
+    @Assisted expandedItem: Int = 0) :
     BaseCollapsibleAdapter<EstimatedDamageComplete, EstimatedDamageAdapter.ViewHolder>(context, R.layout.item_estimated_damage, rowSaveListener, expandedItem) {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(rowSaveListener: (EstimatedDamageComplete) -> Unit, expandedItem: Int): EstimatedDamageAdapter
+    }
 
     override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 

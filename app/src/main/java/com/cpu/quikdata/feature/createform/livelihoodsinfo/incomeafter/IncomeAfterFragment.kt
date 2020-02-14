@@ -24,6 +24,9 @@ class IncomeAfterFragment : BaseAssistanceFragment<IncomeAfterAdapter, IncomeAft
     @Inject
     lateinit var mViewModel: IncomeAfterViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: IncomeAfterAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +35,7 @@ class IncomeAfterFragment : BaseAssistanceFragment<IncomeAfterAdapter, IncomeAft
     }
 
     override fun setupAdapter(expandedItemIndex: Int): IncomeAfterAdapter {
-        val adapter = IncomeAfterAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = mAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog({ mViewModel.deleteRow(it) },
                 R.string.income_source_delete_confirmation,
                 R.layout.dialog_income_source_delete,

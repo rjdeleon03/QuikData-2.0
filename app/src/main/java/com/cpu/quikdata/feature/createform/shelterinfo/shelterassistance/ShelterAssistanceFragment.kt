@@ -25,6 +25,9 @@ class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapte
     @Inject
     lateinit var mViewModel: ShelterAssistanceViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: ShelterAssistanceAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +36,7 @@ class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapte
     }
 
     override fun setupAdapter(expandedItemIndex: Int): ShelterAssistanceAdapter {
-        val adapter = ShelterAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = mAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         shelterAssistanceRecyclerView.recyclerView.adapter = adapter

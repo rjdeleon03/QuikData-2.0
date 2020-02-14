@@ -24,6 +24,9 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistan
     @Inject
     lateinit var mViewModel: LivelihoodsAssistanceViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: LivelihoodsAssistanceAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +35,7 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistan
     }
 
     override fun setupAdapter(expandedItemIndex: Int): LivelihoodsAssistanceAdapter {
-        val adapter = LivelihoodsAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = mAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         livelihoodsAssistanceRecyclerView.recyclerView.adapter = adapter

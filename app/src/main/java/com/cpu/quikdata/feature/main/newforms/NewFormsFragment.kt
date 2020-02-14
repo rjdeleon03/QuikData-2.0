@@ -26,6 +26,9 @@ class NewFormsFragment : DaggerFragment() {
     @Inject
     lateinit var mViewModel: NewFormsViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: NewFormsAdapter.Factory
+
     private lateinit var mAdapter: NewFormsAdapter
     private var mDialog: ProgressDialogFragment? = null
 
@@ -53,7 +56,7 @@ class NewFormsFragment : DaggerFragment() {
             R.string.form_item_delete_confirmation,
             R.layout.dialog_form_item_delete,
             R.string.form_item_deleted)}
-        mAdapter = NewFormsAdapter(context!!, submitListener, deleteListener)
+        mAdapter = mAdapterFactory.create(submitListener, deleteListener)
 
         newFormsRecyclerView.recyclerView.adapter = mAdapter
         newFormsAddButton.clickWithGuard {

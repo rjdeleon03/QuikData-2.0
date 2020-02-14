@@ -20,6 +20,9 @@ class EstimatedDamageFragment : BaseCollapsibleCreateFormFragment<EstimatedDamag
     @Inject
     lateinit var mViewModel: EstimatedDamageViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: EstimatedDamageAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,7 @@ class EstimatedDamageFragment : BaseCollapsibleCreateFormFragment<EstimatedDamag
     }
 
     override fun setupAdapter(expandedItemIndex: Int): EstimatedDamageAdapter {
-        val adapter = EstimatedDamageAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         estimatedDamageRecyclerView.adapter = adapter

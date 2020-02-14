@@ -24,6 +24,9 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
     @Inject
     lateinit var mViewModel: WashAssistanceViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: WashAssistanceAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +35,7 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
     }
 
     override fun setupAdapter(expandedItemIndex: Int): WashAssistanceAdapter {
-        val adapter = WashAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = mAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         washAssistanceRecyclerView.recyclerView.adapter = adapter

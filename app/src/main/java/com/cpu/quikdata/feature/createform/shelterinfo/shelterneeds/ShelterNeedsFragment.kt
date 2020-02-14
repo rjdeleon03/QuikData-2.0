@@ -20,6 +20,9 @@ class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapt
     @Inject
     lateinit var mViewModel: ShelterNeedsViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: ShelterNeedsAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,7 @@ class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapt
     }
 
     override fun setupAdapter(expandedItemIndex: Int): ShelterNeedsAdapter {
-        val adapter = ShelterNeedsAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         shelterNeedsRecyclerView.adapter = adapter
