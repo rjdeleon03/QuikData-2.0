@@ -13,14 +13,14 @@ import kotlinx.android.synthetic.main.item_population.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 class PopulationAdapter @AssistedInject constructor (
-    @Assisted context: Context,
+    context: Context,
     @Assisted rowSaveListener: (PopulationRow) -> Unit,
     @Assisted expandedItem: Int = 0) :
     BaseCollapsibleAdapter<PopulationRow, PopulationAdapter.ViewHolder>(context, R.layout.item_population, rowSaveListener, expandedItem) {
 
     @AssistedInject.Factory
     interface Factory {
-        fun create(context: Context, rowSaveListener: (PopulationRow) -> Unit, expandedItem: Int): PopulationAdapter
+        fun create(rowSaveListener: (PopulationRow) -> Unit, expandedItem: Int): PopulationAdapter
     }
 
     override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)

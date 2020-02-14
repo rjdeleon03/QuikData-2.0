@@ -7,15 +7,12 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.cpu.quikdata.data.AppDatabase
-import com.cpu.quikdata.di.module.common.ContextModule
 import com.cpu.quikdata.helpers.SharedPreferencesHelper
-import com.squareup.inject.assisted.dagger2.AssistedModule
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@AssistedModule
-@Module(includes = [AssistedInject_AppModule::class])
+@Module
 class AppModule {
 
     companion object {

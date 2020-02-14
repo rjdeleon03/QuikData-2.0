@@ -1,9 +1,13 @@
 package com.cpu.quikdata.di.module.createform.sections
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
+import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationAdapter
+import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationFragment
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationRepository
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationViewModel
 import dagger.Binds
@@ -13,6 +17,13 @@ import dagger.multibindings.IntoMap
 
 @Module
 abstract class PopulationModule {
+
+    @Binds
+    abstract fun bindsPopulationAdapter(populationAdapter: PopulationAdapter)
+            : RecyclerView.Adapter<PopulationAdapter.ViewHolder>
+
+    @Binds
+    abstract fun bindsPopulationFragment(populationFragment: PopulationFragment): Fragment
 
     @Binds
     @IntoMap
