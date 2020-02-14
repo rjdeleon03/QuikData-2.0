@@ -11,13 +11,11 @@ import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
 abstract class BaseCollapsibleAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context,
                                                                                    layoutId: Int,
-                                                                                   rowSaveListener: (R) -> Unit,
-                                                                                   expandedItem: Int) :
+                                                                                   private val mRowSaveListener: (R) -> Unit,
+                                                                                   protected var mExpandedItem: Int) :
     BaseAsyncInflaterAdapter<VH>(context, layoutId) {
 
-    private val mRowSaveListener = rowSaveListener
     protected var mRows: List<R>? = null
-    protected var mExpandedItem = expandedItem
 
     val expandedItemIndex: Int
         get() = mExpandedItem

@@ -20,6 +20,9 @@ class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, 
     @Inject
     lateinit var mViewModel: PopulationViewModel
 
+    @Inject
+    lateinit var mAdapterFactory: PopulationAdapter.Factory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,7 @@ class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, 
     }
 
     override fun setupAdapter(expandedItemIndex: Int): PopulationAdapter {
-        val adapter = PopulationAdapter(context!!, {
+        val adapter = mAdapterFactory.create(context!!, {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         populationRecyclerView.adapter = adapter

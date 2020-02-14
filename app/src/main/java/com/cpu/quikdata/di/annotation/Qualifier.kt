@@ -18,3 +18,11 @@ annotation class FormBundleQualifier
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class EvacuationBundleQualifier
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class ContextFromActivity
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class ContextFromFragment
