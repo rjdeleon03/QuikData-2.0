@@ -24,9 +24,9 @@ class CaseStoriesImageAdapter @AssistedInject constructor (
 
     @AssistedInject.Factory
     interface Factory {
-        fun create(mOnClickListener: (CaseStoriesImageItem) -> Unit,
-                   mOnDeleteClickListener: (CaseStoriesImageItem) -> Unit,
-                   mExpandedItem: Int): CaseStoriesImageAdapter
+        fun create(onClickListener: (CaseStoriesImageItem) -> Unit,
+                   onDeleteClickListener: (CaseStoriesImageItem) -> Unit,
+                   expandedItem: Int): CaseStoriesImageAdapter
     }
 
     private var mImages: List<CaseStoriesImageItem>? = null
