@@ -7,7 +7,7 @@ import com.cpu.quikdata.PREFILLED_DATA_ID
 @Dao
 interface PrefilledDataDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(prefilledData: PrefilledData)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)

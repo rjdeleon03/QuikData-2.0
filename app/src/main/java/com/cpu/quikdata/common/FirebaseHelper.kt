@@ -39,7 +39,7 @@ class FirebaseHelper @Inject constructor(private val mFirestore: FirebaseFiresto
     }
 
     private fun cancelUploadTasks() {
-        mUploadTasks.forEach {
+        for(it in mUploadTasks) {
             it.cancel()
         }
         mUploadTasks.clear()

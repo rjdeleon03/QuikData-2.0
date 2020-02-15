@@ -232,28 +232,6 @@ abstract class AppDatabase : RoomDatabase() {
     // endregion
 
     companion object {
-
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
-
         const val DATABASE_NAME = "quikdata_database"
-
-        @JvmStatic
-        fun get(context: Context): AppDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null) return tempInstance
-
-            synchronized(this) {
-                val db = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    DATABASE_NAME
-                )
-                    .fallbackToDestructiveMigration()
-                    .build()
-                INSTANCE = db
-                return db
-            }
-        }
     }
 }
