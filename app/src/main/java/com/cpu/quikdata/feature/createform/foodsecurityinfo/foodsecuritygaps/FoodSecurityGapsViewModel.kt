@@ -2,6 +2,7 @@ package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.common.runOnIoThread
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
 import javax.inject.Inject
 
@@ -12,5 +13,5 @@ class FoodSecurityGapsViewModel @Inject constructor (private val mRepository: Fo
         get() = mRepository.foodSecurityGaps
 
     fun updateFoodSecurityGaps(foodSecurityGaps: FoodSecurityGaps) =
-        mRepository.updateData(foodSecurityGaps)
+        runOnIoThread { mRepository.updateData(foodSecurityGaps) }
 }

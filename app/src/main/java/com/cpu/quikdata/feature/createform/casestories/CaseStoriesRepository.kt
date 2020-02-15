@@ -8,7 +8,6 @@ import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.casestories.CaseStoriesComplete
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
 import com.cpu.quikdata.utils.getDateTimeNowInLong
-import com.cpu.quikdata.utils.runOnIoThread
 
 class CaseStoriesRepository(private val mDatabase: AppDatabase, val formId: String) {
 
@@ -17,17 +16,16 @@ class CaseStoriesRepository(private val mDatabase: AppDatabase, val formId: Stri
     val caseStories: LiveData<CaseStoriesComplete>
         get() = mCaseStories
 
-    fun updateCaseStoriesText(data: CaseStories) {
-        runOnIoThread {
-            val oldCaseStoriesText = mCaseStories.value!!.root!!
-            oldCaseStoriesText.copyFrom(data)
-            mDatabase.caseStoriesDao().update(oldCaseStoriesText)
+    suspend fun updateCaseStoriesText(data: CaseStories) {
+        mCaseStories.value?.root?.let {
+            it.copyFrom(data)
+            mDatabase.caseStoriesDao().update(it)
         }
     }
 
-    fun insertImage(uri: String, id: String) {
-        runOnIoThread {
-            val caseStoriesId = mCaseStories.value!!.root!!.id
+    suspend fun insertImage(uri: String, id: String) {
+        mCaseStories.value?.root?.let {
+            val caseStoriesId = it.id
             mDatabase.caseStoriesImageItemDao().insert(CaseStoriesImageItem(
                 id = id,
                 dateCreated = getDateTimeNowInLong(),
@@ -37,10 +35,8 @@ class CaseStoriesRepository(private val mDatabase: AppDatabase, val formId: Stri
         }
     }
 
-    fun deleteImage(data: CaseStoriesImageItem) {
-        runOnIoThread {
-            Uri.parse(data.uri).deleteFile()
-            mDatabase.caseStoriesImageItemDao().delete(data)
-        }
+    suspend fun deleteImage(data: CaseStoriesImageItem) {
+        Uri.parse(data.uri).deleteFile()
+        mDatabase.caseStoriesImageItemDao().delete(data)
     }
 }

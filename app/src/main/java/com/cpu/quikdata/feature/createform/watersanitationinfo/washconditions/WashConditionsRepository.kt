@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
-import com.cpu.quikdata.utils.runOnIoThread
 
 class WashConditionsRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<WashConditions>() {
@@ -14,11 +13,10 @@ class WashConditionsRepository(private val mDatabase: AppDatabase, val formId: S
     val washConditions : LiveData<WashConditions>
         get() = mWashConditions
 
-    override fun updateData(data: WashConditions) {
-        runOnIoThread {
-            val oldConditions = mWashConditions.value!!
-            oldConditions.copyFrom(data)
-            mDatabase.washConditionsDao().update(oldConditions)
+    override suspend fun updateData(data: WashConditions) {
+        mWashConditions.value?.let {
+            it.copyFrom(data)
+            mDatabase.washConditionsDao().update(it)
         }
     }
 }

@@ -5,13 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.cpu.quikdata.*
 import com.cpu.quikdata.data.AppDatabase
-import com.cpu.quikdata.utils.runOnIoThread
-import com.cpu.quikdata.utils.runOnMainThread
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.WriteBatch
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 enum class ProgressNotification {
@@ -23,7 +24,8 @@ enum class ProgressNotification {
     CANCELLED
 }
 
-class FirebaseHelper @Inject constructor(private val mFirestore: FirebaseFirestore,
+class FirebaseHelper @Inject constructor(private val mDatabase: AppDatabase,
+                                         private val mFirestore: FirebaseFirestore,
                                          private val mStorage: FirebaseStorage) {
 
     private val mUploadTasks = arrayListOf<UploadTask>()
@@ -45,266 +47,293 @@ class FirebaseHelper @Inject constructor(private val mFirestore: FirebaseFiresto
         mUploadTasks.clear()
     }
 
-    private fun getOnProgressListener(resultLiveData: MutableLiveData<ProgressNotification>) = { pn: ProgressNotification ->
-        runOnMainThread {
+    private fun getOnProgressListener(resultLiveData: MutableLiveData<ProgressNotification>):
+            (ProgressNotification) -> Unit = { pn: ProgressNotification ->
             if (mIsCancelled) {
                 resultLiveData.value = ProgressNotification.CANCELLED
-                return@runOnMainThread
-            }
-            // System.out.println("============ $pn =============")
-            when (pn) {
-                ProgressNotification.FINISHED,
-                ProgressNotification.CANCELLED,
-                ProgressNotification.ERROR_OCCURRED -> {
-                    if (resultLiveData.value != pn) {
+            } else {
+                // System.out.println("============ $pn =============")
+                when (pn) {
+                    ProgressNotification.FINISHED,
+                    ProgressNotification.CANCELLED,
+                    ProgressNotification.ERROR_OCCURRED -> {
+                        if (resultLiveData.value != pn) {
+                            resultLiveData.value = pn
+                        }
+                    }
+                    else -> {
                         resultLiveData.value = pn
                     }
                 }
-                else -> {
-                    resultLiveData.value = pn
-                }
             }
-        }
     }
 
     // region Submission methods
 
-    fun submitBasicData(database: AppDatabase, formId: String) : LiveData<ProgressNotification> {
+    suspend fun submitBasicData(formId: String) : LiveData<ProgressNotification> {
         cancelUploadTasks()
         mIsCancelled = false
         val resultLiveData = MutableLiveData<ProgressNotification>()
         val progressListener = getOnProgressListener(resultLiveData)
 
-        runOnIoThread {
+        withContext(Dispatchers.IO) {
             runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pnl ->
-                val batch = mFirestore.batch()
-                submitFormDetails(database, formId, batch)
-                submitGeneralInformation(database, formId, batch)
-                submitCaseStories(database, formId, batch, progressListener, pnl)
-                batch.commit()
-                    .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
-                    .addOnSuccessListener {
-                        progressListener(ProgressNotification.FORM_SUBMITTED)
-                        pnl()
-                    }
+
+                launch(Dispatchers.IO) {
+                    val batch = mFirestore.batch()
+                    submitFormDetails(formId, batch)
+                    submitGeneralInformation(formId, batch)
+                    submitCaseStories(formId, batch, progressListener, pnl)
+                    batch.commit()
+                        .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
+                        .addOnSuccessListener {
+                            progressListener(ProgressNotification.FORM_SUBMITTED)
+                            pnl()
+                        }
+                }
             }
         }
 
         return resultLiveData
     }
 
-    fun submitAllData(database: AppDatabase, formId: String) : LiveData<ProgressNotification> {
+    suspend fun submitAllData(formId: String) : LiveData<ProgressNotification> {
         cancelUploadTasks()
         mIsCancelled = false
         val resultLiveData = MutableLiveData<ProgressNotification>()
         val progressListener = getOnProgressListener(resultLiveData)
 
-        runOnIoThread {
-            val formData = database.formDao().getFormDataNonLive(formId)
+        withContext(Dispatchers.IO) {
+            val formData = mDatabase.formDao().getFormDataNonLive(formId)
             runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pnl ->
-                val batch = mFirestore.batch()
-                submitFormDetails(database, formId, batch)
-                submitGeneralInformation(database, formId, batch)
-                submitCaseStories(database, formId, batch, progressListener, pnl)
+                launch(Dispatchers.IO) {
+                    val batch = mFirestore.batch()
+                    submitFormDetails(formId, batch)
+                    submitGeneralInformation(formId, batch)
+                    submitCaseStories(formId, batch, progressListener, pnl)
 
-                formData.form?.includeShelter?.let { submitShelterInformation(database, formId, batch) }
-                formData.form?.includeFood?.let { submitFoodSecurity(database, formId, batch) }
-                formData.form?.includeLivelihoods?.let { submitLivelihoods(database, formId, batch) }
-                formData.form?.includeHealth?.let { submitHealthInformation(database, formId, batch) }
-                formData.form?.includeWash?.let { submitWashInformation(database, formId, batch) }
-                formData.form?.includeEvacuation?.let { submitEvacuationInformation(database, formId, batch) }
-
-                batch.commit()
-                    .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
-                    .addOnSuccessListener {
-                        progressListener(ProgressNotification.FORM_SUBMITTED)
-                        pnl()
+                    formData.form?.includeShelter?.let {
+                        submitShelterInformation(
+                            formId,
+                            batch
+                        )
                     }
+                    formData.form?.includeFood?.let { submitFoodSecurity(formId, batch) }
+                    formData.form?.includeLivelihoods?.let {
+                        submitLivelihoods(
+                            formId,
+                            batch
+                        )
+                    }
+                    formData.form?.includeHealth?.let {
+                        submitHealthInformation(
+                            formId,
+                            batch
+                        )
+                    }
+                    formData.form?.includeWash?.let {
+                        submitWashInformation(
+                            formId,
+                            batch
+                        )
+                    }
+                    formData.form?.includeEvacuation?.let {
+                        submitEvacuationInformation(
+                            formId,
+                            batch
+                        )
+                    }
+
+                    batch.commit()
+                        .addOnFailureListener { progressListener(ProgressNotification.ERROR_OCCURRED) }
+                        .addOnSuccessListener {
+                            progressListener(ProgressNotification.FORM_SUBMITTED)
+                            pnl()
+                        }
+                }
             }
         }
 
         return resultLiveData
     }
 
-    private fun submitFormDetails(database: AppDatabase, formId: String, batch:WriteBatch) {
-        run {
-            val section = database.formDao().getFormDataNonLive(formId)
-            batch.setTask(mFirestore.collection(FIREBASE_KEY_FORM).document(section.form!!.id), section)
-        }
+    private suspend fun submitFormDetails(formId: String, batch:WriteBatch) {
+        val section = mDatabase.formDao().getFormDataNonLive(formId)
+        batch.setTask(mFirestore.collection(FIREBASE_KEY_FORM).document(section.form!!.id), section)
     }
 
-    private fun submitGeneralInformation(database: AppDatabase, formId: String, batch:WriteBatch) {
+    private fun submitGeneralInformation(formId: String, batch:WriteBatch) {
         run {
-            val section = database.calamityInfoDao().getByFormIdNonLive(formId)
+            val section = mDatabase.calamityInfoDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_CALAMITY_INFO).document(section.id), section)
         }
         run {
-            val section = database.populationRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.populationRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_POPULATION).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.familiesDao().getByFormIdNonLive(formId)
+            val section = mDatabase.familiesDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_FAMILIES).document(section.id), section)
         }
         run {
-            val section = database.vulnerableRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.vulnerableRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_VULNERABLE).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.casualtiesRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.casualtiesRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_CASUALTIES).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.causeOfDeathRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.causeOfDeathRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_CAUSE_OF_DEATH).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.infrastructureDamageRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.infrastructureDamageRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_INFRASTRUCTURE).document(formId), ListWrapper(formId, section))
         }
     }
 
-    private fun submitShelterInformation(database: AppDatabase, formId: String, batch:WriteBatch) {
+    private fun submitShelterInformation(formId: String, batch:WriteBatch) {
         run {
-            val section = database.houseDamageRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.houseDamageRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_HOUSE_DAMAGE).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.shelterCopingDao().getByFormIdNonLive(formId)
+            val section = mDatabase.shelterCopingDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_SHELTER_COPING).document(section.id), section)
         }
         run {
-            val section = database.shelterNeedsRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.shelterNeedsRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_SHELTER_NEEDS).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.shelterAssistanceRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.shelterAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_SHELTER_ASSISTANCE).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.shelterGapsDao().getByFormIdNonLive(formId)
+            val section = mDatabase.shelterGapsDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_SHELTER_GAPS).document(section.id), section)
         }
     }
 
-    private fun submitFoodSecurity(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private fun submitFoodSecurity(formId: String, batch: WriteBatch) {
         run {
-            val section = database.foodSecurityImpactDao().getByFormIdNonLive(formId)
+            val section = mDatabase.foodSecurityImpactDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_FOOD_IMPACT).document(section.id), section)
         }
         run {
-            val section = database.foodSecurityCopingDao().getByFormIdNonLive(formId)
+            val section = mDatabase.foodSecurityCopingDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_FOOD_COPING).document(section.id), section)
         }
         run {
-            val section = database.foodSecurityNeedsDao().getByFormIdNonLive(formId)
+            val section = mDatabase.foodSecurityNeedsDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_FOOD_NEEDS).document(section.id), section)
         }
         run {
-            val section = database.foodSecurityAssistanceRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.foodSecurityAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_FOOD_ASSISTANCE).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.foodSecurityGapsDao().getByFormIdNonLive(formId)
+            val section = mDatabase.foodSecurityGapsDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_FOOD_GAPS).document(section.id), section)
         }
     }
 
-    private fun submitLivelihoods(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private fun submitLivelihoods(formId: String, batch: WriteBatch) {
         run {
-            val section = database.incomeBeforeRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.incomeBeforeRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_INCOME_BEFORE).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.incomeAfterRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.incomeAfterRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_INCOME_AFTER).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.estimatedDamageRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.estimatedDamageRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_ESTIMATED_DAMAGE).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.livelihoodsCopingDao().getByFormIdNonLive(formId)
+            val section = mDatabase.livelihoodsCopingDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_LIVELIHOODS_COPING).document(section.id), section)
         }
         run {
-            val section = database.livelihoodsNeedsDao().getByFormIdNonLive(formId)
+            val section = mDatabase.livelihoodsNeedsDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_LIVELIHOODS_NEEDS).document(section.id), section)
         }
         run {
-            val section = database.livelihoodsAssistanceRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.livelihoodsAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_LIVELIHOODS_ASSISTANCE).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.livelihoodsGapsDao().getByFormIdNonLive(formId)
+            val section = mDatabase.livelihoodsGapsDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_LIVELIHOODS_GAPS).document(section.id), section)
         }
     }
 
-    private fun submitHealthInformation(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private fun submitHealthInformation(formId: String, batch: WriteBatch) {
         run {
-            val section = database.diseasesRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.diseasesRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_DISEASES).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.specialNeedsRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.specialNeedsRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_SPECIAL_NEEDS).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.psychosocialRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.psychosocialRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_PSYCHOSOCIAL).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.healthCopingDao().getByFormIdNonLive(formId)
+            val section = mDatabase.healthCopingDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_HEALTH_COPING).document(section.id), section)
         }
         run {
-            val section = database.healthAssistanceRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.healthAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_HEALTH_ASSISTANCE).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.healthGapsDao().getByFormIdNonLive(formId)
+            val section = mDatabase.healthGapsDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_HEALTH_GAPS).document(section.id), section)
         }
     }
 
-    private fun submitWashInformation(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private fun submitWashInformation(formId: String, batch: WriteBatch) {
         run {
-            val section = database.washConditionsDao().getByFormIdNonLive(formId)
+            val section = mDatabase.washConditionsDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_WASH_CONDITIONS).document(section.id), section)
         }
         run {
-            val section = database.washCopingDao().getByFormIdNonLive(formId)
+            val section = mDatabase.washCopingDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_WASH_COPING).document(section.id), section)
         }
         run {
-            val section = database.washAssistanceRowDao().getByFormIdNonLive(formId)
+            val section = mDatabase.washAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_WASH_ASSISTANCE).document(formId), ListWrapper(formId, section))
         }
         run {
-            val section = database.washGapsDao().getByFormIdNonLive(formId)
+            val section = mDatabase.washGapsDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_WASH_GAPS).document(section.id), section)
         }
     }
 
-    private fun submitEvacuationInformation(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private fun submitEvacuationInformation(formId: String, batch: WriteBatch) {
         run {
-            val section = database.evacuationItemDao().getByFormIdNonLive(formId)
+            val section = mDatabase.evacuationItemDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_EVACUATION).document(formId), ListWrapper(formId, section))
         }
     }
 
-    private fun submitCaseStories(database: AppDatabase, formId: String, batch: WriteBatch,
+    private fun submitCaseStories(formId: String, batch: WriteBatch,
                                   onProgressListener: (ProgressNotification) -> Any,
                                   completionListener: () -> Any) {
         run {
-            val listener = { progress : ProgressNotification ->
+            val listener: (ProgressNotification) -> Any = { progress : ProgressNotification ->
                 onProgressListener(progress)
                 if (progress == ProgressNotification.IMAGE_UPLOAD_COMPLETED) {
                     completionListener()
                 }
             }
-            val section = database.caseStoriesDao().getByFormIdNonLive(formId)
+            val section = mDatabase.caseStoriesDao().getByFormIdNonLive(formId)
             batch.setTask(mFirestore.collection(FIREBASE_KEY_CASE_STORIES).document(section.root!!.id), section)
             if (section.images != null) {
                 runWithSuccessCounter(section.images!!.size, listener, ProgressNotification.IMAGE_UPLOAD_COMPLETED) { pn ->

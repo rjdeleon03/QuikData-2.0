@@ -8,10 +8,10 @@ import com.cpu.quikdata.PREFILLED_DATA_ID
 interface PrefilledDataDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(prefilledData: PrefilledData)
+    suspend fun insert(prefilledData: PrefilledData)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(prefilledData: PrefilledData)
+    suspend fun update(prefilledData: PrefilledData)
 
     @Query("SELECT * FROM prefilled_data WHERE id = :id")
     fun get(id: String = PREFILLED_DATA_ID): LiveData<PrefilledData>

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
-import com.cpu.quikdata.utils.runOnIoThread
 
 class PsychosocialRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<PsychosocialRow>() {
@@ -14,9 +13,7 @@ class PsychosocialRepository(private val mDatabase: AppDatabase, val formId: Str
     val psychosocial: LiveData<List<PsychosocialRow>>
         get() = mPsychosocial
 
-    override fun updateData(data: PsychosocialRow) {
-        runOnIoThread {
-            mDatabase.psychosocialRowDao().update(data)
-        }
+    override suspend fun updateData(data: PsychosocialRow) {
+        mDatabase.psychosocialRowDao().update(data)
     }
 }

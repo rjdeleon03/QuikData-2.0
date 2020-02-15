@@ -40,7 +40,6 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
-import com.cpu.quikdata.utils.runOnIoThread
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -276,14 +275,12 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
         }
     }
 
-    fun deleteForm(formComplete: FormComplete) {
-        runOnIoThread {
-            mDatabase.formDao().delete(formComplete.form!!)
-        }
+    suspend fun deleteForm(formComplete: FormComplete) {
+        mDatabase.formDao().delete(formComplete.form!!)
     }
 
-    fun submitForm(formId: String) {
-        val operation = mFirebaseHelper.submitAllData(mDatabase, formId)
+    suspend fun submitForm(formId: String) {
+        val operation = mFirebaseHelper.submitAllData(formId)
         mSaveResult.addSource(operation) {
             mSaveResult.value = it
             if (it == ProgressNotification.FINISHED ||

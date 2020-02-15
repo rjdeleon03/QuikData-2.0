@@ -16,18 +16,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
 import com.cpu.quikdata.dialog.ConfirmationDialogFragment
-import com.cpu.quikdata.dialog.ProgressDialogFragment
-import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.joda.time.format.DateTimeFormat
 import java.io.File
-import java.lang.Exception
 
 fun <T> LiveData<T>.observeOnly(lifecycleOwner: LifecycleOwner) {
     observe(lifecycleOwner, Observer {  })
@@ -176,13 +173,16 @@ fun Context.showToast(textId: Int) {
 }
 
 fun Uri.deleteFile(): Boolean {
-    val file = File(path)
-    return try {
-        file.delete()
-        true
-    } catch (ex: Exception) {
-        false
+    path?.let {
+        val file = File(it)
+        return try {
+            file.delete()
+            true
+        } catch (ex: Exception) {
+            false
+        }
     }
+    return false
 }
 
 fun LiveData<ProgressNotification>.observeProgress(lifecycleOwner: LifecycleOwner,
@@ -209,39 +209,23 @@ fun LiveData<ProgressNotification>.observeProgress(lifecycleOwner: LifecycleOwne
     })
 }
 
-
-/*
-fun RecyclerView.setupTapToExpand(context: Context) {
-var startX = 0F
-var startY = 0F
-this.setOnTouchListener { _, event ->
-    when (event.action) {
-        MotionEvent.ACTION_DOWN -> {
-            startX = event.x
-            startY = event.y
-        }
-        MotionEvent.ACTION_UP -> {
-            if (isClickAction(startX, startY, event.x, event.y, context)) {
-                this.children.forEach {
-                    if (it is CollapsibleContainer) {
-                        val viewRect = Rect()
-                        it.getHitRect(viewRect)
-                        if (viewRect.contains(event.x.roundToInt(), event.y.roundToInt())) {
-                            it.expand()
-                        } else {
-                            it.collapse()
-                        }
-                    }
-                }
-            }
-        }
-    }
-    false
-}
+/**
+ * For running coroutines involving IO operations in ViewModel
+ */
+fun ViewModel.runOnIoThread(task: suspend () -> Unit) {
+    viewModelScope.launch(Dispatchers.IO) { task() }
 }
 
-private fun isClickAction(beforeX: Float, beforeY: Float, afterX: Float, afterY: Float, context: Context): Boolean{
-    val tolerance = ViewConfiguration.get(context).scaledTouchSlop
-    return Math.abs(afterX - beforeX) <= tolerance && Math.abs(afterY - beforeY) <= tolerance
+/**
+ * For running coroutines involving heavy computations in ViewModel
+ */
+fun ViewModel.runOnDefaultThread(task: suspend () -> Unit) {
+    viewModelScope.launch(Dispatchers.Default) { task() }
 }
-*/
+
+/**
+ * For running coroutines involving UI operations in ViewModel
+ */
+fun ViewModel.runOnUiThread(task: suspend () -> Unit) {
+    viewModelScope.launch(Dispatchers.Main) { task() }
+}

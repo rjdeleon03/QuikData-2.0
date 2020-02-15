@@ -7,7 +7,6 @@ import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRo
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
-import com.cpu.quikdata.utils.runOnIoThread
 
 class WashAssistanceRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseCreatableDataRepository<WashAssistanceRow>() {
@@ -17,25 +16,19 @@ class WashAssistanceRepository(private val mDatabase: AppDatabase, val formId: S
     val washAssistance: LiveData<List<WashAssistanceRow>>
         get() = mWashAssistance
 
-    override fun updateData(data: WashAssistanceRow) {
-        runOnIoThread {
-            mDatabase.washAssistanceRowDao().update(data)
-        }
+    override suspend fun updateData(data: WashAssistanceRow) {
+        mDatabase.washAssistanceRowDao().update(data)
     }
 
-    override fun createData(id: String) {
-        runOnIoThread {
-            val row = WashAssistanceRow(id = generateId(),
-                dateReceived = getDateNowInLong(),
-                dateCreated = getDateTimeNowInLong(),
-                formId = formId)
-            mDatabase.washAssistanceRowDao().insert(row)
-        }
+    override suspend fun createData(id: String) {
+        val row = WashAssistanceRow(id = generateId(),
+            dateReceived = getDateNowInLong(),
+            dateCreated = getDateTimeNowInLong(),
+            formId = formId)
+        mDatabase.washAssistanceRowDao().insert(row)
     }
 
-    override fun deleteData(data: WashAssistanceRow) {
-        runOnIoThread {
-            mDatabase.washAssistanceRowDao().delete(data)
-        }
+    override suspend fun deleteData(data: WashAssistanceRow) {
+        mDatabase.washAssistanceRowDao().delete(data)
     }
 }

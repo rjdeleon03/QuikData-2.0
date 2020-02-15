@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
-import com.cpu.quikdata.utils.runOnIoThread
 
 class HouseDamageRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<HouseDamageRow>() {
@@ -14,9 +13,7 @@ class HouseDamageRepository(private val mDatabase: AppDatabase, val formId: Stri
     val houseDamage: LiveData<List<HouseDamageRow>>
         get() = mHouseDamage
 
-    override fun updateData(data: HouseDamageRow) {
-        runOnIoThread {
-            mDatabase.houseDamageRowDao().update(data)
-        }
+    override suspend fun updateData(data: HouseDamageRow) {
+        mDatabase.houseDamageRowDao().update(data)
     }
 }

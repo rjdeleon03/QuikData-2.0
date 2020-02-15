@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRow
-import com.cpu.quikdata.utils.runOnIoThread
 
 class CauseOfDeathRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<CauseOfDeathRow>() {
@@ -14,9 +13,7 @@ class CauseOfDeathRepository(private val mDatabase: AppDatabase, val formId: Str
     val causesOfDeath: LiveData<List<CauseOfDeathRow>>
         get() = mCausesOfDeath
 
-    override fun updateData(data: CauseOfDeathRow) {
-        runOnIoThread {
-            mDatabase.causeOfDeathRowDao().update(data)
-        }
+    override suspend fun updateData(data: CauseOfDeathRow) {
+        mDatabase.causeOfDeathRowDao().update(data)
     }
 }

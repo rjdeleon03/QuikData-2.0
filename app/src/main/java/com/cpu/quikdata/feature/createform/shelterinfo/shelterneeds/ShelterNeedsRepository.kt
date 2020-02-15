@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.shelterinfo.shelterneedsrow.ShelterNeedsRow
-import com.cpu.quikdata.utils.runOnIoThread
 
 class ShelterNeedsRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<ShelterNeedsRow>() {
@@ -14,9 +13,7 @@ class ShelterNeedsRepository(private val mDatabase: AppDatabase, val formId: Str
     val shelterNeeds: LiveData<List<ShelterNeedsRow>>
         get() = mShelterNeeds
 
-    override fun updateData(data: ShelterNeedsRow) {
-        runOnIoThread {
-            mDatabase.shelterNeedsRowDao().update(data)
-        }
+    override suspend fun updateData(data: ShelterNeedsRow) {
+        mDatabase.shelterNeedsRowDao().update(data)
     }
 }

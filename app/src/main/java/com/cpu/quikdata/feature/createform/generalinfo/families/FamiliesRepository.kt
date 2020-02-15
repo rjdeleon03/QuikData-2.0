@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.families.Families
-import com.cpu.quikdata.utils.runOnIoThread
 
 class FamiliesRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<Families>() {
@@ -14,11 +13,10 @@ class FamiliesRepository(private val mDatabase: AppDatabase, val formId: String)
     val families: LiveData<Families>
         get() = mFamilies
 
-    override fun updateData(data: Families) {
-        runOnIoThread {
-            val oldFamilies = mFamilies.value!!
-            oldFamilies.copyFrom(data)
-            mDatabase.familiesDao().update(oldFamilies)
+    override suspend fun updateData(data: Families) {
+        mFamilies.value?.let {
+            it.copyFrom(data)
+            mDatabase.familiesDao().update(it)
         }
     }
 }

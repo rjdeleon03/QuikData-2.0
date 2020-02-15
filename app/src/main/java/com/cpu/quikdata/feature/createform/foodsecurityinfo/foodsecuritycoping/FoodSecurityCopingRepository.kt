@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
-import com.cpu.quikdata.utils.runOnIoThread
 
 class FoodSecurityCopingRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<FoodSecurityCoping>() {
@@ -14,11 +13,10 @@ class FoodSecurityCopingRepository(private val mDatabase: AppDatabase, val formI
     val foodSecurityCoping : LiveData<FoodSecurityCoping>
         get() = mFoodSecurityCoping
 
-    override fun updateData(data: FoodSecurityCoping) {
-        runOnIoThread {
-            val oldCoping = mFoodSecurityCoping.value!!
-            oldCoping.copyFrom(data)
-            mDatabase.foodSecurityCopingDao().update(oldCoping)
+    override suspend fun updateData(data: FoodSecurityCoping) {
+        mFoodSecurityCoping.value?.let{
+            it.copyFrom(data)
+            mDatabase.foodSecurityCopingDao().update(it)
         }
     }
 }

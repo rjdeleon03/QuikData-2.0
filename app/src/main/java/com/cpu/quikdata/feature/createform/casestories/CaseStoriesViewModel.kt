@@ -2,6 +2,7 @@ package com.cpu.quikdata.feature.createform.casestories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.common.runOnIoThread
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.casestories.CaseStoriesComplete
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
@@ -13,9 +14,12 @@ class CaseStoriesViewModel @Inject constructor (private val mRepository: CaseSto
     val caseStories: LiveData<CaseStoriesComplete>
         get() = mRepository.caseStories
 
-    fun updateCaseStoriesText(data: CaseStories) = mRepository.updateCaseStoriesText(data)
+    fun updateCaseStoriesText(data: CaseStories) =
+        runOnIoThread { mRepository.updateCaseStoriesText(data) }
 
-    fun insertImage(uri: String, id: String) = mRepository.insertImage(uri, id)
+    fun insertImage(uri: String, id: String) =
+        runOnIoThread { mRepository.insertImage(uri, id) }
 
-    fun deleteImage(data: CaseStoriesImageItem) = mRepository.deleteImage(data)
+    fun deleteImage(data: CaseStoriesImageItem) =
+        runOnIoThread { mRepository.deleteImage(data) }
 }

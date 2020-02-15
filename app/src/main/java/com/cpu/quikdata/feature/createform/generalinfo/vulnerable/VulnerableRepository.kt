@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
-import com.cpu.quikdata.utils.runOnIoThread
 
 class VulnerableRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<VulnerableRow>() {
@@ -14,9 +13,7 @@ class VulnerableRepository(private val mDatabase: AppDatabase, val formId: Strin
     val vulnerable: LiveData<List<VulnerableRow>>
         get() = mVulnerable
 
-    override fun updateData(data: VulnerableRow) {
-        runOnIoThread {
-            mDatabase.vulnerableRowDao().update(data)
-        }
+    override suspend fun updateData(data: VulnerableRow) {
+        mDatabase.vulnerableRowDao().update(data)
     }
 }

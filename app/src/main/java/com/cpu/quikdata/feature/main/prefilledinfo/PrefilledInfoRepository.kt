@@ -13,9 +13,7 @@ class PrefilledInfoRepository(private val mDatabase: AppDatabase) {
     val prefilledData: LiveData<PrefilledData>
         get() = mDatabase.prefilledDataDao().get()
 
-    fun updatePrefilledData(prefilledData: PrefilledData) {
-        CoroutineScope(Job() + Dispatchers.Main).launch(Dispatchers.IO) {
-            mDatabase.prefilledDataDao().update(prefilledData)
-        }
+    suspend fun updatePrefilledData(prefilledData: PrefilledData) {
+        mDatabase.prefilledDataDao().update(prefilledData)
     }
 }

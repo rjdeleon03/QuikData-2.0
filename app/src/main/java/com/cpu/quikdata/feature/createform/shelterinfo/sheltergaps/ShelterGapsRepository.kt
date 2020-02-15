@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
-import com.cpu.quikdata.utils.runOnIoThread
 
 class ShelterGapsRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<ShelterGaps>() {
@@ -14,11 +13,10 @@ class ShelterGapsRepository(private val mDatabase: AppDatabase, val formId: Stri
     val shelterGaps: LiveData<ShelterGaps>
         get() = mShelterGaps
 
-    override fun updateData(data: ShelterGaps) {
-        runOnIoThread {
-            val oldShelterGapsInfo = mShelterGaps.value!!
-            oldShelterGapsInfo.copyFrom(data)
-            mDatabase.shelterGapsDao().update(oldShelterGapsInfo)
+    override suspend fun updateData(data: ShelterGaps) {
+        mShelterGaps.value?.let {
+            it.copyFrom(data)
+            mDatabase.shelterGapsDao().update(it)
         }
     }
 }

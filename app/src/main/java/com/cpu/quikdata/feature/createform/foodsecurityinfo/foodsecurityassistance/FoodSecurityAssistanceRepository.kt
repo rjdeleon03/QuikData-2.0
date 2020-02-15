@@ -7,7 +7,6 @@ import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurit
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
-import com.cpu.quikdata.utils.runOnIoThread
 
 class FoodSecurityAssistanceRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseCreatableDataRepository<FoodSecurityAssistanceRow>() {
@@ -17,25 +16,19 @@ class FoodSecurityAssistanceRepository(private val mDatabase: AppDatabase, val f
     val foodSecurityAssistance: LiveData<List<FoodSecurityAssistanceRow>>
         get() = mFoodSecurityAssistance
 
-    override fun updateData(data: FoodSecurityAssistanceRow) {
-        runOnIoThread {
-            mDatabase.foodSecurityAssistanceRowDao().update(data)
-        }
+    override suspend fun updateData(data: FoodSecurityAssistanceRow) {
+        mDatabase.foodSecurityAssistanceRowDao().update(data)
     }
 
-    override fun createData(id: String) {
-        runOnIoThread {
-            val row = FoodSecurityAssistanceRow(id = generateId(),
-                dateReceived = getDateNowInLong(),
-                dateCreated = getDateTimeNowInLong(),
-                formId = formId)
-            mDatabase.foodSecurityAssistanceRowDao().insert(row)
-        }
+    override suspend fun createData(id: String) {
+        val row = FoodSecurityAssistanceRow(id = generateId(),
+            dateReceived = getDateNowInLong(),
+            dateCreated = getDateTimeNowInLong(),
+            formId = formId)
+        mDatabase.foodSecurityAssistanceRowDao().insert(row)
     }
 
-    override fun deleteData(data: FoodSecurityAssistanceRow) {
-        runOnIoThread {
-            mDatabase.foodSecurityAssistanceRowDao().delete(data)
-        }
+    override suspend fun deleteData(data: FoodSecurityAssistanceRow) {
+        mDatabase.foodSecurityAssistanceRowDao().delete(data)
     }
 }

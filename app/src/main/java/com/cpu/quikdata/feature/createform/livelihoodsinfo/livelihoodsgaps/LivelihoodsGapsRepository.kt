@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsgaps.LivelihoodsGaps
-import com.cpu.quikdata.utils.runOnIoThread
 
 class LivelihoodsGapsRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<LivelihoodsGaps>() {
@@ -14,11 +13,10 @@ class LivelihoodsGapsRepository(private val mDatabase: AppDatabase, val formId: 
     val livelihoodsGaps : LiveData<LivelihoodsGaps>
         get() = mLivelihoodsGaps
 
-    override fun updateData(data: LivelihoodsGaps) {
-        runOnIoThread {
-            val oldGaps = mLivelihoodsGaps.value!!
-            oldGaps.copyFrom(data)
-            mDatabase.livelihoodsGapsDao().update(oldGaps)
+    override suspend fun updateData(data: LivelihoodsGaps) {
+        mLivelihoodsGaps.value?.let {
+            it.copyFrom(data)
+            mDatabase.livelihoodsGapsDao().update(it)
         }
     }
 }

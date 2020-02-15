@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.evacuationwash.EvacuationWash
-import com.cpu.quikdata.utils.runOnIoThread
 
 class EvacuationWashRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<EvacuationWash>() {
@@ -14,11 +13,10 @@ class EvacuationWashRepository(private val mDatabase: AppDatabase, val formId: S
     val evacuationWash: LiveData<EvacuationWash>
         get() = mEvacuationWash
 
-    override fun updateData(data: EvacuationWash) {
-        runOnIoThread {
-            val oldEvacuationWash = mEvacuationWash.value!!
-            oldEvacuationWash.copyFrom(data)
-            mDatabase.evacuationWashDao().update(oldEvacuationWash)
+    override suspend fun updateData(data: EvacuationWash) {
+        mEvacuationWash.value?.let {
+            it.copyFrom(data)
+            mDatabase.evacuationWashDao().update(it)
         }
     }
 }

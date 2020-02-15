@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
-import com.cpu.quikdata.utils.runOnIoThread
 
 class SiteInfoRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseUpdateableRepository<SiteInfo>() {
@@ -14,11 +13,10 @@ class SiteInfoRepository(private val mDatabase: AppDatabase, val formId: String)
     val siteInfo: LiveData<SiteInfo>
         get() = mSiteInfo
 
-    override fun updateData(data: SiteInfo) {
-        runOnIoThread {
-            val oldSiteInfo = mSiteInfo.value!!
-            oldSiteInfo.copyFrom(data)
-            mDatabase.siteInfoDao().update(oldSiteInfo)
+    override suspend fun updateData(data: SiteInfo) {
+        mSiteInfo.value?.let {
+            it.copyFrom(data)
+            mDatabase.siteInfoDao().update(it)
         }
     }
 }

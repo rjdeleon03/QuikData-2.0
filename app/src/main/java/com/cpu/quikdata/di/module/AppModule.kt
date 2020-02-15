@@ -80,11 +80,12 @@ class AppModule {
         }
 
         @Provides
-        fun provideFirebaseHelper(firestore: FirebaseFirestore,
+        fun provideFirebaseHelper(database: AppDatabase,
+                                  firestore: FirebaseFirestore,
                                   storage: FirebaseStorage
         )
                 : FirebaseHelper {
-            return FirebaseHelper(firestore, storage)
+            return FirebaseHelper(database, firestore, storage)
         }
     }
 }

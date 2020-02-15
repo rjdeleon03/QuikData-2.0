@@ -7,7 +7,6 @@ import com.cpu.quikdata.data.health.healthassistance.HealthAssistanceRow
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
-import com.cpu.quikdata.utils.runOnIoThread
 
 class HealthAssistanceRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseCreatableDataRepository<HealthAssistanceRow>() {
@@ -17,25 +16,19 @@ class HealthAssistanceRepository(private val mDatabase: AppDatabase, val formId:
     val healthAssistance: LiveData<List<HealthAssistanceRow>>
         get() = mHealthAssistance
 
-    override fun updateData(data: HealthAssistanceRow) {
-        runOnIoThread {
-            mDatabase.healthAssistanceRowDao().update(data)
-        }
+    override suspend fun updateData(data: HealthAssistanceRow) {
+        mDatabase.healthAssistanceRowDao().update(data)
     }
 
-    override fun createData(id: String) {
-        runOnIoThread {
-            val row = HealthAssistanceRow(id = generateId(),
-                dateReceived = getDateNowInLong(),
-                dateCreated = getDateTimeNowInLong(),
-                formId = formId)
-            mDatabase.healthAssistanceRowDao().insert(row)
-        }
+    override suspend fun createData(id: String) {
+        val row = HealthAssistanceRow(id = generateId(),
+            dateReceived = getDateNowInLong(),
+            dateCreated = getDateTimeNowInLong(),
+            formId = formId)
+        mDatabase.healthAssistanceRowDao().insert(row)
     }
 
-    override fun deleteData(data: HealthAssistanceRow) {
-        runOnIoThread {
-            mDatabase.healthAssistanceRowDao().delete(data)
-        }
+    override suspend fun deleteData(data: HealthAssistanceRow) {
+        mDatabase.healthAssistanceRowDao().delete(data)
     }
 }

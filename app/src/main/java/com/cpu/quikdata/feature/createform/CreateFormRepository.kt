@@ -10,16 +10,15 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.utils.getDateTimeNowInLong
-import com.cpu.quikdata.utils.runOnIoThread
-import com.cpu.quikdata.utils.runOnMainThread
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class CreateFormRepository @Inject constructor (private val mDatabase: AppDatabase, @FormIdQualifier val formId: String) {
+class CreateFormRepository @Inject constructor (private val mDatabase: AppDatabase,
+                                                private val mFirebaseHelper: FirebaseHelper,
+                                                @FormIdQualifier val formId: String) {
 
     private val mForm = mDatabase.formDao().getById(formId)
-    private val mFirebaseHelper = FirebaseHelper(FirebaseFirestore.getInstance(), FirebaseStorage.getInstance())
     private val mSaveResult: MediatorLiveData<ProgressNotification> = MediatorLiveData()
 
     val form: LiveData<Form>
@@ -31,72 +30,67 @@ class CreateFormRepository @Inject constructor (private val mDatabase: AppDataba
     val saveResult: LiveData<ProgressNotification>
         get() = mSaveResult
 
-    fun deleteForm() {
-        runOnIoThread {
-            // Delete image files associated with the form
-            val caseStories = mDatabase.caseStoriesDao().getByFormIdNonLive(formId)
-            caseStories.images?.forEach {
-                Uri.parse(it.uri).deleteFile()
-            }
+    suspend fun deleteForm() {
+        // Delete image files associated with the form
+        val caseStories = mDatabase.caseStoriesDao().getByFormIdNonLive(formId)
+        caseStories.images?.forEach {
+            Uri.parse(it.uri).deleteFile()
+        }
 
-            val formValue = mForm.value!!
-            if (formValue.isTemporary) {
-                mDatabase.formDao().delete(formValue)
+        mForm.value?.let {
+            if (it.isTemporary) {
+                mDatabase.formDao().delete(it)
             }
         }
     }
 
-    fun saveFormAsActual(isBasicMode: Boolean) {
-        runOnIoThread {
-            performSaveChangesToFormOnly()
-            runOnMainThread {
-                val operation = if (isBasicMode) {
-                    mFirebaseHelper.submitBasicData(mDatabase, formId)
-                } else {
-                    mFirebaseHelper.submitAllData(mDatabase, formId)
-                }
-                mSaveResult.addSource(operation) {
-                    mSaveResult.value = it
-                    if (it == ProgressNotification.FINISHED ||
-                        it == ProgressNotification.CANCELLED ||
-                        it == ProgressNotification.ERROR_OCCURRED) {
-                        mSaveResult.removeSource(operation)
-                    }
+    suspend fun saveFormAsActual(isBasicMode: Boolean) {
+        performSaveChangesToFormOnly()
+        withContext(Dispatchers.Main) {
+            val operation = if (isBasicMode) {
+                mFirebaseHelper.submitBasicData(formId)
+            } else {
+                mFirebaseHelper.submitAllData(formId)
+            }
+            mSaveResult.addSource(operation) {
+                mSaveResult.value = it
+                if (it == ProgressNotification.FINISHED ||
+                    it == ProgressNotification.CANCELLED ||
+                    it == ProgressNotification.ERROR_OCCURRED) {
+                    mSaveResult.removeSource(operation)
                 }
             }
         }
     }
 
-    fun saveChangesToFormOnly() {
-        runOnIoThread {
-            performSaveChangesToFormOnly()
-        }
+    suspend fun saveChangesToFormOnly() {
+        performSaveChangesToFormOnly()
     }
 
-    private fun performSaveChangesToFormOnly() {
-        val formValue = mForm.value!!
-        formValue.isTemporary = false
-        formValue.dateModified = getDateTimeNowInLong()
-        mDatabase.formDao().update(formValue)
+    private suspend fun performSaveChangesToFormOnly() {
+        mForm.value?.let {
+            it.isTemporary = false
+            it.dateModified = getDateTimeNowInLong()
+            mDatabase.formDao().update(it)
+        }
     }
 
     fun cancelSubmission() = mFirebaseHelper.cancelSubmission()
 
-    fun toggleSectionInclusions(includeShelter: Boolean,
+    suspend fun toggleSectionInclusions(includeShelter: Boolean,
                                 includeFood: Boolean,
                                 includeLivelihoods: Boolean,
                                 includeHealth: Boolean,
                                 includeWash: Boolean,
                                 includeEvacuation: Boolean) {
-        runOnIoThread {
-            val formValue = mForm.value!!
-            formValue.includeShelter = includeShelter
-            formValue.includeFood = includeFood
-            formValue.includeLivelihoods = includeLivelihoods
-            formValue.includeHealth = includeHealth
-            formValue.includeWash = includeWash
-            formValue.includeEvacuation = includeEvacuation
-            mDatabase.formDao().update(formValue)
-        }
+
+        val formValue = mForm.value!!
+        formValue.includeShelter = includeShelter
+        formValue.includeFood = includeFood
+        formValue.includeLivelihoods = includeLivelihoods
+        formValue.includeHealth = includeHealth
+        formValue.includeWash = includeWash
+        formValue.includeEvacuation = includeEvacuation
+        mDatabase.formDao().update(formValue)
     }
 }

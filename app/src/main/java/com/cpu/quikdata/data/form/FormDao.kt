@@ -8,13 +8,13 @@ import com.cpu.quikdata.data.generalinfo.GeneralInfoComplete
 interface FormDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(form: Form)
+    suspend fun insert(form: Form)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(form: Form)
+    suspend fun update(form: Form)
 
     @Delete
-    fun delete(form: Form)
+    suspend fun delete(form: Form)
 
     @Transaction
     @Query("SELECT * FROM form WHERE isTemporary = 0 ORDER BY dateCreated DESC")
@@ -24,13 +24,13 @@ interface FormDao {
     fun getById(id: String): LiveData<Form>
 
     @Query("SELECT * FROM form WHERE id = :id")
-    fun getByIdSingle(id: String): Form
+    suspend fun getByIdSingle(id: String): Form
 
     @Transaction
     @Query("SELECT * FROM form WHERE id = :formId")
-    fun getFormDataNonLive(formId: String): FormComplete
+    suspend fun getFormDataNonLive(formId: String): FormComplete
 
     @Transaction
     @Query("SELECT * FROM form WHERE id = :formId")
-    fun getGeneralInfoNonLive(formId: String): GeneralInfoComplete
+    suspend fun getGeneralInfoNonLive(formId: String): GeneralInfoComplete
 }

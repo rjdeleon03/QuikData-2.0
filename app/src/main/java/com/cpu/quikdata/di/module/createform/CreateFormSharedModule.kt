@@ -3,6 +3,7 @@ package com.cpu.quikdata.di.module.createform
 import android.app.Activity
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.common.FirebaseHelper
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.di.annotation.ActivityScope
 import com.cpu.quikdata.di.annotation.FormBundleQualifier
@@ -49,9 +50,9 @@ abstract class CreateFormSharedModule {
 
         @Provides
         @ActivityScope
-        fun provideCreateFormRepository(database: AppDatabase, @FormIdQualifier formId: String)
+        fun provideCreateFormRepository(database: AppDatabase, firebaseHelper: FirebaseHelper, @FormIdQualifier formId: String)
                 : CreateFormRepository {
-            return CreateFormRepository(database, formId)
+            return CreateFormRepository(database, firebaseHelper, formId)
         }
 
     }

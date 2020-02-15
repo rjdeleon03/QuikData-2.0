@@ -6,7 +6,6 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.livelihoodsinfo.incomebefore.IncomeBeforeRow
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateTimeNowInLong
-import com.cpu.quikdata.utils.runOnIoThread
 
 class IncomeBeforeRepository(private val mDatabase: AppDatabase, val formId: String) :
     BaseCreatableDataRepository<IncomeBeforeRow>() {
@@ -16,24 +15,18 @@ class IncomeBeforeRepository(private val mDatabase: AppDatabase, val formId: Str
     val incomeBefore: LiveData<List<IncomeBeforeRow>>
         get() = mIncomeBefore
 
-    override fun updateData(data: IncomeBeforeRow) {
-        runOnIoThread {
-            mDatabase.incomeBeforeRowDao().update(data)
-        }
+    override suspend fun updateData(data: IncomeBeforeRow) {
+        mDatabase.incomeBeforeRowDao().update(data)
     }
 
-    override fun createData(id: String) {
-        runOnIoThread {
-            val row = IncomeBeforeRow(id = generateId(),
-                dateCreated = getDateTimeNowInLong(),
-                formId = formId)
-            mDatabase.incomeBeforeRowDao().insert(row)
-        }
+    override suspend fun createData(id: String) {
+        val row = IncomeBeforeRow(id = generateId(),
+            dateCreated = getDateTimeNowInLong(),
+            formId = formId)
+        mDatabase.incomeBeforeRowDao().insert(row)
     }
 
-    override fun deleteData(data: IncomeBeforeRow) {
-        runOnIoThread {
-            mDatabase.incomeBeforeRowDao().delete(data)
-        }
+    override suspend fun deleteData(data: IncomeBeforeRow) {
+        mDatabase.incomeBeforeRowDao().delete(data)
     }
 }
