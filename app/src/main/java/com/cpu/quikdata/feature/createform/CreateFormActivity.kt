@@ -2,31 +2,34 @@ package com.cpu.quikdata.feature.createform
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.di.module.viewmodel.ViewModelProviderFactory
 import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_form.*
+import javax.inject.Inject
 
 
-class CreateFormActivity : AppCompatActivity() {
+class CreateFormActivity : DaggerAppCompatActivity() {
 
-    private lateinit var mNavController: NavController
+    @Inject
+    lateinit var mViewModelProviderFactory: ViewModelProviderFactory
+
     private lateinit var mViewModel: CreateFormViewModel
+    private lateinit var mNavController: NavController
+
     private var mLayoutMargin: Int = 0
     private var mEditMode = false
 
     companion object {
-        private const val FORM_ID_KEY = "FORM_ID_KEY"
+        const val FORM_ID_KEY = "FORM_ID_KEY"
         private const val EDIT_MODE_KEY = "EDIT_MODE_KEY"
         private const val BASIC_MODE_KEY = "BASIC_MODE_KEY"
 
@@ -44,6 +47,8 @@ class CreateFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_form)
 
+        mViewModel = mViewModelProviderFactory.create(CreateFormViewModel::class.java)
+
         setSupportActionBar(createFormToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -52,13 +57,6 @@ class CreateFormActivity : AppCompatActivity() {
         var titleId = R.string.create_form_title_new
         if (mEditMode) {
             titleId = R.string.create_form_title_edit
-        }
-
-        // Initialize viewModel with form ID
-        val formId = intent.getStringExtra(FORM_ID_KEY)
-        if (!formId.isNullOrEmpty()) {
-            val factory = ViewModelFactory(application, formId)
-            mViewModel = ViewModelProviders.of(this, factory).get(CreateFormViewModel::class.java)
         }
 
         // Setup navController

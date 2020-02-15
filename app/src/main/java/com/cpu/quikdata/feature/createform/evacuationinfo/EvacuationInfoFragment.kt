@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
@@ -19,15 +17,23 @@ import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_evacuation_info.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
+import javax.inject.Inject
 
 class EvacuationInfoFragment : BaseCreateFormFragment() {
 
     companion object {
+        const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
+
         @JvmStatic
         fun newInstance() = EvacuationInfoFragment()
     }
 
-    private lateinit var mViewModel: EvacuationInfoViewModel
+    @Inject
+    lateinit var mViewModel: EvacuationInfoViewModel
+
+    @Inject
+    lateinit var mAdapterFactory: EvacuationInfoAdapter.Factory
+
     private lateinit var mAdapter: EvacuationInfoAdapter
     private lateinit var mNavController: NavController
     private val mItemLimit = 5
@@ -46,7 +52,7 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
 
         setupClipping(view)
 
-        mAdapter = EvacuationInfoAdapter(context!!, {
+        mAdapter = mAdapterFactory.create({
             val action = EvacuationInfoFragmentDirections
                 .actionEvacuationInfoFragmentToEvacuationContainerFragment(it, true)
             mNavController.navigate(action)
@@ -77,7 +83,6 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(EvacuationInfoViewModel::class.java)
         mViewModel.evacuationInfos.observe(viewLifecycleOwner, Observer {
             evacuationRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

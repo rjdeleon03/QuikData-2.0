@@ -1,13 +1,12 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
+import javax.inject.Inject
 
-class SiteInfoViewModel(application: Application, evacuationId: String) : AndroidViewModel(application) {
-
-    private val mRepository = SiteInfoRepository(application, evacuationId)
+class SiteInfoViewModel @Inject constructor(private val mRepository: SiteInfoRepository)
+    : ViewModel() {
 
     val siteInfo: LiveData<SiteInfo>
         get() = mRepository.siteInfo

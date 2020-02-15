@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
+import javax.inject.Inject
 
-class ShelterGapsViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = ShelterGapsRepository(application, formId)
+class ShelterGapsViewModel @Inject constructor(private val mRepository: ShelterGapsRepository)
+    : ViewModel() {
 
     val shelterGaps: LiveData<ShelterGaps>
         get() = mRepository.shelterGaps

@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritycoping.FoodSecurityCoping
 import com.cpu.quikdata.utils.runOnIoThread
 
-class FoodSecurityCopingRepository(application: Application, formId: String) :
-    BaseRepository<FoodSecurityCoping>(application) {
+class FoodSecurityCopingRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<FoodSecurityCoping>() {
 
     private val mFoodSecurityCoping = mDatabase.foodSecurityCopingDao().getByFormId(formId)
 

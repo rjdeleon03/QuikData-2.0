@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.healthinfo.diseases
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
 import com.cpu.quikdata.utils.runOnIoThread
 
-class DiseasesRepository(application: Application, formId: String) :
-    BaseRepository<DiseasesRow>(application) {
+class DiseasesRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<DiseasesRow>() {
 
     private val mDiseases = mDatabase.diseasesRowDao().getByFormId(formId)
 

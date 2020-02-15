@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.CustomPagerAdapter
-import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
+import com.cpu.quikdata.common.CustomPagerAdapter
 import com.cpu.quikdata.common.setupClipping
+import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoFragment
 import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesFragment
 import com.cpu.quikdata.feature.createform.generalinfo.causeofdeath.CauseOfDeathFragment

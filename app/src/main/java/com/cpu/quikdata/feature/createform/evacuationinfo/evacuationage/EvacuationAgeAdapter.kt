@@ -6,11 +6,21 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.evacuation.evacuationagerow.EvacuationAgeRow
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_evacuation_age.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class EvacuationAgeAdapter(context: Context, rowSaveListener: (EvacuationAgeRow) -> Unit, expandedItem: Int = 0) :
+class EvacuationAgeAdapter @AssistedInject constructor (
+    context: Context,
+    @Assisted rowSaveListener: (EvacuationAgeRow) -> Unit,
+    @Assisted expandedItem: Int = 0) :
     BaseCollapsibleAdapter<EvacuationAgeRow, EvacuationAgeAdapter.ViewHolder>(context, R.layout.item_evacuation_age, rowSaveListener, expandedItem) {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(rowSaveListener: (EvacuationAgeRow) -> Unit, expandedItem: Int): EvacuationAgeAdapter
+    }
 
     override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 

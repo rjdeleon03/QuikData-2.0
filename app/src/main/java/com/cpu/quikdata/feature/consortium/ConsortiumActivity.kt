@@ -2,19 +2,14 @@ package com.cpu.quikdata.feature.consortium
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
-import androidx.appcompat.widget.AppCompatImageView
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.addWebLink
-import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_consortium.*
 
-class ConsortiumActivity : AppCompatActivity() {
+class ConsortiumActivity : DaggerAppCompatActivity() {
 
     companion object {
         @JvmStatic

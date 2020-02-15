@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationwash
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.evacuationwash.EvacuationWash
 import com.cpu.quikdata.utils.runOnIoThread
 
-class EvacuationWashRepository(application: Application, formId: String) :
-    BaseRepository<EvacuationWash>(application) {
+class EvacuationWashRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<EvacuationWash>() {
 
     private val mEvacuationWash = mDatabase.evacuationWashDao().getByEvacuationId(formId)
 

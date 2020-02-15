@@ -1,22 +1,19 @@
 package com.cpu.quikdata.base
 
 import android.content.Context
-import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
-import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.di.module.viewmodel.ViewModelProviderFactory
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-abstract class BaseCreateFormFragment: Fragment() {
+abstract class BaseCreateFormFragment: DaggerFragment() {
 
-    protected lateinit var mParentViewModel: CreateFormViewModel
-    protected lateinit var mFactory: ViewModelFactory
+    @Inject
+    lateinit var mViewModelProviderFactory: ViewModelProviderFactory
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        mParentViewModel = ViewModelProviders.of(activity!!).get(CreateFormViewModel::class.java)
-        mFactory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
+    protected val mParentViewModel: CreateFormViewModel by lazy {
+        mViewModelProviderFactory.create(CreateFormViewModel::class.java)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {

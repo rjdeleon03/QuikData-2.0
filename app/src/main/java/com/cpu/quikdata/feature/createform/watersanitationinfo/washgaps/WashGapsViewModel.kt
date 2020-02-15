@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washgaps
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGaps
+import javax.inject.Inject
 
-class WashGapsViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = WashGapsRepository(application, formId)
+class WashGapsViewModel @Inject constructor (private val mRepository: WashGapsRepository)
+    : ViewModel() {
 
     val washGaps : LiveData<WashGaps>
         get() = mRepository.washGaps

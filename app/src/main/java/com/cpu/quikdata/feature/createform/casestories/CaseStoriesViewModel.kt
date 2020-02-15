@@ -1,15 +1,14 @@
 package com.cpu.quikdata.feature.createform.casestories
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.casestories.CaseStoriesComplete
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
+import javax.inject.Inject
 
-class CaseStoriesViewModel(application: Application, formId: String) : AndroidViewModel(application) {
-
-    private val mRepository = CaseStoriesRepository(application, formId)
+class CaseStoriesViewModel @Inject constructor (private val mRepository: CaseStoriesRepository)
+    : ViewModel() {
 
     val caseStories: LiveData<CaseStoriesComplete>
         get() = mRepository.caseStories

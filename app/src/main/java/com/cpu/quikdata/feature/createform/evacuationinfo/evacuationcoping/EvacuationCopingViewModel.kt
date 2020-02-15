@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationcoping
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.evacuation.evacuationcoping.EvacuationCoping
+import javax.inject.Inject
 
-class EvacuationCopingViewModel(application: Application, evacuationId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = EvacuationCopingRepository(application, evacuationId)
+class EvacuationCopingViewModel @Inject constructor(private val mRepository: EvacuationCopingRepository)
+    : ViewModel() {
 
     val evacuationCoping: LiveData<EvacuationCoping>
         get() = mRepository.evacuationCoping

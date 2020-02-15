@@ -1,20 +1,17 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsassistance
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsassistance.LivelihoodsAssistanceRow
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
-import org.joda.time.LocalDate
-import org.joda.time.LocalDateTime
 
-class LivelihoodsAssistanceRepository(application: Application, formId: String) :
-    BaseCreatableDataRepository<LivelihoodsAssistanceRow>(application) {
+class LivelihoodsAssistanceRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseCreatableDataRepository<LivelihoodsAssistanceRow>() {
 
-    private val mFormId = formId
     private val mLivelihoodsAssistance = mDatabase.livelihoodsAssistanceRowDao().getByFormId(formId)
 
     val livelihoodsAssistance: LiveData<List<LivelihoodsAssistanceRow>>
@@ -31,7 +28,7 @@ class LivelihoodsAssistanceRepository(application: Application, formId: String) 
             val row = LivelihoodsAssistanceRow(id = generateId(),
                 dateReceived = getDateNowInLong(),
                 dateCreated = getDateTimeNowInLong(),
-                formId = mFormId)
+                formId = formId)
             mDatabase.livelihoodsAssistanceRowDao().insert(row)
         }
     }

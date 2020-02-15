@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.healthinfo.psychosocial
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.health.psychosocialrow.PsychosocialRow
 import com.cpu.quikdata.utils.runOnIoThread
 
-class PsychosocialRepository(application: Application, formId: String) :
-    BaseRepository<PsychosocialRow>(application) {
+class PsychosocialRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<PsychosocialRow>() {
 
     private val mPsychosocial = mDatabase.psychosocialRowDao().getByFormId(formId)
 

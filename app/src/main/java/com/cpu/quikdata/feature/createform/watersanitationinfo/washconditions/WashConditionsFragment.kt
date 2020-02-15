@@ -1,18 +1,16 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washconditions
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
 import com.cpu.quikdata.dialog.InfoDialogFragment
 import kotlinx.android.synthetic.main.fragment_wash_conditions.*
+import javax.inject.Inject
 
 class WashConditionsFragment : BaseCreateFormFragment() {
 
@@ -21,7 +19,8 @@ class WashConditionsFragment : BaseCreateFormFragment() {
         fun newInstance() = WashConditionsFragment()
     }
 
-    private lateinit var mViewModel: WashConditionsViewModel
+    @Inject
+    lateinit var mViewModel: WashConditionsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,7 +70,6 @@ class WashConditionsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(WashConditionsViewModel::class.java)
         mViewModel.washConditions.observe(viewLifecycleOwner, Observer {
             washConditionsDrinkingWaterText.value = it.drinkingWaterLevel
             washConditionsDrinkingWaterText.text = it.drinkingWaterRemarks

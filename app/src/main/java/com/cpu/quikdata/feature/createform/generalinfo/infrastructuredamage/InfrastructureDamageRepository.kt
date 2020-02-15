@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import com.cpu.quikdata.utils.runOnIoThread
 
-class InfrastructureDamageRepository(application: Application, formId: String) :
-        BaseRepository<InfrastructureDamageRow>(application) {
+class InfrastructureDamageRepository(private val mDatabase: AppDatabase, val formId: String) :
+        BaseUpdateableRepository<InfrastructureDamageRow>() {
 
     private val mInfrastructureDamage = mDatabase.infrastructureDamageRowDao().getByFormId(formId)
 

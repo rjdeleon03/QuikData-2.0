@@ -1,22 +1,20 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationprotection
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.evacuationprotection.EvacuationProtection
+import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment.Companion.EVACUATION_ID_KEY
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_evacuation_protection.*
+import javax.inject.Inject
 
-class EvacuationProtectionFragment : Fragment() {
+class EvacuationProtectionFragment : DaggerFragment() {
 
     companion object {
-        private const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
 
         @JvmStatic
         fun newInstance(evacuationId: String): EvacuationProtectionFragment {
@@ -28,7 +26,8 @@ class EvacuationProtectionFragment : Fragment() {
         }
     }
 
-    private lateinit var mViewModel: EvacuationProtectionViewModel
+    @Inject
+    lateinit var mViewModel: EvacuationProtectionViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,9 +72,6 @@ class EvacuationProtectionFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(activity!!.application, evacuationId)
-        mViewModel = ViewModelProviders.of(this, factory).get(EvacuationProtectionViewModel::class.java)
         mViewModel.evacuationProtection.observe(viewLifecycleOwner, Observer {
             evacuationProtectionUnaccompaniedChildrenText.value = it.unaccompaniedChildren
             evacuationProtectionUnaccompaniedChildrenText.text = it.unaccompaniedChildrenRemarks

@@ -1,13 +1,12 @@
 package com.cpu.quikdata.feature.createform.generalinfo.calamityinfo
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
+import javax.inject.Inject
 
-class CalamityInfoViewModel(application: Application, formId: String) : AndroidViewModel(application) {
-
-    private val mRepository = CalamityInfoRepository(application, formId)
+class CalamityInfoViewModel @Inject constructor (private val mRepository: CalamityInfoRepository)
+    : ViewModel() {
 
     val calamityInfo: LiveData<CalamityInfo>
         get() = mRepository.calamityInfo

@@ -1,16 +1,15 @@
 package com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.shelterinfo.sheltergaps.ShelterGaps
 import kotlinx.android.synthetic.main.fragment_shelter_gaps.*
+import javax.inject.Inject
 
 class ShelterGapsFragment : BaseCreateFormFragment() {
 
@@ -19,7 +18,8 @@ class ShelterGapsFragment : BaseCreateFormFragment() {
         fun newInstance() = ShelterGapsFragment()
     }
 
-    private lateinit var mViewModel: ShelterGapsViewModel
+    @Inject
+    lateinit var mViewModel: ShelterGapsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +45,6 @@ class ShelterGapsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(ShelterGapsViewModel::class.java)
         mViewModel.shelterGaps.observe(viewLifecycleOwner, Observer {
             shelterGapsCubicles.text = it.cubicles
             shelterGapsCulturalPracticeAssistance.text = it.culturalPracticeAssistance

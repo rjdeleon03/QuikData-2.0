@@ -1,19 +1,16 @@
 package com.cpu.quikdata.feature.createform.generalinfo.families
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.generalinfo.families.Families
-import com.cpu.quikdata.feature.createform.CreateFormViewModel
 import kotlinx.android.synthetic.main.fragment_families.*
+import javax.inject.Inject
 
 class FamiliesFragment : BaseCreateFormFragment() {
 
@@ -21,7 +18,8 @@ class FamiliesFragment : BaseCreateFormFragment() {
         fun newInstance() = FamiliesFragment()
     }
 
-    private lateinit var mViewModel: FamiliesViewModel
+    @Inject
+    lateinit var mViewModel: FamiliesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +42,6 @@ class FamiliesFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(FamiliesViewModel::class.java)
         mViewModel.families.observe(viewLifecycleOwner, Observer {
             familiesAffectedText.number = it.affectedFamilies
             householdsAffectedText.number = it.affectedHouseholds

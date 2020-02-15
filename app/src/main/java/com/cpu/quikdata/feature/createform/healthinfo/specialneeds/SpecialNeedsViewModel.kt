@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.healthinfo.specialneeds
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.health.specialneedsrow.SpecialNeedsRow
+import javax.inject.Inject
 
-class SpecialNeedsViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = SpecialNeedsRepository(application, formId)
+class SpecialNeedsViewModel @Inject constructor(private val mRepository: SpecialNeedsRepository)
+    : ViewModel() {
 
     val specialNeeds: LiveData<List<SpecialNeedsRow>>
         get() = mRepository.specialNeeds

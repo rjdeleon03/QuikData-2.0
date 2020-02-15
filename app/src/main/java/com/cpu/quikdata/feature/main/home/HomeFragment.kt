@@ -2,27 +2,28 @@ package com.cpu.quikdata.feature.main.home
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.feature.consortium.ConsortiumActivity
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home.*
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class HomeFragment : Fragment() {
+class HomeFragment : DaggerFragment() {
 
-    private lateinit var mViewModel: HomeViewModel
+    @Inject
+    lateinit var mViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +35,6 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
         homeNewDncaFormButton.clickWithGuard {
             val formId = generateId()

@@ -1,19 +1,18 @@
 package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_food_security_assistance.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
+import javax.inject.Inject
 
 class FoodSecurityAssistanceFragment :
     BaseAssistanceFragment<FoodSecurityAssistanceAdapter, FoodSecurityAssistanceAdapter.ViewHolder>() {
@@ -23,7 +22,11 @@ class FoodSecurityAssistanceFragment :
         fun newInstance() = FoodSecurityAssistanceFragment()
     }
 
-    private lateinit var mViewModel: FoodSecurityAssistanceViewModel
+    @Inject
+    lateinit var mViewModel: FoodSecurityAssistanceViewModel
+
+    @Inject
+    lateinit var mAdapterFactory: FoodSecurityAssistanceAdapter.Factory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +36,7 @@ class FoodSecurityAssistanceFragment :
     }
 
     override fun setupAdapter(expandedItemIndex: Int): FoodSecurityAssistanceAdapter {
-        val adapter = FoodSecurityAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = mAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         foodSecurityAssistanceRecyclerView.recyclerView.adapter = adapter
@@ -56,7 +59,6 @@ class FoodSecurityAssistanceFragment :
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityAssistanceViewModel::class.java)
         mViewModel.foodSecurityAssistance.observe(viewLifecycleOwner, Observer {
             foodSecurityAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

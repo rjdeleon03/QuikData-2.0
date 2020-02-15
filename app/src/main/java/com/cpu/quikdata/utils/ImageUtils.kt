@@ -51,10 +51,12 @@ private fun copyFile(context: Context, uri: Uri, imageName: String): Uri {
         outStream = BufferedOutputStream(FileOutputStream(filePath))
 
         val buf = ByteArray(2048)
-        var len = inputStream.read(buf)
-        while (len > 0) {
-            outStream.write(buf, 0, len)
-            len = inputStream.read(buf)
+        inputStream?.let {stream ->
+            var len = stream.read(buf)
+            while (len > 0) {
+                outStream.write(buf, 0, len)
+                len = stream.read(buf)
+            }
         }
 
 
@@ -63,17 +65,13 @@ private fun copyFile(context: Context, uri: Uri, imageName: String): Uri {
         filePath = ""
     } finally {
         try {
-            if (inputStream != null) {
-                inputStream.close()
-            }
+            inputStream?.close()
         } catch (e: IOException) {
             e.printStackTrace()
         }
 
         try {
-            if (outStream != null) {
-                outStream.close()
-            }
+            outStream?.close()
         } catch (e: IOException) {
             e.printStackTrace()
         }

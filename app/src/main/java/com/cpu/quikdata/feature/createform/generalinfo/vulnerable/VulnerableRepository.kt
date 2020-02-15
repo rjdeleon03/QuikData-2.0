@@ -1,14 +1,13 @@
 package com.cpu.quikdata.feature.createform.generalinfo.vulnerable
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.utils.runOnIoThread
 
-class VulnerableRepository(application: Application, formId: String) :
-    BaseRepository<VulnerableRow>(application) {
+class VulnerableRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<VulnerableRow>() {
 
     private val mVulnerable = mDatabase.vulnerableRowDao().getByFormId(formId)
 

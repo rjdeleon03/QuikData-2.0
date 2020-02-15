@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsneeds
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeeds
+import javax.inject.Inject
 
-class LivelihoodsNeedsViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = LivelihoodsNeedsRepository(application, formId)
+class LivelihoodsNeedsViewModel @Inject constructor (private val mRepository: LivelihoodsNeedsRepository)
+    : ViewModel() {
 
     val livelihoodsNeeds : LiveData<LivelihoodsNeeds>
         get() = mRepository.livelihoodsNeeds

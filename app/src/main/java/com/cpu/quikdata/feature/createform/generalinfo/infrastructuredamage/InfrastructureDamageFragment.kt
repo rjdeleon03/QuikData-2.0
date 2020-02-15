@@ -1,15 +1,14 @@
 package com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_infrastructure_damage.*
+import javax.inject.Inject
 
 class InfrastructureDamageFragment : BaseCollapsibleCreateFormFragment<InfrastructureDamageAdapter, InfrastructureDamageAdapter.ViewHolder>() {
 
@@ -18,7 +17,11 @@ class InfrastructureDamageFragment : BaseCollapsibleCreateFormFragment<Infrastru
         fun newInstance() = InfrastructureDamageFragment()
     }
 
-    private lateinit var mViewModel: InfrastructureDamageViewModel
+    @Inject
+    lateinit var mViewModel: InfrastructureDamageViewModel
+
+    @Inject
+    lateinit var mAdapterFactory: InfrastructureDamageAdapter.Factory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +31,7 @@ class InfrastructureDamageFragment : BaseCollapsibleCreateFormFragment<Infrastru
     }
 
     override fun setupAdapter(expandedItemIndex: Int): InfrastructureDamageAdapter {
-        val adapter = InfrastructureDamageAdapter(context!!, {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         infrastructureDamageRecyclerView.adapter = adapter
@@ -38,7 +41,6 @@ class InfrastructureDamageFragment : BaseCollapsibleCreateFormFragment<Infrastru
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(InfrastructureDamageViewModel::class.java)
         mViewModel.infrastructureDamage.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

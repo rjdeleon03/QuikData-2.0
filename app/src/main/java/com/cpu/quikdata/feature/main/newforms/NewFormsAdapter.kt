@@ -13,12 +13,21 @@ import com.cpu.quikdata.data.form.FormComplete
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.isInternetAvailable
 import com.cpu.quikdata.utils.isInternetAvailableThenToast
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_form.view.*
 
-class NewFormsAdapter(context: Context,
-                      submitClickListener: (FormComplete) -> Unit,
-                      deleteClickListener: (FormComplete) -> Unit) :
+class NewFormsAdapter @AssistedInject constructor (
+    context: Context,
+    @Assisted submitClickListener: (FormComplete) -> Unit,
+    @Assisted deleteClickListener: (FormComplete) -> Unit) :
     BaseAsyncInflaterAdapter<NewFormsAdapter.ViewHolder>(context, R.layout.item_form) {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(submitClickListener: (FormComplete) -> Unit,
+                   deleteClickListener: (FormComplete) -> Unit): NewFormsAdapter
+    }
 
     private var mForms: List<FormComplete>? = null
     private val mSubmitClickListener = submitClickListener

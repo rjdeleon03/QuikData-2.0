@@ -1,19 +1,18 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_income_after.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
+import javax.inject.Inject
 
 class IncomeAfterFragment : BaseAssistanceFragment<IncomeAfterAdapter, IncomeAfterAdapter.ViewHolder>() {
 
@@ -22,7 +21,11 @@ class IncomeAfterFragment : BaseAssistanceFragment<IncomeAfterAdapter, IncomeAft
         fun newInstance() = IncomeAfterFragment()
     }
 
-    private lateinit var mViewModel: IncomeAfterViewModel
+    @Inject
+    lateinit var mViewModel: IncomeAfterViewModel
+
+    @Inject
+    lateinit var mAdapterFactory: IncomeAfterAdapter.Factory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class IncomeAfterFragment : BaseAssistanceFragment<IncomeAfterAdapter, IncomeAft
     }
 
     override fun setupAdapter(expandedItemIndex: Int): IncomeAfterAdapter {
-        val adapter = IncomeAfterAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = mAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog({ mViewModel.deleteRow(it) },
                 R.string.income_source_delete_confirmation,
                 R.layout.dialog_income_source_delete,
@@ -57,7 +60,6 @@ class IncomeAfterFragment : BaseAssistanceFragment<IncomeAfterAdapter, IncomeAft
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(IncomeAfterViewModel::class.java)
         mViewModel.incomeAfter.observe(viewLifecycleOwner, Observer {
             incomeAfterRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

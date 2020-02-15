@@ -1,17 +1,15 @@
 package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
 import kotlinx.android.synthetic.main.fragment_food_security_gaps.*
+import javax.inject.Inject
 
 class FoodSecurityGapsFragment : BaseCreateFormFragment() {
 
@@ -20,7 +18,8 @@ class FoodSecurityGapsFragment : BaseCreateFormFragment() {
         fun newInstance() = FoodSecurityGapsFragment()
     }
 
-    private lateinit var mViewModel: FoodSecurityGapsViewModel
+    @Inject
+    lateinit var mViewModel: FoodSecurityGapsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +42,6 @@ class FoodSecurityGapsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityGapsViewModel::class.java)
         mViewModel.foodSecurityGaps.observe(viewLifecycleOwner, Observer {
             foodSecurityGapsAssistanceAppropriateText.text = it.assistanceAppropriate
             foodSecurityGapsAssistanceEnoughText.text = it.assistanceEnough

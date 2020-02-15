@@ -1,13 +1,12 @@
 package com.cpu.quikdata.feature.main.prefilledinfo
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
+import javax.inject.Inject
 
-class PrefilledInfoViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val mRepository = PrefilledInfoRepository(application)
+class PrefilledInfoViewModel @Inject constructor(private val mRepository: PrefilledInfoRepository)
+    : ViewModel() {
 
     val prefilledData: LiveData<PrefilledData>
         get() = mRepository.prefilledData

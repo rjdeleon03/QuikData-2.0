@@ -8,10 +8,21 @@ import com.cpu.quikdata.base.BaseAsyncInflaterAdapter
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.toDateString
 import com.cpu.quikdata.data.evacuation.EvacuationItemDetails
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_evacuation.view.*
 
-class EvacuationInfoAdapter(context: Context, onClickListener: (String) -> Unit, onDeleteListener: (EvacuationItemDetails) -> Unit) :
+class EvacuationInfoAdapter @AssistedInject constructor (
+    context: Context,
+    @Assisted onClickListener: (String) -> Unit,
+    @Assisted onDeleteListener: (EvacuationItemDetails) -> Unit) :
     BaseAsyncInflaterAdapter<EvacuationInfoAdapter.ViewHolder>(context, R.layout.item_evacuation) {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(onClickListener: (String) -> Unit,
+                   onDeleteListener: (EvacuationItemDetails) -> Unit): EvacuationInfoAdapter
+    }
 
     private val mOnClickListener = onClickListener
     private val mOnDeleteListener = onDeleteListener

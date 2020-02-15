@@ -1,13 +1,13 @@
 package com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.base.BaseUpdateableRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.utils.runOnIoThread
 
-class FormDetailsRepository(application: Application, formId: String) :
-    BaseRepository<FormDetails>(application) {
+class FormDetailsRepository(private val mDatabase: AppDatabase, val formId: String) :
+    BaseUpdateableRepository<FormDetails>() {
 
     private val mFormDetails = mDatabase.formDetailsDao().getByFormId(formId)
 

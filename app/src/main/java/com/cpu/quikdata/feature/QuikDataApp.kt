@@ -1,58 +1,58 @@
 package com.cpu.quikdata.feature
 
-import android.app.Application
-import android.content.Context
 import android.os.Build
-import com.cpu.quikdata.DEVICE_ID_KEY
 import com.cpu.quikdata.FIREBASE_KEY_DEVICES
-import com.cpu.quikdata.SHARED_PREFS_KEY
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
+import com.cpu.quikdata.di.component.DaggerAppComponent
+import com.cpu.quikdata.helpers.SharedPreferencesHelper
 import com.cpu.quikdata.utils.runOnIoThread
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 import net.danlew.android.joda.JodaTimeAndroid
+import javax.inject.Inject
 
-class QuikDataApp : Application() {
+class QuikDataApp : DaggerApplication() {
+
+    @Inject
+    lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent.builder()
+            .application(this)
+            .build()
+    }
 
     override fun onCreate() {
         super.onCreate()
         JodaTimeAndroid.init(this)
-
-        setupDatabase()
-
-        if (!isDeviceRegistered()) {
-            setupDevice()
-        }
     }
 
-    private fun setupDatabase() {
-        val db = AppDatabase.get(this)
+    @Inject
+    fun setupDatabase(db: AppDatabase) {
         runOnIoThread {
             db.prefilledDataDao().insert(PrefilledData())
         }
     }
 
-    private fun setupDevice() {
-        val serverRef = FirebaseDatabase.getInstance().reference.child(FIREBASE_KEY_DEVICES)
+    @Inject
+    fun setupDevice(firebaseDb: FirebaseDatabase) {
+
+        if (!isDeviceRegistered()) { return }
+        val serverRef = firebaseDb.reference.child(FIREBASE_KEY_DEVICES)
         val push = serverRef.push()
         runOnIoThread {
             val task = push.setValue("${Build.MANUFACTURER} ${Build.MODEL}")
 
             task.addOnCompleteListener {
-                val editor = getSharedPreferences(SHARED_PREFS_KEY, Context.MODE_PRIVATE).edit()
-                editor.putString(DEVICE_ID_KEY, push.key)
-                editor.apply()
+                sharedPreferencesHelper.saveDeviceId(push.key)
             }
         }
     }
 
     private fun isDeviceRegistered(): Boolean {
-        val sharedPrefs = getSharedPreferences(SHARED_PREFS_KEY, Context.MODE_PRIVATE)
-        val deviceId = sharedPrefs.getString(DEVICE_ID_KEY, "")
+        val deviceId = sharedPreferencesHelper.getDeviceId()
         return !deviceId.isNullOrBlank()
     }
 }

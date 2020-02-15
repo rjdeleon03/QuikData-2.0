@@ -1,19 +1,18 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsassistance
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_livelihoods_assistance.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
+import javax.inject.Inject
 
 class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistanceAdapter, LivelihoodsAssistanceAdapter.ViewHolder>() {
 
@@ -22,7 +21,11 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistan
         fun newInstance() = LivelihoodsAssistanceFragment()
     }
 
-    private lateinit var mViewModel: LivelihoodsAssistanceViewModel
+    @Inject
+    lateinit var mViewModel: LivelihoodsAssistanceViewModel
+
+    @Inject
+    lateinit var mAdapterFactory: LivelihoodsAssistanceAdapter.Factory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistan
     }
 
     override fun setupAdapter(expandedItemIndex: Int): LivelihoodsAssistanceAdapter {
-        val adapter = LivelihoodsAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = mAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         livelihoodsAssistanceRecyclerView.recyclerView.adapter = adapter
@@ -54,7 +57,6 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistan
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsAssistanceViewModel::class.java)
         mViewModel.livelihoodsAssistance.observe(viewLifecycleOwner, Observer {
             livelihoodsAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)
