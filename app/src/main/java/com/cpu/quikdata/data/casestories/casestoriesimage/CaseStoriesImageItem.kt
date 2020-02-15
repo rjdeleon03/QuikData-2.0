@@ -25,7 +25,7 @@ data class CaseStoriesImageItem(@PrimaryKey(autoGenerate = false)
                                 val caseStoriesId: String = "") {
 
     override fun equals(other: Any?): Boolean {
-        if ( other !is CaseStoriesImageItem) return false
+        if (other == null || other !is CaseStoriesImageItem) return false
         if (this === other) return true
         if (id == other.id &&
             dateCreated == other.dateCreated &&

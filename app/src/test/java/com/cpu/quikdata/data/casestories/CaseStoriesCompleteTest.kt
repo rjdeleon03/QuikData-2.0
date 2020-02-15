@@ -1,13 +1,11 @@
 package com.cpu.quikdata.data.casestories
 
+import com.cpu.quikdata.data.base.BaseDataTest
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
-import org.junit.Assert.*
-import org.junit.Before
-import org.junit.Test
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 
-class CaseStoriesCompleteTest {
-
-    private lateinit var caseStoriesComplete: CaseStoriesComplete
+class CaseStoriesCompleteTest: BaseDataTest<CaseStoriesComplete>() {
 
     companion object {
         private const val ID = "ID"
@@ -20,28 +18,28 @@ class CaseStoriesCompleteTest {
         private const val IMAGE_COUNT = 2
     }
 
-    @Before
-    fun setUp() {
+    override fun initData(): CaseStoriesComplete {
+
         val caseStories = CaseStories(ID, TEXT, FORM_ID)
         val imageList = arrayListOf(
             CaseStoriesImageItem(IMAGE_ID_1, DATE_CREATED, URI, ID),
             CaseStoriesImageItem(IMAGE_ID_2, DATE_CREATED, URI, ID))
-        caseStoriesComplete = CaseStoriesComplete()
-        caseStoriesComplete.root = caseStories
-        caseStoriesComplete.images = imageList
+        return CaseStoriesComplete().apply {
+            root = caseStories
+            images = imageList
+        }
     }
 
-    @Test
-    fun getters() {
-        assertNotNull(caseStoriesComplete.root)
-        caseStoriesComplete.root?.let {
+    override fun getters() {
+        assertNotNull(data.root)
+        data.root?.let {
             assertEquals(it.id, ID)
             assertEquals(it.text, TEXT)
             assertEquals(it.formId, FORM_ID)
         }
-        assertNotNull(caseStoriesComplete.images)
-        assertEquals(caseStoriesComplete.images!!.size, IMAGE_COUNT)
-        caseStoriesComplete.images?.let {
+        assertNotNull(data.images)
+        assertEquals(data.images!!.size, IMAGE_COUNT)
+        data.images?.let {
             assertEquals(it[0].id, IMAGE_ID_1)
             assertEquals(it[0].uri, URI)
             assertEquals(it[0].caseStoriesId, ID)

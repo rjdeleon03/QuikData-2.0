@@ -1,10 +1,9 @@
 package com.cpu.quikdata.data.prefilleddata
 
-import org.junit.Assert.*
-import org.junit.Before
-import org.junit.Test
+import com.cpu.quikdata.data.base.BaseDataTest
+import org.junit.Assert.assertEquals
 
-class PrefilledDataTest {
+class PrefilledDataTest: BaseDataTest<PrefilledData>() {
 
     companion object {
         private const val ID = "ID"
@@ -16,11 +15,8 @@ class PrefilledDataTest {
         private const val COUNT = 0
     }
 
-    private lateinit var data: PrefilledData
-
-    @Before
-    fun setUp() {
-        data = PrefilledData(
+    override fun initData(): PrefilledData {
+        return PrefilledData(
             ID,
             ORGANIZATION,
             SITIO,
@@ -47,8 +43,7 @@ class PrefilledDataTest {
         )
     }
 
-    @Test
-    fun getters() {
+    override fun getters() {
         assertEquals(ID, data.id)
         assertEquals(ORGANIZATION, data.organization)
         assertEquals(SITIO, data.sitio)

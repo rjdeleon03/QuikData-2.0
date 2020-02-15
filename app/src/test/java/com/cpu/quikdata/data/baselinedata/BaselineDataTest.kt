@@ -1,12 +1,12 @@
 package com.cpu.quikdata.data.baselinedata
 
+import com.cpu.quikdata.data.base.BaseCopyOnlyTest
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import org.junit.Test
 
 import org.junit.Assert.*
-import org.junit.Before
 
-class BaselineDataTest {
+class BaselineDataTest: BaseCopyOnlyTest<BaselineData>() {
 
     companion object {
         private const val ID = "ID"
@@ -30,11 +30,8 @@ class BaselineDataTest {
         private const val FORM_ID_COPY = "FORM_ID_COPY"
     }
 
-    private lateinit var data: BaselineData
-
-    @Before
-    fun setUp() {
-        data = BaselineData(
+    override fun initData(): BaselineData {
+        return BaselineData(
             ID,
             PREFILLED,
             ORGANIZATION,
@@ -63,8 +60,7 @@ class BaselineDataTest {
         )
     }
 
-    @Test
-    fun getters() {
+    override fun getters() {
         assertEquals(ID, data.id)
         assertEquals(PREFILLED, data.usePrefilled)
         assertEquals(ORGANIZATION, data.organization)
@@ -92,63 +88,7 @@ class BaselineDataTest {
         assertEquals(FORM_ID, data.formId)
     }
 
-    @Test
-    fun copyFromPrefiled() {
-        val copyData = PrefilledData(
-            ID_COPY,
-            ORGANIZATION_COPY,
-            SITIO_COPY,
-            BARANGAY_COPY,
-            CITY_COPY,
-            PROVINCE_COPY,
-            COUNT_COPY,
-            COUNT_COPY + 1,
-            COUNT_COPY + 2,
-            COUNT_COPY + 3,
-            COUNT_COPY + 4,
-            COUNT_COPY + 5,
-            COUNT_COPY + 6,
-            COUNT_COPY + 7,
-            COUNT_COPY + 8,
-            COUNT_COPY + 9,
-            COUNT_COPY + 10,
-            COUNT_COPY + 11,
-            COUNT_COPY,
-            COUNT_COPY,
-            COUNT_COPY,
-            COUNT_COPY,
-            COUNT_COPY
-        )
-        data.copyFrom(copyData)
-
-        assertNotEquals(copyData, data)
-        assertNotEquals(copyData.id, data.id)
-        assertEquals(copyData.organization, data.organization)
-        assertEquals(copyData.sitio, data.sitio)
-        assertEquals(copyData.barangay, data.barangay)
-        assertEquals(copyData.city, data.city)
-        assertEquals(copyData.province, data.province)
-        assertEquals(copyData.male_0to5, data.male_0to5)
-        assertEquals(copyData.female_0to5, data.female_0to5)
-        assertEquals(copyData.male_6to9, data.male_6to9)
-        assertEquals(copyData.female_6to9, data.female_6to9)
-        assertEquals(copyData.male_10to12, data.male_10to12)
-        assertEquals(copyData.female_10to12, data.female_10to12)
-        assertEquals(copyData.male_13to17, data.male_13to17)
-        assertEquals(copyData.female_13to17, data.female_13to17)
-        assertEquals(copyData.male_18to59, data.male_18to59)
-        assertEquals(copyData.female_18to59, data.female_18to59)
-        assertEquals(copyData.male_60plus, data.male_60plus)
-        assertEquals(copyData.female_60plus, data.female_60plus)
-        assertEquals(copyData.totalFamilies, data.totalFamilies)
-        assertEquals(copyData.totalHouseholds, data.totalHouseholds)
-        assertEquals(copyData.shelterConcrete, data.shelterConcrete)
-        assertEquals(copyData.shelterSemiConcrete, data.shelterSemiConcrete)
-        assertEquals(copyData.shelterLightMaterials, data.shelterLightMaterials)
-    }
-
-    @Test
-    fun copyFromBaseline() {
+    override fun copyFrom() {
         val copyData = BaselineData(
             ID_COPY,
             PREFILLED_COPY,
@@ -204,5 +144,60 @@ class BaselineDataTest {
         assertEquals(copyData.shelterSemiConcrete, data.shelterSemiConcrete)
         assertEquals(copyData.shelterLightMaterials, data.shelterLightMaterials)
         assertNotEquals(copyData.formId, data.formId)
+    }
+
+    @Test
+    fun copyFromPrefilled() {
+        val copyData = PrefilledData(
+            ID_COPY,
+            ORGANIZATION_COPY,
+            SITIO_COPY,
+            BARANGAY_COPY,
+            CITY_COPY,
+            PROVINCE_COPY,
+            COUNT_COPY,
+            COUNT_COPY + 1,
+            COUNT_COPY + 2,
+            COUNT_COPY + 3,
+            COUNT_COPY + 4,
+            COUNT_COPY + 5,
+            COUNT_COPY + 6,
+            COUNT_COPY + 7,
+            COUNT_COPY + 8,
+            COUNT_COPY + 9,
+            COUNT_COPY + 10,
+            COUNT_COPY + 11,
+            COUNT_COPY,
+            COUNT_COPY,
+            COUNT_COPY,
+            COUNT_COPY,
+            COUNT_COPY
+        )
+        data.copyFrom(copyData)
+
+        assertNotEquals(copyData, data)
+        assertNotEquals(copyData.id, data.id)
+        assertEquals(copyData.organization, data.organization)
+        assertEquals(copyData.sitio, data.sitio)
+        assertEquals(copyData.barangay, data.barangay)
+        assertEquals(copyData.city, data.city)
+        assertEquals(copyData.province, data.province)
+        assertEquals(copyData.male_0to5, data.male_0to5)
+        assertEquals(copyData.female_0to5, data.female_0to5)
+        assertEquals(copyData.male_6to9, data.male_6to9)
+        assertEquals(copyData.female_6to9, data.female_6to9)
+        assertEquals(copyData.male_10to12, data.male_10to12)
+        assertEquals(copyData.female_10to12, data.female_10to12)
+        assertEquals(copyData.male_13to17, data.male_13to17)
+        assertEquals(copyData.female_13to17, data.female_13to17)
+        assertEquals(copyData.male_18to59, data.male_18to59)
+        assertEquals(copyData.female_18to59, data.female_18to59)
+        assertEquals(copyData.male_60plus, data.male_60plus)
+        assertEquals(copyData.female_60plus, data.female_60plus)
+        assertEquals(copyData.totalFamilies, data.totalFamilies)
+        assertEquals(copyData.totalHouseholds, data.totalHouseholds)
+        assertEquals(copyData.shelterConcrete, data.shelterConcrete)
+        assertEquals(copyData.shelterSemiConcrete, data.shelterSemiConcrete)
+        assertEquals(copyData.shelterLightMaterials, data.shelterLightMaterials)
     }
 }

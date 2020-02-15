@@ -1,13 +1,10 @@
 package com.cpu.quikdata.data.casestories
 
-import org.junit.Before
-import org.junit.Test
+import com.cpu.quikdata.data.base.BaseCopyOnlyTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 
-import org.junit.Assert.*
-
-class CaseStoriesTest {
-
-    private lateinit var caseStories: CaseStories
+class CaseStoriesTest: BaseCopyOnlyTest<CaseStories>() {
 
     companion object {
         private const val ID = "ID"
@@ -19,32 +16,29 @@ class CaseStoriesTest {
         private const val FORM_ID_COPY = "FORM_ID_COPY"
     }
 
-    @Before
-    fun setUp() {
-        caseStories = CaseStories(
+    override fun initData(): CaseStories {
+        return CaseStories(
             ID,
             TEXT,
             FORM_ID
         )
     }
 
-    @Test
-    fun getters() {
-        assertEquals(ID, caseStories.id)
-        assertEquals(TEXT, caseStories.text)
-        assertEquals(FORM_ID, caseStories.formId)
+    override fun getters() {
+        assertEquals(ID, data.id)
+        assertEquals(TEXT, data.text)
+        assertEquals(FORM_ID, data.formId)
     }
 
-    @Test
-    fun copyFrom() {
+    override fun copyFrom() {
         val copyData = CaseStories(
             ID_COPY,
             TEXT_COPY,
             FORM_ID_COPY
         )
-        caseStories.copyFrom(copyData)
-        assertNotEquals(copyData.id, caseStories.id)
-        assertEquals(copyData.text, caseStories.text)
-        assertNotEquals(copyData.formId, caseStories.formId)
+        data.copyFrom(copyData)
+        assertNotEquals(copyData.id, data.id)
+        assertEquals(copyData.text, data.text)
+        assertNotEquals(copyData.formId, data.formId)
     }
 }

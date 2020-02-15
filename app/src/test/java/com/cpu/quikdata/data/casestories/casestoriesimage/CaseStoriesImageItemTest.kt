@@ -1,13 +1,11 @@
 package com.cpu.quikdata.data.casestories.casestoriesimage
 
+import com.cpu.quikdata.data.base.BaseEqualityOnlyTest
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
-import org.junit.Assert.*
-import org.junit.Before
-import org.junit.Test
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 
-class CaseStoriesImageItemTest {
-
-    private lateinit var caseStoriesImageItem: CaseStoriesImageItem
+class CaseStoriesImageItemTest: BaseEqualityOnlyTest<CaseStoriesImageItem>() {
 
     companion object {
         private const val ID = "ID"
@@ -16,9 +14,8 @@ class CaseStoriesImageItemTest {
         private const val CASE_STORIES_ID = "CASE_STORIES_ID"
     }
 
-    @Before
-    fun setUp() {
-        caseStoriesImageItem = CaseStoriesImageItem(
+    override fun initData(): CaseStoriesImageItem {
+        return CaseStoriesImageItem(
             ID,
             DATE_CREATED,
             URI,
@@ -26,28 +23,25 @@ class CaseStoriesImageItemTest {
         )
     }
 
-    @Test
-    fun getters() {
-        assertEquals(ID, caseStoriesImageItem.id)
-        assertEquals(DATE_CREATED, caseStoriesImageItem.dateCreated)
-        assertEquals(URI, caseStoriesImageItem.uri)
-        assertEquals(CASE_STORIES_ID, caseStoriesImageItem.caseStoriesId)
+    override fun getters() {
+        assertEquals(ID, data.id)
+        assertEquals(DATE_CREATED, data.dateCreated)
+        assertEquals(URI, data.uri)
+        assertEquals(CASE_STORIES_ID, data.caseStoriesId)
     }
 
-    @Test
-    fun equals() {
+    override fun equals() {
         val copy = CaseStoriesImageItem(
             ID,
             DATE_CREATED,
             URI,
             CASE_STORIES_ID
         )
-        assertEquals(caseStoriesImageItem, copy)
+        assertEquals(data, copy)
     }
 
-    @Test
-    fun notEquals() {
-        assertNotEquals(caseStoriesImageItem, PrefilledData())
-        assertNotEquals(caseStoriesImageItem, CaseStoriesImageItem())
+    override fun notEquals() {
+        assertNotEquals(data, PrefilledData())
+        assertNotEquals(data, CaseStoriesImageItem())
     }
 }
