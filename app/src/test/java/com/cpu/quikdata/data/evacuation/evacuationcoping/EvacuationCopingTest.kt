@@ -35,10 +35,11 @@ class EvacuationCopingTest: BaseCopyOnlyTest<EvacuationCoping>() {
             COPING_MECHANISM_COPY,
             EVACUATION_ID_COPY
         )
+        data.copyFrom(copyData)
 
         assertNotEquals(copyData, data)
         assertNotEquals(copyData.id, data.id)
-        assertNotEquals(copyData.copingMechanism, data.copingMechanism)
+        assertEquals(copyData.copingMechanism, data.copingMechanism)
         assertNotEquals(copyData.evacuationId, data.evacuationId)
     }
 }
