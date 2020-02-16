@@ -48,38 +48,51 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/homeNewDncaFormButton"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dimenExtraSmall"
-                    android:background="@drawable/ripple_lighter_gray_accent_corner_top"
-                    android:padding="@dimen/dimenSmall"
-                    android:minHeight="42dp"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:text="@string/home_new_dnca"
-                    android:textColor="@android:color/white"
-                    android:clickable="true"
-                    android:focusable="true"
-                    style="@style/EditTextTheme"/>
+                    android:orientation="horizontal">
 
-                <include layout="@layout/view_divider"/>
+                    <TextView
+                        android:id="@+id/homeNewDncaFormButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="@dimen/dimenExtraSmall"
+                        android:background="@drawable/ripple_lighter_gray_accent_corner_top_left"
+                        android:padding="@dimen/dimenSmall"
+                        android:minHeight="42dp"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:text="@string/home_new_dnca"
+                        android:textColor="@android:color/white"
+                        android:clickable="true"
+                        android:focusable="true"
+                        style="@style/EditTextTheme"/>
 
-                <TextView
-                    android:id="@+id/homeEmergencyAlertButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dimenExtraSmall"
-                    android:padding="@dimen/dimenSmall"
-                    android:background="@drawable/ripple_accent_lighter_gray"
-                    android:minHeight="42dp"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:text="@string/home_emergency_alert"
-                    android:clickable="true"
-                    android:focusable="true"
-                    style="@style/EditTextTheme"/>
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/holo_orange_dark"/>
+
+                    <TextView
+                        android:id="@+id/homeEmergencyAlertButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="@dimen/dimenExtraSmall"
+                        android:padding="@dimen/dimenSmall"
+                        android:background="@drawable/ripple_lighter_gray_accent_corner_top_right"
+                        android:minHeight="42dp"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:text="@string/home_emergency_alert"
+                        android:textColor="@android:color/white"
+                        android:clickable="true"
+                        android:focusable="true"
+                        style="@style/EditTextTheme"/>
+
+                </LinearLayout>
 
                 <include layout="@layout/view_divider"/>
 
