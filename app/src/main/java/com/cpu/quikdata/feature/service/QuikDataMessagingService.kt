@@ -3,6 +3,7 @@ package com.cpu.quikdata.feature.service
 import android.util.Log
 import com.cpu.quikdata.helpers.SharedPreferencesHelper
 import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.HasAndroidInjector
@@ -27,5 +28,15 @@ class QuikDataMessagingService: FirebaseMessagingService() {
 
         Log.d(TAG,"New token received: $token")
         mSharedPreferencesHelper.saveFirebaseId(token)
+    }
+
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        super.onMessageReceived(remoteMessage)
+
+        remoteMessage.notification?.let { notif ->
+            notif.body?.let {
+                println("NOTIF: ${notif.title} :: $it ---- ${remoteMessage.sentTime}")
+            }
+        }
     }
 }
