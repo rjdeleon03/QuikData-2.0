@@ -34,7 +34,7 @@ android {
 }
 
 ext {
-    ktxNavVersion = "1.0.0"
+    ktxNavVersion = "2.2.1"
     roomVersion = "2.1.0-beta01"
     daggerVersion = "2.26"
     assistedInjectVersion = "0.5.2"
@@ -57,13 +57,9 @@ dependencies {
     // Prefs
     implementation "androidx.preference:preference-ktx:1.1.0"
 
-    // Navigation
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
-    implementation 'android.arch.navigation:navigation-ui:1.0.0'
-
     // Navigation - Kotlin extensions
-    implementation "android.arch.navigation:navigation-fragment-ktx:$ktxNavVersion"
-    implementation "android.arch.navigation:navigation-ui-ktx:$ktxNavVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$ktxNavVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$ktxNavVersion"
 
     // Room
     implementation 'androidx.room:room-runtime:2.2.3'
