@@ -16,11 +16,11 @@ abstract class BaseCreateFormFragment: DaggerFragment() {
         mViewModelProviderFactory.create(CreateFormViewModel::class.java)
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (!isVisibleToUser && activity != null) {
-            val imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            val focus = activity!!.currentFocus
+    override fun onResume() {
+        super.onResume()
+        activity?.apply {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val focus = currentFocus
             if (focus != null) {
                 imm.hideSoftInputFromWindow(focus.windowToken, 0)
                 focus.clearFocus()

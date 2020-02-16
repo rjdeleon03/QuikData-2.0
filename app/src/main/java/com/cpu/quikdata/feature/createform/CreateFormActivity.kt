@@ -94,8 +94,9 @@ class CreateFormActivity : DaggerAppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+
         if (fragment.childFragmentManager.backStackEntryCount > 0) {
-            fragment.childFragmentManager.popBackStack()
+            mNavController.popBackStack()
         } else {
             if (mViewModel.isFormTemporary) {
                 showConfirmationDialog({
