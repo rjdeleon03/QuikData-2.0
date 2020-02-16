@@ -3,8 +3,10 @@ package com.cpu.quikdata.di.component
 import android.app.Application
 import com.cpu.quikdata.di.module.ActivityBuilderModule
 import com.cpu.quikdata.di.module.AppModule
+import com.cpu.quikdata.di.module.BroadcastReceiverBuilderModule
+import com.cpu.quikdata.di.module.ServiceBuilderModule
 import com.cpu.quikdata.di.module.viewmodel.ViewModelFactoryModule
-import com.cpu.quikdata.feature.QuikDataApp
+import com.cpu.quikdata.feature.app.QuikDataApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -16,6 +18,8 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     AppModule::class,
     ActivityBuilderModule::class,
+    ServiceBuilderModule::class,
+    BroadcastReceiverBuilderModule::class,
     ViewModelFactoryModule::class])
 interface AppComponent: AndroidInjector<QuikDataApp> {
 

@@ -58,10 +58,6 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
     val saveResult: LiveData<ProgressNotification>
         get() = mSaveResult
 
-    init {
-        println("-------> $mFirebaseHelper")
-    }
-
     suspend fun createNewForm(formId: String) {
 
         val dateNowInLong = getDateNowInLong()

@@ -3,6 +3,7 @@ package com.cpu.quikdata.helpers
 import android.content.Context
 import androidx.preference.PreferenceManager
 import com.cpu.quikdata.DEVICE_ID_KEY
+import com.cpu.quikdata.FIREBASE_ID_KEY
 
 class SharedPreferencesHelper(context: Context) {
 
@@ -13,4 +14,10 @@ class SharedPreferencesHelper(context: Context) {
     }
 
     fun getDeviceId() = mPrefs.getString(DEVICE_ID_KEY, null)
+
+    fun saveFirebaseId(firebaseId: String?) {
+        mPrefs.edit().putString(FIREBASE_ID_KEY, firebaseId).apply()
+    }
+
+    fun getFirebaseId() = mPrefs.getString(FIREBASE_ID_KEY, null)
 }

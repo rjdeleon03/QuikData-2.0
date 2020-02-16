@@ -3,6 +3,7 @@ package com.cpu.quikdata
 const val PREFILLED_DATA_ID = "PREFILLED_DATA_ID"
 const val SHARED_PREFS_KEY = "SHARED_PREFS_KEY"
 const val DEVICE_ID_KEY = "DEVICE_ID_KEY"
+const val FIREBASE_ID_KEY = "FIREBASE_ID_KEY"
 
 const val FIREBASE_KEY_DEVICES = "devices"
 
