@@ -18,7 +18,7 @@ class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeB
 
     companion object {
         @JvmStatic
-        fun newInstance() = IncomeBeforeFragment()
+        fun start() = IncomeBeforeFragment()
     }
 
     @Inject

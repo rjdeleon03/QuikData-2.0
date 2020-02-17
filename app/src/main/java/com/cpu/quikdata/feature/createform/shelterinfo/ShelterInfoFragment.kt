@@ -21,7 +21,7 @@ class ShelterInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = ShelterInfoFragment()
+        fun start() = ShelterInfoFragment()
     }
 
     override fun onCreateView(
@@ -37,11 +37,11 @@ class ShelterInfoFragment : BaseCreateFormSectionFragment() {
         setupClipping(shelterInfoViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
-        pagerAdapter.addFragment(HouseDamageFragment.newInstance(), getString(R.string.house_damage_title))
-        pagerAdapter.addFragment(ShelterCopingFragment.newInstance(), getString(R.string.shelter_coping_title))
-        pagerAdapter.addFragment(ShelterNeedsFragment.newInstance(), getString(R.string.shelter_needs_title))
-        pagerAdapter.addFragment(ShelterAssistanceFragment.newInstance(), getString(R.string.text_assistance))
-        pagerAdapter.addFragment(ShelterGapsFragment.newInstance(), getString(R.string.shelter_gaps_title))
+        pagerAdapter.addFragment(HouseDamageFragment.start(), getString(R.string.house_damage_title))
+        pagerAdapter.addFragment(ShelterCopingFragment.start(), getString(R.string.shelter_coping_title))
+        pagerAdapter.addFragment(ShelterNeedsFragment.start(), getString(R.string.shelter_needs_title))
+        pagerAdapter.addFragment(ShelterAssistanceFragment.start(), getString(R.string.text_assistance))
+        pagerAdapter.addFragment(ShelterGapsFragment.start(), getString(R.string.shelter_gaps_title))
         shelterInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

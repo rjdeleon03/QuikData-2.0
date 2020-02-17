@@ -124,7 +124,7 @@ fun Fragment.showConfirmationDialog(positiveButtonListener: () -> Unit,
                                     titleId: Int = R.string.assistance_delete_confirmation,
                                     layoutId: Int = R.layout.dialog_assistance_delete,
                                     toastId: Int = R.string.assistance_delete_finished) {
-    val dialog = ConfirmationDialogFragment.newInstance(titleId, layoutId)
+    val dialog = ConfirmationDialogFragment.start(titleId, layoutId)
     dialog.onPositiveButtonListener = {
         positiveButtonListener.invoke()
         Toast.makeText(this.context!!, toastId, Toast.LENGTH_SHORT).show()
@@ -136,7 +136,7 @@ fun AppCompatActivity.showConfirmationDialog(positiveButtonListener: () -> Unit,
                                     titleId: Int = R.string.form_item_discard_title,
                                     layoutId: Int = R.layout.dialog_form_item_discard,
                                     toastId: Int = R.string.form_item_discarded) {
-    val dialog = ConfirmationDialogFragment.newInstance(titleId, layoutId)
+    val dialog = ConfirmationDialogFragment.start(titleId, layoutId)
     dialog.onPositiveButtonListener = {
         positiveButtonListener.invoke()
         Toast.makeText(this, toastId, Toast.LENGTH_SHORT).show()

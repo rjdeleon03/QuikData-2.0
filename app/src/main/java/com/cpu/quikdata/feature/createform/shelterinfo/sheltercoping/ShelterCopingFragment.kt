@@ -16,7 +16,7 @@ class ShelterCopingFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = ShelterCopingFragment()
+        fun start() = ShelterCopingFragment()
     }
 
     @Inject

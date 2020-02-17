@@ -26,7 +26,7 @@ class ProgressDialogFragment : DialogFragment() {
         private const val CONTENT_ID_KEY = "CONTENT_ID_KEY"
 
         @JvmStatic
-        fun newInstance(titleId: Int = -1, textId: Int) : ProgressDialogFragment {
+        fun start(titleId: Int = -1, textId: Int) : ProgressDialogFragment {
             val fragment = ProgressDialogFragment()
             val bundle = Bundle()
             bundle.putInt(TITLE_ID_KEY, titleId)

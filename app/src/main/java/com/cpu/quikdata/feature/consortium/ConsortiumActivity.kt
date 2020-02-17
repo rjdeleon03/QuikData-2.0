@@ -13,7 +13,7 @@ class ConsortiumActivity : DaggerAppCompatActivity() {
 
     companion object {
         @JvmStatic
-        fun newInstance(context: Context) {
+        fun start(context: Context) {
             val intent = Intent(context, ConsortiumActivity::class.java)
             context.startActivity(intent)
         }

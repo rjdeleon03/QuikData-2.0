@@ -43,7 +43,7 @@ class NewFormsAdapter @AssistedInject constructor (
             mDeleteClickListener.invoke(mForms!![it])
         })
         holder.setOnClickListener {
-            CreateFormActivity.newInstance(view.context, mForms!![it].form!!.id, true)
+            CreateFormActivity.start(view.context, mForms!![it].form!!.id, true)
         }
         return holder
     }

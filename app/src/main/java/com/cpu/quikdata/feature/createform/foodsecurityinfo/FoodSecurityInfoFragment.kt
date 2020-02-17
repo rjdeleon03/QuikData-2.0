@@ -21,7 +21,7 @@ class FoodSecurityInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = FoodSecurityInfoFragment()
+        fun start() = FoodSecurityInfoFragment()
     }
 
     override fun onCreateView(
@@ -37,11 +37,11 @@ class FoodSecurityInfoFragment : BaseCreateFormSectionFragment() {
         setupClipping(foodSecurityInfoViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
-        pagerAdapter.addFragment(FoodSecurityImpactFragment.newInstance(), getString(R.string.food_security_impact_title))
-        pagerAdapter.addFragment(FoodSecurityCopingFragment.newInstance(), getString(R.string.food_security_coping_title))
-        pagerAdapter.addFragment(FoodSecurityNeedsFragment.newInstance(), getString(R.string.food_security_needs_title))
-        pagerAdapter.addFragment(FoodSecurityAssistanceFragment.newInstance(), getString(R.string.text_assistance))
-        pagerAdapter.addFragment(FoodSecurityGapsFragment.newInstance(), getString(R.string.food_security_gaps_title))
+        pagerAdapter.addFragment(FoodSecurityImpactFragment.start(), getString(R.string.food_security_impact_title))
+        pagerAdapter.addFragment(FoodSecurityCopingFragment.start(), getString(R.string.food_security_coping_title))
+        pagerAdapter.addFragment(FoodSecurityNeedsFragment.start(), getString(R.string.food_security_needs_title))
+        pagerAdapter.addFragment(FoodSecurityAssistanceFragment.start(), getString(R.string.text_assistance))
+        pagerAdapter.addFragment(FoodSecurityGapsFragment.start(), getString(R.string.food_security_gaps_title))
         foodSecurityInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

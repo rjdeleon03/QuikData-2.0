@@ -14,7 +14,7 @@ class EstimatedDamageFragment : BaseCollapsibleCreateFormFragment<EstimatedDamag
 
     companion object {
         @JvmStatic
-        fun newInstance() = EstimatedDamageFragment()
+        fun start() = EstimatedDamageFragment()
     }
 
     @Inject

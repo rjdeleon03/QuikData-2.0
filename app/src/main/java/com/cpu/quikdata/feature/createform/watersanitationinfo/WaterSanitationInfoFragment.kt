@@ -20,7 +20,7 @@ class WaterSanitationInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = WaterSanitationInfoFragment()
+        fun start() = WaterSanitationInfoFragment()
     }
 
     override fun onCreateView(
@@ -36,10 +36,10 @@ class WaterSanitationInfoFragment : BaseCreateFormSectionFragment() {
         setupClipping(washViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
-        pagerAdapter.addFragment(WashConditionsFragment.newInstance(), getString(R.string.wash_conditions_title))
-        pagerAdapter.addFragment(WashCopingFragment.newInstance(), getString(R.string.wash_coping_title))
-        pagerAdapter.addFragment(WashAssistanceFragment.newInstance(), getString(R.string.text_assistance))
-        pagerAdapter.addFragment(WashGapsFragment.newInstance(), getString(R.string.wash_gaps_title))
+        pagerAdapter.addFragment(WashConditionsFragment.start(), getString(R.string.wash_conditions_title))
+        pagerAdapter.addFragment(WashCopingFragment.start(), getString(R.string.wash_coping_title))
+        pagerAdapter.addFragment(WashAssistanceFragment.start(), getString(R.string.text_assistance))
+        pagerAdapter.addFragment(WashGapsFragment.start(), getString(R.string.wash_gaps_title))
         washViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

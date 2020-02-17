@@ -22,7 +22,7 @@ class ConfirmationDialogFragment : DialogFragment() {
         private const val CONTENT_ID_KEY = "CONTENT_ID_KEY"
 
         @JvmStatic
-        fun newInstance(titleId: Int, textId: Int) : ConfirmationDialogFragment {
+        fun start(titleId: Int, textId: Int) : ConfirmationDialogFragment {
             val fragment = ConfirmationDialogFragment()
             val bundle = Bundle()
             bundle.putInt(TITLE_ID_KEY, titleId)

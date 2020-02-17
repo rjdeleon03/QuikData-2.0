@@ -15,7 +15,7 @@ class HealthGapsFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = HealthGapsFragment()
+        fun start() = HealthGapsFragment()
     }
 
     @Inject

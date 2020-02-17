@@ -14,7 +14,7 @@ class CauseOfDeathFragment : BaseCollapsibleCreateFormFragment<CauseOfDeathAdapt
 
     companion object {
         @JvmStatic
-        fun newInstance() = CauseOfDeathFragment()
+        fun start() = CauseOfDeathFragment()
     }
 
     @Inject

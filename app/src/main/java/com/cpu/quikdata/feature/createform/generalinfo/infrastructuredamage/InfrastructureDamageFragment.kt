@@ -14,7 +14,7 @@ class InfrastructureDamageFragment : BaseCollapsibleCreateFormFragment<Infrastru
 
     companion object {
         @JvmStatic
-        fun newInstance() = InfrastructureDamageFragment()
+        fun start() = InfrastructureDamageFragment()
     }
 
     @Inject

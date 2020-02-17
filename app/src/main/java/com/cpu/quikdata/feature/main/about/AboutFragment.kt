@@ -17,7 +17,7 @@ class AboutFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = AboutFragment()
+        fun start() = AboutFragment()
     }
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class AboutFragment : Fragment() {
 
         aboutICREDButton.addWebLink("https://www.cdrc-phil.com/icred/", context!!)
         aboutConsortiumButton.clickWithGuard {
-            ConsortiumActivity.newInstance(context!!)
+            ConsortiumActivity.start(context!!)
         }
     }
 

@@ -18,7 +18,7 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
 
     companion object {
         @JvmStatic
-        fun newInstance() = HealthAssistanceFragment()
+        fun start() = HealthAssistanceFragment()
     }
 
     @Inject

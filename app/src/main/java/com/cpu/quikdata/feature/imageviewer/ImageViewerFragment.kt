@@ -33,7 +33,7 @@ class ImageViewerFragment : DaggerFragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance() = ImageViewerFragment()
+        fun start() = ImageViewerFragment()
     }
 
     override fun onCreateView(

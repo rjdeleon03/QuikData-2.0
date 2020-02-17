@@ -19,7 +19,7 @@ class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapte
 
     companion object {
         @JvmStatic
-        fun newInstance() = ShelterAssistanceFragment()
+        fun start() = ShelterAssistanceFragment()
     }
 
     @Inject

@@ -14,7 +14,7 @@ class SpecialNeedsFragment : BaseCollapsibleCreateFormFragment<SpecialNeedsAdapt
 
     companion object {
         @JvmStatic
-        fun newInstance() = SpecialNeedsFragment()
+        fun start() = SpecialNeedsFragment()
     }
 
     @Inject

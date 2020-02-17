@@ -20,7 +20,7 @@ class NewFormsFragment : DaggerFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = NewFormsFragment()
+        fun start() = NewFormsFragment()
     }
 
     @Inject
@@ -62,7 +62,7 @@ class NewFormsFragment : DaggerFragment() {
         newFormsAddButton.clickWithGuard {
             val formId = generateId()
             mViewModel.createNewForm(formId)
-            CreateFormActivity.newInstance(context!!, formId, basicMode = true)
+            CreateFormActivity.start(context!!, formId, basicMode = true)
         }
     }
 
@@ -88,7 +88,7 @@ class NewFormsFragment : DaggerFragment() {
 
     private fun showProgressDialog() {
         mDialog?.dismiss()
-        mDialog = ProgressDialogFragment.newInstance(textId = R.layout.dialog_progress)
+        mDialog = ProgressDialogFragment.start(textId = R.layout.dialog_progress)
         mDialog?.show(childFragmentManager, ProgressDialogFragment.TAG)
         mDialog?.setOnDialogCanceledListener {
             mViewModel.cancelSubmission()

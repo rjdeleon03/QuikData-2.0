@@ -23,7 +23,7 @@ class LivelihoodsInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = LivelihoodsInfoFragment()
+        fun start() = LivelihoodsInfoFragment()
     }
 
     override fun onCreateView(
@@ -39,13 +39,13 @@ class LivelihoodsInfoFragment : BaseCreateFormSectionFragment() {
         setupClipping(livelihoodsInfoViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
-        pagerAdapter.addFragment(IncomeBeforeFragment.newInstance(), getString(R.string.income_before_title))
-        pagerAdapter.addFragment(IncomeAfterFragment.newInstance(), getString(R.string.income_after_title))
-        pagerAdapter.addFragment(EstimatedDamageFragment.newInstance(), getString(R.string.estimated_damage_title))
-        pagerAdapter.addFragment(LivelihoodsCopingFragment.newInstance(), getString(R.string.livelihoods_coping_title))
-        pagerAdapter.addFragment(LivelihoodsNeedsFragment.newInstance(), getString(R.string.livelihoods_needs_title))
-        pagerAdapter.addFragment(LivelihoodsAssistanceFragment.newInstance(), getString(R.string.text_assistance))
-        pagerAdapter.addFragment(LivelihoodsGapsFragment.newInstance(), getString(R.string.livelihoods_gaps_title))
+        pagerAdapter.addFragment(IncomeBeforeFragment.start(), getString(R.string.income_before_title))
+        pagerAdapter.addFragment(IncomeAfterFragment.start(), getString(R.string.income_after_title))
+        pagerAdapter.addFragment(EstimatedDamageFragment.start(), getString(R.string.estimated_damage_title))
+        pagerAdapter.addFragment(LivelihoodsCopingFragment.start(), getString(R.string.livelihoods_coping_title))
+        pagerAdapter.addFragment(LivelihoodsNeedsFragment.start(), getString(R.string.livelihoods_needs_title))
+        pagerAdapter.addFragment(LivelihoodsAssistanceFragment.start(), getString(R.string.text_assistance))
+        pagerAdapter.addFragment(LivelihoodsGapsFragment.start(), getString(R.string.livelihoods_gaps_title))
         livelihoodsInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

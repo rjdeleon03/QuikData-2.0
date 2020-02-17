@@ -15,7 +15,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     companion object {
         @JvmStatic
-        fun newInstance(context: Context) {
+        fun start(context: Context) {
             val intent = Intent(context, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             context.startActivity(intent)

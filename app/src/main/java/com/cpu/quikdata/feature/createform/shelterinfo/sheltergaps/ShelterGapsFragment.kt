@@ -15,7 +15,7 @@ class ShelterGapsFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = ShelterGapsFragment()
+        fun start() = ShelterGapsFragment()
     }
 
     @Inject

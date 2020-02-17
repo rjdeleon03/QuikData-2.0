@@ -15,7 +15,7 @@ import javax.inject.Inject
 class FamiliesFragment : BaseCreateFormFragment() {
 
     companion object {
-        fun newInstance() = FamiliesFragment()
+        fun start() = FamiliesFragment()
     }
 
     @Inject

@@ -16,7 +16,7 @@ class PrefilledInfoFragment : BaseFocusableFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = PrefilledInfoFragment()
+        fun start() = PrefilledInfoFragment()
     }
 
     @Inject

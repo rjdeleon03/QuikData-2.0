@@ -16,7 +16,7 @@ abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
 
     protected fun showProgressDialog() {
         mDialog?.dismiss()
-        mDialog = ProgressDialogFragment.newInstance(textId = R.layout.dialog_progress)
+        mDialog = ProgressDialogFragment.start(textId = R.layout.dialog_progress)
         mDialog?.show(childFragmentManager, ProgressDialogFragment.TAG)
         mDialog?.setOnDialogCanceledListener {
             mParentViewModel.cancelSubmission()

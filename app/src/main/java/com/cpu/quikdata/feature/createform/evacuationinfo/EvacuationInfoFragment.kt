@@ -25,7 +25,7 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
         const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
 
         @JvmStatic
-        fun newInstance() = EvacuationInfoFragment()
+        fun start() = EvacuationInfoFragment()
     }
 
     @Inject

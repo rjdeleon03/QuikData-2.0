@@ -15,7 +15,7 @@ class WashCopingFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = WashCopingFragment()
+        fun start() = WashCopingFragment()
     }
 
     @Inject lateinit var mViewModel: WashCopingViewModel

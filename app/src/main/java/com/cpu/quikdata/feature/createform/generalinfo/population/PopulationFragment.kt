@@ -14,7 +14,7 @@ import javax.inject.Inject
 class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, PopulationAdapter.ViewHolder>() {
 
     companion object {
-        fun newInstance() = PopulationFragment()
+        fun start() = PopulationFragment()
     }
 
     @Inject

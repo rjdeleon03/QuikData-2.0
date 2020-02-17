@@ -18,7 +18,7 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistan
 
     companion object {
         @JvmStatic
-        fun newInstance() = LivelihoodsAssistanceFragment()
+        fun start() = LivelihoodsAssistanceFragment()
     }
 
     @Inject

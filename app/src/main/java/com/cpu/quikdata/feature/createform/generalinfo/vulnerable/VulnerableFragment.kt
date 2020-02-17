@@ -15,7 +15,7 @@ class VulnerableFragment : BaseCollapsibleCreateFormFragment<VulnerableAdapter, 
 
     companion object {
         @JvmStatic
-        fun newInstance() = VulnerableFragment()
+        fun start() = VulnerableFragment()
     }
 
     @Inject

@@ -22,7 +22,7 @@ class InfoDialogFragment : DialogFragment() {
         private const val CONTENT_ID_KEY = "CONTENT_ID_KEY"
 
         @JvmStatic
-        fun newInstance(titleId: Int, textId: Int) : InfoDialogFragment {
+        fun start(titleId: Int, textId: Int) : InfoDialogFragment {
             val fragment = InfoDialogFragment()
             val bundle = Bundle()
             bundle.putInt(TITLE_ID_KEY, titleId)

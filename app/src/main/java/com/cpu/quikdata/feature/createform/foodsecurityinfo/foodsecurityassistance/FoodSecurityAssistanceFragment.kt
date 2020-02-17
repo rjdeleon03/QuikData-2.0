@@ -19,7 +19,7 @@ class FoodSecurityAssistanceFragment :
 
     companion object {
         @JvmStatic
-        fun newInstance() = FoodSecurityAssistanceFragment()
+        fun start() = FoodSecurityAssistanceFragment()
     }
 
     @Inject

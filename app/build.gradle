@@ -106,7 +106,6 @@ dependencies {
     kapt "com.squareup.inject:assisted-inject-processor-dagger2:$assistedInjectVersion"
 
 
-
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 }

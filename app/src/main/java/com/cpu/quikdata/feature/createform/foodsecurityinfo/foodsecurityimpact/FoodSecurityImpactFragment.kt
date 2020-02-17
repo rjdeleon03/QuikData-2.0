@@ -15,7 +15,7 @@ class FoodSecurityImpactFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = FoodSecurityImpactFragment()
+        fun start() = FoodSecurityImpactFragment()
     }
 
     @Inject

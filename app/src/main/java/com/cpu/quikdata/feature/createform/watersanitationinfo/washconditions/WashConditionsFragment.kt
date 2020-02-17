@@ -16,7 +16,7 @@ class WashConditionsFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = WashConditionsFragment()
+        fun start() = WashConditionsFragment()
     }
 
     @Inject
@@ -100,7 +100,7 @@ class WashConditionsFragment : BaseCreateFormFragment() {
     }
 
     private fun showInfoDialog() {
-        val dialog = InfoDialogFragment.newInstance(R.string.wash_conditions_info_levels, R.layout.dialog_water_level)
+        val dialog = InfoDialogFragment.start(R.string.wash_conditions_info_levels, R.layout.dialog_water_level)
         dialog.show(childFragmentManager, InfoDialogFragment.TAG)
     }
 }

@@ -14,7 +14,7 @@ class DiseasesFragment : BaseCollapsibleCreateFormFragment<DiseasesAdapter, Dise
 
     companion object {
         @JvmStatic
-        fun newInstance() = DiseasesFragment()
+        fun start() = DiseasesFragment()
     }
 
     @Inject

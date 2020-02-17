@@ -39,7 +39,7 @@ class HomeFragment : DaggerFragment() {
         homeNewDncaFormButton.clickWithGuard {
             val formId = generateId()
             mViewModel.createNewForm(formId)
-            CreateFormActivity.newInstance(context!!, formId, basicMode = true)
+            CreateFormActivity.start(context!!, formId, basicMode = true)
         }
 
         homeAboutButton.clickWithGuard {
@@ -47,7 +47,7 @@ class HomeFragment : DaggerFragment() {
         }
 
         homeConsortiumButton.clickWithGuard {
-            ConsortiumActivity.newInstance(context!!)
+            ConsortiumActivity.start(context!!)
         }
     }
 

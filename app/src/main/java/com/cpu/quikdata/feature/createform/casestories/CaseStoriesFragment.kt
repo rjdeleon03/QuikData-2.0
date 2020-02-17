@@ -38,7 +38,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         private const val ITEM_LIMIT = 5
 
         @JvmStatic
-        fun newInstance() = CaseStoriesFragment()
+        fun start() = CaseStoriesFragment()
     }
 
     @Inject
@@ -147,7 +147,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     @OnNeverAskAgain
     @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
     fun showPermissionDeniedDialog() {
-        val dialog = InfoDialogFragment.newInstance(R.string.text_permissions_denied, R.layout.dialog_image_permissions_denied)
+        val dialog = InfoDialogFragment.start(R.string.text_permissions_denied, R.layout.dialog_image_permissions_denied)
         dialog.show(childFragmentManager, InfoDialogFragment.TAG)
     }
 

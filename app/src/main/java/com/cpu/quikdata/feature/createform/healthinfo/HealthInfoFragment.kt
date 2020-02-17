@@ -22,7 +22,7 @@ class HealthInfoFragment : BaseCreateFormSectionFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = HealthInfoFragment()
+        fun start() = HealthInfoFragment()
     }
 
     override fun onCreateView(
@@ -38,12 +38,12 @@ class HealthInfoFragment : BaseCreateFormSectionFragment() {
         setupClipping(healthInfoViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
-        pagerAdapter.addFragment(DiseasesFragment.newInstance(), getString(R.string.diseases_title))
-        pagerAdapter.addFragment(SpecialNeedsFragment.newInstance(), getString(R.string.special_needs_title))
-        pagerAdapter.addFragment(PsychosocialFragment.newInstance(), getString(R.string.psychosocial_title))
-        pagerAdapter.addFragment(HealthCopingFragment.newInstance(), getString(R.string.health_coping_title))
-        pagerAdapter.addFragment(HealthAssistanceFragment.newInstance(), getString(R.string.text_assistance))
-        pagerAdapter.addFragment(HealthGapsFragment.newInstance(), getString(R.string.health_gaps_title))
+        pagerAdapter.addFragment(DiseasesFragment.start(), getString(R.string.diseases_title))
+        pagerAdapter.addFragment(SpecialNeedsFragment.start(), getString(R.string.special_needs_title))
+        pagerAdapter.addFragment(PsychosocialFragment.start(), getString(R.string.psychosocial_title))
+        pagerAdapter.addFragment(HealthCopingFragment.start(), getString(R.string.health_coping_title))
+        pagerAdapter.addFragment(HealthAssistanceFragment.start(), getString(R.string.text_assistance))
+        pagerAdapter.addFragment(HealthGapsFragment.start(), getString(R.string.health_gaps_title))
         healthInfoViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 

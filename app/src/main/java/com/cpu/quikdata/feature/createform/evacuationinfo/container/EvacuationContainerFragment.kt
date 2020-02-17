@@ -51,12 +51,12 @@ class EvacuationContainerFragment : Fragment() {
 
         val evacuationId = args.evacuationId
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
-        pagerAdapter.addFragment(SiteInfoFragment.newInstance(evacuationId), getString(R.string.evacuation_site_info_title))
-        pagerAdapter.addFragment(EvacuationAgeFragment.newInstance(evacuationId), getString(R.string.evacuation_age_title))
-        pagerAdapter.addFragment(EvacuationFacilitiesFragment.newInstance(evacuationId), getString(R.string.evacuation_facilities_title))
-        pagerAdapter.addFragment(EvacuationWashFragment.newInstance(evacuationId), getString(R.string.evacuation_wash_title))
-        pagerAdapter.addFragment(EvacuationProtectionFragment.newInstance(evacuationId), getString(R.string.evacuation_protection_title))
-        pagerAdapter.addFragment(EvacuationCopingFragment.newInstance(evacuationId), getString(R.string.evacuation_coping_title))
+        pagerAdapter.addFragment(SiteInfoFragment.start(evacuationId), getString(R.string.evacuation_site_info_title))
+        pagerAdapter.addFragment(EvacuationAgeFragment.start(evacuationId), getString(R.string.evacuation_age_title))
+        pagerAdapter.addFragment(EvacuationFacilitiesFragment.start(evacuationId), getString(R.string.evacuation_facilities_title))
+        pagerAdapter.addFragment(EvacuationWashFragment.start(evacuationId), getString(R.string.evacuation_wash_title))
+        pagerAdapter.addFragment(EvacuationProtectionFragment.start(evacuationId), getString(R.string.evacuation_protection_title))
+        pagerAdapter.addFragment(EvacuationCopingFragment.start(evacuationId), getString(R.string.evacuation_coping_title))
         evacuationInfoViewPager.setupViewPager(pagerAdapter) { (activity as CreateFormActivity).setSubtitle(it) }
     }
 }

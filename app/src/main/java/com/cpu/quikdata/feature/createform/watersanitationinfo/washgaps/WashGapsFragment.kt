@@ -15,7 +15,7 @@ class WashGapsFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = WashGapsFragment()
+        fun start() = WashGapsFragment()
     }
 
     @Inject lateinit var mViewModel: WashGapsViewModel

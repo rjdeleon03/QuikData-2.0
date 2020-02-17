@@ -14,7 +14,7 @@ class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapt
 
     companion object {
         @JvmStatic
-        fun newInstance() = ShelterNeedsFragment()
+        fun start() = ShelterNeedsFragment()
     }
 
     @Inject

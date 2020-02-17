@@ -15,7 +15,7 @@ class BaselineDataFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = BaselineDataFragment()
+        fun start() = BaselineDataFragment()
     }
 
     @Inject

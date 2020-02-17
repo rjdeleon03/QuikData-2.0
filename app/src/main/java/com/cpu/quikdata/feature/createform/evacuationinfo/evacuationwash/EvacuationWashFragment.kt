@@ -17,7 +17,7 @@ class EvacuationWashFragment : DaggerFragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(evacuationId: String): EvacuationWashFragment {
+        fun start(evacuationId: String): EvacuationWashFragment {
             val fragment = EvacuationWashFragment()
             val bundle = Bundle()
             bundle.putString(EVACUATION_ID_KEY, evacuationId)

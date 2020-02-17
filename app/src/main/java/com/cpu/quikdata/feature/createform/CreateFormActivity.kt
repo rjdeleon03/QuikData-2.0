@@ -34,7 +34,7 @@ class CreateFormActivity : DaggerAppCompatActivity() {
         private const val BASIC_MODE_KEY = "BASIC_MODE_KEY"
 
         @JvmStatic
-        fun newInstance(context: Context, formId: String = "", editMode: Boolean = false, basicMode: Boolean = false) {
+        fun start(context: Context, formId: String = "", editMode: Boolean = false, basicMode: Boolean = false) {
             val intent = Intent(context, CreateFormActivity::class.java)
             intent.putExtra(FORM_ID_KEY, formId)
             intent.putExtra(EDIT_MODE_KEY, editMode)

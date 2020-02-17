@@ -15,7 +15,7 @@ class LivelihoodsNeedsFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = LivelihoodsNeedsFragment()
+        fun start() = LivelihoodsNeedsFragment()
     }
 
     @Inject

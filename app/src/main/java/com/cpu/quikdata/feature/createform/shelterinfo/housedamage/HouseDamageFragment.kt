@@ -14,7 +14,7 @@ class HouseDamageFragment : BaseCollapsibleCreateFormFragment<HouseDamageAdapter
 
     companion object {
         @JvmStatic
-        fun newInstance() = HouseDamageFragment()
+        fun start() = HouseDamageFragment()
     }
 
     @Inject

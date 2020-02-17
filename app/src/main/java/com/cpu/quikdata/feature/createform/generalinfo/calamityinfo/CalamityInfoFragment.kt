@@ -15,7 +15,7 @@ class CalamityInfoFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = CalamityInfoFragment()
+        fun start() = CalamityInfoFragment()
     }
 
     @Inject

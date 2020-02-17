@@ -14,7 +14,7 @@ class PsychosocialFragment : BaseCollapsibleCreateFormFragment<PsychosocialAdapt
 
     companion object {
         @JvmStatic
-        fun newInstance() = PsychosocialFragment()
+        fun start() = PsychosocialFragment()
     }
 
     @Inject

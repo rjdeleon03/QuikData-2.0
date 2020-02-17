@@ -18,7 +18,7 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
 
     companion object {
         @JvmStatic
-        fun newInstance() = WashAssistanceFragment()
+        fun start() = WashAssistanceFragment()
     }
 
     @Inject

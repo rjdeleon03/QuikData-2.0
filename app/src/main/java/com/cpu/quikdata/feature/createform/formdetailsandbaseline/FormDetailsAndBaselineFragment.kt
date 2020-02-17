@@ -24,7 +24,7 @@ class FormDetailsAndBaselineFragment : BaseCreateFormSectionFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = FormDetailsAndBaselineFragment()
+        fun start() = FormDetailsAndBaselineFragment()
     }
 
     override fun onCreateView(
@@ -41,8 +41,8 @@ class FormDetailsAndBaselineFragment : BaseCreateFormSectionFragment() {
         setupClipping(formDetailsViewPager)
 
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
-        pagerAdapter.addFragment(FormDetailsFragment.newInstance(), getString(R.string.form_details_title))
-        pagerAdapter.addFragment(BaselineDataFragment.newInstance(), getString(R.string.baseline_data_title))
+        pagerAdapter.addFragment(FormDetailsFragment.start(), getString(R.string.form_details_title))
+        pagerAdapter.addFragment(BaselineDataFragment.start(), getString(R.string.baseline_data_title))
         formDetailsViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }
     }
 }

@@ -16,7 +16,7 @@ class FormDetailsFragment : BaseCreateFormFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = FormDetailsFragment()
+        fun start() = FormDetailsFragment()
     }
 
     @Inject

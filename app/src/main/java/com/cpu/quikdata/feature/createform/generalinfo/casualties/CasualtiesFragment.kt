@@ -13,7 +13,7 @@ import javax.inject.Inject
 class CasualtiesFragment : BaseCollapsibleCreateFormFragment<CasualtiesAdapter, CasualtiesAdapter.ViewHolder>() {
 
     companion object {
-        fun newInstance() = CasualtiesFragment()
+        fun start() = CasualtiesFragment()
     }
 
     @Inject

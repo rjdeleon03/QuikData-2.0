@@ -21,7 +21,7 @@ class SelectionFragment : BaseSubmissionFragment() {
         private const val EXPANDED_ITEM_KEY = "EXPANDED_ITEM_KEY"
 
         @JvmStatic
-        fun newInstance() = SelectionFragment()
+        fun start() = SelectionFragment()
     }
 
     private lateinit var mNavController: NavController
