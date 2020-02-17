@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/emergency_alert_nav"
+    app:startDestination="@id/createAlertFragment">
+
+    <fragment
+        android:id="@+id/createAlertFragment"
+        android:name="com.cpu.quikdata.feature.emergency.createalert.CreateAlertFragment"
+        android:label="fragment_create_alert"
+        tools:layout="@layout/fragment_create_alert" />
+</navigation>

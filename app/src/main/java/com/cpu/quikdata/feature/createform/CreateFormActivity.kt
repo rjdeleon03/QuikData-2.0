@@ -29,7 +29,7 @@ class CreateFormActivity : DaggerAppCompatActivity() {
     private var mEditMode = false
 
     companion object {
-        const val FORM_ID_KEY = "FORM_ID_KEY"
+        const val FORM_ID_KEY = "FORM_ID_KEY" 
         private const val EDIT_MODE_KEY = "EDIT_MODE_KEY"
         private const val BASIC_MODE_KEY = "BASIC_MODE_KEY"
 

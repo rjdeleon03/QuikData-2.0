@@ -11,6 +11,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.feature.consortium.ConsortiumActivity
 import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.feature.emergency.SendEmergencyActivity
 import com.cpu.quikdata.utils.generateId
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -40,6 +41,10 @@ class HomeFragment : DaggerFragment() {
             val formId = generateId()
             mViewModel.createNewForm(formId)
             CreateFormActivity.start(context!!, formId, basicMode = true)
+        }
+
+        homeEmergencyAlertButton.clickWithGuard {
+            SendEmergencyActivity.start(context!!)
         }
 
         homeAboutButton.clickWithGuard {

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".feature.emergency.createalert.CreateAlertFragment"
+    android:elevation="@dimen/dimenExtraSmall"
+    android:background="@color/lightGray">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightGray"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dimenMid"
+                android:paddingEnd="@dimen/dimenMid"
+                android:paddingTop="@dimen/dimenSmall"
+                android:paddingBottom="@dimen/dimenSmall"
+                android:background="@color/colorAccentLight"
+                android:gravity="center"
+                android:text="@string/create_alert_instructions"/>
+
+            <com.cpu.quikdata.customviews.questions.MultilineStringLongQuestion
+                android:id="@+id/emergencyInformationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isTextSingleLine="false"
+                app:question="@string/send_emergency_info"/>
+
+            <!--
+            <com.cpu.quikdata.customviews.questions.ThreeChoiceMultilineStringLongQuestion
+                android:id="@+id/emergencyUrgencyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isTextSingleLine="false"
+                app:questionChoice="@string/send_emergency_info"/>
+            -->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/newFormsAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimenMid"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_send_24dp"/>
+
+</RelativeLayout>

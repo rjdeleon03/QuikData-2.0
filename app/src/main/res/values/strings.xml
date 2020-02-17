@@ -438,4 +438,8 @@
     <string name="about_button_consortium">Consortium</string>
     <string name="home_about">About Quik Data</string>
     <string name="home_emergency_alert">Send Emergency Alert</string>
+    <string name="send_emergency_title">Send Emergency Alert</string>
+    <string name="send_emergency_details">Details</string>
+    <string name="send_emergency_info">Emergency Information</string>
+    <string name="create_alert_instructions">This emergency alert will be received by all app users. Please use this feature responsibly.</string>
 </resources>
