@@ -24,6 +24,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        def firebaseMessagingServerKey = properties.getProperty("firebase_messaging_server_key")
+        it.buildConfigField 'String', "FIREBASE_MESSAGING_SERVER_KEY", firebaseMessagingServerKey
+        it.resValue 'string', "firebase_messaging_server_key", firebaseMessagingServerKey
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -38,6 +45,8 @@ ext {
     roomVersion = "2.1.0-beta01"
     daggerVersion = "2.26"
     assistedInjectVersion = "0.5.2"
+    retrofitVersion = "2.5.0"
+    okHttpVersion = "3.12.0"
 }
 
 dependencies {
@@ -93,6 +102,16 @@ dependencies {
 
     // Photoview
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    // Retrofit2 + Gson
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+
+    // OkHttp3
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.6'
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
