@@ -1,13 +1,17 @@
 package com.cpu.quikdata.di.module
 
 import com.cpu.quikdata.di.annotation.ActivityScope
+import com.cpu.quikdata.di.annotation.SendEmergencyActivityScope
 import com.cpu.quikdata.di.module.createform.CreateFormFragmentsModule
 import com.cpu.quikdata.di.module.createform.CreateFormSharedModule
+import com.cpu.quikdata.di.module.emergency.SendEmergencyFragmentsModule
+import com.cpu.quikdata.di.module.emergency.SendEmergencySharedModule
 import com.cpu.quikdata.di.module.imageviewer.ImageViewerModule
 import com.cpu.quikdata.di.module.main.MainActivityFragmentsModule
 import com.cpu.quikdata.di.module.main.MainActivitySharedModule
 import com.cpu.quikdata.feature.consortium.ConsortiumActivity
 import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.feature.emergency.SendEmergencyActivity
 import com.cpu.quikdata.feature.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -33,4 +37,10 @@ abstract class ActivityBuilderModule {
     @ActivityScope
     @ContributesAndroidInjector
     abstract fun contributeConsortiumActivity(): ConsortiumActivity
+
+    @SendEmergencyActivityScope
+    @ContributesAndroidInjector(
+        modules = [SendEmergencySharedModule::class, SendEmergencyFragmentsModule::class]
+    )
+    abstract fun contributeSendEmergencyActivity(): SendEmergencyActivity
 }

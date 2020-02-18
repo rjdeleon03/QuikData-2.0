@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.setupClipping
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_send_emergency.*
 
-class SendEmergencyActivity : AppCompatActivity() {
+class SendEmergencyActivity : DaggerAppCompatActivity() {
 
     companion object {
         fun start(context: Context) {

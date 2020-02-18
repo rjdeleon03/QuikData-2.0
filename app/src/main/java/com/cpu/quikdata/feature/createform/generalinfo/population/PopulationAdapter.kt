@@ -6,7 +6,6 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
-import com.cpu.quikdata.di.annotation.ContextFromFragment
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_population.view.*

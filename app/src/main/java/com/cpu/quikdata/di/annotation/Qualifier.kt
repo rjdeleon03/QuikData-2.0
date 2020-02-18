@@ -21,8 +21,4 @@ annotation class EvacuationBundleQualifier
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class ContextFromActivity
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class ContextFromFragment
+annotation class FirebaseMessagingApiQualifier
