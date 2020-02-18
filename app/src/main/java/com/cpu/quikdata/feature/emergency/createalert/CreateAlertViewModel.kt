@@ -12,13 +12,19 @@ import javax.inject.Inject
 class CreateAlertViewModel @Inject constructor(private val mRepository: CreateAlertRepository)
     : ViewModel() {
 
-    val sendAlertResult = MutableLiveData<SendEmergencyAlertResponse>()
+    val sendAlertResult = MutableLiveData<Boolean>()
+
+    val loading = MutableLiveData<Boolean>()
 
     fun sendAlert(request: SendEmergencyAlertRequest) {
 
+        loading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val result = mRepository.sendAlert(request)
-            sendAlertResult.postValue(result)
+
+            val isSuccessful = !result.messageId.isNullOrBlank()
+            loading.postValue(false)
+            sendAlertResult.postValue(isSuccessful)
         }
 
     }

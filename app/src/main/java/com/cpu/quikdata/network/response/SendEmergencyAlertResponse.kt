@@ -5,4 +5,4 @@ import com.google.gson.annotations.SerializedName
 data class SendEmergencyAlertResponse(
 
     @SerializedName("message_id")
-    val messageId: String)
+    val messageId: String? = "")

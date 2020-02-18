@@ -45,8 +45,8 @@ ext {
     roomVersion = "2.1.0-beta01"
     daggerVersion = "2.26"
     assistedInjectVersion = "0.5.2"
-    retrofitVersion = "2.5.0"
-    okHttpVersion = "3.12.0"
+    retrofitVersion = "2.7.1"
+    okHttpVersion = "3.14.6"
 }
 
 dependencies {

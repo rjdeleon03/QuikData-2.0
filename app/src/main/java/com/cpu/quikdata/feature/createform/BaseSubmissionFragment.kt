@@ -25,8 +25,9 @@ abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val dialog = childFragmentManager.findFragmentByTag(ProgressDialogFragment.TAG) as? ProgressDialogFragment
-        if (dialog != null) mDialog = dialog
+        (childFragmentManager.findFragmentByTag(ProgressDialogFragment.TAG) as? ProgressDialogFragment)?.let {
+            mDialog = it
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

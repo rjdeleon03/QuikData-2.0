@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/dimenMid"
+    android:paddingBottom="@dimen/dimenMid"
+    android:paddingStart="25dp"
+    android:paddingEnd="25dp">
+
+    <TextView
+        android:id="@+id/progressDialogText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/send_emergency_progress"/>
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimenMid"
+        android:indeterminate="true" />
+
+</LinearLayout>

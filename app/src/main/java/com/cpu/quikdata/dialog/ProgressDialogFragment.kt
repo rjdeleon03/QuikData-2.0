@@ -24,13 +24,15 @@ class ProgressDialogFragment : DialogFragment() {
         const val TEXT_TAG = "PROGRESS_DIALOG_TEXT_TAG"
         private const val TITLE_ID_KEY = "TITLE_ID_KEY"
         private const val CONTENT_ID_KEY = "CONTENT_ID_KEY"
+        private const val CANCELABLE_KEY = "CANCELABLE_KEY"
 
         @JvmStatic
-        fun start(titleId: Int = -1, textId: Int) : ProgressDialogFragment {
+        fun start(titleId: Int = -1, textId: Int, cancelable: Boolean = true) : ProgressDialogFragment {
             val fragment = ProgressDialogFragment()
             val bundle = Bundle()
             bundle.putInt(TITLE_ID_KEY, titleId)
             bundle.putInt(CONTENT_ID_KEY, textId)
+            bundle.putBoolean(CANCELABLE_KEY, cancelable)
             fragment.arguments = bundle
             return fragment
         }
@@ -46,11 +48,19 @@ class ProgressDialogFragment : DialogFragment() {
         val contentId = arguments?.getInt(CONTENT_ID_KEY)
         val content = LayoutInflater.from(context!!).inflate(contentId!!, null)
 
-        val builder = AlertDialog.Builder(context!!)
-            .setView(content)
-            .setPositiveButton(R.string.text_cancel) { dialog, _ ->
-                dialog.cancel()
+        val cancelable = arguments?.getBoolean(CANCELABLE_KEY) ?: true
+
+        val builder = AlertDialog.Builder(context!!).apply {
+            setCancelable(cancelable)
+            setView(content)
+
+            if (cancelable) {
+                setPositiveButton(R.string.text_cancel) { dialog, _ ->
+                    dialog.cancel()
+                }
             }
+        }
+
         if (willUseTitle) {
             builder.setTitle(getString(titleId!!))
         }
