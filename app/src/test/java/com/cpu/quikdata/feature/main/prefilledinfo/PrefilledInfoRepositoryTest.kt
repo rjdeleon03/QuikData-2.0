@@ -1,15 +1,16 @@
 package com.cpu.quikdata.feature.main.prefilledinfo
 
+import androidx.lifecycle.MutableLiveData
 import com.cpu.quikdata.common.TestCoroutineRule
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
-import kotlinx.coroutines.*
-import kotlinx.coroutines.test.runBlockingTest
-import org.junit.After
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
@@ -21,6 +22,7 @@ class PrefilledInfoRepositoryTest {
     val testCoroutineRule = TestCoroutineRule()
 
     private lateinit var mRepository: PrefilledInfoRepository
+    private lateinit var mData: PrefilledData
 
     @Mock
     private lateinit var mDatabase: AppDatabase
@@ -32,24 +34,28 @@ class PrefilledInfoRepositoryTest {
     fun setUp() {
 
         MockitoAnnotations.initMocks(this)
-        setupMockDatabase()
-        mRepository = PrefilledInfoRepository(mDatabase)
+        setupResources()
     }
 
-    private fun setupMockDatabase() {
-
+    private fun setupResources() {
+        mData = PrefilledData()
+        mRepository = PrefilledInfoRepository(mDatabase)
         Mockito.`when`(mDatabase.prefilledDataDao()).thenReturn(mDao)
     }
 
     @Test
-    fun updatePrefilledData() {
+    fun prefilledData() {
+        Mockito.`when`(mDao.get(anyString())).thenReturn(MutableLiveData<PrefilledData>(mData))
+        assertEquals(mRepository.prefilledData.value, mData)
+    }
 
+    @Test
+    fun updatePrefilledData() {
         testCoroutineRule.runBlockingTest {
-            val data = PrefilledData()
-            mRepository.updatePrefilledData(data)
+            mRepository.updatePrefilledData(mData)
 
             Mockito.verify(mDatabase, Mockito.times(1)).prefilledDataDao()
-            Mockito.verify(mDao, Mockito.times(2)).update(data)
+            Mockito.verify(mDao, Mockito.times(1)).update(mData)
         }
     }
 
