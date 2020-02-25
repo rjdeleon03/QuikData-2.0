@@ -1,8 +1,10 @@
 package com.cpu.quikdata.feature.main.newforms
 
 import com.cpu.quikdata.feature.base.BaseCoroutineLiveDataTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 class NewFormsRepositoryTest : BaseCoroutineLiveDataTest() {
 
     override fun setupResources() {
