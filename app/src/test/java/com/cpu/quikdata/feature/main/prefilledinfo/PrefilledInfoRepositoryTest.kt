@@ -1,20 +1,16 @@
 package com.cpu.quikdata.feature.main.prefilledinfo
 
 import androidx.lifecycle.MutableLiveData
-import com.cpu.quikdata.common.TestCoroutineRule
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
 import com.cpu.quikdata.feature.base.BaseCoroutineTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertEquals
-import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
 class PrefilledInfoRepositoryTest: BaseCoroutineTest() {
@@ -37,7 +33,9 @@ class PrefilledInfoRepositoryTest: BaseCoroutineTest() {
     @Test
     fun prefilledData() {
         Mockito.`when`(mDao.get(anyString())).thenReturn(MutableLiveData<PrefilledData>(mData))
-        assertEquals(mRepository.prefilledData.value, mData)
+        mRepository.prefilledData.observeForever {
+            assertEquals(it, mData)
+        }
     }
 
     @Test
