@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
-import com.cpu.quikdata.feature.base.BaseCoroutineTest
+import com.cpu.quikdata.feature.base.BaseCoroutineLiveDataTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -13,7 +13,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 
 @ExperimentalCoroutinesApi
-class PrefilledInfoRepositoryTest: BaseCoroutineTest() {
+class PrefilledInfoRepositoryTest: BaseCoroutineLiveDataTest() {
 
     private lateinit var mRepository: PrefilledInfoRepository
     private lateinit var mData: PrefilledData

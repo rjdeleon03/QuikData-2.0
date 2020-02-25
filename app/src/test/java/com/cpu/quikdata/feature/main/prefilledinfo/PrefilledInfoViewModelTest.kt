@@ -3,7 +3,7 @@ package com.cpu.quikdata.feature.main.prefilledinfo
 import androidx.lifecycle.MutableLiveData
 import com.cpu.quikdata.common.TestContextProvider
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
-import com.cpu.quikdata.feature.base.BaseCoroutineTest
+import com.cpu.quikdata.feature.base.BaseCoroutineLiveDataTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -11,7 +11,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 
 @ExperimentalCoroutinesApi
-class PrefilledInfoViewModelTest: BaseCoroutineTest() {
+class PrefilledInfoViewModelTest: BaseCoroutineLiveDataTest() {
 
     private lateinit var mViewModel: PrefilledInfoViewModel
     private lateinit var mData: PrefilledData
