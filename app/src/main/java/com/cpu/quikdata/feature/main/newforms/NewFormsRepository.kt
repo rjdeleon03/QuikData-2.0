@@ -80,7 +80,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
             occurrenceDate = dateNowInLong)
         mDatabase.calamityInfoDao().insert(calamityInfo)
 
-        for (i in 0 until AgeCategories.values().size) {
+        for (i in AgeCategories.values().indices) {
             val row = PopulationRow(
                 id = generateId(),
                 type = i,
@@ -92,7 +92,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
         val families = Families(id = generateId(), formId = formId)
         mDatabase.familiesDao().insert(families)
 
-        for (i in 0 until AgeCategories.values().size) {
+        for (i in AgeCategories.values().indices) {
             val row = VulnerableRow(
                 id = generateId(),
                 type = i,
@@ -101,7 +101,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
             mDatabase.vulnerableRowDao().insert(row)
         }
 
-        for (i in 0 until AgeCategories.values().size) {
+        for (i in AgeCategories.values().indices) {
             val row = CasualtiesRow(
                 id = generateId(),
                 type = i,
@@ -110,7 +110,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
             mDatabase.casualtiesRowDao().insert(row)
         }
 
-        for (i in 0 until AgeCategories.values().size) {
+        for (i in AgeCategories.values().indices) {
             val row = CauseOfDeathRow(
                 id = generateId(),
                 type = i,
@@ -119,7 +119,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
             mDatabase.causeOfDeathRowDao().insert(row)
         }
 
-        for (i in 0 until InfraCategories.values().size) {
+        for (i in InfraCategories.values().indices) {
             val row = InfrastructureDamageRow(
                 id = generateId(),
                 type = i,
@@ -139,7 +139,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
 
         // region Shelter and non-food information
 
-        for (i in 0 until HouseCategories.values().size) {
+        for (i in HouseCategories.values().indices) {
             val row = HouseDamageRow(
                 id = generateId(),
                 type = i,
@@ -151,7 +151,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
         val shelterCoping = ShelterCoping(id = generateId(), formId = formId)
         mDatabase.shelterCopingDao().insert(shelterCoping)
 
-        for (i in 0 until MaterialCategories.values().size) {
+        for (i in MaterialCategories.values().indices) {
             val row = ShelterNeedsRow(
                 id = generateId(),
                 type = i,
@@ -183,7 +183,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
 
         // region Livelihoods information
 
-        for (i in 0 until LivelihoodCategories.values().size) {
+        for (i in LivelihoodCategories.values().indices) {
             val estimatedDamageId = generateId()
             val row = EstimatedDamageRow(
                 id = estimatedDamageId,
@@ -193,11 +193,11 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
             mDatabase.estimatedDamageRowDao().insert(row)
 
             val subcategories = LivelihoodCategories.values()[i].getSubcategories()
-            for (j in 0 until subcategories.size) {
+            for (element in subcategories) {
 
                 val subRow = EstimatedDamageType(
                     id = generateId(),
-                    type = subcategories[j].ordinal,
+                    type = element.ordinal,
                     estimatedDamageId = estimatedDamageId
                 )
                 mDatabase.estimatedDamageTypeDao().insert(subRow)
@@ -217,7 +217,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
 
         // region Health information
 
-        for (i in 0 until AgeCategories.values().size) {
+        for (i in AgeCategories.values().indices) {
             val row = DiseasesRow(
                 id = generateId(),
                 type = i,
@@ -226,7 +226,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
             mDatabase.diseasesRowDao().insert(row)
         }
 
-        for (i in 0 until SpecialNeedsCategories.values().size) {
+        for (i in SpecialNeedsCategories.values().indices) {
             val row = SpecialNeedsRow(
                 id = generateId(),
                 type = i,
@@ -235,7 +235,7 @@ class NewFormsRepository @Inject constructor (private val mDatabase: AppDatabase
             mDatabase.specialNeedsRowDao().insert(row)
         }
 
-        for (i in 0 until AgeCategories.values().size) {
+        for (i in AgeCategories.values().indices) {
             val row = PsychosocialRow(
                 id = generateId(),
                 type = i,
