@@ -9,10 +9,10 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.junit.Rule
 
 @ExperimentalCoroutinesApi
 class PrefilledInfoViewModelTest: BaseCoroutineTest() {
-
 
     private lateinit var mViewModel: PrefilledInfoViewModel
     private lateinit var mData: PrefilledData
@@ -33,9 +33,11 @@ class PrefilledInfoViewModelTest: BaseCoroutineTest() {
 
     @Test
     fun updatePrefilledData() {
+        mViewModel.prefilledData.observeForever {
+            println("Hello")
+        }
         testCoroutineRule.runBlockingTest {
             mViewModel.updatePrefilledData(mData)
-
             Mockito.verify(mRepository, Mockito.times(1)).updatePrefilledData(mData)
         }
     }
