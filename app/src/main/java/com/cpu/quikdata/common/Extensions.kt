@@ -25,6 +25,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.joda.time.format.DateTimeFormat
 import java.io.File
+import kotlin.coroutines.CoroutineContext
 
 fun <T> LiveData<T>.observeOnly(lifecycleOwner: LifecycleOwner) {
     observe(lifecycleOwner, Observer {  })
@@ -214,6 +215,10 @@ fun LiveData<ProgressNotification>.observeProgress(lifecycleOwner: LifecycleOwne
  */
 fun ViewModel.runOnIoThread(task: suspend () -> Unit) {
     viewModelScope.launch(Dispatchers.IO) { task() }
+}
+
+fun ViewModel.runOnIoThread(contextProvider: CoroutineContextProvider, task: suspend () -> Unit) {
+    viewModelScope.launch(contextProvider.IO) { task() }
 }
 
 /**

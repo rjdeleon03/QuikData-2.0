@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class PrefilledInfoRepository(private val mDatabase: AppDatabase) {
+open class PrefilledInfoRepository(private val mDatabase: AppDatabase) {
 
     val prefilledData: LiveData<PrefilledData>
         get() = mDatabase.prefilledDataDao().get()

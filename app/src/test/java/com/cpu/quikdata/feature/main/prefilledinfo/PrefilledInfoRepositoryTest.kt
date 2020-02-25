@@ -5,6 +5,7 @@ import com.cpu.quikdata.common.TestCoroutineRule
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
+import com.cpu.quikdata.feature.base.BaseCoroutineTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -16,10 +17,7 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
-class PrefilledInfoRepositoryTest {
-
-    @get:Rule
-    val testCoroutineRule = TestCoroutineRule()
+class PrefilledInfoRepositoryTest: BaseCoroutineTest() {
 
     private lateinit var mRepository: PrefilledInfoRepository
     private lateinit var mData: PrefilledData
@@ -30,14 +28,7 @@ class PrefilledInfoRepositoryTest {
     @Mock
     private lateinit var mDao: PrefilledDataDao
 
-    @Before
-    fun setUp() {
-
-        MockitoAnnotations.initMocks(this)
-        setupResources()
-    }
-
-    private fun setupResources() {
+    override fun setupResources() {
         mData = PrefilledData()
         mRepository = PrefilledInfoRepository(mDatabase)
         Mockito.`when`(mDatabase.prefilledDataDao()).thenReturn(mDao)

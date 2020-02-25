@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.cpu.quikdata.common.CoroutineContextProvider
 import com.cpu.quikdata.common.FirebaseHelper
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.helpers.SharedPreferencesHelper
@@ -59,6 +60,13 @@ class AppModule {
                 : RequestManager {
             return Glide.with(application)
                 .setDefaultRequestOptions(requestOptions)
+        }
+
+        /* Coroutine Context Provider */
+        @Singleton
+        @Provides
+        fun provideCoroutineContextProvider(): CoroutineContextProvider {
+            return CoroutineContextProvider()
         }
 
         /* Firebase */
