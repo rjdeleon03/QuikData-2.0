@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.main.prefilledinfo
 
-import com.cpu.quikdata.common.CoroutineTestRule
+import com.cpu.quikdata.common.TestCoroutineRule
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.data.prefilleddata.PrefilledDataDao
@@ -10,39 +10,33 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.ArgumentMatchers.anyString
+import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
 class PrefilledInfoRepositoryTest {
 
-    private lateinit var mCoroutineScope: CoroutineScope
-    private lateinit var mRepository: PrefilledInfoRepository
-    private lateinit var mDatabase: AppDatabase
-    private lateinit var mDao: PrefilledDataDao
-
     @get:Rule
-    var coroutinesTestRule = CoroutineTestRule()
+    val testCoroutineRule = TestCoroutineRule()
+
+    private lateinit var mRepository: PrefilledInfoRepository
+
+    @Mock
+    private lateinit var mDatabase: AppDatabase
+
+    @Mock
+    private lateinit var mDao: PrefilledDataDao
 
     @Before
     fun setUp() {
-        createMockDatabase()
-        mCoroutineScope = CoroutineScope(Dispatchers.IO)
+
+        MockitoAnnotations.initMocks(this)
+        setupMockDatabase()
         mRepository = PrefilledInfoRepository(mDatabase)
     }
 
-    @After
-    fun tearDown() {
-
-        try {
-            mCoroutineScope.cancel()
-        } catch (_: Exception) {}
-    }
-
-    private fun createMockDatabase() {
-
-        mDatabase = Mockito.mock(AppDatabase::class.java)
-        mDao = Mockito.mock(PrefilledDataDao::class.java)
+    private fun setupMockDatabase() {
 
         Mockito.`when`(mDatabase.prefilledDataDao()).thenReturn(mDao)
     }
@@ -50,11 +44,12 @@ class PrefilledInfoRepositoryTest {
     @Test
     fun updatePrefilledData() {
 
-        coroutinesTestRule.testDispatcher.runBlockingTest {
-            mRepository.updatePrefilledData(PrefilledData())
+        testCoroutineRule.runBlockingTest {
+            val data = PrefilledData()
+            mRepository.updatePrefilledData(data)
 
             Mockito.verify(mDatabase, Mockito.times(1)).prefilledDataDao()
-            Mockito.verify(mDao, Mockito.times(2)).get(anyString())
+            Mockito.verify(mDao, Mockito.times(2)).update(data)
         }
     }
 
