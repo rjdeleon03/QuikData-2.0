@@ -1,6 +1,6 @@
 package com.cpu.quikdata.di.module
 
-import com.cpu.quikdata.di.annotation.ActivityScope
+import com.cpu.quikdata.di.annotation.CreateFormActivityScope
 import com.cpu.quikdata.di.annotation.SendEmergencyActivityScope
 import com.cpu.quikdata.di.module.createform.CreateFormFragmentsModule
 import com.cpu.quikdata.di.module.createform.CreateFormSharedModule
@@ -22,19 +22,19 @@ import dagger.android.ContributesAndroidInjector
 @Module(includes = [ImageViewerModule::class])
 abstract class ActivityBuilderModule {
 
-    @ActivityScope
+    @CreateFormActivityScope
     @ContributesAndroidInjector(
         modules = [MainActivitySharedModule::class, MainActivityFragmentsModule::class]
     )
     abstract fun contributeMainActivity(): MainActivity
 
-    @ActivityScope
+    @CreateFormActivityScope
     @ContributesAndroidInjector(
         modules = [CreateFormSharedModule::class, CreateFormFragmentsModule::class]
     )
     abstract fun contributeCreateFormActivity(): CreateFormActivity
 
-    @ActivityScope
+    @CreateFormActivityScope
     @ContributesAndroidInjector
     abstract fun contributeConsortiumActivity(): ConsortiumActivity
 

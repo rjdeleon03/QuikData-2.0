@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.common.FirebaseHelper
 import com.cpu.quikdata.data.AppDatabase
-import com.cpu.quikdata.di.annotation.ActivityScope
+import com.cpu.quikdata.di.annotation.CreateFormActivityScope
 import com.cpu.quikdata.di.annotation.FormBundleQualifier
 import com.cpu.quikdata.di.annotation.FormIdQualifier
 import com.cpu.quikdata.di.annotation.ViewModelKey
@@ -27,12 +27,12 @@ import dagger.multibindings.IntoMap
 abstract class CreateFormSharedModule {
 
     @Binds
-    @ActivityScope
+    @CreateFormActivityScope
     abstract fun bindsCreateFormActivity(activity: CreateFormActivity): Activity
 
     @Binds
     @IntoMap
-    @ActivityScope
+    @CreateFormActivityScope
     @ViewModelKey(CreateFormViewModel::class)
     abstract fun bindsCreateFormViewModel(createFormViewModel: CreateFormViewModel): ViewModel
 
@@ -40,16 +40,16 @@ abstract class CreateFormSharedModule {
 
         @Provides
         @FormBundleQualifier
-        @ActivityScope
+        @CreateFormActivityScope
         fun provideBundle(activity: Activity): Bundle = activity.intent.extras ?: Bundle.EMPTY
 
         @Provides
         @FormIdQualifier
-        @ActivityScope
+        @CreateFormActivityScope
         fun provideFormId(@FormBundleQualifier bundle: Bundle): String = bundle.getString(FORM_ID_KEY, "")
 
         @Provides
-        @ActivityScope
+        @CreateFormActivityScope
         fun provideCreateFormRepository(database: AppDatabase, firebaseHelper: FirebaseHelper, @FormIdQualifier formId: String)
                 : CreateFormRepository {
             return CreateFormRepository(database, firebaseHelper, formId)
