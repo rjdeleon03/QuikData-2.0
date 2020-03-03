@@ -21,10 +21,12 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            minifyEnabled true
+            minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -78,6 +80,7 @@ dependencies {
     // Navigation - Kotlin extensions
     implementation "androidx.navigation:navigation-fragment-ktx:$ktxNavVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$ktxNavVersion"
+    implementation "androidx.fragment:fragment-ktx:1.2.2"
 
     // Room
     implementation 'androidx.room:room-runtime:2.2.4'
