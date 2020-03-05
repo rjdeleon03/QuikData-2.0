@@ -3,12 +3,11 @@ package com.cpu.quikdata.base
 import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.feature.createform.CreateFormViewModel
 
-abstract class BaseCreateFormFragment: Fragment() {
+abstract class BaseCreateFormFragment: BaseFragment() {
 
     protected lateinit var mParentViewModel: CreateFormViewModel
     protected lateinit var mFactory: ViewModelFactory

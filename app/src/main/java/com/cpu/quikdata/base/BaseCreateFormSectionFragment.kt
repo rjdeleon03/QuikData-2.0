@@ -1,10 +1,9 @@
 package com.cpu.quikdata.base
 
-import androidx.fragment.app.Fragment
 import com.cpu.quikdata.R
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 
-abstract class BaseCreateFormSectionFragment : Fragment() {
+abstract class BaseCreateFormSectionFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
