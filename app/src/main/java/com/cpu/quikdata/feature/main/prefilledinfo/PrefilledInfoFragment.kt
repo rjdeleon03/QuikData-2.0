@@ -1,17 +1,17 @@
 package com.cpu.quikdata.feature.main.prefilledinfo
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFocusableFragment
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import kotlinx.android.synthetic.main.fragment_prefilled_info.*
+import javax.inject.Inject
 
 class PrefilledInfoFragment : BaseFocusableFragment() {
 
@@ -20,7 +20,12 @@ class PrefilledInfoFragment : BaseFocusableFragment() {
         fun newInstance() = PrefilledInfoFragment()
     }
 
-    private lateinit var mViewModel: PrefilledInfoViewModel
+    @Inject lateinit var mViewModel: PrefilledInfoViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        appComponent.prefilledInfoComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,7 +73,6 @@ class PrefilledInfoFragment : BaseFocusableFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProvider(this).get(PrefilledInfoViewModel::class.java)
 
         /* Retrieve prefilled data from viewModel */
         mViewModel.prefilledData.observe(viewLifecycleOwner, Observer {
@@ -96,5 +100,4 @@ class PrefilledInfoFragment : BaseFocusableFragment() {
             lightMaterialsText.number = it.shelterLightMaterials
         })
     }
-
 }

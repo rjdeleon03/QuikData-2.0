@@ -6,8 +6,8 @@ import com.cpu.quikdata.FIREBASE_KEY_DEVICES
 import com.cpu.quikdata.common.SharedPreferencesHelper
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
-import com.cpu.quikdata.di.AppComponent
-import com.cpu.quikdata.di.DaggerAppComponent
+import com.cpu.quikdata.di.app.AppComponent
+import com.cpu.quikdata.di.app.DaggerAppComponent
 import com.cpu.quikdata.utils.runOnIoThread
 import com.google.firebase.database.FirebaseDatabase
 import net.danlew.android.joda.JodaTimeAndroid

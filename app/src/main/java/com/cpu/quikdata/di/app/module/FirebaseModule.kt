@@ -1,4 +1,4 @@
-package com.cpu.quikdata.di.module
+package com.cpu.quikdata.di.app.module
 
 import com.cpu.quikdata.common.FirebaseHelper
 import com.google.firebase.firestore.FirebaseFirestore

@@ -35,7 +35,7 @@ android {
 }
 
 ext {
-    ktxNavVersion = "1.0.0"
+    ktxNavVersion = "2.2.0"
     roomVersion = "2.1.0-beta01"
 }
 
@@ -53,13 +53,10 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    // Navigation
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
-    implementation 'android.arch.navigation:navigation-ui:1.0.0'
-
     // Navigation - Kotlin extensions
-    implementation "android.arch.navigation:navigation-fragment-ktx:$ktxNavVersion"
-    implementation "android.arch.navigation:navigation-ui-ktx:$ktxNavVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$ktxNavVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$ktxNavVersion"
+    implementation "androidx.fragment:fragment-ktx:1.2.2"
 
     // Room
     implementation 'androidx.room:room-runtime:2.2.4'
