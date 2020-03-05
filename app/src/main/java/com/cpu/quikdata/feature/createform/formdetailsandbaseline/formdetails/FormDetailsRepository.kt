@@ -1,24 +1,25 @@
 package com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.formdetails.FormDetails
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class FormDetailsRepository(application: Application, formId: String) :
-    BaseRepository<FormDetails>(application) {
+class FormDetailsRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String)  {
 
-    private val mFormDetails = mDatabase.formDetailsDao().getByFormId(formId)
+    private val mFormDetails = mDatabase.formDetailsDao().getByFormId(mFormId)
 
     val formDetails : LiveData<FormDetails>
         get() = mFormDetails
 
-    override fun updateData(data: FormDetails) {
+    fun updateData(data: FormDetails) {
         runOnIoThread {
-            val oldFormDetails = mFormDetails.value!!
-            oldFormDetails.copyFrom(data)
-            mDatabase.formDetailsDao().update(oldFormDetails)
+            mFormDetails.value?.let { oldFormDetails ->
+                oldFormDetails.copyFrom(data)
+                mDatabase.formDetailsDao().update(oldFormDetails)
+            }
         }
     }
 }

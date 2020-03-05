@@ -102,7 +102,8 @@ class CreateFormActivity : BaseActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         if (fragment.childFragmentManager.backStackEntryCount > 0) {
-            fragment.childFragmentManager.popBackStack()
+//            fragment.childFragmentManager.popBackStack()
+            findNavController(R.id.fragment).navigateUp()
         } else {
             if (mViewModel.isFormTemporary) {
                 showConfirmationDialog({

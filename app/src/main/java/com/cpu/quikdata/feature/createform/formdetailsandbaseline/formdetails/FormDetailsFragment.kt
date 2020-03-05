@@ -1,5 +1,6 @@
 package com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +12,10 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.formdetails.FormDetails
+import com.cpu.quikdata.di.app.module.DaggerViewModelFactory
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import kotlinx.android.synthetic.main.fragment_form_details.*
+import javax.inject.Inject
 
 class FormDetailsFragment : BaseCreateFormFragment() {
 
@@ -21,6 +25,13 @@ class FormDetailsFragment : BaseCreateFormFragment() {
     }
 
     private lateinit var mViewModel: FormDetailsViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity() as CreateFormActivity).createFormComponent
+            .formDetailsAndBaselineComponent().create()
+            .inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +56,7 @@ class FormDetailsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(FormDetailsViewModel::class.java)
+        mViewModel = mViewModelFactory.create(FormDetailsViewModel::class.java)
         mViewModel.formDetails.observe(viewLifecycleOwner, Observer {
             formDetailsAssessmentDateText.date = it.assessmentDate
             formDetailsInterviewerText.text = it.interviewer

@@ -101,8 +101,7 @@ class ViewModelFactory(application: Application, formId: String) :
             EvacuationWashViewModel::class.java -> EvacuationWashViewModel(mApplication, mFormId) as T
             EvacuationProtectionViewModel::class.java -> EvacuationProtectionViewModel(mApplication, mFormId) as T
             EvacuationCopingViewModel::class.java -> EvacuationCopingViewModel(mApplication, mFormId) as T
-            CaseStoriesViewModel::class.java -> CaseStoriesViewModel(mApplication, mFormId) as T
-            else -> FormDetailsViewModel(mApplication, mFormId) as T
+            else -> CaseStoriesViewModel(mApplication, mFormId) as T
         }
     }
 }
