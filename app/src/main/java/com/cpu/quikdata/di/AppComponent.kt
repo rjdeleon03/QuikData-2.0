@@ -2,6 +2,7 @@ package com.cpu.quikdata.di
 
 import android.app.Application
 import android.content.Context
+import com.cpu.quikdata.di.module.FirebaseModule
 import com.cpu.quikdata.di.module.SharedPrefsModule
 import com.cpu.quikdata.feature.QuikDataApp
 import dagger.BindsInstance
@@ -10,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [SharedPrefsModule::class]
+    modules = [SharedPrefsModule::class, FirebaseModule::class]
 )
 interface AppComponent {
 

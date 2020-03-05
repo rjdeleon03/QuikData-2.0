@@ -1,6 +1,5 @@
 package com.cpu.quikdata.di.module
 
-import android.app.Application
 import android.content.Context
 import com.cpu.quikdata.common.SharedPreferencesHelper
 import dagger.Module
