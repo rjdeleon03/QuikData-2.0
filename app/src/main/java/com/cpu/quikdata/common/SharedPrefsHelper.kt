@@ -3,7 +3,9 @@ package com.cpu.quikdata.common
 import android.content.Context
 import android.preference.PreferenceManager
 import com.cpu.quikdata.DEVICE_ID_KEY
+import javax.inject.Singleton
 
+@Singleton
 class SharedPreferencesHelper(context: Context) {
 
     private val mPrefs = PreferenceManager.getDefaultSharedPreferences(context)
