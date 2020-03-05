@@ -28,7 +28,7 @@ class CasualtiesFragment : BaseCollapsibleCreateFormFragment<CasualtiesAdapter, 
     }
 
     override fun setupAdapter(expandedItemIndex: Int): CasualtiesAdapter {
-        val adapter = CasualtiesAdapter(context!!, {
+        val adapter = CasualtiesAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         casualtiesRecyclerView.adapter = adapter

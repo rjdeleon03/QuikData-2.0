@@ -37,7 +37,7 @@ class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAda
     }
 
     override fun setupAdapter(expandedItemIndex: Int): EvacuationAgeAdapter {
-        val adapter = EvacuationAgeAdapter(context!!, {
+        val adapter = EvacuationAgeAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         evacuationAgeRecyclerView.adapter = adapter

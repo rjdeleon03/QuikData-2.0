@@ -1,28 +1,34 @@
 package com.cpu.quikdata.feature.main.home
 
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.feature.consortium.ConsortiumActivity
 import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_home.*
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
-    private lateinit var mViewModel: HomeViewModel
+    @Inject lateinit var mViewModel: HomeViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        appComponent.newFormsComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +40,11 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         homeNewDncaFormButton.clickWithGuard {
             val formId = generateId()
             mViewModel.createNewForm(formId)
-            CreateFormActivity.newInstance(context!!, formId, basicMode = true)
+            CreateFormActivity.newInstance(requireContext(), formId, basicMode = true)
         }
 
         homeAboutButton.clickWithGuard {
@@ -47,7 +52,7 @@ class HomeFragment : Fragment() {
         }
 
         homeConsortiumButton.clickWithGuard {
-            ConsortiumActivity.newInstance(context!!)
+            ConsortiumActivity.newInstance(requireContext())
         }
     }
 

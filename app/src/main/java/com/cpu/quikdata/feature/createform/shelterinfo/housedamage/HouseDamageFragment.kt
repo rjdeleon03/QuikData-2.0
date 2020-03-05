@@ -28,7 +28,7 @@ class HouseDamageFragment : BaseCollapsibleCreateFormFragment<HouseDamageAdapter
     }
 
     override fun setupAdapter(expandedItemIndex: Int): HouseDamageAdapter {
-        val adapter = HouseDamageAdapter(context!!, {
+        val adapter = HouseDamageAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         houseDamageRecyclerView.adapter = adapter

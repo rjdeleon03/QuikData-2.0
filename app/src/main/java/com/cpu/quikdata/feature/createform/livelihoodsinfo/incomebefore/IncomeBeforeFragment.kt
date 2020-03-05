@@ -32,7 +32,7 @@ class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeB
     }
 
     override fun setupAdapter(expandedItemIndex: Int): IncomeBeforeAdapter {
-        val adapter = IncomeBeforeAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = IncomeBeforeAdapter(requireContext(), { mViewModel.updateRow(it) }, {
             showConfirmationDialog({ mViewModel.deleteRow(it) },
                 R.string.income_source_delete_confirmation,
                 R.layout.dialog_income_source_delete,
@@ -47,10 +47,10 @@ class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeB
         incomeBeforeAddButton.clickWithGuard {
 
             if (mIsItemLimitReached) {
-                Toast.makeText(context!!, R.string.income_add_limit_error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.income_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.createRow()
-                Toast.makeText(context!!, R.string.income_added, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.income_added, Toast.LENGTH_SHORT).show()
             }
         }
     }

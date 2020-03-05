@@ -44,9 +44,9 @@ class ProgressDialogFragment : DialogFragment() {
         val willUseTitle = titleId != -1
 
         val contentId = arguments?.getInt(CONTENT_ID_KEY)
-        val content = LayoutInflater.from(context!!).inflate(contentId!!, null)
+        val content = LayoutInflater.from(requireContext()).inflate(contentId!!, null)
 
-        val builder = AlertDialog.Builder(context!!)
+        val builder = AlertDialog.Builder(requireContext())
             .setView(content)
             .setPositiveButton(R.string.text_cancel) { dialog, _ ->
                 dialog.cancel()

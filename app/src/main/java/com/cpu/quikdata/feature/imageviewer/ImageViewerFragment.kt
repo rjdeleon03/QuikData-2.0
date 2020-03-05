@@ -49,7 +49,7 @@ class ImageViewerFragment : Fragment() {
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
     fun loadImageFromUri(imageUri: String) {
         val uri = Uri.parse(imageUri)
-        Glide.with(context!!)
+        Glide.with(requireContext())
             .load(uri)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imageViewerView)

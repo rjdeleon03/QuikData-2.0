@@ -32,7 +32,7 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
     }
 
     override fun setupAdapter(expandedItemIndex: Int): WashAssistanceAdapter {
-        val adapter = WashAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = WashAssistanceAdapter(requireContext(), { mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         washAssistanceRecyclerView.recyclerView.adapter = adapter
@@ -43,10 +43,10 @@ class WashAssistanceFragment : BaseAssistanceFragment<WashAssistanceAdapter, Was
         super.onViewCreated(view, savedInstanceState)
         washAssistanceAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
-                Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.createRow()
-                Toast.makeText(context!!, R.string.assistance_added, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_added, Toast.LENGTH_SHORT).show()
             }
         }
     }

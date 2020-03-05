@@ -28,7 +28,7 @@ class VulnerableFragment : BaseCollapsibleCreateFormFragment<VulnerableAdapter, 
     }
 
     override fun setupAdapter(expandedItemIndex: Int): VulnerableAdapter {
-        val adapter = VulnerableAdapter(context!!, {
+        val adapter = VulnerableAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         vulnerableRecyclerView.adapter = adapter

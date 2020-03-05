@@ -29,7 +29,7 @@ class EstimatedDamageFragment : BaseCollapsibleCreateFormFragment<EstimatedDamag
     }
 
     override fun setupAdapter(expandedItemIndex: Int): EstimatedDamageAdapter {
-        val adapter = EstimatedDamageAdapter(context!!, {
+        val adapter = EstimatedDamageAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         estimatedDamageRecyclerView.adapter = adapter

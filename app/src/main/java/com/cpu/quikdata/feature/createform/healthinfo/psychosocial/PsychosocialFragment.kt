@@ -28,7 +28,7 @@ class PsychosocialFragment : BaseCollapsibleCreateFormFragment<PsychosocialAdapt
     }
 
     override fun setupAdapter(expandedItemIndex: Int): PsychosocialAdapter {
-        val adapter = PsychosocialAdapter(context!!, {
+        val adapter = PsychosocialAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         psychosocialRecyclerView.adapter = adapter

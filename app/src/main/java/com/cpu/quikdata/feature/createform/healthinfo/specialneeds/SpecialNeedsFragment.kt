@@ -28,7 +28,7 @@ class SpecialNeedsFragment : BaseCollapsibleCreateFormFragment<SpecialNeedsAdapt
     }
 
     override fun setupAdapter(expandedItemIndex: Int): SpecialNeedsAdapter {
-        val adapter = SpecialNeedsAdapter(context!!, {
+        val adapter = SpecialNeedsAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         specialNeedsRecyclerView.adapter = adapter

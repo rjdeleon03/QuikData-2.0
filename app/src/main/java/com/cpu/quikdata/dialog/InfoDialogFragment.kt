@@ -38,9 +38,9 @@ class InfoDialogFragment : DialogFragment() {
         val title = getString(titleId!!)
 
         val contentId = arguments?.getInt(CONTENT_ID_KEY)
-        val content = LayoutInflater.from(context!!).inflate(contentId!!, null)
+        val content = LayoutInflater.from(requireContext()).inflate(contentId!!, null)
 
-        val builder = AlertDialog.Builder(context!!)
+        val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(title)
             .setView(content)
             .setPositiveButton(getString(R.string.text_ok)) { _, _ ->

@@ -28,7 +28,7 @@ class CauseOfDeathFragment : BaseCollapsibleCreateFormFragment<CauseOfDeathAdapt
     }
 
     override fun setupAdapter(expandedItemIndex: Int): CauseOfDeathAdapter {
-        val adapter = CauseOfDeathAdapter(context!!, {
+        val adapter = CauseOfDeathAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         causeOfDeathRecyclerView.adapter = adapter

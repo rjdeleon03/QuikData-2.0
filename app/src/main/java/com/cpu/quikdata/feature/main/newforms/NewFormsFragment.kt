@@ -1,14 +1,13 @@
 package com.cpu.quikdata.feature.main.newforms
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-
 import com.cpu.quikdata.R
+import com.cpu.quikdata.base.BaseFragment
 import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.form.FormComplete
 import com.cpu.quikdata.dialog.ProgressDialogFragment
@@ -16,17 +15,24 @@ import com.cpu.quikdata.feature.createform.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_new_forms.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
+import javax.inject.Inject
 
-class NewFormsFragment : Fragment() {
+class NewFormsFragment : BaseFragment() {
 
     companion object {
         @JvmStatic
         fun newInstance() = NewFormsFragment()
     }
 
-    private lateinit var mViewModel: NewFormsViewModel
+    @Inject lateinit var mViewModel: NewFormsViewModel
+
     private lateinit var mAdapter: NewFormsAdapter
     private var mDialog: ProgressDialogFragment? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        appComponent.newFormsComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,19 +57,18 @@ class NewFormsFragment : Fragment() {
             R.string.form_item_delete_confirmation,
             R.layout.dialog_form_item_delete,
             R.string.form_item_deleted)}
-        mAdapter = NewFormsAdapter(context!!, submitListener, deleteListener)
+        mAdapter = NewFormsAdapter(requireContext(), submitListener, deleteListener)
 
         newFormsRecyclerView.recyclerView.adapter = mAdapter
         newFormsAddButton.clickWithGuard {
             val formId = generateId()
             mViewModel.createNewForm(formId)
-            CreateFormActivity.newInstance(context!!, formId, basicMode = true)
+            CreateFormActivity.newInstance(requireContext(), formId, basicMode = true)
         }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProvider(this).get(NewFormsViewModel::class.java)
         mViewModel.newForms.observe(viewLifecycleOwner, Observer { forms ->
             newFormsRecyclerView.updateDisplayBasedOnItemCount(forms.size)
             mAdapter.setForms(forms)

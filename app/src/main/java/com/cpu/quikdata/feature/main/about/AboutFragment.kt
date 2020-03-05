@@ -31,9 +31,9 @@ class AboutFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupClipping(settingsMainLayout)
 
-        aboutICREDButton.addWebLink("https://www.cdrc-phil.com/icred/", context!!)
+        aboutICREDButton.addWebLink("https://www.cdrc-phil.com/icred/", requireContext())
         aboutConsortiumButton.clickWithGuard {
-            ConsortiumActivity.newInstance(context!!)
+            ConsortiumActivity.newInstance(requireContext())
         }
     }
 

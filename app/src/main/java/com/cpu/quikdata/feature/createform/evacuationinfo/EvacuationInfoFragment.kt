@@ -46,7 +46,7 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
 
         setupClipping(view)
 
-        mAdapter = EvacuationInfoAdapter(context!!, {
+        mAdapter = EvacuationInfoAdapter(requireContext(), {
             val action = EvacuationInfoFragmentDirections
                 .actionEvacuationInfoFragmentToEvacuationContainerFragment(it, true)
             mNavController.navigate(action)
@@ -61,12 +61,12 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
 
         evacuationAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
-                Toast.makeText(context!!, R.string.evacuation_add_limit_error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.evacuation_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 val id = generateId()
                 mViewModel.createEvacuationInfo(id)
 
-                Toast.makeText(context!!, R.string.evacuation_added, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.evacuation_added, Toast.LENGTH_SHORT).show()
                 val action = EvacuationInfoFragmentDirections
                     .actionEvacuationInfoFragmentToEvacuationContainerFragment(id, false)
                 mNavController.navigate(action)

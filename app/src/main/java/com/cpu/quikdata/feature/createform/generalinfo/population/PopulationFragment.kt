@@ -26,7 +26,7 @@ class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, 
     }
 
     override fun setupAdapter(expandedItemIndex: Int): PopulationAdapter {
-        val adapter = PopulationAdapter(context!!, {
+        val adapter = PopulationAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         populationRecyclerView.adapter = adapter

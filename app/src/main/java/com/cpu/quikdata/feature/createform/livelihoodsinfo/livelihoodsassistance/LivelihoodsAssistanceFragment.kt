@@ -32,7 +32,7 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistan
     }
 
     override fun setupAdapter(expandedItemIndex: Int): LivelihoodsAssistanceAdapter {
-        val adapter = LivelihoodsAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = LivelihoodsAssistanceAdapter(requireContext(), { mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         livelihoodsAssistanceRecyclerView.recyclerView.adapter = adapter
@@ -43,10 +43,10 @@ class LivelihoodsAssistanceFragment : BaseAssistanceFragment<LivelihoodsAssistan
         super.onViewCreated(view, savedInstanceState)
         livelihoodsAssistanceAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
-                Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.createRow()
-                Toast.makeText(context!!, R.string.assistance_added, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_added, Toast.LENGTH_SHORT).show()
             }
         }
     }

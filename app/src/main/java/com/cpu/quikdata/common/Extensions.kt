@@ -130,7 +130,7 @@ fun Fragment.showConfirmationDialog(positiveButtonListener: () -> Unit,
     val dialog = ConfirmationDialogFragment.newInstance(titleId, layoutId)
     dialog.onPositiveButtonListener = {
         positiveButtonListener.invoke()
-        Toast.makeText(this.context!!, toastId, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), toastId, Toast.LENGTH_SHORT).show()
     }
     dialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
 }

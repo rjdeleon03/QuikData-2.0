@@ -32,7 +32,7 @@ class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapte
     }
 
     override fun setupAdapter(expandedItemIndex: Int): ShelterAssistanceAdapter {
-        val adapter = ShelterAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = ShelterAssistanceAdapter(requireContext(), { mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         shelterAssistanceRecyclerView.recyclerView.adapter = adapter
@@ -43,10 +43,10 @@ class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapte
         super.onViewCreated(view, savedInstanceState)
         shelterAssistanceAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
-                Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.createRow()
-                Toast.makeText(context!!, R.string.assistance_added, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_added, Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -28,7 +28,7 @@ class InfrastructureDamageFragment : BaseCollapsibleCreateFormFragment<Infrastru
     }
 
     override fun setupAdapter(expandedItemIndex: Int): InfrastructureDamageAdapter {
-        val adapter = InfrastructureDamageAdapter(context!!, {
+        val adapter = InfrastructureDamageAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         infrastructureDamageRecyclerView.adapter = adapter

@@ -84,7 +84,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
             expandedItemIndex = savedInstanceState.getInt(mExpandedItemKey, 0)
         }
 
-        mAdapter = CaseStoriesImageAdapter(context!!, {
+        mAdapter = CaseStoriesImageAdapter(requireContext(), {
             val action = CaseStoriesFragmentDirections.actionCaseStoriesFragmentToImageViewerFragment(it.uri)
             findNavController().navigate(action)
         }, {
@@ -119,7 +119,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         // Setup image picker
         mImagePicker = ImagePicker(activity!!, this, OnImagePickedListener {
             val imageId = generateId()
-            val imageUri = getImageUri(context!!, it, imageId)
+            val imageUri = getImageUri(requireContext(), it, imageId)
             mViewModel.insertImage(imageUri.toString(), imageId)
         })
     }
@@ -148,6 +148,6 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
     }
 
     private fun showToastMessage(stringId: Int) {
-        Toast.makeText(context!!, stringId, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), stringId, Toast.LENGTH_SHORT).show()
     }
 }

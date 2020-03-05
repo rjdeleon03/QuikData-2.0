@@ -28,7 +28,7 @@ class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapt
     }
 
     override fun setupAdapter(expandedItemIndex: Int): ShelterNeedsAdapter {
-        val adapter = ShelterNeedsAdapter(context!!, {
+        val adapter = ShelterNeedsAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         shelterNeedsRecyclerView.adapter = adapter

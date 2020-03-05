@@ -33,7 +33,7 @@ class FoodSecurityAssistanceFragment :
     }
 
     override fun setupAdapter(expandedItemIndex: Int): FoodSecurityAssistanceAdapter {
-        val adapter = FoodSecurityAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = FoodSecurityAssistanceAdapter(requireContext(), { mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         foodSecurityAssistanceRecyclerView.recyclerView.adapter = adapter
@@ -45,10 +45,10 @@ class FoodSecurityAssistanceFragment :
         foodSecurityAssistanceAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
                 // TODO: Update this with a dialog
-                Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.createRow()
-                Toast.makeText(context!!, R.string.assistance_added, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_added, Toast.LENGTH_SHORT).show()
             }
         }
     }

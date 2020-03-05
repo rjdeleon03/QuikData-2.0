@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature.main.newforms
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.cpu.quikdata.common.*
@@ -46,12 +45,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.joda.time.LocalDate
+import javax.inject.Inject
 
-class NewFormsRepository(application: Application) {
+class NewFormsRepository @Inject constructor(private val mDatabase: AppDatabase,
+                                             private val mFirebaseHelper: FirebaseHelper) {
 
-    private val mDatabase = AppDatabase.get(application)
-    private val mFirebaseHelper = FirebaseHelper()
     private val mNewForms = mDatabase.formDao().getAllActual()
     private val mSaveResult = MediatorLiveData<ProgressNotification>()
 
@@ -87,7 +85,7 @@ class NewFormsRepository(application: Application) {
                 occurrenceDate = dateNowInLong)
             mDatabase.calamityInfoDao().insert(calamityInfo)
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = PopulationRow(
                     id = generateId(),
                     type = i,
@@ -99,7 +97,7 @@ class NewFormsRepository(application: Application) {
             val families = Families(id = generateId(), formId = formId)
             mDatabase.familiesDao().insert(families)
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = VulnerableRow(
                     id = generateId(),
                     type = i,
@@ -108,7 +106,7 @@ class NewFormsRepository(application: Application) {
                 mDatabase.vulnerableRowDao().insert(row)
             }
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = CasualtiesRow(
                     id = generateId(),
                     type = i,
@@ -117,7 +115,7 @@ class NewFormsRepository(application: Application) {
                 mDatabase.casualtiesRowDao().insert(row)
             }
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = CauseOfDeathRow(
                     id = generateId(),
                     type = i,
@@ -126,7 +124,7 @@ class NewFormsRepository(application: Application) {
                 mDatabase.causeOfDeathRowDao().insert(row)
             }
 
-            for (i in 0 until InfraCategories.values().size) {
+            for (i in InfraCategories.values().indices) {
                 val row = InfrastructureDamageRow(
                     id = generateId(),
                     type = i,
@@ -146,7 +144,7 @@ class NewFormsRepository(application: Application) {
 
             // region Shelter and non-food information
 
-            for (i in 0 until HouseCategories.values().size) {
+            for (i in HouseCategories.values().indices) {
                 val row = HouseDamageRow(
                     id = generateId(),
                     type = i,
@@ -158,7 +156,7 @@ class NewFormsRepository(application: Application) {
             val shelterCoping = ShelterCoping(id = generateId(), formId = formId)
             mDatabase.shelterCopingDao().insert(shelterCoping)
 
-            for (i in 0 until MaterialCategories.values().size) {
+            for (i in MaterialCategories.values().indices) {
                 val row = ShelterNeedsRow(
                     id = generateId(),
                     type = i,
@@ -190,7 +188,7 @@ class NewFormsRepository(application: Application) {
 
             // region Livelihoods information
 
-            for (i in 0 until LivelihoodCategories.values().size) {
+            for (i in LivelihoodCategories.values().indices) {
                 val estimatedDamageId = generateId()
                 val row = EstimatedDamageRow(
                     id = estimatedDamageId,
@@ -224,7 +222,7 @@ class NewFormsRepository(application: Application) {
 
             // region Health information
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = DiseasesRow(
                     id = generateId(),
                     type = i,
@@ -233,7 +231,7 @@ class NewFormsRepository(application: Application) {
                 mDatabase.diseasesRowDao().insert(row)
             }
 
-            for (i in 0 until SpecialNeedsCategories.values().size) {
+            for (i in SpecialNeedsCategories.values().indices) {
                 val row = SpecialNeedsRow(
                     id = generateId(),
                     type = i,
@@ -242,7 +240,7 @@ class NewFormsRepository(application: Application) {
                 mDatabase.specialNeedsRowDao().insert(row)
             }
 
-            for (i in 0 until AgeCategories.values().size) {
+            for (i in AgeCategories.values().indices) {
                 val row = PsychosocialRow(
                     id = generateId(),
                     type = i,

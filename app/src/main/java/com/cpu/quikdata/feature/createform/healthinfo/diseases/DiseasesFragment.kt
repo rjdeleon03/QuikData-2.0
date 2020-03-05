@@ -28,7 +28,7 @@ class DiseasesFragment : BaseCollapsibleCreateFormFragment<DiseasesAdapter, Dise
     }
 
     override fun setupAdapter(expandedItemIndex: Int): DiseasesAdapter {
-        val adapter = DiseasesAdapter(context!!, {
+        val adapter = DiseasesAdapter(requireContext(), {
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         diseasesRecyclerView.adapter = adapter

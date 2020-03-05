@@ -32,7 +32,7 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
     }
 
     override fun setupAdapter(expandedItemIndex: Int): HealthAssistanceAdapter {
-        val adapter = HealthAssistanceAdapter(context!!, { mViewModel.updateRow(it) }, {
+        val adapter = HealthAssistanceAdapter(requireContext(), { mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         healthAssistanceRecyclerView.recyclerView.adapter = adapter
@@ -43,10 +43,10 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
         super.onViewCreated(view, savedInstanceState)
         healthAssistanceAddButton.clickWithGuard {
             if (mIsItemLimitReached) {
-                Toast.makeText(context!!, R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_add_limit_error, Toast.LENGTH_SHORT).show()
             } else {
                 mViewModel.createRow()
-                Toast.makeText(context!!, R.string.assistance_added, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.assistance_added, Toast.LENGTH_SHORT).show()
             }
         }
     }
