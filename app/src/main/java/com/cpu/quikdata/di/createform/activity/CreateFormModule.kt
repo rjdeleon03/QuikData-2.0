@@ -21,6 +21,7 @@ abstract class CreateFormModule {
 
     companion object {
 
+        @ActivityScope
         @Provides
         fun getFormId(createFormActivity: CreateFormActivity): String {
             return createFormActivity.intent.getStringExtra(CreateFormActivity.FORM_ID_KEY)

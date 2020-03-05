@@ -8,6 +8,10 @@ import javax.inject.Inject
 
 class CreateFormViewModel @Inject constructor(private val mRepository: CreateFormRepository) : ViewModel() {
 
+    init {
+        val x = 1
+    }
+
     val formId: String
         get() = mRepository.formId
 

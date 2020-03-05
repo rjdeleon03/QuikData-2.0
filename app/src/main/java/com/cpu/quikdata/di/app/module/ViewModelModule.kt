@@ -9,6 +9,7 @@ import dagger.Module
 import dagger.Reusable
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 import kotlin.reflect.KClass
 
 @Module
