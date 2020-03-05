@@ -13,19 +13,23 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseActivity
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.common.showConfirmationDialog
+import com.cpu.quikdata.di.createform.activity.CreateFormComponent
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
 import kotlinx.android.synthetic.main.activity_create_form.*
+import javax.inject.Inject
 
 
 class CreateFormActivity : BaseActivity() {
 
+    @Inject lateinit var mViewModel: CreateFormViewModel
+
+    private lateinit var mCreateFormComponent: CreateFormComponent
     private lateinit var mNavController: NavController
-    private lateinit var mViewModel: CreateFormViewModel
     private var mLayoutMargin: Int = 0
     private var mEditMode = false
 
     companion object {
-        private const val FORM_ID_KEY = "FORM_ID_KEY"
+        const val FORM_ID_KEY = "FORM_ID_KEY"
         private const val EDIT_MODE_KEY = "EDIT_MODE_KEY"
         private const val BASIC_MODE_KEY = "BASIC_MODE_KEY"
 
@@ -39,7 +43,13 @@ class CreateFormActivity : BaseActivity() {
         }
     }
 
+    val createFormComponent: CreateFormComponent
+        get() = mCreateFormComponent
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        mCreateFormComponent = appComponent.createFormComponent().create(this)
+        mCreateFormComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_form)
 
@@ -51,13 +61,6 @@ class CreateFormActivity : BaseActivity() {
         var titleId = R.string.create_form_title_new
         if (mEditMode) {
             titleId = R.string.create_form_title_edit
-        }
-
-        // Initialize viewModel with form ID
-        val formId = intent.getStringExtra(FORM_ID_KEY)
-        if (!formId.isNullOrEmpty()) {
-            val factory = ViewModelFactory(application, formId)
-            mViewModel = ViewModelProvider(this, factory).get(CreateFormViewModel::class.java)
         }
 
         // Setup navController

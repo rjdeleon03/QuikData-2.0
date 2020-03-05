@@ -48,7 +48,7 @@ class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAda
         super.onActivityCreated(savedInstanceState)
 
         val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(activity!!.application, evacuationId)
+        val factory = ViewModelFactory(requireActivity().application, evacuationId)
         mViewModel = ViewModelProvider(this, factory).get(EvacuationAgeViewModel::class.java)
         mViewModel.evacuationAge.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)

@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature.createform.activity
 
-import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -12,14 +11,18 @@ import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import com.cpu.quikdata.utils.runOnMainThread
+import javax.inject.Inject
 
-class CreateFormRepository(application: Application, formId: String) {
+class CreateFormRepository @Inject constructor(
+    private val mFirebaseHelper: FirebaseHelper,
+    private val mDatabase: AppDatabase,
+    private val mFormId: String) {
 
-    private val mDatabase = AppDatabase.get(application)
-    private val mFormId = formId
     private val mForm = mDatabase.formDao().getById(mFormId)
-    private val mFirebaseHelper = FirebaseHelper()
     private val mSaveResult: MediatorLiveData<ProgressNotification> = MediatorLiveData()
+
+    val formId: String
+        get() = mFormId
 
     val form: LiveData<Form>
         get() = mForm

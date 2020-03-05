@@ -58,7 +58,7 @@ class EvacuationFacilitiesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(activity!!.application, evacuationId)
+        val factory = ViewModelFactory(requireActivity().application, evacuationId)
         mViewModel = ViewModelProvider(this, factory).get(EvacuationFacilitiesViewModel::class.java)
         mViewModel.evacuationFacilities.observe(viewLifecycleOwner, Observer {
             evacuationFacilitiesCapacityText.number = it.capacity

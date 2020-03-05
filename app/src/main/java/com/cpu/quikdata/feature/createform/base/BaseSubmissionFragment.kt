@@ -35,7 +35,7 @@ abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
         mParentViewModel.saveResult.observeProgress(viewLifecycleOwner, {
             mDialog?.dismiss()
             showToast(R.string.form_item_submission_success)
-            activity!!.finish()
+            requireActivity().finish()
         }, {
             mDialog?.dismiss()
             showToast(R.string.form_item_submission_failed)

@@ -7,10 +7,10 @@ abstract class BaseCreateFormSectionFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity!! as CreateFormActivity).setSubtitle(getString(R.string.create_form_subtitle))
+        (requireActivity() as CreateFormActivity).setSubtitle(getString(R.string.create_form_subtitle))
     }
 
     protected fun setSubtitle(subtitle: CharSequence?) {
-        (activity!! as CreateFormActivity).setSubtitle(subtitle)
+        (requireActivity() as CreateFormActivity).setSubtitle(subtitle)
     }
 }

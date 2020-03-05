@@ -74,7 +74,7 @@ class EvacuationProtectionFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(activity!!.application, evacuationId)
+        val factory = ViewModelFactory(requireActivity().application, evacuationId)
         mViewModel = ViewModelProvider(this, factory).get(EvacuationProtectionViewModel::class.java)
         mViewModel.evacuationProtection.observe(viewLifecycleOwner, Observer {
             evacuationProtectionUnaccompaniedChildrenText.value = it.unaccompaniedChildren

@@ -48,7 +48,7 @@ class EvacuationCopingFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(activity!!.application, evacuationId)
+        val factory = ViewModelFactory(requireActivity().application, evacuationId)
         mViewModel = ViewModelProvider(this, factory).get(EvacuationCopingViewModel::class.java)
         mViewModel.evacuationCoping.observe(viewLifecycleOwner, Observer {
             evacuationCopingMechanismText.text = it.copingMechanism

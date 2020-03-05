@@ -7,5 +7,5 @@ import com.cpu.quikdata.feature.QuikDataApp
 abstract class BaseFragment: Fragment() {
 
     val appComponent: AppComponent
-        get() = (activity!!.application as QuikDataApp).appComponent
+        get() = (requireActivity().application as QuikDataApp).appComponent
 }

@@ -56,7 +56,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
     override fun onDestroyView() {
         mViewModel.updateCaseStoriesText(CaseStories(text = caseStoriesText.text))
-        (activity!! as CreateFormActivity).setSubtitle(getString(R.string.create_form_subtitle))
+        (requireActivity() as CreateFormActivity).setSubtitle(getString(R.string.create_form_subtitle))
         super.onDestroyView()
     }
 
@@ -69,7 +69,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupClipping(view)
-        (activity!! as CreateFormActivity).setSubtitle()
+        (requireActivity() as CreateFormActivity).setSubtitle()
 
         caseStoriesAddImageButton.clickWithGuard {
             if (mIsItemLimitReached) {
@@ -117,7 +117,7 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
         })
 
         // Setup image picker
-        mImagePicker = ImagePicker(activity!!, this, OnImagePickedListener {
+        mImagePicker = ImagePicker(requireActivity(), this, OnImagePickedListener {
             val imageId = generateId()
             val imageUri = getImageUri(requireContext(), it, imageId)
             mViewModel.insertImage(imageUri.toString(), imageId)

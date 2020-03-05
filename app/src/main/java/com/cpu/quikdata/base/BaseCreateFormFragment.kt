@@ -5,24 +5,32 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.common.ViewModelFactory
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.feature.createform.activity.CreateFormViewModel
+import javax.inject.Inject
 
 abstract class BaseCreateFormFragment: BaseFragment() {
 
-    protected lateinit var mParentViewModel: CreateFormViewModel
+    @Inject lateinit var mParentViewModel: CreateFormViewModel
+
     protected lateinit var mFactory: ViewModelFactory
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity() as CreateFormActivity).createFormComponent.inject(this)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mParentViewModel = ViewModelProvider(activity!!).get(CreateFormViewModel::class.java)
-        mFactory = ViewModelFactory(activity!!.application, mParentViewModel.formId)
+//        mParentViewModel = ViewModelProvider(requireActivity()).get(CreateFormViewModel::class.java)
+        mFactory = ViewModelFactory(requireActivity().application, mParentViewModel.formId)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         if (!isVisibleToUser && activity != null) {
-            val imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            val focus = activity!!.currentFocus
+            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val focus = requireActivity().currentFocus
             if (focus != null) {
                 imm.hideSoftInputFromWindow(focus.windowToken, 0)
                 focus.clearFocus()

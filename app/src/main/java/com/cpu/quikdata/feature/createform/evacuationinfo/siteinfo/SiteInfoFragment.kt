@@ -62,7 +62,7 @@ class SiteInfoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(activity!!.application, evacuationId)
+        val factory = ViewModelFactory(requireActivity().application, evacuationId)
         mViewModel = ViewModelProvider(this, factory).get(SiteInfoViewModel::class.java)
         mViewModel.siteInfo.observe(viewLifecycleOwner, Observer {
             evacuationSiteInfoNameText.text = it.name
