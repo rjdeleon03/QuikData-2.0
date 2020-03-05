@@ -11,7 +11,7 @@ import com.cpu.quikdata.base.BaseFragment
 import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.form.FormComplete
 import com.cpu.quikdata.dialog.ProgressDialogFragment
-import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_new_forms.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*

@@ -7,11 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAsyncInflaterAdapter
 import com.cpu.quikdata.common.clickWithGuard
-import com.cpu.quikdata.common.showToast
 import com.cpu.quikdata.common.toDateString
 import com.cpu.quikdata.data.form.FormComplete
-import com.cpu.quikdata.feature.createform.CreateFormActivity
-import com.cpu.quikdata.utils.isInternetAvailable
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.utils.isInternetAvailableThenToast
 import kotlinx.android.synthetic.main.item_form.view.*
 

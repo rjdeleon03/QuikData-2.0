@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
-import com.cpu.quikdata.feature.createform.BaseSubmissionFragment
+import com.cpu.quikdata.feature.createform.base.BaseSubmissionFragment
 import com.cpu.quikdata.utils.isInternetAvailableThenToast
 import kotlinx.android.synthetic.main.fragment_basic_selection.*
 

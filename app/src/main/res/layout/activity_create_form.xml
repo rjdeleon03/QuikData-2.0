@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@drawable/gradient_primary_bg"
     android:clipChildren="false"
-    tools:context=".feature.createform.CreateFormActivity">
+    tools:context=".feature.createform.activity.CreateFormActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/createFormToolbar"

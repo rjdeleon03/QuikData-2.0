@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform
+package com.cpu.quikdata.feature.createform.base
 
 import android.os.Bundle
 import android.view.View

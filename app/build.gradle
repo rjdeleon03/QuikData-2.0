@@ -94,6 +94,10 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.26'
     kapt 'com.google.dagger:dagger-compiler:2.26'
 
+    // AssistedInject - Dagger
+    compileOnly 'com.squareup.inject:assisted-inject-annotations-dagger2:0.5.2'
+    annotationProcessor 'com.squareup.inject:assisted-inject-processor-dagger2:0.5.2'
+
 }
 
 // Must be at the bottom

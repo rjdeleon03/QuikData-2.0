@@ -15,7 +15,7 @@ import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.showConfirmationDialog
-import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_evacuation_info.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*

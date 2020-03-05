@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import kotlinx.android.synthetic.main.fragment_image_viewer.*
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions

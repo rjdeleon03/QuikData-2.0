@@ -3,7 +3,7 @@ package com.cpu.quikdata.common
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.cpu.quikdata.feature.createform.CreateFormViewModel
+import com.cpu.quikdata.feature.createform.activity.CreateFormViewModel
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeViewModel
@@ -60,7 +60,10 @@ class ViewModelFactory(application: Application, formId: String) :
 
         return when (modelClass) {
             BaselineDataViewModel::class.java -> BaselineDataViewModel(mApplication, mFormId) as T
-            CreateFormViewModel::class.java -> CreateFormViewModel(mApplication, mFormId) as T
+            CreateFormViewModel::class.java -> CreateFormViewModel(
+                mApplication,
+                mFormId
+            ) as T
             CalamityInfoViewModel::class.java -> CalamityInfoViewModel(mApplication, mFormId) as T
             PopulationViewModel::class.java -> PopulationViewModel(mApplication, mFormId) as T
             FamiliesViewModel::class.java -> FamiliesViewModel(mApplication, mFormId) as T

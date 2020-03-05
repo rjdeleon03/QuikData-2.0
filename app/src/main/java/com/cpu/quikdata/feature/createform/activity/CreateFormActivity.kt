@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform
+package com.cpu.quikdata.feature.createform.activity
 
 import android.content.Context
 import android.content.Intent

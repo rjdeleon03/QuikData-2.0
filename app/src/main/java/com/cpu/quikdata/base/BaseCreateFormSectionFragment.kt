@@ -1,7 +1,7 @@
 package com.cpu.quikdata.base
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 
 abstract class BaseCreateFormSectionFragment : BaseFragment() {
 

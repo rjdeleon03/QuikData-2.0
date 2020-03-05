@@ -19,7 +19,7 @@ import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.dialog.InfoDialogFragment
-import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import com.myhexaville.smartimagepicker.ImagePicker
 import com.myhexaville.smartimagepicker.OnImagePickedListener

@@ -12,7 +12,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.feature.consortium.ConsortiumActivity
-import com.cpu.quikdata.feature.createform.CreateFormActivity
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject

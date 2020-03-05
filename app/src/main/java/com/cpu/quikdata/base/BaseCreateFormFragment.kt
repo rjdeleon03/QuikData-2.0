@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.common.ViewModelFactory
-import com.cpu.quikdata.feature.createform.CreateFormViewModel
+import com.cpu.quikdata.feature.createform.activity.CreateFormViewModel
 
 abstract class BaseCreateFormFragment: BaseFragment() {
 
