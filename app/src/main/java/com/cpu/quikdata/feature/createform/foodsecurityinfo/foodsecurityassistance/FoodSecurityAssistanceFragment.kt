@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -56,7 +56,7 @@ class FoodSecurityAssistanceFragment :
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(FoodSecurityAssistanceViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(FoodSecurityAssistanceViewModel::class.java)
         mViewModel.foodSecurityAssistance.observe(viewLifecycleOwner, Observer {
             foodSecurityAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washconditions
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -71,7 +71,7 @@ class WashConditionsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(WashConditionsViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(WashConditionsViewModel::class.java)
         mViewModel.washConditions.observe(viewLifecycleOwner, Observer {
             washConditionsDrinkingWaterText.value = it.drinkingWaterLevel
             washConditionsDrinkingWaterText.text = it.drinkingWaterRemarks

@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +38,7 @@ class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapt
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(ShelterNeedsViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(ShelterNeedsViewModel::class.java)
         mViewModel.shelterNeeds.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

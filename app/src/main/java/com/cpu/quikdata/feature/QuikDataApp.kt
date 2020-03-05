@@ -10,13 +10,13 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.utils.runOnIoThread
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import net.danlew.android.joda.JodaTimeAndroid
 
 class QuikDataApp : Application() {
+
+//    var appComponent: AppComponent by lazy {
+//        DaggerAppComponent.builder()
+//    }
 
     override fun onCreate() {
         super.onCreate()

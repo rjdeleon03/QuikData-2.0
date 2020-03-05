@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationprotection
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -75,7 +75,7 @@ class EvacuationProtectionFragment : Fragment() {
 
         val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
         val factory = ViewModelFactory(activity!!.application, evacuationId)
-        mViewModel = ViewModelProviders.of(this, factory).get(EvacuationProtectionViewModel::class.java)
+        mViewModel = ViewModelProvider(this, factory).get(EvacuationProtectionViewModel::class.java)
         mViewModel.evacuationProtection.observe(viewLifecycleOwner, Observer {
             evacuationProtectionUnaccompaniedChildrenText.value = it.unaccompaniedChildren
             evacuationProtectionUnaccompaniedChildrenText.text = it.unaccompaniedChildrenRemarks

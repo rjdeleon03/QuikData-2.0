@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsneeds
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -42,7 +42,7 @@ class LivelihoodsNeedsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         
-        mViewModel = ViewModelProviders.of(this, mFactory).get(LivelihoodsNeedsViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(LivelihoodsNeedsViewModel::class.java)
         mViewModel.livelihoodsNeeds.observe(viewLifecycleOwner, Observer {
             livelihoodsNeedsAssistanceFillGapText.text = it.assistanceFillGap
             livelihoodsResourcesNeededText.text = it.resourcesNeeded

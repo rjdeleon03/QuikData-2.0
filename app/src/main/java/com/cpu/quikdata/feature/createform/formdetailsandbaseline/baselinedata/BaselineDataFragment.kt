@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.formdetailsandbaseline.baselinedata
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,7 +47,7 @@ class BaselineDataFragment : BaseCreateFormFragment() {
             }
         }
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(BaselineDataViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(BaselineDataViewModel::class.java)
         mViewModel.baselineData.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             useBaselineSwitch.isChecked = it.usePrefilled

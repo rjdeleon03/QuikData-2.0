@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +41,7 @@ class ShelterCopingFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(ShelterCopingViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(ShelterCopingViewModel::class.java)
         mViewModel.shelterCoping.observe(viewLifecycleOwner, Observer {
             shelterCopingDisplacedFamiliesLocationText.text = it.displacedFamiliesLocation
             shelterCopingHowToGetHomesBackText.text = it.howToGetHomesBack

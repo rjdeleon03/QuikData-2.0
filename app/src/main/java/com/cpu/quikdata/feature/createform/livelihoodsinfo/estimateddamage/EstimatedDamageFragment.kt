@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +39,7 @@ class EstimatedDamageFragment : BaseCollapsibleCreateFormFragment<EstimatedDamag
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(EstimatedDamageViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(EstimatedDamageViewModel::class.java)
         mViewModel.estimatedDamage.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

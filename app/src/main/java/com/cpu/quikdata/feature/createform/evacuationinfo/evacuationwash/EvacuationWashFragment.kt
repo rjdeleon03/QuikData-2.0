@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationwash
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -62,7 +62,7 @@ class EvacuationWashFragment : Fragment() {
 
         val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
         val factory = ViewModelFactory(activity!!.application, evacuationId)
-        mViewModel = ViewModelProviders.of(this, factory).get(EvacuationWashViewModel::class.java)
+        mViewModel = ViewModelProvider(this, factory).get(EvacuationWashViewModel::class.java)
         mViewModel.evacuationWash.observe(viewLifecycleOwner, Observer {
             evacuationWashFoodPreparationText.value = it.foodPreparation
             evacuationWashFoodPreparationText.text = it.foodPreparationRemarks

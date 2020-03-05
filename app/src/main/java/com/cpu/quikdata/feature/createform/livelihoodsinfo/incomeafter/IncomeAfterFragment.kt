@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -57,7 +57,7 @@ class IncomeAfterFragment : BaseAssistanceFragment<IncomeAfterAdapter, IncomeAft
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(IncomeAfterViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(IncomeAfterViewModel::class.java)
         mViewModel.incomeAfter.observe(viewLifecycleOwner, Observer {
             incomeAfterRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

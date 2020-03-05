@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.generalinfo.casualties
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +38,7 @@ class CasualtiesFragment : BaseCollapsibleCreateFormFragment<CasualtiesAdapter, 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(CasualtiesViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(CasualtiesViewModel::class.java)
         mViewModel.casualties.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

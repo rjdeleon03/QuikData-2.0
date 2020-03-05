@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.healthinfo.healthassistance
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -54,7 +54,7 @@ class HealthAssistanceFragment : BaseAssistanceFragment<HealthAssistanceAdapter,
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(HealthAssistanceViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(HealthAssistanceViewModel::class.java)
         mViewModel.healthAssistance.observe(viewLifecycleOwner, Observer {
             healthAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

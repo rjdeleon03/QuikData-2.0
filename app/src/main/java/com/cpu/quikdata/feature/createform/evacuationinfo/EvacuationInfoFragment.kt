@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -77,7 +77,7 @@ class EvacuationInfoFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(EvacuationInfoViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(EvacuationInfoViewModel::class.java)
         mViewModel.evacuationInfos.observe(viewLifecycleOwner, Observer {
             evacuationRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

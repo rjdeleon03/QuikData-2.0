@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.createform.generalinfo.causeofdeath
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +38,7 @@ class CauseOfDeathFragment : BaseCollapsibleCreateFormFragment<CauseOfDeathAdapt
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this, mFactory).get(CauseOfDeathViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(CauseOfDeathViewModel::class.java)
         mViewModel.casualties.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

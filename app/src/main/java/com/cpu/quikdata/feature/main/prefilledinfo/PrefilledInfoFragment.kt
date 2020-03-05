@@ -1,6 +1,6 @@
 package com.cpu.quikdata.feature.main.prefilledinfo
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -68,7 +68,7 @@ class PrefilledInfoFragment : BaseFocusableFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this).get(PrefilledInfoViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(PrefilledInfoViewModel::class.java)
 
         /* Retrieve prefilled data from viewModel */
         mViewModel.prefilledData.observe(viewLifecycleOwner, Observer {
