@@ -1,13 +1,12 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsneeds
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeeds
@@ -20,7 +19,14 @@ class LivelihoodsNeedsFragment : BaseCreateFormFragment() {
         fun newInstance() = LivelihoodsNeedsFragment()
     }
 
-    private lateinit var mViewModel: LivelihoodsNeedsViewModel
+    private val mViewModel: LivelihoodsNeedsViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(LivelihoodsNeedsViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.livelihoodsInfoComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +47,7 @@ class LivelihoodsNeedsFragment : BaseCreateFormFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        
-        mViewModel = ViewModelProvider(this, mFactory).get(LivelihoodsNeedsViewModel::class.java)
+
         mViewModel.livelihoodsNeeds.observe(viewLifecycleOwner, Observer {
             livelihoodsNeedsAssistanceFillGapText.text = it.assistanceFillGap
             livelihoodsResourcesNeededText.text = it.resourcesNeeded

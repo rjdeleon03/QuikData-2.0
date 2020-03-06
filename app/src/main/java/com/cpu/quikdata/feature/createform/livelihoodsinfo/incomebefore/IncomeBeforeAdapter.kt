@@ -5,16 +5,25 @@ import android.content.Context
 import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceAdapter
-import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.data.livelihoodsinfo.incomebefore.IncomeBeforeRow
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_income.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class IncomeBeforeAdapter(context: Context,
-                          rowSaveListener: (IncomeBeforeRow) -> Unit,
-                          deleteClickListener: (IncomeBeforeRow) -> Unit,
-                          expandedItem: Int = 0) :
+class IncomeBeforeAdapter @AssistedInject constructor(
+    context: Context,
+    @Assisted rowSaveListener: (IncomeBeforeRow) -> Unit,
+    @Assisted deleteClickListener: (IncomeBeforeRow) -> Unit,
+    @Assisted expandedItem: Int = 0) :
     BaseAssistanceAdapter<IncomeBeforeRow, IncomeBeforeAdapter.ViewHolder>(context, rowSaveListener, deleteClickListener, R.layout.item_income, expandedItem) {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(rowSaveListener: (IncomeBeforeRow) -> Unit,
+                   deleteClickListener: (IncomeBeforeRow) -> Unit,
+                   expandedItem: Int): IncomeBeforeAdapter
+    }
 
     override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 

@@ -1,21 +1,20 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsassistance
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsassistance.LivelihoodsAssistanceRow
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
-import org.joda.time.LocalDate
-import org.joda.time.LocalDateTime
+import javax.inject.Inject
 
-class LivelihoodsAssistanceRepository(application: Application, formId: String) :
-    BaseCreatableDataRepository<LivelihoodsAssistanceRow>(application) {
+class LivelihoodsAssistanceRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String)
+    : BaseCreatableDataRepository<LivelihoodsAssistanceRow>() {
 
-    private val mFormId = formId
-    private val mLivelihoodsAssistance = mDatabase.livelihoodsAssistanceRowDao().getByFormId(formId)
+    private val mLivelihoodsAssistance = mDatabase.livelihoodsAssistanceRowDao().getByFormId(mFormId)
 
     val livelihoodsAssistance: LiveData<List<LivelihoodsAssistanceRow>>
         get() = mLivelihoodsAssistance

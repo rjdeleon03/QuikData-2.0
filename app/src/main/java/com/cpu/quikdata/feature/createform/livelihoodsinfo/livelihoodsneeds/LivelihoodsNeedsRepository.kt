@@ -1,20 +1,19 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsneeds
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeeds
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class LivelihoodsNeedsRepository(application: Application, formId: String) :
-    BaseRepository<LivelihoodsNeeds>(application) {
+class LivelihoodsNeedsRepository @Inject constructor(private val mDatabase: AppDatabase, formId: String) {
 
     private val mLivelihoodsNeeds = mDatabase.livelihoodsNeedsDao().getByFormId(formId)
 
     val livelihoodsNeeds : LiveData<LivelihoodsNeeds>
         get() = mLivelihoodsNeeds
 
-    override fun updateData(data: LivelihoodsNeeds) {
+    fun updateData(data: LivelihoodsNeeds) {
         runOnIoThread {
             val oldNeeds = mLivelihoodsNeeds.value!!
             oldNeeds.copyFrom(data)

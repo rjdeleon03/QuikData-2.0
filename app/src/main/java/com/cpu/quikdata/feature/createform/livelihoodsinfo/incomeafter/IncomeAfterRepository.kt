@@ -1,19 +1,19 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.livelihoodsinfo.incomeafter.IncomeAfterRow
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
-import org.joda.time.LocalDateTime
+import javax.inject.Inject
 
-class IncomeAfterRepository(application: Application, formId: String) :
-    BaseCreatableDataRepository<IncomeAfterRow>(application) {
+class IncomeAfterRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String) :
+    BaseCreatableDataRepository<IncomeAfterRow>() {
 
-    private val mFormId = formId
-    private val mIncomeAfter = mDatabase.incomeAfterRowDao().getByFormId(formId)
+    private val mIncomeAfter = mDatabase.incomeAfterRowDao().getByFormId(mFormId)
 
     val incomeAfter: LiveData<List<IncomeAfterRow>>
         get() = mIncomeAfter

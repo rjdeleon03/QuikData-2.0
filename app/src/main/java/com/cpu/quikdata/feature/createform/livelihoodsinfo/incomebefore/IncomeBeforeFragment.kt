@@ -1,19 +1,20 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.incomebefore
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_income_before.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
+import javax.inject.Inject
 
 class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeBeforeAdapter.ViewHolder>() {
 
@@ -22,7 +23,16 @@ class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeB
         fun newInstance() = IncomeBeforeFragment()
     }
 
-    private lateinit var mViewModel: IncomeBeforeViewModel
+    @Inject lateinit var mIncomeBeforeAdapterFactory: IncomeBeforeAdapter.Factory
+
+    private val mViewModel: IncomeBeforeViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(IncomeBeforeViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.livelihoodsInfoComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +42,7 @@ class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeB
     }
 
     override fun setupAdapter(expandedItemIndex: Int): IncomeBeforeAdapter {
-        val adapter = IncomeBeforeAdapter(requireContext(), { mViewModel.updateRow(it) }, {
+        val adapter = mIncomeBeforeAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog({ mViewModel.deleteRow(it) },
                 R.string.income_source_delete_confirmation,
                 R.layout.dialog_income_source_delete,
@@ -58,7 +68,6 @@ class IncomeBeforeFragment : BaseAssistanceFragment<IncomeBeforeAdapter, IncomeB
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(IncomeBeforeViewModel::class.java)
         mViewModel.incomeBefore.observe(viewLifecycleOwner, Observer {
             incomeBeforeRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)

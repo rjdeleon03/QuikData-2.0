@@ -1,20 +1,20 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageComplete
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class EstimatedDamageRepository(application: Application, formId: String) :
-    BaseRepository<EstimatedDamageComplete>(application) {
+class EstimatedDamageRepository @Inject constructor(
+    private val mDatabase: AppDatabase, formId: String) {
 
     private val mEstimatedDamage = mDatabase.estimatedDamageRowDao().getByFormId(formId)
 
     val estimatedDamage: LiveData<List<EstimatedDamageComplete>>
         get() = mEstimatedDamage
 
-    override fun updateData(data: EstimatedDamageComplete) {
+    fun updateData(data: EstimatedDamageComplete) {
         runOnIoThread {
             mDatabase.estimatedDamageRowDao().update(data.row!!)
             mDatabase.estimatedDamageTypeDao().update(data.types!!)

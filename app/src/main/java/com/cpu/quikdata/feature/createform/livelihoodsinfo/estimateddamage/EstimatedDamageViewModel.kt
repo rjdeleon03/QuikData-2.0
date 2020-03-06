@@ -1,14 +1,13 @@
 package com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.livelihoodsinfo.estimateddamage.EstimatedDamageComplete
+import javax.inject.Inject
 
-class EstimatedDamageViewModel(application: Application, formId: String) : 
-    AndroidViewModel(application) {
-
-    private val mRepository = EstimatedDamageRepository(application, formId)
+class EstimatedDamageViewModel @Inject constructor(
+    private val mRepository: EstimatedDamageRepository)
+    : ViewModel(){
 
     val estimatedDamage: LiveData<List<EstimatedDamageComplete>>
         get() = mRepository.estimatedDamage
