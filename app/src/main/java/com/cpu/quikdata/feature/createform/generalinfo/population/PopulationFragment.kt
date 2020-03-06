@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_population.*
+import javax.inject.Inject
 
 
 class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, PopulationAdapter.ViewHolder>() {
@@ -17,6 +18,8 @@ class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, 
     companion object {
         fun newInstance() = PopulationFragment()
     }
+
+    @Inject lateinit var mAdapterFactory: PopulationAdapter.Factory
 
     private val mViewModel: PopulationViewModel by lazy {
         ViewModelProvider(this, mViewModelFactory).get(PopulationViewModel::class.java)
@@ -35,7 +38,7 @@ class PopulationFragment : BaseCollapsibleCreateFormFragment<PopulationAdapter, 
     }
 
     override fun setupAdapter(expandedItemIndex: Int): PopulationAdapter {
-        val adapter = PopulationAdapter(requireContext(), {
+        val adapter = mAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         populationRecyclerView.adapter = adapter

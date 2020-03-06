@@ -1,5 +1,6 @@
 package com.cpu.quikdata.di.createform.activity
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.di.ActivityScope
 import com.cpu.quikdata.di.app.module.ViewModelKey
@@ -20,6 +21,12 @@ abstract class CreateFormModule {
     abstract fun bindCreateFormViewModel(createFormViewModel: CreateFormViewModel): ViewModel
 
     companion object {
+
+        @ActivityScope
+        @Provides
+        fun getContext(createFormActivity: CreateFormActivity): Context {
+            return createFormActivity
+        }
 
         @ActivityScope
         @Provides
