@@ -1,6 +1,5 @@
 package com.cpu.quikdata.feature.createform.casestories
 
-import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.common.deleteFile
@@ -8,14 +7,12 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.casestories.CaseStories
 import com.cpu.quikdata.data.casestories.CaseStoriesComplete
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
-import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
-import org.joda.time.LocalDateTime
+import javax.inject.Inject
 
-class CaseStoriesRepository(application: Application, formId: String) {
+class CaseStoriesRepository @Inject constructor(private val mDatabase: AppDatabase, formId: String) {
 
-    private val mDatabase = AppDatabase.get(application)
     private val mCaseStories = mDatabase.caseStoriesDao().getByFormId(formId)
 
     val caseStories: LiveData<CaseStoriesComplete>

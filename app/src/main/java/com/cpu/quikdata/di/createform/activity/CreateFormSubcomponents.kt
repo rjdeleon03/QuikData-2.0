@@ -1,5 +1,6 @@
 package com.cpu.quikdata.di.createform.activity
 
+import com.cpu.quikdata.di.createform.casestories.CaseStoriesComponent
 import com.cpu.quikdata.di.createform.foodsecurityinfo.FoodSecurityInfoComponent
 import com.cpu.quikdata.di.createform.formdetailsandbaseline.FormDetailsAndBaselineComponent
 import com.cpu.quikdata.di.createform.generalinfo.GeneralInfoComponent
@@ -17,7 +18,8 @@ import dagger.Module
         FoodSecurityInfoComponent::class,
         LivelihoodsInfoComponent::class,
         HealthInfoComponent::class,
-        WaterSanitationInfoComponent::class
+        WaterSanitationInfoComponent::class,
+        CaseStoriesComponent::class
     ]
 )
 interface CreateFormSubcomponents

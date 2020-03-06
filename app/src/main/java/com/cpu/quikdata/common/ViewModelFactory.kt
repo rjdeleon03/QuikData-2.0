@@ -3,8 +3,6 @@ package com.cpu.quikdata.common
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.cpu.quikdata.feature.createform.activity.CreateFormViewModel
-import com.cpu.quikdata.feature.createform.casestories.CaseStoriesViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationcoping.EvacuationCopingViewModel
@@ -12,42 +10,6 @@ import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationfacilities.E
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationprotection.EvacuationProtectionViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationwash.EvacuationWashViewModel
 import com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo.SiteInfoViewModel
-import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceViewModel
-import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritycoping.FoodSecurityCopingViewModel
-import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps.FoodSecurityGapsViewModel
-import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpactViewModel
-import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeedsViewModel
-import com.cpu.quikdata.feature.createform.formdetailsandbaseline.baselinedata.BaselineDataViewModel
-import com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails.FormDetailsViewModel
-import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoViewModel
-import com.cpu.quikdata.feature.createform.generalinfo.casualties.CasualtiesViewModel
-import com.cpu.quikdata.feature.createform.generalinfo.causeofdeath.CauseOfDeathViewModel
-import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesViewModel
-import com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage.InfrastructureDamageViewModel
-import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationViewModel
-import com.cpu.quikdata.feature.createform.generalinfo.vulnerable.VulnerableViewModel
-import com.cpu.quikdata.feature.createform.healthinfo.diseases.DiseasesViewModel
-import com.cpu.quikdata.feature.createform.healthinfo.healthassistance.HealthAssistanceViewModel
-import com.cpu.quikdata.feature.createform.healthinfo.healthcoping.HealthCopingViewModel
-import com.cpu.quikdata.feature.createform.healthinfo.healthgaps.HealthGapsViewModel
-import com.cpu.quikdata.feature.createform.healthinfo.psychosocial.PsychosocialViewModel
-import com.cpu.quikdata.feature.createform.healthinfo.specialneeds.SpecialNeedsViewModel
-import com.cpu.quikdata.feature.createform.livelihoodsinfo.estimateddamage.EstimatedDamageViewModel
-import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomeafter.IncomeAfterViewModel
-import com.cpu.quikdata.feature.createform.livelihoodsinfo.incomebefore.IncomeBeforeViewModel
-import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsassistance.LivelihoodsAssistanceViewModel
-import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodscoping.LivelihoodsCopingViewModel
-import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsgaps.LivelihoodsGapsViewModel
-import com.cpu.quikdata.feature.createform.livelihoodsinfo.livelihoodsneeds.LivelihoodsNeedsViewModel
-import com.cpu.quikdata.feature.createform.shelterinfo.housedamage.HouseDamageViewModel
-import com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance.ShelterAssistanceViewModel
-import com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping.ShelterCopingViewModel
-import com.cpu.quikdata.feature.createform.shelterinfo.sheltergaps.ShelterGapsViewModel
-import com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds.ShelterNeedsViewModel
-import com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance.WashAssistanceViewModel
-import com.cpu.quikdata.feature.createform.watersanitationinfo.washconditions.WashConditionsViewModel
-import com.cpu.quikdata.feature.createform.watersanitationinfo.washcoping.WashCopingViewModel
-import com.cpu.quikdata.feature.createform.watersanitationinfo.washgaps.WashGapsViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(application: Application, formId: String) :
@@ -67,7 +29,7 @@ class ViewModelFactory(application: Application, formId: String) :
             EvacuationProtectionViewModel::class.java -> EvacuationProtectionViewModel(mApplication, mFormId) as T
             EvacuationCopingViewModel::class.java -> EvacuationCopingViewModel(mApplication, mFormId) as T
 
-            else -> CaseStoriesViewModel(mApplication, mFormId) as T
+            else -> EvacuationCopingViewModel(mApplication, mFormId) as T
         }
     }
 }
