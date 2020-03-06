@@ -1,6 +1,7 @@
 package com.cpu.quikdata.di.createform.generalinfo
 
 import com.cpu.quikdata.feature.createform.generalinfo.calamityinfo.CalamityInfoFragment
+import com.cpu.quikdata.feature.createform.generalinfo.families.FamiliesFragment
 import com.cpu.quikdata.feature.createform.generalinfo.population.PopulationFragment
 import dagger.Subcomponent
 
@@ -14,4 +15,5 @@ interface GeneralInfoComponent {
 
     fun inject(calamityInfoFragment: CalamityInfoFragment)
     fun inject(populationFragment: PopulationFragment)
+    fun inject(familiesFragment: FamiliesFragment)
 }

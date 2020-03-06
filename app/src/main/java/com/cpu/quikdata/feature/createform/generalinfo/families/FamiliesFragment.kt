@@ -1,12 +1,12 @@
 package com.cpu.quikdata.feature.createform.generalinfo.families
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.generalinfo.families.Families
@@ -18,7 +18,14 @@ class FamiliesFragment : BaseCreateFormFragment() {
         fun newInstance() = FamiliesFragment()
     }
 
-    private lateinit var mViewModel: FamiliesViewModel
+    private val mViewModel: FamiliesViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(FamiliesViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.generalInfoComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +48,6 @@ class FamiliesFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(FamiliesViewModel::class.java)
         mViewModel.families.observe(viewLifecycleOwner, Observer {
             familiesAffectedText.number = it.affectedFamilies
             householdsAffectedText.number = it.affectedHouseholds
