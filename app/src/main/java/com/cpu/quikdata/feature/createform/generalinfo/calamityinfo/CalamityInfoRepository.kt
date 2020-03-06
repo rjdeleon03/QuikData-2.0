@@ -1,21 +1,20 @@
 package com.cpu.quikdata.feature.createform.generalinfo.calamityinfo
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class CalamityInfoRepository(application: Application, formId: String) :
-    BaseRepository<CalamityInfo>(application) {
+class CalamityInfoRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String) {
 
-    private val mCalamityInfo = mDatabase.calamityInfoDao().getByFormId(formId)
+    private val mCalamityInfo = mDatabase.calamityInfoDao().getByFormId(mFormId)
 
     val calamityInfo: LiveData<CalamityInfo>
         get() = mCalamityInfo
 
-    override fun updateData(data: CalamityInfo) {
+    fun updateData(data: CalamityInfo) {
         runOnIoThread {
             val oldCalamityInfo = mCalamityInfo.value!!
             oldCalamityInfo.copyFrom(data)

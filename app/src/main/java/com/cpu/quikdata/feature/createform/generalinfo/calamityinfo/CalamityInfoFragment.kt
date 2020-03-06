@@ -1,13 +1,12 @@
 package com.cpu.quikdata.feature.createform.generalinfo.calamityinfo
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.generalinfo.calamityinfo.CalamityInfo
@@ -20,7 +19,14 @@ class CalamityInfoFragment : BaseCreateFormFragment() {
         fun newInstance() = CalamityInfoFragment()
     }
 
-    private lateinit var mViewModel: CalamityInfoViewModel
+    private val mViewModel: CalamityInfoViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(CalamityInfoViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.generalInfoComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +48,6 @@ class CalamityInfoFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(CalamityInfoViewModel::class.java)
         mViewModel.calamityInfo.observe(viewLifecycleOwner, Observer {
             calamityTypeText.text = it.calamityType
             calamityDateText.date = it.occurrenceDate

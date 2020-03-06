@@ -3,6 +3,7 @@ package com.cpu.quikdata.di.createform.activity
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.di.ActivityScope
 import com.cpu.quikdata.di.createform.formdetailsandbaseline.FormDetailsAndBaselineComponent
+import com.cpu.quikdata.di.createform.generalinfo.GeneralInfoComponent
 import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import dagger.BindsInstance
 import dagger.Subcomponent
@@ -17,6 +18,8 @@ interface CreateFormComponent {
     }
 
     fun formDetailsAndBaselineComponent(): FormDetailsAndBaselineComponent.Factory
+
+    fun generalInfoComponent(): GeneralInfoComponent.Factory
 
     fun inject(createFormActivity: CreateFormActivity)
 

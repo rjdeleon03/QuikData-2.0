@@ -1,20 +1,20 @@
 package com.cpu.quikdata.feature.createform.generalinfo.population
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.populationrow.PopulationRow
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class PopulationRepository(application: Application, formId: String) :
-    BaseRepository<PopulationRow>(application) {
+class PopulationRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String) {
 
-    private val mPopulation = mDatabase.populationRowDao().getByFormId(formId)
+    private val mPopulation = mDatabase.populationRowDao().getByFormId(mFormId)
 
     val population: LiveData<List<PopulationRow>>
         get() = mPopulation
 
-    override fun updateData(data: PopulationRow) {
+    fun updateData(data: PopulationRow) {
         runOnIoThread {
             mDatabase.populationRowDao().update(data)
         }
