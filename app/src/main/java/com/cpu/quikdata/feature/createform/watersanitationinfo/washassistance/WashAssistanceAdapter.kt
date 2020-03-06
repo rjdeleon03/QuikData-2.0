@@ -6,15 +6,25 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRow
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class WashAssistanceAdapter(context: Context,
-                            rowSaveListener: (WashAssistanceRow) -> Unit,
-                            deleteClickListener: (WashAssistanceRow) -> Unit,
-                            expandedItem: Int = 0) :
+class WashAssistanceAdapter @AssistedInject constructor(
+    context: Context,
+    @Assisted rowSaveListener: (WashAssistanceRow) -> Unit,
+    @Assisted deleteClickListener: (WashAssistanceRow) -> Unit,
+    @Assisted expandedItem: Int = 0) :
     BaseAssistanceAdapter<WashAssistanceRow, WashAssistanceAdapter.ViewHolder>
         (context, rowSaveListener, deleteClickListener, expandedItem = expandedItem) {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(rowSaveListener: (WashAssistanceRow) -> Unit,
+                   deleteClickListener: (WashAssistanceRow) -> Unit,
+                   expandedItem: Int): WashAssistanceAdapter
+    }
 
     override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 

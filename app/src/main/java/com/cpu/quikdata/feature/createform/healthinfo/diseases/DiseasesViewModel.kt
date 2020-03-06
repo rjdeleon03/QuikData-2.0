@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.healthinfo.diseases
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
+import javax.inject.Inject
 
-class DiseasesViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = DiseasesRepository(application, formId)
+class DiseasesViewModel @Inject constructor(private val mRepository: DiseasesRepository)
+    : ViewModel() {
 
     val diseases: LiveData<List<DiseasesRow>>
         get() = mRepository.diseases

@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRow
+import javax.inject.Inject
 
-class WashAssistanceViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = WashAssistanceRepository(application, formId)
+class WashAssistanceViewModel @Inject constructor(private val mRepository: WashAssistanceRepository)
+    : ViewModel() {
 
     val washAssistance: LiveData<List<WashAssistanceRow>>
         get() = mRepository.washAssistance

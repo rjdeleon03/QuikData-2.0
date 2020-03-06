@@ -1,21 +1,20 @@
 package com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.watersanitationinfo.washassistance.WashAssistanceRow
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
-import org.joda.time.LocalDate
-import org.joda.time.LocalDateTime
+import javax.inject.Inject
 
-class WashAssistanceRepository(application: Application, formId: String) :
-    BaseCreatableDataRepository<WashAssistanceRow>(application) {
+class WashAssistanceRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String) :
+    BaseCreatableDataRepository<WashAssistanceRow>() {
 
-    private val mFormId = formId
-    private val mWashAssistance = mDatabase.washAssistanceRowDao().getByFormId(formId)
+    private val mWashAssistance = mDatabase.washAssistanceRowDao().getByFormId(mFormId)
 
     val washAssistance: LiveData<List<WashAssistanceRow>>
         get() = mWashAssistance

@@ -1,20 +1,19 @@
 package com.cpu.quikdata.feature.createform.healthinfo.diseases
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.health.diseasesrow.DiseasesRow
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class DiseasesRepository(application: Application, formId: String) :
-    BaseRepository<DiseasesRow>(application) {
+class DiseasesRepository @Inject constructor(private val mDatabase: AppDatabase, formId: String) {
 
     private val mDiseases = mDatabase.diseasesRowDao().getByFormId(formId)
 
     val diseases: LiveData<List<DiseasesRow>>
         get() = mDiseases
 
-    override fun updateData(data: DiseasesRow) {
+    fun updateData(data: DiseasesRow) {
         runOnIoThread {
             mDatabase.diseasesRowDao().update(data)
         }
