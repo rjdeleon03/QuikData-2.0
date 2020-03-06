@@ -7,9 +7,9 @@ import com.cpu.quikdata.utils.runOnIoThread
 import javax.inject.Inject
 
 class FamiliesRepository @Inject constructor(
-    private val mDatabase: AppDatabase, private val mFormId: String) {
+    private val mDatabase: AppDatabase, formId: String) {
 
-    private val mFamilies = mDatabase.familiesDao().getByFormId(mFormId)
+    private val mFamilies = mDatabase.familiesDao().getByFormId(formId)
 
     val families: LiveData<Families>
         get() = mFamilies

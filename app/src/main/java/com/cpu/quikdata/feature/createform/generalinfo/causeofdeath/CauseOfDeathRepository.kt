@@ -7,9 +7,9 @@ import com.cpu.quikdata.utils.runOnIoThread
 import javax.inject.Inject
 
 class CauseOfDeathRepository @Inject constructor(
-    private val mDatabase: AppDatabase, private val mFormId: String) {
+    private val mDatabase: AppDatabase, formId: String) {
 
-    private val mCausesOfDeath = mDatabase.causeOfDeathRowDao().getByFormId(mFormId)
+    private val mCausesOfDeath = mDatabase.causeOfDeathRowDao().getByFormId(formId)
 
     val causesOfDeath: LiveData<List<CauseOfDeathRow>>
         get() = mCausesOfDeath

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.generalinfo.causeofdeath.CauseOfDeathRow
 import javax.inject.Inject
 
-class CauseOfDeathViewModel @Inject constructor(private val mRepository: CauseOfDeathRepository, private val mFormId: String)
+class CauseOfDeathViewModel @Inject constructor(private val mRepository: CauseOfDeathRepository)
     : ViewModel() {
 
     val casualties: LiveData<List<CauseOfDeathRow>>

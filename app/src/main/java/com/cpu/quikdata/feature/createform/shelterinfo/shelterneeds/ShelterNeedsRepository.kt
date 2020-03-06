@@ -7,9 +7,9 @@ import com.cpu.quikdata.utils.runOnIoThread
 import javax.inject.Inject
 
 class ShelterNeedsRepository @Inject constructor(
-    private val mDatabase: AppDatabase, private val mFormId: String) {
+    private val mDatabase: AppDatabase, formId: String) {
 
-    private val mShelterNeeds = mDatabase.shelterNeedsRowDao().getByFormId(mFormId)
+    private val mShelterNeeds = mDatabase.shelterNeedsRowDao().getByFormId(formId)
 
     val shelterNeeds: LiveData<List<ShelterNeedsRow>>
         get() = mShelterNeeds
