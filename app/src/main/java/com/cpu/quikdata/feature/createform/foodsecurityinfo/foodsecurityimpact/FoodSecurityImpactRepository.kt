@@ -1,20 +1,20 @@
 package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class FoodSecurityImpactRepository(application: Application, formId: String) :
-    BaseRepository<FoodSecurityImpact>(application) {
+class FoodSecurityImpactRepository @Inject constructor(
+    private val mDatabase: AppDatabase, formId: String) {
 
     private val mFoodSecurityImpact = mDatabase.foodSecurityImpactDao().getByFormId(formId)
 
     val foodSecurityImpact : LiveData<FoodSecurityImpact>
         get() = mFoodSecurityImpact
 
-    override fun updateData(data: FoodSecurityImpact) {
+    fun updateData(data: FoodSecurityImpact) {
         runOnIoThread {
             val oldImpact = mFoodSecurityImpact.value!!
             oldImpact.copyFrom(data)

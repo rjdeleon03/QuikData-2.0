@@ -1,21 +1,20 @@
 package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.base.BaseCreatableDataRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRow
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
-import org.joda.time.LocalDate
-import org.joda.time.LocalDateTime
+import javax.inject.Inject
 
-class FoodSecurityAssistanceRepository(application: Application, formId: String) :
-    BaseCreatableDataRepository<FoodSecurityAssistanceRow>(application) {
+class FoodSecurityAssistanceRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String) :
+    BaseCreatableDataRepository<FoodSecurityAssistanceRow>() {
 
-    private val mFormId = formId
-    private val mFoodSecurityAssistance = mDatabase.foodSecurityAssistanceRowDao().getByFormId(formId)
+    private val mFoodSecurityAssistance = mDatabase.foodSecurityAssistanceRowDao().getByFormId(mFormId)
 
     val foodSecurityAssistance: LiveData<List<FoodSecurityAssistanceRow>>
         get() = mFoodSecurityAssistance

@@ -1,13 +1,12 @@
 package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityneeds
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityneeds.FoodSecurityNeeds
@@ -20,7 +19,14 @@ class FoodSecurityNeedsFragment : BaseCreateFormFragment() {
         fun newInstance() = FoodSecurityNeedsFragment()
     }
 
-    private lateinit var mViewModel: FoodSecurityNeedsViewModel
+    private val mViewModel: FoodSecurityNeedsViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(FoodSecurityNeedsViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.foodSecurityInfoComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +47,6 @@ class FoodSecurityNeedsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(FoodSecurityNeedsViewModel::class.java)
         mViewModel.foodSecurityNeeds.observe(viewLifecycleOwner, Observer {
             foodSecurityNeedsFoodGapText.text = it.foodGapAssistance
             foodSecurityNeedsFamiliesInNeedText.text = it.familiesInNeed

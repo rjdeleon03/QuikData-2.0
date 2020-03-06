@@ -6,15 +6,25 @@ import android.view.View
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceAdapter
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRow
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_assistance.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class FoodSecurityAssistanceAdapter(context: Context,
-                                    rowSaveListener: (FoodSecurityAssistanceRow) -> Unit,
-                                    deleteClickListener: (FoodSecurityAssistanceRow) -> Unit,
-                                    expandedItem: Int = 0) :
+class FoodSecurityAssistanceAdapter @AssistedInject constructor(
+    context: Context,
+    @Assisted rowSaveListener: (FoodSecurityAssistanceRow) -> Unit,
+    @Assisted deleteClickListener: (FoodSecurityAssistanceRow) -> Unit,
+    @Assisted expandedItem: Int = 0) :
     BaseAssistanceAdapter<FoodSecurityAssistanceRow, FoodSecurityAssistanceAdapter.ViewHolder>(
         context, rowSaveListener, deleteClickListener, expandedItem = expandedItem) {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(rowSaveListener: (FoodSecurityAssistanceRow) -> Unit,
+                   deleteClickListener: (FoodSecurityAssistanceRow) -> Unit,
+                   expandedItem: Int) : FoodSecurityAssistanceAdapter
+    }
 
     override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
