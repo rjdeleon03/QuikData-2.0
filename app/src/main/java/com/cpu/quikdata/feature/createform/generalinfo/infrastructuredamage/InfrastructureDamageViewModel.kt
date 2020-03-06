@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
+import javax.inject.Inject
 
-class InfrastructureDamageViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = InfrastructureDamageRepository(application, formId)
+class InfrastructureDamageViewModel @Inject constructor(private val mRepository: InfrastructureDamageRepository)
+    : ViewModel() {
 
     val infrastructureDamage: LiveData<List<InfrastructureDamageRow>>
         get() = mRepository.infrastructureDamage

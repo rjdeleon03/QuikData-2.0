@@ -1,21 +1,20 @@
 package com.cpu.quikdata.feature.createform.generalinfo.vulnerable
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class VulnerableRepository(application: Application, formId: String) :
-    BaseRepository<VulnerableRow>(application) {
+class VulnerableRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String) {
 
-    private val mVulnerable = mDatabase.vulnerableRowDao().getByFormId(formId)
+    private val mVulnerable = mDatabase.vulnerableRowDao().getByFormId(mFormId)
 
     val vulnerable: LiveData<List<VulnerableRow>>
         get() = mVulnerable
 
-    override fun updateData(data: VulnerableRow) {
+    fun updateData(data: VulnerableRow) {
         runOnIoThread {
             mDatabase.vulnerableRowDao().update(data)
         }

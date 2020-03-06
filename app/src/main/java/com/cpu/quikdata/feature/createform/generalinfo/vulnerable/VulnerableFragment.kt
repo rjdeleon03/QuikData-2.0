@@ -1,15 +1,16 @@
 package com.cpu.quikdata.feature.createform.generalinfo.vulnerable
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_vulnerable.*
+import javax.inject.Inject
 
 class VulnerableFragment : BaseCollapsibleCreateFormFragment<VulnerableAdapter, VulnerableAdapter.ViewHolder>() {
 
@@ -18,7 +19,16 @@ class VulnerableFragment : BaseCollapsibleCreateFormFragment<VulnerableAdapter, 
         fun newInstance() = VulnerableFragment()
     }
 
-    private lateinit var mViewModel: VulnerableViewModel
+    @Inject lateinit var mVulnerableAdapterFactory: VulnerableAdapter.Factory
+
+    private val mViewModel: VulnerableViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(VulnerableViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.generalInfoComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +38,7 @@ class VulnerableFragment : BaseCollapsibleCreateFormFragment<VulnerableAdapter, 
     }
 
     override fun setupAdapter(expandedItemIndex: Int): VulnerableAdapter {
-        val adapter = VulnerableAdapter(requireContext(), {
+        val adapter = mVulnerableAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         vulnerableRecyclerView.adapter = adapter
@@ -38,7 +48,6 @@ class VulnerableFragment : BaseCollapsibleCreateFormFragment<VulnerableAdapter, 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(VulnerableViewModel::class.java)
         mViewModel.vulnerable.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

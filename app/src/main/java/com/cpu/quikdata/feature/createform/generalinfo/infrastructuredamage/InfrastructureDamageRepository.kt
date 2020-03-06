@@ -1,20 +1,20 @@
 package com.cpu.quikdata.feature.createform.generalinfo.infrastructuredamage
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.generalinfo.infrastructuredamage.InfrastructureDamageRow
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class InfrastructureDamageRepository(application: Application, formId: String) :
-        BaseRepository<InfrastructureDamageRow>(application) {
+class InfrastructureDamageRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String) {
 
-    private val mInfrastructureDamage = mDatabase.infrastructureDamageRowDao().getByFormId(formId)
+    private val mInfrastructureDamage = mDatabase.infrastructureDamageRowDao().getByFormId(mFormId)
 
     val infrastructureDamage: LiveData<List<InfrastructureDamageRow>>
         get() = mInfrastructureDamage
 
-    override fun updateData(data: InfrastructureDamageRow) {
+    fun updateData(data: InfrastructureDamageRow) {
         runOnIoThread {
             mDatabase.infrastructureDamageRowDao().update(data)
         }

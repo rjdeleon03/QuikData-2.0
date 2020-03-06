@@ -6,11 +6,21 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.AgeCategories
 import com.cpu.quikdata.data.generalinfo.vulnerablerow.VulnerableRow
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_vulnerable.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class VulnerableAdapter(context: Context, rowSaveListener: (VulnerableRow) -> Unit, expandedItem: Int = 0) :
+class VulnerableAdapter @AssistedInject constructor(
+    context: Context,
+    @Assisted rowSaveListener: (VulnerableRow) -> Unit,
+    @Assisted expandedItem: Int = 0) :
     BaseCollapsibleAdapter<VulnerableRow, VulnerableAdapter.ViewHolder>(context, R.layout.item_vulnerable, rowSaveListener, expandedItem) {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(rowSaveListener: (VulnerableRow) -> Unit, expandedItem: Int): VulnerableAdapter
+    }
 
     override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 
