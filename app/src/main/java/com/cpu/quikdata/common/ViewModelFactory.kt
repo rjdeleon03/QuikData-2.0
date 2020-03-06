@@ -59,16 +59,12 @@ class ViewModelFactory(application: Application, formId: String) :
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
         return when (modelClass) {
-            HouseDamageViewModel::class.java -> HouseDamageViewModel(mApplication, mFormId) as T
-            ShelterCopingViewModel::class.java -> ShelterCopingViewModel(mApplication, mFormId) as T
-            ShelterNeedsViewModel::class.java -> ShelterNeedsViewModel(mApplication, mFormId) as T
-            ShelterAssistanceViewModel::class.java -> ShelterAssistanceViewModel(mApplication, mFormId) as T
-            ShelterGapsViewModel::class.java -> ShelterGapsViewModel(mApplication, mFormId) as T
             FoodSecurityImpactViewModel::class.java -> FoodSecurityImpactViewModel(mApplication, mFormId) as T
             FoodSecurityCopingViewModel::class.java -> FoodSecurityCopingViewModel(mApplication, mFormId) as T
             FoodSecurityNeedsViewModel::class.java -> FoodSecurityNeedsViewModel(mApplication, mFormId) as T
             FoodSecurityAssistanceViewModel::class.java -> FoodSecurityAssistanceViewModel(mApplication, mFormId) as T
             FoodSecurityGapsViewModel::class.java -> FoodSecurityGapsViewModel(mApplication, mFormId) as T
+
             IncomeBeforeViewModel::class.java -> IncomeBeforeViewModel(mApplication, mFormId) as T
             IncomeAfterViewModel::class.java -> IncomeAfterViewModel(mApplication, mFormId) as T
             EstimatedDamageViewModel::class.java -> EstimatedDamageViewModel(mApplication, mFormId) as T
@@ -76,16 +72,19 @@ class ViewModelFactory(application: Application, formId: String) :
             LivelihoodsNeedsViewModel::class.java -> LivelihoodsNeedsViewModel(mApplication, mFormId) as T
             LivelihoodsAssistanceViewModel::class.java -> LivelihoodsAssistanceViewModel(mApplication, mFormId) as T
             LivelihoodsGapsViewModel::class.java -> LivelihoodsGapsViewModel(mApplication, mFormId) as T
+
             DiseasesViewModel::class.java -> DiseasesViewModel(mApplication, mFormId) as T
             SpecialNeedsViewModel::class.java -> SpecialNeedsViewModel(mApplication, mFormId) as T
             PsychosocialViewModel::class.java -> PsychosocialViewModel(mApplication, mFormId) as T
             HealthCopingViewModel::class.java -> HealthCopingViewModel(mApplication, mFormId) as T
             HealthAssistanceViewModel::class.java -> HealthAssistanceViewModel(mApplication, mFormId) as T
             HealthGapsViewModel::class.java -> HealthGapsViewModel(mApplication, mFormId) as T
+
             WashConditionsViewModel::class.java -> WashConditionsViewModel(mApplication, mFormId) as T
             WashCopingViewModel::class.java -> WashCopingViewModel(mApplication, mFormId) as T
             WashAssistanceViewModel::class.java -> WashAssistanceViewModel(mApplication, mFormId) as T
             WashGapsViewModel::class.java -> WashGapsViewModel(mApplication, mFormId) as T
+
             EvacuationInfoViewModel::class.java -> EvacuationInfoViewModel(mApplication, mFormId) as T
             SiteInfoViewModel::class.java -> SiteInfoViewModel(mApplication, mFormId) as T
             EvacuationAgeViewModel::class.java -> EvacuationAgeViewModel(mApplication, mFormId) as T
@@ -93,6 +92,7 @@ class ViewModelFactory(application: Application, formId: String) :
             EvacuationWashViewModel::class.java -> EvacuationWashViewModel(mApplication, mFormId) as T
             EvacuationProtectionViewModel::class.java -> EvacuationProtectionViewModel(mApplication, mFormId) as T
             EvacuationCopingViewModel::class.java -> EvacuationCopingViewModel(mApplication, mFormId) as T
+
             else -> CaseStoriesViewModel(mApplication, mFormId) as T
         }
     }

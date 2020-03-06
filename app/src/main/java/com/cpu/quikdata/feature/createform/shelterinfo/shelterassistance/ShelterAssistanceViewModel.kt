@@ -1,14 +1,12 @@
 package com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.data.shelterinfo.shelterassistance.ShelterAssistanceRow
+import javax.inject.Inject
 
-class ShelterAssistanceViewModel(application: Application, formId: String) :
-    AndroidViewModel(application) {
-
-    private val mRepository = ShelterAssistanceRepository(application, formId)
+class ShelterAssistanceViewModel @Inject constructor(private val mRepository: ShelterAssistanceRepository)
+    : ViewModel() {
 
     val shelterAssistance: LiveData<List<ShelterAssistanceRow>>
         get() = mRepository.shelterAssistance

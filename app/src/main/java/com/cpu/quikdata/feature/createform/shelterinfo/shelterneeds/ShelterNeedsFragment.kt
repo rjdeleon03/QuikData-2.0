@@ -1,5 +1,6 @@
 package com.cpu.quikdata.feature.createform.shelterinfo.shelterneeds
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import kotlinx.android.synthetic.main.fragment_shelter_needs.*
+import javax.inject.Inject
 
 class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapter, ShelterNeedsAdapter.ViewHolder>() {
 
@@ -18,7 +20,16 @@ class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapt
         fun newInstance() = ShelterNeedsFragment()
     }
 
-    private lateinit var mViewModel: ShelterNeedsViewModel
+    @Inject lateinit var mShelterNeedsAdapterFactory: ShelterNeedsAdapter.Factory
+
+    private val mViewModel: ShelterNeedsViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(ShelterNeedsViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.shelterInfoComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +39,7 @@ class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapt
     }
 
     override fun setupAdapter(expandedItemIndex: Int): ShelterNeedsAdapter {
-        val adapter = ShelterNeedsAdapter(requireContext(), {
+        val adapter = mShelterNeedsAdapterFactory.create({
             mViewModel.updateRow(it)
         }, expandedItemIndex)
         shelterNeedsRecyclerView.adapter = adapter
@@ -38,7 +49,6 @@ class ShelterNeedsFragment : BaseCollapsibleCreateFormFragment<ShelterNeedsAdapt
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(ShelterNeedsViewModel::class.java)
         mViewModel.shelterNeeds.observe(viewLifecycleOwner, Observer {
             mAdapter.setRows(it)
         })

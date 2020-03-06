@@ -5,6 +5,7 @@ import com.cpu.quikdata.di.ActivityScope
 import com.cpu.quikdata.di.app.module.AssistedInjectModule
 import com.cpu.quikdata.di.createform.formdetailsandbaseline.FormDetailsAndBaselineComponent
 import com.cpu.quikdata.di.createform.generalinfo.GeneralInfoComponent
+import com.cpu.quikdata.di.createform.shelterinfo.ShelterInfoComponent
 import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import dagger.BindsInstance
 import dagger.Subcomponent
@@ -23,10 +24,9 @@ interface CreateFormComponent {
     }
 
     fun formDetailsAndBaselineComponent(): FormDetailsAndBaselineComponent.Factory
-
     fun generalInfoComponent(): GeneralInfoComponent.Factory
+    fun shelterInfoComponent(): ShelterInfoComponent.Factory
 
     fun inject(createFormActivity: CreateFormActivity)
-
     fun inject(createFormFragment: BaseCreateFormFragment)
 }

@@ -6,11 +6,21 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleAdapter
 import com.cpu.quikdata.common.HouseCategories
 import com.cpu.quikdata.data.shelterinfo.housedamagerow.HouseDamageRow
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_house_damage.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
 
-class HouseDamageAdapter(context: Context, rowSaveListener: (HouseDamageRow) -> Unit, expandedItem: Int = 0) :
+class HouseDamageAdapter @AssistedInject constructor(
+    context: Context,
+    @Assisted rowSaveListener: (HouseDamageRow) -> Unit,
+    @Assisted expandedItem: Int = 0) :
     BaseCollapsibleAdapter<HouseDamageRow, HouseDamageAdapter.ViewHolder>(context, R.layout.item_house_damage, rowSaveListener, expandedItem) {
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(rowSaveListener: (HouseDamageRow) -> Unit, expandedItem: Int): HouseDamageAdapter
+    }
 
     override fun initCollapsibleViewHolder(view: View): ViewHolder = ViewHolder(view)
 

@@ -1,20 +1,20 @@
 package com.cpu.quikdata.feature.createform.shelterinfo.sheltercoping
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.shelterinfo.sheltercoping.ShelterCoping
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class ShelterCopingRepository(application: Application, formId: String) :
-    BaseRepository<ShelterCoping>(application) {
+class ShelterCopingRepository @Inject constructor(
+    private val mDatabase: AppDatabase, private val mFormId: String) {
 
-    private val mShelterCoping = mDatabase.shelterCopingDao().getByFormId(formId)
+    private val mShelterCoping = mDatabase.shelterCopingDao().getByFormId(mFormId)
 
     val shelterCoping: LiveData<ShelterCoping>
         get() = mShelterCoping
 
-    override fun updateData(data: ShelterCoping) {
+    fun updateData(data: ShelterCoping) {
         runOnIoThread {
             val oldShelterCopingInfo = mShelterCoping.value!!
             oldShelterCopingInfo.copyFrom(data)

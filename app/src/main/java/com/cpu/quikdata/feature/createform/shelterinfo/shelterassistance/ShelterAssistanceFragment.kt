@@ -1,19 +1,20 @@
 package com.cpu.quikdata.feature.createform.shelterinfo.shelterassistance
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseAssistanceFragment
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.showConfirmationDialog
 import kotlinx.android.synthetic.main.fragment_shelter_assistance.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
+import javax.inject.Inject
 
 class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapter, ShelterAssistanceAdapter.ViewHolder>() {
 
@@ -22,7 +23,16 @@ class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapte
         fun newInstance() = ShelterAssistanceFragment()
     }
 
-    private lateinit var mViewModel: ShelterAssistanceViewModel
+    @Inject lateinit var mShelterAssistanceAdapterFactory: ShelterAssistanceAdapter.Factory
+
+    private val mViewModel: ShelterAssistanceViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(ShelterAssistanceViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.shelterInfoComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +42,7 @@ class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapte
     }
 
     override fun setupAdapter(expandedItemIndex: Int): ShelterAssistanceAdapter {
-        val adapter = ShelterAssistanceAdapter(requireContext(), { mViewModel.updateRow(it) }, {
+        val adapter = mShelterAssistanceAdapterFactory.create({ mViewModel.updateRow(it) }, {
             showConfirmationDialog ({ mViewModel.deleteRow(it) })
         }, expandedItemIndex)
         shelterAssistanceRecyclerView.recyclerView.adapter = adapter
@@ -54,7 +64,6 @@ class ShelterAssistanceFragment : BaseAssistanceFragment<ShelterAssistanceAdapte
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = ViewModelProvider(this, mFactory).get(ShelterAssistanceViewModel::class.java)
         mViewModel.shelterAssistance.observe(viewLifecycleOwner, Observer {
             shelterAssistanceRecyclerView.updateDisplayBasedOnItemCount(it.size)
             mAdapter.setRows(it)
