@@ -1,21 +1,16 @@
 package com.cpu.quikdata.feature.createform.formdetailsandbaseline.formdetails
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.formdetails.FormDetails
-import com.cpu.quikdata.di.app.module.DaggerViewModelFactory
-import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import kotlinx.android.synthetic.main.fragment_form_details.*
-import javax.inject.Inject
 
 class FormDetailsFragment : BaseCreateFormFragment() {
 
@@ -24,13 +19,13 @@ class FormDetailsFragment : BaseCreateFormFragment() {
         fun newInstance() = FormDetailsFragment()
     }
 
-    private lateinit var mViewModel: FormDetailsViewModel
+    private val mViewModel: FormDetailsViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(FormDetailsViewModel::class.java)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity() as CreateFormActivity).createFormComponent
-            .formDetailsAndBaselineComponent().create()
-            .inject(this)
+        mCreateFormComponent.formDetailsAndBaselineComponent().create().inject(this)
     }
 
     override fun onCreateView(
@@ -56,7 +51,6 @@ class FormDetailsFragment : BaseCreateFormFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mViewModel = mViewModelFactory.create(FormDetailsViewModel::class.java)
         mViewModel.formDetails.observe(viewLifecycleOwner, Observer {
             formDetailsAssessmentDateText.date = it.assessmentDate
             formDetailsInterviewerText.text = it.interviewer

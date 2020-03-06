@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFragment
 import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.form.FormComplete
+import com.cpu.quikdata.di.app.module.DaggerViewModelFactory
 import com.cpu.quikdata.dialog.ProgressDialogFragment
 import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
@@ -24,7 +26,9 @@ class NewFormsFragment : BaseFragment() {
         fun newInstance() = NewFormsFragment()
     }
 
-    @Inject lateinit var mViewModel: NewFormsViewModel
+    private val mViewModel: NewFormsViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(NewFormsViewModel::class.java)
+    }
 
     private lateinit var mAdapter: NewFormsAdapter
     private var mDialog: ProgressDialogFragment? = null

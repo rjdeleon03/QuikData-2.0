@@ -16,8 +16,8 @@ abstract class FormDetailsAndBaselineModule {
     @ViewModelKey(FormDetailsViewModel::class)
     abstract fun bindFormDetailsViewModel(formDetailsViewModel: FormDetailsViewModel): ViewModel
 
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(BaselineDataViewModel::class)
-//    abstract fun bindBaselineDataViewModel(baselineDataViewModel: BaselineDataViewModel): ViewModel
+    @Binds
+    @IntoMap
+    @ViewModelKey(BaselineDataViewModel::class)
+    abstract fun bindBaselineDataViewModel(baselineDataViewModel: BaselineDataViewModel): ViewModel
 }

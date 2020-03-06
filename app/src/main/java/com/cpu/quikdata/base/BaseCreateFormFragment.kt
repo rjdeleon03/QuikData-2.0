@@ -3,18 +3,24 @@ package com.cpu.quikdata.base
 import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.di.app.module.DaggerViewModelFactory
+import com.cpu.quikdata.di.createform.activity.CreateFormComponent
 import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.feature.createform.activity.CreateFormViewModel
 import javax.inject.Inject
 
 abstract class BaseCreateFormFragment: BaseFragment() {
 
-    @Inject lateinit var mViewModelFactory: DaggerViewModelFactory
+    protected val mParentViewModel: CreateFormViewModel by lazy {
+        ViewModelProvider(requireActivity(), mViewModelFactory).get(CreateFormViewModel::class.java)
+    }
 
-    lateinit var mParentViewModel: CreateFormViewModel
+    protected val mCreateFormComponent: CreateFormComponent
+        get() = (requireActivity() as CreateFormActivity).createFormComponent
 
+    // TODO: Remove when no longer used
     protected lateinit var mFactory: ViewModelFactory
 
     override fun onAttach(context: Context) {
@@ -24,7 +30,6 @@ abstract class BaseCreateFormFragment: BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mParentViewModel = mViewModelFactory.create(CreateFormViewModel::class.java)
         mFactory = ViewModelFactory(requireActivity().application, mParentViewModel.formId)
     }
 

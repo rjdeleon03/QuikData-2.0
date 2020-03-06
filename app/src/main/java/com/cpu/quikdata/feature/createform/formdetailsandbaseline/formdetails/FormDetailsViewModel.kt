@@ -8,10 +8,6 @@ import javax.inject.Inject
 class FormDetailsViewModel @Inject constructor(
     private val mRepository: FormDetailsRepository) : ViewModel() {
 
-    init {
-        val x = 1
-    }
-
     val formDetails : LiveData<FormDetails>
         get() = mRepository.formDetails
 

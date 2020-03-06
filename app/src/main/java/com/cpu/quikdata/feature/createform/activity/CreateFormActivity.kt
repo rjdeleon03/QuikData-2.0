@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.cpu.quikdata.R
@@ -57,7 +58,7 @@ class CreateFormActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Initialize viewModel
-        mViewModel = mViewModelFactory.create(CreateFormViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mViewModelFactory).get(CreateFormViewModel::class.java)
 
         // Get edit mode flag and update toolbar title accordingly
         mEditMode = intent.getBooleanExtra(EDIT_MODE_KEY, false)

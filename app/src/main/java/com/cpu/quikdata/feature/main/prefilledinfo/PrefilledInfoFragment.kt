@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFocusableFragment
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
+import com.cpu.quikdata.di.app.module.DaggerViewModelFactory
 import kotlinx.android.synthetic.main.fragment_prefilled_info.*
 import javax.inject.Inject
 
@@ -20,7 +22,9 @@ class PrefilledInfoFragment : BaseFocusableFragment() {
         fun newInstance() = PrefilledInfoFragment()
     }
 
-    @Inject lateinit var mViewModel: PrefilledInfoViewModel
+    private val mViewModel: PrefilledInfoViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(PrefilledInfoViewModel::class.java)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

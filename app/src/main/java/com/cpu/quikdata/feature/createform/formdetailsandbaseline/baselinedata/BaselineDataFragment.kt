@@ -1,19 +1,17 @@
 package com.cpu.quikdata.feature.createform.formdetailsandbaseline.baselinedata
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.data.baselinedata.BaselineData
+import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import kotlinx.android.synthetic.main.fragment_baseline_data.*
-import java.lang.Exception
 
 class BaselineDataFragment : BaseCreateFormFragment() {
 
@@ -22,7 +20,14 @@ class BaselineDataFragment : BaseCreateFormFragment() {
         fun newInstance() = BaselineDataFragment()
     }
 
-    private lateinit var mViewModel: BaselineDataViewModel
+    private val mViewModel: BaselineDataViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(BaselineDataViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.formDetailsAndBaselineComponent().create().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +52,6 @@ class BaselineDataFragment : BaseCreateFormFragment() {
             }
         }
 
-        mViewModel = ViewModelProvider(this, mFactory).get(BaselineDataViewModel::class.java)
         mViewModel.baselineData.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             useBaselineSwitch.isChecked = it.usePrefilled

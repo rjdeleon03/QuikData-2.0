@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFragment
 import com.cpu.quikdata.common.clickWithGuard
+import com.cpu.quikdata.di.app.module.DaggerViewModelFactory
 import com.cpu.quikdata.feature.consortium.ConsortiumActivity
 import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
@@ -23,7 +25,9 @@ import javax.inject.Inject
  */
 class HomeFragment : BaseFragment() {
 
-    @Inject lateinit var mViewModel: HomeViewModel
+    private val mViewModel: HomeViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(HomeViewModel::class.java)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,7 +44,6 @@ class HomeFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         homeNewDncaFormButton.clickWithGuard {
             val formId = generateId()
             mViewModel.createNewForm(formId)
