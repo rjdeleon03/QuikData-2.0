@@ -5,8 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.cpu.quikdata.*
 import com.cpu.quikdata.data.AppDatabase
-import com.cpu.quikdata.utils.runOnIoThread
-import com.cpu.quikdata.utils.runOnMainThread
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.WriteBatch

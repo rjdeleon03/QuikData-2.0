@@ -3,7 +3,6 @@ package com.cpu.quikdata.base
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import com.cpu.quikdata.utils.runOnMainThread
 
 abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>>(context: Context,
                                                                                   rowSaveListener: (R) -> Unit,

@@ -2,18 +2,20 @@ package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassista
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.common.runOnIoThread
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceRow
 import javax.inject.Inject
 
-class FoodSecurityAssistanceViewModel @Inject constructor(private val mRepository: FoodSecurityAssistanceRepository)
-    : ViewModel() {
+class FoodSecurityAssistanceViewModel @Inject constructor(private val mRepository: FoodSecurityAssistanceRepository) :
+    ViewModel() {
 
     val foodSecurityAssistance: LiveData<List<FoodSecurityAssistanceRow>>
         get() = mRepository.foodSecurityAssistance
 
-    fun updateRow(foodSecurityAssistanceRow: FoodSecurityAssistanceRow) = mRepository.updateData(foodSecurityAssistanceRow)
+    fun updateRow(foodSecurityAssistanceRow: FoodSecurityAssistanceRow) =
+        runOnIoThread { mRepository.updateData(foodSecurityAssistanceRow) }
 
-    fun createRow() = mRepository.createData()
+    fun createRow() = runOnIoThread { mRepository.createData() }
 
-    fun deleteRow(row: FoodSecurityAssistanceRow) = mRepository.deleteData(row)
+    fun deleteRow(row: FoodSecurityAssistanceRow) = runOnIoThread { mRepository.deleteData(row) }
 }

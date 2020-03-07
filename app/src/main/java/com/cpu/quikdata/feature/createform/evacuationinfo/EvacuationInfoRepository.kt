@@ -15,68 +15,70 @@ import com.cpu.quikdata.data.evacuation.siteinfo.SiteInfo
 import com.cpu.quikdata.utils.generateId
 import com.cpu.quikdata.utils.getDateNowInLong
 import com.cpu.quikdata.utils.getDateTimeNowInLong
-import com.cpu.quikdata.utils.runOnIoThread
 import javax.inject.Inject
 
 class EvacuationInfoRepository @Inject constructor(
-    private val mDatabase: AppDatabase, private val mFormId: String)
-    : BaseCreatableDataRepository<EvacuationItemDetails>() {
+    private val mDatabase: AppDatabase, private val mFormId: String
+) : BaseCreatableDataRepository<EvacuationItemDetails>() {
 
     private val mEvacuationInfo = mDatabase.evacuationItemDao().getByFormIdForDisplay(mFormId)
 
     val evacuationInfo: LiveData<List<EvacuationItemDetails>>
         get() = mEvacuationInfo
 
-    override fun updateData(data: EvacuationItemDetails) {
+    override suspend fun updateData(data: EvacuationItemDetails) {
     }
 
-    override fun deleteData(data: EvacuationItemDetails) {
-        runOnIoThread {
-            mDatabase.evacuationItemDao().delete(data.item!!)
-        }
+    override suspend fun deleteData(data: EvacuationItemDetails) {
+        mDatabase.evacuationItemDao().delete(data.item!!)
     }
 
-    override fun createData(id: String) {
-        runOnIoThread {
-            val evacuationItem = EvacuationItem(
-                id = id,
-                dateCreated = getDateTimeNowInLong(),
-                formId = mFormId)
-            mDatabase.evacuationItemDao().insert(evacuationItem)
+    override suspend fun createData(id: String) {
+        val evacuationItem = EvacuationItem(
+            id = id,
+            dateCreated = getDateTimeNowInLong(),
+            formId = mFormId
+        )
+        mDatabase.evacuationItemDao().insert(evacuationItem)
 
-            val siteInfo = SiteInfo(
+        val siteInfo = SiteInfo(
+            id = generateId(),
+            evacuationDate = getDateNowInLong(),
+            evacuationId = id
+        )
+        mDatabase.siteInfoDao().insert(siteInfo)
+
+        for (i in AgeCategories.values().indices) {
+            val row = EvacuationAgeRow(
                 id = generateId(),
-                evacuationDate = getDateNowInLong(),
-                evacuationId = id)
-            mDatabase.siteInfoDao().insert(siteInfo)
-
-            for (i in AgeCategories.values().indices) {
-                val row = EvacuationAgeRow(
-                    id = generateId(),
-                    type = i,
-                    evacuationId = id)
-                mDatabase.evacuationAgeRowDao().insert(row)
-            }
-
-            val evacuationFacilities = EvacuationFacilities(
-                id = generateId(),
-                evacuationId = id)
-            mDatabase.evacuationFacilitiesDao().insert(evacuationFacilities)
-
-            val evacuationWash = EvacuationWash(
-                id = generateId(),
-                evacuationId = id)
-            mDatabase.evacuationWashDao().insert(evacuationWash)
-
-            val evacuationProtection = EvacuationProtection(
-                id = generateId(),
-                evacuationId = id)
-            mDatabase.evacuationProtectionDao().insert(evacuationProtection)
-
-            val evacuationCoping = EvacuationCoping(
-                id = generateId(),
-                evacuationId = id)
-            mDatabase.evacuationCopingDao().insert(evacuationCoping)
+                type = i,
+                evacuationId = id
+            )
+            mDatabase.evacuationAgeRowDao().insert(row)
         }
+
+        val evacuationFacilities = EvacuationFacilities(
+            id = generateId(),
+            evacuationId = id
+        )
+        mDatabase.evacuationFacilitiesDao().insert(evacuationFacilities)
+
+        val evacuationWash = EvacuationWash(
+            id = generateId(),
+            evacuationId = id
+        )
+        mDatabase.evacuationWashDao().insert(evacuationWash)
+
+        val evacuationProtection = EvacuationProtection(
+            id = generateId(),
+            evacuationId = id
+        )
+        mDatabase.evacuationProtectionDao().insert(evacuationProtection)
+
+        val evacuationCoping = EvacuationCoping(
+            id = generateId(),
+            evacuationId = id
+        )
+        mDatabase.evacuationCopingDao().insert(evacuationCoping)
     }
 }

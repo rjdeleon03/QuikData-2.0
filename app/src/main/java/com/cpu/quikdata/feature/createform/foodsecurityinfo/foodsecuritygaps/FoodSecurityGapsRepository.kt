@@ -3,7 +3,6 @@ package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecuritygaps
 import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
-import com.cpu.quikdata.utils.runOnIoThread
 import javax.inject.Inject
 
 class FoodSecurityGapsRepository @Inject constructor(private val mDatabase: AppDatabase, formId: String) {

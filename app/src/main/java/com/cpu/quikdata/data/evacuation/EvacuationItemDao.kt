@@ -16,5 +16,5 @@ interface EvacuationItemDao : BaseRowDao<EvacuationItem> {
 
     @Transaction
     @Query("SELECT * FROM evacuation_item WHERE formId = :formId")
-    suspend fun getByFormIdForDisplay(formId: String): LiveData<List<EvacuationItemDetails>>
+    fun getByFormIdForDisplay(formId: String): LiveData<List<EvacuationItemDetails>>
 }

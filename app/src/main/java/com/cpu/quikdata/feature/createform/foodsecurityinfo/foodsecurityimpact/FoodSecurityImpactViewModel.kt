@@ -2,6 +2,7 @@ package com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityimpact
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.common.runOnIoThread
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecurityimpact.FoodSecurityImpact
 import javax.inject.Inject
 
@@ -11,5 +12,5 @@ class FoodSecurityImpactViewModel @Inject constructor(private val mRepository: F
     val foodSecurityImpact : LiveData<FoodSecurityImpact>
         get() = mRepository.foodSecurityImpact
 
-    fun updateFoodSecurityImpact(impact: FoodSecurityImpact) = mRepository.updateData(impact)
+    fun updateFoodSecurityImpact(impact: FoodSecurityImpact) = runOnIoThread { mRepository.updateData(impact) }
 }

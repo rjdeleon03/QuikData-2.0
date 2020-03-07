@@ -2,6 +2,7 @@ package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationwash
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.cpu.quikdata.common.runOnIoThread
 import com.cpu.quikdata.data.evacuation.evacuationwash.EvacuationWash
 import javax.inject.Inject
 
@@ -12,5 +13,5 @@ class EvacuationWashViewModel @Inject constructor(private val mRepository: Evacu
         get() = mRepository.evacuationWash
 
     fun updateEvacuationWash(evacuationWash: EvacuationWash) =
-        mRepository.updateData(evacuationWash)
+        runOnIoThread { mRepository.updateData(evacuationWash) }
 }

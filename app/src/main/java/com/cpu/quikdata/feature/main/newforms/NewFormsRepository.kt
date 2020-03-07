@@ -276,7 +276,7 @@ class NewFormsRepository @Inject constructor(
         mDatabase.formDao().delete(formComplete.form!!)
     }
 
-    fun submitForm(formId: String) {
+    suspend fun submitForm(formId: String) {
         val operation = mFirebaseHelper.submitAllData(mDatabase, formId)
         mSaveResult.addSource(operation) {
             mSaveResult.value = it

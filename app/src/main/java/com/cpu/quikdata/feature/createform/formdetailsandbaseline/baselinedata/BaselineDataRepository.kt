@@ -5,26 +5,25 @@ import androidx.lifecycle.MediatorLiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.baselinedata.BaselineData
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
-import com.cpu.quikdata.utils.runOnIoThread
 import javax.inject.Inject
 
 class BaselineDataRepository @Inject constructor(
-    private val mDatabase: AppDatabase, private val mFormId: String) {
+    private val mDatabase: AppDatabase, private val mFormId: String
+) {
 
     private val mBaselineData = mDatabase.baselineDataDao().getByFormId(mFormId)
     private val mPrefilledData = MediatorLiveData<PrefilledData>()
 
-    val baselineData : LiveData<BaselineData>
+    val baselineData: LiveData<BaselineData>
         get() = mBaselineData
 
     val prefilledData: LiveData<PrefilledData>
         get() = mPrefilledData
 
-    fun updateData(data: BaselineData) {
-        runOnIoThread {
-            val oldBaselineData = mBaselineData.value!!
-            oldBaselineData.copyFrom(data)
-            mDatabase.baselineDataDao().update(oldBaselineData)
+    suspend fun updateData(data: BaselineData) {
+        mBaselineData.value?.apply {
+            copyFrom(data)
+            mDatabase.baselineDataDao().update(this)
         }
     }
 

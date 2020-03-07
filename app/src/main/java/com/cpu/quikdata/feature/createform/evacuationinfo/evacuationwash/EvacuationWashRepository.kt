@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.evacuationwash.EvacuationWash
 import com.cpu.quikdata.di.EvacuationId
-import com.cpu.quikdata.utils.runOnIoThread
 import javax.inject.Inject
 
 class EvacuationWashRepository @Inject constructor(private val mDatabase: AppDatabase,
@@ -15,11 +14,10 @@ class EvacuationWashRepository @Inject constructor(private val mDatabase: AppDat
     val evacuationWash: LiveData<EvacuationWash>
         get() = mEvacuationWash
 
-    fun updateData(data: EvacuationWash) {
-        runOnIoThread {
-            val oldEvacuationWash = mEvacuationWash.value!!
-            oldEvacuationWash.copyFrom(data)
-            mDatabase.evacuationWashDao().update(oldEvacuationWash)
+    suspend fun updateData(data: EvacuationWash) {
+        mEvacuationWash.value?.apply {
+            copyFrom(data)
+            mDatabase.evacuationWashDao().update(this)
         }
     }
 }

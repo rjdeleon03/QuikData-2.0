@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.evacuationcoping.EvacuationCoping
 import com.cpu.quikdata.di.EvacuationId
-import com.cpu.quikdata.utils.runOnIoThread
 import javax.inject.Inject
 
 class EvacuationCopingRepository @Inject constructor(private val mDatabase: AppDatabase,
@@ -15,11 +14,10 @@ class EvacuationCopingRepository @Inject constructor(private val mDatabase: AppD
     val evacuationCoping: LiveData<EvacuationCoping>
         get() = mEvacuationCoping
 
-    fun updateData(data: EvacuationCoping) {
-        runOnIoThread {
-            val oldEvacuationCoping = mEvacuationCoping.value!!
-            oldEvacuationCoping.copyFrom(data)
-            mDatabase.evacuationCopingDao().update(oldEvacuationCoping)
+    suspend fun updateData(data: EvacuationCoping) {
+        mEvacuationCoping.value?.apply {
+            copyFrom(data)
+            mDatabase.evacuationCopingDao().update(this)
         }
     }
 }
