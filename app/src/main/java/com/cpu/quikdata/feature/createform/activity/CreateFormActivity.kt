@@ -15,6 +15,7 @@ import com.cpu.quikdata.common.showConfirmationDialog
 import com.cpu.quikdata.di.app.module.DaggerViewModelFactory
 import com.cpu.quikdata.di.createform.activity.CreateFormComponent
 import com.cpu.quikdata.feature.createform.casestories.CaseStoriesFragment
+import com.cpu.quikdata.feature.createform.selection.worker.SubmissionWorker
 import kotlinx.android.synthetic.main.activity_create_form.*
 import javax.inject.Inject
 
@@ -23,6 +24,9 @@ class CreateFormActivity : BaseActivity() {
 
     @Inject lateinit var mViewModelFactory: DaggerViewModelFactory
     private lateinit var mViewModel: CreateFormViewModel
+
+    @Inject lateinit var mSubmissionWorkerFactory: SubmissionWorker.Factory
+
 
     private lateinit var mCreateFormComponent: CreateFormComponent
     private lateinit var mNavController: NavController
