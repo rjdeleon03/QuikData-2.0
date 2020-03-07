@@ -11,5 +11,5 @@ interface ShelterGapsDao : BaseDao<ShelterGaps> {
     fun getByFormId(formId: String): LiveData<ShelterGaps>
 
     @Query("SELECT * FROM shelter_gaps WHERE formId = :formId")
-    fun getByFormIdNonLive(formId: String): ShelterGaps
+    suspend fun getByFormIdNonLive(formId: String): ShelterGaps
 }

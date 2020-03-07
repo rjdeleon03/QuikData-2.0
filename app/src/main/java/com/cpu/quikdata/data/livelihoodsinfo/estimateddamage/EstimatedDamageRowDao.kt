@@ -13,5 +13,5 @@ interface EstimatedDamageRowDao : BaseRowDao<EstimatedDamageRow> {
 
     @Transaction
     @Query("SELECT * FROM estimated_damage_row WHERE formId = :formId ORDER BY type")
-    fun getByFormIdNonLive(formId: String): List<EstimatedDamageComplete>
+    suspend fun getByFormIdNonLive(formId: String): List<EstimatedDamageComplete>
 }

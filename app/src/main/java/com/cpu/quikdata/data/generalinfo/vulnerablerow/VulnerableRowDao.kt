@@ -11,5 +11,5 @@ interface VulnerableRowDao : BaseRowDao<VulnerableRow> {
     fun getByFormId(formId: String): LiveData<List<VulnerableRow>>
 
     @Query("SELECT * FROM vulnerable_row WHERE formId = :formId ORDER BY type")
-    fun getByFormIdNonLive(formId: String): List<VulnerableRow>
+    suspend fun getByFormIdNonLive(formId: String): List<VulnerableRow>
 }

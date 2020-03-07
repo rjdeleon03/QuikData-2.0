@@ -11,5 +11,5 @@ interface WashGapsDao : BaseDao<WashGaps> {
     fun getByFormId(formId: String): LiveData<WashGaps>
 
     @Query("SELECT * FROM wash_gaps WHERE formId = :formId")
-    fun getByFormIdNonLive(formId: String): WashGaps
+    suspend fun getByFormIdNonLive(formId: String): WashGaps
 }

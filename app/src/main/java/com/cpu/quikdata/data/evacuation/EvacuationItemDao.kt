@@ -12,9 +12,9 @@ interface EvacuationItemDao : BaseRowDao<EvacuationItem> {
 
     @Transaction
     @Query("SELECT * FROM evacuation_item WHERE formId = :formId ORDER BY dateCreated")
-    fun getByFormIdNonLive(formId: String): List<EvacuationComplete>
+    suspend fun getByFormIdNonLive(formId: String): List<EvacuationComplete>
 
     @Transaction
     @Query("SELECT * FROM evacuation_item WHERE formId = :formId")
-    fun getByFormIdForDisplay(formId: String): LiveData<List<EvacuationItemDetails>>
+    suspend fun getByFormIdForDisplay(formId: String): LiveData<List<EvacuationItemDetails>>
 }

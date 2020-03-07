@@ -11,5 +11,5 @@ interface FamiliesDao : BaseDao<Families> {
     fun getByFormId(formId: String): LiveData<Families>
 
     @Query("SELECT * FROM families WHERE formId = :formId")
-    fun getByFormIdNonLive(formId: String): Families
+    suspend fun getByFormIdNonLive(formId: String): Families
 }

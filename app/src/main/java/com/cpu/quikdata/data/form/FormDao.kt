@@ -24,13 +24,13 @@ interface FormDao {
     fun getById(id: String): LiveData<Form>
 
     @Query("SELECT * FROM form WHERE id = :id")
-    fun getByIdSingle(id: String): Form
+    suspend fun getByIdSingle(id: String): Form
 
     @Transaction
     @Query("SELECT * FROM form WHERE id = :formId")
-    fun getFormDataNonLive(formId: String): FormComplete
+    suspend fun getFormDataNonLive(formId: String): FormComplete
 
     @Transaction
     @Query("SELECT * FROM form WHERE id = :formId")
-    fun getGeneralInfoNonLive(formId: String): GeneralInfoComplete
+    suspend fun getGeneralInfoNonLive(formId: String): GeneralInfoComplete
 }

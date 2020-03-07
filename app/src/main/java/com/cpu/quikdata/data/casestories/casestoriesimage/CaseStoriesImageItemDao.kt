@@ -11,5 +11,5 @@ interface CaseStoriesImageItemDao : BaseRowDao<CaseStoriesImageItem> {
     fun getByCaseStoriesId(caseStoriesId: String): LiveData<List<CaseStoriesImageItem>>
 
     @Query("SELECT * FROM case_stories_image_item WHERE caseStoriesId = :caseStoriesId ORDER BY dateCreated")
-    fun getByCaseStoriesIdNonLive(caseStoriesId: String): List<CaseStoriesImageItem>
+    suspend fun getByCaseStoriesIdNonLive(caseStoriesId: String): List<CaseStoriesImageItem>
 }

@@ -11,5 +11,5 @@ interface CasualtiesRowDao : BaseRowDao<CasualtiesRow> {
     fun getByFormId(formId: String): LiveData<List<CasualtiesRow>>
 
     @Query("SELECT * FROM casualties_row WHERE formId = :formId ORDER BY type")
-    fun getByFormIdNonLive(formId: String): List<CasualtiesRow>
+    suspend fun getByFormIdNonLive(formId: String): List<CasualtiesRow>
 }

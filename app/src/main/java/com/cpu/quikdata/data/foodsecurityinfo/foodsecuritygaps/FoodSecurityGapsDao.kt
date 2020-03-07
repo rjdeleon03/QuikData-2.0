@@ -11,5 +11,5 @@ interface FoodSecurityGapsDao : BaseDao<FoodSecurityGaps> {
     fun getByFormId(formId: String): LiveData<FoodSecurityGaps>
 
     @Query("SELECT * FROM food_security_gaps WHERE formId = :formId")
-    fun getByFormIdNonLive(formId: String): FoodSecurityGaps
+    suspend fun getByFormIdNonLive(formId: String): FoodSecurityGaps
 }

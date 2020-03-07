@@ -13,5 +13,5 @@ interface CaseStoriesDao : BaseDao<CaseStories> {
 
     @Transaction
     @Query("SELECT * FROM case_stories WHERE formId = :formId")
-    fun getByFormIdNonLive(formId: String): CaseStoriesComplete
+    suspend fun getByFormIdNonLive(formId: String): CaseStoriesComplete
 }

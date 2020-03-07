@@ -11,37 +11,36 @@ import com.cpu.quikdata.utils.getDateTimeNowInLong
 import com.cpu.quikdata.utils.runOnIoThread
 import javax.inject.Inject
 
-class CaseStoriesRepository @Inject constructor(private val mDatabase: AppDatabase, formId: String) {
+class CaseStoriesRepository @Inject constructor(
+    private val mDatabase: AppDatabase,
+    formId: String
+) {
 
     private val mCaseStories = mDatabase.caseStoriesDao().getByFormId(formId)
 
     val caseStories: LiveData<CaseStoriesComplete>
         get() = mCaseStories
 
-    fun updateCaseStoriesText(data: CaseStories) {
-        runOnIoThread {
-            val oldCaseStoriesText = mCaseStories.value!!.root!!
-            oldCaseStoriesText.copyFrom(data)
-            mDatabase.caseStoriesDao().update(oldCaseStoriesText)
-        }
+    suspend fun updateCaseStoriesText(data: CaseStories) {
+        val oldCaseStoriesText = mCaseStories.value!!.root!!
+        oldCaseStoriesText.copyFrom(data)
+        mDatabase.caseStoriesDao().update(oldCaseStoriesText)
     }
 
-    fun insertImage(uri: String, id: String) {
-        runOnIoThread {
-            val caseStoriesId = mCaseStories.value!!.root!!.id
-            mDatabase.caseStoriesImageItemDao().insert(CaseStoriesImageItem(
+    suspend fun insertImage(uri: String, id: String) {
+        val caseStoriesId = mCaseStories.value!!.root!!.id
+        mDatabase.caseStoriesImageItemDao().insert(
+            CaseStoriesImageItem(
                 id = id,
                 dateCreated = getDateTimeNowInLong(),
                 uri = uri,
                 caseStoriesId = caseStoriesId
-            ))
-        }
+            )
+        )
     }
 
-    fun deleteImage(data: CaseStoriesImageItem) {
-        runOnIoThread {
-            Uri.parse(data.uri).deleteFile()
-            mDatabase.caseStoriesImageItemDao().delete(data)
-        }
+    suspend fun deleteImage(data: CaseStoriesImageItem) {
+        Uri.parse(data.uri).deleteFile()
+        mDatabase.caseStoriesImageItemDao().delete(data)
     }
 }

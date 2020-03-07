@@ -11,5 +11,5 @@ interface BaselineDataDao : BaseDao<BaselineData> {
     fun getByFormId(formId: String): LiveData<BaselineData>
 
     @Query("SELECT * FROM baseline_data WHERE formId = :formId")
-    fun getByFormIdNonLive(formId: String): BaselineData
+    suspend fun getByFormIdNonLive(formId: String): BaselineData
 }

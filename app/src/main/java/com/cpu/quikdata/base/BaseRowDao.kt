@@ -6,14 +6,14 @@ import androidx.room.*
 interface BaseRowDao<R> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(row: R)
+    suspend fun insert(row: R)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(row: R)
+    suspend fun update(row: R)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(rows: List<R>)
+    suspend fun update(rows: List<R>)
 
     @Delete
-    fun delete(row: R)
+    suspend fun delete(row: R)
 }
