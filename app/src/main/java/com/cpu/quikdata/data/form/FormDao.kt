@@ -24,7 +24,7 @@ interface FormDao {
     fun getById(id: String): LiveData<Form>
 
     @Query("SELECT * FROM form WHERE id = :id")
-    suspend fun getByIdSingle(id: String): Form
+    suspend fun getByIdNonLive(id: String): Form
 
     @Transaction
     @Query("SELECT * FROM form WHERE id = :formId")

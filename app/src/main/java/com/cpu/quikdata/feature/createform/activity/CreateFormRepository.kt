@@ -47,9 +47,9 @@ class CreateFormRepository @Inject constructor(
     suspend fun saveFormAsActual(isBasicMode: Boolean) {
         performSaveChangesToFormOnly()
         val operation = if (isBasicMode) {
-            mFirebaseHelper.submitBasicData(mDatabase, mFormId)
+            mFirebaseHelper.submitBasicData(mFormId)
         } else {
-            mFirebaseHelper.submitAllData(mDatabase, mFormId)
+            mFirebaseHelper.submitAllData(mFormId)
         }
         mSaveResult.addSource(operation) {
             mSaveResult.value = it
