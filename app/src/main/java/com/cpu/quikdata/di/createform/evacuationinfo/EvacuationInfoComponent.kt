@@ -1,5 +1,6 @@
 package com.cpu.quikdata.di.createform.evacuationinfo
 
+import com.cpu.quikdata.di.createform.evacuationinfo.evacuationitem.EvacuationItemComponent
 import com.cpu.quikdata.feature.createform.evacuationinfo.EvacuationInfoFragment
 import dagger.Subcomponent
 
@@ -13,6 +14,8 @@ interface EvacuationInfoComponent {
     interface Factory {
         fun create(): EvacuationInfoComponent
     }
+
+    fun evacuationItemComponent(): EvacuationItemComponent.Factory
 
     fun inject(evacuationInfoFragment: EvacuationInfoFragment)
 }

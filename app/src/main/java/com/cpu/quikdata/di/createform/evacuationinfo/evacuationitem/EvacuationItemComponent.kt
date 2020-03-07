@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.createform.evacuationinfo.evacuationitem
 
 import com.cpu.quikdata.di.EvacuationItemScope
 import com.cpu.quikdata.feature.createform.evacuationinfo.container.EvacuationContainerFragment
+import com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage.EvacuationAgeFragment
 import com.cpu.quikdata.feature.createform.evacuationinfo.siteinfo.SiteInfoFragment
 import dagger.BindsInstance
 import dagger.Subcomponent
@@ -16,4 +17,5 @@ interface EvacuationItemComponent {
     }
 
     fun inject(siteInfoFragment: SiteInfoFragment)
+    fun inject(evacuationAgeFragment: EvacuationAgeFragment)
 }
