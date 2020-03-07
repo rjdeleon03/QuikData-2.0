@@ -66,10 +66,11 @@ class CreateFormRepository @Inject constructor(
     }
 
     private suspend fun performSaveChangesToFormOnly() {
-        val formValue = mForm.value!!
-        formValue.isTemporary = false
-        formValue.dateModified = getDateTimeNowInLong()
-        mDatabase.formDao().update(formValue)
+        mForm.value?.apply {
+            isTemporary = false
+            dateModified = getDateTimeNowInLong()
+            mDatabase.formDao().update(this)
+        }
     }
 
     fun cancelSubmission() = mFirebaseHelper.cancelSubmission()
