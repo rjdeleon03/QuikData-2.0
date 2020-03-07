@@ -20,7 +20,7 @@ class NewFormsViewModel @Inject constructor(private val mRepository: NewFormsRep
 
     fun deleteForm(formComplete: FormComplete) = runOnIoThread { mRepository.deleteForm(formComplete) }
 
-    fun submitForm(formId: String) = mRepository.submitForm(formId)
+    fun submitForm(formId: String) = runOnIoThread { mRepository.submitForm(formId) }
 
     fun cancelSubmission() = mRepository.cancelSubmission()
 

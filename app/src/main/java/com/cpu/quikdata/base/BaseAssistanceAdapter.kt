@@ -43,7 +43,8 @@ abstract class BaseAssistanceAdapter<R, VH: BaseCollapsibleAdapter.ViewHolder<R>
                     else -> mExpandedItem = rows.size - 1
                 }
                 mDeletedItemTag = DeletedItem.SUCCEEDING
-                runOnMainThread { notifyItemChanged(mExpandedItem) }
+                notifyItemChanged(mExpandedItem)
+//                runOnMainThread { notifyItemChanged(mExpandedItem) }
             }
         }
         super.setRows(rows)

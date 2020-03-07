@@ -5,18 +5,20 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.watersanitationinfo.washconditions.WashConditions
 import javax.inject.Inject
 
-class WashConditionsRepository @Inject constructor(private val mDatabase: AppDatabase, formId: String) {
+class WashConditionsRepository @Inject constructor(
+    private val mDatabase: AppDatabase,
+    formId: String
+) {
 
     private val mWashConditions = mDatabase.washConditionsDao().getByFormId(formId)
 
-    val washConditions : LiveData<WashConditions>
+    val washConditions: LiveData<WashConditions>
         get() = mWashConditions
 
-    fun updateData(data: WashConditions) {
-        runOnIoThread {
-            val oldConditions = mWashConditions.value!!
-            oldConditions.copyFrom(data)
-            mDatabase.washConditionsDao().update(oldConditions)
+    suspend fun updateData(data: WashConditions) {
+        mWashConditions.value?.apply {
+            copyFrom(data)
+            mDatabase.washConditionsDao().update(this)
         }
     }
 }

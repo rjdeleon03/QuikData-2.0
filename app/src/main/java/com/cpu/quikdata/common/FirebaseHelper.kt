@@ -47,22 +47,20 @@ class FirebaseHelper(
 
     private fun getOnProgressListener(resultLiveData: MutableLiveData<ProgressNotification>) =
         { pn: ProgressNotification ->
-            runOnMainThread {
-                if (mIsCancelled) {
-                    resultLiveData.value = ProgressNotification.CANCELLED
-                    return@runOnMainThread
-                }
+            if (mIsCancelled) {
+                resultLiveData.postValue(ProgressNotification.CANCELLED)
+            } else {
                 // System.out.println("============ $pn =============")
                 when (pn) {
                     ProgressNotification.FINISHED,
                     ProgressNotification.CANCELLED,
                     ProgressNotification.ERROR_OCCURRED -> {
                         if (resultLiveData.value != pn) {
-                            resultLiveData.value = pn
+                            resultLiveData.postValue(pn)
                         }
                     }
                     else -> {
-                        resultLiveData.value = pn
+                        resultLiveData.postValue(pn)
                     }
                 }
             }
@@ -201,7 +199,7 @@ class FirebaseHelper(
         }
     }
 
-    private fun submitShelterInformation(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private suspend fun submitShelterInformation(database: AppDatabase, formId: String, batch: WriteBatch) {
         run {
             val section = database.houseDamageRowDao().getByFormIdNonLive(formId)
             batch.setTask(
@@ -239,7 +237,7 @@ class FirebaseHelper(
         }
     }
 
-    private fun submitFoodSecurity(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private suspend fun submitFoodSecurity(database: AppDatabase, formId: String, batch: WriteBatch) {
         run {
             val section = database.foodSecurityImpactDao().getByFormIdNonLive(formId)
             batch.setTask(
@@ -277,7 +275,7 @@ class FirebaseHelper(
         }
     }
 
-    private fun submitLivelihoods(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private suspend fun submitLivelihoods(database: AppDatabase, formId: String, batch: WriteBatch) {
         run {
             val section = database.incomeBeforeRowDao().getByFormIdNonLive(formId)
             batch.setTask(
@@ -329,7 +327,7 @@ class FirebaseHelper(
         }
     }
 
-    private fun submitHealthInformation(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private suspend fun submitHealthInformation(database: AppDatabase, formId: String, batch: WriteBatch) {
         run {
             val section = database.diseasesRowDao().getByFormIdNonLive(formId)
             batch.setTask(
@@ -374,7 +372,7 @@ class FirebaseHelper(
         }
     }
 
-    private fun submitWashInformation(database: AppDatabase, formId: String, batch: WriteBatch) {
+    private suspend fun submitWashInformation(database: AppDatabase, formId: String, batch: WriteBatch) {
         run {
             val section = database.washConditionsDao().getByFormIdNonLive(formId)
             batch.setTask(
@@ -405,7 +403,7 @@ class FirebaseHelper(
         }
     }
 
-    private fun submitEvacuationInformation(
+    private suspend fun submitEvacuationInformation(
         database: AppDatabase,
         formId: String,
         batch: WriteBatch

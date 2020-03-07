@@ -17,8 +17,10 @@ import javax.inject.Inject
 
 class QuikDataApp : Application() {
 
-    @Inject lateinit var mSharedPrefsHelper: SharedPreferencesHelper
-    @Inject lateinit var mDatabase: AppDatabase
+    @Inject
+    lateinit var mSharedPrefsHelper: SharedPreferencesHelper
+    @Inject
+    lateinit var mDatabase: AppDatabase
 
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.factory().create(this)
@@ -47,7 +49,7 @@ class QuikDataApp : Application() {
     private fun setupDevice() {
         val serverRef = FirebaseDatabase.getInstance().reference.child(FIREBASE_KEY_DEVICES)
         val push = serverRef.push()
-        runOnIoThread {
+        GlobalScope.launch(Dispatchers.IO) {
             val task = push.setValue("${Build.MANUFACTURER} ${Build.MODEL}")
             task.addOnCompleteListener { mSharedPrefsHelper.saveDeviceId(push.key) }
         }
