@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/basicSelectionRootLayout"
-    tools:context=".feature.createform.basicselection.BasicSelectionFragment"
+    tools:context=".feature.createform.selection.BasicSelectionFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lighterGray">

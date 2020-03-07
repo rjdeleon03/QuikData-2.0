@@ -1,4 +1,4 @@
-package com.cpu.quikdata.feature.createform.basicselection
+package com.cpu.quikdata.feature.createform.selection
 
 
 import android.os.Bundle
