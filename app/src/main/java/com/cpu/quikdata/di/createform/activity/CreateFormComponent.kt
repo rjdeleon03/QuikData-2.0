@@ -17,11 +17,13 @@ import dagger.BindsInstance
 import dagger.Subcomponent
 
 @ActivityScope
-@Subcomponent(modules = [
-    AssistedInjectModule::class,
-    CreateFormModule::class,
-    CreateFormSubcomponents::class
-])
+@Subcomponent(
+    modules = [
+        AssistedInjectModule::class,
+        CreateFormModule::class,
+        CreateFormSubcomponents::class
+    ]
+)
 interface CreateFormComponent {
 
     @Subcomponent.Factory
