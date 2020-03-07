@@ -11,6 +11,6 @@ abstract class BaseFragment: Fragment() {
     @Inject
     lateinit var mViewModelFactory: DaggerViewModelFactory
 
-    val appComponent: AppComponent
+    val mAppComponent: AppComponent
         get() = (requireActivity().application as QuikDataApp).appComponent
 }

@@ -22,10 +22,9 @@ enum class ProgressNotification {
     CANCELLED
 }
 
-class FirebaseHelper {
+class FirebaseHelper(private val mFirestore: FirebaseFirestore,
+                     private val mStorage: FirebaseStorage) {
 
-    private val mFirestore = FirebaseFirestore.getInstance()
-    private val mStorage = FirebaseStorage.getInstance()
     private val mUploadTasks = arrayListOf<UploadTask>()
     @Volatile private var mIsCancelled = false
 

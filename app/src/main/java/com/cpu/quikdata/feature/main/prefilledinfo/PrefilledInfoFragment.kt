@@ -11,9 +11,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFocusableFragment
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
-import com.cpu.quikdata.di.app.module.DaggerViewModelFactory
 import kotlinx.android.synthetic.main.fragment_prefilled_info.*
-import javax.inject.Inject
 
 class PrefilledInfoFragment : BaseFocusableFragment() {
 
@@ -28,7 +26,7 @@ class PrefilledInfoFragment : BaseFocusableFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        appComponent.prefilledInfoComponent().create().inject(this)
+        mAppComponent.prefilledInfoComponent().create().inject(this)
     }
 
     override fun onCreateView(

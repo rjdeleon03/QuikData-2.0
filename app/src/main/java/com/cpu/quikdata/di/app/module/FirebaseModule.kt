@@ -14,8 +14,7 @@ class FirebaseModule {
     @Singleton
     fun provideFirebaseHelper(firestore: FirebaseFirestore,
                               storage: FirebaseStorage): FirebaseHelper {
-//        return FirebaseHelper(firestore, storage)
-        return FirebaseHelper()
+        return FirebaseHelper(firestore, storage)
     }
 
     @Provides

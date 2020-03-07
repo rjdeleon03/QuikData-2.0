@@ -11,13 +11,11 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseFragment
 import com.cpu.quikdata.common.*
 import com.cpu.quikdata.data.form.FormComplete
-import com.cpu.quikdata.di.app.module.DaggerViewModelFactory
 import com.cpu.quikdata.dialog.ProgressDialogFragment
 import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.utils.generateId
 import kotlinx.android.synthetic.main.fragment_new_forms.*
 import kotlinx.android.synthetic.main.view_custom_recycler_view.view.*
-import javax.inject.Inject
 
 class NewFormsFragment : BaseFragment() {
 
@@ -35,7 +33,7 @@ class NewFormsFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        appComponent.newFormsComponent().create().inject(this)
+        mAppComponent.newFormsComponent().create().inject(this)
     }
 
     override fun onCreateView(
