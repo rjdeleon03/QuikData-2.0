@@ -36,7 +36,6 @@ class BasicSelectionFragment : BaseSubmissionFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mNavController = findNavController()
-        val destination = mNavController.currentDestination
 
         setupClipping(basicSelectionRootLayout)
         selectionSendSaveButton.clickWithGuard {

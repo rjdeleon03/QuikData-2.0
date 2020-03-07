@@ -277,7 +277,7 @@ class NewFormsRepository @Inject constructor(
     }
 
     suspend fun submitForm(formId: String) {
-        val operation = mFirebaseHelper.submitAllData(mDatabase, formId)
+        val operation = mFirebaseHelper.submitAllData(formId)
         mSaveResult.addSource(operation) {
             mSaveResult.value = it
             if (it == ProgressNotification.FINISHED ||
