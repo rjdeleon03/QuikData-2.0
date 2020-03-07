@@ -1,13 +1,14 @@
 package com.cpu.quikdata.feature.createform.selection.worker
 
 import android.content.Context
-import androidx.work.CoroutineWorker
-import androidx.work.Data
-import androidx.work.WorkManager
-import androidx.work.WorkerParameters
+import androidx.work.*
+import com.cpu.quikdata.data.AppDatabase
+import com.cpu.quikdata.di.app.module.ChildWorkerFactory
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Provider
 
-class SubmissionWorker(context: Context, workerParams: WorkerParameters) :
+class SubmissionWorker(context: Context, workerParams: WorkerParameters, private val mDatabase: AppDatabase) :
     CoroutineWorker(context, workerParams) {
 
     companion object {
@@ -29,5 +30,12 @@ class SubmissionWorker(context: Context, workerParams: WorkerParameters) :
 
     override suspend fun doWork(): Result {
         return Result.success()
+    }
+
+    class Factory @Inject constructor(private val mDatabase: Provider<AppDatabase>): ChildWorkerFactory {
+        override fun create(appContext: Context, workerParams: WorkerParameters): ListenableWorker {
+            return SubmissionWorker(appContext, workerParams, mDatabase.get())
+        }
+
     }
 }
