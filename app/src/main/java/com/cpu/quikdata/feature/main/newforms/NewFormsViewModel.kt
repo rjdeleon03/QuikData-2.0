@@ -3,6 +3,7 @@ package com.cpu.quikdata.feature.main.newforms
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.common.ProgressNotification
+import com.cpu.quikdata.common.runOnIoThread
 import com.cpu.quikdata.data.form.FormComplete
 import javax.inject.Inject
 
@@ -15,9 +16,9 @@ class NewFormsViewModel @Inject constructor(private val mRepository: NewFormsRep
     val saveResult: LiveData<ProgressNotification>
         get() = mRepository.saveResult
 
-    fun createNewForm(formId: String) = mRepository.createNewForm(formId)
+    fun createNewForm(formId: String) = runOnIoThread { mRepository.createNewForm(formId) }
 
-    fun deleteForm(formComplete: FormComplete) = mRepository.deleteForm(formComplete)
+    fun deleteForm(formComplete: FormComplete) = runOnIoThread { mRepository.deleteForm(formComplete) }
 
     fun submitForm(formId: String) = mRepository.submitForm(formId)
 

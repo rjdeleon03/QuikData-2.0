@@ -16,15 +16,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
 import com.cpu.quikdata.dialog.ConfirmationDialogFragment
 import com.cpu.quikdata.dialog.ProgressDialogFragment
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.joda.time.format.DateTimeFormat
 import java.io.File
 import java.lang.Exception
@@ -209,6 +209,11 @@ fun LiveData<ProgressNotification>.observeProgress(lifecycleOwner: LifecycleOwne
     })
 }
 
+fun ViewModel.runOnIoThread(method: suspend () -> Unit) {
+    viewModelScope.launch(Dispatchers.IO) {
+        method()
+    }
+}
 
 /*
 fun RecyclerView.setupTapToExpand(context: Context) {

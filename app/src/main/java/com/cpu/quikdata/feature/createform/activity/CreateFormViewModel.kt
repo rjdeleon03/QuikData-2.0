@@ -3,6 +3,7 @@ package com.cpu.quikdata.feature.createform.activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.cpu.quikdata.common.ProgressNotification
+import com.cpu.quikdata.common.runOnIoThread
 import com.cpu.quikdata.data.form.Form
 import javax.inject.Inject
 
@@ -20,11 +21,11 @@ class CreateFormViewModel @Inject constructor(private val mRepository: CreateFor
     val saveResult: LiveData<ProgressNotification>
         get() = mRepository.saveResult
 
-    fun deleteForm() = mRepository.deleteForm()
+    fun deleteForm() = runOnIoThread { mRepository.deleteForm() }
 
-    fun saveFormAsActual(isBasicMode: Boolean = false) = mRepository.saveFormAsActual(isBasicMode)
+    fun saveFormAsActual(isBasicMode: Boolean = false) = runOnIoThread { mRepository.saveFormAsActual(isBasicMode) }
 
-    fun saveChangesToFormOnly() = mRepository.saveChangesToFormOnly()
+    fun saveChangesToFormOnly() = runOnIoThread { mRepository.saveChangesToFormOnly() }
 
     fun cancelSubmission() = mRepository.cancelSubmission()
 
@@ -34,5 +35,7 @@ class CreateFormViewModel @Inject constructor(private val mRepository: CreateFor
                                 includeHealth: Boolean,
                                 includeWash: Boolean,
                                 includeEvacuation: Boolean) =
-        mRepository.toggleSectionInclusions(includeShelter, includeFood, includeLivelihoods, includeHealth, includeWash, includeEvacuation)
+        runOnIoThread {
+            mRepository.toggleSectionInclusions(includeShelter, includeFood, includeLivelihoods, includeHealth, includeWash, includeEvacuation)
+        }
 }

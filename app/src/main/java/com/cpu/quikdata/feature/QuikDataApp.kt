@@ -10,12 +10,16 @@ import com.cpu.quikdata.di.app.AppComponent
 import com.cpu.quikdata.di.app.DaggerAppComponent
 import com.cpu.quikdata.utils.runOnIoThread
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import net.danlew.android.joda.JodaTimeAndroid
 import javax.inject.Inject
 
 class QuikDataApp : Application() {
 
     @Inject lateinit var mSharedPrefsHelper: SharedPreferencesHelper
+    @Inject lateinit var mDatabase: AppDatabase
 
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.factory().create(this)
@@ -36,9 +40,8 @@ class QuikDataApp : Application() {
     }
 
     private fun setupDatabase() {
-        val db = AppDatabase.get(this)
-        runOnIoThread {
-            db.prefilledDataDao().insert(PrefilledData())
+        GlobalScope.launch(Dispatchers.IO) {
+            mDatabase.prefilledDataDao().insert(PrefilledData())
         }
     }
 

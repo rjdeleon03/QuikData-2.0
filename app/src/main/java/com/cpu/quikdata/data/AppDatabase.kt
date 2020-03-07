@@ -1,7 +1,6 @@
 package com.cpu.quikdata.data
 
 import android.app.Application
-import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -234,9 +233,6 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
 
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
-
         private const val DATABASE_NAME = "quikdata_database"
 
         @JvmStatic
@@ -248,24 +244,6 @@ abstract class AppDatabase : RoomDatabase() {
                 )
                 .fallbackToDestructiveMigration()
                 .build()
-        }
-
-        @JvmStatic
-        fun get(context: Context): AppDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null) return tempInstance
-
-            synchronized(this) {
-                val db = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    DATABASE_NAME
-                )
-                    .fallbackToDestructiveMigration()
-                    .build()
-                INSTANCE = db
-                return db
-            }
         }
     }
 }
