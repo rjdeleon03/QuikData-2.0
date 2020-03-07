@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
@@ -62,14 +61,13 @@ class EvacuationContainerFragment : BaseCreateFormFragment() {
 
         setupClipping(evacuationInfoViewPager)
 
-        val evacuationId = args.evacuationId
         val pagerAdapter = CustomPagerAdapter(childFragmentManager)
         pagerAdapter.addFragment(SiteInfoFragment.newInstance(), getString(R.string.evacuation_site_info_title))
         pagerAdapter.addFragment(EvacuationAgeFragment.newInstance(), getString(R.string.evacuation_age_title))
-        pagerAdapter.addFragment(EvacuationFacilitiesFragment.newInstance(evacuationId), getString(R.string.evacuation_facilities_title))
-        pagerAdapter.addFragment(EvacuationWashFragment.newInstance(evacuationId), getString(R.string.evacuation_wash_title))
-        pagerAdapter.addFragment(EvacuationProtectionFragment.newInstance(evacuationId), getString(R.string.evacuation_protection_title))
-        pagerAdapter.addFragment(EvacuationCopingFragment.newInstance(evacuationId), getString(R.string.evacuation_coping_title))
+        pagerAdapter.addFragment(EvacuationFacilitiesFragment.newInstance(), getString(R.string.evacuation_facilities_title))
+        pagerAdapter.addFragment(EvacuationWashFragment.newInstance(), getString(R.string.evacuation_wash_title))
+        pagerAdapter.addFragment(EvacuationProtectionFragment.newInstance(), getString(R.string.evacuation_protection_title))
+        pagerAdapter.addFragment(EvacuationCopingFragment.newInstance(), getString(R.string.evacuation_coping_title))
         evacuationInfoViewPager.setupViewPager(pagerAdapter) { (activity as CreateFormActivity).setSubtitle(it) }
     }
 }

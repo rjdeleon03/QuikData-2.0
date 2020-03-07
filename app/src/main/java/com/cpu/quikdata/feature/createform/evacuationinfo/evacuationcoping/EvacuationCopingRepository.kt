@@ -1,20 +1,21 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationcoping
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.cpu.quikdata.base.BaseRepository
+import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.evacuation.evacuationcoping.EvacuationCoping
+import com.cpu.quikdata.di.EvacuationId
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class EvacuationCopingRepository(application: Application, formId: String) :
-    BaseRepository<EvacuationCoping>(application) {
+class EvacuationCopingRepository @Inject constructor(private val mDatabase: AppDatabase,
+                                                     @EvacuationId evacuationId: String) {
 
-    private val mEvacuationCoping = mDatabase.evacuationCopingDao().getByEvacuationId(formId)
+    private val mEvacuationCoping = mDatabase.evacuationCopingDao().getByEvacuationId(evacuationId)
 
     val evacuationCoping: LiveData<EvacuationCoping>
         get() = mEvacuationCoping
 
-    override fun updateData(data: EvacuationCoping) {
+    fun updateData(data: EvacuationCoping) {
         runOnIoThread {
             val oldEvacuationCoping = mEvacuationCoping.value!!
             oldEvacuationCoping.copyFrom(data)

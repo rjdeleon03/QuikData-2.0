@@ -1,34 +1,34 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationwash
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.evacuationwash.EvacuationWash
+import com.cpu.quikdata.feature.createform.evacuationinfo.base.BaseEvacuationItemFragment
 import kotlinx.android.synthetic.main.fragment_evacuation_wash.*
 
-class EvacuationWashFragment : Fragment() {
+class EvacuationWashFragment : BaseEvacuationItemFragment() {
 
     companion object {
-        private const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
-
         @JvmStatic
-        fun newInstance(evacuationId: String): EvacuationWashFragment {
-            val fragment = EvacuationWashFragment()
-            val bundle = Bundle()
-            bundle.putString(EVACUATION_ID_KEY, evacuationId)
-            fragment.arguments = bundle
-            return fragment
+        fun newInstance(): EvacuationWashFragment {
+            return EvacuationWashFragment()
         }
     }
 
-    private lateinit var mViewModel: EvacuationWashViewModel
+    private val mViewModel: EvacuationWashViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(EvacuationWashViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mEvacuationItemComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,9 +60,6 @@ class EvacuationWashFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(requireActivity().application, evacuationId)
-        mViewModel = ViewModelProvider(this, factory).get(EvacuationWashViewModel::class.java)
         mViewModel.evacuationWash.observe(viewLifecycleOwner, Observer {
             evacuationWashFoodPreparationText.value = it.foodPreparation
             evacuationWashFoodPreparationText.text = it.foodPreparationRemarks

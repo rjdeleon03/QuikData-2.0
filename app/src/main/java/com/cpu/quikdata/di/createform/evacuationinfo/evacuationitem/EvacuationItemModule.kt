@@ -29,25 +29,25 @@ abstract class EvacuationItemModule {
     @ViewModelKey(EvacuationAgeViewModel::class)
     abstract fun bindEvacuationAgeViewModel(evacuationAgeViewModel: EvacuationAgeViewModel): ViewModel
 
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(EvacuationFacilitiesViewModel::class)
-//    abstract fun bindEvacuationFacilitiesViewModel(evacuationFacilitiesViewModel: EvacuationFacilitiesViewModel): ViewModel
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(EvacuationWashViewModel::class)
-//    abstract fun bindEvacuationWashViewModel(evacuationWashViewModel: EvacuationWashViewModel): ViewModel
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(EvacuationProtectionViewModel::class)
-//    abstract fun bindEvacuationProtectionViewModel(evacuationProtectionViewModel: EvacuationProtectionViewModel): ViewModel
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(EvacuationCopingViewModel::class)
-//    abstract fun bindEvacuationCopingViewModel(evacuationCopingViewModel: EvacuationCopingViewModel): ViewModel
+    @Binds
+    @IntoMap
+    @ViewModelKey(EvacuationFacilitiesViewModel::class)
+    abstract fun bindEvacuationFacilitiesViewModel(evacuationFacilitiesViewModel: EvacuationFacilitiesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EvacuationWashViewModel::class)
+    abstract fun bindEvacuationWashViewModel(evacuationWashViewModel: EvacuationWashViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EvacuationProtectionViewModel::class)
+    abstract fun bindEvacuationProtectionViewModel(evacuationProtectionViewModel: EvacuationProtectionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EvacuationCopingViewModel::class)
+    abstract fun bindEvacuationCopingViewModel(evacuationCopingViewModel: EvacuationCopingViewModel): ViewModel
 
     companion object {
 

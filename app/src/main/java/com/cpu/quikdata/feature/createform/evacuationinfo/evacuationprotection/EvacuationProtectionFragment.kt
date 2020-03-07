@@ -1,34 +1,34 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationprotection
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.ViewModelFactory
 import com.cpu.quikdata.data.evacuation.evacuationprotection.EvacuationProtection
+import com.cpu.quikdata.feature.createform.evacuationinfo.base.BaseEvacuationItemFragment
 import kotlinx.android.synthetic.main.fragment_evacuation_protection.*
 
-class EvacuationProtectionFragment : Fragment() {
+class EvacuationProtectionFragment : BaseEvacuationItemFragment() {
 
     companion object {
-        private const val EVACUATION_ID_KEY = "EVACUATION_ID_KEY"
-
         @JvmStatic
-        fun newInstance(evacuationId: String): EvacuationProtectionFragment {
-            val fragment = EvacuationProtectionFragment()
-            val bundle = Bundle()
-            bundle.putString(EVACUATION_ID_KEY, evacuationId)
-            fragment.arguments = bundle
-            return fragment
+        fun newInstance(): EvacuationProtectionFragment {
+            return EvacuationProtectionFragment()
         }
     }
 
-    private lateinit var mViewModel: EvacuationProtectionViewModel
+    private val mViewModel: EvacuationProtectionViewModel by lazy {
+        ViewModelProvider(this, mViewModelFactory).get(EvacuationProtectionViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mEvacuationItemComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,9 +73,6 @@ class EvacuationProtectionFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
-        val factory = ViewModelFactory(requireActivity().application, evacuationId)
-        mViewModel = ViewModelProvider(this, factory).get(EvacuationProtectionViewModel::class.java)
         mViewModel.evacuationProtection.observe(viewLifecycleOwner, Observer {
             evacuationProtectionUnaccompaniedChildrenText.value = it.unaccompaniedChildren
             evacuationProtectionUnaccompaniedChildrenText.text = it.unaccompaniedChildrenRemarks
