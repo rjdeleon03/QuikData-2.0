@@ -10,9 +10,8 @@ import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import kotlinx.android.synthetic.main.item_special_needs.view.*
 import kotlinx.android.synthetic.main.view_collapsible_container.view.*
-import javax.inject.Inject
 
-class SpecialNeedsAdapter @Inject constructor(
+class SpecialNeedsAdapter @AssistedInject constructor(
     context: Context,
     @Assisted rowSaveListener: (SpecialNeedsRow) -> Unit,
     @Assisted expandedItem: Int = 0) :

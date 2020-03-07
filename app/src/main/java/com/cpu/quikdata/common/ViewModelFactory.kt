@@ -21,7 +21,6 @@ class ViewModelFactory(application: Application, formId: String) :
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
         return when (modelClass) {
-            EvacuationInfoViewModel::class.java -> EvacuationInfoViewModel(mApplication, mFormId) as T
             SiteInfoViewModel::class.java -> SiteInfoViewModel(mApplication, mFormId) as T
             EvacuationAgeViewModel::class.java -> EvacuationAgeViewModel(mApplication, mFormId) as T
             EvacuationFacilitiesViewModel::class.java -> EvacuationFacilitiesViewModel(mApplication, mFormId) as T

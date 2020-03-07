@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.foodsecurityinfo.foodsecuritygaps.FoodSecurityGaps
 import com.cpu.quikdata.utils.runOnIoThread
+import javax.inject.Inject
 
-class FoodSecurityGapsRepository(private val mDatabase: AppDatabase, formId: String) {
+class FoodSecurityGapsRepository @Inject constructor(private val mDatabase: AppDatabase, formId: String) {
 
     private val mFoodSecurityGaps = mDatabase.foodSecurityGapsDao().getByFormId(formId)
 

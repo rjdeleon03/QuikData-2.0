@@ -1,6 +1,7 @@
 package com.cpu.quikdata.di.createform.activity
 
 import com.cpu.quikdata.di.createform.casestories.CaseStoriesComponent
+import com.cpu.quikdata.di.createform.evacuationinfo.EvacuationInfoComponent
 import com.cpu.quikdata.di.createform.foodsecurityinfo.FoodSecurityInfoComponent
 import com.cpu.quikdata.di.createform.formdetailsandbaseline.FormDetailsAndBaselineComponent
 import com.cpu.quikdata.di.createform.generalinfo.GeneralInfoComponent
@@ -19,6 +20,7 @@ import dagger.Module
         LivelihoodsInfoComponent::class,
         HealthInfoComponent::class,
         WaterSanitationInfoComponent::class,
+        EvacuationInfoComponent::class,
         CaseStoriesComponent::class
     ]
 )

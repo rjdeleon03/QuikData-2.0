@@ -35,7 +35,7 @@ android {
 }
 
 ext {
-    ktxNavVersion = "2.2.0"
+    ktxNavVersion = "2.2.1"
     roomVersion = "2.1.0-beta01"
 }
 

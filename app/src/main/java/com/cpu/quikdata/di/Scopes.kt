@@ -11,3 +11,8 @@ annotation class ActivityScope
 @MustBeDocumented
 @Retention(value = AnnotationRetention.RUNTIME)
 annotation class FragmentScope
+
+@Scope
+@MustBeDocumented
+@Retention(value = AnnotationRetention.RUNTIME)
+annotation class EvacuationItemScope

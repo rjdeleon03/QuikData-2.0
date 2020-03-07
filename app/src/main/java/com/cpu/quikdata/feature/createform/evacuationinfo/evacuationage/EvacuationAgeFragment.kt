@@ -1,12 +1,11 @@
 package com.cpu.quikdata.feature.createform.evacuationinfo.evacuationage
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCollapsibleCreateFormFragment
 import com.cpu.quikdata.common.ViewModelFactory
@@ -47,7 +46,7 @@ class EvacuationAgeFragment : BaseCollapsibleCreateFormFragment<EvacuationAgeAda
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val evacuationId = arguments!!.getString(EVACUATION_ID_KEY)!!
+        val evacuationId = requireArguments().getString(EVACUATION_ID_KEY)!!
         val factory = ViewModelFactory(requireActivity().application, evacuationId)
         mViewModel = ViewModelProvider(this, factory).get(EvacuationAgeViewModel::class.java)
         mViewModel.evacuationAge.observe(viewLifecycleOwner, Observer {

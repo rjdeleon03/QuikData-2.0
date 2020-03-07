@@ -4,6 +4,7 @@ import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.di.ActivityScope
 import com.cpu.quikdata.di.app.module.AssistedInjectModule
 import com.cpu.quikdata.di.createform.casestories.CaseStoriesComponent
+import com.cpu.quikdata.di.createform.evacuationinfo.EvacuationInfoComponent
 import com.cpu.quikdata.di.createform.foodsecurityinfo.FoodSecurityInfoComponent
 import com.cpu.quikdata.di.createform.formdetailsandbaseline.FormDetailsAndBaselineComponent
 import com.cpu.quikdata.di.createform.generalinfo.GeneralInfoComponent
@@ -35,6 +36,7 @@ interface CreateFormComponent {
     fun livelihoodsInfoComponent(): LivelihoodsInfoComponent.Factory
     fun healthInfoComponent(): HealthInfoComponent.Factory
     fun waterSanitationInfoComponent(): WaterSanitationInfoComponent.Factory
+    fun evacuationInfoComponent(): EvacuationInfoComponent.Factory
     fun caseStoriesComponent(): CaseStoriesComponent.Factory
 
     fun inject(createFormActivity: CreateFormActivity)

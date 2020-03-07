@@ -1,6 +1,7 @@
 package com.cpu.quikdata.feature.createform.casestories
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -48,6 +49,11 @@ class CaseStoriesFragment : BaseCreateFormFragment() {
 
     private val mViewModel: CaseStoriesViewModel by lazy {
         ViewModelProvider(this, mViewModelFactory).get(CaseStoriesViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mCreateFormComponent.caseStoriesComponent().create().inject(this)
     }
 
     private lateinit var mAdapter: CaseStoriesImageAdapter
