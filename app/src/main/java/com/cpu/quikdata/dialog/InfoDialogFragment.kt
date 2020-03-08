@@ -32,6 +32,8 @@ class InfoDialogFragment : DialogFragment() {
         }
     }
 
+    private var mOnDialogClosedListener: (() -> Unit)? = null
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val titleId = arguments?.getInt(TITLE_ID_KEY)
@@ -44,8 +46,13 @@ class InfoDialogFragment : DialogFragment() {
         builder.setTitle(title)
             .setView(content)
             .setPositiveButton(getString(R.string.text_ok)) { _, _ ->
+                mOnDialogClosedListener?.invoke()
             }
         return builder.create()
+    }
+
+    fun setOnDialogClosedListener(listener: () -> Unit) {
+        mOnDialogClosedListener = listener
     }
 
 }

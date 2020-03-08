@@ -59,7 +59,9 @@ class SubmissionWorker(
                     createResultNotification(form)
                 }
             } else {
-                mFirebaseHelper.sendAllData(form.id)
+                mFirebaseHelper.sendAllData(form.id) {
+                    createResultNotification(form)
+                }
             }
         }
         return Result.success()
@@ -81,6 +83,7 @@ class SubmissionWorker(
             .setContentText("Form created at ${form.dateCreated.toDateTimeString()}")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setProgress(0, 0, true)
+            .setOngoing(true)
         manager.notify(form.id, 1, notif.build())
     }
 
@@ -91,6 +94,7 @@ class SubmissionWorker(
             .setContentTitle("DNCA Form Submitted")
             .setContentText("Form created at ${form.dateCreated.toDateTimeString()}")
             .setSmallIcon(R.mipmap.ic_launcher)
+            .setOngoing(false)
         manager.notify(form.id, 1, notif.build())
     }
 

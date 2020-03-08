@@ -80,6 +80,18 @@ class FirebaseHelper(
     // region Submission methods
 
     suspend fun sendBasicData(formId: String, callback: (FormStatus) -> Unit): List<UploadTask> {
+        return sendData(formId, true, callback)
+    }
+
+    suspend fun sendAllData(formId: String, callback: (FormStatus) -> Unit): List<UploadTask> {
+        return sendData(formId, false, callback)
+    }
+
+    private suspend fun sendData(
+        formId: String,
+        isBasicMode: Boolean,
+        callback: (FormStatus) -> Unit
+    ): List<UploadTask> {
         mFirestore.batch().apply {
 
             // Retrieve form and update its status in DB
@@ -90,6 +102,26 @@ class FirebaseHelper(
             // Submit actual form data
             submitFormDetails(mDatabase, formId, this)
             submitGeneralInformation(mDatabase, formId, this)
+            if (!isBasicMode) {
+                if (form.includeShelter) {
+                    submitShelterInformation(mDatabase, formId, this)
+                }
+                if (form.includeFood) {
+                    submitFoodSecurity(mDatabase, formId, this)
+                }
+                if (form.includeLivelihoods) {
+                    submitLivelihoods(mDatabase, formId, this)
+                }
+                if (form.includeHealth) {
+                    submitHealthInformation(mDatabase, formId, this)
+                }
+                if (form.includeWash) {
+                    submitWashInformation(mDatabase, formId, this)
+                }
+                if (form.includeEvacuation) {
+                    submitEvacuationInformation(mDatabase, formId, this)
+                }
+            }
 
             val images = sendCaseStories(mDatabase, formId, this)
             val targetCount = images.size + 1
@@ -119,52 +151,22 @@ class FirebaseHelper(
         }
     }
 
-    private fun verifyIfSendingCompleted(actualCount: Int, targetCount: Int, callback: (FormStatus) -> Unit) {
-        if (actualCount == targetCount) {
-            callback(FormStatus.SUBMITTED)
-        }
-    }
-
-    suspend fun sendAllData(formId: String): List<UploadTask> {
-        mFirestore.batch().apply {
-
-            // Retrieve form and update its status in DB
-            val form = retrieveForm(formId)
-            form.formStatus = FormStatus.SUBMITTING
-            mDatabase.formDao().update(form)
-
-            // Submit actual form data
-            submitFormDetails(mDatabase, formId, this)
-            submitGeneralInformation(mDatabase, formId, this)
-            if (form.includeShelter) { submitShelterInformation(mDatabase, formId, this) }
-            if (form.includeFood) { submitFoodSecurity(mDatabase, formId, this) }
-            if (form.includeLivelihoods) { submitLivelihoods(mDatabase, formId, this) }
-            if (form.includeHealth) { submitHealthInformation(mDatabase, formId, this) }
-            if (form.includeWash) { submitWashInformation(mDatabase, formId, this) }
-            if (form.includeEvacuation) { submitEvacuationInformation(mDatabase, formId, this) }
-
-            val images = sendCaseStories(mDatabase, formId, this)
-            commit()
-
-            val uploadImageTasks = ArrayList<UploadTask>()
-            while (images.isNotEmpty()) {
-                val uploadTask = createUploadImageTask(images.remove())
-                uploadImageTasks.add(uploadTask)
-                uploadTask.addOnCompleteListener {
-                    uploadImageTasks.remove(uploadTask)
-                }
-            }
-            return uploadImageTasks
-        }
-    }
-
     private suspend fun retrieveForm(formId: String): Form {
         return mDatabase.formDao().getByIdNonLive(formId)
     }
 
-    private suspend fun createUploadImageTask(image: CaseStoriesImageItem): UploadTask {
+    private fun createUploadImageTask(image: CaseStoriesImageItem): UploadTask {
         return mStorage.reference.child("images/${image.id}")
             .putFile(Uri.parse(image.uri))
+    }
+
+    private fun verifyIfSendingCompleted(
+        actualCount: Int, targetCount: Int,
+        callback: (FormStatus) -> Unit
+    ) {
+        if (actualCount == targetCount) {
+            callback(FormStatus.SUBMITTED)
+        }
     }
 
     suspend fun submitBasicData(formId: String): LiveData<ProgressNotification> {

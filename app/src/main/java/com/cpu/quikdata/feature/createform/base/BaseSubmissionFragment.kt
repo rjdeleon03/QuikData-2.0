@@ -12,6 +12,7 @@ import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.observeOnly
 import com.cpu.quikdata.common.observeProgress
 import com.cpu.quikdata.common.showToast
+import com.cpu.quikdata.dialog.InfoDialogFragment
 import com.cpu.quikdata.dialog.ProgressDialogFragment
 import com.cpu.quikdata.feature.createform.selection.worker.SubmissionWorker
 
@@ -19,6 +20,7 @@ import com.cpu.quikdata.feature.createform.selection.worker.SubmissionWorker
 abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
 
     protected var mDialog: ProgressDialogFragment? = null
+    protected var mInfoDialog: InfoDialogFragment? = null
 
     protected fun showProgressDialog() {
         mDialog?.dismiss()
@@ -32,6 +34,15 @@ abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
     protected fun hideProgressDialog() {
         mDialog?.dismiss()
         mDialog = null
+    }
+
+    protected fun showInfoDialog() {
+        mInfoDialog = InfoDialogFragment.newInstance(R.string.form_item_submitting,
+            R.layout.dialog_form_item_submitting)
+        mInfoDialog?.show(childFragmentManager, InfoDialogFragment.TAG)
+        mInfoDialog?.setOnDialogClosedListener {
+            requireActivity().finish()
+        }
     }
 
     protected val mSubmissionViewModel: SubmissionViewModel by lazy {
@@ -65,31 +76,10 @@ abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
         }, {
             mDialog?.updateBasedOnProgress(it)
         })
-
-        mSubmissionViewModel.progress.observe(viewLifecycleOwner) { progress ->
-            if (progress.state.isFinished) {
-                hideProgressDialog()
-            }
-
-            when (progress.state) {
-                WorkInfo.State.SUCCEEDED -> {
-                    showToast(R.string.form_item_submission_success)
-                    requireActivity().finish()
-                }
-                WorkInfo.State.FAILED -> {
-                    showToast(R.string.form_item_submission_failed)
-                }
-                WorkInfo.State.CANCELLED -> {
-                    showToast(R.string.form_item_submission_cancelled)
-                }
-                else -> {
-                }
-            }
-        }
     }
 
     protected fun initSubmissionWorker(isBasicMode: Boolean): OneTimeWorkRequest {
-        showProgressDialog()
+        showInfoDialog()
         return OneTimeWorkRequest.Builder(SubmissionWorker::class.java)
             .setInputData(SubmissionWorker.setFormData(mParentViewModel.formId, isBasicMode))
             .build()

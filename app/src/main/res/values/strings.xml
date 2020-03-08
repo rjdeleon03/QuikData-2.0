@@ -422,9 +422,9 @@
     <string name="form_item_changes_saved">Your changes to the DNCA form have been saved.</string>
     <string name="form_item_submission_success">The DNCA form has been submitted successfully.</string>
     <string name="form_item_submission_failed">The DNCA form has been saved, but it was not submitted successfully.</string>
-    <string name="form_item_submitting">Submitting DNCA form...</string>
+    <string name="form_item_submitting">Submitting DNCA Form</string>
     <string name="form_item_submission_cancelled">The submission of the DNCA form has been cancelled.</string>
-    <string name="form_item_submitting_image">Uploading images...</string>
+    <string name="form_item_submitting_image">Uploading images…</string>
     <string name="selection_optionals">Optional Sections</string>
     <string name="selection_optionals_instructions">Tap the toggles to include or exclude the sections.</string>
     <string name="text_error_no_internet">The form cannot be submitted. Please make sure that you are connected to the Internet.</string>
@@ -434,4 +434,5 @@
     <string name="about_button_ICRED">ICRED</string>
     <string name="about_button_consortium">Consortium</string>
     <string name="home_about">About Quik Data</string>
+    <string name="form_item_submitting_info">The form will be submitted. You may check the progress in your notifications or in the DNCA Archive screen.</string>
 </resources>
