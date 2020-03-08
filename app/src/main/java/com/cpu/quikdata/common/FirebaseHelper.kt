@@ -5,10 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.cpu.quikdata.*
 import com.cpu.quikdata.data.AppDatabase
+import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.WriteBatch
 import com.google.firebase.storage.FirebaseStorage
+import java.util.*
 import com.google.firebase.storage.UploadTask
 
 enum class ProgressNotification {
@@ -27,6 +30,7 @@ class FirebaseHelper(
 ) {
 
     private val mUploadTasks = arrayListOf<UploadTask>()
+
     @Volatile
     private var mIsCancelled = false
 
@@ -68,6 +72,39 @@ class FirebaseHelper(
         }
 
     // region Submission methods
+
+    suspend fun sendBasicData(formId: String) {
+        cancelUploadTasks()
+        mIsCancelled = false
+        mFirestore.batch().apply {
+            submitFormDetails(mDatabase, formId, this)
+            submitGeneralInformation(mDatabase, formId, this)
+
+            val images = sendCaseStories(mDatabase, formId, this)
+            var task: Task<*> = commit()
+            println("TASK: $task")
+            while(images.isNotEmpty()) {
+                val uploadTask = createUploadImageTask(images.remove())
+                task = task.continueWith { uploadTask }
+                println("UPLOAD TASK: $task")
+            }
+            println("FINAL: $task")
+            task.addOnSuccessListener {
+                val x = 1
+            }.addOnFailureListener {
+                val x = 1
+            }
+
+        }
+    }
+
+    private fun createUploadImageTask(image: CaseStoriesImageItem): Task<*> {
+        return mStorage.reference.child("images/${image.id}")
+            .putFile(Uri.parse(image.uri))
+            .addOnSuccessListener {
+                val x = 1
+            }
+    }
 
     suspend fun submitBasicData(formId: String): LiveData<ProgressNotification> {
         cancelUploadTasks()
@@ -429,6 +466,29 @@ class FirebaseHelper(
                 mFirestore.collection(FIREBASE_KEY_EVACUATION).document(formId),
                 ListWrapper(formId, section)
             )
+        }
+    }
+
+    private suspend fun sendCaseStories(
+        database: AppDatabase, formId: String, batch: WriteBatch
+    ): Queue<CaseStoriesImageItem> {
+        run {
+            val section = database.caseStoriesDao().getByFormIdNonLive(formId)
+            batch.setTask(
+                mFirestore.collection(FIREBASE_KEY_CASE_STORIES).document(section.root!!.id),
+                section
+            )
+            val imagesQueue = LinkedList<CaseStoriesImageItem>()
+            section.images?.let {
+                imagesQueue.addAll(it)
+            }
+//            section.images?.forEach {
+//                val task = mStorage.reference.child("images/${it.id}")
+//                    .putFile(Uri.parse(it.uri))
+//                task.addOnSuccessListener { }
+//                mUploadTasks.add(task)
+//            }
+            return imagesQueue
         }
     }
 

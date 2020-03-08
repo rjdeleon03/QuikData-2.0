@@ -44,7 +44,7 @@ class SubmissionWorker(
 
             val isBasicMode = inputData.getBoolean(MODE_KEY, true)
             if (isBasicMode) {
-                mFirebaseHelper.submitBasicData(form.id)
+                mFirebaseHelper.sendBasicData(form.id)
             } else {
                 mFirebaseHelper.submitAllData(form.id)
             }
