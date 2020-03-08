@@ -7,8 +7,11 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.di.app.module.ChildWorkerFactory
 import com.cpu.quikdata.utils.getDateTimeNowInLong
+import java.lang.Exception
 import java.util.*
 import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -52,15 +55,21 @@ class SubmissionWorker(
             } else {
                 mFirebaseHelper.submitAllData(form.id)
             }
-
-            return Result.success()
         }
         try {
-            countDownLatch.await()
-        } catch (e: InterruptedException) {
+            countDownLatch.await(300, TimeUnit.MILLISECONDS)
+//        } catch (e: InterruptedException) {
+//            e.printStackTrace()
+//            return Result.failure()
+//        } catch (e: TimeoutException) {
+//            e.printStackTrace()
+//            return Result.failure()
+        } catch (e: Exception) {
+            println("=======> EXCEPTION!!!")
             e.printStackTrace()
+            return Result.failure()
         }
-        return Result.failure()
+        return Result.success()
     }
 
     private suspend fun retrieveFormAndSaveAsNonTemporary(formId: String): Form {

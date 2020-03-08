@@ -14,6 +14,9 @@ import com.google.firebase.firestore.WriteBatch
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 import com.google.firebase.storage.UploadTask
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
+import kotlin.collections.ArrayList
 
 enum class ProgressNotification {
     FORM_SUBMITTED,
@@ -74,31 +77,24 @@ class FirebaseHelper(
 
     // region Submission methods
 
-    suspend fun sendBasicData(formId: String) {
-        cancelUploadTasks()
-        mIsCancelled = false
+    @Suppress("BlockingMethodInNonBlockingContext")
+    suspend fun sendBasicData(formId: String): List<UploadTask> {
         mFirestore.batch().apply {
             submitFormDetails(mDatabase, formId, this)
             submitGeneralInformation(mDatabase, formId, this)
 
             val images = sendCaseStories(mDatabase, formId, this)
-            val taskCount = 1 + images.size
-            var actualTaskCount = 0
-            var task: Task<*> = commit()
+            commit()
 
-            while(images.isNotEmpty()) {
+            val uploadImageTasks = ArrayList<UploadTask>()
+            while (images.isNotEmpty()) {
                 val uploadTask = createUploadImageTask(images.remove())
-//                uploadTask.addOnSuccessListener {
-//                    actualTaskCount++
-//                }
-                task = task.continueWithTask { uploadTask }
+                uploadImageTasks.add(uploadTask)
+                uploadTask.addOnCompleteListener {
+                    uploadImageTasks.remove(uploadTask)
+                }
             }
-            task.addOnSuccessListener {
-                val x = 1
-            }.addOnFailureListener {
-                val x = 1
-            }
-        Tasks.await(task)
+            return uploadImageTasks
         }
     }
 
