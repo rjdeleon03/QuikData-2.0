@@ -8,6 +8,7 @@ import com.cpu.quikdata.di.createform.generalinfo.GeneralInfoComponent
 import com.cpu.quikdata.di.createform.healthinfo.HealthInfoComponent
 import com.cpu.quikdata.di.createform.livelihoodsinfo.LivelihoodsInfoComponent
 import com.cpu.quikdata.di.createform.shelterinfo.ShelterInfoComponent
+import com.cpu.quikdata.di.createform.submission.SubmissionComponent
 import com.cpu.quikdata.di.createform.watersanitationinfo.WaterSanitationInfoComponent
 import dagger.Module
 
@@ -21,7 +22,8 @@ import dagger.Module
         HealthInfoComponent::class,
         WaterSanitationInfoComponent::class,
         EvacuationInfoComponent::class,
-        CaseStoriesComponent::class
+        CaseStoriesComponent::class,
+        SubmissionComponent::class
     ]
 )
 interface CreateFormSubcomponents

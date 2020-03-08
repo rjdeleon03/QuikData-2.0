@@ -8,6 +8,7 @@ import com.cpu.quikdata.common.ProgressNotification
 import com.cpu.quikdata.common.deleteFile
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.utils.getDateTimeNowInLong
 import javax.inject.Inject
 
 class CreateFormRepository @Inject constructor(
@@ -62,10 +63,6 @@ class CreateFormRepository @Inject constructor(
         }
     }
 
-    suspend fun saveChangesToFormOnly() {
-        performSaveChangesToFormOnly()
-    }
-
     private suspend fun performSaveChangesToFormOnly() {
         mForm.value?.apply {
             isTemporary = false
@@ -74,6 +71,14 @@ class CreateFormRepository @Inject constructor(
         }
     }
     */
+
+    suspend fun saveChangesToFormOnly() {
+        mForm.value?.apply {
+            isTemporary = false
+            dateModified = getDateTimeNowInLong()
+            mDatabase.formDao().update(this)
+        }
+    }
 
     fun cancelSubmission() = mFirebaseHelper.cancelSubmission()
 

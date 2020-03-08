@@ -11,6 +11,7 @@ import com.cpu.quikdata.di.createform.generalinfo.GeneralInfoComponent
 import com.cpu.quikdata.di.createform.healthinfo.HealthInfoComponent
 import com.cpu.quikdata.di.createform.livelihoodsinfo.LivelihoodsInfoComponent
 import com.cpu.quikdata.di.createform.shelterinfo.ShelterInfoComponent
+import com.cpu.quikdata.di.createform.submission.SubmissionComponent
 import com.cpu.quikdata.di.createform.watersanitationinfo.WaterSanitationInfoComponent
 import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import dagger.BindsInstance
@@ -40,6 +41,7 @@ interface CreateFormComponent {
     fun waterSanitationInfoComponent(): WaterSanitationInfoComponent.Factory
     fun evacuationInfoComponent(): EvacuationInfoComponent.Factory
     fun caseStoriesComponent(): CaseStoriesComponent.Factory
+    fun submissionComponent(): SubmissionComponent.Factory
 
     fun inject(createFormActivity: CreateFormActivity)
     fun inject(createFormFragment: BaseCreateFormFragment)

@@ -7,7 +7,8 @@ import com.cpu.quikdata.common.runOnIoThread
 import com.cpu.quikdata.data.form.Form
 import javax.inject.Inject
 
-class CreateFormViewModel @Inject constructor(private val mRepository: CreateFormRepository) : ViewModel() {
+class CreateFormViewModel @Inject constructor(private val mRepository: CreateFormRepository) :
+    ViewModel() {
 
     val formId: String
         get() = mRepository.formId
@@ -23,19 +24,28 @@ class CreateFormViewModel @Inject constructor(private val mRepository: CreateFor
 
     fun deleteForm() = runOnIoThread { mRepository.deleteForm() }
 
-    fun saveFormAsActual(isBasicMode: Boolean = false) = runOnIoThread { mRepository.saveFormAsActual(isBasicMode) }
+    fun saveFormAsActual(isBasicMode: Boolean = false) {} // = runOnIoThread { mRepository.saveFormAsActual(isBasicMode) }
 
     fun saveChangesToFormOnly() = runOnIoThread { mRepository.saveChangesToFormOnly() }
 
     fun cancelSubmission() = mRepository.cancelSubmission()
 
-    fun toggleSectionInclusions(includeShelter: Boolean,
-                                includeFood: Boolean,
-                                includeLivelihoods: Boolean,
-                                includeHealth: Boolean,
-                                includeWash: Boolean,
-                                includeEvacuation: Boolean) =
+    fun toggleSectionInclusions(
+        includeShelter: Boolean,
+        includeFood: Boolean,
+        includeLivelihoods: Boolean,
+        includeHealth: Boolean,
+        includeWash: Boolean,
+        includeEvacuation: Boolean
+    ) =
         runOnIoThread {
-            mRepository.toggleSectionInclusions(includeShelter, includeFood, includeLivelihoods, includeHealth, includeWash, includeEvacuation)
+            mRepository.toggleSectionInclusions(
+                includeShelter,
+                includeFood,
+                includeLivelihoods,
+                includeHealth,
+                includeWash,
+                includeEvacuation
+            )
         }
 }
