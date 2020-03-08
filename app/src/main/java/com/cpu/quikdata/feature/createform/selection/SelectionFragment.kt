@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.work.WorkManager
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.customviews.ItemSection
 import com.cpu.quikdata.feature.createform.base.BaseSubmissionFragment
+import com.cpu.quikdata.utils.isInternetAvailableThenToast
 import kotlinx.android.synthetic.main.fragment_selection.*
 
 class SelectionFragment : BaseSubmissionFragment() {
@@ -51,8 +53,18 @@ class SelectionFragment : BaseSubmissionFragment() {
         }
 
         selectionSendSaveButton.clickWithGuard {
-            showProgressDialog()
-            mParentViewModel.saveFormAsActual()
+            if (isInternetAvailableThenToast(
+                    view.context,
+                    R.string.text_error_no_internet_save_only
+                )
+            ) {
+                mSubmissionViewModel.submitFormData(
+                    WorkManager.getInstance(requireContext()),
+                    initSubmissionWorker(false)
+                )
+                return@clickWithGuard
+            }
+            mParentViewModel.saveChangesToFormOnly()
         }
         selectionFormDetailsButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_formDetailsAndBaselineFragment) }
         selectionGenInfoButton.setButtonListeners { mNavController.navigate(R.id.action_selection_to_generalInfoFragment) }
