@@ -21,15 +21,13 @@ abstract class BaseCreateFormFragment: BaseFragment() {
         (requireActivity() as CreateFormActivity).createFormComponent.inject(this)
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (!isVisibleToUser && activity != null) {
-            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            val focus = requireActivity().currentFocus
-            if (focus != null) {
-                imm.hideSoftInputFromWindow(focus.windowToken, 0)
-                focus.clearFocus()
-            }
+    override fun onPause() {
+        super.onPause()
+        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val focus = requireActivity().currentFocus
+        if (focus != null) {
+            imm.hideSoftInputFromWindow(focus.windowToken, 0)
+            focus.clearFocus()
         }
     }
 }
