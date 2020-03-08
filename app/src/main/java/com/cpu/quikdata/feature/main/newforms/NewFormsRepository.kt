@@ -199,11 +199,11 @@ class NewFormsRepository @Inject constructor(
             mDatabase.estimatedDamageRowDao().insert(row)
 
             val subcategories = LivelihoodCategories.values()[i].getSubcategories()
-            for (j in 0 until subcategories.size) {
+            for (element in subcategories) {
 
                 val subRow = EstimatedDamageType(
                     id = generateId(),
-                    type = subcategories[j].ordinal,
+                    type = element.ordinal,
                     estimatedDamageId = estimatedDamageId
                 )
                 mDatabase.estimatedDamageTypeDao().insert(subRow)

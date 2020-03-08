@@ -24,15 +24,21 @@ class NewFormsAdapter(context: Context,
 
     override fun createViewHolder(view: View): ViewHolder {
         val holder = ViewHolder(view, {
-            if (!isInternetAvailableThenToast(view.context)) {
-                return@ViewHolder
+            mForms?.get(it)?.let { form ->
+                if (!isInternetAvailableThenToast(view.context)) {
+                    return@ViewHolder
+                }
+                mSubmitClickListener.invoke(form)
             }
-            mSubmitClickListener.invoke(mForms!![it])
         }, {
-            mDeleteClickListener.invoke(mForms!![it])
+            mForms?.get(it)?.let { form ->
+                mDeleteClickListener.invoke(form)
+            }
         })
         holder.setOnClickListener {
-            CreateFormActivity.newInstance(view.context, mForms!![it].form!!.id, true)
+            mForms?.get(it)?.form?.id?.let { formId ->
+                CreateFormActivity.newInstance(view.context, formId, true)
+            }
         }
         return holder
     }

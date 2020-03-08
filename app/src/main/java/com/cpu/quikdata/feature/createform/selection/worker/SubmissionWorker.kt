@@ -30,7 +30,7 @@ class SubmissionWorker(
         }
 
         @JvmStatic
-        fun setFormData(formId: String, isBasicMode: Boolean): Data {
+        fun setFormData(formId: String, isBasicMode: Boolean = false): Data {
             return Data.Builder()
                 .putString(FORM_ID_KEY, formId)
                 .putBoolean(MODE_KEY, isBasicMode)
