@@ -4,12 +4,14 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.work.*
 import com.cpu.quikdata.R
 import com.cpu.quikdata.common.FirebaseHelper
 import com.cpu.quikdata.common.toDateTimeString
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.data.form.FormStatus
 import com.cpu.quikdata.di.app.module.ChildWorkerFactory
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import java.lang.Exception
@@ -56,11 +58,11 @@ class SubmissionWorker(
             val isBasicMode = inputData.getBoolean(MODE_KEY, true)
             if (isBasicMode) {
                 mFirebaseHelper.sendBasicData(form.id) {
-                    createResultNotification(form)
+                    createResultNotification(form, it)
                 }
             } else {
                 mFirebaseHelper.sendAllData(form.id) {
-                    createResultNotification(form)
+                    createResultNotification(form, it)
                 }
             }
         }
@@ -87,11 +89,16 @@ class SubmissionWorker(
         manager.notify(form.id, 1, notif.build())
     }
 
-    private fun createResultNotification(form: Form) {
+    private fun createResultNotification(form: Form, status: FormStatus) {
         val manager = getNotificationManager()
 
+        val title = when (status) {
+            FormStatus.SUBMITTED -> "DNCA Form Submitted"
+            else -> "Failed to Submit DNCA Form"
+        }
+
         val notif = NotificationCompat.Builder(applicationContext, QUIK_DATA_NOTIF_CHANNEL)
-            .setContentTitle("DNCA Form Submitted")
+            .setContentTitle(title)
             .setContentText("Form created at ${form.dateCreated.toDateTimeString()}")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setOngoing(false)
@@ -105,7 +112,7 @@ class SubmissionWorker(
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 QUIK_DATA_NOTIF_CHANNEL,
-                QUIK_DATA_NOTIF_CHANNEL,
+                applicationContext.getString(R.string.app_name),
                 NotificationManager.IMPORTANCE_DEFAULT
             )
             manager.createNotificationChannel(channel)

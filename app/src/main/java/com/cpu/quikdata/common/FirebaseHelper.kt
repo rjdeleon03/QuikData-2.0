@@ -16,6 +16,10 @@ import com.google.firebase.firestore.WriteBatch
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 import com.google.firebase.storage.UploadTask
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 import kotlin.collections.ArrayList
@@ -124,14 +128,19 @@ class FirebaseHelper(
             }
 
             val images = sendCaseStories(mDatabase, formId, this)
+            val uploadImageTasks = ArrayList<UploadTask>()
             val targetCount = images.size + 1
             var actualCount = 0
             commit().addOnSuccessListener {
                 actualCount++
-                verifyIfSendingCompleted(actualCount, targetCount, callback)
+                verifyIfSendingCompleted(form, actualCount, targetCount, callback)
+            }.addOnFailureListener {
+                uploadImageTasks.forEach {
+                    if (!it.isCanceled) it.cancel()
+                }
+                handleError(form, callback)
             }
 
-            val uploadImageTasks = ArrayList<UploadTask>()
             while (images.isNotEmpty()) {
                 val uploadTask = createUploadImageTask(images.remove())
                 uploadImageTasks.add(uploadTask)
@@ -139,12 +148,12 @@ class FirebaseHelper(
                     uploadImageTasks.remove(uploadTask)
                 }.addOnSuccessListener {
                     actualCount++
-                    verifyIfSendingCompleted(actualCount, targetCount, callback)
+                    verifyIfSendingCompleted(form, actualCount, targetCount, callback)
                 }.addOnFailureListener {
                     uploadImageTasks.forEach {
                         if (!it.isCanceled) it.cancel()
                     }
-                    callback(FormStatus.ERROR_SUBMITTING)
+                    handleError(form, callback)
                 }
             }
             return uploadImageTasks
@@ -161,11 +170,23 @@ class FirebaseHelper(
     }
 
     private fun verifyIfSendingCompleted(
-        actualCount: Int, targetCount: Int,
+        form: Form, actualCount: Int, targetCount: Int,
         callback: (FormStatus) -> Unit
     ) {
         if (actualCount == targetCount) {
-            callback(FormStatus.SUBMITTED)
+            runBlocking {
+                callback(FormStatus.SUBMITTED)
+                form.formStatus = FormStatus.SUBMITTED
+                mDatabase.formDao().update(form)
+            }
+        }
+    }
+
+    private fun handleError(form: Form, callback: (FormStatus) -> Unit) {
+        runBlocking {
+            callback(FormStatus.ERROR_SUBMITTING)
+            form.formStatus = FormStatus.ERROR_SUBMITTING
+            mDatabase.formDao().update(form)
         }
     }
 
