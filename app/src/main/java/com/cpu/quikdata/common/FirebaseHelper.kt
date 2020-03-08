@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.cpu.quikdata.*
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
+import com.cpu.quikdata.data.form.Form
+import com.cpu.quikdata.data.form.FormStatus
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
@@ -77,9 +79,15 @@ class FirebaseHelper(
 
     // region Submission methods
 
-    @Suppress("BlockingMethodInNonBlockingContext")
     suspend fun sendBasicData(formId: String): List<UploadTask> {
         mFirestore.batch().apply {
+
+            // Retrieve form and update its status in DB
+            val form = retrieveForm(formId)
+            form.formStatus = FormStatus.SUBMITTING
+            mDatabase.formDao().update(form)
+
+            // Submit actual form data
             submitFormDetails(mDatabase, formId, this)
             submitGeneralInformation(mDatabase, formId, this)
 
@@ -98,7 +106,44 @@ class FirebaseHelper(
         }
     }
 
-    private fun createUploadImageTask(image: CaseStoriesImageItem): UploadTask {
+    suspend fun sendAllData(formId: String): List<UploadTask> {
+        mFirestore.batch().apply {
+
+            // Retrieve form and update its status in DB
+            val form = retrieveForm(formId)
+            form.formStatus = FormStatus.SUBMITTING
+            mDatabase.formDao().update(form)
+
+            // Submit actual form data
+            submitFormDetails(mDatabase, formId, this)
+            submitGeneralInformation(mDatabase, formId, this)
+            if (form.includeShelter) { submitShelterInformation(mDatabase, formId, this) }
+            if (form.includeFood) { submitFoodSecurity(mDatabase, formId, this) }
+            if (form.includeLivelihoods) { submitLivelihoods(mDatabase, formId, this) }
+            if (form.includeHealth) { submitHealthInformation(mDatabase, formId, this) }
+            if (form.includeWash) { submitWashInformation(mDatabase, formId, this) }
+            if (form.includeEvacuation) { submitEvacuationInformation(mDatabase, formId, this) }
+
+            val images = sendCaseStories(mDatabase, formId, this)
+            commit()
+
+            val uploadImageTasks = ArrayList<UploadTask>()
+            while (images.isNotEmpty()) {
+                val uploadTask = createUploadImageTask(images.remove())
+                uploadImageTasks.add(uploadTask)
+                uploadTask.addOnCompleteListener {
+                    uploadImageTasks.remove(uploadTask)
+                }
+            }
+            return uploadImageTasks
+        }
+    }
+
+    private suspend fun retrieveForm(formId: String): Form {
+        return mDatabase.formDao().getByIdNonLive(formId)
+    }
+
+    private suspend fun createUploadImageTask(image: CaseStoriesImageItem): UploadTask {
         return mStorage.reference.child("images/${image.id}")
             .putFile(Uri.parse(image.uri))
     }

@@ -42,10 +42,7 @@ class SubmissionWorker(
         }
     }
 
-    private val mLatch  = CountDownLatch(1);
-
     override suspend fun doWork(): Result {
-        val countDownLatch = CountDownLatch(1)
         inputData.getString(FORM_ID_KEY)?.let { formId ->
             val form = retrieveFormAndSaveAsNonTemporary(formId)
 
@@ -53,21 +50,8 @@ class SubmissionWorker(
             if (isBasicMode) {
                 mFirebaseHelper.sendBasicData(form.id)
             } else {
-                mFirebaseHelper.submitAllData(form.id)
+                mFirebaseHelper.sendAllData(form.id)
             }
-        }
-        try {
-            countDownLatch.await(300, TimeUnit.MILLISECONDS)
-//        } catch (e: InterruptedException) {
-//            e.printStackTrace()
-//            return Result.failure()
-//        } catch (e: TimeoutException) {
-//            e.printStackTrace()
-//            return Result.failure()
-        } catch (e: Exception) {
-            println("=======> EXCEPTION!!!")
-            e.printStackTrace()
-            return Result.failure()
         }
         return Result.success()
     }

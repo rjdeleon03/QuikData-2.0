@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.cpu.quikdata.data.baselinedata.BaselineData
 import com.cpu.quikdata.data.baselinedata.BaselineDataDao
 import com.cpu.quikdata.data.casestories.CaseStories
@@ -153,6 +154,7 @@ import com.cpu.quikdata.data.watersanitationinfo.washgaps.WashGapsDao
     ],
     exportSchema = false,
     version = 1)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun prefilledDataDao(): PrefilledDataDao

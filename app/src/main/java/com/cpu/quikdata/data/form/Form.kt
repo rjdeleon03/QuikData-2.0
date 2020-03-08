@@ -5,27 +5,39 @@ import androidx.room.PrimaryKey
 import com.google.firebase.firestore.Exclude
 
 @Entity(tableName = "form")
-data class Form(@PrimaryKey(autoGenerate = false)
-                val id: String,
+data class Form(
+    @PrimaryKey(autoGenerate = false)
+    val id: String,
 
-                val dateCreated: Long = 0L,
+    val dateCreated: Long = 0L,
 
-                var dateModified: Long = 0L,
+    var dateModified: Long = 0L,
 
-                var includeShelter: Boolean = false,
+    var includeShelter: Boolean = false,
 
-                var includeFood: Boolean = false,
+    var includeFood: Boolean = false,
 
-                var includeLivelihoods: Boolean = false,
+    var includeLivelihoods: Boolean = false,
 
-                var includeHealth: Boolean = false,
+    var includeHealth: Boolean = false,
 
-                var includeWash: Boolean = false,
+    var includeWash: Boolean = false,
 
-                var includeEvacuation: Boolean = false,
+    var includeEvacuation: Boolean = false,
 
-                @get:Exclude
-                var isTemporary: Boolean = true,
+    @get:Exclude
+    var isTemporary: Boolean = true,
 
-                @get:Exclude
-                var idRemote: String = "")
+    @get:Exclude
+    var idRemote: String = "",
+
+    @get:Exclude
+    var formStatus: FormStatus = FormStatus.IDLE
+)
+
+enum class FormStatus {
+    IDLE,
+    SUBMITTING,
+    SUBMITTED,
+    ERROR_SUBMITTING
+}
