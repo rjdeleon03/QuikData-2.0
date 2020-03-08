@@ -8,6 +8,7 @@ import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.di.app.module.ChildWorkerFactory
 import com.cpu.quikdata.utils.getDateTimeNowInLong
 import java.util.*
+import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -38,7 +39,10 @@ class SubmissionWorker(
         }
     }
 
+    private val mLatch  = CountDownLatch(1);
+
     override suspend fun doWork(): Result {
+        val countDownLatch = CountDownLatch(1)
         inputData.getString(FORM_ID_KEY)?.let { formId ->
             val form = retrieveFormAndSaveAsNonTemporary(formId)
 
@@ -50,6 +54,11 @@ class SubmissionWorker(
             }
 
             return Result.success()
+        }
+        try {
+            countDownLatch.await()
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
         }
         return Result.failure()
     }

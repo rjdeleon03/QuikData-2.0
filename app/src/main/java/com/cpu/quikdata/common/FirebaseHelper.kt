@@ -7,6 +7,7 @@ import com.cpu.quikdata.*
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
 import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.WriteBatch
@@ -81,29 +82,29 @@ class FirebaseHelper(
             submitGeneralInformation(mDatabase, formId, this)
 
             val images = sendCaseStories(mDatabase, formId, this)
+            val taskCount = 1 + images.size
+            var actualTaskCount = 0
             var task: Task<*> = commit()
-            println("TASK: $task")
+
             while(images.isNotEmpty()) {
                 val uploadTask = createUploadImageTask(images.remove())
-                task = task.continueWith { uploadTask }
-                println("UPLOAD TASK: $task")
+//                uploadTask.addOnSuccessListener {
+//                    actualTaskCount++
+//                }
+                task = task.continueWithTask { uploadTask }
             }
-            println("FINAL: $task")
             task.addOnSuccessListener {
                 val x = 1
             }.addOnFailureListener {
                 val x = 1
             }
-
+        Tasks.await(task)
         }
     }
 
-    private fun createUploadImageTask(image: CaseStoriesImageItem): Task<*> {
+    private fun createUploadImageTask(image: CaseStoriesImageItem): UploadTask {
         return mStorage.reference.child("images/${image.id}")
             .putFile(Uri.parse(image.uri))
-            .addOnSuccessListener {
-                val x = 1
-            }
     }
 
     suspend fun submitBasicData(formId: String): LiveData<ProgressNotification> {
