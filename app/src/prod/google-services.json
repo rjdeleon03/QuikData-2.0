@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "804432056360",
+    "firebase_url": "https://quik-data.firebaseio.com",
+    "project_id": "quik-data",
+    "storage_bucket": "quik-data.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804432056360:android:6f23c0a56d162d2d",
+        "android_client_info": {
+          "package_name": "com.cpu.quikdata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804432056360-3tode46psh8b6hgfnha8sfh5kmbvu9gp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cpu.quikdata",
+            "certificate_hash": "c58a92f2bd15c9b1bb82a27c50ce49dc257b7623"
+          }
+        },
+        {
+          "client_id": "804432056360-7blmpjl0t6r36qeqn8maro0u81m72fem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZh6rTmoyUs7DSo5v3OhfMSszvXYmBjX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804432056360-7blmpjl0t6r36qeqn8maro0u81m72fem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

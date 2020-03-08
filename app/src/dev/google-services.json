@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "610352636713",
+    "firebase_url": "https://cpu-quikdata-dev.firebaseio.com",
+    "project_id": "cpu-quikdata-dev",
+    "storage_bucket": "cpu-quikdata-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610352636713:android:cb6e0576b147beb1d0cd38",
+        "android_client_info": {
+          "package_name": "com.cpu.quikdata.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610352636713-f2ebj2604s0jblarleef76bhappigand.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOJmlH2GpMpT6hpiyhjhL6KRn3gemB1fU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610352636713-f2ebj2604s0jblarleef76bhappigand.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
