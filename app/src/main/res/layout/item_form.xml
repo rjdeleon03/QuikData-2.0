@@ -14,6 +14,26 @@
         android:layout_height="@dimen/dimenMidLarge"
         android:background="@drawable/ripple_accent">
 
+        <ProgressBar
+            android:id="@+id/formOptionsStatusProgressBar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="@dimen/dimenSmall"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:background="?attr/actionBarItemBackground"
+            android:src="@drawable/ic_more_vert_24dp"/>
+
+        <ImageView
+            android:id="@+id/formOptionsStatusImage"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="@dimen/dimenSmall"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:background="?attr/actionBarItemBackground"
+            android:src="@drawable/ic_more_vert_24dp"/>
+
         <TextView
             android:id="@+id/formItemNameText"
             android:layout_width="wrap_content"

@@ -9,13 +9,16 @@ import com.cpu.quikdata.base.BaseAsyncInflaterAdapter
 import com.cpu.quikdata.common.clickWithGuard
 import com.cpu.quikdata.common.toDateString
 import com.cpu.quikdata.data.form.FormComplete
+import com.cpu.quikdata.data.form.FormStatus
 import com.cpu.quikdata.feature.createform.activity.CreateFormActivity
 import com.cpu.quikdata.utils.isInternetAvailableThenToast
 import kotlinx.android.synthetic.main.item_form.view.*
 
-class NewFormsAdapter(context: Context,
-                      submitClickListener: (FormComplete) -> Unit,
-                      deleteClickListener: (FormComplete) -> Unit) :
+class NewFormsAdapter(
+    context: Context,
+    submitClickListener: (FormComplete) -> Unit,
+    deleteClickListener: (FormComplete) -> Unit
+) :
     BaseAsyncInflaterAdapter<NewFormsAdapter.ViewHolder>(context, R.layout.item_form) {
 
     private var mForms: List<FormComplete>? = null
@@ -88,14 +91,43 @@ class NewFormsAdapter(context: Context,
 
         fun populateWithData(form: FormComplete, index: Int) {
             view.tag = index
+            val formStatus = form.form!!.formStatus
             val formDetails = form.formDetails!![0]
             val baselineData = form.baselineData!![0]
             val calamityInfo = form.calamityInfo!![0]
-            view.formItemNameText.text = String.format(view.context.getString(R.string.form_item_assessed), formDetails.assessmentDate.toDateString())
+            view.formItemNameText.text = String.format(
+                view.context.getString(R.string.form_item_assessed),
+                formDetails.assessmentDate.toDateString()
+            )
+
+            // region Status
+
+            when (formStatus) {
+                FormStatus.SUBMITTING -> {
+                    view.formOptionsStatusImage.visibility = View.GONE
+                    view.formOptionsStatusProgressBar.visibility = View.VISIBLE
+                    view.formOptionsStatusProgressBar.isIndeterminate = true
+                }
+                FormStatus.SUBMITTED -> {
+                    view.formOptionsStatusImage.visibility = View.VISIBLE
+                    view.formOptionsStatusProgressBar.visibility = View.GONE
+                    view.formOptionsStatusImage.setImageResource(R.drawable.ic_check_24dp)
+                }
+                FormStatus.ERROR_SUBMITTING -> {
+                    view.formOptionsStatusImage.visibility = View.VISIBLE
+                    view.formOptionsStatusProgressBar.visibility = View.GONE
+                    view.formOptionsStatusImage.setImageResource(R.drawable.ic_error_outline_24dp)
+                }
+                else -> {
+                }
+            }
+
+            // endregion
 
             // region Sitio/Barangay
             if (baselineData.sitio.isBlank() && baselineData.barangay.isBlank()) {
-                view.formItemSitioBarangayText.text = view.context.getString(R.string.text_empty_sitio_barangay)
+                view.formItemSitioBarangayText.text =
+                    view.context.getString(R.string.text_empty_sitio_barangay)
             } else if (baselineData.sitio.isBlank() || baselineData.barangay.isBlank()) {
                 view.formItemSitioBarangayText.text =
                     String.format(
@@ -115,7 +147,8 @@ class NewFormsAdapter(context: Context,
 
             // region City/Province
             if (baselineData.city.isBlank() && baselineData.province.isBlank()) {
-                view.formItemCityProvinceText.text = view.context.getString(R.string.text_empty_city_province)
+                view.formItemCityProvinceText.text =
+                    view.context.getString(R.string.text_empty_city_province)
             } else if (baselineData.city.isBlank() || baselineData.province.isBlank()) {
                 view.formItemCityProvinceText.text =
                     String.format(
@@ -138,7 +171,8 @@ class NewFormsAdapter(context: Context,
             if (!calamityInfo.calamityType.isBlank()) {
                 view.formItemCalamityText.text = calamityInfo.calamityType
             } else {
-                view.formItemCalamityText.text = view.context.getString(R.string.text_unknown_calamity)
+                view.formItemCalamityText.text =
+                    view.context.getString(R.string.text_unknown_calamity)
             }
             // endregion
         }
