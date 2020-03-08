@@ -1,8 +1,13 @@
 package com.cpu.quikdata.feature.createform.selection.worker
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
+import androidx.core.app.NotificationCompat
 import androidx.work.*
+import com.cpu.quikdata.R
 import com.cpu.quikdata.common.FirebaseHelper
+import com.cpu.quikdata.common.toDateTimeString
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.di.app.module.ChildWorkerFactory
@@ -24,6 +29,7 @@ class SubmissionWorker(
     CoroutineWorker(context, workerParams) {
 
     companion object {
+        const val QUIK_DATA_NOTIF_CHANNEL = "quik_data"
         const val FORM_ID_KEY = "FORM_ID_KEY"
         const val MODE_KEY = "MODE_KEY"
 
@@ -45,10 +51,13 @@ class SubmissionWorker(
     override suspend fun doWork(): Result {
         inputData.getString(FORM_ID_KEY)?.let { formId ->
             val form = retrieveFormAndSaveAsNonTemporary(formId)
+            createProgressNotification(form)
 
             val isBasicMode = inputData.getBoolean(MODE_KEY, true)
             if (isBasicMode) {
-                mFirebaseHelper.sendBasicData(form.id)
+                mFirebaseHelper.sendBasicData(form.id) {
+                    createResultNotification(form)
+                }
             } else {
                 mFirebaseHelper.sendAllData(form.id)
             }
@@ -62,6 +71,43 @@ class SubmissionWorker(
             dateModified = getDateTimeNowInLong()
             mDatabase.formDao().update(this)
         }
+    }
+
+    private fun createProgressNotification(form: Form) {
+        val manager = getNotificationManager()
+
+        val notif = NotificationCompat.Builder(applicationContext, QUIK_DATA_NOTIF_CHANNEL)
+            .setContentTitle("Submitting DNCA Form")
+            .setContentText("Form created at ${form.dateCreated.toDateTimeString()}")
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setProgress(0, 0, true)
+        manager.notify(form.id, 1, notif.build())
+    }
+
+    private fun createResultNotification(form: Form) {
+        val manager = getNotificationManager()
+
+        val notif = NotificationCompat.Builder(applicationContext, QUIK_DATA_NOTIF_CHANNEL)
+            .setContentTitle("DNCA Form Submitted")
+            .setContentText("Form created at ${form.dateCreated.toDateTimeString()}")
+            .setSmallIcon(R.mipmap.ic_launcher)
+        manager.notify(form.id, 1, notif.build())
+    }
+
+    private fun getNotificationManager(): NotificationManager {
+        val manager = applicationContext
+            .getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                QUIK_DATA_NOTIF_CHANNEL,
+                QUIK_DATA_NOTIF_CHANNEL,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            manager.createNotificationChannel(channel)
+        }
+
+        return manager
     }
 
     class Factory @Inject constructor(

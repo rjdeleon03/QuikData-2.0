@@ -79,7 +79,7 @@ class FirebaseHelper(
 
     // region Submission methods
 
-    suspend fun sendBasicData(formId: String): List<UploadTask> {
+    suspend fun sendBasicData(formId: String, callback: (FormStatus) -> Unit): List<UploadTask> {
         mFirestore.batch().apply {
 
             // Retrieve form and update its status in DB
@@ -92,7 +92,12 @@ class FirebaseHelper(
             submitGeneralInformation(mDatabase, formId, this)
 
             val images = sendCaseStories(mDatabase, formId, this)
-            commit()
+            val targetCount = images.size + 1
+            var actualCount = 0
+            commit().addOnSuccessListener {
+                actualCount++
+                verifyIfSendingCompleted(actualCount, targetCount, callback)
+            }
 
             val uploadImageTasks = ArrayList<UploadTask>()
             while (images.isNotEmpty()) {
@@ -100,9 +105,23 @@ class FirebaseHelper(
                 uploadImageTasks.add(uploadTask)
                 uploadTask.addOnCompleteListener {
                     uploadImageTasks.remove(uploadTask)
+                }.addOnSuccessListener {
+                    actualCount++
+                    verifyIfSendingCompleted(actualCount, targetCount, callback)
+                }.addOnFailureListener {
+                    uploadImageTasks.forEach {
+                        if (!it.isCanceled) it.cancel()
+                    }
+                    callback(FormStatus.ERROR_SUBMITTING)
                 }
             }
             return uploadImageTasks
+        }
+    }
+
+    private fun verifyIfSendingCompleted(actualCount: Int, targetCount: Int, callback: (FormStatus) -> Unit) {
+        if (actualCount == targetCount) {
+            callback(FormStatus.SUBMITTED)
         }
     }
 

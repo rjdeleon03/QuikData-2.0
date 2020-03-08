@@ -49,6 +49,11 @@ fun Long.toDateString(): String {
     return formatter.print(this)
 }
 
+fun Long.toDateTimeString(): String {
+    val formatter = DateTimeFormat.forPattern("yyyy/MM/dd HH:mm:ss")
+    return formatter.print(this)
+}
+
 fun View.clickWithGuard(guardTime: Long = 500L, action: () -> Unit) {
 
     this.setOnClickListener(object: View.OnClickListener {
