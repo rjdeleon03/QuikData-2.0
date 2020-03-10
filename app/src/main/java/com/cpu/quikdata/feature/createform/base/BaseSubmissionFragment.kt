@@ -1,6 +1,7 @@
 package com.cpu.quikdata.feature.createform.base
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +12,7 @@ import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
 import com.cpu.quikdata.common.observeOnly
 import com.cpu.quikdata.common.observeProgress
+import com.cpu.quikdata.common.service.SubmissionService
 import com.cpu.quikdata.common.showToast
 import com.cpu.quikdata.dialog.InfoDialogFragment
 import com.cpu.quikdata.dialog.ProgressDialogFragment
@@ -83,5 +85,10 @@ abstract class BaseSubmissionFragment : BaseCreateFormFragment() {
         return OneTimeWorkRequest.Builder(SubmissionWorker::class.java)
             .setInputData(SubmissionWorker.setFormData(mParentViewModel.formId, isBasicMode))
             .build()
+    }
+
+    protected fun startSubmission(isBasicMode: Boolean) {
+        showInfoDialog()
+        SubmissionService.newInstance(requireContext(), mParentViewModel.formId, isBasicMode)
     }
 }

@@ -40,6 +40,8 @@
             android:exported="false"
             tools:node="remove" />
 
+        <service android:name=".common.service.SubmissionService"/>
+
     </application>
 
 </manifest>

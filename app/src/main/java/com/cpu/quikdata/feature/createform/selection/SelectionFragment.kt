@@ -58,10 +58,7 @@ class SelectionFragment : BaseSubmissionFragment() {
                     R.string.text_error_no_internet_save_only
                 )
             ) {
-                mSubmissionViewModel.submitFormData(
-                    WorkManager.getInstance(requireContext()),
-                    initSubmissionWorker(false)
-                )
+                startSubmission(false)
                 return@clickWithGuard
             }
             mParentViewModel.saveChangesToFormOnly()

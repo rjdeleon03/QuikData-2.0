@@ -1,5 +1,6 @@
 package com.cpu.quikdata.di.app
 
+import com.cpu.quikdata.di.common.service.SubmissionServiceComponent
 import com.cpu.quikdata.di.createform.activity.CreateFormComponent
 import com.cpu.quikdata.di.main.newforms.NewFormsComponent
 import com.cpu.quikdata.di.main.prefilledinfo.PrefilledInfoComponent
@@ -9,7 +10,8 @@ import dagger.Module
     subcomponents = [
         PrefilledInfoComponent::class,
         NewFormsComponent::class,
-        CreateFormComponent::class
+        CreateFormComponent::class,
+        SubmissionServiceComponent::class
     ]
 )
 interface AppSubcomponents

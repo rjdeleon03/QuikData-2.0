@@ -13,23 +13,45 @@ import com.cpu.quikdata.common.toDateTimeString
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormStatus
+import com.cpu.quikdata.feature.QuikDataApp
 import com.cpu.quikdata.feature.createform.selection.worker.SubmissionWorker
 import javax.inject.Inject
 
 class SubmissionService: Service() {
 
     companion object {
-        const val FORM_ID_KEY = "FORM_ID_KEY"
+        private const val FORM_ID_KEY = "FORM_ID_KEY"
+        private const val MODE_KEY = "MODE_KEY"
+
+        @JvmStatic
+        fun newInstance(context: Context, formId: String, isBasicMode: Boolean = false) {
+            val serviceIntent = Intent(context, SubmissionService::class.java).apply {
+                putExtra(FORM_ID_KEY, formId)
+                putExtra(MODE_KEY, isBasicMode)
+            }
+            context.startService(serviceIntent)
+        }
     }
 
     @Inject lateinit var mFirebaseHelper: FirebaseHelper
     @Inject lateinit var mDatabase: AppDatabase
 
+    override fun onCreate() {
+        super.onCreate()
+        (application as QuikDataApp).appComponent
+            .submissionServiceComponent().create(this).inject(this)
+    }
+
     override fun onBind(intent: Intent?): IBinder? {
+        // There is no need to bind the service.
         return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        intent?.getStringExtra(FORM_ID_KEY)?.let {  formId ->
+            val isBasicMode = intent.getBooleanExtra(MODE_KEY, false)
+
+        }
         return Service.START_REDELIVER_INTENT;
     }
 

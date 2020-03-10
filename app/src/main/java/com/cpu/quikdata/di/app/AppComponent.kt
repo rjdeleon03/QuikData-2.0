@@ -2,6 +2,7 @@ package com.cpu.quikdata.di.app
 
 import android.app.Application
 import com.cpu.quikdata.di.app.module.*
+import com.cpu.quikdata.di.common.service.SubmissionServiceComponent
 import com.cpu.quikdata.di.createform.activity.CreateFormComponent
 import com.cpu.quikdata.di.main.newforms.NewFormsComponent
 import com.cpu.quikdata.di.main.prefilledinfo.PrefilledInfoComponent
@@ -28,9 +29,13 @@ interface AppComponent {
         fun create(@BindsInstance application: Application): AppComponent
     }
 
+    // Activity subcomponents
     fun prefilledInfoComponent(): PrefilledInfoComponent.Factory
     fun newFormsComponent(): NewFormsComponent.Factory
     fun createFormComponent(): CreateFormComponent.Factory
+
+    // Service subcomponents
+    fun submissionServiceComponent(): SubmissionServiceComponent.Factory
 
     fun inject(application: QuikDataApp)
 
