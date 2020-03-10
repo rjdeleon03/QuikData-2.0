@@ -1,5 +1,6 @@
 package com.cpu.quikdata.common.service
 
+import android.app.IntentService
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
@@ -19,7 +20,7 @@ import com.cpu.quikdata.utils.getDateTimeNowInLong
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class SubmissionService : Service() {
+class SubmissionService : IntentService("SubmissionService") {
 
     companion object {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
@@ -56,6 +57,9 @@ class SubmissionService : Service() {
     override fun onBind(intent: Intent?): IBinder? {
         // There is no need to bind the service.
         return null
+    }
+
+    override fun onHandleIntent(p0: Intent?) {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
