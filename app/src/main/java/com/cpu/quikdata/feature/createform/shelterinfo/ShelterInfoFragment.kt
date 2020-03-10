@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.adapter.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.setupClipping
@@ -36,7 +36,9 @@ class ShelterInfoFragment : BaseCreateFormSectionFragment() {
 
         setupClipping(shelterInfoViewPager)
 
-        val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        val pagerAdapter = CustomPagerAdapter(
+            childFragmentManager
+        )
         pagerAdapter.addFragment(HouseDamageFragment.newInstance(), getString(R.string.house_damage_title))
         pagerAdapter.addFragment(ShelterCopingFragment.newInstance(), getString(R.string.shelter_coping_title))
         pagerAdapter.addFragment(ShelterNeedsFragment.newInstance(), getString(R.string.shelter_needs_title))

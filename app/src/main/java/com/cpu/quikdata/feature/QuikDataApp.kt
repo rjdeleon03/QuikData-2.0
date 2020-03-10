@@ -4,14 +4,12 @@ import android.app.Application
 import android.os.Build
 import androidx.work.Configuration
 import androidx.work.WorkManager
-import androidx.work.WorkerFactory
 import com.cpu.quikdata.FIREBASE_KEY_DEVICES
-import com.cpu.quikdata.common.SharedPreferencesHelper
+import com.cpu.quikdata.common.helper.SharedPreferencesHelper
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.prefilleddata.PrefilledData
 import com.cpu.quikdata.di.app.AppComponent
 import com.cpu.quikdata.di.app.DaggerAppComponent
-import com.cpu.quikdata.di.app.module.ChildWorkerFactory
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

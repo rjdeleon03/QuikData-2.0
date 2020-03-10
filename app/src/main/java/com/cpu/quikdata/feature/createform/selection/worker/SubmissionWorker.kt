@@ -4,21 +4,16 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import androidx.work.*
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.FirebaseHelper
+import com.cpu.quikdata.common.helper.FirebaseHelper
 import com.cpu.quikdata.common.toDateTimeString
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormStatus
 import com.cpu.quikdata.di.app.module.ChildWorkerFactory
 import com.cpu.quikdata.utils.getDateTimeNowInLong
-import java.lang.Exception
 import java.util.*
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 import javax.inject.Provider
 

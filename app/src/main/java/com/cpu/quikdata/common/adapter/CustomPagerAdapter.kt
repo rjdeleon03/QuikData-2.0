@@ -1,4 +1,4 @@
-package com.cpu.quikdata.common
+package com.cpu.quikdata.common.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

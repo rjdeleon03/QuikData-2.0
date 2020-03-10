@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormFragment
-import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.adapter.CustomPagerAdapter
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.di.createform.evacuationinfo.evacuationitem.EvacuationItemComponent
@@ -61,7 +61,9 @@ class EvacuationContainerFragment : BaseCreateFormFragment() {
 
         setupClipping(evacuationInfoViewPager)
 
-        val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        val pagerAdapter = CustomPagerAdapter(
+            childFragmentManager
+        )
         pagerAdapter.addFragment(SiteInfoFragment.newInstance(), getString(R.string.evacuation_site_info_title))
         pagerAdapter.addFragment(EvacuationAgeFragment.newInstance(), getString(R.string.evacuation_age_title))
         pagerAdapter.addFragment(EvacuationFacilitiesFragment.newInstance(), getString(R.string.evacuation_facilities_title))

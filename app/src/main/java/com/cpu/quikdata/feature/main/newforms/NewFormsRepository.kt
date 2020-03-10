@@ -3,6 +3,8 @@ package com.cpu.quikdata.feature.main.newforms
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.cpu.quikdata.common.*
+import com.cpu.quikdata.common.helper.FirebaseHelper
+import com.cpu.quikdata.common.helper.ProgressNotification
 import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.baselinedata.BaselineData
 import com.cpu.quikdata.data.casestories.CaseStories
@@ -44,7 +46,8 @@ import javax.inject.Inject
 
 class NewFormsRepository @Inject constructor(
     private val mDatabase: AppDatabase,
-    private val mFirebaseHelper: FirebaseHelper) {
+    private val mFirebaseHelper: FirebaseHelper
+) {
 
     private val mNewForms = mDatabase.formDao().getAllActual()
     private val mSaveResult = MediatorLiveData<ProgressNotification>()

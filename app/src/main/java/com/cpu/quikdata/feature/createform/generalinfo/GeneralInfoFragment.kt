@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.adapter.CustomPagerAdapter
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
 import com.cpu.quikdata.common.setupClipping
@@ -38,7 +38,9 @@ class GeneralInfoFragment : BaseCreateFormSectionFragment() {
 
         setupClipping(genInfoViewPager)
 
-        val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        val pagerAdapter = CustomPagerAdapter(
+            childFragmentManager
+        )
         pagerAdapter.addFragment(CalamityInfoFragment.newInstance(), getString(R.string.calamity_info_title))
         pagerAdapter.addFragment(PopulationFragment.newInstance(), getString(R.string.population_title))
         pagerAdapter.addFragment(FamiliesFragment.newInstance(), getString(R.string.families_title))

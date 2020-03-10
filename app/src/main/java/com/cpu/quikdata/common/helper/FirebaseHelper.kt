@@ -1,4 +1,4 @@
-package com.cpu.quikdata.common
+package com.cpu.quikdata.common.helper
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
@@ -8,20 +8,13 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormStatus
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.WriteBatch
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 import com.google.firebase.storage.UploadTask
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
 import kotlin.collections.ArrayList
 
 enum class ProgressNotification {
@@ -196,7 +189,9 @@ class FirebaseHelper(
         val resultLiveData = MutableLiveData<ProgressNotification>()
         val progressListener = getOnProgressListener(resultLiveData)
 
-        runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pnl ->
+        runWithSuccessCounter(2, progressListener,
+            ProgressNotification.FINISHED
+        ) { pnl ->
             val batch = mFirestore.batch()
             submitFormDetails(mDatabase, formId, batch)
             submitGeneralInformation(mDatabase, formId, batch)
@@ -219,7 +214,9 @@ class FirebaseHelper(
         val progressListener = getOnProgressListener(resultLiveData)
 
         val formData = mDatabase.formDao().getFormDataNonLive(formId)
-        runWithSuccessCounter(2, progressListener, ProgressNotification.FINISHED) { pnl ->
+        runWithSuccessCounter(2, progressListener,
+            ProgressNotification.FINISHED
+        ) { pnl ->
             val batch = mFirestore.batch()
             submitFormDetails(mDatabase, formId, batch)
             submitGeneralInformation(mDatabase, formId, batch)
@@ -275,7 +272,10 @@ class FirebaseHelper(
             val section = database.populationRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_POPULATION).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
@@ -289,28 +289,40 @@ class FirebaseHelper(
             val section = database.vulnerableRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_VULNERABLE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
             val section = database.casualtiesRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_CASUALTIES).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
             val section = database.causeOfDeathRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_CAUSE_OF_DEATH).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
             val section = database.infrastructureDamageRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_INFRASTRUCTURE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
     }
@@ -324,7 +336,10 @@ class FirebaseHelper(
             val section = database.houseDamageRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_HOUSE_DAMAGE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
@@ -338,14 +353,20 @@ class FirebaseHelper(
             val section = database.shelterNeedsRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_SHELTER_NEEDS).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
             val section = database.shelterAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_SHELTER_ASSISTANCE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
@@ -387,7 +408,10 @@ class FirebaseHelper(
             val section = database.foodSecurityAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_FOOD_ASSISTANCE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
@@ -408,21 +432,30 @@ class FirebaseHelper(
             val section = database.incomeBeforeRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_INCOME_BEFORE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
             val section = database.incomeAfterRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_INCOME_AFTER).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
             val section = database.estimatedDamageRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_ESTIMATED_DAMAGE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
@@ -443,7 +476,10 @@ class FirebaseHelper(
             val section = database.livelihoodsAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_LIVELIHOODS_ASSISTANCE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
@@ -464,21 +500,30 @@ class FirebaseHelper(
             val section = database.diseasesRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_DISEASES).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
             val section = database.specialNeedsRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_SPECIAL_NEEDS).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
             val section = database.psychosocialRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_PSYCHOSOCIAL).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
@@ -492,7 +537,10 @@ class FirebaseHelper(
             val section = database.healthAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_HEALTH_ASSISTANCE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
@@ -527,7 +575,10 @@ class FirebaseHelper(
             val section = database.washAssistanceRowDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_WASH_ASSISTANCE).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
         run {
@@ -548,7 +599,10 @@ class FirebaseHelper(
             val section = database.evacuationItemDao().getByFormIdNonLive(formId)
             batch.setTask(
                 mFirestore.collection(FIREBASE_KEY_EVACUATION).document(formId),
-                ListWrapper(formId, section)
+                ListWrapper(
+                    formId,
+                    section
+                )
             )
         }
     }

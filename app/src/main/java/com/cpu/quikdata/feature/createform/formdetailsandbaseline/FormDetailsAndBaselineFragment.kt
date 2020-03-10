@@ -9,7 +9,7 @@ import android.view.ViewGroup
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
-import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.adapter.CustomPagerAdapter
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.formdetailsandbaseline.baselinedata.BaselineDataFragment
@@ -40,7 +40,9 @@ class FormDetailsAndBaselineFragment : BaseCreateFormSectionFragment() {
 
         setupClipping(formDetailsViewPager)
 
-        val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        val pagerAdapter = CustomPagerAdapter(
+            childFragmentManager
+        )
         pagerAdapter.addFragment(FormDetailsFragment.newInstance(), getString(R.string.form_details_title))
         pagerAdapter.addFragment(BaselineDataFragment.newInstance(), getString(R.string.baseline_data_title))
         formDetailsViewPager.setupViewPager(pagerAdapter) { setSubtitle(it) }

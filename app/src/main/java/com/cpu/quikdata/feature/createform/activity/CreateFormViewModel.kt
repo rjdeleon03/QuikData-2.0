@@ -2,7 +2,7 @@ package com.cpu.quikdata.feature.createform.activity
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.cpu.quikdata.common.ProgressNotification
+import com.cpu.quikdata.common.helper.ProgressNotification
 import com.cpu.quikdata.common.runOnIoThread
 import com.cpu.quikdata.data.form.Form
 import javax.inject.Inject

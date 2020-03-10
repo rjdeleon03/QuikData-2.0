@@ -7,7 +7,7 @@ import android.view.ViewGroup
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
-import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.adapter.CustomPagerAdapter
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.watersanitationinfo.washassistance.WashAssistanceFragment
@@ -35,7 +35,9 @@ class WaterSanitationInfoFragment : BaseCreateFormSectionFragment() {
 
         setupClipping(washViewPager)
 
-        val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        val pagerAdapter = CustomPagerAdapter(
+            childFragmentManager
+        )
         pagerAdapter.addFragment(WashConditionsFragment.newInstance(), getString(R.string.wash_conditions_title))
         pagerAdapter.addFragment(WashCopingFragment.newInstance(), getString(R.string.wash_coping_title))
         pagerAdapter.addFragment(WashAssistanceFragment.newInstance(), getString(R.string.text_assistance))

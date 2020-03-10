@@ -20,9 +20,8 @@ import androidx.lifecycle.*
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cpu.quikdata.R
+import com.cpu.quikdata.common.helper.ProgressNotification
 import com.cpu.quikdata.dialog.ConfirmationDialogFragment
-import com.cpu.quikdata.dialog.ProgressDialogFragment
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.joda.time.format.DateTimeFormat

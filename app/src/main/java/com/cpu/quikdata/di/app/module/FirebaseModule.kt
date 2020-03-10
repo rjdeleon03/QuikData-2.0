@@ -1,6 +1,6 @@
 package com.cpu.quikdata.di.app.module
 
-import com.cpu.quikdata.common.FirebaseHelper
+import com.cpu.quikdata.common.helper.FirebaseHelper
 import com.cpu.quikdata.data.AppDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -16,7 +16,11 @@ class FirebaseModule {
     fun provideFirebaseHelper(firestore: FirebaseFirestore,
                               storage: FirebaseStorage,
                               database: AppDatabase): FirebaseHelper {
-        return FirebaseHelper(firestore, storage, database)
+        return FirebaseHelper(
+            firestore,
+            storage,
+            database
+        )
     }
 
     @Provides

@@ -1,4 +1,4 @@
-package com.cpu.quikdata.common
+package com.cpu.quikdata.common.helper
 
 import android.content.Context
 import android.preference.PreferenceManager

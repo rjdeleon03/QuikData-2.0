@@ -7,7 +7,7 @@ import android.view.ViewGroup
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
-import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.adapter.CustomPagerAdapter
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.healthinfo.diseases.DiseasesFragment
@@ -37,7 +37,9 @@ class HealthInfoFragment : BaseCreateFormSectionFragment() {
 
         setupClipping(healthInfoViewPager)
 
-        val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        val pagerAdapter = CustomPagerAdapter(
+            childFragmentManager
+        )
         pagerAdapter.addFragment(DiseasesFragment.newInstance(), getString(R.string.diseases_title))
         pagerAdapter.addFragment(SpecialNeedsFragment.newInstance(), getString(R.string.special_needs_title))
         pagerAdapter.addFragment(PsychosocialFragment.newInstance(), getString(R.string.psychosocial_title))

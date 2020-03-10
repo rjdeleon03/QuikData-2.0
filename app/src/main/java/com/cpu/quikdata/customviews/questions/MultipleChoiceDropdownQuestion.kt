@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.CustomArrayAdapter
+import com.cpu.quikdata.common.adapter.CustomArrayAdapter
 import kotlinx.android.synthetic.main.question_multiple_choice.view.questionChoiceText
 import kotlinx.android.synthetic.main.question_multiple_choice_dropdown.view.*
 
@@ -48,7 +48,10 @@ class MultipleChoiceDropdownQuestion(context: Context, attrs: AttributeSet) : Li
         set(value) {
             field = value
             if (field != null) {
-                val adapter = CustomArrayAdapter(context, field!!)
+                val adapter = CustomArrayAdapter(
+                    context,
+                    field!!
+                )
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 questionChoiceSpinner.adapter = adapter
             }

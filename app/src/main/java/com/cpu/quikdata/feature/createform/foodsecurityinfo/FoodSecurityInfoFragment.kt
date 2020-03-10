@@ -7,7 +7,7 @@ import android.view.ViewGroup
 
 import com.cpu.quikdata.R
 import com.cpu.quikdata.base.BaseCreateFormSectionFragment
-import com.cpu.quikdata.common.CustomPagerAdapter
+import com.cpu.quikdata.common.adapter.CustomPagerAdapter
 import com.cpu.quikdata.common.setupClipping
 import com.cpu.quikdata.common.setupViewPager
 import com.cpu.quikdata.feature.createform.foodsecurityinfo.foodsecurityassistance.FoodSecurityAssistanceFragment
@@ -36,7 +36,9 @@ class FoodSecurityInfoFragment : BaseCreateFormSectionFragment() {
 
         setupClipping(foodSecurityInfoViewPager)
 
-        val pagerAdapter = CustomPagerAdapter(childFragmentManager)
+        val pagerAdapter = CustomPagerAdapter(
+            childFragmentManager
+        )
         pagerAdapter.addFragment(FoodSecurityImpactFragment.newInstance(), getString(R.string.food_security_impact_title))
         pagerAdapter.addFragment(FoodSecurityCopingFragment.newInstance(), getString(R.string.food_security_coping_title))
         pagerAdapter.addFragment(FoodSecurityNeedsFragment.newInstance(), getString(R.string.food_security_needs_title))

@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 
 import com.cpu.quikdata.R
-import com.cpu.quikdata.common.ProgressNotification
+import com.cpu.quikdata.common.helper.ProgressNotification
 import kotlinx.android.synthetic.main.dialog_progress.*
 
 /**
