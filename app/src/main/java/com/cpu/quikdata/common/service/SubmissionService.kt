@@ -15,9 +15,11 @@ import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormStatus
 import com.cpu.quikdata.feature.QuikDataApp
 import com.cpu.quikdata.feature.createform.selection.worker.SubmissionWorker
+import com.cpu.quikdata.utils.getDateTimeNowInLong
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class SubmissionService: Service() {
+class SubmissionService : Service() {
 
     companion object {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
@@ -33,13 +35,22 @@ class SubmissionService: Service() {
         }
     }
 
-    @Inject lateinit var mFirebaseHelper: FirebaseHelper
-    @Inject lateinit var mDatabase: AppDatabase
+    @Inject
+    lateinit var mFirebaseHelper: FirebaseHelper
+    @Inject
+    lateinit var mDatabase: AppDatabase
+
+    private val mServiceIoScope = CoroutineScope(Job() + Dispatchers.IO)
 
     override fun onCreate() {
         super.onCreate()
         (application as QuikDataApp).appComponent
             .submissionServiceComponent().create(this).inject(this)
+    }
+
+    override fun onDestroy() {
+        mServiceIoScope.cancel()
+        super.onDestroy()
     }
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -48,17 +59,42 @@ class SubmissionService: Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        intent?.getStringExtra(FORM_ID_KEY)?.let {  formId ->
-            val isBasicMode = intent.getBooleanExtra(MODE_KEY, false)
+        intent?.getStringExtra(FORM_ID_KEY)?.let { formId ->
+
+            mServiceIoScope.launch {
+                val form = retrieveFormAndSaveAsNonTemporary(formId)
+                createProgressNotification(form)
+
+                val isBasicMode = intent.getBooleanExtra(MODE_KEY, false)
+                if (isBasicMode) {
+                    mFirebaseHelper.sendBasicData(form.id) {
+                        createResultNotification(form, it)
+                    }
+                } else {
+                    mFirebaseHelper.sendAllData(form.id) {
+                        createResultNotification(form, it)
+                    }
+                }
+            }
+
 
         }
         return Service.START_REDELIVER_INTENT;
     }
 
+    private suspend fun retrieveFormAndSaveAsNonTemporary(formId: String): Form {
+        return mDatabase.formDao().getByIdNonLive(formId).apply {
+            isTemporary = false
+            dateModified = getDateTimeNowInLong()
+            mDatabase.formDao().update(this)
+        }
+    }
+
     private fun createProgressNotification(form: Form) {
         val manager = getNotificationManager()
 
-        val notif = NotificationCompat.Builder(applicationContext,
+        val notif = NotificationCompat.Builder(
+            applicationContext,
             SubmissionWorker.QUIK_DATA_NOTIF_CHANNEL
         )
             .setContentTitle("Submitting DNCA Form")
@@ -77,7 +113,8 @@ class SubmissionService: Service() {
             else -> "Failed to Submit DNCA Form"
         }
 
-        val notif = NotificationCompat.Builder(applicationContext,
+        val notif = NotificationCompat.Builder(
+            applicationContext,
             SubmissionWorker.QUIK_DATA_NOTIF_CHANNEL
         )
             .setContentTitle(title)

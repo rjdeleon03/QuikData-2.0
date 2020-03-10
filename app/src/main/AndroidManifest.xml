@@ -40,7 +40,7 @@
             android:exported="false"
             tools:node="remove" />
 
-        <service android:name=".common.service.SubmissionService"/>
+        <service android:name=".common.service.SubmissionService" android:exported="false"/>
 
     </application>
 
