@@ -40,7 +40,9 @@
             android:exported="false"
             tools:node="remove" />
 
-        <service android:name=".common.service.SubmissionService" android:exported="false"/>
+        <service android:name=".common.service.SubmissionService"
+            android:exported="false"
+            android:stopWithTask="true"/>
 
     </application>
 

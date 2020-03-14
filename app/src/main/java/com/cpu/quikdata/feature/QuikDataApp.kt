@@ -45,6 +45,7 @@ class QuikDataApp : Application() {
             Configuration.Builder().setWorkerFactory(factory).build())
     }
 
+
     private fun setupDatabase() {
         GlobalScope.launch(Dispatchers.IO) {
             mDatabase.prefilledDataDao().insert(PrefilledData())

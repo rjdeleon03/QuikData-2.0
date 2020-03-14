@@ -8,6 +8,7 @@ import com.cpu.quikdata.data.AppDatabase
 import com.cpu.quikdata.data.casestories.casestoriesimage.CaseStoriesImageItem
 import com.cpu.quikdata.data.form.Form
 import com.cpu.quikdata.data.form.FormStatus
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.WriteBatch
@@ -76,81 +77,93 @@ class FirebaseHelper(
 
     // region Submission methods
 
-    suspend fun sendBasicData(formId: String, callback: (FormStatus) -> Unit): List<UploadTask> {
+    fun sendBasicData(formId: String, callback: (FormStatus) -> Unit): List<UploadTask> {
         return sendData(formId, true, callback)
     }
 
-    suspend fun sendAllData(formId: String, callback: (FormStatus) -> Unit): List<UploadTask> {
+    fun sendAllData(formId: String, callback: (FormStatus) -> Unit): List<UploadTask> {
         return sendData(formId, false, callback)
     }
 
-    private suspend fun sendData(
+    fun sendData(
         formId: String,
         isBasicMode: Boolean,
         callback: (FormStatus) -> Unit
     ): List<UploadTask> {
-        mFirestore.batch().apply {
+        val uploadImageTasks = ArrayList<UploadTask>()
+        runBlocking {
+            mFirestore.batch().apply {
 
-            // Retrieve form and update its status in DB
-            val form = retrieveForm(formId)
-            form.formStatus = FormStatus.SUBMITTING
-            mDatabase.formDao().update(form)
+                // Retrieve form and update its status in DB
+                val form = retrieveForm(formId)
+                form.formStatus = FormStatus.SUBMITTING
+                mDatabase.formDao().update(form)
 
-            // Submit actual form data
-            submitFormDetails(mDatabase, formId, this)
-            submitGeneralInformation(mDatabase, formId, this)
-            if (!isBasicMode) {
-                if (form.includeShelter) {
-                    submitShelterInformation(mDatabase, formId, this)
+                // Submit actual form data
+                submitFormDetails(mDatabase, formId, this)
+                submitGeneralInformation(mDatabase, formId, this)
+                if (!isBasicMode) {
+                    if (form.includeShelter) {
+                        submitShelterInformation(mDatabase, formId, this)
+                    }
+                    if (form.includeFood) {
+                        submitFoodSecurity(mDatabase, formId, this)
+                    }
+                    if (form.includeLivelihoods) {
+                        submitLivelihoods(mDatabase, formId, this)
+                    }
+                    if (form.includeHealth) {
+                        submitHealthInformation(mDatabase, formId, this)
+                    }
+                    if (form.includeWash) {
+                        submitWashInformation(mDatabase, formId, this)
+                    }
+                    if (form.includeEvacuation) {
+                        submitEvacuationInformation(mDatabase, formId, this)
+                    }
                 }
-                if (form.includeFood) {
-                    submitFoodSecurity(mDatabase, formId, this)
-                }
-                if (form.includeLivelihoods) {
-                    submitLivelihoods(mDatabase, formId, this)
-                }
-                if (form.includeHealth) {
-                    submitHealthInformation(mDatabase, formId, this)
-                }
-                if (form.includeWash) {
-                    submitWashInformation(mDatabase, formId, this)
-                }
-                if (form.includeEvacuation) {
-                    submitEvacuationInformation(mDatabase, formId, this)
-                }
-            }
 
-            val images = sendCaseStories(mDatabase, formId, this)
-            val uploadImageTasks = ArrayList<UploadTask>()
-            val targetCount = images.size + 1
-            var actualCount = 0
-            commit().addOnSuccessListener {
-                actualCount++
-                verifyIfSendingCompleted(form, actualCount, targetCount, callback)
-            }.addOnFailureListener {
-                uploadImageTasks.forEach {
-                    if (!it.isCanceled) it.cancel()
-                }
-                handleError(form, callback)
-            }
-
-            while (images.isNotEmpty()) {
-                val uploadTask = createUploadImageTask(images.remove())
-                uploadImageTasks.add(uploadTask)
-                uploadTask.addOnCompleteListener {
-                    uploadImageTasks.remove(uploadTask)
-                }.addOnSuccessListener {
+                val images = sendCaseStories(mDatabase, formId, this)
+                val targetCount = images.size + 1
+                var actualCount = 0
+                val writeTask = commit().addOnSuccessListener {
                     actualCount++
                     verifyIfSendingCompleted(form, actualCount, targetCount, callback)
                 }.addOnFailureListener {
+                    println("====> FAILURE 1")
                     uploadImageTasks.forEach {
                         if (!it.isCanceled) it.cancel()
                     }
                     handleError(form, callback)
+                }.addOnCanceledListener {
+                    println("====> CANCELLED 1")
+                    val x = 1
+                }
+                Tasks.await(writeTask)
+
+                while (images.isNotEmpty()) {
+                    val uploadTask = createUploadImageTask(images.remove())
+                    uploadImageTasks.add(uploadTask)
+                    uploadTask.addOnCompleteListener {
+                        uploadImageTasks.remove(uploadTask)
+                    }.addOnSuccessListener {
+                        actualCount++
+                        verifyIfSendingCompleted(form, actualCount, targetCount, callback)
+                    }.addOnFailureListener {
+                        println("====> FAILURE 2")
+                        uploadImageTasks.forEach {
+                            if (!it.isCanceled) it.cancel()
+                        }
+                        handleError(form, callback)
+                    }.addOnCanceledListener {
+                        println("====> CANCELLED 1")
+                        val x = 1
+                    }
+                    Tasks.await(uploadTask)
                 }
             }
-            return uploadImageTasks
         }
+        return uploadImageTasks
     }
 
     private suspend fun retrieveForm(formId: String): Form {
@@ -189,7 +202,8 @@ class FirebaseHelper(
         val resultLiveData = MutableLiveData<ProgressNotification>()
         val progressListener = getOnProgressListener(resultLiveData)
 
-        runWithSuccessCounter(2, progressListener,
+        runWithSuccessCounter(
+            2, progressListener,
             ProgressNotification.FINISHED
         ) { pnl ->
             val batch = mFirestore.batch()
@@ -214,7 +228,8 @@ class FirebaseHelper(
         val progressListener = getOnProgressListener(resultLiveData)
 
         val formData = mDatabase.formDao().getFormDataNonLive(formId)
-        runWithSuccessCounter(2, progressListener,
+        runWithSuccessCounter(
+            2, progressListener,
             ProgressNotification.FINISHED
         ) { pnl ->
             val batch = mFirestore.batch()

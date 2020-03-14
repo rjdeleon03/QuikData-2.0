@@ -1,6 +1,5 @@
 package com.cpu.quikdata.common.service
 
-import android.app.IntentService
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
@@ -20,7 +19,7 @@ import com.cpu.quikdata.utils.getDateTimeNowInLong
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class SubmissionService : IntentService("SubmissionService") {
+class SubmissionService : Service() {
 
     companion object {
         private const val FORM_ID_KEY = "FORM_ID_KEY"
@@ -41,6 +40,8 @@ class SubmissionService : IntentService("SubmissionService") {
     @Inject
     lateinit var mDatabase: AppDatabase
 
+    lateinit var mFormId: String
+
     private val mServiceIoScope = CoroutineScope(Job() + Dispatchers.IO)
 
     override fun onCreate() {
@@ -50,7 +51,9 @@ class SubmissionService : IntentService("SubmissionService") {
     }
 
     override fun onDestroy() {
+        println("------------ CANCELLED! ------------")
         mServiceIoScope.cancel()
+        getNotificationManager().cancel(mFormId, 1)
         super.onDestroy()
     }
 
@@ -59,12 +62,9 @@ class SubmissionService : IntentService("SubmissionService") {
         return null
     }
 
-    override fun onHandleIntent(p0: Intent?) {
-    }
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         intent?.getStringExtra(FORM_ID_KEY)?.let { formId ->
-
+            mFormId = formId
             mServiceIoScope.launch {
                 val form = retrieveFormAndSaveAsNonTemporary(formId)
                 createProgressNotification(form)
@@ -73,14 +73,15 @@ class SubmissionService : IntentService("SubmissionService") {
                 if (isBasicMode) {
                     mFirebaseHelper.sendBasicData(form.id) {
                         createResultNotification(form, it)
+                        stopSelf()
                     }
                 } else {
                     mFirebaseHelper.sendAllData(form.id) {
                         createResultNotification(form, it)
+                        stopSelf()
                     }
                 }
             }
-
 
         }
         return Service.START_REDELIVER_INTENT;
